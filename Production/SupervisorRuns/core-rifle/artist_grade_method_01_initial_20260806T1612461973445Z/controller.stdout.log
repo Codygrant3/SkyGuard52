@@ -1,0 +1,33 @@
+{
+  "schema": "skyguard.production-attempt.v1",
+  "asset_id": "core-rifle",
+  "attempt_id": "attempt_20260806T161247666992Z",
+  "started_at_utc": "2026-08-06T16:12:47.670261Z",
+  "command": [
+    "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+    "--background",
+    "--factory-startup",
+    "--python",
+    "D:\\Skyguard52\\Scripts\\Workers\\worker_core_rifle_artist_grade.py",
+    "--",
+    "--output",
+    "D:\\Skyguard52\\Production\\Attempts\\core-rifle\\attempt_20260806T161247666992Z\\output",
+    "--asset-id",
+    "core-rifle"
+  ],
+  "launch_count": 1,
+  "retry_count": 0,
+  "timeout": false,
+  "status": "failed",
+  "pid": 75216,
+  "exit_code": 0,
+  "exit_code_type": "int",
+  "output_validation_errors": [
+    "Expected exactly one .blend, found 0.",
+    "Expected exactly one .glb, found 0.",
+    "Expected at least 8 PNG renders, found 0."
+  ],
+  "ended_at_utc": "2026-08-06T16:12:52.554771Z",
+  "artifact_inventory": [],
+  "failure": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 8 PNG renders, found 0."
+}

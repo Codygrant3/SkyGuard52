@@ -1,0 +1,140 @@
+{
+  "schema": "skyguard.production-attempt.v1",
+  "asset_id": "core-rifle",
+  "attempt_id": "attempt_20260806T161423420339Z",
+  "started_at_utc": "2026-08-06T16:14:23.423630Z",
+  "command": [
+    "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+    "--background",
+    "--factory-startup",
+    "--python",
+    "D:\\Skyguard52\\Scripts\\Workers\\worker_core_rifle_artist_grade.py",
+    "--",
+    "--output",
+    "D:\\Skyguard52\\Production\\Attempts\\core-rifle\\attempt_20260806T161423420339Z\\output",
+    "--asset-id",
+    "core-rifle"
+  ],
+  "launch_count": 1,
+  "retry_count": 0,
+  "timeout": false,
+  "status": "awaiting_review",
+  "pid": 59708,
+  "exit_code": 0,
+  "exit_code_type": "int",
+  "output_validation_errors": [],
+  "ended_at_utc": "2026-08-06T16:17:35.422490Z",
+  "artifact_inventory": [
+    {
+      "relative_path": "artifact_receipt.json",
+      "bytes": 2204,
+      "sha256": "dec4d43d51d7f657c26aff3bb6c67c7ac40203e3e53421159d31d6ff0ec32f75"
+    },
+    {
+      "relative_path": "bake_inventory.json",
+      "bytes": 1199,
+      "sha256": "2e14496a1ba04e2c28fc561a9dec675173916bc800a775ea8db2f5eedec36ad7"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_AO.png",
+      "bytes": 2290392,
+      "sha256": "35785092dae4ad2699d4ae3bf45774e4607512cd88bb6bb581c5b945b62732af"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Curvature.png",
+      "bytes": 1090910,
+      "sha256": "6290c7fe22d3cd0181ed4762cecff03415168f7eeea0fd8f18ad63ed69c9e5c7"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_MaterialID.png",
+      "bytes": 794535,
+      "sha256": "397ba4ff5b322f0afd49246ac31f9191421719c264878326e11ff2910da2b95c"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Normal.png",
+      "bytes": 2406754,
+      "sha256": "78245f3063f3cdc9d6d3ee6aaec75ff71e7afc672473e59c95fb66077db9bf47"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Thickness.png",
+      "bytes": 2395425,
+      "sha256": "07d94423d788157b41bb76aa576d3e856b309e2c93d77ba48b62b6242ea54693"
+    },
+    {
+      "relative_path": "core-rifle.blend",
+      "bytes": 3802936,
+      "sha256": "e374b40fb73b8a766dd1826cfea277d7863ab6b0a387895eae1174e9c697b6af"
+    },
+    {
+      "relative_path": "core-rifle.glb",
+      "bytes": 4261164,
+      "sha256": "bb675ffb2380698f47577b18f1b7120423e9aab28bbcc65914bab34d920d90c0"
+    },
+    {
+      "relative_path": "pivot_axis_socket_collision_receipt.json",
+      "bytes": 1212,
+      "sha256": "a6783f69ce5f564f957eb5b0f7454eea452e6a759d70c598be8d4649588f552b"
+    },
+    {
+      "relative_path": "renders\\first_person_ads.png",
+      "bytes": 3651117,
+      "sha256": "3d1012375f441104ac8075fcdae54e1c2f4fc3258f2cb9c8c4456d11ed13988d"
+    },
+    {
+      "relative_path": "renders\\first_person_hip.png",
+      "bytes": 3926777,
+      "sha256": "d3f352f916a3bbc28a814f9b9a29e30fb5e9944f189b082c3d02b8e2b5d8f407"
+    },
+    {
+      "relative_path": "renders\\hero_left.png",
+      "bytes": 3854500,
+      "sha256": "16e2dc6053054eea468b56b0fddc84828eafb8d21fcec48693c4a1d254c46102"
+    },
+    {
+      "relative_path": "renders\\hero_right.png",
+      "bytes": 3771484,
+      "sha256": "c3474ef7debb26bf44cab36b4aa8c221010dc8e5405f6bbb4813f1d8d05f9779"
+    },
+    {
+      "relative_path": "renders\\muzzle_front.png",
+      "bytes": 4308588,
+      "sha256": "d4b082e243dc0e08d7de8788399c0c0bbeb07e754c752e670ef7f216e9f0b161"
+    },
+    {
+      "relative_path": "renders\\side_profile_left.png",
+      "bytes": 3845119,
+      "sha256": "6c4e01ebe8c5533351fc95cd23177a50bc6b3e09e83d36ccdd220c23162890d0"
+    },
+    {
+      "relative_path": "renders\\stock_rear.png",
+      "bytes": 4167310,
+      "sha256": "2c466ab34f7474b9aadfd53a9ce4e24b7800096c38a7acb5a70a3c32dc0fdd63"
+    },
+    {
+      "relative_path": "renders\\top_mechanical.png",
+      "bytes": 3585344,
+      "sha256": "4840ed26a461caa03d2ec331ed69abdbfb6e2620756a813fd828dba0dbf8598e"
+    },
+    {
+      "relative_path": "sight_alignment_receipt.json",
+      "bytes": 389,
+      "sha256": "5ffdc958d320fb4dacdce6c510fc00d079ade23f175fd4d71c31c293eb6bcfc2"
+    },
+    {
+      "relative_path": "source_reference_register.json",
+      "bytes": 3447,
+      "sha256": "e946fb5eef9a64434c3336467006eb066203eb2ffd2d6c4352f88019000b144d"
+    },
+    {
+      "relative_path": "topology_inventory.json",
+      "bytes": 17344,
+      "sha256": "85af8c0d705e133f2913d4ba11c64789d1bec922a7a2551fefc5db2ac6b55fb3"
+    },
+    {
+      "relative_path": "uv_material_inventory.json",
+      "bytes": 1066,
+      "sha256": "fe9951b4341ba05c16c27926dd80637735f8e636e3ab4eb9b8ff811e7ea07d8e"
+    }
+  ],
+  "failure": null
+}

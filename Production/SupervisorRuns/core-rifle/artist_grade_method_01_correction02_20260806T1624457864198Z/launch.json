@@ -1,0 +1,12 @@
+{
+  "schema": "skyguard.supervisor-launch.v1",
+  "asset_id": "core-rifle",
+  "purpose": "artist_grade_method_01_final_correction",
+  "pid": 55824,
+  "started_at_utc": "2026-08-06T16:24:45.8221903Z",
+  "run_directory": "D:\\Skyguard52\\Production\\SupervisorRuns\\core-rifle\\artist_grade_method_01_correction02_20260806T1624457864198Z",
+  "stdout": "D:\\Skyguard52\\Production\\SupervisorRuns\\core-rifle\\artist_grade_method_01_correction02_20260806T1624457864198Z\\controller_stdout.log",
+  "stderr": "D:\\Skyguard52\\Production\\SupervisorRuns\\core-rifle\\artist_grade_method_01_correction02_20260806T1624457864198Z\\controller_stderr.log",
+  "launch_count": 1,
+  "retry_count": 0
+}

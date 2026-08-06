@@ -1,0 +1,145 @@
+{
+  "schema": "skyguard.production-attempt.v1",
+  "asset_id": "core-rifle",
+  "attempt_id": "attempt_20260806T162447179134Z",
+  "started_at_utc": "2026-08-06T16:24:47.182303Z",
+  "command": [
+    "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+    "--background",
+    "--factory-startup",
+    "--python",
+    "D:\\Skyguard52\\Scripts\\Workers\\worker_core_rifle_artist_grade.py",
+    "--",
+    "--output",
+    "D:\\Skyguard52\\Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output",
+    "--asset-id",
+    "core-rifle"
+  ],
+  "launch_count": 1,
+  "retry_count": 0,
+  "timeout": false,
+  "status": "awaiting_review",
+  "pid": 32744,
+  "exit_code": 0,
+  "exit_code_type": "int",
+  "output_validation_errors": [],
+  "ended_at_utc": "2026-08-06T16:27:56.344807Z",
+  "artifact_inventory": [
+    {
+      "relative_path": "artifact_receipt.json",
+      "bytes": 2204,
+      "sha256": "daf7472882d34fdca14f2b424abd07f48dc168eaa78924180a19aa74e734a14a"
+    },
+    {
+      "relative_path": "bake_inventory.json",
+      "bytes": 1199,
+      "sha256": "1d9c97210f7758b63b113f2f28c8dbfa19436b01a4007c415116403377ba3309"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_AO.png",
+      "bytes": 2243137,
+      "sha256": "ed4b6ea540a2e05523c82dcf9a2463ba420be00976d0960ae8647a48ce5a402e"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Curvature.png",
+      "bytes": 1062939,
+      "sha256": "1a9628138f2c95a2bbab1756d522f22bb90c2f69321f671a137c0988b9b680c6"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_MaterialID.png",
+      "bytes": 808120,
+      "sha256": "27dd49910dc16a81fc069cac0b8268422a783fbaebf17436be502a876415550f"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Normal.png",
+      "bytes": 2385383,
+      "sha256": "6cb54c2eb3bebaa93f6e53b098e39036bcad15b84bfc9be054a7e4f7256328b9"
+    },
+    {
+      "relative_path": "bakes\\T_Rifle_Thickness.png",
+      "bytes": 2397230,
+      "sha256": "54899c2e2ea12b0ecbf2222df6e0fa1675c9d3975a3783053ba0bedaa8ee3a5d"
+    },
+    {
+      "relative_path": "core-rifle.blend",
+      "bytes": 3797091,
+      "sha256": "4d55d93ba2fc2594c52c8a2de2c314f091497c9cad86440b2c33d9e4e22dfc17"
+    },
+    {
+      "relative_path": "core-rifle.glb",
+      "bytes": 4243708,
+      "sha256": "1efc5744adac40263fd82ee1b4351921f5a21a529759fdd0c56f7986ad9fa7e6"
+    },
+    {
+      "relative_path": "pivot_axis_socket_collision_receipt.json",
+      "bytes": 1212,
+      "sha256": "a6783f69ce5f564f957eb5b0f7454eea452e6a759d70c598be8d4649588f552b"
+    },
+    {
+      "relative_path": "production_receipt.json",
+      "bytes": 10590,
+      "sha256": "10f6a5b10783bf2d1760fff78d032fdee89d6e063627a0615b468236cb9fa67f"
+    },
+    {
+      "relative_path": "renders\\first_person_ads.png",
+      "bytes": 3399476,
+      "sha256": "675823020d62ffe2e28362f461c60accf57bf77bbcabbf4684185077ca87dd95"
+    },
+    {
+      "relative_path": "renders\\first_person_hip.png",
+      "bytes": 3741832,
+      "sha256": "d7913680e51cfaa29e31d1fece7e208f8d5d83fcf9725c49ed89c9968d1f9e09"
+    },
+    {
+      "relative_path": "renders\\hero_left.png",
+      "bytes": 3777479,
+      "sha256": "3d7cc5ba8da78fa2d238bb4a869c6ca1e36121e8d0ab31b4de55897ad528c77a"
+    },
+    {
+      "relative_path": "renders\\hero_right.png",
+      "bytes": 3791210,
+      "sha256": "d04babcef67341356ca98534d9d209b87249bd9651fa546e95921e1505f5c933"
+    },
+    {
+      "relative_path": "renders\\muzzle_front.png",
+      "bytes": 4019340,
+      "sha256": "b30603d6fff8aa2ec3b717761cc25be03aeb7d1a1f751dccf3eb362702d6f245"
+    },
+    {
+      "relative_path": "renders\\side_profile_left.png",
+      "bytes": 3749119,
+      "sha256": "c0ba0bc2862f582af48d9e5fb6029d53b4e3bcaed457f4d609756f1ef77899cf"
+    },
+    {
+      "relative_path": "renders\\stock_rear.png",
+      "bytes": 3963621,
+      "sha256": "944f5ff25155a2ebfe0bf58e7fe3a59e26229a641d3d333e9b3736fc419afc9f"
+    },
+    {
+      "relative_path": "renders\\top_mechanical.png",
+      "bytes": 3947118,
+      "sha256": "7105e9160c4762aa1645186aa74698572b06309e7524d96f403ab6f4655f15b7"
+    },
+    {
+      "relative_path": "sight_alignment_receipt.json",
+      "bytes": 389,
+      "sha256": "5ffdc958d320fb4dacdce6c510fc00d079ade23f175fd4d71c31c293eb6bcfc2"
+    },
+    {
+      "relative_path": "source_reference_register.json",
+      "bytes": 3447,
+      "sha256": "e946fb5eef9a64434c3336467006eb066203eb2ffd2d6c4352f88019000b144d"
+    },
+    {
+      "relative_path": "topology_inventory.json",
+      "bytes": 17344,
+      "sha256": "a6a2dba391bc6e77d17d7b058f12bba2b8c46d7e80ba89ffa984735bd3393e63"
+    },
+    {
+      "relative_path": "uv_material_inventory.json",
+      "bytes": 1066,
+      "sha256": "fe9951b4341ba05c16c27926dd80637735f8e636e3ab4eb9b8ff811e7ea07d8e"
+    }
+  ],
+  "failure": null
+}

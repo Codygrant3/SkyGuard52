@@ -1,0 +1,147 @@
+{
+  "schema": "skyguard.artist-grade-method-terminal-freeze.v1",
+  "project": "D:\\Skyguard52",
+  "asset_id": "core-rifle",
+  "method_id": "artist_grade_method_01",
+  "classification": "FAILED_ARTIST_GRADE_RIFLE_METHOD_WITH_EVIDENCE",
+  "identity": "generic AR/M4-family rifle; exact configuration unresolved",
+  "baseline": {
+    "commit": "3fc2e0939dff06adea932fa068ec2be273d9f9bc",
+    "wave01_report": {
+      "path": "Docs\\AAA_Review\\P0_COCKPIT_COMBAT_ASSET_WAVE01_TERMINAL_REPORT.md",
+      "sha256": "756fac0e79dbb7c0dbb3224630446e6071b1b4b39a72149ef6cc210f4a4167de"
+    }
+  },
+  "attempts": [
+    {
+      "attempt_id": "attempt_20260806T161247666992Z",
+      "role": "initial",
+      "terminal_sha256": "4c971846f250acf31677244205eb10b337272a2d2c808da4a8d623bb31298bdb",
+      "worker_source_sha256": "913754977c840c3b0848e3b597c74ff331a4610ac26a2f9258e9b5c17f1055e5",
+      "accepted": false
+    },
+    {
+      "attempt_id": "attempt_20260806T161423420339Z",
+      "role": "correction_01",
+      "terminal_sha256": "27fba1833fe1d42dd11d3eb7a4ade8e22dd7b53b2f061ece579b6505c64c4337",
+      "visual_review_sha256": "deaf58a55d1c6cf195be75f2af1bad79531d172f6581a039455e7dd8f2c26651",
+      "worker_source_sha256": "22ce2b31013ed8fa99910538d3c1728fe179dab3fa67dc05e65e699e9955fa53",
+      "accepted": false
+    },
+    {
+      "attempt_id": "attempt_20260806T162447179134Z",
+      "role": "correction_02_final",
+      "terminal_sha256": "b7576974d7951e9546d0a9c3870d54606b748b9b9e4d14ba6e2769163ff6be79",
+      "visual_review_sha256": "92b84f08dbd28b0341bb4d4990fe294888db0c91a4953f11ba1da7755a5c5aba",
+      "worker_source_sha256": "24370c5cd019542a96c94f1cfee593b0252a36e40bbcfe3e051e5a019bef2035",
+      "worker_source_receipt_sha256": "d0672b973404d7459bd99f1a01084ee7de4f2e545b49b8960781ffef2993a39b",
+      "launch_count": 1,
+      "retry_count": 0,
+      "exit_code": 0,
+      "exit_code_type": "int",
+      "timeout": false,
+      "accepted": false
+    }
+  ],
+  "final_outputs": [
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\core-rifle.blend",
+      "bytes": 3797091,
+      "sha256": "4d55d93ba2fc2594c52c8a2de2c314f091497c9cad86440b2c33d9e4e22dfc17"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\core-rifle.glb",
+      "bytes": 4243708,
+      "sha256": "1efc5744adac40263fd82ee1b4351921f5a21a529759fdd0c56f7986ad9fa7e6"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\production_receipt.json",
+      "bytes": 10590,
+      "sha256": "10f6a5b10783bf2d1760fff78d032fdee89d6e063627a0615b468236cb9fa67f"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\topology_inventory.json",
+      "bytes": 17344,
+      "sha256": "a6a2dba391bc6e77d17d7b058f12bba2b8c46d7e80ba89ffa984735bd3393e63"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\uv_material_inventory.json",
+      "bytes": 1066,
+      "sha256": "fe9951b4341ba05c16c27926dd80637735f8e636e3ab4eb9b8ff811e7ea07d8e"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\bake_inventory.json",
+      "bytes": 1199,
+      "sha256": "1d9c97210f7758b63b113f2f28c8dbfa19436b01a4007c415116403377ba3309"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\pivot_axis_socket_collision_receipt.json",
+      "bytes": 1212,
+      "sha256": "a6783f69ce5f564f957eb5b0f7454eea452e6a759d70c598be8d4649588f552b"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z\\output\\sight_alignment_receipt.json",
+      "bytes": 389,
+      "sha256": "5ffdc958d320fb4dacdce6c510fc00d079ade23f175fd4d71c31c293eb6bcfc2"
+    }
+  ],
+  "review_renders": {
+    "count": 8,
+    "dimensions": "2560x1440",
+    "direct_full_resolution_review_complete": true,
+    "hashes": {
+      "first_person_ads.png": "675823020d62ffe2e28362f461c60accf57bf77bbcabbf4684185077ca87dd95",
+      "first_person_hip.png": "d7913680e51cfaa29e31d1fece7e208f8d5d83fcf9725c49ed89c9968d1f9e09",
+      "hero_left.png": "3d7cc5ba8da78fa2d238bb4a869c6ca1e36121e8d0ab31b4de55897ad528c77a",
+      "hero_right.png": "d04babcef67341356ca98534d9d209b87249bd9651fa546e95921e1505f5c933",
+      "muzzle_front.png": "b30603d6fff8aa2ec3b717761cc25be03aeb7d1a1f751dccf3eb362702d6f245",
+      "side_profile_left.png": "c0ba0bc2862f582af48d9e5fb6029d53b4e3bcaed457f4d609756f1ef77899cf",
+      "stock_rear.png": "944f5ff25155a2ebfe0bf58e7fe3a59e26229a641d3d333e9b3736fc419afc9f",
+      "top_mechanical.png": "7105e9160c4762aa1645186aa74698572b06309e7524d96f403ab6f4655f15b7"
+    }
+  },
+  "bakes": {
+    "count": 5,
+    "resolution": "2048x2048",
+    "hashes": {
+      "normal": "6cb54c2eb3bebaa93f6e53b098e39036bcad15b84bfc9be054a7e4f7256328b9",
+      "ao": "ed4b6ea540a2e05523c82dcf9a2463ba420be00976d0960ae8647a48ce5a402e",
+      "curvature": "1a9628138f2c95a2bbab1756d522f22bb90c2f69321f671a137c0988b9b680c6",
+      "thickness": "54899c2e2ea12b0ecbf2222df6e0fa1675c9d3975a3783053ba0bedaa8ee3a5d",
+      "material_id": "27dd49910dc16a81fc069cac0b8268422a783fbaebf17436be502a876415550f"
+    }
+  },
+  "terminal_documents": [
+    {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD01_TERMINAL_REPORT.md",
+      "bytes": 7592,
+      "sha256": "a9e96ad7ffd49312c57f5d9cef1af5e35165eedf5d82699837da29dd266ff31c"
+    },
+    {
+      "path": "Docs\\AAA_Review\\SKYGUARD52_FULL_PRODUCTION_AUDIT_ADDENDUM_CORE_RIFLE_ARTIST_GRADE_METHOD01_2026-08-06.md",
+      "bytes": 2544,
+      "sha256": "06b2c89bde25705a0c230d188d8d4c40ee73a30e0c96efbda09440ca565cd0ea"
+    }
+  ],
+  "blocker": {
+    "category": "modeling skill/method",
+    "reference_coverage_sufficient_for_generic_identity": true,
+    "bake_material_pipeline_completed": true,
+    "blender_bridge_evaluated": false,
+    "reason": "The scripted local hard-surface method completed its technical pipeline but retained primitive, toy-like, visibly procedural forms and insufficient first-person hero detail."
+  },
+  "prohibitions": {
+    "unreal_import": true,
+    "additional_procedural_correction_chain": true,
+    "return_to_wave01_primitive_worker": true,
+    "opus_review": true,
+    "cockpit_method_propagation": true
+  },
+  "validation": {
+    "production_validator": "PASS",
+    "production_audit": "PASS",
+    "accepted_assets": 0,
+    "heavy_processes_after_completion": 0,
+    "production_lock_after_completion": "absent"
+  }
+}

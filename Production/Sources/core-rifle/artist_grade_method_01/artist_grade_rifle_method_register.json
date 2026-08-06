@@ -1,0 +1,40 @@
+{
+  "schema": "skyguard.artist-grade-method-register.v1",
+  "asset_id": "core-rifle",
+  "identity": "generic AR/M4-family rifle; exact configuration unresolved",
+  "authorization": "One initial artist-grade build and at most two render-driven corrections",
+  "wave01_workers_immutable": [
+    "Scripts\\Workers\\worker_core_yak52_cockpit.py",
+    "Scripts\\Workers\\worker_core_hand_forearm.py",
+    "Scripts\\Workers\\worker_core_rifle.py"
+  ],
+  "production_method": [
+    "dimensioned family-accurate external silhouette",
+    "custom receiver and furniture profile construction",
+    "separate high-poly collection",
+    "boolean ventilation and support-controlled bevels",
+    "packed non-overlapping UV0 and UV1_Bake",
+    "high-to-low normal, AO, curvature, thickness and material-ID bakes",
+    "calibrated anodized metal, coated steel, coated aluminum, polymer and rubber PBR",
+    "governed sockets, collision, pivots and axes",
+    "eight 2560x1440 visual-review renders"
+  ],
+  "prohibited_claims": [
+    "manufacturer",
+    "model",
+    "chambering",
+    "serial number",
+    "trademark",
+    "unit marking",
+    "optic",
+    "unsupported accessory",
+    "unsupported internal mechanism"
+  ],
+  "grok_bridge_status": {
+    "checked": true,
+    "cli_present": true,
+    "authenticated_models_available": false,
+    "blender_mcp_configured": false,
+    "decision": "Proceed through the canonical local Blender worker under Codex supervision; do not claim Grok participation."
+  }
+}

@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-06T14:47:27.370706Z"
+    "updated_at_utc": "2026-08-06T16:30:58.001811Z"
   },
   "toolchain": {
     "blender": {
@@ -240,7 +240,7 @@
       ],
       "blocker": "Exact configuration is unresolved; accepted blockout lacks final ergonomic silhouette, sights, controls, material finish, and ADS review.",
       "worker": {
-        "script": "Scripts\\Workers\\worker_core_rifle.py",
+        "script": "Scripts\\Workers\\worker_core_rifle_artist_grade.py",
         "arguments": [
           "--output",
           "{output_dir}",
@@ -260,9 +260,17 @@
         "grip_sockets",
         "collision"
       ],
-      "state_reason": "Final bounded attempt preserves aligned iron sights, complete outputs, and a readable full silhouette, but the receiver, grip, magazine, stock, and handguard remain visibly primitive at first-person distance and material separation is still insufficient. Refinement budget exhausted; preserve all attempts and stop without retry.",
-      "state_changed_at_utc": "2026-08-06T14:47:27.370699Z",
-      "latest_attempt": "Production\\Attempts\\core-rifle\\attempt_20260806T144616145298Z"
+      "state_reason": "Full-resolution inspection of all eight final renders rejected the artist-grade candidate. The corrected fore-end is assembled and the technical package is complete, but the visible art remains below first-person AAA quality: primitive receiver slabs; block-shaped pistol grip and skeleton stock; toy-like magazine silhouette with unexplained protruding strips; visibly procedural rail repetition; mechanically implausible oversized iron-sight construction; sparse microdetail and material response; and an aligned but visually non-credible ADS picture. The exact blocker is modeling skill/method: this scripted local hard-surface construction cannot produce the required artist-authored hero-weapon finish. Reference coverage was sufficient for the permitted generic identity, and the bake/export pipeline completed successfully. No further procedural correction is authorized and no Unreal import is permitted.",
+      "state_changed_at_utc": "2026-08-06T16:30:58.001803Z",
+      "latest_attempt": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z",
+      "artist_grade_method": {
+        "version": 1,
+        "identity": "generic AR/M4-family rifle; exact configuration unresolved",
+        "authorized_reason": "Authorized artist-grade method replacement after Wave 01 terminal procedural rejection",
+        "wave01_worker_immutable": "Scripts\\Workers\\worker_core_rifle.py",
+        "method": "custom hard-surface high/low construction, packed UVs, high-to-low bakes, calibrated PBR, governed 2560x1440 review",
+        "maximum_total_attempts": 3
+      }
     },
     {
       "id": "core-igla-launcher",
