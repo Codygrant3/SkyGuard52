@@ -1,0 +1,21 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-human-review.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-001",
+  "reviewer": "",
+  "reviewed_at_utc": "",
+  "evidence_root": "",
+  "checks": {
+    "all_components_visible_in_C05": false,
+    "no_vertical_edge_cliff_inside_route_view": false,
+    "no_floating_landscape_pixels": false,
+    "no_flat_infinite_slab_read": false,
+    "no_visible_component_cracks": false,
+    "no_visible_black_seam_lines": false,
+    "no_z_fighting_after_warmup": false,
+    "no_C03_district_gap_pixels": false,
+    "shoreline_transition_continuous": false,
+    "water_below_landscape_and_beach": false,
+    "shoreline_world_fixed": false
+  },
+  "notes": []
+}

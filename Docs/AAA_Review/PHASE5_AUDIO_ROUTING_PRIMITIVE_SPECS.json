@@ -1,0 +1,53 @@
+{
+  "schema": "skyguard.phase5.audio-routing-primitive-specs.v1",
+  "units": "Unreal centimeters",
+  "truth_boundary": "Authoring recipe only. A fresh Unreal serialized audit must prove every resulting .uasset and bank binding.",
+  "attenuation": [
+    {"name":"AircraftAttachedInteriorExterior","spatialize":true,"attenuate":true,"inner_radius_cm":250,"falloff_cm":16000,"air_absorption":true,"occlusion":true},
+    {"name":"CloseNonSpatialWeapon","spatialize":false,"attenuate":false,"inner_radius_cm":0,"falloff_cm":0,"air_absorption":false,"occlusion":false},
+    {"name":"CloseSpatialWeaponDetail","spatialize":true,"attenuate":true,"inner_radius_cm":80,"falloff_cm":2800,"air_absorption":false,"occlusion":true},
+    {"name":"DroneFlyby","spatialize":true,"attenuate":true,"inner_radius_cm":300,"falloff_cm":50000,"air_absorption":true,"occlusion":true},
+    {"name":"DroneMotorLongRange","spatialize":true,"attenuate":true,"inner_radius_cm":450,"falloff_cm":90000,"air_absorption":true,"occlusion":true},
+    {"name":"EnvironmentDependentTail","spatialize":true,"attenuate":true,"inner_radius_cm":700,"falloff_cm":110000,"air_absorption":true,"occlusion":false},
+    {"name":"ExplosionHeavy","spatialize":true,"attenuate":true,"inner_radius_cm":1200,"falloff_cm":150000,"air_absorption":true,"occlusion":false},
+    {"name":"ExplosionHeavyDebris","spatialize":true,"attenuate":true,"inner_radius_cm":400,"falloff_cm":35000,"air_absorption":true,"occlusion":true},
+    {"name":"ExplosionSmall","spatialize":true,"attenuate":true,"inner_radius_cm":700,"falloff_cm":90000,"air_absorption":true,"occlusion":false},
+    {"name":"ExplosionSmallDebris","spatialize":true,"attenuate":true,"inner_radius_cm":250,"falloff_cm":22000,"air_absorption":true,"occlusion":true},
+    {"name":"MissileFlyby","spatialize":true,"attenuate":true,"inner_radius_cm":250,"falloff_cm":60000,"air_absorption":true,"occlusion":true},
+    {"name":"MissileImpact","spatialize":true,"attenuate":true,"inner_radius_cm":600,"falloff_cm":100000,"air_absorption":true,"occlusion":false},
+    {"name":"MissileLaunch","spatialize":true,"attenuate":true,"inner_radius_cm":250,"falloff_cm":70000,"air_absorption":true,"occlusion":true},
+    {"name":"NonSpatialCockpitBed","spatialize":false,"attenuate":false,"inner_radius_cm":0,"falloff_cm":0,"air_absorption":false,"occlusion":false},
+    {"name":"RifleOpenCockpit","spatialize":true,"attenuate":true,"inner_radius_cm":180,"falloff_cm":80000,"air_absorption":true,"occlusion":true}
+  ],
+  "concurrency": [
+    {"name":"CasingLowPriorityBounded","max_count":6,"resolution_rule":"StopQuietest","retrigger_seconds":0.02,"voice_steal_release_seconds":0.03},
+    {"name":"DebrisLowPriorityBounded","max_count":8,"resolution_rule":"StopQuietest","retrigger_seconds":0.02,"voice_steal_release_seconds":0.05},
+    {"name":"DroneFlybyBounded","max_count":3,"resolution_rule":"StopFarthestThenOldest","retrigger_seconds":0.25,"voice_steal_release_seconds":0.1},
+    {"name":"DroneMotorsDistanceManaged","max_count":8,"resolution_rule":"StopFarthestThenPreventNew","retrigger_seconds":0.05,"voice_steal_release_seconds":0.15},
+    {"name":"ExplosionBodyPriority","max_count":4,"resolution_rule":"StopLowestPriority","retrigger_seconds":0.03,"voice_steal_release_seconds":0.08},
+    {"name":"ExplosionCrackPriority","max_count":6,"resolution_rule":"StopLowestPriority","retrigger_seconds":0.02,"voice_steal_release_seconds":0.05},
+    {"name":"ExplosionPriority","max_count":4,"resolution_rule":"StopLowestPriority","retrigger_seconds":0.05,"voice_steal_release_seconds":0.08},
+    {"name":"MissileFlybyBounded","max_count":3,"resolution_rule":"StopFarthestThenOldest","retrigger_seconds":0.15,"voice_steal_release_seconds":0.08},
+    {"name":"MissileLaunchPriority","max_count":2,"resolution_rule":"StopLowestPriority","retrigger_seconds":0.5,"voice_steal_release_seconds":0.08},
+    {"name":"ReflectionTailBounded","max_count":4,"resolution_rule":"StopQuietest","retrigger_seconds":0.04,"voice_steal_release_seconds":0.15},
+    {"name":"RifleMechanical","max_count":4,"resolution_rule":"StopOldest","retrigger_seconds":0.04,"voice_steal_release_seconds":0.02},
+    {"name":"RifleTransientPriority","max_count":6,"resolution_rule":"StopLowestPriority","retrigger_seconds":0.05,"voice_steal_release_seconds":0.03},
+    {"name":"SinglePersistentAircraftLayer","max_count":1,"resolution_rule":"PreventNew","retrigger_seconds":0.0,"voice_steal_release_seconds":0.2},
+    {"name":"SingleSeekerState","max_count":1,"resolution_rule":"StopOldest","retrigger_seconds":0.1,"voice_steal_release_seconds":0.03}
+  ],
+  "metasound_interfaces": [
+    {"name":"MS_Yak52IdentityBed","inputs":["NormalizedRPM","NormalizedLoad","AirspeedKph","RearCanopyOpenFraction","ListenerIsRearCockpit"],"outputs":["OnFinished"],"categories":["EngineIdle","EngineCruise","EnginePower","Propeller","OpenCockpitWind"]},
+    {"name":"MS_RifleShot","inputs":["OnPlay","ShotSeed","ListenerIsRearCockpit","EnvironmentTailIndex"],"outputs":["OnFinished"],"categories":["RifleMuzzle","RifleMechanical","RifleCasing","RifleReflection"]},
+    {"name":"MS_IglaWeapon","inputs":["OnSearch","OnLock","OnLaunch","OnFlyby","OnImpact","EventSeed"],"outputs":["OnFinished"],"categories":["IglaSearch","IglaLock","IglaLaunch","IglaFlyby","IglaImpact"]},
+    {"name":"MS_DronePropulsion","inputs":["OnPlay","HeavyClass","NormalizedRPM","RelativeSpeed"],"outputs":["OnFinished"],"categories":["DroneLightMotor","DroneHeavyMotor","DroneFlyby"]},
+    {"name":"MS_ExplosionSmall","inputs":["OnPlay","EventSeed","EnvironmentTailIndex"],"outputs":["OnFinished"],"categories":["ExplosionSmallCrack","ExplosionSmallBody","ExplosionSmallDebris","ExplosionSmallTail"]},
+    {"name":"MS_ExplosionHeavy","inputs":["OnPlay","EventSeed","EnvironmentTailIndex"],"outputs":["OnFinished"],"categories":["ExplosionHeavyCrack","ExplosionHeavyBody","ExplosionHeavyDebris","ExplosionHeavyTail"]}
+  ],
+  "bank_binding_rule": {
+    "sound": "Bind approved SoundWave or authored MetaSoundSource only after provenance approval.",
+    "attenuation": "ATT_<category brief attenuation_contract>",
+    "concurrency": "CON_<category brief concurrency_contract>",
+    "output_submix": "<category brief output_submix> resolved through the production bank Routing struct",
+    "missing_source_behavior": "Routing may be authored while Sound remains null and SourceStatus remains MISSING_SOURCE."
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "schema": "skyguard.m01.fab-technical-evaluation.v1",
+  "evaluation_id": "M01-FAB-TECH-EVAL-001",
+  "status": "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+  "policy": {
+    "manual_acquisition_required": true,
+    "automatic_download_allowed": false,
+    "automatic_import_allowed": false,
+    "quarantine_only": true,
+    "runtime_promotion_allowed": false,
+    "city_kit_limit": 1,
+    "coast_kit_limit": 1
+  },
+  "intake_record": {
+    "path": "",
+    "bytes": 0,
+    "sha256": ""
+  },
+  "slots": [
+    {
+      "slot": "CITY_KIT",
+      "product_id": "e0fb40c4-05a7-4e49-9fd6-a10bbcca0ef8",
+      "staging": {
+        "payload_root": "Saved/FabQuarantine/M01_FAB_QUARANTINE_INTAKE_001/staging/CITY_KIT/payload",
+        "inventory_manifest": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        }
+      },
+      "dependencies": {
+        "evidence": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        },
+        "items": []
+      },
+      "unreal_contract": {
+        "destination_root": "/Game/Skyguard/Quarantine/M01/CityKit",
+        "required_name_prefixes": {
+          "static_mesh": "SM_M01Q_CITY_",
+          "master_material": "M_M01Q_CITY_",
+          "material_instance": "MI_M01Q_CITY_",
+          "texture": "T_M01Q_CITY_",
+          "blueprint": "BP_M01Q_CITY_"
+        },
+        "production_reference_allowed": false,
+        "nanite_or_authored_lods_required": true,
+        "collision_required": true,
+        "material_instances_required_for_variants": true,
+        "import_status": "NOT_IMPORTED",
+        "asset_registry_evidence": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        },
+        "meshes": [],
+        "materials": []
+      }
+    },
+    {
+      "slot": "BEACH_COAST_KIT",
+      "product_id": "72a92a2e-3c52-46a5-9f17-6cf1f5d35006",
+      "staging": {
+        "payload_root": "Saved/FabQuarantine/M01_FAB_QUARANTINE_INTAKE_001/staging/BEACH_COAST_KIT/payload",
+        "inventory_manifest": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        }
+      },
+      "dependencies": {
+        "evidence": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        },
+        "items": []
+      },
+      "unreal_contract": {
+        "destination_root": "/Game/Skyguard/Quarantine/M01/BeachCoastKit",
+        "required_name_prefixes": {
+          "static_mesh": "SM_M01Q_COAST_",
+          "master_material": "M_M01Q_COAST_",
+          "material_instance": "MI_M01Q_COAST_",
+          "texture": "T_M01Q_COAST_",
+          "blueprint": "BP_M01Q_COAST_"
+        },
+        "production_reference_allowed": false,
+        "nanite_or_authored_lods_required": true,
+        "collision_required": true,
+        "material_instances_required_for_variants": true,
+        "import_status": "NOT_IMPORTED",
+        "asset_registry_evidence": {
+          "path": "",
+          "bytes": 0,
+          "sha256": ""
+        },
+        "meshes": [],
+        "materials": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "gate": "GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "immutable_attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01",
+  "immutable_output_namespace": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01",
+  "terminal_report": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01_TERMINAL_REPORT.json",
+    "bytes": 2423,
+    "sha256": "cf40285a6bc9a42445f9d298d10ab76c72f2db918942ce2c08b449535c2e3c89"
+  },
+  "member_count": 6,
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\blender.stderr.log",
+      "bytes": 1098,
+      "sha256": "2bfa77832deb0688382889709cee29f1ef3f6160d78db2b27b0d5092b65e832e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\blender.stdout.log",
+      "bytes": 78,
+      "sha256": "62aa68d052234759fcf2f662c9277a117896bb0a66d46f104de825c9b1ad1ecc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01_CONTRACT.json",
+      "bytes": 2029,
+      "sha256": "42deffb8816cac30de7676bf77e48069b85c42c95bbd3e85850afecd89b98f46"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\launch_receipt.json",
+      "bytes": 1152,
+      "sha256": "6d453fac6f708d5875cfa3a782151ed47b2deb00eb1753c701923953e31a991f"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\preflight_receipt.json",
+      "bytes": 449,
+      "sha256": "f4d89bb9a8fa550298f71e75df2da5d81bfa48fc712be8b7b67a3b854fbda2b6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01\\source\\blender_gate7_combat_blockout_cycle02_attempt01.py",
+      "bytes": 19603,
+      "sha256": "0ffbf0af4b3778b10afb7fc7d91890ad5b222bf61d979ca9a18ddc804b4239d7"
+    }
+  ],
+  "next_gate": "OFFLINE_RECOVERY01_RENDER_ENGINE_COMPATIBILITY_CORRECTION",
+  "automatic_retry_permitted": false
+}

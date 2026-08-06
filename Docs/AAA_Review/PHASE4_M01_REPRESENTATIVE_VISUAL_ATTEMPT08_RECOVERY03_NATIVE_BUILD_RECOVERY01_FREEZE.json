@@ -1,0 +1,40 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery01-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+  "created_utc": "2026-08-03T12:58:54.7816384Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY01_NATIVE_BUILD_AUTHORIZATION",
+  "unreal_launched": false,
+  "blender_launched": false,
+  "native_build_launched": false,
+  "future_build_namespace_absent": true,
+  "future_runtime_namespace_absent": true,
+  "short_package_root_absent": true,
+  "frozen_files": [
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_CONTRACT.json", "bytes": 3016, "sha256": "3e66b5005d5ca995039fd6d96a3b9553960a91d8b017261f2ecd99d89e85afac"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_DECISION_2026-08-03.md", "bytes": 874, "sha256": "18a5c3eb2c31b682d68b05386cb9342721ea515d09679659c0253c2f35fedb82"},
+    {"file": "Plugins/SkyguardRecovery03NativeRecovery01/SkyguardRecovery03NativeRecovery01.uplugin", "bytes": 452, "sha256": "4953138e24d76aee6db3636ae1c7a0fe3ed84cf1fabcb746c762d2f5a908963e"},
+    {"file": "Plugins/SkyguardRecovery03NativeRecovery01/Source/SkyguardRecovery03NativeRecovery01/SkyguardRecovery03NativeRecovery01.Build.cs", "bytes": 592, "sha256": "503a39136a154158474f5d54ad55a00ccaed50c975b008174c3678434d2f1831"},
+    {"file": "Plugins/SkyguardRecovery03NativeRecovery01/Source/SkyguardRecovery03NativeRecovery01/Public/SkyguardRecovery03NativeRecovery01Module.h", "bytes": 3126, "sha256": "3f1be719e2a33314b2954858521e49955999b547a581c92c27426d647873a9a4"},
+    {"file": "Plugins/SkyguardRecovery03NativeRecovery01/Source/SkyguardRecovery03NativeRecovery01/Private/SkyguardRecovery03NativeRecovery01Module.cpp", "bytes": 26674, "sha256": "65b9e514819cbd531edcb71fb4d754e5180dde2996bc883125c31c2cd27d73c6"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_PROJECTED_PATHS.json", "bytes": 1095, "sha256": "dcb5b8296b84d34bdfe373b1c1f3e024ef0378f7c10443e7c0473cd0e333b950"},
+    {"file": "Scripts/build_skyguard_recovery03_native_recovery01_once.ps1", "bytes": 6357, "sha256": "39f019789b37bcae577e6f14b878cb3d0397080e3e772a0b7801f2d89e215a92"},
+    {"file": "Scripts/test_skyguard_recovery03_native_recovery01_exit.ps1", "bytes": 1292, "sha256": "420007446b116eef2dc1fb69769e4f8a6f3354303e7239e0e69da44fad7bc42d"},
+    {"file": "Scripts/verify_skyguard_recovery03_native_recovery01_offline.py", "bytes": 4511, "sha256": "dcd20ee045f47a5ff3c3475c5869bf19d015543ef2fdb3f118462f3b89c97c6e"},
+    {"file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY01_SINGLE_BUILD.md", "bytes": 1865, "sha256": "c7ddda64c5afc7289e79939e872b6f90ba11667b428aeea9e145d3ad9f8803d2"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_RECONCILIATION.json", "bytes": 1080, "sha256": "18f4c93eb9f1c11ca5bced4c95478d6486f150f750c69d137f9637eb74582b19"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_SOURCE_INVENTORY.json", "bytes": 3631, "sha256": "0ab17f59aada313c5973067157e90028dd0ba515dce4ec5572486f5954348d35"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_READINESS.json", "bytes": 2188, "sha256": "0c9aaad1e0d89943669fbadae0a9b5ac72f5dfc58b10da1cbc653981ac296344"}
+  ],
+  "offline_test_results": {
+    "json_validation": "PASS",
+    "python_syntax": "PASS",
+    "powershell_syntax": "PASS",
+    "static_native_contract": "PASS_WITHOUT_COMPILATION",
+    "projected_longest_path": 213,
+    "numeric_success_exit_code": 0,
+    "numeric_failure_exit_code": 7,
+    "numeric_exit_code_type": "System.Int32",
+    "null_exit_code_rejected": true
+  },
+  "next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY01_SINGLE_BUILD.md"
+}

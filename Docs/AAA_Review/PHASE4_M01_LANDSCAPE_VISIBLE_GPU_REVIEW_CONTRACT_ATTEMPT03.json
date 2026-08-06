@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-gpu-review-amendment.v3",
+  "effective_schema": "skyguard.phase4.m01-landscape-visible-gpu-review-contract.v3",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-003",
+  "supersedes_contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-002",
+  "prior_amendment": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_GPU_REVIEW_CONTRACT_ATTEMPT02.json",
+  "prior_amendment_sha256": "b65836222f1f3343a37d861d88eb680fef054553cfa3e020479d1552a145c8e1",
+  "status": "READY_FOR_AUTHORIZED_GPU_AUTHORING",
+  "failed_attempt_evidence": {
+    "candidate_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v2_attempt02",
+    "candidate_file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v2_attempt02.umap",
+    "candidate_file_bytes": 6698,
+    "candidate_file_sha256": "30007074a179e686db10dd47f6d7ee8bb9542ba61df275abf5583b3919e3818b",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v2/M_M01_Landscape_Validation_v2",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v2/M_M01_Landscape_Validation_v2.uasset",
+    "material_file_bytes": 14989,
+    "material_file_sha256": "ff94f8358db66c695871ac664259d1d659d9e705b48524574f794fb8cd67df23",
+    "attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt02/attempt_20260802T150334904Z",
+    "terminal_state": "FAIL",
+    "failure": "UE5.8 Python Landscape object does not expose post_edit_change",
+    "performance_evidence_eligible": false,
+    "must_not_be_deleted_renamed_or_overwritten": true
+  },
+  "overrides": {
+    "candidate": {
+      "immutable_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v3_attempt03",
+      "material_root": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v3",
+      "landscape_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v3/M_M01_Landscape_Validation_v3",
+      "must_not_exist_before_authoring": true,
+      "must_never_overwrite_baseline": true
+    },
+    "authoring": {
+      "landscape_material_assignment": "Landscape.set_editor_property_landscape_material",
+      "material_package_save": "EditorAssetLibrary.save_loaded_asset",
+      "world_package_save": "EditorLevelLibrary.save_current_level_then_EditorAssetLibrary.save_asset",
+      "fresh_process_round_trip_required": true,
+      "unsupported_calls_forbidden": [
+        "Landscape.post_edit_change"
+      ]
+    },
+    "execution_safety": {
+      "no_locked_source_texture_mutation": true,
+      "preflight_requires_zero_Blender_processes": true,
+      "unsupported_landscape_post_edit_change_forbidden": true
+    }
+  }
+}

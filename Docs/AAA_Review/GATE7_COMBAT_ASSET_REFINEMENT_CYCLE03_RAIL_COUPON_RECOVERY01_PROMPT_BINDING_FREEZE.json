@@ -1,0 +1,25 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_RECONCILIATION",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RAIL_COUPON_RECOVERY01_BLENDER_AUTHORIZATION",
+  "immutable": true,
+  "created_at_utc": "2026-08-06T13:18:00Z",
+  "offline_design_freeze": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_DESIGN_FREEZE.json",
+    "bytes": 5747,
+    "sha256": "e349fc9e79bad018663d95d2499f4ad1d68ad30825d9f65f1a11432687c659b2"
+  },
+  "execution_prompt": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_SINGLE_BLENDER.md",
+    "bytes": 5027,
+    "sha256": "f620e8ab65c4496d504b7d813b0813aaa4b776e204e768a4ed70a1429a972ada"
+  },
+  "source_inventory": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_SOURCE_INVENTORY.json",
+    "bytes": 5529,
+    "sha256": "5790c54a59591670a3c4af0e7a643ffa1d83589420bb507d20b068eb37e0f443"
+  },
+  "dependency_graph": "source inventory -> offline-design freeze -> execution prompt -> this prompt-binding freeze",
+  "circular_reference_present": false,
+  "blender_launched": false,
+  "unreal_launched": false
+}

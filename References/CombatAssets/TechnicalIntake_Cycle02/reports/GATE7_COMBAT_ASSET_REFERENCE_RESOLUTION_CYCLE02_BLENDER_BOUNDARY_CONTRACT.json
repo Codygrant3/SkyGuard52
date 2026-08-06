@@ -1,0 +1,21 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "allowed_in_next_blender_gate": [
+    "dimensioned MIL-STD-1913 validation coupon",
+    "replaceable AR/M4-family silhouette blockout using only visible footage features",
+    "9K38 missile envelope blockout at 1574 mm by 72 mm",
+    "replaceable gunner hand/forearm mannequin constrained by NASA envelope and footage pose",
+    "Shahed-136 exterior envelope blockout at 3300 mm by 3000 mm"
+  ],
+  "prohibited": [
+    "final rifle make/model or chambering",
+    "final receiver, stock, magazine, ammunition, casing, sight or muzzle geometry",
+    "mixing Igla and Igla-S components",
+    "final Igla launcher component geometry",
+    "inventing coherent percentile dimensions from independent NASA bounds",
+    "inventing Shahed cross-sections or propeller measurements",
+    "final helmet, headset, harness or glove product identity",
+    "fictional boss production without separate design authority",
+    "operational, assembly, firing, targeting or employment guidance"
+  ]
+}

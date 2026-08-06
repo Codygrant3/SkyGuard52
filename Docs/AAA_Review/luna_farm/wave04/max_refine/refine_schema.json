@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["freeze", "model_effort", "refined"],
+  "properties": {
+    "freeze": { "type": "string" },
+    "model_effort": { "type": "string" },
+    "refined": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "pillar", "title", "keep", "placement", "stage_targets", "spawn_recipe", "materials_preference", "capture_risk_notes", "acceptance_test", "priority"],
+        "properties": {
+          "id": { "type": "string" },
+          "pillar": { "type": "string" },
+          "title": { "type": "string" },
+          "keep": { "type": "boolean" },
+          "placement": { "type": "string", "enum": ["behind_wall", "additive_emissive", "unlit_hf_only"] },
+          "stage_targets": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 2 },
+          "spawn_recipe": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["mesh", "offset_xyz", "scale_xyz", "rot_pitch_yaw_roll", "label_suffix", "mat_key"],
+              "properties": {
+                "mesh": { "type": "string", "enum": ["cube", "sphere"] },
+                "offset_xyz": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "scale_xyz": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "rot_pitch_yaw_roll": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "label_suffix": { "type": "string" },
+                "mat_key": { "type": "string" }
+              }
+            }
+          },
+          "materials_preference": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 4 },
+          "capture_risk_notes": { "type": "string" },
+          "acceptance_test": { "type": "string" },
+          "priority": { "type": "integer", "minimum": 1, "maximum": 7 }
+        }
+      }
+    }
+  }
+}

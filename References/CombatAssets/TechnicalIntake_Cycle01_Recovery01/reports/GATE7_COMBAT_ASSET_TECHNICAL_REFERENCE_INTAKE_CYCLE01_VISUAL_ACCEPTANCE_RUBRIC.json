@@ -1,0 +1,23 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "acceptance_requires": [
+    "silhouette overlays against accepted references",
+    "dimension checks in Blender and exported GLB/FBX",
+    "no variant mixing",
+    "correct hand grip without interpenetration or block-like anatomy",
+    "iron-sight alignment from rear-gunner eye camera",
+    "Igla missile originates from the front of the launch tube",
+    "PBR material separation for painted metal, polymer, rubber, glass, fabric, leather, and bare metal",
+    "clean shading at first-person distance",
+    "verified pivots, sockets, collision, and naming",
+    "Unreal close-view, daylight, overcast, wet, and night review"
+  ],
+  "automatic_rejection": [
+    "unsupported model identity",
+    "mixed Igla variants",
+    "invented dimensions presented as measured",
+    "block limbs, mitten hands, floating fingers, or disconnected sleeves",
+    "rail proportions that fail the standard profile when a 1913 rail is claimed",
+    "low-poly silhouette visible in ADS or cockpit close-up"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase5.audio-shipping-boundary-policy.v1",
+  "policy_id": "P5-AUDIO-SHIPPING-FAIL-CLOSED-01",
+  "shipping_audio_root": "/Game/Skyguard/Audio/Production/",
+  "forbidden_runtime_object_roots": [
+    "/Game/Skyguard/Audio/Imported/"
+  ],
+  "forbidden_cook_roots": [
+    "/Game/Skyguard/Audio/Imported"
+  ],
+  "forbidden_content_directories": [
+    "Content/Skyguard/Audio/Imported"
+  ],
+  "forbidden_loose_media_directories": [
+    "Content/Skyguard/Audio/Source"
+  ],
+  "forbidden_loose_media_extensions": [
+    ".aac",
+    ".flac",
+    ".m4a",
+    ".mp3",
+    ".ogg",
+    ".wav",
+    ".wma"
+  ],
+  "runtime_scan_globs": [
+    "Source/Skyguard52/*.cpp",
+    "Source/Skyguard52/*.h"
+  ],
+  "config_scan_globs": [
+    "Config/*.ini"
+  ],
+  "required_acquisition_state": "APPROVED_FOR_GOVERNED_IMPORT",
+  "required_source_bundle_count": 10,
+  "required_bank_category_count": 25,
+  "require_readiness_production_ready": true,
+  "require_fresh_unreal_routing_audit": true,
+  "require_packaged_audible_acceptance": true,
+  "audit_only_exit_code_when_blocked": 0,
+  "shipping_gate_exit_code_when_blocked": 3,
+  "invalid_policy_exit_code": 2,
+  "notes": [
+    "This policy does not delete, license, approve or import audio.",
+    "Development may retain quarantined legacy material, but a Shipping gate must remain nonzero while any forbidden path, cook directive, loose source, incomplete evidence, or missing acceptance remains.",
+    "A successful offline policy audit is not packaged audible acceptance."
+  ]
+}

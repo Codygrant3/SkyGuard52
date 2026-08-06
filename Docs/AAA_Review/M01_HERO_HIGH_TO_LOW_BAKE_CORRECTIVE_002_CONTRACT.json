@@ -1,0 +1,167 @@
+{
+  "schema": "skyguard.m01.hero-high-to-low-bake.corrective.contract.v1",
+  "build_id": "BLD_M01_HERO_HILO_002",
+  "supersedes_candidate_build": "BLD_M01_HERO_HILO_001",
+  "correction_basis": "Docs/AAA_Review/M01_HERO_HIGH_TO_LOW_MAP_VISUAL_REVIEW_2026-08-02.md",
+  "scope": "Correct rejected Mission 01 Pathfinder, lighthouse, and radar-post geometric Normal/AO projection without overwriting 001 evidence",
+  "source_blend": "Content/Skyguard/Meshes/Source/Mission01/Wave1_Refinement/M01_WAVE1_AAA_REFINEMENT_MASTER.blend",
+  "outputs": {
+    "master_blend": "Content/Skyguard/Meshes/Source/Mission01/HeroHighToLow_002/BLD_M01_HERO_HILO_002_MASTER.blend",
+    "low_glb": "Content/Skyguard/Meshes/Source/Mission01/HeroHighToLow_002/bld_m01_hero_hilo_002_low.glb",
+    "texture_root": "Content/Skyguard/Textures/Source/Mission01/HeroHighToLow_002",
+    "manifest": "Saved/Reports/M01_HERO_HIGH_TO_LOW_BAKE_MANIFEST_002.json",
+    "report": "Saved/Reports/M01_HERO_HIGH_TO_LOW_BAKE_REPORT_002.json"
+  },
+  "bake_contract": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "selected_to_active": true,
+    "explicit_cage_required": true,
+    "normal_space": "TANGENT",
+    "tangent_basis": "MikkTSpace",
+    "normal_convention": "OpenGL",
+    "uv_layer": "UV_M01_AAA_0",
+    "resolution": 2048,
+    "margin_pixels": 48,
+    "samples": 24,
+    "maps": [
+      {
+        "type": "Normal",
+        "color_space": "Non-Color",
+        "minimum_varied_rgb_channels": 2
+      },
+      {
+        "type": "AO",
+        "color_space": "Non-Color",
+        "minimum_varied_rgb_channels": 1
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "Pathfinder",
+      "source_object": "SM_Boss_Pathfinder_Body_AAA",
+      "low_object": "LOW_M01_Pathfinder_002",
+      "high_object": "HIGH_M01_Pathfinder_002",
+      "cage_object": "CAGE_M01_Pathfinder_002",
+      "texture_prefix": "T_M01_Pathfinder_HiLo_002",
+      "cage_extrusion_m": 0.014,
+      "max_ray_distance_m": 0.025,
+      "minimum_high_to_low_vertex_ratio": 1.35,
+      "maximum_high_to_low_bounds_delta_m": 0.06,
+      "detail_settings": {
+        "wing_fastener_radius_m": 0.016,
+        "wing_fastener_z_m": 0.075,
+        "hatch_fastener_radius_m": 0.014,
+        "seam_height_m": 0.012,
+        "hatch_outline_width_m": 0.016
+      },
+      "ao_remap": {
+        "minimum": 0.42,
+        "strength": 0.48
+      },
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "wing_panel_fasteners",
+        "service_hatch_fasteners",
+        "raised_panel_seams"
+      ],
+      "corrections": [
+        "Replace the filled hatch slab with four narrow outline strips.",
+        "Reduce fastener radius and seam height.",
+        "Reduce ray reach to avoid back-surface intersections.",
+        "Remap AO away from clipped black while preserving local contact."
+      ]
+    },
+    {
+      "id": "Lighthouse",
+      "source_object": "SM_M01_Landmark_Lighthouse_Hero_A",
+      "low_object": "LOW_M01_Lighthouse_002",
+      "high_object": "HIGH_M01_Lighthouse_002",
+      "cage_object": "CAGE_M01_Lighthouse_002",
+      "texture_prefix": "T_M01_Lighthouse_HiLo_002",
+      "cage_extrusion_m": 0.045,
+      "max_ray_distance_m": 0.055,
+      "minimum_high_to_low_vertex_ratio": 1.25,
+      "maximum_high_to_low_bounds_delta_m": 0.08,
+      "detail_settings": {
+        "tower_seam_minor_radius_m": 0.012,
+        "tower_seam_major_radii_m": [
+          3.205,
+          2.755,
+          2.255
+        ],
+        "gallery_fastener_radius_m": 0.018,
+        "access_fastener_radius_m": 0.018
+      },
+      "ao_remap": {
+        "minimum": 0.28,
+        "strength": 0.62
+      },
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "tower_section_seams",
+        "gallery_fasteners",
+        "access_panel_fasteners"
+      ],
+      "corrections": [
+        "Align seam rings to actual cylindrical radii instead of embedding them inside the tower.",
+        "Reduce seam and fastener dimensions.",
+        "Expand the cage beyond the measured 37 mm high-detail excursion.",
+        "Bound ray reach and moderate AO."
+      ]
+    },
+    {
+      "id": "RadarPost",
+      "source_object": "SM_M01_Landmark_RadarPost_Hero_A",
+      "low_object": "LOW_M01_RadarPost_002",
+      "high_object": "HIGH_M01_RadarPost_002",
+      "cage_object": "CAGE_M01_RadarPost_002",
+      "texture_prefix": "T_M01_RadarPost_HiLo_002",
+      "cage_extrusion_m": 0.032,
+      "max_ray_distance_m": 0.042,
+      "minimum_high_to_low_vertex_ratio": 1.3,
+      "maximum_high_to_low_bounds_delta_m": 0.07,
+      "detail_settings": {
+        "access_fastener_radius_m": 0.022,
+        "dish_mount_fastener_radius_m": 0.018,
+        "mast_joint_fastener_radius_m": 0.025
+      },
+      "ao_remap": {
+        "minimum": 0.32,
+        "strength": 0.6
+      },
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "bunker_access_fasteners",
+        "dish_mount_fasteners",
+        "mast_joint_fasteners"
+      ],
+      "corrections": [
+        "Move the incorrectly untilted dish-plane fastener ring onto the turntable mount.",
+        "Reduce all projection-fastener radii.",
+        "Expand the cage beyond the measured high-detail excursion while shortening ray reach.",
+        "Moderate black AO interiors and hard transitions."
+      ]
+    }
+  ],
+  "required_manifest_checks": [
+    "source_hash_bound",
+    "separate_low_high_mesh_datablocks",
+    "explicit_cage_per_asset",
+    "selected_to_active_projection",
+    "required_uv_on_low",
+    "high_vertex_ratio",
+    "bounds_alignment",
+    "map_dimensions_and_channels",
+    "map_hashes_and_nonempty_content",
+    "deterministic_package_fingerprint"
+  ],
+  "promotion": "corrective_high_to_low_bake_candidate_requires_map_visual_review_and_unreal_visual_acceptance",
+  "non_claims": [
+    "This corrective contract does not alter or overwrite build 001 evidence.",
+    "Artifact verification alone does not pass the map visual gate.",
+    "A map visual pass does not replace mapped-mesh grazing-angle review.",
+    "No Unreal/runtime replacement is authorized by this build."
+  ]
+}

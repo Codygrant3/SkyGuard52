@@ -1,0 +1,118 @@
+{
+  "schema": "skyguard.phase2.yak52-r5-slice01-recovery01-contract.v1",
+  "build_id": "BLD-M01-YAK52-R5-SLICE01-RECOVERY01",
+  "status": "OFFLINE_COMPATIBILITY_BINDING_PRE_FREEZE",
+  "functional_change": {
+    "scope": "Blender 5.2 datum display compatibility only",
+    "replaced": "CROSS",
+    "replacement": "PLAIN_AXES",
+    "geometry_or_material_change_authorized": false
+  },
+  "frozen_source": {
+    "path": "Scripts/blender_phase2_yak52_r5_slice01.py",
+    "bytes": 11087,
+    "sha256": "446b4e8d71457b2f9bac3798c22b82fec212e89161ec30c7d2d800683fdfa1f2"
+  },
+  "baseline": {
+    "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery05/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY05_MASTER.blend",
+    "bytes": 123942,
+    "sha256": "a7694e012e1dbdef06c432919f2a93d62ec3845c888506fe7019ef81aeb2f30e",
+    "disposition": "IMMUTABLE"
+  },
+  "failed_attempt": {
+    "path": "Saved/BuildAttempts/PHASE2_YAK52_R5_SLICE01/attempt_20260802T2153188883706Z_008a64e4",
+    "file_count": 4,
+    "disposition": "IMMUTABLE"
+  },
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R5_SLICE01_CAMERAS.json",
+      "bytes": 2478,
+      "sha256": "bdbb49d656601f5108604216a3eeabe3cf8578d0c69e0381ee3e863d03f6830c"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R5_SLICE01_CONTRACT.json",
+      "bytes": 6095,
+      "sha256": "bd869241e8b10c0c5859534bb2c08d3346551c242dbb1714c230a41c5985122b"
+    }
+  ],
+  "authoring_script": {
+    "path": "Scripts/blender_phase2_yak52_r5_slice01_recovery01.py",
+    "bytes": 2828,
+    "sha256": "b67b294d1dc8d18deba51d3ac0859e04f4211d67f691601cc38c9ebbc8f1dc9c"
+  },
+  "focused_test": {
+    "path": "Scripts/tests/test_phase2_yak52_r5_slice01_recovery01.py",
+    "bytes": 2837,
+    "sha256": "b2846e819c8d81b57a2ca4bc682b8b807cd3b5070ec35b947065707e61db9c96"
+  },
+  "outputs": {
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R5/Slice01_Recovery01/BLD_M01_YAK52_R5_SLICE01_RECOVERY01_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R5/Slice01_Recovery01/bld_m01_yak52_r5_slice01_recovery01.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK52_R5_SLICE01_RECOVERY01_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK52_R5_SLICE01_RECOVERY01"
+  },
+  "required_camera_ids": [
+    "R5_CAM_BEAUTY_PORT",
+    "R5_CAM_SIDE_ORTHO",
+    "R5_CAM_TOP_ORTHO",
+    "R5_CAM_NOSE_CLOSE",
+    "R5_CAM_COWLING_GRAZE",
+    "R5_CAM_CANOPY_PORT",
+    "R5_CAM_REAR_OPENING",
+    "R5_CAM_WING_ROOT_L",
+    "R5_CAM_MATERIAL_GRAZE",
+    "R5_CAM_REAR_GUNNER_EYE"
+  ],
+  "required_primary_objects": [
+    "GEO_R5_ForwardFuselage",
+    "GEO_R5_CowlingShell",
+    "GEO_R5_CowlingFrontRing",
+    "GEO_R5_PropHub",
+    "GEO_R5_CowlingShutter_00",
+    "GEO_R5_CowlingShutter_01",
+    "GEO_R5_CowlingShutter_02",
+    "GEO_R5_CowlingShutter_03",
+    "GEO_R5_CowlingShutter_04",
+    "GEO_R5_CowlingShutter_05",
+    "GEO_R5_CowlingShutter_06",
+    "GEO_R5_CowlingShutter_07",
+    "GEO_R5_CowlingShutter_08",
+    "GEO_R5_CowlingShutter_09",
+    "GEO_R5_CowlingShutter_10",
+    "GEO_R5_CowlingShutter_11",
+    "GEO_R5_Wing_L",
+    "GEO_R5_Wing_R",
+    "GEO_R5_WingRootFairing_L",
+    "GEO_R5_WingRootFairing_R",
+    "GEO_R5_CanopyGlassFront",
+    "GEO_R5_CanopyGlassRearStowed",
+    "GEO_R5_CanopyBow_00",
+    "GEO_R5_CanopyBow_01",
+    "GEO_R5_CanopyBow_02",
+    "GEO_R5_CanopyBow_03",
+    "GEO_R5_CanopyBow_04",
+    "GEO_R5_CanopyBow_05",
+    "GEO_R5_CanopyRail_L",
+    "GEO_R5_CanopyRail_R",
+    "GEO_R5_RearCockpitSill",
+    "GEO_R5_InstrumentCoaming",
+    "GEO_R5_PropBlade_A",
+    "GEO_R5_PropBlade_B"
+  ],
+  "claims": {
+    "silhouette_locked": false,
+    "slice01_human_accepted": false,
+    "final": false,
+    "aaa": false,
+    "unreal_imported": false,
+    "runtime_replaced": false,
+    "promotion_allowed": false
+  },
+  "execution_policy": {
+    "authorized_blender_attempts": 1,
+    "automatic_retry": false,
+    "new_namespace_required": true,
+    "unreal_launch": false
+  }
+}

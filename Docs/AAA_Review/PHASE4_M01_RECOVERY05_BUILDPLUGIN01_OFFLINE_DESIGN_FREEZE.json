@@ -1,0 +1,76 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-buildplugin01-offline-design-freeze.v1",
+  "created_utc": "2026-08-05T15:40:34.106495+00:00",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY05_BUILDPLUGIN_AUTHORIZATION",
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_TERMINAL_EVIDENCE_RECONCILIATION.json",
+      "bytes": 2177,
+      "sha256": "d8d40671b889235168dfa5a599b61990ccdbe3c40bf570798a41101f97fe4c09"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_SOURCE_DISCOVERY_INVENTORY.json",
+      "bytes": 2709,
+      "sha256": "ab31e1c3625c9d80998d1c1964c1105f23f842db094f715aa900fd4b61141426"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_CONTRACT.json",
+      "bytes": 1936,
+      "sha256": "19ae43337f8649107d0c3e72d0d1722763e463fe0d3e217a238375a47e340476"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\build_phase4_m01_recovery05_buildplugin01_once.ps1",
+      "bytes": 11703,
+      "sha256": "bd4b0e7240388ae0336848b5454de3498e04277da6340fdc65cc45d4e3665810"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_phase4_m01_recovery05_buildplugin01_offline.py",
+      "bytes": 5139,
+      "sha256": "cd20e91f4a23bddb011f6b1464baf99443c3541c898c9730903384bcb6a89cc7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_PROJECTED_PATH_REPORT.json",
+      "bytes": 1242,
+      "sha256": "e2ebd6a3ca41f5b418bb1c42995dee54f36e630be0288962fff3991462049a0c"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_EXACT_HOST_OFFLINE_TEST_RESULT.json",
+      "bytes": 1010,
+      "sha256": "da61fce5d69f16ff35248ce5098fe858cfeaa26a13b0f272726c0ef8b181b83d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_BUILDPLUGIN01_READINESS.json",
+      "bytes": 2049,
+      "sha256": "0cb4cccb39d859925bf2a08d7b88835d4ecb90357d298902a9f4f195cd61a4b8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_BUILDPLUGIN01_SINGLE_BUILD.md",
+      "bytes": 2456,
+      "sha256": "3eeb2c57bc64218546fc44725a28162bbc01051db10bc1e8c8393ad44c4dcb64"
+    }
+  ],
+  "member_count": 9,
+  "accepted_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_TERMINAL_FREEZE.json",
+    "bytes": 3428,
+    "sha256": "681254354931d611aeed0bf702086064d50b4b47d90446f2de26faf7a1394f27"
+  },
+  "active_plugin_records_verified": 5,
+  "quarantined_plugin_records_verified": 18,
+  "recovery04_project_build_members_verified": 17,
+  "offline_execution": {
+    "powershell_parser_errors": 0,
+    "verifier_exit_code": 0,
+    "offline_exit_code": 0,
+    "offline_exit_code_type": "System.Int32",
+    "builds_launched": 0,
+    "automation_tool_invocations": 0,
+    "unreal_launches": 0,
+    "blender_launches": 0
+  },
+  "future_package_root": "D:\\SG52R05P01",
+  "future_package_root_absent": true,
+  "next_gate": "EXPLICIT_SINGLE_RECOVERY05_BUILDPLUGIN_EXECUTION",
+  "mission01_production_accepted": false,
+  "aaa_production_accepted": false
+}

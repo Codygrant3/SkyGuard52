@@ -1,0 +1,131 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery04-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY04",
+  "disposition": "OFFLINE_READY_REQUIRES_SEPARATE_RECOVERY04_AUTHORIZATION",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "bound_evidence": {
+    "diagnosis": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY04_DIAGNOSIS.json",
+      "bytes": 3094,
+      "sha256": "80c6bdcf720735e41afb889fa6c7ab6def3a311ba93e7032b3da09a4ebd02d26"
+    },
+    "recovery03_supervisor_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_03/supervisor_receipt.json",
+      "bytes": 1027,
+      "sha256": "8cd01faec4a224b3745a499c688612910a6e98f03bec8346250f9067c1400ec3"
+    },
+    "recovery03_pilot_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_03/capture/pilot_receipt.json",
+      "bytes": 2467,
+      "sha256": "4f9b3b83c76d1e82f9e4a966a320193506356c35ea199b69ba3ca6ee8501d7d6"
+    },
+    "recovery03_engine_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_03/unreal.engine.log",
+      "bytes": 274051,
+      "sha256": "9a43e7ca322dd63b05d3100b9fea3c0c50f09b2de5fbc6260c726955fd354b71"
+    },
+    "recovery03_capture_source": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery03.py",
+      "bytes": 13876,
+      "sha256": "13210c894506dc901a0c9ddfdc961a460433c18e9066b22ad5f247824af4c0bf"
+    },
+    "known_nonblank_capture_source": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03.py",
+      "bytes": 14187,
+      "sha256": "42f72fe894944ac5d990d8de1bdaeeb717d10be4613313a88f069c65a721bd3d"
+    },
+    "known_nonblank_capture_manifest": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03/sweep/capture_manifest.json",
+      "bytes": 31035,
+      "sha256": "37eaefec4da5461fc11ca1c153dc30fa314ec6100728d7ed6e5933ab4547235c"
+    },
+    "known_nonblank_failed_selection": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03/selection/exposure_selection_receipt.json",
+      "bytes": 70545,
+      "sha256": "ee925f488f38ecdb31d51ead199897bf25ccc33c5a1f3d3a1eb40482b1bbf05e"
+    },
+    "existing_review_map_package": {
+      "path": "Content/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03.umap",
+      "bytes": 29983,
+      "sha256": "2437baec361615433926d48776f206bb53f8abe7880384e3c4ba0e751e080def"
+    }
+  },
+  "lighting": {
+    "use_exact_base_spawn_lighting": true,
+    "key_directional_lux": 100000.0,
+    "fill_directional_lux": 12000.0,
+    "skylight_intensity": 2.25,
+    "spawn_once": true,
+    "light_intensity_changes_after_spawn": 0,
+    "mark_render_state_dirty_calls": 0,
+    "recapture_sky_calls": 0
+  },
+  "pilot": {
+    "must_pass_before_full_views": true,
+    "family": "Pathfinder",
+    "view": "three_quarter",
+    "exposure_candidates_ev": [-14, -18, -22, -26, -30, -34],
+    "capture_count": 6,
+    "capture_scene_calls_per_export": 3,
+    "liveness_bounds": {
+      "minimum_active_pixel_fraction_luma_gt_8": 0.02,
+      "minimum_max_channel_value": 64,
+      "minimum_unique_color_count": 64
+    },
+    "exposure_hard_bounds": {
+      "active_pixel_threshold_luma": 8,
+      "maximum_active_clipped_fraction_luma_ge_250": 0.02,
+      "active_p50_range": [35, 210],
+      "active_p95_range": [100, 248],
+      "minimum_active_dynamic_range_p95_minus_p05": 35
+    },
+    "selection_tie_break": [
+      "minimum_penalty",
+      "minimum_absolute_ev",
+      "numeric_ev"
+    ]
+  },
+  "full_views": {
+    "capture_only_after_pilot_selection": true,
+    "selected_exposure_fixed_for_all_views": true,
+    "families": ["Pathfinder", "Lighthouse", "RadarPost"],
+    "views_per_family": ["three_quarter", "grazing_port", "grazing_starboard"],
+    "capture_count": 9,
+    "capture_scene_calls_per_export": 3,
+    "each_view_must_pass_original_hard_bounds": true
+  },
+  "capture": {
+    "single_unreal_process": true,
+    "use_exact_base_make_capture_component": true,
+    "persistent_scene_capture_actor_count": 1,
+    "persistent_render_target_count": 1,
+    "resolution": [2048, 2048],
+    "total_exported_capture_count": 15,
+    "reuse_existing_review_map_without_reassembly": true,
+    "content_package_save_allowed": false
+  },
+  "immutability": {
+    "recovery03_evidence_must_remain_unchanged": true,
+    "existing_review_map_package_must_remain_unchanged": true,
+    "original_candidate_packages_must_remain_unchanged": true,
+    "runtime_maps_must_remain_unchanged": true,
+    "config_must_remain_unchanged": true,
+    "new_content_package_count": 0,
+    "reassembly_allowed": false,
+    "overwrite_allowed": false
+  },
+  "acceptance": {
+    "rhi_validation": "D3D12|SM6",
+    "pilot_gate": "PASS_RECOVERY04_BASE_LIGHTING_LIVE_EXPOSURE_SELECTED_FULL_VIEWS_ALLOWED",
+    "full_views_gate": "PASS_RECOVERY04_NINE_VIEWS_AWAITING_OFFLINE_AUDIT",
+    "execution_audit_gate": "PASS_RECOVERY04_EXECUTION_AWAITING_ORIGINAL_RESOLUTION_REVIEW",
+    "exact_pilot_capture_count": 6,
+    "exact_full_view_capture_count": 9,
+    "original_resolution_human_review_required": true,
+    "promotion_allowed_on_pass": false,
+    "p3_4_closed_on_pass": false
+  },
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

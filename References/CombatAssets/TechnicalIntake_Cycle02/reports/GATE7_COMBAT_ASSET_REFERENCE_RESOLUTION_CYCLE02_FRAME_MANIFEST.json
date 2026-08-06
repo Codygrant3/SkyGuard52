@@ -1,0 +1,600 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "full_frames": [
+    {
+      "decoded_frame_index": 0,
+      "timestamp_seconds": 0.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0000_0000.000s.png",
+      "bytes": 244425,
+      "sha256": "6301dbbf38924ee8f242654551a303869e240bb4d40733f04ee443d883067878"
+    },
+    {
+      "decoded_frame_index": 15,
+      "timestamp_seconds": 0.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0015_0000.500s.png",
+      "bytes": 335850,
+      "sha256": "62560da84c3a055bb65e0c6ea6d640306be24aebc6dd32e41442f60d6ae002e9"
+    },
+    {
+      "decoded_frame_index": 30,
+      "timestamp_seconds": 1.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0030_0001.000s.png",
+      "bytes": 358809,
+      "sha256": "5c2b303651c2e39789d86a92d3e663ed0cf49afbdb665edb66779ef74c55a65a"
+    },
+    {
+      "decoded_frame_index": 45,
+      "timestamp_seconds": 1.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0045_0001.500s.png",
+      "bytes": 388200,
+      "sha256": "8d426d016265729c16541c8be15579eb38fc26bbac0653a95237043bb18476ab"
+    },
+    {
+      "decoded_frame_index": 60,
+      "timestamp_seconds": 2.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0060_0002.000s.png",
+      "bytes": 397181,
+      "sha256": "2fbe726f30dfc6c743acd6a308ec69f032d7f240104a2af0a098ee83f63e6f11"
+    },
+    {
+      "decoded_frame_index": 75,
+      "timestamp_seconds": 2.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0075_0002.500s.png",
+      "bytes": 424936,
+      "sha256": "2748f224e145887b009d449c6624b9c804beaf552cd2cf5322d89b74259ca388"
+    },
+    {
+      "decoded_frame_index": 90,
+      "timestamp_seconds": 3.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0090_0003.000s.png",
+      "bytes": 236518,
+      "sha256": "7e9417bc12ca65e938816f1ad04c8c371bbb9d7a8b9f8aa4f342fc504d0747f6"
+    },
+    {
+      "decoded_frame_index": 105,
+      "timestamp_seconds": 3.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0105_0003.500s.png",
+      "bytes": 317937,
+      "sha256": "ceda8bced90a08f1987af2e3cb87077b8ebabd2c19b4a9b7327e5adcdf13acc0"
+    },
+    {
+      "decoded_frame_index": 120,
+      "timestamp_seconds": 4.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0120_0004.000s.png",
+      "bytes": 341790,
+      "sha256": "1a458258642b64ffe5b2ddd14b6ecabbbc1691089951765567395c282dff83fd"
+    },
+    {
+      "decoded_frame_index": 135,
+      "timestamp_seconds": 4.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0135_0004.500s.png",
+      "bytes": 350904,
+      "sha256": "df611b55314132790d6cc68b6d3be82499aaa488ef308fb002a664a91506b409"
+    },
+    {
+      "decoded_frame_index": 150,
+      "timestamp_seconds": 5.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0150_0005.000s.png",
+      "bytes": 366426,
+      "sha256": "78b6b9bfcd603ae2120077e7f402d55ab3e9a1b4a665f6f6b73bd407340de47a"
+    },
+    {
+      "decoded_frame_index": 165,
+      "timestamp_seconds": 5.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0165_0005.500s.png",
+      "bytes": 390213,
+      "sha256": "c330623a00d568ed1c39f9e0b53fb3e4a4abb2234d58cf483aac056758729a89"
+    },
+    {
+      "decoded_frame_index": 180,
+      "timestamp_seconds": 6.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0180_0006.000s.png",
+      "bytes": 330533,
+      "sha256": "5cb7f216a7a740105d03683d73a0988e116dd22538587ebf50ee4566174d2546"
+    },
+    {
+      "decoded_frame_index": 195,
+      "timestamp_seconds": 6.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0195_0006.500s.png",
+      "bytes": 384365,
+      "sha256": "5ba2082005768a1c9372a00a9c347ade32ebb0fcc9dd914b5a16acbdf9d197f4"
+    },
+    {
+      "decoded_frame_index": 210,
+      "timestamp_seconds": 7.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0210_0007.000s.png",
+      "bytes": 371684,
+      "sha256": "a03b821db3f8a67b141e7e8dd264a24021f0ae69e0bb39c4f13a8b3469f8c7f4"
+    },
+    {
+      "decoded_frame_index": 225,
+      "timestamp_seconds": 7.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0225_0007.500s.png",
+      "bytes": 340188,
+      "sha256": "50ef7a99c06c87c17a4e518a1ad4a831f16841f0ee31e6349795299712eee054"
+    },
+    {
+      "decoded_frame_index": 240,
+      "timestamp_seconds": 8.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0240_0008.000s.png",
+      "bytes": 366900,
+      "sha256": "7e1345bdc841143668e7e6de1bb5bb6eb10f538215ea992324289ebad425c024"
+    },
+    {
+      "decoded_frame_index": 255,
+      "timestamp_seconds": 8.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0255_0008.500s.png",
+      "bytes": 301887,
+      "sha256": "1009719c365ba1fb3419ef166abfaaa580a45633f3de4d484e5ddd8fd1472fd4"
+    },
+    {
+      "decoded_frame_index": 270,
+      "timestamp_seconds": 9.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0270_0009.000s.png",
+      "bytes": 279525,
+      "sha256": "0fb03707c108b1365cc691ca9bb5c6ca043b09832771452c45bbfd9e917ea915"
+    },
+    {
+      "decoded_frame_index": 285,
+      "timestamp_seconds": 9.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0285_0009.500s.png",
+      "bytes": 343211,
+      "sha256": "57735048d48692745bacb9b2c55a4f6ccf516215de121a978afce2d87425d297"
+    },
+    {
+      "decoded_frame_index": 300,
+      "timestamp_seconds": 10.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0300_0010.000s.png",
+      "bytes": 349972,
+      "sha256": "7ffea94aa39edbbd073137634b473d83702d161daf98bcb400b8e4771300aa64"
+    },
+    {
+      "decoded_frame_index": 315,
+      "timestamp_seconds": 10.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0315_0010.500s.png",
+      "bytes": 371684,
+      "sha256": "eb9e12b8260e3377725229e7590983932e011b3f2c10bc5cdf0a8967c308771f"
+    },
+    {
+      "decoded_frame_index": 330,
+      "timestamp_seconds": 11.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0330_0011.000s.png",
+      "bytes": 368853,
+      "sha256": "45fb97623e7c4baa23232751120309cf88b9732a0c1f68f67fc14768f49ca8e2"
+    },
+    {
+      "decoded_frame_index": 345,
+      "timestamp_seconds": 11.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0345_0011.500s.png",
+      "bytes": 366428,
+      "sha256": "c82fc777499451fabb1432ccfd28e8c3110b8156fb49c907ef49b946f202d0a8"
+    },
+    {
+      "decoded_frame_index": 360,
+      "timestamp_seconds": 12.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0360_0012.000s.png",
+      "bytes": 271807,
+      "sha256": "00a5e4b8b920ced80af5cf6dbd35af4eeff4563ad5c07810c271dd1ffb600ac0"
+    },
+    {
+      "decoded_frame_index": 375,
+      "timestamp_seconds": 12.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0375_0012.500s.png",
+      "bytes": 482874,
+      "sha256": "ca4f734c88affd6c2a60fe02580a135bd62e5b4669fda58a6589713323937213"
+    },
+    {
+      "decoded_frame_index": 390,
+      "timestamp_seconds": 13.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0390_0013.000s.png",
+      "bytes": 490888,
+      "sha256": "e0ffa5f0bc1125c21ddbd65c0b9bddce95e2e13ed220f62123ed3fd84168cd76"
+    },
+    {
+      "decoded_frame_index": 405,
+      "timestamp_seconds": 13.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0405_0013.500s.png",
+      "bytes": 525937,
+      "sha256": "ac78d4af032627f6c078311ff60004582b2a685797e1507b8a6c3c15a5139800"
+    },
+    {
+      "decoded_frame_index": 420,
+      "timestamp_seconds": 14.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0420_0014.000s.png",
+      "bytes": 522575,
+      "sha256": "6aa4a392e561feea47a4f3f39b1f98fa88065e2cd45e68c51e57f212afa82614"
+    },
+    {
+      "decoded_frame_index": 435,
+      "timestamp_seconds": 14.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0435_0014.500s.png",
+      "bytes": 627313,
+      "sha256": "28df1645e22e6aae0fb40a395f15e1d1d301c08310540d7b63e6961608098128"
+    },
+    {
+      "decoded_frame_index": 450,
+      "timestamp_seconds": 15.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0450_0015.000s.png",
+      "bytes": 552201,
+      "sha256": "6d3dde6e2efc65ebd3c434f4e6c36f91ad220a1222b37149be7ce5fc6deb4715"
+    },
+    {
+      "decoded_frame_index": 465,
+      "timestamp_seconds": 15.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0465_0015.500s.png",
+      "bytes": 516768,
+      "sha256": "7e4cb2498f882dfe3ef7233be19e78596547be3a62452c88be8235d84d316bf4"
+    },
+    {
+      "decoded_frame_index": 480,
+      "timestamp_seconds": 16.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0480_0016.000s.png",
+      "bytes": 606854,
+      "sha256": "87becda078d756013fc74c2902e6b059890a1e085418005a40bf76a74c229b6a"
+    },
+    {
+      "decoded_frame_index": 495,
+      "timestamp_seconds": 16.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0495_0016.500s.png",
+      "bytes": 546634,
+      "sha256": "24a781c19d3d0fd928756437c90520cfa92ffce78dd66cf4cb0ecb8cf6e357bf"
+    },
+    {
+      "decoded_frame_index": 510,
+      "timestamp_seconds": 17.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0510_0017.000s.png",
+      "bytes": 653167,
+      "sha256": "7829952fa2b405b4e5eb6748f24a3c0fc4e3c73291d2f27157fdd533ab75d924"
+    },
+    {
+      "decoded_frame_index": 525,
+      "timestamp_seconds": 17.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0525_0017.500s.png",
+      "bytes": 419905,
+      "sha256": "17fe0292ad266ce140a1bc64400791b023e83f58cc0884c1c9dc16cfbbf1f057"
+    },
+    {
+      "decoded_frame_index": 540,
+      "timestamp_seconds": 18.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0540_0018.000s.png",
+      "bytes": 367441,
+      "sha256": "429234a952839945178e1f66f7227416f36aa17b5590bdd1ea12f52ea71fdb71"
+    },
+    {
+      "decoded_frame_index": 555,
+      "timestamp_seconds": 18.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0555_0018.500s.png",
+      "bytes": 422818,
+      "sha256": "c2966cd8037deaeb3c35ef13c5998b76e51ff7eaa954c0e678013ecb244391ce"
+    },
+    {
+      "decoded_frame_index": 570,
+      "timestamp_seconds": 19.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0570_0019.000s.png",
+      "bytes": 515838,
+      "sha256": "874a6ec99e8b5f920ee67fff8985589398d17bd7a1f0742c577b1af82157dda3"
+    },
+    {
+      "decoded_frame_index": 585,
+      "timestamp_seconds": 19.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0585_0019.500s.png",
+      "bytes": 539582,
+      "sha256": "35e1de9b2565065c8d00a1c9473ed2c3999844881091c88486477bf10fb31ffa"
+    },
+    {
+      "decoded_frame_index": 600,
+      "timestamp_seconds": 20.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0600_0020.000s.png",
+      "bytes": 608483,
+      "sha256": "b43f320286ff3521d11bf5b350e39146651c8d7f34c623a3e9d694269207a4c6"
+    },
+    {
+      "decoded_frame_index": 615,
+      "timestamp_seconds": 20.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0615_0020.500s.png",
+      "bytes": 320292,
+      "sha256": "3ec79f1257b5c46e7e3983823b0f86bec1a8dcb2129db43cdee174acd47e7bd9"
+    },
+    {
+      "decoded_frame_index": 630,
+      "timestamp_seconds": 21.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0630_0021.000s.png",
+      "bytes": 311971,
+      "sha256": "d942b493c60314a43d8d283af89e03c393a86fc63fb624153442dcbc46190ed3"
+    },
+    {
+      "decoded_frame_index": 645,
+      "timestamp_seconds": 21.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0645_0021.500s.png",
+      "bytes": 388597,
+      "sha256": "40c67b83c636091c9c6040e4adbbe2ab8f57e8618b2c1ba251474dee77a3eb1c"
+    },
+    {
+      "decoded_frame_index": 660,
+      "timestamp_seconds": 22.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0660_0022.000s.png",
+      "bytes": 409845,
+      "sha256": "bc8bc99dd6fb5c8c09a2f861ddecede09462806c866288c074af3f0c7606f7ca"
+    },
+    {
+      "decoded_frame_index": 675,
+      "timestamp_seconds": 22.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0675_0022.500s.png",
+      "bytes": 377049,
+      "sha256": "255445d07b3cae926350682c4295d0819c6646a932cb1eb85b0662c4870f303e"
+    },
+    {
+      "decoded_frame_index": 690,
+      "timestamp_seconds": 23.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0690_0023.000s.png",
+      "bytes": 394263,
+      "sha256": "06c3521d65e6294ef0ca005c8bc19addc029b1cb1f90927fd5480ac6920d9a43"
+    },
+    {
+      "decoded_frame_index": 705,
+      "timestamp_seconds": 23.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0705_0023.500s.png",
+      "bytes": 381291,
+      "sha256": "c81b611cc476330b873a29342302acc30563591b13852fdf1b4279fe498e098a"
+    },
+    {
+      "decoded_frame_index": 720,
+      "timestamp_seconds": 24.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0720_0024.000s.png",
+      "bytes": 301484,
+      "sha256": "0c69fbd4309aac15c8f575c5d7b9555e698709df59f7ed88664938748a86abb2"
+    },
+    {
+      "decoded_frame_index": 735,
+      "timestamp_seconds": 24.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0735_0024.500s.png",
+      "bytes": 401971,
+      "sha256": "917319cd4a2579b9783b9199b579a21eef8e469fdbc606f205d85bfd235a773a"
+    },
+    {
+      "decoded_frame_index": 750,
+      "timestamp_seconds": 25.0,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0750_0025.000s.png",
+      "bytes": 395714,
+      "sha256": "ae9b80215e1f6a2b331f254a77838cbcdd2a8e50924bf2b7793efc130de3ba41"
+    },
+    {
+      "decoded_frame_index": 765,
+      "timestamp_seconds": 25.5,
+      "width": 1280,
+      "height": 720,
+      "path": "frames_full/frame_0765_0025.500s.png",
+      "bytes": 409645,
+      "sha256": "b7a322d85c910d30d79c134c05f1f1a96b2f0bea0e91fe2344a15422e3fb7b7f"
+    }
+  ],
+  "contact_sheets": [
+    {
+      "path": "contact_sheets/contact_01.png",
+      "bytes": 1207414,
+      "sha256": "c00a20ca12a8963469d3b414c7dc21d5ee3ffd4df4e3a001dad5743ba668b0f1",
+      "first_sample_index": 0,
+      "sample_count": 20
+    },
+    {
+      "path": "contact_sheets/contact_02.png",
+      "bytes": 1378269,
+      "sha256": "87891d728fd1c201c745249bc43135fbcbc3a763706f0067ae88067c39e3824a",
+      "first_sample_index": 20,
+      "sample_count": 20
+    },
+    {
+      "path": "contact_sheets/contact_03.png",
+      "bytes": 763818,
+      "sha256": "c8ac9004332984fc040524fa0ca04e4224dbd4cb25146c77832aa81bb361f7c0",
+      "first_sample_index": 40,
+      "sample_count": 12
+    }
+  ],
+  "rifle_crops": [
+    {
+      "source": "frames_full/frame_0000_0000.000s.png",
+      "crop_box_xyxy": [
+        230,
+        270,
+        880,
+        720
+      ],
+      "observation_scope": "top rail, muzzle, support hand",
+      "path": "rifle_crops/frame_0000_0000.000s_rifle_crop.png",
+      "width": 650,
+      "height": 450,
+      "bytes": 107345,
+      "sha256": "9b08900cf8335ecd4a35d8b99358b21c8fa4ea8d76bb3cc9e01374e052e1c0c6"
+    },
+    {
+      "source": "frames_full/frame_0435_0014.500s.png",
+      "crop_box_xyxy": [
+        480,
+        0,
+        1120,
+        720
+      ],
+      "observation_scope": "tan handguard and muzzle",
+      "path": "rifle_crops/frame_0435_0014.500s_rifle_crop.png",
+      "width": 640,
+      "height": 720,
+      "bytes": 279707,
+      "sha256": "10a9ae19946011bb876e3b3a41252d3aac86a33105979b23fef2ba7a5f084039"
+    },
+    {
+      "source": "frames_full/frame_0450_0015.000s.png",
+      "crop_box_xyxy": [
+        520,
+        0,
+        1120,
+        720
+      ],
+      "observation_scope": "tan handguard, barrel and open-tine muzzle",
+      "path": "rifle_crops/frame_0450_0015.000s_rifle_crop.png",
+      "width": 600,
+      "height": 720,
+      "bytes": 254333,
+      "sha256": "feb32573bfaa7ca5fba963222528ccac0b169aab807245bafb1cbf00ea4c514e"
+    },
+    {
+      "source": "frames_full/frame_0480_0016.000s.png",
+      "crop_box_xyxy": [
+        480,
+        0,
+        1100,
+        720
+      ],
+      "observation_scope": "handguard vent pattern and rail",
+      "path": "rifle_crops/frame_0480_0016.000s_rifle_crop.png",
+      "width": 620,
+      "height": 720,
+      "bytes": 238852,
+      "sha256": "3b7b2a1618f0eabb839c387905e90987592e69bfc07e27a1bec38866b045cf70"
+    },
+    {
+      "source": "frames_full/frame_0510_0017.000s.png",
+      "crop_box_xyxy": [
+        380,
+        0,
+        930,
+        720
+      ],
+      "observation_scope": "handguard close view",
+      "path": "rifle_crops/frame_0510_0017.000s_rifle_crop.png",
+      "width": 550,
+      "height": 720,
+      "bytes": 284655,
+      "sha256": "2949d9ab3d7268a420fa1a86dec59af7ef9b4084459ffa06b06663bfd1e50afc"
+    },
+    {
+      "source": "frames_full/frame_0675_0022.500s.png",
+      "crop_box_xyxy": [
+        250,
+        20,
+        1160,
+        720
+      ],
+      "observation_scope": "dark-lighting weapon view and rear rail",
+      "path": "rifle_crops/frame_0675_0022.500s_rifle_crop.png",
+      "width": 910,
+      "height": 700,
+      "bytes": 265779,
+      "sha256": "d2a94a96de4b00f4b4b2e3ffb6738a1867af12a4d2948a3bad27807ba8e52c91"
+    }
+  ],
+  "visually_inspected": [
+    "contact_sheets/contact_01.png",
+    "contact_sheets/contact_02.png",
+    "contact_sheets/contact_03.png",
+    "frames_full/frame_0000_0000.000s.png",
+    "frames_full/frame_0450_0015.000s.png",
+    "frames_full/frame_0510_0017.000s.png",
+    "frames_full/frame_0675_0022.500s.png",
+    "frames_full/frame_0690_0023.000s.png",
+    "rifle_crops/frame_0450_0015.000s_rifle_crop.png",
+    "rifle_crops/frame_0675_0022.500s_rifle_crop.png"
+  ]
+}

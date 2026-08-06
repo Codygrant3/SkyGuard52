@@ -1,0 +1,421 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-bake.contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "extends_contract": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_BAKE_003_CONTRACT.json",
+  "extends_contract_sha256": "5345210f2d566b4a2cc14d3bd9755ed509ced989c1860f1e5000a3b576b25882",
+  "supersedes_candidates": [
+    "BLD_M01_HERO_HILO_001",
+    "BLD_M01_HERO_HILO_002",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_003",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_004",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_005",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_006",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_007"
+  ],
+  "attempt_correction_basis": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_BAKE_007_VISUAL_REVIEW_2026-08-02.md",
+  "attempt_correction_basis_sha256": "f4d914fb09027a543a81331a5691e44a7f9655b5574d8123d427787fbcf55a18",
+  "visual_failure_classification": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_VISUAL_FAILURE_CLASSIFICATION_008.json",
+  "visual_failure_classification_sha256": "77b1471029f1d7c29249ca0f98a7bfd768f2f3cab6dcf2253ab043d9735285b5",
+  "scope": "Preserve the eighteen Build 007 maps accepted by direct original-resolution review and rebake only the six rejected maps with deterministic component-exploded bake copies and tighter target-specific projection envelopes.",
+  "outputs": {
+    "master_blend": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_008/BLD_M01_HERO_GROUPED_TOPOLOGY_008_MASTER.blend",
+    "low_glb": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_008/bld_m01_hero_grouped_topology_008_low.glb",
+    "texture_root": "Content/Skyguard/Textures/Source/Mission01/HeroGroupedTopology_008",
+    "manifest": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_MANIFEST_008.json",
+    "report": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_REPORT_008.json"
+  },
+  "corrective_map_contract": {
+    "analysis_mode": "offline_json_and_hash_only_no_blender_no_unreal",
+    "source_build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_007",
+    "source_manifest": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_MANIFEST_007.json",
+    "source_manifest_sha256": "1ac5f4881f2eede51626d9cede40b420df7fc165bb9378bc30909a7c85c1d8c0",
+    "source_review_receipt": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_007/attempt_20260802T153804154Z/direct_original_resolution_map_review_receipt.json",
+    "source_review_receipt_sha256": "ed118ed9c98dcb44e50227481a69f94ec8391d67f8d88b5ce39776df7341f5fe",
+    "rebake_map_count": 6,
+    "reuse_map_count": 18,
+    "rebake_targets": [
+      "Pathfinder/PaintShell/Normal",
+      "Pathfinder/PaintShell/AO",
+      "Pathfinder/EdgeHardware/Normal",
+      "Lighthouse/WhiteTower/Normal",
+      "Lighthouse/WhiteTower/AO",
+      "RadarPost/MastDrive/Normal"
+    ],
+    "normal_projection_policy": "component_exploded_selected_to_active_tangent_normal",
+    "ao_projection_policy": "component_exploded_selected_to_active_from_dedicated_bounded_ao_occluder",
+    "production_geometry_translation_allowed": false,
+    "accepted_map_copy_requires_hash_identity": true,
+    "accepted_map_rebake_allowed": false
+  },
+  "bake_contract": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "selected_to_active": true,
+    "group_isolation_required": true,
+    "explicit_cage_required": true,
+    "normal_space": "TANGENT",
+    "tangent_basis": "MikkTSpace",
+    "normal_convention": "OpenGL",
+    "uv_layer": "UV_M01_GROUPED_0",
+    "resolution": 2048,
+    "margin_pixels": 48,
+    "samples": 32,
+    "preserve_neutral_background": true,
+    "maps": [
+      {
+        "type": "Normal",
+        "bake_mode": "selected_to_active_tangent_normal",
+        "color_space": "Non-Color",
+        "neutral_background": [0.5, 0.5, 1.0],
+        "minimum_varied_rgb_channels": 2,
+        "maximum_black_pixel_fraction": 0.0001
+      },
+      {
+        "type": "AO",
+        "bake_mode": "governed_per_group_direct_or_dedicated_bounded_occluder",
+        "color_space": "Non-Color",
+        "neutral_background": [1.0, 1.0, 1.0],
+        "minimum_varied_rgb_channels": 1,
+        "maximum_black_pixel_fraction": 0.35
+      }
+    ]
+  },
+  "topology_contract": {
+    "partition_method": "exact_disjoint_source_material_partition",
+    "source_face_coverage_required": true,
+    "orphan_vertices_allowed": false,
+    "duplicate_material_membership_allowed": false,
+    "face_normal_authoring": {
+      "method": "bmesh_recalc_face_normals_per_partition",
+      "low_after_topology_repair_before_smoothing": true,
+      "high_after_bevel_or_subdivision": true,
+      "zero_normal_faces_allowed": false
+    },
+    "uv_authoring": {
+      "method": "semantic_group_connected_source_charts_repacked_and_seams_authored",
+      "source_chart_seed": "UV_M01_AAA_0",
+      "smart_project_forbidden": true,
+      "average_island_scale": true,
+      "pack_islands": true,
+      "merge_overlap": false,
+      "authored_seams_from_uv_discontinuities": true,
+      "uv_bounds_min": 0.0,
+      "uv_bounds_max": 1.0,
+      "minimum_seam_edges": 1
+    },
+    "smoothing": {
+      "polygon_smoothing": true,
+      "sharp_edges_follow_group_hard_angle": true,
+      "minimum_sharp_edges": 0
+    },
+    "high_source": {
+      "separate_mesh_datablock": true,
+      "three_segment_bevel": true,
+      "linear_subdivision_when_bevel_adds_no_density": true,
+      "minimum_high_to_low_vertex_ratio": 1.01
+    },
+    "cage": {
+      "separate_mesh_datablock": true,
+      "topology_must_match_low": true,
+      "normal_offset_only": true
+    }
+  },
+  "topology_repair_contract": {
+    "analysis_mode": "offline_glb_only_no_blender_no_unreal",
+    "zero_area_faces_after_repair": 0,
+    "nonmanifold_edges_after_repair": 0,
+    "render_visibility_isolation_required": true,
+    "dedicated_ao_occluder_count": 10,
+    "direct_low_ao_count": 2,
+    "group_policies": {
+      "Lighthouse/LanternGlass": {
+        "classification": "closed_exterior_candidate",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "direct_low_self_occlusion"
+      },
+      "Lighthouse/RedBandsRoof": {
+        "classification": "closed_exterior_candidate",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "direct_low_self_occlusion"
+      },
+      "Lighthouse/SteelGallery": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Lighthouse_SteelGallery_008"
+      },
+      "Lighthouse/WhiteTower": {
+        "classification": "nested_closed_components_visual_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Lighthouse_WhiteTower_008"
+      },
+      "Pathfinder/AccessPanels": {
+        "classification": "degenerate_repaired_007",
+        "remove_zero_area_faces": true,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_AccessPanels_008"
+      },
+      "Pathfinder/EdgeHardware": {
+        "classification": "thin_repeated_components_visual_normal_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_EdgeHardware_008"
+      },
+      "Pathfinder/PaintShell": {
+        "classification": "nonmanifold_repaired_007_visual_normal_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": true,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_PaintShell_008"
+      },
+      "Pathfinder/ThermalHardware": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_ThermalHardware_008"
+      },
+      "RadarPost/BlastDoor": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_BlastDoor_008"
+      },
+      "RadarPost/ConcreteBunker": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_ConcreteBunker_008"
+      },
+      "RadarPost/DishFeed": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_DishFeed_008"
+      },
+      "RadarPost/MastDrive": {
+        "classification": "repeated_components_visual_normal_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_MastDrive_008"
+      }
+    }
+  },
+  "assets": [
+    {
+      "id": "Pathfinder",
+      "source_object": "SM_Boss_Pathfinder_Body_AAA",
+      "required_source_materials": [
+        "M_Boss_Pathfinder_Paint_AAA",
+        "M_Boss_Pathfinder_Edge_AAA",
+        "M_Boss_Pathfinder_Dark_AAA",
+        "M_Boss_Pathfinder_Heat_AAA"
+      ],
+      "groups": [
+        {
+          "id": "PaintShell",
+          "materials": ["M_Boss_Pathfinder_Paint_AAA"],
+          "low_object": "LOW_M01_Pathfinder_PaintShell_008",
+          "high_object": "HIGH_M01_Pathfinder_PaintShell_008",
+          "cage_object": "CAGE_M01_Pathfinder_PaintShell_008",
+          "texture_prefix": "T_M01_Pathfinder_PaintShell_008",
+          "hard_edge_angle_degrees": 52.0,
+          "bevel_width_m": 0.001,
+          "cage_extrusion_m": 0.003,
+          "max_ray_distance_m": 0.0045
+        },
+        {
+          "id": "EdgeHardware",
+          "materials": ["M_Boss_Pathfinder_Edge_AAA"],
+          "low_object": "LOW_M01_Pathfinder_EdgeHardware_008",
+          "high_object": "HIGH_M01_Pathfinder_EdgeHardware_008",
+          "cage_object": "CAGE_M01_Pathfinder_EdgeHardware_008",
+          "texture_prefix": "T_M01_Pathfinder_EdgeHardware_008",
+          "hard_edge_angle_degrees": 45.0,
+          "bevel_width_m": 0.001,
+          "cage_extrusion_m": 0.0025,
+          "max_ray_distance_m": 0.0035
+        },
+        {
+          "id": "AccessPanels",
+          "materials": ["M_Boss_Pathfinder_Dark_AAA"],
+          "low_object": "LOW_M01_Pathfinder_AccessPanels_008",
+          "high_object": "HIGH_M01_Pathfinder_AccessPanels_008",
+          "cage_object": "CAGE_M01_Pathfinder_AccessPanels_008",
+          "texture_prefix": "T_M01_Pathfinder_AccessPanels_008",
+          "hard_edge_angle_degrees": 45.0,
+          "bevel_width_m": 0.002,
+          "cage_extrusion_m": 0.004,
+          "max_ray_distance_m": 0.007
+        },
+        {
+          "id": "ThermalHardware",
+          "materials": ["M_Boss_Pathfinder_Heat_AAA"],
+          "low_object": "LOW_M01_Pathfinder_ThermalHardware_008",
+          "high_object": "HIGH_M01_Pathfinder_ThermalHardware_008",
+          "cage_object": "CAGE_M01_Pathfinder_ThermalHardware_008",
+          "texture_prefix": "T_M01_Pathfinder_ThermalHardware_008",
+          "hard_edge_angle_degrees": 50.0,
+          "bevel_width_m": 0.0015,
+          "cage_extrusion_m": 0.0035,
+          "max_ray_distance_m": 0.006
+        }
+      ]
+    },
+    {
+      "id": "Lighthouse",
+      "source_object": "SM_M01_Landmark_Lighthouse_Hero_A",
+      "required_source_materials": [
+        "M_M01_LighthouseWhite",
+        "M_M01_LighthouseRed",
+        "M_M01_Steel",
+        "M_M01_Glass"
+      ],
+      "groups": [
+        {
+          "id": "WhiteTower",
+          "materials": ["M_M01_LighthouseWhite"],
+          "low_object": "LOW_M01_Lighthouse_WhiteTower_008",
+          "high_object": "HIGH_M01_Lighthouse_WhiteTower_008",
+          "cage_object": "CAGE_M01_Lighthouse_WhiteTower_008",
+          "texture_prefix": "T_M01_Lighthouse_WhiteTower_008",
+          "hard_edge_angle_degrees": 55.0,
+          "bevel_width_m": 0.0015,
+          "cage_extrusion_m": 0.003,
+          "max_ray_distance_m": 0.0045
+        },
+        {
+          "id": "RedBandsRoof",
+          "materials": ["M_M01_LighthouseRed"],
+          "low_object": "LOW_M01_Lighthouse_RedBandsRoof_008",
+          "high_object": "HIGH_M01_Lighthouse_RedBandsRoof_008",
+          "cage_object": "CAGE_M01_Lighthouse_RedBandsRoof_008",
+          "texture_prefix": "T_M01_Lighthouse_RedBandsRoof_008",
+          "hard_edge_angle_degrees": 55.0,
+          "bevel_width_m": 0.005,
+          "cage_extrusion_m": 0.012,
+          "max_ray_distance_m": 0.018
+        },
+        {
+          "id": "SteelGallery",
+          "materials": ["M_M01_Steel"],
+          "low_object": "LOW_M01_Lighthouse_SteelGallery_008",
+          "high_object": "HIGH_M01_Lighthouse_SteelGallery_008",
+          "cage_object": "CAGE_M01_Lighthouse_SteelGallery_008",
+          "texture_prefix": "T_M01_Lighthouse_SteelGallery_008",
+          "hard_edge_angle_degrees": 48.0,
+          "bevel_width_m": 0.002,
+          "cage_extrusion_m": 0.005,
+          "max_ray_distance_m": 0.008
+        },
+        {
+          "id": "LanternGlass",
+          "materials": ["M_M01_Glass"],
+          "low_object": "LOW_M01_Lighthouse_LanternGlass_008",
+          "high_object": "HIGH_M01_Lighthouse_LanternGlass_008",
+          "cage_object": "CAGE_M01_Lighthouse_LanternGlass_008",
+          "texture_prefix": "T_M01_Lighthouse_LanternGlass_008",
+          "hard_edge_angle_degrees": 55.0,
+          "bevel_width_m": 0.003,
+          "cage_extrusion_m": 0.007,
+          "max_ray_distance_m": 0.011
+        }
+      ]
+    },
+    {
+      "id": "RadarPost",
+      "source_object": "SM_M01_Landmark_RadarPost_Hero_A",
+      "required_source_materials": [
+        "M_M01_Concrete",
+        "M_M01_Door",
+        "M_M01_Steel",
+        "M_M01_SteelDark",
+        "M_M01_Radar",
+        "M_M01_RadarDark"
+      ],
+      "groups": [
+        {
+          "id": "ConcreteBunker",
+          "materials": ["M_M01_Concrete"],
+          "low_object": "LOW_M01_RadarPost_ConcreteBunker_008",
+          "high_object": "HIGH_M01_RadarPost_ConcreteBunker_008",
+          "cage_object": "CAGE_M01_RadarPost_ConcreteBunker_008",
+          "texture_prefix": "T_M01_RadarPost_ConcreteBunker_008",
+          "hard_edge_angle_degrees": 48.0,
+          "bevel_width_m": 0.008,
+          "cage_extrusion_m": 0.018,
+          "max_ray_distance_m": 0.027
+        },
+        {
+          "id": "BlastDoor",
+          "materials": ["M_M01_Door"],
+          "low_object": "LOW_M01_RadarPost_BlastDoor_008",
+          "high_object": "HIGH_M01_RadarPost_BlastDoor_008",
+          "cage_object": "CAGE_M01_RadarPost_BlastDoor_008",
+          "texture_prefix": "T_M01_RadarPost_BlastDoor_008",
+          "hard_edge_angle_degrees": 45.0,
+          "bevel_width_m": 0.003,
+          "cage_extrusion_m": 0.007,
+          "max_ray_distance_m": 0.011
+        },
+        {
+          "id": "MastDrive",
+          "materials": ["M_M01_Steel", "M_M01_SteelDark"],
+          "low_object": "LOW_M01_RadarPost_MastDrive_008",
+          "high_object": "HIGH_M01_RadarPost_MastDrive_008",
+          "cage_object": "CAGE_M01_RadarPost_MastDrive_008",
+          "texture_prefix": "T_M01_RadarPost_MastDrive_008",
+          "hard_edge_angle_degrees": 50.0,
+          "bevel_width_m": 0.001,
+          "cage_extrusion_m": 0.0025,
+          "max_ray_distance_m": 0.0035
+        },
+        {
+          "id": "DishFeed",
+          "materials": ["M_M01_Radar", "M_M01_RadarDark"],
+          "low_object": "LOW_M01_RadarPost_DishFeed_008",
+          "high_object": "HIGH_M01_RadarPost_DishFeed_008",
+          "cage_object": "CAGE_M01_RadarPost_DishFeed_008",
+          "texture_prefix": "T_M01_RadarPost_DishFeed_008",
+          "hard_edge_angle_degrees": 52.0,
+          "bevel_width_m": 0.0025,
+          "cage_extrusion_m": 0.006,
+          "max_ray_distance_m": 0.009
+        }
+      ]
+    }
+  ],
+  "required_manifest_checks": [
+    "source_hash_bound",
+    "visual_failure_classification_hash_bound",
+    "source_manifest_hash_bound",
+    "source_review_receipt_hash_bound",
+    "exact_six_map_rebake_partition",
+    "exact_eighteen_map_hash_identity_reuse",
+    "production_geometry_never_exploded",
+    "component_exploded_corrective_projection",
+    "complete_source_face_coverage",
+    "twelve_isolated_bake_groups",
+    "twenty_four_map_hashes",
+    "deterministic_package_fingerprint"
+  ],
+  "promotion": "grouped_topology_candidate_requires_direct_original_resolution_map_review_then_mapped_mesh_grazing_angle_and_unreal_acceptance",
+  "non_claims": [
+    "Builds 001 through 007 remain immutable failed or rejected evidence.",
+    "Offline diagnosis and source readiness do not authorize Blender execution.",
+    "The eighteen Build 007 maps marked PASS must be copied with hash identity and must not be rebaked.",
+    "Artifact verification does not pass the six replacement maps' direct visual gate.",
+    "No mapped-mesh review, Unreal import, runtime replacement, promotion, or P3.4 closure is authorized by this contract alone."
+  ]
+}

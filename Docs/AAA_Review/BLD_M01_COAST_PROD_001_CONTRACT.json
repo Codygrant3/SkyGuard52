@@ -1,0 +1,179 @@
+{
+  "schema": "skyguard.blender-source-contract.v1",
+  "build_id": "BLD-M01-COAST-PROD-001",
+  "title": "Mission 1 coastal modular production-direction kit",
+  "status": "source_only_not_run",
+  "quality_claim": "production_direction_candidate_not_aaa",
+  "blender_version": {
+    "major": 5,
+    "minor": 2
+  },
+  "coordinate_contract": {
+    "units": "metres",
+    "along_coast_axis": "+X",
+    "inland_axis": "+Y",
+    "up_axis": "+Z",
+    "tile_origin": "seaward-west-bottom snap corner",
+    "building_origin": "ground-level southwest exterior corner",
+    "snap_grids_m": [1.0, 2.0, 10.0, 20.0, 100.0],
+    "unreal_conversion": "Export metres and import at centimetre conversion without baking catalog-layout transforms into asset pivots."
+  },
+  "rejection_evidence": {
+    "path": "Saved/Screenshots/Mission01_Wave1_Refinement/M01_AAA_CoastalVerticalSlice.png",
+    "bytes": 1577788,
+    "sha256": "c537badd65e4055695bad8f517a542e505d4a5f6db488033e2ddd1ca5c7007bd",
+    "allowed_use": "Visual rejection evidence only.",
+    "forbidden_use": "No geometry, silhouettes, dimensions, topology, material sampling, photogrammetry, tracing or image-to-mesh input.",
+    "findings": [
+      "Terrain reads as a thin floating rectangular slab with exposed vertical edges.",
+      "Beach, dune, seawall and road do not form a believable graded cross-section.",
+      "Road, curb, sidewalk and drainage language is missing or too schematic.",
+      "Midrises are repetitive rectangular masses with flat roofs, blank end walls and repeated windows.",
+      "The isolated catalog composition is evidence of insufficient modular continuity, not an assembly target."
+    ]
+  },
+  "source_policy": {
+    "factory_empty_scene": true,
+    "procedural_geometry_only": true,
+    "external_geometry_import_allowed": false,
+    "existing_wave1_datablock_use_allowed": false,
+    "review_image_geometry_input_allowed": false,
+    "existing_wave1_outputs_modified": false,
+    "isolated_namespace_required": true,
+    "manifest_hashes_outputs": true
+  },
+  "outputs": {
+    "source_directory": "Content/Skyguard/Meshes/Source/Mission01/Coastal_Production_001",
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Coastal_Production_001/BLD_M01_COAST_PROD_001_MASTER.blend",
+    "asset_export_directory": "Content/Skyguard/Meshes/Source/Mission01/Coastal_Production_001/Exports",
+    "manifest": "Saved/Reports/BLD_M01_COAST_PROD_001_MANIFEST.json"
+  },
+  "uv_contract": {
+    "required_layers": ["UV0", "UV1"],
+    "uv0_intent": "Tiling, trim-sheet and decal-ready material coordinates with consistent real-world scale.",
+    "uv1_intent": "Unique non-overlapping lightmap coordinates with chart padding.",
+    "uv0_target_texel_density_px_per_m": 256,
+    "uv1_target_lightmap_resolution": {
+      "terrain_100m": 512,
+      "building_shell": 512,
+      "street_module": 128,
+      "facade_module": 128
+    },
+    "uv1_overlap_tolerance_percent": 0.5
+  },
+  "material_id_contract": {
+    "sand_macro": 1,
+    "dune_soil": 2,
+    "vegetation_mask": 3,
+    "seawall_concrete": 10,
+    "asphalt": 11,
+    "curb_concrete": 12,
+    "drain_metal": 13,
+    "sidewalk_paver": 14,
+    "plaster": 20,
+    "exposed_concrete": 21,
+    "brick": 22,
+    "window_glass": 23,
+    "balcony_metal": 24,
+    "roof_membrane": 25,
+    "trim_sheet": 90,
+    "decal_grime": 100,
+    "decal_salt": 101,
+    "decal_damage": 102
+  },
+  "tileability_contract": {
+    "primary_length_m": 100.0,
+    "terrain_width_m": 80.0,
+    "minimum_terrain_thickness_m": 2.0,
+    "west_east_boundary_position_tolerance_m": 0.001,
+    "west_east_boundary_height_tolerance_m": 0.002,
+    "west_east_boundary_normal_tolerance_degrees": 1.0,
+    "terrain_bottom_and_perimeter_faces_required": true,
+    "exposed_vertical_slab_edge_forbidden": true,
+    "cross_section_order_seaward_to_inland": [
+      "wet_sand",
+      "dry_beach",
+      "foredune",
+      "backdune",
+      "seawall",
+      "sidewalk",
+      "curb",
+      "crowned_road",
+      "inland_grade"
+    ]
+  },
+  "building_contract": {
+    "floor_to_floor_m": 3.0,
+    "ground_floor_m": 3.6,
+    "standard_facade_bay_width_m": 3.0,
+    "wall_thickness_m": 0.28,
+    "slab_thickness_m": 0.22,
+    "parapet_height_m": 1.1,
+    "balcony_guard_height_m": 1.1,
+    "minimum_foundation_depth_m": 0.8,
+    "required_variants": [
+      "straight",
+      "corner",
+      "end",
+      "roof",
+      "balcony",
+      "window"
+    ]
+  },
+  "asset_specs": [
+    {"name":"GEO_COAST001_Terrain_BeachDune_A_100m","kind":"terrain","dimensions_m":[100.0,80.0,4.0],"materials":[1,2,3],"snap_sockets":["W","E","S","N"],"collision":"simple_segmented_ground","nanite":true,"lod_intent":"Nanite plus 10-percent fallback"},
+    {"name":"GEO_COAST001_Terrain_BeachDune_B_100m","kind":"terrain","dimensions_m":[100.0,80.0,4.0],"materials":[1,2,3],"snap_sockets":["W","E","S","N"],"collision":"simple_segmented_ground","nanite":true,"lod_intent":"Nanite plus 10-percent fallback"},
+    {"name":"GEO_COAST001_Terrain_DuneSeawall_100m","kind":"terrain_transition","dimensions_m":[100.0,80.0,5.0],"materials":[1,2,3,10],"snap_sockets":["W","E","S","N"],"collision":"simple_segmented_ground","nanite":true,"lod_intent":"Nanite plus 10-percent fallback"},
+    {"name":"GEO_COAST001_Terrain_SeawallRoad_100m","kind":"terrain_transition","dimensions_m":[100.0,80.0,5.0],"materials":[2,10,11,14],"snap_sockets":["W","E","S","N"],"collision":"simple_segmented_ground","nanite":true,"lod_intent":"Nanite plus 10-percent fallback"},
+
+    {"name":"GEO_COAST001_Seawall_Straight_100m","kind":"seawall","dimensions_m":[100.0,1.2,3.0],"materials":[10,90,100,101],"snap_sockets":["W","E"],"collision":"ucx_segmented_boxes","nanite":true,"lod_intent":"Nanite plus 15-percent fallback"},
+    {"name":"GEO_COAST001_Seawall_Straight_20m","kind":"seawall","dimensions_m":[20.0,1.2,3.0],"materials":[10,90,100,101],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":true,"lod_intent":"Nanite plus 20-percent fallback"},
+    {"name":"GEO_COAST001_Seawall_CornerInner_10m","kind":"seawall_corner","dimensions_m":[10.0,10.0,3.0],"materials":[10,90,100,101],"snap_sockets":["W","N"],"collision":"ucx_segmented_boxes","nanite":true,"lod_intent":"Nanite plus 20-percent fallback"},
+    {"name":"GEO_COAST001_Seawall_CornerOuter_10m","kind":"seawall_corner","dimensions_m":[10.0,10.0,3.0],"materials":[10,90,100,101],"snap_sockets":["E","S"],"collision":"ucx_segmented_boxes","nanite":true,"lod_intent":"Nanite plus 20-percent fallback"},
+    {"name":"GEO_COAST001_Seawall_EndCap","kind":"seawall_end","dimensions_m":[1.2,1.2,3.0],"materials":[10,90,100,101],"snap_sockets":["W"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 50-percent, LOD2 20-percent"},
+
+    {"name":"GEO_COAST001_Road_Straight_100m","kind":"road","dimensions_m":[100.0,8.0,0.35],"materials":[11,90,100],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 50-percent, LOD2 20-percent"},
+    {"name":"GEO_COAST001_Road_Crowned_100m","kind":"road_crowned","dimensions_m":[100.0,8.0,0.45],"materials":[11,90,100],"snap_sockets":["W","E"],"collision":"simple_segmented_road","nanite":true,"lod_intent":"Nanite plus 20-percent fallback"},
+    {"name":"GEO_COAST001_Road_JunctionT_20m","kind":"road_junction","dimensions_m":[20.0,20.0,0.35],"materials":[11,90,100],"snap_sockets":["W","E","N"],"collision":"ucx_segmented_boxes","nanite":false,"lod_intent":"LOD0, LOD1 50-percent, LOD2 20-percent"},
+
+    {"name":"GEO_COAST001_Curb_Straight_10m","kind":"curb","dimensions_m":[10.0,0.3,0.18],"materials":[12,90,100],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Curb_CornerInner_2m","kind":"curb_corner","dimensions_m":[2.0,2.0,0.18],"materials":[12,90,100],"snap_sockets":["W","N"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Curb_CornerOuter_2m","kind":"curb_corner","dimensions_m":[2.0,2.0,0.18],"materials":[12,90,100],"snap_sockets":["E","S"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Curb_DropKerb_3m","kind":"curb_ramp","dimensions_m":[3.0,0.3,0.12],"materials":[12,90,100],"snap_sockets":["W","E"],"collision":"ucx_wedge","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Curb_EndCap","kind":"curb_end","dimensions_m":[0.3,0.3,0.18],"materials":[12,90,100],"snap_sockets":["W"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0 only"},
+
+    {"name":"GEO_COAST001_Sidewalk_Straight_10m","kind":"sidewalk","dimensions_m":[10.0,2.0,0.16],"materials":[14,90,100],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Sidewalk_Corner_2m","kind":"sidewalk_corner","dimensions_m":[2.0,2.0,0.16],"materials":[14,90,100],"snap_sockets":["W","N"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Sidewalk_Ramp_3m","kind":"sidewalk_ramp","dimensions_m":[3.0,2.0,0.16],"materials":[14,90,100],"snap_sockets":["W","E"],"collision":"ucx_wedge","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+
+    {"name":"GEO_COAST001_Drain_Channel_10m","kind":"drain_channel","dimensions_m":[10.0,0.5,0.35],"materials":[10,13,90,100],"snap_sockets":["W","E"],"collision":"ucx_channel","nanite":false,"lod_intent":"LOD0, LOD1 40-percent, LOD2 20-percent"},
+    {"name":"GEO_COAST001_Drain_Grate_1m","kind":"drain_grate","dimensions_m":[1.0,0.5,0.05],"materials":[13,90,100],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 35-percent"},
+    {"name":"GEO_COAST001_Drain_Inlet","kind":"drain_inlet","dimensions_m":[1.2,0.6,0.7],"materials":[10,13,90,100],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+    {"name":"GEO_COAST001_Drain_Outfall","kind":"drain_outfall","dimensions_m":[2.0,1.2,1.0],"materials":[10,13,90,100,101],"snap_sockets":["S","N"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"},
+
+    {"name":"GEO_COAST001_MidriseShell_Straight_5F","kind":"building_shell","dimensions_m":[18.0,12.0,16.2],"materials":[20,21,22,25,90,100,101,102],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":true,"lod_intent":"Nanite plus LOD1 35-percent, LOD2 15-percent, fallback 5-percent"},
+    {"name":"GEO_COAST001_MidriseShell_Straight_7F","kind":"building_shell","dimensions_m":[18.0,12.0,22.2],"materials":[20,21,22,25,90,100,101,102],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":true,"lod_intent":"Nanite plus LOD1 35-percent, LOD2 15-percent, fallback 5-percent"},
+    {"name":"GEO_COAST001_MidriseShell_Corner_7F","kind":"building_corner","dimensions_m":[18.0,18.0,22.2],"materials":[20,21,22,25,90,100,101,102],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":true,"lod_intent":"Nanite plus LOD1 35-percent, LOD2 15-percent, fallback 5-percent"},
+    {"name":"GEO_COAST001_MidriseShell_End_7F","kind":"building_end","dimensions_m":[12.0,12.0,22.2],"materials":[20,21,22,25,90,100,101,102],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":true,"lod_intent":"Nanite plus LOD1 35-percent, LOD2 15-percent, fallback 5-percent"},
+    {"name":"GEO_COAST001_Roof_Flat_18x12","kind":"roof","dimensions_m":[18.0,12.0,1.1],"materials":[21,25,90,100,101],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":false,"lod_intent":"LOD0, LOD1 40-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_Roof_ServiceScreen_6x4","kind":"roof_variant","dimensions_m":[6.0,4.0,2.5],"materials":[21,24,25,90,100],"snap_sockets":["W","E","S","N"],"collision":"ucx_shell_boxes","nanite":false,"lod_intent":"LOD0, LOD1 40-percent, LOD2 15-percent"},
+
+    {"name":"GEO_COAST001_WindowBay_A","kind":"window_variant","dimensions_m":[3.0,0.28,3.0],"materials":[20,21,23,90,100,101],"snap_sockets":["W","E"],"collision":"none_cosmetic","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_WindowBay_B","kind":"window_variant","dimensions_m":[3.0,0.28,3.0],"materials":[20,22,23,90,100,101],"snap_sockets":["W","E"],"collision":"none_cosmetic","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_WindowBay_Double","kind":"window_variant","dimensions_m":[6.0,0.28,3.0],"materials":[20,21,23,90,100,101],"snap_sockets":["W","E"],"collision":"none_cosmetic","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_BalconyBay_A","kind":"balcony_variant","dimensions_m":[3.0,1.4,1.15],"materials":[21,24,90,100,101],"snap_sockets":["W","E","N"],"collision":"ucx_slab","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_BalconyBay_B","kind":"balcony_variant","dimensions_m":[3.0,1.8,1.15],"materials":[21,24,90,100,101],"snap_sockets":["W","E","N"],"collision":"ucx_slab","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_Facade_CornerBay","kind":"facade_corner","dimensions_m":[3.0,3.0,3.0],"materials":[20,21,22,23,90,100,101],"snap_sockets":["W","E","S","N"],"collision":"none_cosmetic","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_Facade_EndWallBay","kind":"facade_end","dimensions_m":[3.0,0.28,3.0],"materials":[20,21,22,90,100,101,102],"snap_sockets":["W","E"],"collision":"none_cosmetic","nanite":false,"lod_intent":"LOD0, LOD1 45-percent, LOD2 15-percent"},
+    {"name":"GEO_COAST001_Roof_Parapet_10m","kind":"roof_parapet","dimensions_m":[10.0,0.25,1.1],"materials":[20,21,25,90,100,101],"snap_sockets":["W","E"],"collision":"ucx_box","nanite":false,"lod_intent":"LOD0, LOD1 40-percent"}
+  ],
+  "forbidden_name_tokens": [
+    "proxy",
+    "blockout",
+    "placeholder",
+    "temp",
+    "default",
+    "cube"
+  ],
+  "promotion": "Source-only production-direction candidate. Requires Blender artifact audit, manual visual review, tile seam test, Unreal import validation, collision and streaming tests before any quality promotion."
+}

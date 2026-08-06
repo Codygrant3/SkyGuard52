@@ -1,0 +1,110 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "created_at_utc": "2026-08-06T12:48:24.684131+00:00",
+  "assets": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "authoritative": [
+        "top width 0.021209 m",
+        "profile height min 0.009322 m",
+        "dovetail 0.018999 m",
+        "groove 0.005232 m",
+        "pitch 0.010008 m"
+      ],
+      "provisional": [
+        "coupon length presentation",
+        "material response"
+      ],
+      "unresolved_gaps": [
+        "weapon-specific rail context outside coupon scope"
+      ],
+      "production_boundary": "validation coupon only"
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "authoritative": [
+        "AR/M4 family only",
+        "continuous top rail cue",
+        "free-float ventilated handguard cue",
+        "open-tine muzzle cue only",
+        "accepted envelope+sockets"
+      ],
+      "provisional": [
+        "receiver massing",
+        "handguard windows",
+        "sight locators",
+        "hand sockets"
+      ],
+      "unresolved_gaps": [
+        "manufacturer/model",
+        "chambering",
+        "magazine",
+        "stock",
+        "controls/markings",
+        "exact optic",
+        "exact muzzle",
+        "barrel length"
+      ],
+      "production_boundary": "family silhouette + ADS geometry; no invented identity"
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "authoritative": [
+        "1.574 m length",
+        "0.072 m body diameter",
+        "forward/rear sockets"
+      ],
+      "provisional": [
+        "measurement discs",
+        "cylinder envelope"
+      ],
+      "unresolved_gaps": [
+        "launcher",
+        "gripstock",
+        "battery",
+        "sight",
+        "caps/bands/fasteners/markings",
+        "seeker/fin detail"
+      ],
+      "production_boundary": "body envelope only; no launcher invention"
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "authoritative": [
+        "NASA accommodation envelope",
+        "project provisional dims",
+        "rifle support pose intent"
+      ],
+      "provisional": [
+        "0.19 hand length",
+        "0.085 breadth",
+        "0.46 forearm+hand",
+        "current mannequin"
+      ],
+      "unresolved_gaps": [
+        "measured percentile",
+        "glove manufacturer",
+        "sleeve identity",
+        "Igla pose gated",
+        "helmet/headset/harness"
+      ],
+      "production_boundary": "realistic anatomy + leather glove; not measured percentile"
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "authoritative": [
+        "3.3 m length",
+        "3.0 m span",
+        "official planform envelope"
+      ],
+      "provisional": [
+        "guide construction",
+        "damage/wing sockets"
+      ],
+      "unresolved_gaps": [
+        "cross-sections",
+        "airfoil stations",
+        "propeller geometry",
+        "engine mount dims",
+        "antenna/panel positions",
+        "markings"
+      ],
+      "production_boundary": "planform only until evidence unlocks detail"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery07-runtime-recovery08-execution-freeze-manifest.v1",
+  "gate": "PASS_RECOVERY07_RUNTIME_RECOVERY08_EXECUTION_CONTRACT_HASH_READY_AWAITING_EXPLICIT_SINGLE_RUN_AUTHORIZATION",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY07_EXECUTION_CONTRACT.json",
+      "bytes": 9241,
+      "sha256": "3b17a12ce385ad3119b76518bd2acc4e92dffa6cad31c8cfb668ff0432d07df8"
+    },
+    {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07_runtime_recovery08_execution.py",
+      "bytes": 9937,
+      "sha256": "2d95e1faa23620a658cc94e65893c168ae73ce4c27e551d3efc9aa22b376bcb1"
+    },
+    {
+      "path": "Scripts/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07_runtime_recovery08_execution.py",
+      "bytes": 4395,
+      "sha256": "e775129a733778fb1dcf6c1bc5cf4f36a14be80a899aec45388ae97270392a21"
+    },
+    {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY07_RUNTIME_RECOVERY08_EXECUTION_READINESS.json",
+      "bytes": 2941,
+      "sha256": "f50beee0f4272bb18e6c8dce3b26f35fe84524aca05dad8a1af1c7f8860666f6"
+    },
+    {
+      "path": "Scripts/run_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07.ps1",
+      "bytes": 11073,
+      "sha256": "993500b976d552056cc02f8a8238a17a1ac15755fac5b66db8305d9c78d32aa7"
+    }
+  ],
+  "build_activation": {
+    "attempt_root": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T195617119762Z_6e486812",
+    "compile_receipt_sha256": "f654e1976d7a0daa4fa39dd25b20b651ba35c7dfe900c299f5e901c4855104c6",
+    "source_inventory_sha256": "6e486812352d019ad4b5a15655dfa957da02d039c10fa03645aa95c56420b37d",
+    "compile_activation_sha256": "d978cfa1a40cc2cd59e8885531d82c5d6f0b991e15c7c02043376691a9620552",
+    "build_stdout_sha256": "6b10ab8498eeead5f0c4763785261b9ea02cdd6ee67e0f04a43941c81596fe92",
+    "compiled_module_bytes": 2921984,
+    "compiled_module_sha256": "8ceebd2982c80b743b271b63ab46fee98716115e7b4233e63de52a7f05ec09fb"
+  },
+  "generic_supervisor_contract_id": {
+    "value": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-03",
+    "matches_execution_contract": false,
+    "violates_recovery08_execution_contract": false,
+    "grants_execution_authorization": false
+  },
+  "output_namespace": {
+    "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres",
+    "absent_at_freeze": true,
+    "must_remain_absent_until_authorized_execution": true
+  },
+  "offline_verification": {
+    "readiness_checks_passed": 13,
+    "readiness_checks_failed": 0,
+    "unit_tests_passed": 10,
+    "unit_tests_failed": 0
+  },
+  "execution_state": {
+    "unreal_launch_authorized": false,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "content_packages_created_or_modified": 0,
+    "promotion_allowed": false,
+    "p3_4_closed": false
+  }
+}

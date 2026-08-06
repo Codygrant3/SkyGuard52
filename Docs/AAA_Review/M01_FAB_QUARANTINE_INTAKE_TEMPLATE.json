@@ -1,0 +1,126 @@
+{
+  "schema": "skyguard.m01.fab-quarantine-provenance.v1",
+  "intake_id": "M01-FAB-QUARANTINE-INTAKE-001",
+  "status": "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+  "policy": {
+    "automatic_purchase_allowed": false,
+    "automatic_download_allowed": false,
+    "automatic_import_allowed": false,
+    "content_presence_is_acceptance": false,
+    "first_inspection_city_kit_limit": 1,
+    "first_inspection_coast_kit_limit": 1,
+    "quarantine_only": true,
+    "runtime_promotion_allowed": false
+  },
+  "decision_basis": {
+    "shortlist_path": "Docs/AAA_Review/M01_FAB_VISIBLE_ART_SHORTLIST_2026-08-02.md",
+    "shortlist_sha256": "99c2ffcb825d537e7b29304291da9dcaa4ec2b7181cac9789d4df1e0790afe08",
+    "visual_review_path": "Docs/AAA_Review/BLD_M01_COAST_PROD_001_VISUAL_REVIEW.md",
+    "visual_review_sha256": "e9a26b52b77224ec6c47ebfc4f092ea65e2f4e2b4de3b651b4d6162e7b6165f5",
+    "visual_review_status": "ACCEPTED_AS_LAYOUT_SCAFFOLD_REJECTED_AS_VISIBLE_AAA_ART"
+  },
+  "assets": [
+    {
+      "slot": "CITY_KIT",
+      "catalog": {
+        "product_name": "Soviet Panels - Communist Eastern European Buildings Kit",
+        "source_url": "https://www.fab.com/listings/e0fb40c4-05a7-4e49-9fd6-a10bbcca0ef8",
+        "product_id": "e0fb40c4-05a7-4e49-9fd6-a10bbcca0ef8",
+        "seller": "PolyGo Studios",
+        "product_page_snapshot": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "commerce": {
+        "paid_free_status": "",
+        "price_paid": null,
+        "currency": "",
+        "acquired_at": "",
+        "license_tier": "",
+        "license_text_snapshot": { "path": "", "bytes": 0, "sha256": "" },
+        "receipt_or_acquisition_record": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "compatibility": {
+        "supported_unreal_versions": [],
+        "target_engine": "5.8",
+        "target_engine_supported": false,
+        "platform_restrictions": [],
+        "cooked_windows_redistribution_covered": false,
+        "evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "storage": {
+        "download_bytes": 0,
+        "installed_bytes": 0,
+        "download_package": { "path": "", "bytes": 0, "sha256": "" },
+        "installed_inventory_manifest": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "texture_inventory": {
+        "total_textures": 0,
+        "resolutions": [],
+        "inventory_evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "runtime_features": {
+        "nanite": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "lod": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "collision": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "material_instances": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } }
+      },
+      "dependencies": {
+        "items": [],
+        "inventory_evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "immutable_artifacts": [],
+      "quarantine_disposition": "HOLD_EVIDENCE_INCOMPLETE",
+      "final_disposition": "NOT_EVALUATED"
+    },
+    {
+      "slot": "BEACH_COAST_KIT",
+      "catalog": {
+        "product_name": "Brushify - Beach Pack",
+        "source_url": "https://www.fab.com/listings/72a92a2e-3c52-46a5-9f17-6cf1f5d35006",
+        "product_id": "72a92a2e-3c52-46a5-9f17-6cf1f5d35006",
+        "seller": "JoeGarth",
+        "product_page_snapshot": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "commerce": {
+        "paid_free_status": "",
+        "price_paid": null,
+        "currency": "",
+        "acquired_at": "",
+        "license_tier": "",
+        "license_text_snapshot": { "path": "", "bytes": 0, "sha256": "" },
+        "receipt_or_acquisition_record": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "compatibility": {
+        "supported_unreal_versions": [],
+        "target_engine": "5.8",
+        "target_engine_supported": false,
+        "platform_restrictions": [],
+        "cooked_windows_redistribution_covered": false,
+        "evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "storage": {
+        "download_bytes": 0,
+        "installed_bytes": 0,
+        "download_package": { "path": "", "bytes": 0, "sha256": "" },
+        "installed_inventory_manifest": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "texture_inventory": {
+        "total_textures": 0,
+        "resolutions": [],
+        "inventory_evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "runtime_features": {
+        "nanite": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "lod": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "collision": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } },
+        "material_instances": { "supported": false, "evidence": { "path": "", "bytes": 0, "sha256": "" } }
+      },
+      "dependencies": {
+        "items": [],
+        "inventory_evidence": { "path": "", "bytes": 0, "sha256": "" }
+      },
+      "immutable_artifacts": [],
+      "quarantine_disposition": "HOLD_EVIDENCE_INCOMPLETE",
+      "final_disposition": "NOT_EVALUATED"
+    }
+  ]
+}

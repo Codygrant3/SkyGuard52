@@ -1,0 +1,51 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "order": [
+    {
+      "step": 1,
+      "asset": "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON",
+      "why": "smallest hard-surface calibration",
+      "first": true,
+      "depends": []
+    },
+    {
+      "step": 2,
+      "asset": "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT",
+      "why": "primary player weapon silhouette/ADS",
+      "first": false,
+      "depends": [
+        "rail language"
+      ]
+    },
+    {
+      "step": 3,
+      "asset": "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN",
+      "why": "needs rifle sockets for grip",
+      "first": false,
+      "depends": [
+        "rifle sockets"
+      ]
+    },
+    {
+      "step": 4,
+      "asset": "PROVISIONAL_9K38_MISSILE_ENVELOPE",
+      "why": "independent envelope",
+      "first": false,
+      "depends": []
+    },
+    {
+      "step": 5,
+      "asset": "PROVISIONAL_SHAHED136_ENVELOPE",
+      "why": "threat planform; detail gated",
+      "first": false,
+      "depends": []
+    }
+  ],
+  "parallelism_policy": "docs for all five; Blender one asset/process at a time",
+  "blocked_until_reference": [
+    "exact rifle config",
+    "Igla launcher",
+    "measured percentile",
+    "Shahed cross-section/prop"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "skyguard.phase2.yak52-r5-slice01-freeze.v1",
+  "status": "HASH_FROZEN_READY_FOR_ONE_BOUNDED_BLENDER_RUN",
+  "files": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\blender_phase2_yak52_r5_slice01.py",
+      "bytes": 11087,
+      "sha256": "446b4e8d71457b2f9bac3798c22b82fec212e89161ec30c7d2d800683fdfa1f2"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_CAMERAS.json",
+      "bytes": 2478,
+      "sha256": "bdbb49d656601f5108604216a3eeabe3cf8578d0c69e0381ee3e863d03f6830c"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_CONTRACT.json",
+      "bytes": 6095,
+      "sha256": "bd869241e8b10c0c5859534bb2c08d3346551c242dbb1714c230a41c5985122b"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_FinalArt_R4\\Slice01_Recovery05\\BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY05_MASTER.blend",
+      "bytes": 123942,
+      "sha256": "a7694e012e1dbdef06c432919f2a93d62ec3845c888506fe7019ef81aeb2f30e"
+    }
+  ],
+  "offline_checks": {
+    "python_syntax": "PASS",
+    "contract_json": "PASS",
+    "camera_count": 10,
+    "required_primary_object_count": 34,
+    "outputs_absent": true,
+    "heavy_processes_absent": true
+  },
+  "execution_policy": {
+    "authorized_attempts": 1,
+    "automatic_retry": false,
+    "unreal_launch": false,
+    "runtime_promotion": false
+  }
+}

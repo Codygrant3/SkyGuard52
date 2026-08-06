@@ -1,0 +1,144 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery10-compile-compat-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_012",
+  "recovery_id": "ATTEMPT03_RECOVERY10",
+  "disposition": "PASS_OFFLINE_COMPILE_COMPAT_READY_REQUIRES_SEPARATE_FULL_MODULE_BUILD_AUTHORIZATION",
+  "scope": "three frozen Recovery09 compile errors only",
+  "failed_build_evidence": {
+    "root": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611",
+    "compile_receipt": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611/compile_receipt.json",
+      "bytes": 901,
+      "sha256": "48276b440483619b327ef99de02621dcec5ee94341af16c96149272dadcfb59d"
+    },
+    "build_stdout": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611/build.stdout.log",
+      "bytes": 8312,
+      "sha256": "67cf0f2ddfbfd673e7e5b997fe84e9d9cf1fcb8d73ae3c2b8620c8a8d0b4206f"
+    },
+    "build_stderr": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_inventory": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611/source_inventory.json",
+      "bytes": 29821,
+      "sha256": "4c658611ca8330184b112b28be5babbdbdc43c61c51afe40bc14c3218571f464"
+    },
+    "gate": "FAIL_FULL_SKYGUARD52EDITOR_MODULE_COMPILE",
+    "exit_code": 6,
+    "timed_out": false,
+    "errors": [
+      {
+        "source_line": 378,
+        "argument_line": 380,
+        "code": "C7595",
+        "cause": "FString feature-level value supplied to TCHAR %s without dereference"
+      },
+      {
+        "source_line": 783,
+        "code": "C2511",
+        "member": "BuildRecord",
+        "cause": "frozen source defines const TArray<FColor>& while frozen header declares TArrayView64<const FColor>"
+      },
+      {
+        "source_line": 853,
+        "code": "C2511",
+        "member": "WritePng",
+        "cause": "frozen source defines const TArray<FColor>& while frozen header declares TArrayView64<const FColor>"
+      }
+    ],
+    "other_compiler_errors": 0,
+    "retry_same_build_namespace_forbidden": true
+  },
+  "frozen_recovery09": {
+    "design_contract": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_DESIGN_CONTRACT.json",
+      "bytes": 9158,
+      "sha256": "b41bd541228f3c6cfcf03e6bbcd4783822582b929af9616ac1852db795f39c29"
+    },
+    "freeze_manifest": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_FREEZE_MANIFEST.json",
+      "bytes": 3521,
+      "sha256": "4aaeaed8f5b3b30908743a97a2c669c720a3f2e3c9e834b821fe83498900b96b"
+    },
+    "readiness": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_DESIGN_READINESS.json",
+      "bytes": 3829,
+      "sha256": "d7b0db6ffcdd9067b9056e9f5beb7d751e17b3695b21f2319203a206f0be5788"
+    },
+    "header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.h",
+      "bytes": 3639,
+      "sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0"
+    },
+    "source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.cpp",
+      "bytes": 30714,
+      "sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08"
+    },
+    "must_remain_byte_identical": true,
+    "direct_edit_forbidden": true
+  },
+  "failed_inventory_inputs": {
+    "module_rules": {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1295,
+      "sha256": "81fec3b1bd74bd7fa0471d9d17c2ac528f8f983df15a6aa8bf1393cca89e2d5b",
+      "bound_inside_failed_source_inventory": true,
+      "superseded_by_recovery10_module_rules": true
+    },
+    "recovery08_bridge": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery08CompileFix.h",
+      "bytes": 1451,
+      "sha256": "2814e6612493f17b2368e6ba148663d34f64aa4406166641b635b637920bb5a4",
+      "remains_byte_identical": true
+    }
+  },
+  "recovery10_correction": {
+    "forced_include_header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery10CompileFix.h",
+      "bytes": 1304,
+      "sha256": "04964485f02f77515e186890f349464aa48dbbbb5f2b93137de9ccd7a5c6a047"
+    },
+    "module_rules": {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1413,
+      "sha256": "0d731c5a44f015d8cfebb861be7ffdfb03c7808babe5f44d17515d3f38977c08"
+    },
+    "strategy": [
+      "Force-include Recovery10 after the frozen Recovery08 compatibility bridge.",
+      "Temporarily macro-correct only BuildRecord and WritePng declarations while including the frozen Recovery09 header once.",
+      "Undefine both member-name macros before the frozen Recovery09 source body is parsed.",
+      "Temporarily undefine the Recovery08 GMaxRHIFeatureLevel macro, add only line-380 to the existing checked-format proxy, then restore the macro.",
+      "Leave all frozen Recovery09 files byte-identical."
+    ],
+    "corrected_header_signatures": {
+      "BuildRecord": "FCaptureRecord BuildRecord(int32 Width, int32 Height, const TArray<FColor>& Colors) const",
+      "WritePng": "bool WritePng(const FString& Path, int32 Width, int32 Height, const TArray<FColor>& Colors) const"
+    },
+    "feature_level_target_argument_line": 380,
+    "project_target_line_collision_count": 1,
+    "project_target_line_owner": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.cpp",
+    "installed_ue_header_target_line_collision_count": 0,
+    "format_validation_suppression_forbidden": true,
+    "global_lex_to_string_macro_forbidden": true
+  },
+  "future_build": {
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "unreal_launch_allowed": false,
+    "new_immutable_build_namespace_required": true,
+    "success_receipt_source_inventory_and_dll_hash_required": true,
+    "post_build_recovery09_execution_contract_required": true
+  },
+  "native_build_authorized": false,
+  "native_build_executed": false,
+  "unreal_launch_authorized": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "content_packages_created_or_modified": 0,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

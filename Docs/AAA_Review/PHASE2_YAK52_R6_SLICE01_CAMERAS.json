@@ -1,0 +1,26 @@
+{
+  "schema":"skyguard.phase2.yak52-r6-slice01-cameras.v1",
+  "render":{"resolution":[1920,1080],"pixel_aspect":1.0,"sensor_width_mm":36.0,"neutral_exposure":0.0,"crop_after_render":false},
+  "cameras":[
+    {"id":"R6_CAM_BEAUTY_PORT","projection":"PERSPECTIVE","location":[12.0,-14.0,7.0],"target":[0.0,0.0,0.25],"lens_mm":58.0,"subject_center":[0.0,0.0,0.25],"subject_radius_m":4.7,"screen_fraction":[0.55,0.86],"edge_margin_min":0.05,"proves":["complete context silhouette","cowling","canopy","wing roots"]},
+    {"id":"R6_CAM_SIDE_OVERLAY","projection":"ORTHOGRAPHIC","location":[0.0,-16.0,0.5],"target":[0.0,0.0,0.35],"ortho_scale_m":5.6,"horizontal_subject_extent_m":7.745,"screen_fraction":[0.70,0.86],"edge_margin_min":0.06,"proves":["7.745 m profile","station loft","canopy profile"],"reference_required":"dimensioned side view"},
+    {"id":"R6_CAM_TOP_OVERLAY","projection":"ORTHOGRAPHIC","location":[0.0,0.0,16.0],"target":[0.0,0.0,0.0],"ortho_scale_m":11.2,"vertical_subject_extent_m":9.3,"screen_fraction":[0.76,0.88],"edge_margin_min":0.05,"proves":["9.3 m span","wing planform","root symmetry"],"reference_required":"dimensioned top view"},
+    {"id":"R6_CAM_FORWARD_AIRFRAME","projection":"PERSPECTIVE","location":[7.0,-6.0,3.0],"target":[2.4,0.0,0.25],"lens_mm":70.0,"subject_center":[2.4,0.0,0.25],"subject_radius_m":1.35,"screen_fraction":[0.45,0.78],"edge_margin_min":0.08,"proves":["forward fuselage stations","cowling transition","windscreen context"]},
+    {"id":"R6_CAM_RADIAL_PROP","projection":"PERSPECTIVE","location":[6.8,-5.0,1.8],"target":[3.55,0.0,0.13],"lens_mm":70.0,"subject_center":[3.55,0.0,0.13],"subject_radius_m":1.20,"screen_fraction":[0.55,0.82],"edge_margin_min":0.07,"proves":["radial face depth","shutters","hub","blade profiles"]},
+    {"id":"R6_CAM_COWLING_GRAZE","projection":"PERSPECTIVE","location":[5.8,-5.0,0.9],"target":[3.20,0.0,0.15],"lens_mm":85.0,"subject_center":[3.20,0.0,0.15],"subject_radius_m":0.90,"screen_fraction":[0.55,0.84],"edge_margin_min":0.06,"proves":["lip-to-shell continuity","shell-to-fuselage continuity","panel breaks"]},
+    {"id":"R6_CAM_CANOPY_CLOSED","projection":"PERSPECTIVE","location":[1.0,-7.0,3.0],"target":[-0.05,0.0,0.90],"lens_mm":65.0,"subject_center":[-0.05,0.0,0.90],"subject_radius_m":1.45,"screen_fraction":[0.50,0.84],"edge_margin_min":0.07,"proves":["continuous greenhouse","bows","rails","seals","closed alignment"]},
+    {"id":"R6_CAM_REAR_CANOPY_OPEN","projection":"PERSPECTIVE","location":[-2.8,-6.0,2.5],"target":[-0.85,0.0,0.90],"lens_mm":65.0,"subject_center":[-0.85,0.0,0.90],"subject_radius_m":1.20,"screen_fraction":[0.48,0.82],"edge_margin_min":0.08,"proves":["fully open aperture","stowed canopy","rail travel","head clearance"]},
+    {"id":"R6_CAM_WING_ROOT_CONTEXT","projection":"PERSPECTIVE","location":[3.0,5.0,2.5],"target":[0.0,0.85,0.10],"lens_mm":58.0,"subject_center":[0.0,0.85,0.10],"subject_radius_m":1.20,"screen_fraction":[0.45,0.82],"edge_margin_min":0.08,"proves":["root junction","fuselage context","25 to 40 percent semispan"]},
+    {"id":"R6_CAM_REAR_GUNNER_EYE","projection":"PERSPECTIVE","location":[-0.72,-0.36,1.08],"target":[2.6,-0.36,1.05],"lens_mm":50.0,"clip_start_m":0.03,"screen_fraction":[0.0,1.0],"edge_margin_min":0.0,"proves":["unobstructed central 9x9 ray grid","open rear canopy","pilot safety context"]},
+    {"id":"R6_CAM_MATERIAL_GRAZE","projection":"PERSPECTIVE","location":[6.0,-5.0,2.0],"target":[2.4,0.0,0.4],"lens_mm":78.0,"subject_center":[2.4,0.0,0.4],"subject_radius_m":1.15,"screen_fraction":[0.48,0.84],"edge_margin_min":0.07,"proves":["three material families","two seams","fasteners","roughness response"]}
+  ],
+  "offline_visibility_policy":{
+    "perspective_test":"Projected subject diameter fraction from lens, sensor width, subject radius and camera distance must fall inside screen_fraction.",
+    "orthographic_test":"Declared subject extent divided by relevant ortho extent must fall inside screen_fraction.",
+    "target_alignment_max_degrees":0.1,
+    "required_camera_count_min":10,
+    "rear_gunner_camera_uses_separate_9x9_ray_contract":true
+  },
+  "authorization_blockers":["R6_CAM_TOP_OVERLAY lacks a supplied dimensioned top reference","Rear-gunner eye datum is inferred rather than confirmed"]
+}
+

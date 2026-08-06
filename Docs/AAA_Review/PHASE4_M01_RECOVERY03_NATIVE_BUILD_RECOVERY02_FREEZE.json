@@ -1,0 +1,86 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery02-freeze.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY02",
+  "created_utc": "2026-08-03T15:03:27.6656237Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY02_NATIVE_BUILD_AUTHORIZATION",
+  "prior_recovery01_attempt_terminal": true,
+  "failed_namespace_reuse_forbidden": true,
+  "native_build_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "future_build_namespace_absent": true,
+  "future_runtime_namespace_absent": true,
+  "short_package_root_absent": true,
+  "frozen_files": [
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SUPERVISOR_CONTRACT.json",
+      "bytes": 2261,
+      "sha256": "1b69616be3f827f47f76396b0010271463fc2fba717ae30d543bcf0e22635503"
+    },
+    {
+      "file": "Scripts/build_skyguard_recovery03_native_recovery02_once.ps1",
+      "bytes": 12689,
+      "sha256": "039e5d05d82bda97f19663bf155fee8b80ae7b1f699195f4bdfcf74dda9744c2"
+    },
+    {
+      "file": "Scripts/test_skyguard_recovery03_native_recovery02_bundled_host.ps1",
+      "bytes": 2323,
+      "sha256": "0e03b2befd221399bb4e08cb5a7054c4635aa15a67be072d8a9dd87cfae5367b"
+    },
+    {
+      "file": "Scripts/verify_skyguard_recovery03_native_recovery02_offline.py",
+      "bytes": 6161,
+      "sha256": "39cd1e6dfdc4c775956f82d906b1810cfc91c93955658056584781f6b5b7edd1"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_PROJECTED_PATHS.json",
+      "bytes": 520,
+      "sha256": "ac988dac1af41e3aae25c83bdd7fe46017f596c803a00c8e5bdf2bd49ed4bf36"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_BUNDLED_HOST_TEST.json",
+      "bytes": 1548,
+      "sha256": "e7e98268b78ca3ecf801676e011b49bf462ce7dd09b2e6af72fb863430c2b754"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_RECONCILIATION.json",
+      "bytes": 1915,
+      "sha256": "0595b7dd2c54f06d98128f6d11138193d3e447e080bfa7901a7a0b5ae7ef615e"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_OFFLINE_VERIFICATION.json",
+      "bytes": 1158,
+      "sha256": "7ef32c6443a94918f7f1855e1cef77d14d06fef02a8d83bd56239e1234fe7613"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SOURCE_INVENTORY.json",
+      "bytes": 2690,
+      "sha256": "7a7a8c51eb09262adaca7dc37e543fa7f319a3a3acb0534ad73ecdbf7ac5d577"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_READINESS.json",
+      "bytes": 1382,
+      "sha256": "bf41b4d09b14c2dfc59bb456e1ac6856148607baa8f0129b8ed93bc5e52a83b1"
+    },
+    {
+      "file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SINGLE_BUILD.md",
+      "bytes": 1677,
+      "sha256": "1f509fff110393c1939e4ea169830f53f799304504158a6960765ce773ada72a"
+    }
+  ],
+  "offline_test_results": {
+    "authority_verification": "PASS",
+    "json_validation": "PASS",
+    "python_syntax": "PASS",
+    "powershell_syntax": "PASS",
+    "supervisor_static_contract": "PASS",
+    "bundled_dotnet_success_exit_code": 0,
+    "bundled_dotnet_failure_exit_code": 1,
+    "numeric_exit_code_type": "System.Int32",
+    "null_exit_code_rejected": true,
+    "native_process_handle_retained": true,
+    "projected_longest_path": 213,
+    "heavy_process_count": 0
+  },
+  "next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SINGLE_BUILD.md"
+}

@@ -1,0 +1,33 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "source": {
+    "path": "C:\\Users\\chris\\Downloads\\xdZG_ony6R5pHB4J.mp4",
+    "bytes": 4271526,
+    "sha256": "91c9b0a1d595ab2cf5df6c9b37d4b5e76c46e32d1373e2e7d7871bcafcf62061"
+  },
+  "decoder": {
+    "library": "PyAV",
+    "version": "16.1.0",
+    "sample_stride_frames": 15,
+    "nominal_sampling_seconds": 0.5,
+    "source_stream_width": 1280,
+    "source_stream_height": 720,
+    "source_average_rate": "197888/6613",
+    "source_frames_reported": 773
+  },
+  "source_stream": {
+    "codec": "H.264",
+    "width": 1280,
+    "height": 720,
+    "nominal_frame_rate": "30/1",
+    "average_frame_rate": "197888/6613",
+    "duration_seconds": 25.832031,
+    "frames_reported": 773
+  },
+  "sampled_frames": 52,
+  "sample_interval_nominal_seconds": 0.5,
+  "contact_sheets": 3,
+  "rifle_crops": 6,
+  "source_modified": false,
+  "output_format": "lossless PNG at original 1280x720 for full frames"
+}

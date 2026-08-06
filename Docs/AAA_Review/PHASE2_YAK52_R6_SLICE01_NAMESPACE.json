@@ -1,0 +1,13 @@
+{
+  "schema":"skyguard.phase2.yak52-r6-slice01-namespace.v1",
+  "status":"RESERVED_PATHS_MUST_REMAIN_ABSENT_UNTIL_EXPLICIT_BLENDER_AUTHORIZATION",
+  "blender_directory":"Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R6/Slice01",
+  "blend":"Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R6/Slice01/BLD_M01_YAK52_R6_SLICE01_MASTER.blend",
+  "glb":"Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R6/Slice01/bld_m01_yak52_r6_slice01.glb",
+  "manifest":"Saved/Reports/BLD_M01_YAK52_R6_SLICE01_MANIFEST.json",
+  "renders":"Saved/Screenshots/BLD_M01_YAK52_R6_SLICE01",
+  "attempt_root":"Saved/BuildAttempts/PHASE2_YAK52_R6_SLICE01",
+  "unreal_quarantine":"/Game/Skyguard/Quarantine/M01/Yak52R6Slice01",
+  "unreal_import_authorized":false,
+  "overwrite_allowed":false
+}

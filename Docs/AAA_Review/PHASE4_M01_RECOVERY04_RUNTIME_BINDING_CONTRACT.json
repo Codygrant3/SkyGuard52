@@ -1,0 +1,115 @@
+{
+  "schema": "skyguard.phase4.m01-recovery04-runtime-binding.v1",
+  "binding_id": "P4.6-M01-RECOVERY04-BINDING-01",
+  "classification": "OFFLINE_DESIGN",
+  "provenance": "Recovery04 accepted UE 5.8 compatibility build using the immutable Recovery01 native lifecycle contract",
+  "plugin": {
+    "enabled": "SkyguardRecovery03NativeRecovery04",
+    "module": "SkyguardRecovery03NativeRecovery01",
+    "disabled_duplicate_module_plugins": [
+      "SkyguardRecovery03NativeRecovery01"
+    ],
+    "enabled_by_default": false,
+    "accepted_dll": {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery04/Binaries/Win64/UnrealEditor-SkyguardRecovery03NativeRecovery01.dll",
+      "bytes": 177664,
+      "sha256": "2070765a5d44199f7116c2038c97d866b91a509706de73953ead1cad057cb6e3"
+    }
+  },
+  "immutable_binary_binding": {
+    "contract_switch": "SkyguardRecovery01ContractId",
+    "authorization_switch": "SkyguardRecovery01Authorization",
+    "expected_map_switch": "SkyguardRecovery01ExpectedMap",
+    "attempt_root_switch": "SkyguardRecovery01AttemptRoot",
+    "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+    "authorization_token": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01-ONE-SHOT",
+    "required_attempt_suffix": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/runtime_attempt_01",
+    "expected_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03"
+  },
+  "editor": {
+    "file": "D:/UE_5.8/Engine/Binaries/Win64/UnrealEditor-Cmd.exe",
+    "version": "++UE5+Release-5.8-CL-56057345",
+    "bytes": 512952,
+    "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0",
+    "rhi": "D3D12",
+    "shader_model": "SM6"
+  },
+  "locked_inputs": [
+    {
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "bytes": 532796,
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    {
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "bytes": 15059,
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json",
+      "bytes": 2651,
+      "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json",
+      "bytes": 1986,
+      "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json",
+      "bytes": 1332,
+      "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_CONTRACT.json",
+      "bytes": 3016,
+      "sha256": "3e66b5005d5ca995039fd6d96a3b9553960a91d8b017261f2ecd99d89e85afac"
+    }
+  ],
+  "runtime": {
+    "landscape_label": "M01_P4_Landscape_Production",
+    "landscape_count": 1,
+    "component_count": 16,
+    "shader_resource_count": 16,
+    "validation_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+    "stable_shader_ready_polls": 2,
+    "warmup_seconds": 30,
+    "measurement_seconds": 30,
+    "minimum_frame_samples": 900,
+    "capture_count": 8,
+    "static_capture_count": 5,
+    "temporal_capture_count": 3,
+    "capture_width": 2560,
+    "capture_height": 1440,
+    "maximum_process_seconds": 540,
+    "world_save_forbidden": true,
+    "disk_asset_mutation_forbidden": true,
+    "restoration_required": true
+  },
+  "network": {
+    "attempts_allowed": 0,
+    "editor_override": "-ini:EditorSettings:[/Script/UnrealEd.AnalyticsPrivacySettings]:bSendUsageData=False",
+    "disabled_plugins": [
+      "Fab",
+      "Bridge",
+      "EditorTelemetry",
+      "RuntimeTelemetry",
+      "EOSShared"
+    ]
+  },
+  "future_namespaces": {
+    "runtime_attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/runtime_attempt_01",
+    "proof": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/runtime_attempt_01/proof",
+    "launcher": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY04_BINDING01/launcher_attempt_01",
+    "execution_preflight": "Saved/Reports/PHASE4_M01_RECOVERY04_BINDING01_EXECUTION_PREFLIGHT.json",
+    "terminal_supervisor": "Saved/Reports/PHASE4_M01_RECOVERY04_BINDING01_TERMINAL_SUPERVISOR.json"
+  },
+  "execution_policy": {
+    "single_unreal_launch": true,
+    "automatic_retry": false,
+    "failed_namespace_reuse": false,
+    "process_handle_retained": true,
+    "numeric_exit_code_required": true,
+    "terminal_supervisor_receipt_required": true
+  }
+}

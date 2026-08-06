@@ -1,0 +1,3843 @@
+[
+  {
+    "id": "MAT-001",
+    "pillar": "materials",
+    "title": "Yak airframe bright N/R breakup",
+    "change": "Add a restrained light-gray normal and roughness breakup pass to the Yak airframe base material, keeping the existing bright unlit HF response intact.",
+    "stage_targets": [
+      "YakBeauty",
+      "PropNose"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_L23_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Blend imported micro-normal and roughness variation at low amplitude; clamp albedo and maintain a bright neutral material floor.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty",
+        "PropNose"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small unlit variation remains within the L52 HF FOV band and cannot introduce dark PBR-only regions.",
+    "acceptance_test": "All 11 cameras remain Usable; YakBeauty and PropNose show visible panel breakup without any new near-black airframe patch.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-002",
+    "pillar": "materials",
+    "title": "Airframe panel seam dirt accents",
+    "change": "Add thin, low-contrast dirt accents along existing airframe panel seams using the airframe material's AO and dirt channels.",
+    "stage_targets": [
+      "Prop",
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_AirframeMetal",
+        "/Game/Skyguard/Materials/M_L21_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use masked seam data with a narrow width and warm-gray tint; keep the effect localized to existing seams and below the base-value collapse threshold.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Prop",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Only existing seam pixels are modified, with no broad darkening or added geometry.",
+    "acceptance_test": "Prop and YakBeauty retain Usable status and seam accents are readable at capture resolution without turning panels into dark bands.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-003",
+    "pillar": "materials",
+    "title": "Airframe rivet glint control",
+    "change": "Introduce subtle bright roughness breaks around selected rivet rows to increase edge and surface uniqueness.",
+    "stage_targets": [
+      "PropNose",
+      "Cockpit"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Drive a sparse mask from existing rivet placement; brighten only the response, not the base color, and suppress the mask outside close airframe surfaces.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropNose",
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Sparse response-only variation is additive to the frozen HF look and avoids a global metallic or albedo change.",
+    "acceptance_test": "Rivet rows gain readable separation in PropNose and Cockpit while no camera loses Usable status.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-004",
+    "pillar": "materials",
+    "title": "Wing-root grime crescent",
+    "change": "Add one narrow, warm-gray grime crescent at the existing wing-root contact area.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_L21_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use an AO-driven mask with a soft falloff and limited opacity; do not extend the accent across the full wing or fuselage.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single small contact accent creates local structure without adding a large hero stack or darkening the silhouette.",
+    "acceptance_test": "YakBeauty remains Usable and the wing-root contact reads as a localized material transition rather than a black seam.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-005",
+    "pillar": "materials",
+    "title": "Airframe dirt gradient",
+    "change": "Add a very low-opacity lower-surface dirt gradient to the visible fuselage and wing materials.",
+    "stage_targets": [
+      "Prop",
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_AirframeMetal",
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use world-space or existing UV orientation to place the gradient only below the midline; keep the tint desaturated tan-gray and preserve the existing bright HF base.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Prop",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is a shallow tonal gradient with a high luminance floor and no new opaque content.",
+    "acceptance_test": "Both target cameras remain Usable; lower surfaces gain separation while the main airframe silhouette stays bright and readable.",
+    "effort": "S",
+    "priority_guess": 5,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-006",
+    "pillar": "materials",
+    "title": "Prop disc radial readability",
+    "change": "Tune M_PropDisc with a restrained radial roughness and brightness variation so the rotating disc reads as a coherent translucent motion surface.",
+    "stage_targets": [
+      "Prop",
+      "PropNose"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_PropDisc",
+        "/Game/Skyguard/Materials/M_L23_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a soft radial mask with a bright center-to-edge response; avoid hard rings, dark radial wedges, and opaque blade-like bands.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Prop",
+        "PropNose"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The modification stays on the existing prop disc material and preserves the L52 unlit HF motion treatment.",
+    "acceptance_test": "Prop and PropNose remain Usable; the disc reads at a glance with no new black spokes or distracting concentric artifacts.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-007",
+    "pillar": "materials",
+    "title": "Prop hub center contrast",
+    "change": "Add a small additive warm-neutral hub highlight and surrounding roughness ring to improve prop-disc center readability.",
+    "stage_targets": [
+      "PropHub",
+      "Prop"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_PropDisc",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a tiny masked emissive proxy centered on the existing hub; keep intensity below bloom threshold and use a neutral brass-gray color rather than saturated light.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropHub",
+        "Prop"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The proxy is small, additive, and limited to the existing hub center, so it cannot create a broad dark material response.",
+    "acceptance_test": "PropHub and Prop remain Usable; the center of the disc is distinct without visible bloom washout.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-008",
+    "pillar": "materials",
+    "title": "Prop blade-root wear marks",
+    "change": "Add two small translucent wear marks at the existing prop blade roots using a light desaturated metal tint.",
+    "stage_targets": [
+      "PropNose"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_PropDisc",
+        "/Game/Skyguard/Materials/M_L21_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place the marks inside the current disc mask and keep their opacity low enough that they read as material variation rather than frozen blade geometry.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropNose"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The accents are confined to existing prop-disc pixels and retain the frozen motion-blur treatment.",
+    "acceptance_test": "PropNose remains Usable; blade-root regions show subtle wear without breaking disc continuity.",
+    "effort": "S",
+    "priority_guess": 8,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-009",
+    "pillar": "materials",
+    "title": "Rifle tan value breakup",
+    "change": "Add fine warm and pale tan albedo variation to M_RifleTan so the rifle body reads as worn canvas-coated metal rather than a uniform block.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_RifleTan",
+        "/Game/Skyguard/Materials/M_L23_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a low-frequency mottled mask with restrained contrast; keep the average value near the existing tan and do not introduce a dark sole material.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Only the existing tan rifle material changes, with average luminance preserved for the frozen ADS composition.",
+    "acceptance_test": "ADS remains Usable and the rifle body has visible tonal variation without losing its tan identity.",
+    "effort": "S",
+    "priority_guess": 9,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-010",
+    "pillar": "materials",
+    "title": "Rifle worn edge pass",
+    "change": "Add narrow pale wear highlights to the rifle's existing outer edges and grip corners.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_RifleTan",
+        "/Game/Skyguard/Materials/M_AirframeMetal"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a curvature or existing edge mask with low opacity and warm ivory-tan response; exclude broad flat faces and muzzle openings.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is edge-localized, bright-biased, and does not alter the dark-value structure of the weapon silhouette.",
+    "acceptance_test": "ADS remains Usable; grip, receiver, and stock edges gain readable wear with no clipped highlights.",
+    "effort": "S",
+    "priority_guess": 10,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-011",
+    "pillar": "materials",
+    "title": "Rifle recess dirt pinstripes",
+    "change": "Add thin brown-gray dirt lines to the rifle's existing receiver recesses and seam breaks.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_RifleTan",
+        "/Game/Skyguard/Materials/M_L21_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a masked dirt channel with narrow widths and soft antialiasing; clamp the dirt value above the black-collapse range.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The dirt is confined to pre-existing recesses and remains a small contrast cue inside the frozen ADS FOV.",
+    "acceptance_test": "ADS remains Usable and recesses separate at capture size without appearing as painted black stripes.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-012",
+    "pillar": "materials",
+    "title": "Rifle metal-neutral hardware",
+    "change": "Give exposed rifle hardware a restrained neutral-metal roughness response while leaving the tan body unchanged.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_RifleTan",
+        "/Game/Skyguard/Materials/M_AirframeMetal",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Mask only existing hardware islands; use medium gray response with controlled roughness and no black metallic albedo.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The hardware mask is small and bright-neutral, avoiding dark PBR-only FOV treatment.",
+    "acceptance_test": "ADS remains Usable; hardware reads as distinct worn metal while the tan stock and receiver remain visually dominant.",
+    "effort": "M",
+    "priority_guess": 12,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-013",
+    "pillar": "materials",
+    "title": "Behind-wall rust tile",
+    "change": "Add one small rust tile decal/material variation behind the wall on a visible city-side construction surface.",
+    "stage_targets": [
+      "City"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_*",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place at x>=bx+3 on an existing wall or utility surface; use a compact orange-brown rust mask with a light base and no foreground overlap.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored weathering is explicitly behind the wall and outside the frozen foreground densify band.",
+    "acceptance_test": "City remains Usable; the rust tile is visible only on the intended rear surface and does not affect Prop, YakBeauty, Ocean, or Wide.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-014",
+    "pillar": "materials",
+    "title": "Behind-wall salt-rust streak",
+    "change": "Add a narrow vertical salt-and-rust streak to a rear harbor wall or piling.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L23_*",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Constrain placement to x>=bx+3 and use a pale salt edge around a muted rust center; keep the tile small enough to remain a background accent.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Rear-only placement prevents interaction with the L52 foreground HF silhouette and preserves ocean/sky balance.",
+    "acceptance_test": "Harbor remains Usable; the streak reads as a small environmental material cue with no foreground contamination.",
+    "effort": "S",
+    "priority_guess": 14,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-015",
+    "pillar": "materials",
+    "title": "Behind-wall dirt tile variation",
+    "change": "Introduce a compact desaturated dirt tile on a rear concrete or masonry surface.",
+    "stage_targets": [
+      "City",
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_*",
+        "/Game/Skyguard/Materials/M_L23_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use one shared imported dirt texture with a light-gray base, low-frequency breakup, and limited opacity; place each instance at x>=bx+3.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Both accents are tiny rear surfaces and cannot create broad dark regions in the protected cameras.",
+    "acceptance_test": "City and Harbor remain Usable; rear material repetition is reduced without any foreground change.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-016",
+    "pillar": "materials",
+    "title": "Airframe contact AO restraint",
+    "change": "Tune the airframe AO contribution to strengthen contact definition while clamping the darkest output to the current L52 floor.",
+    "stage_targets": [
+      "PropNose",
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_AirframeMetal"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Reduce AO radius and remap its minimum value upward; apply only to existing panel contacts and attachment points.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "PropNose",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "This is a bounded shader remap designed specifically to prevent black collapse while preserving panel separation.",
+    "acceptance_test": "PropNose and YakBeauty remain Usable; contacts become clearer and the darkest sampled airframe values do not decrease from L52.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-017",
+    "pillar": "materials",
+    "title": "Airframe roughness fleck pass",
+    "change": "Add sparse micro-roughness flecks to the airframe metal without changing its base color or metallic level.",
+    "stage_targets": [
+      "Prop",
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_AirframeMetal",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a high-frequency imported mask at low amplitude and keep the response broad enough to avoid noisy aliasing in the capture.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Prop",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Response-only variation is small, high-frequency, and keeps the L52 unlit HF value structure unchanged.",
+    "acceptance_test": "Prop and YakBeauty remain Usable; flecks are visible as controlled surface breakup rather than shimmer or dark noise.",
+    "effort": "S",
+    "priority_guess": 17,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-018",
+    "pillar": "materials",
+    "title": "Behind-wall painted metal chips",
+    "change": "Add a small cluster of pale paint chips over muted rust on one rear metal panel.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L23_*",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single compact mask at x>=bx+3; keep chips off the ground plane and use pale gray edges so the panel does not become a dark mass.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The weathering is rear-only, small in area, and value-balanced toward pale chipped paint.",
+    "acceptance_test": "Harbor remains Usable; the rear panel gains readable paint loss without any new foreground or ocean contrast issue.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-019",
+    "pillar": "materials",
+    "title": "Subtle airframe heat stain",
+    "change": "Add a small pale amber-gray heat stain near an existing engine or exhaust-adjacent airframe panel.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a tiny masked additive proxy with low intensity and no bloom; keep the stain localized and lighter than the surrounding airframe rather than dark soot.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The accent is additive, tiny, bright-biased, and does not introduce a dark PBR surface into the FOV.",
+    "acceptance_test": "YakBeauty remains Usable; the heat-stain cue is visible without bloom, washout, or loss of airframe readability.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-020",
+    "pillar": "materials",
+    "title": "Protected wide-view material balance",
+    "change": "Apply a final shared material clamp to M_L21_* and M_L23_* weathering layers so dirt and rust contributions cannot lower protected surfaces below the L52 luminance floor.",
+    "stage_targets": [
+      "City",
+      "Ocean"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_*",
+        "/Game/Skyguard/Materials/M_L23_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Clamp only the new weathering contribution on rear surfaces at x>=bx+3; preserve sky, water, foreground HF, and existing base material values.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The guard applies only to behind-wall weathering and explicitly protects the wide environmental value structure.",
+    "acceptance_test": "All 11 cameras remain Usable; City and Ocean retain stable sky/water values, and no protected camera shows a uniqueness or black-value collapse.",
+    "effort": "M",
+    "priority_guess": 20,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-001",
+    "pillar": "aircraft",
+    "title": "Yak fuselage panel seam accents",
+    "change": "Add three thin, warm-gray unlit seam strips to the Yak fuselage panel breaks behind the wall.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_YakPanelSeam_UnlitHF"
+      ],
+      "textures": [
+        "T_YakPanelSeamMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep strips narrow, low-contrast, and at x>=bx+3; use unlit HF shading with no dark metal response.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose",
+        "City",
+        "Ocean",
+        "Wide"
+      ]
+    },
+    "capture_safe_reason": "Behind-wall placement preserves the frozen foreground silhouette and avoids PBR, sun, sky, and black-value changes.",
+    "acceptance_test": "Capture Loop52 and confirm 11/11 cameras remain usable; YakBeauty gains visible panel segmentation without new dark regions.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-002",
+    "pillar": "aircraft",
+    "title": "Yak wing-root hatch outline",
+    "change": "Add one small rounded-rectangle hatch outline at the visible wing root behind the wall.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_YakHatchOutline_UnlitHF"
+      ],
+      "textures": [
+        "T_YakHatchOutline"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single thin accent with a slightly brighter edge and muted interior; do not enlarge the wing-root volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose",
+        "City",
+        "Ocean",
+        "Wide"
+      ]
+    },
+    "capture_safe_reason": "The accent is a tiny behind-wall surface detail and cannot alter the frozen aircraft silhouette or global exposure.",
+    "acceptance_test": "Verify the hatch reads at beauty distance while Prop, PropNose, City, Ocean, and Wide remain visually unchanged and usable.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-003",
+    "pillar": "aircraft",
+    "title": "Fuselage access-panel offset",
+    "change": "Add one shallow offset border around an existing fuselage access panel behind the wall.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_YakAccessPanel_UnlitHF"
+      ],
+      "textures": [
+        "T_YakAccessPanelMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a 1-2 pixel projected border in warm gray; keep the panel face mid-value and avoid adding a full hero decal.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose",
+        "City",
+        "Ocean",
+        "Wide"
+      ]
+    },
+    "capture_safe_reason": "Only a small existing-surface border is added beyond x>=bx+3, with no new dark or reflective material.",
+    "acceptance_test": "Panel border must be legible in YakBeauty and absent from the frozen foreground overlap; all 11 cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-004",
+    "pillar": "aircraft",
+    "title": "Bright prop-hub shell",
+    "change": "Add a compact bright shell around the prop hub center to separate the hub from the spinner.",
+    "stage_targets": [
+      "PropHub",
+      "PropNose"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "propeller_proxy"
+      ],
+      "materials": [
+        "M_PropHubShell_Additive"
+      ],
+      "textures": [
+        "T_PropHubShellMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small additive emissive proxy with low intensity and warm ivory color; keep it tightly fitted to the existing hub.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "PropHub",
+        "PropNose"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "Small additive geometry improves hub readability without dark PBR, silhouette expansion, or lighting changes.",
+    "acceptance_test": "PropHub and PropNose must show a readable bright center with no bloom washout; Prop, YakBeauty, and the remaining cameras stay usable.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-005",
+    "pillar": "aircraft",
+    "title": "Prop-blade leading-edge shells",
+    "change": "Add two narrow bright leading-edge proxy strips to the propeller blades.",
+    "stage_targets": [
+      "Prop",
+      "PropNose"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "propeller_proxy"
+      ],
+      "materials": [
+        "M_PropBladeEdge_Additive"
+      ],
+      "textures": [
+        "T_PropBladeEdgeMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place strips close to the blade surfaces, keep emissive intensity restrained, and avoid full-blade glow or radial bloom.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Prop",
+        "PropNose"
+      ],
+      "cameras_risk": [
+        "PropHub",
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The additive strips are thin, localized, and bright enough to avoid black blade collapse without becoming a hero silhouette change.",
+    "acceptance_test": "Blade edges read as separate bright shells in Prop and PropNose; no washout, oversized glow, or usability loss occurs in any camera.",
+    "effort": "S",
+    "priority_guess": 5,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-006",
+    "pillar": "aircraft",
+    "title": "Hub bolt-ring HF dots",
+    "change": "Add a small ring of warm-gray high-frequency bolt dots around the prop hub.",
+    "stage_targets": [
+      "PropHub"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "propeller_proxy"
+      ],
+      "materials": [
+        "M_PropHubBolts_UnlitHF"
+      ],
+      "textures": [
+        "T_PropHubBoltsMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a flat unlit HF material and no metallic or roughness-dependent response; limit the ring to eight small dots.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropHub"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose"
+      ]
+    },
+    "capture_safe_reason": "The dots add controlled local frequency with no lighting, dark-metal, or silhouette impact.",
+    "acceptance_test": "The hub ring is visible in PropHub at capture resolution and does not create a dark plate or reduce usability in Prop or PropNose.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-007",
+    "pillar": "aircraft",
+    "title": "Cockpit tub rim highlight",
+    "change": "Add one narrow warm-gray highlight along the cockpit tub upper rim behind the wall.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "cockpit_tub_proxy"
+      ],
+      "materials": [
+        "M_CockpitTubRim_UnlitHF"
+      ],
+      "textures": [
+        "T_CockpitTubRimMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the strip inset from the silhouette, with a mid-value base and brighter edge only; avoid black interior fill.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The rim stays behind x>=bx+3 and uses restrained unlit values, improving cockpit structure without changing the aircraft outline.",
+    "acceptance_test": "Cockpit shows a distinct tub boundary while YakBeauty and all other frozen views remain 11/11 usable.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-008",
+    "pillar": "aircraft",
+    "title": "Instrument cluster bezel breakup",
+    "change": "Add two thin bezel-divider strips to split the instrument cluster into readable gauge groups.",
+    "stage_targets": [
+      "Cockpit",
+      "ADS"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "instrument_cluster_proxy"
+      ],
+      "materials": [
+        "M_InstrumentBezel_UnlitHF"
+      ],
+      "textures": [
+        "T_InstrumentBezelMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a warm ivory divider and muted gray bezel face; keep all geometry behind the capture wall and avoid reflective glass.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit",
+        "ADS"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "Only two narrow behind-wall dividers are added, with no glass darkening, emissive bloom, or global material changes.",
+    "acceptance_test": "Gauge group separation reads in Cockpit and ADS without black instrument collapse; all 11 cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 8,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-009",
+    "pillar": "aircraft",
+    "title": "Instrument needle pinpoints",
+    "change": "Add tiny additive emissive pinpoints for the primary gauge needles.",
+    "stage_targets": [
+      "Cockpit",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "instrument_cluster_proxy"
+      ],
+      "materials": [
+        "M_GaugeNeedle_Additive"
+      ],
+      "textures": [
+        "T_GaugeNeedleMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use four sub-pixel-to-small-pixel warm-white pinpoints at low intensity; disable bloom contribution if the capture pipeline permits it.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Cockpit",
+        "ADS"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The proxies are additive, tiny, and localized, preventing black gauge faces without affecting aircraft silhouette or exposure.",
+    "acceptance_test": "Needle accents are readable but do not bloom or wash out; Cockpit and ADS stay usable and the other nine cameras remain unchanged.",
+    "effort": "S",
+    "priority_guess": 9,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-010",
+    "pillar": "aircraft",
+    "title": "Throttle quadrant plane break",
+    "change": "Add one small bright plane break on the throttle quadrant side of the cockpit tub.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "cockpit_tub_proxy"
+      ],
+      "materials": [
+        "M_ThrottleBreak_UnlitHF"
+      ],
+      "textures": [
+        "T_ThrottleBreakMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a narrow mid-value raised plane with a brighter top edge; do not add a large control assembly or dark cavity.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The single small plane remains behind the wall and uses unlit HF values that preserve visible separation.",
+    "acceptance_test": "The throttle-side structure reads as a distinct plane in Cockpit without new black mass or any camera dropping below Usable.",
+    "effort": "S",
+    "priority_guess": 10,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-011",
+    "pillar": "aircraft",
+    "title": "Glove cuff seam",
+    "change": "Add one thin seam and cuff edge to the visible glove hand behind the wall.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_GloveCuff_UnlitHF"
+      ],
+      "textures": [
+        "T_GloveCuffMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a light neutral seam over the existing glove value; keep the accent on the cuff and avoid adding fingers or a new silhouette.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The cuff detail is isolated behind the wall and does not touch canopy, aircraft, or lighting materials.",
+    "acceptance_test": "Cockpit gains a readable hand-to-sleeve transition with no silhouette growth and remains usable in the frozen recipe.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-012",
+    "pillar": "aircraft",
+    "title": "Glove knuckle plane",
+    "change": "Add one small warm-gray HF plane across the glove knuckles to establish hand orientation.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_GloveKnuckle_UnlitHF"
+      ],
+      "textures": [
+        "T_GloveKnuckleMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the patch soft-edged and mid-value, with no dark occlusion layer or extra volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single flat HF patch adds local form cues without reflective or dark material behavior and without changing the cockpit silhouette.",
+    "acceptance_test": "The hand reads as a separate form in Cockpit while black-area and uniqueness metrics do not regress.",
+    "effort": "S",
+    "priority_guess": 12,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-013",
+    "pillar": "aircraft",
+    "title": "Glove-arm fold accent",
+    "change": "Add two short light fold accents along the glove arm near the wrist.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "glove_arm_proxy"
+      ],
+      "materials": [
+        "M_GloveArmFold_UnlitHF"
+      ],
+      "textures": [
+        "T_GloveArmFoldMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use two discontinuous strips rather than a continuous band; keep them small and behind x>=bx+3.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The discontinuous accents are minimal behind-wall details with no potential for canopy or aircraft silhouette disruption.",
+    "acceptance_test": "At least one fold reads in Cockpit without creating a large bright band, black patch, or camera usability regression.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-014",
+    "pillar": "aircraft",
+    "title": "Canopy seal cord cue",
+    "change": "Add a thin warm-gray seal cord along the canopy lower inner edge behind the wall.",
+    "stage_targets": [
+      "Cockpit",
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "cockpit_tub_proxy"
+      ],
+      "materials": [
+        "M_CanopySeal_UnlitHF"
+      ],
+      "textures": [
+        "T_CanopySealMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a narrow nonreflective cord with a mid-value base and brighter upper edge; do not use black glass or a full canopy frame.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit",
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose"
+      ]
+    },
+    "capture_safe_reason": "The cord is a small inner-edge cue placed behind the wall, preserving canopy transparency and avoiding black glass collapse.",
+    "acceptance_test": "The canopy boundary reads in Cockpit and YakBeauty while transparency, sky balance, and all 11 usability results remain stable.",
+    "effort": "S",
+    "priority_guess": 14,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-015",
+    "pillar": "aircraft",
+    "title": "Canopy frame corner tabs",
+    "change": "Add two tiny bright corner tabs at the visible canopy frame intersections.",
+    "stage_targets": [
+      "Cockpit",
+      "YakBeauty"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "cockpit_tub_proxy"
+      ],
+      "materials": [
+        "M_CanopyTab_Additive"
+      ],
+      "textures": [
+        "T_CanopyTabMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use low-intensity additive ivory tabs smaller than the existing frame intersections; no continuous glow or glass material edits.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit",
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose"
+      ]
+    },
+    "capture_safe_reason": "Tiny additive tabs strengthen canopy edge cues without filling the canopy, darkening glass, or changing the aircraft silhouette materially.",
+    "acceptance_test": "Tabs provide two stable edge landmarks with no bloom washout or black-glass collapse; all 11 cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-016",
+    "pillar": "aircraft",
+    "title": "Canopy latch highlight",
+    "change": "Add one small warm-white highlight proxy on the canopy latch behind the wall.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "cockpit_tub_proxy"
+      ],
+      "materials": [
+        "M_CanopyLatch_Additive"
+      ],
+      "textures": [
+        "T_CanopyLatchMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the proxy tightly fitted and dim, with a hard cutoff and no bloom-heavy halo.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The single additive latch cue is localized behind the wall and cannot create a dark canopy region or broad exposure shift.",
+    "acceptance_test": "Latch location is visible in Cockpit without a glowing canopy spot, and YakBeauty plus all other cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-017",
+    "pillar": "aircraft",
+    "title": "Gunner station bulkhead ribs",
+    "change": "Add two short vertical rib accents to the gunner station bulkhead behind the wall.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "gunner_station_proxy"
+      ],
+      "materials": [
+        "M_GunnerBulkheadRib_UnlitHF"
+      ],
+      "textures": [
+        "T_GunnerBulkheadRibMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use low-profile warm-gray ribs with a one-sided bright edge; keep the bulkhead face mid-value and avoid a full interior stack.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Two small ribs add cockpit depth behind x>=bx+3 with no new dark cavity, reflection, or exterior silhouette change.",
+    "acceptance_test": "Bulkhead structure separates in Cockpit while the cockpit remains bright enough and every camera stays usable.",
+    "effort": "S",
+    "priority_guess": 17,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-018",
+    "pillar": "aircraft",
+    "title": "Gunner station trim notch",
+    "change": "Add one small bright trim notch to the gunner station side panel.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "gunner_station_proxy"
+      ],
+      "materials": [
+        "M_GunnerTrim_UnlitHF"
+      ],
+      "textures": [
+        "T_GunnerTrimMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single trapezoid accent with restrained contrast and no additional panel volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single behind-wall trim notch is a controlled local detail and does not affect canopy, aircraft exterior, or exposure.",
+    "acceptance_test": "The notch is readable as a manufactured trim cue in Cockpit with no new black block or loss of usability.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-019",
+    "pillar": "aircraft",
+    "title": "Yak fastener micro-cluster",
+    "change": "Add a four-point fastener micro-cluster near one existing Yak panel intersection behind the wall.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_YakFastener_UnlitHF"
+      ],
+      "textures": [
+        "T_YakFastenerMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use tiny warm-gray dots with one brighter offset edge; keep cluster size below the panel seam width.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose",
+        "City",
+        "Ocean",
+        "Wide"
+      ]
+    },
+    "capture_safe_reason": "The micro-cluster adds high-frequency authored detail without introducing dark PBR, hero geometry, or foreground overlap.",
+    "acceptance_test": "Fasteners are visible only as local panel texture in YakBeauty; protected cameras remain 11/11 usable.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-020",
+    "pillar": "aircraft",
+    "title": "Cockpit anti-glare brow edge",
+    "change": "Add one short muted-gray edge accent to the cockpit anti-glare brow behind the wall.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "instrument_cluster_proxy"
+      ],
+      "materials": [
+        "M_AntiGlareBrow_UnlitHF"
+      ],
+      "textures": [
+        "T_AntiGlareBrowMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a mid-value nonreflective brow with a narrow warm-gray top edge; do not make the brow black or extend it across the full panel.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": [
+        "YakBeauty"
+      ]
+    },
+    "capture_safe_reason": "The short behind-wall edge cue preserves the cockpit value range and avoids any black canopy or instrument collapse.",
+    "acceptance_test": "The brow separates from the instrument cluster in Cockpit without darkening the view or reducing any camera below Usable.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  },
+  {
+    "id": "CO-001",
+    "pillar": "city_ocean",
+    "title": "Warm brick bay bands on facade tower",
+    "change": "Add two narrow warm-brick vertical bay bands to facade_tower_proxy with bright unlit height-field breakup.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "facade_tower_proxy"
+      ],
+      "materials": [
+        "M_FacadeBrickWarm_UnlitHF"
+      ],
+      "textures": [
+        "T_BrickBand_MicroVariation"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small additive proxy offset from the tower face; keep intensity restrained and preserve the existing HF-lit silhouette.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small bright facade accents preserve the frozen FOV density and avoid dark sole-material coverage.",
+    "acceptance_test": "Loop52 capture remains 11/11 usable; City and Wide show two readable brick bands without clipping or black patches.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "CO-002",
+    "pillar": "city_ocean",
+    "title": "Bright plaster window-strip accents",
+    "change": "Add one thin pale-plaster window strip to apartment_midrise_proxy with alternating bright recess marks.",
+    "stage_targets": [
+      "City",
+      "PropHub"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "apartment_midrise_proxy"
+      ],
+      "materials": [
+        "M_PlasterIvory_Additive"
+      ],
+      "textures": [
+        "T_WindowStrip_SoftBlocks"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Limit the strip to a small mid-height facade region and use soft rectangular accents rather than full emissive windows.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "PropHub"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is a narrow additive facade proxy and does not replace any existing HF material.",
+    "acceptance_test": "City and PropHub retain usable framing with visible pale plaster rhythm and no harsh bloom.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "CO-003",
+    "pillar": "city_ocean",
+    "title": "Corrugated roof cap behind wall",
+    "change": "Place a small bright corrugated roof cap on facade_tower_proxy behind the gameplay wall.",
+    "stage_targets": [
+      "City"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "facade_tower_proxy"
+      ],
+      "materials": [
+        "M_CorrugatedGalvanized_Bright"
+      ],
+      "textures": [
+        "T_Corrugation_Fine"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the cap at x>=bx+3 and scale it as a shallow skyline accent with light gray-blue corrugation.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Hero-authored geometry remains behind the wall and cannot occupy the frozen foreground FOV.",
+    "acceptance_test": "City gains a readable roofline accent while Prop, City, and Wide remain 11/11 usable.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "CO-004",
+    "pillar": "city_ocean",
+    "title": "Craneboom diagonal light plane",
+    "change": "Add a narrow warm highlight plane along the upper diagonal of harbor_crane_proxy.",
+    "stage_targets": [
+      "Harbor",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "harbor_crane_proxy"
+      ],
+      "materials": [
+        "M_CraneSafetyYellow_Additive"
+      ],
+      "textures": [
+        "T_CranePaint_WearSoft"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a thin proxy strip following the boom; keep emissive strength below bloom threshold and retain visible dark-to-light separation.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small additive geometry improves crane recognition without introducing a large hero stack.",
+    "acceptance_test": "Harbor and Wide show a clean diagonal crane edge with no sun-washout and no camera usability loss.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "CO-005",
+    "pillar": "city_ocean",
+    "title": "Crane gantry joint markers",
+    "change": "Add three small amber joint markers to harbor_crane_proxy at the gantry pivots.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "harbor_crane_proxy"
+      ],
+      "materials": [
+        "M_CraneJointAmber_Additive"
+      ],
+      "textures": [
+        "T_JointMarker_Rough"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use tiny emissive discs or cubes only at existing joints; avoid continuous lighting across the crane frame.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Three isolated points are low-area additions and remain compatible with the frozen HF treatment.",
+    "acceptance_test": "Harbor reads the crane articulation at capture distance without visible bloom spikes or new black mass.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "CO-006",
+    "pillar": "city_ocean",
+    "title": "Muted bright container color blocks",
+    "change": "Add two small alternating blue and rust-orange container blocks to container_ship_proxy.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "container_ship_proxy"
+      ],
+      "materials": [
+        "M_ContainerBlueBright",
+        "M_ContainerRustBright"
+      ],
+      "textures": [
+        "T_ContainerEdgeWear"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place the blocks at x>=bx+3 and keep their value above the ocean background; use restrained saturation and no full-deck stack.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored ship detail is behind the wall and uses bright materials instead of dark PBR.",
+    "acceptance_test": "Harbor gains two distinct cargo color notes with no foreground occlusion and no drop below Usable.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "CO-007",
+    "pillar": "city_ocean",
+    "title": "Freighter bow warm rim",
+    "change": "Add a thin warm-white additive rim along the upper bow contour of freighter_proxy.",
+    "stage_targets": [
+      "Harbor",
+      "Ocean"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "freighter_proxy"
+      ],
+      "materials": [
+        "M_FreighterBowWarm_Additive"
+      ],
+      "textures": [
+        "T_FreighterRim_Soft"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Restrict the rim to the upper bow arc and keep it narrow enough to read as a contour, not a glowing hull.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single small emissive contour improves silhouette separation while avoiding a large authored hero surface.",
+    "acceptance_test": "Harbor and Ocean retain usable silhouettes with a visible bow contour and no clipped highlight.",
+    "effort": "S",
+    "priority_guess": 5,
+    "risk": "low"
+  },
+  {
+    "id": "CO-008",
+    "pillar": "city_ocean",
+    "title": "Pier edge rhythm blocks",
+    "change": "Add four small bright edge blocks along one pier_section_proxy side.",
+    "stage_targets": [
+      "Harbor",
+      "Ocean"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "pier_section_proxy"
+      ],
+      "materials": [
+        "M_PierConcreteBright_UnlitHF"
+      ],
+      "textures": [
+        "T_PierEdgeBlocks"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use tiny unlit HF blocks aligned to the existing pier edge; keep them at x~=bx+1/+2 and below the dominant facade contrast.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The accents are small, bright unlit HF geometry within the frozen FOV density budget.",
+    "acceptance_test": "Both Harbor and Ocean show four readable pier breaks while all 11 cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 8,
+    "risk": "low"
+  },
+  {
+    "id": "CO-009",
+    "pillar": "city_ocean",
+    "title": "Seawall cap highlight",
+    "change": "Add one narrow pale cap strip to seawall_proxy following the top edge.",
+    "stage_targets": [
+      "Harbor",
+      "Ocean"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "seawall_proxy"
+      ],
+      "materials": [
+        "M_SeawallCapPale_Additive"
+      ],
+      "textures": [
+        "T_SeawallConcrete_Subtle"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the cap strip discontinuous with two small gaps so it reads as worn concrete rather than a continuous light bar.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The narrow additive line lifts seawall readability without increasing dark foreground coverage.",
+    "acceptance_test": "Harbor and Ocean show a broken seawall cap edge with no washout and unchanged usability.",
+    "effort": "S",
+    "priority_guess": 9,
+    "risk": "low"
+  },
+  {
+    "id": "CO-010",
+    "pillar": "city_ocean",
+    "title": "Seawall relief-panel accents",
+    "change": "Place two pale rectangular relief panels on seawall_proxy behind the wall.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "seawall_proxy"
+      ],
+      "materials": [
+        "M_SeawallReliefBright"
+      ],
+      "textures": [
+        "T_SeawallPanelLines"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use shallow geometry at x>=bx+3 with low-contrast cream-gray material and no full-face replacement.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored relief remains behind the wall and cannot compromise Prop, City, Ocean, or Wide.",
+    "acceptance_test": "Harbor gains two visible panel breaks from the approved camera without foreground occlusion.",
+    "effort": "S",
+    "priority_guess": 12,
+    "risk": "low"
+  },
+  {
+    "id": "CO-011",
+    "pillar": "city_ocean",
+    "title": "Nearshore foam ribbon",
+    "change": "Add one thin additive foam ribbon parallel to the coast_block_proxy shoreline.",
+    "stage_targets": [
+      "Ocean",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_FoamWarmWhite_Additive"
+      ],
+      "textures": [
+        "T_FoamRibbon_Broken"
+      ],
+      "niagara": [
+        "NS_NearshoreFoam_Sparse"
+      ]
+    },
+    "implementation_notes": "Use a short broken ribbon with low emissive intensity and soft opacity; keep coverage under a small fraction of the ocean surface.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Ocean",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Sparse additive foam adds shoreline separation without painting the ocean pure white or black.",
+    "acceptance_test": "Ocean and Wide show a readable shoreline break with no extreme washout and no loss of usability.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "CO-012",
+    "pillar": "city_ocean",
+    "title": "Three breaker foam patches",
+    "change": "Add three small irregular foam patches on the front edge of coast_block_proxy.",
+    "stage_targets": [
+      "Ocean"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_BreakerFoamSoft_Additive"
+      ],
+      "textures": [
+        "T_FoamPatch_Irregular"
+      ],
+      "niagara": [
+        "NS_BreakerFoam_Tiny"
+      ]
+    },
+    "implementation_notes": "Keep each patch separate, horizontally compressed, and warm off-white; avoid continuous ocean coverage and pure-white finals.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Tiny sparse patches improve wave vocabulary while maintaining ocean color variation and the frozen density profile.",
+    "acceptance_test": "Ocean reads three distinct breaker accents with preserved blue-green water and no bloom spikes.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "CO-013",
+    "pillar": "city_ocean",
+    "title": "Wet-sand value plane",
+    "change": "Add a small bright wet-sand plane beneath the visible shoreline on coast_block_proxy.",
+    "stage_targets": [
+      "Ocean",
+      "Wide"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_WetSandTan_UnlitHF"
+      ],
+      "textures": [
+        "T_WetSandFineRipples"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use tan-gray unlit HF material with a restrained roughness breakup; keep the plane narrow and avoid a mirror-like sheen.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Ocean",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A narrow bright HF plane adds shoreline contrast without introducing dark PBR or reflective washout.",
+    "acceptance_test": "Ocean and Wide show a warm wet-sand band that remains visibly distinct from the water and sky.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "CO-014",
+    "pillar": "city_ocean",
+    "title": "Wet-sand micro-rill accents",
+    "change": "Add two short pale rill marks across the wet-sand strip on coast_block_proxy.",
+    "stage_targets": [
+      "Ocean"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_WetSandRill_Additive"
+      ],
+      "textures": [
+        "T_SandRill_Soft"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use two broken, low-intensity lines angled toward the water; keep their length below the primary shoreline span.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Only two small additive marks are introduced, so the ocean remains color-rich and uncluttered.",
+    "acceptance_test": "Ocean shows two subtle sand-flow cues without white clipping, black pooling, or camera usability loss.",
+    "effort": "S",
+    "priority_guess": 10,
+    "risk": "low"
+  },
+  {
+    "id": "CO-015",
+    "pillar": "city_ocean",
+    "title": "Submarine sail highlight",
+    "change": "Add a small pale additive highlight to the upper sail of submarine_proxy.",
+    "stage_targets": [
+      "Ocean",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "submarine_proxy"
+      ],
+      "materials": [
+        "M_SubmarineSailPale_Additive"
+      ],
+      "textures": [
+        "T_SubmarineSailEdge"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single narrow highlight on the sail crest; keep the submarine body out of full emissive treatment and preserve surrounding water color.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Ocean",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The small sail accent improves object recognition without creating a dark or oversized ocean hero.",
+    "acceptance_test": "Ocean and Wide retain usable water composition with a readable pale sail edge and no black silhouette collapse.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "CO-016",
+    "pillar": "city_ocean",
+    "title": "Coast-block bright plaster face",
+    "change": "Add one small bright plaster face patch to coast_block_proxy at the visible land-water transition.",
+    "stage_targets": [
+      "City",
+      "Ocean"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_CoastPlasterBright"
+      ],
+      "textures": [
+        "T_PlasterSaltStreaks"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place the patch at x>=bx+3 with warm gray plaster and a few pale salt streaks; avoid covering the existing shoreline read.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored face is behind the wall and uses bright plaster rather than dark PBR.",
+    "acceptance_test": "City and Ocean retain clear land-water separation and the new plaster patch is visible only as a small secondary accent.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "CO-017",
+    "pillar": "city_ocean",
+    "title": "Apartment corrugated service strip",
+    "change": "Add one narrow bright corrugated service strip to apartment_midrise_proxy.",
+    "stage_targets": [
+      "City"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "apartment_midrise_proxy"
+      ],
+      "materials": [
+        "M_CorrugatedService_Bright_UnlitHF"
+      ],
+      "textures": [
+        "T_CorrugatedFine_Ribbed"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a short vertical strip at x~=bx+1/+2 with pale galvanized value and low-frequency ribbing for readable edge separation.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The strip is small, bright, and unlit HF-compatible with the frozen city pass.",
+    "acceptance_test": "City shows a single readable corrugated detail with no material washout and unchanged camera usability.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "CO-018",
+    "pillar": "city_ocean",
+    "title": "Crane counterweight safety stripe",
+    "change": "Add one short yellow safety stripe to the counterweight of harbor_crane_proxy.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "harbor_crane_proxy"
+      ],
+      "materials": [
+        "M_SafetyYellow_SoftAdditive"
+      ],
+      "textures": [
+        "T_SafetyStripe_Worn"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Restrict the stripe to the existing counterweight face and use a soft additive value that remains below highlight clipping.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "One short additive stripe is a low-area recognition cue and does not alter the crane silhouette mass.",
+    "acceptance_test": "Harbor shows the stripe as a distinct safety color without bloom, sun washout, or loss of usable framing.",
+    "effort": "S",
+    "priority_guess": 14,
+    "risk": "low"
+  },
+  {
+    "id": "CO-019",
+    "pillar": "city_ocean",
+    "title": "Ship deckhouse bright trim",
+    "change": "Add a small pale trim strip around the upper deckhouse of container_ship_proxy.",
+    "stage_targets": [
+      "Harbor",
+      "Wide"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "container_ship_proxy"
+      ],
+      "materials": [
+        "M_DeckhouseTrimBright"
+      ],
+      "textures": [
+        "T_DeckhouseTrim_Worn"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place the trim at x>=bx+3 and limit it to the upper deckhouse outline; avoid adding a full bright hull or container stack.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The small authored trim is behind the wall and cannot compromise the frozen foreground composition.",
+    "acceptance_test": "Harbor and Wide gain deckhouse separation with no new dark mass and no camera dropping below Usable.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "CO-020",
+    "pillar": "city_ocean",
+    "title": "Foam fleck cluster at seawall outlet",
+    "change": "Add a sparse cluster of five small off-white foam flecks where seawall_proxy meets the water.",
+    "stage_targets": [
+      "Harbor",
+      "Ocean"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "seawall_proxy"
+      ],
+      "materials": [
+        "M_FoamFleckOffWhite_Additive"
+      ],
+      "textures": [
+        "T_FoamFleck_Soft"
+      ],
+      "niagara": [
+        "NS_SeawallFoam_Sparse"
+      ]
+    },
+    "implementation_notes": "Keep flecks low, separated, and slightly warm; cap opacity and emissive intensity so the cluster reads as foam rather than a white bar.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Harbor",
+        "Ocean"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Sparse additive flecks are tiny, localized, and preserve both ocean color variation and the approved HF density.",
+    "acceptance_test": "Harbor and Ocean show a localized foam contact cue with no pure-black ocean, white clipping, or usability regression.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-001",
+    "pillar": "weapon_ads",
+    "title": "Rifle Receiver Edge Stripe",
+    "change": "Add a narrow pale HF stripe along the rifle receiver top edge to clarify the ADS silhouette.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_ADS_HF_CheckerStripe_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Reuse the existing L52 unlit checker/stripe family; keep stripe width below 2% of receiver width and avoid dark fill changes.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small additive HF treatment preserves the frozen ADS checkers/stripes and does not introduce a dark sole FOV material.",
+    "acceptance_test": "ADS remains usable with the receiver contour readable and the existing HF checker/stripe pattern visibly intact.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-002",
+    "pillar": "weapon_ads",
+    "title": "Iron Sight Front Post Highlight",
+    "change": "Add a thin high-frequency light facet to the rifle iron-sight front post for immediate sight alignment.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_irons_proxy"
+      ],
+      "materials": [
+        "M_Irons_HF_LightFacet_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Place only on the upper front-post face; use a light neutral value with no dark metallic replacement.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is confined to a tiny sight-post facet and cannot wash out the broader weapon or sky.",
+    "acceptance_test": "The front post is separable from the rear sight at ADS capture distance without losing existing stripes.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-003",
+    "pillar": "weapon_ads",
+    "title": "Barrel Crown Ring Cue",
+    "change": "Add one thin light ring around the visible barrel crown to establish barrel direction in ADS.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_Barrel_Crown_HF_Ring_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single narrow ring only at the crown; keep the underlying barrel material and L52 HF pattern unchanged.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single thin ring is a bounded HF delta with no large silhouette or exposure change.",
+    "acceptance_test": "Barrel axis is readable in ADS and the crown ring does not merge into a solid dark block.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-004",
+    "pillar": "weapon_ads",
+    "title": "Glove Trigger-Guard Contact Band",
+    "change": "Add a small light contact band where the glove meets the trigger guard.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy",
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_GloveContact_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a low-intensity warm-neutral emissive mask limited to the contact seam; do not outline the full glove.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The emissive proxy is tiny, localized, and additive, so it preserves weapon HF structure and avoids dark material replacement.",
+    "acceptance_test": "Contact seam reads at ADS resolution without producing a halo wider than the trigger guard.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-005",
+    "pillar": "weapon_ads",
+    "title": "Glove Thumb Contact Notch",
+    "change": "Add one small pale notch at the glove thumb-to-receiver contact point.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy",
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_GloveContact_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Place a single masked proxy at the contact point with very low emissive intensity and no full-hand tracing.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Only one tiny additive contact cue changes, leaving glove and rifle base values untouched.",
+    "acceptance_test": "Thumb contact is distinguishable from the receiver while the glove remains visually subordinate to the ADS sight picture.",
+    "effort": "S",
+    "priority_guess": 5,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-006",
+    "pillar": "weapon_ads",
+    "title": "Rear Sight Aperture Interior",
+    "change": "Add a small light interior rim to the rear iron-sight aperture.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_irons_proxy"
+      ],
+      "materials": [
+        "M_Irons_Aperture_Rim_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Treat only the aperture rim with a neutral unlit material; leave the aperture center open and retain the existing HF stripes nearby.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The aperture rim is a small bounded feature and cannot create broad washout or black collapse.",
+    "acceptance_test": "Rear aperture remains open and the rim improves sight readability without filling the sight with solid light.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-007",
+    "pillar": "weapon_ads",
+    "title": "Igla Launcher Recognition Band",
+    "change": "Add one thin light recognition band around the Igla proxy body.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "igla_proxy"
+      ],
+      "materials": [
+        "M_Igla_RecognitionBand_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single offset band with a muted warm-neutral value; avoid full-body recoloring or dark PBR treatment.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The band is a thin HF identifier on the existing proxy and does not alter the broader ADS background.",
+    "acceptance_test": "Igla proxy is identifiable as a separate launcher component at ADS capture scale without band bloom.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-008",
+    "pillar": "weapon_ads",
+    "title": "Igla Nose-Cap Direction Marker",
+    "change": "Add a short pale marker on the Igla nose cap to clarify its forward direction.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "igla_proxy"
+      ],
+      "materials": [
+        "M_Igla_NoseMarker_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small masked emissive dash on the nose cap only; keep intensity below the strongest existing HF stripe.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The cue is a tiny additive dash and cannot replace the ADS HF densify or affect unrelated cameras.",
+    "acceptance_test": "Igla forward direction is readable and the marker remains localized with no bloom over the sight picture.",
+    "effort": "S",
+    "priority_guess": 8,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-009",
+    "pillar": "weapon_ads",
+    "title": "Bolt-Handle Separation Tick",
+    "change": "Add a single light separation tick at the rifle bolt-handle junction.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_Rifle_HF_Separation_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Restrict the tick to the junction seam and use a light neutral value; do not expand the bolt silhouette.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "One small seam marker adds edge information while preserving all existing weapon masses and HF stripes.",
+    "acceptance_test": "Bolt handle and receiver read as separate forms without creating a new high-contrast focal hotspot.",
+    "effort": "S",
+    "priority_guess": 9,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-010",
+    "pillar": "weapon_ads",
+    "title": "Glove Knuckle Facet Pair",
+    "change": "Add two small light facets to the glove knuckles nearest the rifle contact zone.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_Glove_HF_Facet_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use two separated facets only, with mid-light neutral values; preserve the glove base and avoid a full hand outline.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The facets occupy a small glove area and add HF breakup without darkening or flattening the ADS composition.",
+    "acceptance_test": "Glove knuckle volume is readable and facets do not connect into a continuous contour line.",
+    "effort": "S",
+    "priority_guess": 10,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-011",
+    "pillar": "weapon_ads",
+    "title": "Front Sight Base Corner Mark",
+    "change": "Add one light corner mark to the front sight base where it meets the barrel.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_irons_proxy",
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_Irons_HF_LightFacet_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Limit the treatment to one upper corner and keep it behind the existing front-post highlight in value hierarchy.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The corner mark is a single small HF feature and does not modify any large material region.",
+    "acceptance_test": "Front sight base separates from the barrel in ADS without obscuring the front post.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-012",
+    "pillar": "weapon_ads",
+    "title": "Rifle Rail Slot Rhythm",
+    "change": "Add three short pale slot dashes on the visible top rail.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_ADS_HF_CheckerStripe_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Reuse the L52 checker/stripe language with three non-contiguous dashes; preserve spacing and avoid a continuous bright rail.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The dashes reinforce the frozen HF language and remain small, sparse, and unlit.",
+    "acceptance_test": "Rail perspective and weapon orientation improve while the original checker/stripe field remains visible between dashes.",
+    "effort": "S",
+    "priority_guess": 12,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-013",
+    "pillar": "weapon_ads",
+    "title": "Igla Grip Contact Pin",
+    "change": "Add one tiny emissive pin at the glove-to-Igla grip contact.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "igla_proxy",
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_GloveContact_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single low-intensity pin-sized proxy at the grip seam; no finger tracing or launcher recolor.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The pin is a minimal additive contact cue, preserving the rest of the Igla and glove values.",
+    "acceptance_test": "Hand placement on the Igla grip is clear at ADS scale and the pin does not read as a muzzle or indicator light.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-014",
+    "pillar": "weapon_ads",
+    "title": "Muzzle Device Vent Notches",
+    "change": "Add two light notches to the visible muzzle-device vents.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_Barrel_Crown_HF_Ring_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Treat only two vent faces with small neutral unlit patches; keep the muzzle body unchanged and avoid emissive bloom.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Two small vent cues add barrel detail without creating broad contrast or changing the frozen HF background.",
+    "acceptance_test": "Muzzle device reads as a distinct form and vents remain separated rather than becoming a bright bar.",
+    "effort": "S",
+    "priority_guess": 14,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-015",
+    "pillar": "weapon_ads",
+    "title": "Glove Wrist Cuff Break",
+    "change": "Add one short light break across the glove cuff nearest the rifle.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_Glove_HF_Facet_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use one diagonal cuff segment with restrained neutral value; keep it discontinuous and away from the full glove silhouette.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single cuff segment supplies material separation without adding a large authored hero surface.",
+    "acceptance_test": "Glove cuff location is readable and the segment does not merge with the rifle rail stripes.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-016",
+    "pillar": "weapon_ads",
+    "title": "Sight-Line Alignment Marker",
+    "change": "Add one short additive marker connecting the rear aperture axis to the front post axis.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "rifle_irons_proxy"
+      ],
+      "materials": [
+        "M_SightAlignment_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a segmented, low-intensity dash rather than a continuous line; keep total length below one-third of the sight gap.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The marker is a small additive proxy that reinforces sight direction without replacing the iron-sight geometry or HF stripes.",
+    "acceptance_test": "The sight axis is easier to follow while the marker remains segmented and does not dominate the weapon frame.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-017",
+    "pillar": "weapon_ads",
+    "title": "Igla Tube Hatch Corner",
+    "change": "Add one pale corner facet to the Igla tube hatch for component readability.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "igla_proxy"
+      ],
+      "materials": [
+        "M_Igla_RecognitionBand_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Apply the facet to one hatch corner only; keep it mid-light and separate from the existing recognition band.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The tiny facet is localized to the Igla proxy and cannot cause broad washout or camera-wide uniqueness collapse.",
+    "acceptance_test": "Igla hatch location reads as a separate component without turning the tube into a solid light shape.",
+    "effort": "S",
+    "priority_guess": 17,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-018",
+    "pillar": "weapon_ads",
+    "title": "Trigger Finger Contact Sliver",
+    "change": "Add a narrow light sliver at the glove trigger-finger contact point.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "glove_hand_proxy",
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_GloveContact_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single masked sliver shorter than the trigger width and keep emissive intensity below the existing sight accents.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The proxy is tiny, additive, and contact-specific, with no material replacement on the glove or trigger guard.",
+    "acceptance_test": "Trigger-finger placement is recognizable without producing a bright continuous trigger outline.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-019",
+    "pillar": "weapon_ads",
+    "title": "Iron-Sight Rear Shoulder Edge",
+    "change": "Add one light shoulder edge on the rear iron-sight housing to separate it from the receiver.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "unlit_hf_only",
+    "assets": {
+      "meshes": [
+        "rifle_irons_proxy",
+        "rifle_ads_proxy"
+      ],
+      "materials": [
+        "M_Irons_HF_LightFacet_Unlit"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Place a single narrow facet on the housing shoulder; keep the receiver stripes visible and avoid a full housing outline.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "One restrained edge facet improves separation while retaining the frozen unlit HF densify treatment.",
+    "acceptance_test": "Rear sight housing separates from the receiver in ADS without closing the aperture or increasing black area.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "WPN-020",
+    "pillar": "weapon_ads",
+    "title": "Barrel-to-Glove Overlap Tick",
+    "change": "Add one small neutral emissive tick at the barrel-to-glove overlap to clarify depth ordering.",
+    "stage_targets": [
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "rifle_ads_proxy",
+        "glove_hand_proxy"
+      ],
+      "materials": [
+        "M_GloveContact_SoftEmissive"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Use one sub-centimeter-equivalent screen-space cue at the overlap seam, with low intensity and no silhouette extension.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is an isolated additive seam cue and leaves all broader camera compositions untouched.",
+    "acceptance_test": "Barrel depth ordering against the glove is readable at ADS capture resolution with no bloom or silhouette jump.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-001",
+    "pillar": "vfx",
+    "title": "Compact twin-lobed muzzle flash",
+    "change": "Add a short-duration, camera-facing twin-lobed muzzle flash proxy to the primary aircraft gun firing point.",
+    "stage_targets": [
+      "Combat",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_MuzzleFlash_Card"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_MuzzleFlash_Warm_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_MuzzleFlash_TwinLobe"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_MuzzleFlash"
+      ]
+    },
+    "implementation_notes": "Use a small additive sprite or card, warm white core with restrained amber edge, 0.05-0.09 second lifetime, and bounded size relative to the weapon muzzle.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small additive emissive content stays in the muzzle region and cannot create a dark FOV wall or sun-washout field.",
+    "acceptance_test": "Capture Combat and ADS; muzzle flash is readable for one burst, occupies less than 3 percent of frame area, and all 11 cameras remain Usable.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-002",
+    "pillar": "vfx",
+    "title": "Muzzle flash pulse ring",
+    "change": "Add one thin emissive pulse ring expanding from the gun muzzle during firing.",
+    "stage_targets": [
+      "Combat",
+      "PropNose"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_MuzzlePulse_Ring"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_MuzzlePulse_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_MuzzlePulse_Ring"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_MuzzleFlash"
+      ]
+    },
+    "implementation_notes": "Drive ring scale and opacity over a sub-0.12-second curve; keep the ring narrow and below full-frame bloom thresholds.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "PropNose"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The effect is localized to a single small emissive contour and adds no opaque or dark geometry.",
+    "acceptance_test": "Verify the ring reads as a firing cue without obscuring the nose silhouette or crossing more than 5 percent of the image width.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-003",
+    "pillar": "vfx",
+    "title": "Thin gun smoke ribbon",
+    "change": "Add a sparse, pale-gray gun smoke ribbon trailing briefly behind the muzzle after firing.",
+    "stage_targets": [
+      "Combat",
+      "YakBeauty"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_SmokeRibbon_Card"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_GunSmoke_Pale_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_SmokeRibbon_Thin"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_GunSmoke"
+      ]
+    },
+    "implementation_notes": "Use translucent pale gray with low opacity, narrow ribbon width, short 0.3-0.5-second lifetime, and no volumetric wall behavior.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Pale, low-opacity additive smoke avoids the prohibited dark smoke wall while preserving aircraft silhouette visibility.",
+    "acceptance_test": "Smoke remains visibly thin, never fills a central quadrant, and does not reduce contrast on Prop, PropNose, YakBeauty, City, Ocean, or Wide.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-004",
+    "pillar": "vfx",
+    "title": "Gun smoke puffs",
+    "change": "Add two small separated post-shot smoke puffs at the muzzle exit.",
+    "stage_targets": [
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_SmokePuff_SoftCard"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_GunSmoke_Pale_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_SmokePuff_Soft"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_GunSmoke"
+      ]
+    },
+    "implementation_notes": "Spawn no more than two puffs per shot, use pale neutral gray, low opacity, and staggered scale curves so the effect remains airy and localized.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Separated small puffs add event detail without forming an opaque mass or dark silhouette blocker.",
+    "acceptance_test": "In the Combat capture, each puff is distinct, remains within 1.5 muzzle lengths, and leaves the background and aircraft readable.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-005",
+    "pillar": "vfx",
+    "title": "Directional hit spark fan",
+    "change": "Add a short directional fan of bright hit sparks at the aircraft impact point.",
+    "stage_targets": [
+      "Combat",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_HitSpark_Streak"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_HitSpark_WhiteOrange_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_HitSpark_Streak"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_HitSparks"
+      ]
+    },
+    "implementation_notes": "Limit each burst to 6-10 fine streaks, bias emission away from the surface, and cap brightness and length for capture stability.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Fine additive streaks are spatially bounded and create no opaque or dark coverage.",
+    "acceptance_test": "Sparks read at the impact point, remain shorter than the visible fuselage width, and do not cause clipping or bloom washout.",
+    "effort": "S",
+    "priority_guess": 5,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-006",
+    "pillar": "vfx",
+    "title": "Single impact ember core",
+    "change": "Add one compact orange-white emissive ember core at the first hit location.",
+    "stage_targets": [
+      "PropNose",
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_ImpactEmber_Core"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_ImpactEmber_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_ImpactEmber_Core"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_HitSparks"
+      ]
+    },
+    "implementation_notes": "Use a small billboard with a brief brightness peak and fast fade; keep the radius below the local panel feature scale.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropNose",
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single tiny emissive point provides a stable focal cue and cannot obscure the nose or create a smoke wall.",
+    "acceptance_test": "The ember is visible in PropNose and Combat, remains under 1 percent of frame area, and does not alter silhouette readability.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-007",
+    "pillar": "vfx",
+    "title": "Drone explosion flash core",
+    "change": "Add a compact two-stage emissive flash core for a drone destruction event.",
+    "stage_targets": [
+      "Combat",
+      "City"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_DroneExplosion_CoreCard"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_DroneExplosion_Core_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_DroneExplosion_Core"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_DroneExplosion"
+      ]
+    },
+    "implementation_notes": "Use a white-yellow core followed by a restrained orange shell, with total visible duration below 0.35 seconds and no opaque debris volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The explosion is a small additive focal event with bounded radius and no dark volumetric body.",
+    "acceptance_test": "The flash reads as a drone event in Combat and City, stays below 4 percent of frame area, and introduces no sky washout.",
+    "effort": "S",
+    "priority_guess": 7,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-008",
+    "pillar": "vfx",
+    "title": "Drone explosion ember scatter",
+    "change": "Add a sparse ring of warm emissive embers after the drone explosion flash.",
+    "stage_targets": [
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_ExplosionEmber_Sprite"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_ExplosionEmber_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_ExplosionEmber_Sprite"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_DroneExplosion"
+      ]
+    },
+    "implementation_notes": "Spawn 8-12 small embers with short lifetimes, low bloom, and a tight radial extent around the destruction point.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Sparse bright embers preserve negative space and cannot become a dark or full-frame effect.",
+    "acceptance_test": "Embers are individually distinguishable, stay within two drone lengths, and do not overlap the aircraft hero silhouette excessively.",
+    "effort": "S",
+    "priority_guess": 8,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-009",
+    "pillar": "vfx",
+    "title": "Low-density flak puffs",
+    "change": "Add three small pale flak burst puffs along a short defensive-burst path.",
+    "stage_targets": [
+      "City",
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_FlakPuff_SoftCard"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_FlakPuff_Pale_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_FlakPuff_Soft"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_FlakBurst"
+      ]
+    },
+    "implementation_notes": "Keep puffs small, pale gray, and separated by visible sky or ocean gaps; disable dark smoke accumulation and cap active bursts.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City",
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Separated pale accents add scale and activity without introducing a dark flak wall or broad occlusion.",
+    "acceptance_test": "Three puffs remain separated in City and Combat, each under 1.5 percent of frame area, with no measurable loss of hero visibility.",
+    "effort": "S",
+    "priority_guess": 9,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-010",
+    "pillar": "vfx",
+    "title": "Flak spark pinpoints",
+    "change": "Add a few bright pinprick sparks inside each flak burst.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_FlakSpark_Pin"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_FlakSpark_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_FlakSpark_Pin"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_FlakBurst"
+      ]
+    },
+    "implementation_notes": "Use 3-5 tiny white-orange points per burst, short lifetime, and tightly bounded spread inside existing flak positions.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Pinpoint additive sparks remain small at distance and cannot create a blocking cloud or wash out the sky.",
+    "acceptance_test": "Sparks are visible as discrete points in Wide without becoming a continuous bright band or affecting City composition.",
+    "effort": "S",
+    "priority_guess": 10,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-011",
+    "pillar": "vfx",
+    "title": "Prop wash crescent",
+    "change": "Add a thin translucent-emissive crescent indicating prop wash behind the aircraft.",
+    "stage_targets": [
+      "YakBeauty",
+      "PropHub"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_PropWash_CrescentCard"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_PropWash_CoolAdditive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_PropWash_Crescent"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_PropWash"
+      ]
+    },
+    "implementation_notes": "Use a pale blue-white crescent with low opacity and a narrow arc, aligned behind the prop hub and clipped to a compact radius.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty",
+        "PropHub"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The crescent is localized to the prop region, additive, and pale enough to avoid blackening or sky washout.",
+    "acceptance_test": "Prop wash reads as a subtle airflow cue, stays behind the prop silhouette, and does not reduce hub or nose detail.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-012",
+    "pillar": "vfx",
+    "title": "Prop wash filament streaks",
+    "change": "Add two short emissive filament streaks following the prop wash direction.",
+    "stage_targets": [
+      "PropHub",
+      "YakBeauty"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_PropWash_Filament"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_PropWash_CoolAdditive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_PropWash_Filament"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_PropWash"
+      ]
+    },
+    "implementation_notes": "Use two narrow curved streaks with low opacity and subtle motion; place them behind the prop hub and keep their length below one hub diameter.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropHub",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Two narrow additive accents increase local edge structure without forming a large airflow volume.",
+    "acceptance_test": "Filaments remain behind the hub, are visible in both target cameras, and cover less than 2 percent of either frame.",
+    "effort": "S",
+    "priority_guess": 12,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-013",
+    "pillar": "vfx",
+    "title": "Forward tracer pair",
+    "change": "Add a pair of thin warm-white tracer streaks extending from the muzzle toward the target direction.",
+    "stage_targets": [
+      "Combat",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_Tracer_Line_Thin"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_Tracer_Warm_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_Tracer_Line"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_TracerBurst"
+      ]
+    },
+    "implementation_notes": "Use two tapered lines with orange tips, short travel distance, and restrained intensity; terminate them well before broad background coverage.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Thin additive lines create directional detail while preserving the aircraft, city, ocean, and sky fields.",
+    "acceptance_test": "Tracers are legible as two separate lines, remain below 8 percent of frame width, and do not cross the hero cockpit or nose focal region.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-014",
+    "pillar": "vfx",
+    "title": "Single tracer tip glow",
+    "change": "Add a compact emissive glow at the leading tip of the primary tracer.",
+    "stage_targets": [
+      "ADS",
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_TracerTip_Glow"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_Tracer_Tip_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_TracerTip_Glow"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_TracerBurst"
+      ]
+    },
+    "implementation_notes": "Use one small warm-white billboard with a fast pulse and low bloom, parented to the tracer tip rather than the camera.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "ADS",
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The glow is a single tiny additive point and cannot create a wall, dark field, or broad washout.",
+    "acceptance_test": "Tip glow is visible at the tracer head, stays below 1 percent of frame area, and does not clip against HUD-safe framing.",
+    "effort": "S",
+    "priority_guess": 14,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-015",
+    "pillar": "vfx",
+    "title": "Short missile trail ribbon",
+    "change": "Add a narrow pale emissive ribbon behind the missile for a short travel segment.",
+    "stage_targets": [
+      "Combat",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_MissileTrail_Ribbon"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_MissileTrail_Pale_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_MissileTrail_Ribbon"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_MissileTrail"
+      ]
+    },
+    "implementation_notes": "Use a pale gray-blue ribbon with a soft warm core, short maximum length, and no dark smoke component; taper opacity rapidly behind the missile.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The ribbon is thin, pale, additive, and length-limited so it cannot become a dark smoke wall or cover the wide scene.",
+    "acceptance_test": "Trail reads in Combat and Wide, stays under 4 percent of frame area, and does not form a continuous horizon stripe.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-016",
+    "pillar": "vfx",
+    "title": "Localized ocean spray fan",
+    "change": "Add a small fan of bright ocean spray at a single near-aircraft water impact point.",
+    "stage_targets": [
+      "Ocean",
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_OceanSpray_FanCard"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_OceanSpray_CoolAdditive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_OceanSpray_Fan"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_OceanSpray"
+      ]
+    },
+    "implementation_notes": "Use 5-8 short pale-blue-white streaks with low opacity, tightly localized footprint, and no opaque foam volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A compact additive spray fan enhances one water event without darkening or flattening the ocean field.",
+    "acceptance_test": "Spray is localized to one impact, remains below 3 percent of frame area, and leaves the horizon and water texture readable.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-017",
+    "pillar": "vfx",
+    "title": "Water splash crown",
+    "change": "Add a small emissive-edged splash crown at the existing water contact point.",
+    "stage_targets": [
+      "Ocean",
+      "City"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_WaterSplash_Crown"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_WaterSplash_Edge_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_WaterSplash_Crown"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_WaterSplash"
+      ]
+    },
+    "implementation_notes": "Use a low, broken crown with pale cyan highlights and transparent gaps; keep the crown radius below the local wake width.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Broken additive highlights preserve water gaps and prevent the splash from becoming a solid horizon or black mass.",
+    "acceptance_test": "Crown remains low and broken, reads against the water in both cameras, and does not intersect the main aircraft silhouette.",
+    "effort": "S",
+    "priority_guess": 17,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-018",
+    "pillar": "vfx",
+    "title": "Harbor splash droplets",
+    "change": "Add four isolated emissive droplet streaks above a harbor splash contact.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_WaterDroplet_Streak"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_WaterDroplet_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_WaterDroplet_Streak"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_WaterSplash"
+      ]
+    },
+    "implementation_notes": "Keep droplets narrow, pale blue-white, and separated; use randomized but bounded lengths and a short lifetime.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Isolated droplets add fine-scale movement without creating a dense spray field or obscuring harbor geometry.",
+    "acceptance_test": "All four droplets remain individually separable, stay within one splash radius, and do not cover buildings or the aircraft.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-019",
+    "pillar": "vfx",
+    "title": "Ocean spray glint points",
+    "change": "Add three tiny cool-white glint points to the tops of the ocean spray particles.",
+    "stage_targets": [
+      "Ocean",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_OceanSpray_Glint"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_OceanSpray_Glint_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_OceanSpray_Glint"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_OceanSpray"
+      ]
+    },
+    "implementation_notes": "Parent glints to existing spray peaks, keep their intensity below sun-disc levels, and use a short pulse with no additional volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Three low-intensity points add readable spray highlights without introducing broad high-energy emission or washout.",
+    "acceptance_test": "Glints remain smaller than the aircraft nose at capture resolution and do not merge into a bright strip in Ocean or Wide.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-020",
+    "pillar": "vfx",
+    "title": "Layered tracer-to-splash cue",
+    "change": "Add one short tracer segment ending in a compact water-splash spark cue at a distant impact point.",
+    "stage_targets": [
+      "Ocean",
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_Tracer_Line_Thin",
+        "/Game/Skyguard/VFX/M_WaterSplash_Spark"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_Tracer_Warm_Additive",
+        "/Game/Skyguard/VFX/MI_WaterSplash_Edge_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_Tracer_Line",
+        "/Game/Skyguard/VFX/T_WaterSplash_Spark"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_TracerBurst",
+        "/Game/Skyguard/VFX/NS_WaterSplash"
+      ]
+    },
+    "implementation_notes": "Use a single thin warm tracer with a small pale-blue splash endpoint; keep both effects short, additive, and spatially separated from the aircraft hero.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Both components are tiny additive proxies with bounded extent, no dark smoke, and no broad sky or ocean coverage.",
+    "acceptance_test": "The tracer and splash read as one distant event, occupy less than 5 percent of frame area combined, and preserve Ocean, Wide, City, and Combat usability.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  }
+]

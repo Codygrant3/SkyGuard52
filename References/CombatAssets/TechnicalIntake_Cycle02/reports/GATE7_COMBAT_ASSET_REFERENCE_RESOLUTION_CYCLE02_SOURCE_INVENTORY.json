@@ -1,0 +1,62 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "created_at_utc": "2026-08-06T00:29:18.590555+00:00",
+  "scope": "visual-modeling and Unreal integration reference only",
+  "cycle01_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_FREEZE.json",
+      "bytes": 7263,
+      "sha256": "17b377efd0a94847e576a0b340e5ca0446511ecbd2ca7cdb9bff0858fba99744"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_READINESS.json",
+      "bytes": 1701,
+      "sha256": "95a68b513c4306d6cbc04c329ac1d7d2f0bca69a3514a97b9a59ce2b3b00851a"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_DIMENSION_AUTHORITY_MATRIX.json",
+      "bytes": 3320,
+      "sha256": "47fb2e97ff4a2a1d74bbba1a80449bff3db57cbe897410b73b88e0622fdbcf4f"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_PUBLICATION_RECOVERY01_RECEIPT.json",
+      "bytes": 2311,
+      "sha256": "c296b33a3da9ea00b5dfafce7b41cf5f1c7c2916293afc10771d0f0071a2de87"
+    }
+  ],
+  "cycle01_archive": "D:\\Skyguard52\\References\\CombatAssets\\TechnicalIntake_Cycle01_Recovery01",
+  "onboard_video": {
+    "path": "C:\\Users\\chris\\Downloads\\xdZG_ony6R5pHB4J.mp4",
+    "bytes": 4271526,
+    "sha256": "91c9b0a1d595ab2cf5df6c9b37d4b5e76c46e32d1373e2e7d7871bcafcf62061"
+  },
+  "extracted_frames": {
+    "count": 52,
+    "manifest": {
+      "path": "frame_extraction_manifest.json",
+      "bytes": 16361,
+      "sha256": "e88d3d2e720e685a527fa9a99f7f4af8f8806b15e9aaed0fabe5af10aa36d417"
+    }
+  },
+  "lossless_crops": {
+    "count": 6,
+    "manifest": {
+      "path": "rifle_crop_manifest.json",
+      "bytes": 2686,
+      "sha256": "12e602a19d6a96863b4ad73c8b9f957e05d5ae018b9effa3057596431daead17"
+    }
+  },
+  "project_search": {
+    "scope": [
+      "D:\\Skyguard52\\Source",
+      "D:\\Skyguard52\\Config",
+      "D:\\Skyguard52\\Docs\\AAA_Review"
+    ],
+    "finding": "No project authority selects 9K38 versus 9K338; all current records use generic Igla naming."
+  },
+  "research_limitations": [
+    "Two live web-search calls aborted without results.",
+    "Cycle02 therefore relies on the frozen official and manufacturer sources acquired in Cycle01 plus governed footage.",
+    "No new source was promoted from an unverified search result."
+  ]
+}

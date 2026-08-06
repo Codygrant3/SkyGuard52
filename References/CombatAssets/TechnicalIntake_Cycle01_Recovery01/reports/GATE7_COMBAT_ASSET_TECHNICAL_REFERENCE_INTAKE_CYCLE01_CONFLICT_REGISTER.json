@@ -1,0 +1,41 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "conflicts": [
+    {
+      "id": "RIFLE-IDENTITY-001",
+      "severity": "blocking",
+      "finding": "The current governed model and footage suggest an AR/M4-pattern rifle, but no exact make, barrel, stock, handguard, sight, or magazine configuration is frozen.",
+      "resolution": "Extract orthographic-enough frames from the original footage and accept a named configuration before final modeling."
+    },
+    {
+      "id": "IGLA-VARIANT-001",
+      "severity": "blocking for final detail",
+      "finding": "9K38 Igla, Igla-S/9K338, and training/visual-simulator imagery are mixed in public records.",
+      "resolution": "Select the exact launcher and missile variant; do not blend nose, gripstock, battery, sight, or rear-cap details across variants."
+    },
+    {
+      "id": "M4A1-BARREL-001",
+      "severity": "bounded",
+      "finding": "Colt sheet prints 14.5 in and 386 mm together; the exact conversion is 368.3 mm.",
+      "resolution": "Use the stated inch dimension and computed conversion until Colt publishes a corrected metric value."
+    },
+    {
+      "id": "SHAHED-SCALE-001",
+      "severity": "blocking for final sculpt",
+      "finding": "Official and secondary Shahed-136 scale figures conflict, and the available DIA illustration is not dimensioned.",
+      "resolution": "Use 3.3 m by 3.0 m only for governed blockout; obtain measured wreckage or dimensioned multi-view authority before final cross-sections."
+    },
+    {
+      "id": "CREW-IDENTITY-001",
+      "severity": "blocking for final character art",
+      "finding": "NASA supplies population envelopes, not the selected gunner body percentile, glove, sleeve, helmet, headset, or harness models.",
+      "resolution": "Freeze a character percentile and equipment reference board."
+    },
+    {
+      "id": "FICTIONAL-BOSS-001",
+      "severity": "design authority required",
+      "finding": "Heavy drones and bosses are fictional gameplay assets and cannot receive real-world technical authority.",
+      "resolution": "Create a separate visual-language, gameplay-hitbox, weak-point, and destruction contract."
+    }
+  ]
+}

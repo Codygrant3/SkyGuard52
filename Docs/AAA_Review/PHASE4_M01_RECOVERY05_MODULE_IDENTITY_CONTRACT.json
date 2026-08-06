@@ -1,0 +1,38 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-module-identity-contract.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "source_plugin": "Plugins/SkyguardRecovery03NativeRecovery04",
+  "new_plugin": "Plugins/SkyguardRecovery03NativeRecovery05",
+  "source_module": "SkyguardRecovery03NativeRecovery01",
+  "new_module": "SkyguardRecovery03NativeRecovery05",
+  "required_identity_changes": [
+    ".uplugin filename and module entry",
+    "module source directory",
+    "Build.cs filename and class",
+    "module header and implementation filenames",
+    "module class and registration macro",
+    "local header include references"
+  ],
+  "preserved_behavior": [
+    "authorization keys and tokens",
+    "runtime attempt suffix",
+    "map and material paths",
+    "camera definitions",
+    "shader polling",
+    "30-second warmup",
+    "30-second measurement",
+    "900-frame minimum",
+    "eight 2560x1440 captures",
+    "material restoration",
+    "terminal receipts",
+    "world-save prohibition"
+  ],
+  "descriptor_requirements": {
+    "enabled_by_default": false,
+    "can_contain_content": false,
+    "module_type": "Editor",
+    "loading_phase": "PostEngineInit"
+  },
+  "future_binary": "UnrealEditor-SkyguardRecovery03NativeRecovery05.dll",
+  "recovery01_or_recovery04_concurrent_enablement": false
+}

@@ -1,0 +1,233 @@
+{
+  "schema": "skyguard52.aaa.asset-provenance-license-ledger.gate0.v1",
+  "generated_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PARTIAL_WITH_RELEASE_BLOCKERS",
+  "policy": {
+    "third_party_asset_requires_receipt_before_production_use": true,
+    "required_fields": [
+      "source_platform",
+      "product_or_asset_id",
+      "asset_name",
+      "creator_or_publisher",
+      "source_url_or_local_authority",
+      "license_name",
+      "license_snapshot_or_receipt",
+      "acquisition_date",
+      "version",
+      "downloaded_file_inventory",
+      "sha256_per_file",
+      "mission_usage",
+      "modifications",
+      "redistribution_constraints"
+    ],
+    "missing_receipt_behavior": "Fail closed for promotion and release. Existing files may be inventoried but must remain UNVERIFIED.",
+    "legacy_threejs_outputs": "Historical lineage only; never active runtime authority."
+  },
+  "existing_detailed_authority": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\M01_TEXTURE_MATERIAL_PROVENANCE_LEDGER.json",
+    "bytes": 130284,
+    "sha256": "29a23435ad2b7ea8231d3832cb33dd8cadb6e0bba64f05af21680f3f43183da3",
+    "gate": "PASS_USED_ASSETS_WITH_ART_BACKLOG",
+    "interpretation": "Sufficient for the accepted Phase 8 engineering baseline only. It is not complete campaign release provenance."
+  },
+  "poly_haven_summary": {
+    "license_basis": "Poly Haven root CC0 declaration",
+    "family_count": 24,
+    "manifest_verified_family_count": 6,
+    "manifest_verified_file_count": 18,
+    "unmanifested_nonempty_family_count": 15,
+    "empty_unverified_placeholder_family_count": 3,
+    "mission1_relevant_unreal_material_count": 38,
+    "imported_unreal_texture_count": 78,
+    "generated_material_history_count": 87,
+    "release_status": "PARTIAL"
+  },
+  "poly_haven_families": [
+    {
+      "name": "blue_metal_plate",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "blue_plaster_weathered",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "brick_wall_006",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "concrete_wall_006",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "fabric_leather_01",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "green_metal_rust",
+      "status": "VERIFIED_CC0"
+    },
+    {
+      "name": "aerial_beach_01",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "aerial_grass_rock",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "aerial_rocks_02",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "asphalt_02",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "coast_sand_01",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "concrete_floor_painted",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "concrete_floor_worn_001",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "concrete_wall_008",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "corrugated_iron_02",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "metal_plate",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "metal_plate_02",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "painted_plaster_wall",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "roof_07",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "rusty_metal_02",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "wood_cabinet_worn_long",
+      "status": "UNVERIFIED_FILE_MANIFEST"
+    },
+    {
+      "name": "metal_walkway_01",
+      "status": "EMPTY_UNVERIFIED_PLACEHOLDER"
+    },
+    {
+      "name": "painted_metal_02",
+      "status": "EMPTY_UNVERIFIED_PLACEHOLDER"
+    },
+    {
+      "name": "ship_hull",
+      "status": "EMPTY_UNVERIFIED_PLACEHOLDER"
+    }
+  ],
+  "source_categories": [
+    {
+      "category": "Project-authored C++ and Unreal assets",
+      "source": "D:\\Skyguard52",
+      "status": "PROJECT_AUTHORED_PROVISIONAL",
+      "release_work": "Inventory current source and cooked outputs; confirm no embedded unlicensed third-party material."
+    },
+    {
+      "category": "Project-authored Blender hero assets",
+      "source": "D:\\Skyguard52\\Content and governed Blender production namespaces",
+      "status": "PROJECT_AUTHORED_PROVISIONAL",
+      "release_work": "Bind reference provenance, source .blend, exports, textures, bake inputs and hashes for every accepted asset."
+    },
+    {
+      "category": "Poly Haven textures",
+      "source": "Existing M01 detailed ledger",
+      "status": "PARTIAL",
+      "release_work": "Create file-level acquisition manifests for 15 nonempty families; replace or verify 3 empty placeholders."
+    },
+    {
+      "category": "Fab assets",
+      "source": "Fab plugin currently enabled",
+      "status": "UNVERIFIED",
+      "release_work": "No asset may be promoted until product ID, creator, license, version, receipt and downloaded-file hashes are captured."
+    },
+    {
+      "category": "Quixel Bridge/Megascans assets",
+      "source": "Bridge plugin currently enabled",
+      "status": "UNVERIFIED",
+      "release_work": "Capture account/source receipt, applicable license terms, asset IDs, versions, hashes and mission usage."
+    },
+    {
+      "category": "User-provided reference images and video",
+      "source": "Conversation attachments and local reference files",
+      "status": "REFERENCE_ONLY",
+      "release_work": "Use for proportion and visual study only unless separate rights permit redistribution. Do not ship reference media."
+    },
+    {
+      "category": "Legacy Three.js content",
+      "source": "Retired web project",
+      "status": "EXCLUDED",
+      "release_work": "Do not import as active runtime authority. Preserve only documented lineage where relevant."
+    }
+  ],
+  "priority_acquisition_or_authoring_gaps": [
+    {
+      "priority": "P0",
+      "need": "Ukrainian coastal apartment and midrise modular kit with intact and authored damage variants",
+      "preferred_route": "Licensed Fab/Quixel support kit plus Blender-authored hero facades"
+    },
+    {
+      "priority": "P0",
+      "need": "Coastal vegetation with Nanite/LOD and wind support",
+      "preferred_route": "Licensed Fab foliage collection"
+    },
+    {
+      "priority": "P0",
+      "need": "Lighthouse optical/interior hero detail",
+      "preferred_route": "Blender hero supplement with fully recorded sources"
+    },
+    {
+      "priority": "P0",
+      "need": "Radar mechanical and electrical storytelling detail",
+      "preferred_route": "Blender hero supplement or licensed Fab industrial kit"
+    },
+    {
+      "priority": "P1",
+      "need": "Region-appropriate vehicles and street dressing",
+      "preferred_route": "Licensed Fab packs with brand/IP review"
+    },
+    {
+      "priority": "P1",
+      "need": "Fishing boats, navigation buoys, breakwater blocks, mooring and rescue equipment",
+      "preferred_route": "Licensed maritime packs plus Blender mission heroes"
+    },
+    {
+      "priority": "P1",
+      "need": "Salt, rust, soot, crack, leak, chip, tide-mark and wetness decals",
+      "preferred_route": "Licensed Fab/Quixel decals or project-authored atlas"
+    }
+  ],
+  "release_blockers": [
+    "Fifteen Poly Haven families lack file-level manifests.",
+    "Three placeholder texture families are empty and unverified.",
+    "No complete Fab/Bridge campaign acquisition ledger exists.",
+    "Used-asset mapping is not complete for Missions 2–10.",
+    "Final accepted Yak, cockpit, character, weapon, drone, boss and hero-environment asset inventories do not yet exist.",
+    "Final Shipping notices and attribution/license bundle have not been generated for the current candidate."
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "schema": "skyguard.phase5.audio-recording-session.v1",
+  "session_id": "P5REC-YAK52-IDENTITY-01",
+  "session_state": "PLANNING",
+  "aircraft_identity": null,
+  "session_utc": null,
+  "location": null,
+  "safety_policy": {
+    "flight_operations_controlled_by_qualified_operator": true,
+    "recordist_does_not_direct_unsafe_maneuvers": true,
+    "no_live_weapon_or_missile_capture": true,
+    "hearing_and_equipment_restraint_plan_required": true,
+    "abort_authority_documented": true
+  },
+  "rights_packet": {
+    "aircraft_operator_release": {
+      "state": "MISSING",
+      "path": null,
+      "sha256": null,
+      "reviewer": null,
+      "reviewed_at_utc": null
+    },
+    "location_release": {
+      "state": "MISSING",
+      "path": null,
+      "sha256": null,
+      "reviewer": null,
+      "reviewed_at_utc": null
+    },
+    "recordist_assignment": {
+      "state": "MISSING",
+      "path": null,
+      "sha256": null,
+      "reviewer": null,
+      "reviewed_at_utc": null
+    },
+    "performer_releases": {
+      "state": "MISSING",
+      "path": null,
+      "sha256": null,
+      "reviewer": null,
+      "reviewed_at_utc": null
+    },
+    "insurance_and_operational_approval": {
+      "state": "MISSING",
+      "path": null,
+      "sha256": null,
+      "reviewer": null,
+      "reviewed_at_utc": null
+    }
+  },
+  "technical_setup": {
+    "target_sample_rate_hz": 96000,
+    "target_bit_depth": 24,
+    "lossless_capture": true,
+    "automatic_gain_control_disabled": true,
+    "limiter_disabled": true,
+    "timecode_or_slate_plan": null,
+    "microphone_plan": null,
+    "recorder_plan": null
+  },
+  "shots": [
+    {
+      "shot_id": "P5-IDLE-RC",
+      "bank_bindings": ["EngineIdle", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Warm stabilized idle at documented RPM",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 3,
+      "required_metadata": ["RPM", "engine_temperature", "microphone_position", "weather", "aircraft_registration"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-IDLE-EXT",
+      "bank_bindings": ["EngineIdle", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Warm stabilized idle at the same documented RPM",
+      "listener_perspective": "ExteriorCloseStatic",
+      "canopy_state": "NotApplicable",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 3,
+      "required_metadata": ["RPM", "distance_meters", "microphone_axis", "weather", "aircraft_registration"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-TAXI-RC",
+      "bank_bindings": ["EngineIdle", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Stable low-power taxi with documented RPM",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 45,
+      "minimum_takes": 3,
+      "required_metadata": ["RPM", "ground_speed", "surface", "microphone_position", "aircraft_registration"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-CRUISE-RC",
+      "bank_bindings": ["EngineCruise", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Straight stabilized cruise at documented RPM, manifold pressure and airspeed",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 90,
+      "minimum_takes": 3,
+      "required_metadata": ["RPM", "manifold_pressure", "airspeed", "altitude", "microphone_position"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-CRUISE-EXT",
+      "bank_bindings": ["EngineCruise", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Constant-power straight pass at documented settings",
+      "listener_perspective": "ExteriorPass",
+      "canopy_state": "NotApplicable",
+      "minimum_clean_duration_seconds": 20,
+      "minimum_takes": 4,
+      "required_metadata": ["RPM", "manifold_pressure", "airspeed", "closest_distance_meters", "weather"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-POWER-RC",
+      "bank_bindings": ["EnginePower", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Sustained safe high-power state approved by operator",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 3,
+      "required_metadata": ["RPM", "manifold_pressure", "airspeed", "altitude", "operator_limit"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-POWER-EXT",
+      "bank_bindings": ["EnginePower", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Constant high-power straight pass within operator limits",
+      "listener_perspective": "ExteriorPass",
+      "canopy_state": "NotApplicable",
+      "minimum_clean_duration_seconds": 20,
+      "minimum_takes": 4,
+      "required_metadata": ["RPM", "manifold_pressure", "airspeed", "closest_distance_meters", "weather"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-TRANSITION-RC",
+      "bank_bindings": ["EngineIdle", "EngineCruise", "EnginePower", "Propeller"],
+      "subject": "Yak-52",
+      "operating_state": "Slow documented power sweeps between approved stable states",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 45,
+      "minimum_takes": 4,
+      "required_metadata": ["RPM_curve", "manifold_pressure_curve", "airspeed", "transition_marks", "operator_limit"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-WIND-OPEN-LOW",
+      "bank_bindings": ["OpenCockpitWind"],
+      "subject": "Yak-52",
+      "operating_state": "Straight stable flight at operator-approved low airspeed",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "RearOpen",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 3,
+      "required_metadata": ["airspeed", "canopy_open_fraction", "RPM", "microphone_position", "restraint_configuration"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-WIND-OPEN-HIGH",
+      "bank_bindings": ["OpenCockpitWind"],
+      "subject": "Yak-52",
+      "operating_state": "Straight stable flight at highest operator-approved open-canopy airspeed",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "RearOpen",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 3,
+      "required_metadata": ["airspeed", "canopy_open_fraction", "RPM", "microphone_position", "restraint_configuration"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    },
+    {
+      "shot_id": "P5-ROOMTONE-RC",
+      "bank_bindings": ["OpenCockpitWind"],
+      "subject": "Yak-52",
+      "operating_state": "Engine-off cockpit and equipment noise floor",
+      "listener_perspective": "RearCockpit",
+      "canopy_state": "Closed",
+      "minimum_clean_duration_seconds": 60,
+      "minimum_takes": 2,
+      "required_metadata": ["microphone_position", "recorder_gain", "ambient_temperature", "ambient_activity"],
+      "capture_state": "PLANNED",
+      "captured_files": []
+    }
+  ]
+}

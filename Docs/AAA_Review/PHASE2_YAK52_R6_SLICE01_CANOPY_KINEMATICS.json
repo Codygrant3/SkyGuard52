@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-canopy-kinematics.v1",
+  "status": "DESIGNED_TRAVEL_DIMENSION_REFERENCE_PENDING",
+  "assemblies": [
+    "front_windscreen_fixed",
+    "front_sliding_section",
+    "center_bridge",
+    "rear_sliding_section",
+    "rear_fixed_fairing",
+    "left_and_right_rails",
+    "bows",
+    "seals",
+    "rollers",
+    "latches",
+    "cockpit_rims"
+  ],
+  "rear_canopy": {
+    "pivot_object":"PIVOT_R6_RearCanopy",
+    "motion_type":"rail_translation",
+    "closed_transform":{"location":[-0.78,0.0,0.0],"rotation_deg":[0.0,0.0,0.0]},
+    "open_transform":{"location":[-1.56,0.0,0.0],"rotation_deg":[0.0,0.0,0.0]},
+    "provisional_travel_m":0.78,
+    "travel_confidence":"LOW",
+    "minimum_clear_opening_length_m":0.72,
+    "minimum_clear_opening_width_m":0.78,
+    "maximum_frame_misalignment_m":0.008,
+    "minimum_glazing_thickness_m":0.006,
+    "maximum_glazing_thickness_m":0.012
+  },
+  "sweep_tests": [
+    "closed_to_open canopy versus fuselage and rails",
+    "canopy versus rear-gunner head volume",
+    "canopy versus rifle sweep volume",
+    "canopy versus Igla stow and shoulder volumes",
+    "bow and seal continuity in closed position"
+  ],
+  "visual_rejections": [
+    "cube or bubble canopy",
+    "floating bow",
+    "pointed bow termination",
+    "disconnected rail",
+    "zero-thickness glazing",
+    "stowed glazing blocking the open firing aperture"
+  ],
+  "reference_gap":"No authoritative canopy travel or rail drawing has been supplied."
+}
+

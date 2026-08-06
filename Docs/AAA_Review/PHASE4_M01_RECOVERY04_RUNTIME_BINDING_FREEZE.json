@@ -1,0 +1,100 @@
+{
+  "schema": "skyguard.phase4.m01-recovery04-runtime-binding-freeze.v1",
+  "binding_id": "P4.6-M01-RECOVERY04-BINDING-01",
+  "created_utc": "2026-08-03T23:15:00Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY04_UNREAL_AUTHORIZATION",
+  "unreal_launched": false,
+  "blender_launched": false,
+  "native_build_launched": false,
+  "heavy_process_count": 0,
+  "future_execution_namespaces_absent": true,
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_NATIVE_BUILD_FREEZE.json",
+      "bytes": 4475,
+      "sha256": "ab5add337f66614b7b25eb7e6e700357889d8f14c4428ecc95c59ed5c77a93fd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY04_UNREAL_EXECUTION_PREFLIGHT_TERMINAL_FREEZE.json",
+      "bytes": 1921,
+      "sha256": "96f04e7002862655cd6339d04846c4e147e4d593c855a6033aa2e479f3e637dc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery04\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery01.dll",
+      "bytes": 177664,
+      "sha256": "2070765a5d44199f7116c2038c97d866b91a509706de73953ead1cad057cb6e3"
+    },
+    {
+      "path": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery04\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery01.pdb",
+      "bytes": 24514560,
+      "sha256": "5a670aecd58b1e84af532e55209315a92647b567998cd09baa470bf9c13ebd26"
+    },
+    {
+      "path": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery04\\Binaries\\Win64\\UnrealEditor.modules",
+      "bytes": 146,
+      "sha256": "ea9474c57a12a344e31d5bdd87a498464c8be2c8e0e977faa6633f9bc707a892"
+    }
+  ],
+  "frozen_files": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY04_RUNTIME_BINDING_CONTRACT.json",
+      "bytes": 5078,
+      "sha256": "2ff865f01d0fde85f96aac62dcb7768f857d92ae067f8c4011f9ad99482e05b6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\invoke_skyguard_phase4_m01_representative_visual_attempt08_recovery04_once.ps1",
+      "bytes": 12112,
+      "sha256": "21a789fd2739ca03709abe30224f2bec52293c5990326dea2d7b3a010a14115e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_EXECUTION_PREFLIGHT_SCHEMA.json",
+      "bytes": 1272,
+      "sha256": "55214a0f7e5607820ce6da858753d1b517f23956c71f10d348007a68caf99237"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_TERMINAL_SUPERVISOR_SCHEMA.json",
+      "bytes": 1732,
+      "sha256": "dd6307443bd34830024a1b13068318a2a70de7769c77539aa636e6403c6542f6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_skyguard_phase4_m01_representative_visual_attempt08_recovery04_postflight.py",
+      "bytes": 16914,
+      "sha256": "6c2e7291c3146404873135605fa0239959e8f61a77924f132b1386aafbac199d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY04_VISUAL_INSPECTION_CHECKLIST.md",
+      "bytes": 1508,
+      "sha256": "f4c581becbbe74a770bb66aad354e6146115425c7f517b2ba9ec65476c47f472"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_RUNTIME_BINDING_SOURCE_INVENTORY.json",
+      "bytes": 4728,
+      "sha256": "ae9b5a6adad2c31af1c98d6c32fd74ff0eca3c27d3f9073bd886692e99f45744"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_RUNTIME_BINDING_OFFLINE_TESTS.json",
+      "bytes": 1847,
+      "sha256": "afd448e165dd0c694c1b210e5760e63b3ac2e412e797c9fa94e87f00fbb96a35"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_RUNTIME_BINDING_READINESS.json",
+      "bytes": 1021,
+      "sha256": "1a3ee9c0e3e5236d945192b10e8b60cb5ebeda0b3b5ef24e4ea1e123f37ea420"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY04_SINGLE_UNREAL_EXECUTION.md",
+      "bytes": 3710,
+      "sha256": "7196664efc3fd293636a4e9cfb0a67a229ac3abc037bd7c77f3d6be6e6dc5411"
+    }
+  ],
+  "execution_binding": {
+    "plugin": "SkyguardRecovery03NativeRecovery04",
+    "module": "SkyguardRecovery03NativeRecovery01",
+    "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+    "authorization_token": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01-ONE-SHOT",
+    "runtime_attempt_suffix": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/runtime_attempt_01",
+    "one_unreal_launch": true,
+    "automatic_retry": false
+  },
+  "next_gate": "EXPLICIT_SINGLE_RECOVERY04_UNREAL_AUTHORIZATION"
+}

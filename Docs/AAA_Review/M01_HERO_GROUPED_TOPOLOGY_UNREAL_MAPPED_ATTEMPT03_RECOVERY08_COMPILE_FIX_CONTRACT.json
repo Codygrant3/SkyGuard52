@@ -1,0 +1,123 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery08-compile-fix-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_010",
+  "recovery_id": "ATTEMPT03_RECOVERY08",
+  "disposition": "PASS_OFFLINE_CORRECTION_READY_REQUIRES_SEPARATE_BUILD_AUTHORIZATION",
+  "scope": "single C7595 FString format-argument correction at immutable Recovery07 source line 349",
+  "failed_build_evidence": {
+    "root": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T194611230867Z_ede470cf",
+    "compile_receipt": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T194611230867Z_ede470cf/compile_receipt.json",
+      "bytes": 901,
+      "sha256": "0273d4f41492940bba4074af68bbc3de9888c6c06feed8f2f0e90fdfd16fb598"
+    },
+    "build_stdout": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T194611230867Z_ede470cf/build.stdout.log",
+      "bytes": 6800,
+      "sha256": "16cf88afceedf261deecccad15fbfc3cf1d368d25b2fe20c0ec35ab70bcfcf43"
+    },
+    "build_stderr": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T194611230867Z_ede470cf/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_inventory": {
+      "path": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T194611230867Z_ede470cf/source_inventory.json",
+      "bytes": 29221,
+      "sha256": "ede470cfc9b41c08ae52156cc126bfd412de0d7ad9d5b446445299ed62c1cd24"
+    },
+    "receipt_gate": "FAIL_FULL_SKYGUARD52EDITOR_MODULE_COMPILE",
+    "receipt_exit_code": 6,
+    "exact_terminal_error": {
+      "source": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+      "format_expression_line": 347,
+      "invalid_argument_line": 349,
+      "code": "C7595",
+      "sanitizer": "SNeedsDereferencedWideString",
+      "invalid_static_type": "FString",
+      "required_static_type": "const TCHAR*",
+      "occurrences": 1
+    },
+    "other_compiler_errors": 0
+  },
+  "frozen_recovery07": {
+    "source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+      "bytes": 26610,
+      "sha256": "d8864cc19dc2d99e9d6eb37ddfe9dc48e6285860558b6da74c8edb1b45f221a9"
+    },
+    "header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.h",
+      "bytes": 3163,
+      "sha256": "f23d3492e2f7a9a20947a58b5ec51580307a82c2bcd344fcf2b508a171c596e5"
+    },
+    "must_remain_byte_identical": true,
+    "direct_edit_forbidden": true,
+    "failure_expression_must_remain_present": true
+  },
+  "ue58_api_evidence": {
+    "rhi_strings": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/RHI/Public/RHIStrings.h",
+      "bytes": 5717,
+      "sha256": "a055a5bf0a8f8160486b840863d84fe9f3bf47a40ff6716285a55421fe5b6ca6",
+      "required_signature": "RHI_API FString LexToString(ERHIFeatureLevel::Type Level);"
+    },
+    "rhi_feature_level": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/RHI/Public/RHIFeatureLevel.h",
+      "bytes": 3166,
+      "sha256": "d9a07cea372a306a2e69e21a147d52c6479cae767b0c5c559e35e7ae306f805b",
+      "required_signature": "extern RHI_API ERHIFeatureLevel::Type GMaxRHIFeatureLevel;"
+    }
+  },
+  "recovery08_correction": {
+    "forced_include_header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery08CompileFix.h",
+      "bytes": 1451,
+      "sha256": "2814e6612493f17b2368e6ba148663d34f64aa4406166641b635b637920bb5a4"
+    },
+    "module_rules": {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1295,
+      "sha256": "81fec3b1bd74bd7fa0471d9d17c2ac528f8f983df15a6aa8bf1393cca89e2d5b"
+    },
+    "strategy": [
+      "Register a new Recovery08 forced-include header without altering the frozen Recovery07 translation unit.",
+      "Preserve ERHIFeatureLevel::Type at every GMaxRHIFeatureLevel project-source line except line 349.",
+      "At the unique project-source line 349, return FSkyguardRecovery08PrintfFeatureLevel.",
+      "Resolve LexToString for that proxy to const TCHAR*, satisfying the UE 5.8 checked-format requirement.",
+      "Keep the converted FString in stable storage through the immediate FString::Printf call."
+    ],
+    "target_line": 349,
+    "target_line_project_collision_count": 1,
+    "target_line_project_collision_owner": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+    "target_line_installed_ue_header_collision_count": 0,
+    "global_lex_to_string_macro_forbidden": true,
+    "format_validation_suppression_forbidden": true,
+    "recovery07_copy_or_rename_forbidden": true
+  },
+  "supersession": {
+    "compile_implementation": "Recovery08 supersedes Recovery07 only at the compiler-compatibility boundary through the new forced include.",
+    "runtime_capture_implementation": "Recovery07 capture logic remains the immutable runtime implementation; Recovery08 does not duplicate or alter it.",
+    "future_execution_rule": "A successful separately authorized full-module build must bind the new DLL hash and Recovery08 source inventory before the Recovery07 capture command may be executed under a new Recovery08 output namespace.",
+    "recovery07_failed_module_must_not_be_reused": true,
+    "recovery07_evidence_remains_terminal_fail": true
+  },
+  "future_build": {
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "expected_first_compile_unit": "SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+    "success_receipt_and_new_dll_hash_required": true,
+    "unreal_launch_allowed": false
+  },
+  "future_execution_output": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_010/mapped_view_capture_03_recovery_08",
+  "offline_audit_required": true,
+  "native_build_authorized": false,
+  "native_build_executed": false,
+  "unreal_launch_authorized": false,
+  "unreal_launched": false,
+  "blender_launch_authorized": false,
+  "blender_launched": false,
+  "content_packages_created_or_modified": 0,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

@@ -1,0 +1,69 @@
+{
+    "gate":  "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_OFFLINE_DESIGN",
+    "classification":  "PASSED_READY_FOR_EXPLICIT_SINGLE_BLENDER_RECOVERY02_AUTHORIZATION",
+    "immutable":  true,
+    "timestamp_utc":  "2026-08-06T01:32:16.0485155Z",
+    "blender_launch_count":  0,
+    "unreal_launch_count":  0,
+    "retry_count":  0,
+    "future_attempt_namespace_absent":  true,
+    "future_output_namespace_absent":  true,
+    "members":  [
+                    {
+                        "path":  "D:\\Skyguard52\\References\\CombatAssets\\CombatBlockout_Cycle02_Recovery02_OfflineDesign\\source\\blender_gate7_combat_blockout_cycle02_recovery02_attempt01.py",
+                        "bytes":  19609,
+                        "sha256":  "7123bd7c45ceb6a7fc299b2ac34ab7eb2749bd89cb1ee1cc66b81cb2a31c2b45"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_SUPERVISOR_CONTRACT.json",
+                        "bytes":  5745,
+                        "sha256":  "f5332dbd1facf977af715472f12ac4d52f39b8b0c1c78eda9ab69fdddf8bb45d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_SOURCE_DIFF.json",
+                        "bytes":  1398,
+                        "sha256":  "09d28db1288e8e0ebb6d42c78469cdf75c20d182594a103ef1dc90c006de2e2d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_TERMINAL_EVIDENCE_RECONCILIATION.json",
+                        "bytes":  711,
+                        "sha256":  "ef38c486f608949ba0823466da8cf0f3ee2bd0f3c70a322213dd3c3d82bd0e4c"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_PROJECTED_PATH_REPORT.json",
+                        "bytes":  2608,
+                        "sha256":  "a1652a210f3bedbfc28da011d50b63d155135c7486cac8aea2023bdc0be51896"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Scripts\\invoke_gate7_combat_blockout_cycle02_recovery02_once.ps1",
+                        "bytes":  18751,
+                        "sha256":  "32fca763ef2d833dcca15e6dc136afbf9fa1d928c38dce70e1b31042b49d6db1"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Scripts\\verify_gate7_combat_blockout_cycle02_recovery02_offline.py",
+                        "bytes":  8484,
+                        "sha256":  "dc30ac3f910b469947ea413a6b9bc8d8b8d6b17288b16b6cbd450e51dd0a1d09"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_SELF_CONTAINED_HASHING_TEST.json",
+                        "bytes":  510,
+                        "sha256":  "429535f5a57c78e3b84a3d8139ecc798cfbcfe8c1e9dfd089ab98853f375359b"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_EXACT_HOST_OFFLINE_TEST.json",
+                        "bytes":  1756,
+                        "sha256":  "4825a81b980673bdff9492d1f641edd1084d3ae9112fef6124daf02640185d0d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_SOURCE_INVENTORY.json",
+                        "bytes":  3159,
+                        "sha256":  "78b62e99684d5a3c13f136c3b1f74161b4892761d66b59078ad44d66435ba23a"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_READINESS.json",
+                        "bytes":  858,
+                        "sha256":  "880fad53d6d165f4a997b13ddd7ba597525ab0ee22c114fa041ac0196a786672"
+                    }
+                ],
+    "next_prompt_path":  "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY02_SINGLE_BLENDER.md"
+}

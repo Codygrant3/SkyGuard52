@@ -1,0 +1,79 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-camera-manifest.v1",
+  "manifest_id": "PHASE2-YAK52-R4-S01-CAMERAS-20260802-V1",
+  "purpose": "Freeze the five R4 Slice 01 silhouette/proportion review cameras before Blender authoring begins.",
+  "render_contract": {
+    "resolution_x": 1920,
+    "resolution_y": 1080,
+    "resolution_percentage": 100,
+    "pixel_aspect": 1.0,
+    "engine": "BLENDER_EEVEE_NEXT",
+    "file_format": "PNG",
+    "camera_mutation_allowed_after_authoring_start": false,
+    "crop_or_reframe_allowed": false,
+    "neutral_world_color": [0.045, 0.06, 0.085, 1.0]
+  },
+  "cameras": [
+    {
+      "id": "R4_CAM_BEAUTY_PORT",
+      "projection": "PERSPECTIVE",
+      "location_m": [11.5, -11.5, 6.7],
+      "target_m": [0.0, 0.0, -0.05],
+      "lens_mm": 58.0,
+      "clip_start_m": 0.05,
+      "output_filename": "R4S01_BeautyPort.png",
+      "coverage": ["primary_silhouette", "surface_mass", "gear_stance", "canopy_envelope"]
+    },
+    {
+      "id": "R4_CAM_SIDE_ORTHO",
+      "projection": "ORTHOGRAPHIC",
+      "location_m": [0.0, -15.0, 0.4],
+      "target_m": [0.0, 0.0, 0.0],
+      "lens_mm": 58.0,
+      "clip_start_m": 0.05,
+      "ortho_scale_m": 10.8,
+      "output_filename": "R4S01_SideOrtho.png",
+      "coverage": ["overall_length", "fuselage_profile", "canopy_profile", "tail_profile", "gear_stance"]
+    },
+    {
+      "id": "R4_CAM_TOP_ORTHO",
+      "projection": "ORTHOGRAPHIC",
+      "location_m": [0.0, 0.0, 15.0],
+      "target_m": [0.0, 0.0, 0.0],
+      "lens_mm": 58.0,
+      "clip_start_m": 0.05,
+      "ortho_scale_m": 10.8,
+      "output_filename": "R4S01_TopOrtho.png",
+      "coverage": ["wingspan", "wing_planform", "tail_planform", "symmetry", "fuselage_taper"]
+    },
+    {
+      "id": "R4_CAM_REAR_QUARTER",
+      "projection": "PERSPECTIVE",
+      "location_m": [-8.0, -8.0, 4.2],
+      "target_m": [-0.2, 0.0, 0.3],
+      "lens_mm": 65.0,
+      "clip_start_m": 0.05,
+      "output_filename": "R4S01_RearQuarter.png",
+      "coverage": ["rear_fuselage", "tail_volume", "canopy_envelope", "control_mass"]
+    },
+    {
+      "id": "R4_CAM_UNDERSIDE_ORTHO",
+      "projection": "ORTHOGRAPHIC",
+      "location_m": [0.0, -0.2, -12.0],
+      "target_m": [0.0, 0.0, 0.0],
+      "lens_mm": 58.0,
+      "clip_start_m": 0.05,
+      "ortho_scale_m": 10.8,
+      "output_filename": "R4S01_UndersideOrtho.png",
+      "coverage": ["underside", "gear_track", "wheel_envelopes", "wing_planform"]
+    }
+  ],
+  "required_camera_ids": [
+    "R4_CAM_BEAUTY_PORT",
+    "R4_CAM_SIDE_ORTHO",
+    "R4_CAM_TOP_ORTHO",
+    "R4_CAM_REAR_QUARTER",
+    "R4_CAM_UNDERSIDE_ORTHO"
+  ],
+  "current_acceptance": "CAMERA_CONTRACT_FROZEN_NOT_RENDERED"
+}

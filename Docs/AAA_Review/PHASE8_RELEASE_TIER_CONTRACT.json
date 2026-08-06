@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase8.release-tier-contract.v1",
+  "default_tier": "Engineering",
+  "tiers": {
+    "Engineering": {
+      "audience": "Internal development and engineering baseline only",
+      "production_audio_required": false,
+      "blocked_audio_exception_allowed": true,
+      "blocked_audio_exception_must_be_recorded": true,
+      "friend_distribution_allowed": false,
+      "shipping_promotion_allowed": false,
+      "accepted_audio_states": [
+        "PASS_SHIPPING_AUDIO_BOUNDARY",
+        "BLOCK_SHIPPING_UNVERIFIED_AUDIO_WITH_ENGINEERING_EXCEPTION"
+      ]
+    },
+    "AAA": {
+      "audience": "AAA acceptance candidate",
+      "production_audio_required": true,
+      "blocked_audio_exception_allowed": false,
+      "blocked_audio_exception_must_be_recorded": false,
+      "friend_distribution_allowed": false,
+      "shipping_promotion_allowed": true,
+      "accepted_audio_states": [
+        "PASS_SHIPPING_AUDIO_BOUNDARY"
+      ]
+    },
+    "FriendFacing": {
+      "audience": "Package intended for friends or any external recipient",
+      "production_audio_required": true,
+      "blocked_audio_exception_allowed": false,
+      "blocked_audio_exception_must_be_recorded": false,
+      "friend_distribution_allowed": true,
+      "shipping_promotion_allowed": true,
+      "accepted_audio_states": [
+        "PASS_SHIPPING_AUDIO_BOUNDARY"
+      ]
+    }
+  },
+  "prepackage_policy": {
+    "tier_preflight_required_before_uat": true,
+    "tier_preflight_required_before_build_cook_stage_package_archive": true,
+    "audio_shipping_boundary_must_be_fresh": true,
+    "audio_exception_never_upgrades_audio_state": true,
+    "historical_missing_tier_receipts_are_engineering_only": true
+  }
+}

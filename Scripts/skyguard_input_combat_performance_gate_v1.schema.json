@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.input-combat-performance.gate.v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at_utc",
+    "attempt_id",
+    "gate",
+    "contract_gate",
+    "static_checks",
+    "prerequisite",
+    "runtime_bookmark_coverage",
+    "requested_profile",
+    "execution",
+    "artifacts",
+    "requirement_disposition",
+    "blockers",
+    "limitations"
+  ],
+  "properties": {
+    "schema": {"const": "skyguard.input-combat-performance.gate.v1"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "attempt_id": {"type": "string", "pattern": "^attempt_[0-9]{8}T[0-9]{9}Z$"},
+    "gate": {
+      "enum": [
+        "FAIL_STATIC_CONTRACT",
+        "VALIDATED_CONTRACT_BLOCKED_RUNTIME_BOOKMARKS",
+        "VALIDATED_CONTRACT_BLOCKED_PREREQUISITE",
+        "VALIDATED_NOT_EXECUTED",
+        "BLOCKED_PREREQUISITE",
+        "BLOCKED_RUNTIME_BOOKMARKS",
+        "FAIL_CAPTURE",
+        "CAPTURE_COMPLETE_REVIEW_REQUIRED"
+      ]
+    },
+    "contract_gate": {"enum": ["PASS", "FAIL"]},
+    "static_checks": {"type": "object"},
+    "prerequisite": {"type": "object"},
+    "runtime_bookmark_coverage": {
+      "type": "object",
+      "required": [
+        "ready",
+        "required_literal_count",
+        "found_literal_count",
+        "missing_literals",
+        "evidence"
+      ]
+    },
+    "requested_profile": {"type": "object"},
+    "execution": {"type": "object"},
+    "artifacts": {"type": "object"},
+    "requirement_disposition": {
+      "type": "object",
+      "required": ["P1.4", "P1.5", "P8.10", "P8.11", "P8.12"]
+    },
+    "blockers": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+  }
+}

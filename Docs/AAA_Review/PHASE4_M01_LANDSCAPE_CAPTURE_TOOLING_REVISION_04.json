@@ -1,0 +1,69 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-capture-tooling-revision.v4",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "attempt_id": "attempt_20260802T153050622Z",
+  "execution_state": "OFFLINE_REANALYSIS_COMPLETE_NO_PROMOTION",
+  "original_fail_evidence": {
+    "run_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T153050622Z/run_manifest.json",
+      "sha256": "d759e051a9a3efe8fa6ed6cfcbfa1ec24ba581ccdaf41082f8a9ebe394e9383d"
+    },
+    "supervisor_receipt": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T153050622Z/supervisor_receipt.json",
+      "sha256": "56c9b1f7953c3b4d8298b4b6abe85bcee387c6162e4cd7f3aedf86a9e6cb3a22"
+    },
+    "gate_report": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T153050622Z/gate_report.json",
+      "sha256": "8bbd33feb53dfa53d43354f66e7314079021d34e7fe0d79345bb110edb1334b6"
+    }
+  },
+  "analyzer_revision": {
+    "file": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+    "sha256": "e3ec2166571b6e6f38febeaa7e3ad40a4664319b2304545e38cc72710d99d697",
+    "changes": [
+      "UE 5.8 CSV fields up to 64 MiB are accepted.",
+      "Aggregate RHI/DrawCalls is prioritized over per-pass DrawCall columns.",
+      "Shader autogen header generation is reported separately from measured shader compile work."
+    ],
+    "fixtures": [
+      {
+        "file": "Scripts/tests/fixtures/phase4_m01_ue58_dynamic_profile.csv",
+        "sha256": "88cfec405b40566b5e49d7519a8b62fccdba540778361235672fe6ab047d7372"
+      },
+      {
+        "file": "Scripts/tests/fixtures/phase4_m01_shader_classification.log",
+        "sha256": "117c5be43f4b5b55f1f7f51bf5487392d1a5204890ef320c2c739daa98f5313a"
+      }
+    ],
+    "regression_test_count": 9,
+    "regression_gate": "PASS"
+  },
+  "reanalysis": {
+    "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T153050622Z/gate_report_reanalysis_v3.json",
+    "sha256": "710560453e3267392fcd59ac578e0f14380c39b07217c90cc12813a202fa5861",
+    "technical_gate": "FAIL",
+    "only_failed_technical_check": "no_frames_over_50ms",
+    "baseline_frame_count": 3600,
+    "candidate_frame_count": 3600,
+    "candidate_frames_over_50ms": 3,
+    "measured_shader_compile_hits": 0,
+    "measured_shader_autogen_header_hits": 4,
+    "performance_evidence_evaluable": true
+  },
+  "human_review": {
+    "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_HUMAN_REVIEW_ATTEMPT04.json",
+    "sha256": "7c7b968a05d56f6a8d7ed4fdd17a355efeaf2b6637de0a64c15e3399fc227bd9",
+    "verdict": "FAIL",
+    "causes": [
+      "The authored replacement Landscape is not visibly readable in candidate C01 through C05.",
+      "Candidate C04 removes the baseline brown inland mass and shows only ocean, sky, and a beach wedge.",
+      "Landscape LOD and shader-complexity diagnostics are byte-identical to corresponding lit captures."
+    ]
+  },
+  "offline_capture_diagnosis": {
+    "camera": "Serialized transforms are exact, but the harness does not verify frustum intersection or Landscape pixel coverage before acceptance.",
+    "landscape_or_material": "Serialized checks prove actor, components, transform, and material binding but omit render visibility, hidden-in-game state, registration, scene-proxy/render-state readiness, bounds, material relevance, and visible pixel coverage.",
+    "diagnostics": "Viewport console view modes do not configure SceneCaptureComponent2D show flags; diagnostic equality proves the commands were ineffective for two captures."
+  },
+  "promotion": "FORBIDDEN"
+}

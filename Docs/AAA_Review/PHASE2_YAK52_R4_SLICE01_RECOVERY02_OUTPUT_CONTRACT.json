@@ -1,0 +1,99 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-recovery02-output-contract.v1",
+  "contract_id": "PHASE2-YAK52-R4-S01-RECOVERY02-OUTPUTS-20260802-V1",
+  "build_id": "BLD-M01-YAK-FINAL-ART-R4-S01-RECOVERY02",
+  "current_status": "RECOVERY02_AUTHORING_SOURCE_READY_NOT_RUN",
+  "purpose": "Preserve terminal Recovery01 and provide a distinct Blender 5.2 compatibility namespace for datum empties.",
+  "recovery_evidence": {
+    "recovery01_attempt": "Saved/Reports/Phase2Yak52R4Slice01Recovery01Production/attempt_20260802T2004088626265Z_f00083fc_00003b30",
+    "receipt_status": "FAILED_BLENDER_EXITED_ZERO_REQUIRED_OUTPUTS_MISSING",
+    "receipt_sha256": "80720a9f9cc5a43f775cc08d09379d35d75fa94c46c127aebeae6c9f55404d57",
+    "stderr_sha256": "c78df6acffd60cdea401e60a8bddced5c63fead4b393d1a93928903cad3c7803",
+    "exact_failure": "TypeError: enum \"CROSS\" not found",
+    "failed_source_line": 451,
+    "blender_exit_code": 0,
+    "required_outputs_created": false,
+    "recovery01_terminal": true,
+    "recovery01_retry_allowed": false
+  },
+  "compatibility_contract": {
+    "original_enum": "CROSS",
+    "replacement_enum": "PLAIN_AXES",
+    "supported_blender_52_values": [
+      "PLAIN_AXES",
+      "ARROWS",
+      "SINGLE_ARROW",
+      "CIRCLE",
+      "CUBE",
+      "SPHERE",
+      "CONE",
+      "IMAGE"
+    ],
+    "semantic_reason": "PLAIN_AXES preserves a neutral multi-axis measurement datum without adding directional arrow semantics.",
+    "override_scope": "create_datums only",
+    "frozen_source_modified": false
+  },
+  "authority_inputs": [
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_OFFLINE_PRODUCTION_CONTRACT.json","bytes":38916,"sha256":"9acb79b431e08785b54c4373ee4c70aa1c6803493abea772b796af2bc43ba594","role":"Accepted R4 authority"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_OUTPUT_CONTRACT.json","bytes":8397,"sha256":"845273766b39c3ac6db9fea09b38403b6da1b783507049a98e41ad3d541c07fa","role":"Frozen Slice01 contract"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_RECOVERY01_OUTPUT_CONTRACT.json","bytes":7819,"sha256":"f00083fc9c1484bf708938440f9ab2be12365851460661efcac4cff7b14ebd83","role":"Terminal Recovery01 contract"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_DIMENSION_LEDGER.json","bytes":6580,"sha256":"b7173be921caed151d87d68cb9abde986d0e35c19d11b0542f36a28328cba19d","role":"Frozen dimensions"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_CAMERA_MANIFEST.json","bytes":2679,"sha256":"94ca4721530fcbeb77b2ec8978fa095f49459cb1dbe38a6e0a0bc8a05c491af9","role":"Frozen cameras"},
+    {"path":"Scripts/blender_phase2_yak52_r4_slice01_silhouette.py","bytes":27197,"sha256":"5ce121a6773fc59f3e4feadaf2fdc1ca7bc9a627f7927c76eb69a2f606e57923","role":"Frozen source"},
+    {"path":"Scripts/blender_phase2_yak52_r4_slice01_recovery01.py","bytes":5670,"sha256":"ced23403ed40c31cd91fdac28737b0320daf7478378b12c15f77fc5a1075d3a5","role":"Terminal Recovery01 source"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery01Production/attempt_20260802T2004088626265Z_f00083fc_00003b30/launch_receipt.json","bytes":2380,"sha256":"80720a9f9cc5a43f775cc08d09379d35d75fa94c46c127aebeae6c9f55404d57","role":"Terminal receipt"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery01Production/attempt_20260802T2004088626265Z_f00083fc_00003b30/blender.stdout.log","bytes":78,"sha256":"62aa68d052234759fcf2f662c9277a117896bb0a66d46f104de825c9b1ad1ecc","role":"Terminal stdout"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery01Production/attempt_20260802T2004088626265Z_f00083fc_00003b30/blender.stderr.log","bytes":834,"sha256":"c78df6acffd60cdea401e60a8bddced5c63fead4b393d1a93928903cad3c7803","role":"Terminal stderr"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery01Production/attempt_20260802T2004088626265Z_f00083fc_00003b30/SHA256SUMS.txt","bytes":259,"sha256":"7e56a6cde690197f1def19dc68d1da7b326390e76b9ad1c15fc7684abcfc5ace","role":"Terminal attempt sums"},
+    {"path":"Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md","bytes":2803,"sha256":"25fde51185b4a2eea93fc25bc7993a5726ba67b322ec50b901e32f4e38e6494f","role":"Human R3 review"}
+  ],
+  "authoring_script": {
+    "path": "Scripts/blender_phase2_yak52_r4_slice01_recovery02.py",
+    "bytes": 5908,
+    "sha256": "2ceef401b9823beac8e86e563e8e34c9f812491e17bde290f646599c9e72e736",
+    "required_blender_version": "5.2",
+    "executed": false
+  },
+  "frozen_contract_access_manifest": [
+    "build_id","authority_inputs","authority_inputs[]","authority_inputs[].path","authority_inputs[].bytes","authority_inputs[].sha256","authoring_script","authoring_script.sha256","outputs","outputs.blend","outputs.glb","outputs.manifest","outputs.comparison_directory","claims","claims.silhouette_locked"
+  ],
+  "outputs": {
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery02/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery02/bld_m01_yak_final_art_r4_s01_recovery02.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02"
+  },
+  "output_policy": {
+    "overwrite_allowed": false,
+    "automatic_promotion_allowed": false,
+    "unreal_import_allowed": false,
+    "canonical_outputs_must_be_absent_before_run": true,
+    "paths": {
+      "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery02/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02_MASTER.blend",
+      "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery02/bld_m01_yak_final_art_r4_s01_recovery02.glb",
+      "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02_MANIFEST.json",
+      "screenshot_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY02"
+    }
+  },
+  "launch_contract": {
+    "wrapper": "Scripts/invoke_phase2_yak52_r4_slice01_recovery02.ps1",
+    "wrapper_bytes": 4716,
+    "wrapper_sha256": "faa5e9ec0d748ccd369070599fc2049f2735cd9d9925447887983aef445e66ab",
+    "blender_executable": "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe",
+    "attempt_root": "Saved/Reports/Phase2Yak52R4Slice01Recovery02Production",
+    "launch_authorized": false,
+    "launched": false
+  },
+  "claims": {
+    "blender_launched": false,
+    "unreal_launched": false,
+    "outputs_created": false,
+    "reference_package_complete": false,
+    "silhouette_locked": false,
+    "final": false,
+    "aaa": false,
+    "unreal_imported": false,
+    "runtime_replaced": false,
+    "promotion_allowed": false
+  }
+}

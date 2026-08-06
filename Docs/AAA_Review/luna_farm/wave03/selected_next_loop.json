@@ -1,0 +1,275 @@
+[
+  {
+    "id": "MAT-016",
+    "pillar": "materials",
+    "title": "Behind-wall dirt runoff stripe",
+    "change": "Add one short vertical dirt-runoff stripe to an occluded wall-back panel.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L23_Dirt"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported/T_Dirt_Runoff_Sparse"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a sparse opacity mask with a soft termination; keep width narrow and avoid repeating bands.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The weathering remains behind the wall and is too small to influence the frozen harbor silhouette or water contrast.",
+    "acceptance_test": "Only the intended occluded inspection angle reveals the runoff stripe; Harbor remains usable at 11/11 capture positions.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-020",
+    "pillar": "materials",
+    "title": "Behind-wall layered dirt patch",
+    "change": "Add a single small layered rust-and-dirt patch behind the wall using existing imported texture channels.",
+    "stage_targets": [
+      "City",
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/Meshes/SM_DirtTile_Small"
+      ],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_RustDirt",
+        "/Game/Skyguard/Materials/M_L23_Dirt"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported/T_Rust_Layered_Dirt"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the patch compact, desaturated, and fully occluded until x>=bx+3; use roughness variation as the primary signal.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The asset is a tiny behind-wall material accent, so it cannot stack into a hero foreground change or disturb the 11/11 freeze.",
+    "acceptance_test": "The patch reads as layered weathering only in the intended behind-wall position and all frozen cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-002",
+    "pillar": "aircraft",
+    "title": "Fuselage inspection hatch rim",
+    "change": "Add one shallow offset inspection-hatch rim with a deliberately interrupted lower edge on the fuselage.",
+    "stage_targets": [
+      "YakBeauty",
+      "Prop"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_Yak_UnlitHF_Panel"
+      ],
+      "textures": [
+        "T_Yak_InspectionHatch"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small rectangular rim at x>=bx+3 with two missing corner segments; keep the base panel bright enough for unlit HF separation.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty",
+        "Prop"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single small panel accent adds silhouette-adjacent structure without introducing dark PBR coverage.",
+    "acceptance_test": "Verify hatch rim reads as a distinct local feature in YakBeauty while Prop remains usable and bright.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-004",
+    "pillar": "aircraft",
+    "title": "Cowling louver break pair",
+    "change": "Add two short offset louver strips on the cowling with unequal spacing and a visible center gap.",
+    "stage_targets": [
+      "YakBeauty",
+      "PropNose"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_Yak_UnlitHF_Louver"
+      ],
+      "textures": [
+        "T_Yak_Cowling_Louvers"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep each louver narrow and shallow at x>=bx+3; use bright-to-mid unlit contrast and no black cavity material.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty",
+        "PropNose"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The proposal adds localized panel rhythm without expanding any dark region in the nose.",
+    "acceptance_test": "Check two readable louver clusters in YakBeauty and no uniqueness or black collapse in PropNose.",
+    "effort": "S",
+    "priority_guess": 4,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-006",
+    "pillar": "vfx",
+    "title": "Ricochet spark streak",
+    "change": "Add one short directional ricochet streak leaving each metallic impact point.",
+    "stage_targets": [
+      "Combat",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "SM_VFX_Spark_Streak"
+      ],
+      "materials": [
+        "M_VFX_Additive_Unlit",
+        "MI_Ricochet_White"
+      ],
+      "textures": [],
+      "niagara": [
+        "/Game/Skyguard/VFX NS_HitSparks"
+      ]
+    },
+    "implementation_notes": "Orient the streak along the impact normal, use a 0.06 second lifetime, and clamp length to a few pixels in the final capture.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single tiny additive streak improves impact readability without affecting broad regions of either camera.",
+    "acceptance_test": "The streak is visible only at impact locations and does not become a continuous line or screen-space artifact.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-016",
+    "pillar": "vfx",
+    "title": "Water splash crown tips",
+    "change": "Add five tiny additive crown tips at the outer edge of a water splash impact.",
+    "stage_targets": [
+      "Ocean",
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "SM_VFX_Splash_Tip"
+      ],
+      "materials": [
+        "M_VFX_Additive_Unlit",
+        "MI_Splash_Foam"
+      ],
+      "textures": [
+        "T_Splash_Tip"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX WaterSplash"
+      ]
+    },
+    "implementation_notes": "Use a low-opacity pale foam tint, 0.14 second lifetime, and keep all tips inside the existing splash footprint.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Only small additive tips are introduced, with no change to ocean materials or large silhouette coverage.",
+    "acceptance_test": "Splash edges become legible at capture resolution while horizon and water values remain stable.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "CO-003",
+    "pillar": "city_ocean",
+    "title": "Corrugated facade rib cadence",
+    "change": "Add three bright corrugated vertical ribs to one apartment or industrial facade section.",
+    "stage_targets": [
+      "City"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "apartment_midrise_proxy",
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_CorrugatedPaintLight"
+      ],
+      "textures": [
+        "T_CorrugatedRibMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use sparse, light-gray ribs with alternating roughness; keep the section behind wall at x>=bx+3 and avoid full-facade repetition.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Localized behind-wall geometry adds bright vertical structure without introducing a dark sole FOV material.",
+    "acceptance_test": "Capture City and check that ribs read as three separate facade edges without clipping, aliasing, or uniqueness collapse.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  }
+]

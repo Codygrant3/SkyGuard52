@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt05-recovery-implementation.v1",
+  "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-005-RECOVERY-01",
+  "recorded_on": "2026-08-02",
+  "status": "PASS_RECOVERY_OFFLINE_READY_PENDING_EXCLUSIVE_UNREAL_AUTHORIZATION",
+  "execution": {
+    "unreal_launched_during_recovery_design": false,
+    "candidate_mutated": false,
+    "authoring_will_rerun": false,
+    "recovery_root_created": false,
+    "promotion_allowed": false
+  },
+  "recovery_boundary": {
+    "predecessor_attempt_id": "attempt_20260802T164911778Z",
+    "authoring_result": "PASS",
+    "authoring_render_state_count": 16,
+    "failed_nullrhi_render_state_count": 0,
+    "fault_classification": "verification execution-context mismatch",
+    "first_recovery_stage": "normal-editor D3D12 SM6 render-state verification"
+  },
+  "implemented_controls": [
+    "Lock invocation01 and invocation02 receipts plus the predecessor manifest and authoring reports by SHA-256.",
+    "Lock the baseline and all four authored attempt05 packages by SHA-256 before and after every Unreal stage.",
+    "Never rerun authoring and never use NullRHI in recovery.",
+    "Require 16 visible, registered and render-state-created components plus all existing material, structural and five-frustum locks before images.",
+    "Use a fixed recovery_01 root and refuse duplicate or overwrite.",
+    "Persist each stage receipt before asserting process, log or package-lock success.",
+    "Preserve the thirty-second post-ready warmup and explicit sixty-second same-process measured interval.",
+    "Disallow automatic retry, PCG generation, package saving, network download and promotion."
+  ],
+  "offline_validation": {
+    "gate": "PASS_RECOVERY_OFFLINE_READY_PENDING_EXCLUSIVE_UNREAL_AUTHORIZATION",
+    "powershell_parse": "PASS",
+    "python_compile": "PASS",
+    "phase4_static_tests_passed": 32,
+    "phase4_static_tests_total": 32
+  },
+  "artifact_hashes": {
+    "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT05_RECOVERY_CONTRACT_01.json": "4454902b2b151724130effefa2afc466814bc3b998b507dc063b89bb4030b23c",
+    "Scripts/verify_skyguard_phase4_m01_landscape_render_state_attempt05_recovery01.py": "d7b13549fcfe85f94c73e0212b44eb666a03eca2e3be974d533b271127f4f01f",
+    "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt05_recovery01.ps1": "eed2a80a334045d6505b03a9e0e463c7b03338dee46db5f517d29941caacf0cd",
+    "Scripts/verify_skyguard_phase4_m01_landscape_attempt05_recovery01_readiness.py": "54b5896b5ec249a8d3cdb1eb0381b28913570f55446542c2bc44fab490632347",
+    "Scripts/tests/test_phase4_m01_landscape_attempt05_recovery01.py": "b0d5db022245b3236e0a333d6f1c754c080b6f27ef6562e6b707aea17172b03f",
+    "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT05_RECOVERY01_READINESS.json": "be4727964d14b8ec55be8cee801583e59654176d4a11b9011458072c6e6becfa"
+  },
+  "remaining_blocker": "Explicit authorization for exactly one recovery_01 supervisor run in an exclusive Unreal lane."
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "skyguard.m01.third-party-final-use-receipt.v1",
+  "receipt_id": "M01-THIRD-PARTY-FINAL-USE-001",
+  "status": "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+  "project_root": "D:\\Skyguard52",
+  "candidate": {
+    "candidate_id": "",
+    "package_or_build_artifact": {
+      "path": "",
+      "bytes": 0,
+      "sha256": ""
+    }
+  },
+  "policy": {
+    "content_presence_is_license_evidence": false,
+    "catalog_metadata_is_acquisition_evidence": false,
+    "quarantine_acceptance_is_runtime_acceptance": false,
+    "runtime_promotion_requires_exact_project_file_hashes": true,
+    "runtime_promotion_requires_visual_acceptance": true,
+    "runtime_promotion_requires_performance_acceptance": true,
+    "runtime_promotion_allowed": false
+  },
+  "assets": [],
+  "final_assertions": {
+    "every_third_party_runtime_asset_listed": false,
+    "every_source_and_license_receipt_hash_bound": false,
+    "every_project_file_hash_bound": false,
+    "every_dependency_resolved": false,
+    "every_mission_use_declared": false,
+    "every_visual_acceptance_hash_bound": false,
+    "every_performance_acceptance_hash_bound": false,
+    "shipping_notice_obligations_resolved": false,
+    "no_quarantine_package_referenced": false,
+    "no_engine_content_reference_used_as_project_copy": false
+  },
+  "final_disposition": "HOLD_NO_RUNTIME_PROMOTION"
+}

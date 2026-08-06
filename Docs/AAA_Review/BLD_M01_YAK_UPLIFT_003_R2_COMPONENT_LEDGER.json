@@ -1,0 +1,61 @@
+{
+  "schema": "skyguard.bld-m01-yak-uplift-003-r2.component-ledger-overlay.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R2",
+  "base_ledger": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_COMPONENT_LEDGER.json",
+    "bytes": 6822,
+    "sha256": "55278c347d275fac8afc7c64f252d7a24af8a72ee493f4f33347bc202d7e1b44",
+    "preserve_component_by_component_strategy": true
+  },
+  "source_audit": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_SOURCE_AUDIT.json",
+    "bytes": 4943,
+    "sha256": "28ff3c9ae15451fa2e29458209390a9a32093267e2f80ba84d5b509c4abcdf1a"
+  },
+  "governed_component_count": 240,
+  "exact_object_requirement_count": 232,
+  "source_absent_hold_count": 8,
+  "allowed_classifications": [
+    "provisional_inherited",
+    "rebuild_candidate",
+    "donor_from_002",
+    "hold",
+    "source_absent_hold"
+  ],
+  "source_absent_hold_policy": {
+    "promotion_allowed": false,
+    "required_as_blender_object": false,
+    "synthesis_allowed": false,
+    "counts_toward_governed_component_total": true,
+    "meaning": "The governed underscore-spelled component name is absent from the immutable L88 Blender source. It remains explicitly accounted for and held without silently aliasing, synthesizing, or promoting the actual dotted source object."
+  },
+  "classification_overrides": {
+    "GEO_CanopyHinge_0_18_L": "source_absent_hold",
+    "GEO_CanopyHinge_0_18_R": "source_absent_hold",
+    "GEO_CanopyHinge_0_76_L": "source_absent_hold",
+    "GEO_CanopyHinge_0_76_R": "source_absent_hold",
+    "GEO_CanopySeal_0_18_L": "source_absent_hold",
+    "GEO_CanopySeal_0_18_R": "source_absent_hold",
+    "GEO_CanopySeal_0_76_L": "source_absent_hold",
+    "GEO_CanopySeal_0_76_R": "source_absent_hold"
+  },
+  "actual_source_observations": {
+    "GEO_CanopyHinge_0_18_L": "GEO_CanopyHinge_0.18_L",
+    "GEO_CanopyHinge_0_18_R": "GEO_CanopyHinge_0.18_R",
+    "GEO_CanopyHinge_0_76_L": "GEO_CanopyHinge_0.76_L",
+    "GEO_CanopyHinge_0_76_R": "GEO_CanopyHinge_0.76_R",
+    "GEO_CanopySeal_0_18_L": "GEO_CanopySeal_0.18_L",
+    "GEO_CanopySeal_0_18_R": "GEO_CanopySeal_0.18_R",
+    "GEO_CanopySeal_0_76_L": "GEO_CanopySeal_0.76_L",
+    "GEO_CanopySeal_0_76_R": "GEO_CanopySeal_0.76_R"
+  },
+  "resolution_contract": {
+    "base_resolution": "base component_overrides[name] else base bundle_defaults[bundle]",
+    "r2_resolution": "classification_overrides[name] else base_resolution",
+    "every_runtime_component_exactly_once": true,
+    "source_absent_hold_never_looked_up_in_bpy_data_objects": true,
+    "actual_dotted_source_names_preserved_without_renaming": true,
+    "no_accepted_or_production_classification": true,
+    "silent_promotion_forbidden": true
+  }
+}

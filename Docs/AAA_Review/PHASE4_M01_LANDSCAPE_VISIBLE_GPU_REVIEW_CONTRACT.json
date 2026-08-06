@@ -1,0 +1,286 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-gpu-review-contract.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-001",
+  "mission_id": "M01_CoastalIntercept",
+  "status": "READY_FOR_AUTHORIZED_GPU_AUTHORING",
+  "baseline": {
+    "immutable_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+    "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+    "bytes": 532796,
+    "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72",
+    "serialized_acceptance_report": "Saved/Reports/PHASE4_M01_PCG_LANDSCAPE_EDITOR_ACCEPTANCE.json",
+    "serialized_acceptance_report_sha256": "ae5b81c3d4694e87f9d2b271b295a9236adfc3ba39719ecd6c88d11379d0d621",
+    "required_serialized_gate": "PASS",
+    "required_rendered_review_status": "PENDING_VISIBLE_GPU_REVIEW",
+    "must_not_be_modified": true
+  },
+  "candidate": {
+    "immutable_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v1_attempt01",
+    "material_root": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v1",
+    "landscape_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v1/M_M01_Landscape_Validation",
+    "must_not_exist_before_authoring": true,
+    "must_never_overwrite_baseline": true,
+    "creation_policy": "recreate_from_governed_manifest_and_height_source_not_duplicate_live_world",
+    "landscape_actor_label": "M01_P4_Landscape_Production",
+    "landscape_actor_tag": "Skyguard.Environment.Mission01.Landscape",
+    "landscape_component_count": 16,
+    "landscape_transform": {
+      "location_cm": [0.0, 7000.0, -120.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [100.0, 100.0, 100.0]
+    },
+    "landscape_coverage_cm": [50400.0, 12600.0],
+    "legacy_land_tile_policy": "disable_LandTiles_rendering_in_candidate_only_so_the_authored_Landscape_is_the_only_inland_ground_surface",
+    "ocean_and_beach_policy": "retain_the_governed_OceanTiles_and_BeachTiles_for_the_first_relationship_review",
+    "pcg_generation_invoked": false,
+    "generated_pcg_component_count": 0,
+    "generated_pcg_instance_count": 0
+  },
+  "provenance": {
+    "ledger": {
+      "path": "Saved/Reports/M01_TEXTURE_MATERIAL_PROVENANCE_LEDGER.json",
+      "sha256": "29a23435ad2b7ea8231d3832cb33dd8cadb6e0bba64f05af21680f3f43183da3"
+    },
+    "expanded_manifest": {
+      "path": "Content/Skyguard/Textures/PolyHaven/polyhaven-provenance-manifest.json",
+      "sha256": "9817fa40dca9bfec370e208921c925eeb9858a4b3a2254e8101260dca1cc2e57",
+      "source": "Poly Haven",
+      "license": "CC0-1.0",
+      "gate": "PASS",
+      "verified_record_count": 64
+    },
+    "approved_external_families": [
+      {
+        "family": "coast_sand_01",
+        "purpose": "shoreline_to_inland_sand_transition",
+        "required_maps": ["BaseColor", "Normal_OpenGL", "Roughness"],
+        "verified_record_count": 3
+      },
+      {
+        "family": "aerial_grass_rock",
+        "purpose": "inland_macro_and_micro_ground",
+        "required_maps": ["BaseColor", "Normal_OpenGL", "Roughness"],
+        "verified_record_count": 3
+      }
+    ],
+    "locked_unreal_assets": [
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L3_sand_A",
+        "file": "Content/Skyguard/Textures/Imported/T_L3_sand_A.uasset",
+        "bytes": 3566940,
+        "sha256": "265d5258179d19a839af1bfcd73ebf87e2ae5c2908f3e36cc52b4622c8d4db51"
+      },
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L3_sand_N",
+        "file": "Content/Skyguard/Textures/Imported/T_L3_sand_N.uasset",
+        "bytes": 4641159,
+        "sha256": "d9858467f1a37ae270509cac78b18f7dc63f051980d889f8bc7ca102f61655e7"
+      },
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L3_sand_R",
+        "file": "Content/Skyguard/Textures/Imported/T_L3_sand_R.uasset",
+        "bytes": 1400147,
+        "sha256": "d1eba25222c25018f53a7c29107566a188fec11ba879948eba28f304901380c9"
+      },
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L4_grassrock_A",
+        "file": "Content/Skyguard/Textures/Imported/T_L4_grassrock_A.uasset",
+        "bytes": 2639736,
+        "sha256": "4d8d3967b8cb3e323f436037ebd3030e9349e17dcd5440e6616d9c9a3b322220"
+      },
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L4_grassrock_N",
+        "file": "Content/Skyguard/Textures/Imported/T_L4_grassrock_N.uasset",
+        "bytes": 3812906,
+        "sha256": "6b830e88b0d92dd940850586df377a52e19665b02de52e9c39f1a7d8bac4725c"
+      },
+      {
+        "asset": "/Game/Skyguard/Textures/Imported/T_L4_grassrock_R",
+        "file": "Content/Skyguard/Textures/Imported/T_L4_grassrock_R.uasset",
+        "bytes": 1509514,
+        "sha256": "cc37432fd640713abc844d06cdc432f1d2cfe3fa395b7737406c6255a27ecd75"
+      },
+      {
+        "asset": "/Game/Skyguard/Materials/Generated/M_L23_Ocean",
+        "file": "Content/Skyguard/Materials/Generated/M_L23_Ocean.uasset",
+        "bytes": 14419,
+        "sha256": "fa12ead8a10cefa97e68a78374903ac147d86e8e0af7a14d8be6e88cbc83f49c",
+        "provenance": "project_authored_by_Scripts/build_skyguard_aaa_loop23_beauty_capture.py"
+      },
+      {
+        "asset": "/Game/Skyguard/Materials/Generated/M_L23_Beach",
+        "file": "Content/Skyguard/Materials/Generated/M_L23_Beach.uasset",
+        "bytes": 13519,
+        "sha256": "ed507de2fcddc1321f4ab130396199cc29c91a52fdb848743eb227b56ea66cbc",
+        "provenance": "project_authored_by_Scripts/build_skyguard_aaa_loop23_beauty_capture.py"
+      }
+    ],
+    "excluded": [
+      "all_Fab_and_Quixel_assets",
+      "metal_walkway_01_empty_unverified_placeholder",
+      "painted_metal_02_empty_unverified_placeholder",
+      "ship_hull_empty_unverified_placeholder",
+      "all_unlisted_generated_materials",
+      "all_unlicensed_vegetation"
+    ]
+  },
+  "material_design": {
+    "texture_sample_budget": 8,
+    "selected_texture_samples": 6,
+    "displacement": false,
+    "tessellation": false,
+    "runtime_virtual_texture": false,
+    "procedural_generation": false,
+    "sand_world_scale_cm": 300.0,
+    "inland_world_scale_cm": 500.0,
+    "shoreline_landscape_start_y_cm": 7000.0,
+    "sand_to_inland_transition_width_cm": 1400.0,
+    "blend": "smooth_saturate_of_absolute_world_position_y_from_7000_to_8400_cm",
+    "normal_policy": "use_imported_OpenGL_normal_assets_only_when_flip_green_channel_is_true",
+    "roughness_policy": "use_locked_roughness_assets_without_emissive_or_metallic_ground_response",
+    "first_pass_scope": "two_surface_world_aligned_blend_only_no_decals_wetness_RVT_or_vegetation"
+  },
+  "capture": {
+    "rhi": "D3D12",
+    "shader_model": "SM6",
+    "resolution": [1920, 1080],
+    "window_mode": "windowed",
+    "scalability": "Epic",
+    "vsync": false,
+    "screen_percentage": 100,
+    "exposure": "locked_identically_for_baseline_and_candidate",
+    "weather": "clear_day_governed_M01_stack",
+    "cameras": [
+      {
+        "id": "C01_ROUTE_WIDE",
+        "location_cm": [22500.0, -9000.0, 8500.0],
+        "rotation_degrees": {"pitch": -28.0, "yaw": 90.0, "roll": 0.0},
+        "purpose": "full_route_landscape_silhouette_and_coverage"
+      },
+      {
+        "id": "C02_SHORE_APPROACH",
+        "location_cm": [22500.0, 3000.0, 900.0],
+        "rotation_degrees": {"pitch": -6.0, "yaw": 90.0, "roll": 0.0},
+        "purpose": "ocean_beach_landscape_vertical_relationship"
+      },
+      {
+        "id": "C03_SHORE_GRAZE",
+        "location_cm": [6000.0, 6600.0, 220.0],
+        "rotation_degrees": {"pitch": -2.0, "yaw": 0.0, "roll": 0.0},
+        "purpose": "longitudinal_shoreline_gap_zfight_and_repeat_detection"
+      },
+      {
+        "id": "C04_INLAND_CLOSE",
+        "location_cm": [22500.0, 9600.0, 800.0],
+        "rotation_degrees": {"pitch": -12.0, "yaw": 25.0, "roll": 0.0},
+        "purpose": "material_scale_blend_and_component_seams"
+      },
+      {
+        "id": "C05_COVERAGE_HIGH",
+        "location_cm": [22500.0, 3000.0, 12000.0],
+        "rotation_degrees": {"pitch": -42.0, "yaw": 90.0, "roll": 0.0},
+        "purpose": "all_16_components_route_coverage_and_water_separation"
+      }
+    ],
+    "required_lit_pngs": {
+      "baseline": 5,
+      "candidate": 5
+    },
+    "required_candidate_diagnostics": [
+      "landscape_lod_or_wireframe_C05",
+      "shader_complexity_C04",
+      "component_boundary_overlay_C05"
+    ],
+    "png_dimensions_exact": [1920, 1080],
+    "profile_runs": {
+      "baseline_count": 1,
+      "candidate_count": 1,
+      "warmup_seconds": 30,
+      "measured_seconds": 60,
+      "hard_timeout_seconds_per_process": 180,
+      "maximum_total_gpu_lane_minutes": 8
+    }
+  },
+  "acceptance": {
+    "structural": {
+      "baseline_hash_unchanged": true,
+      "candidate_is_new_immutable_map": true,
+      "exactly_one_governed_landscape": true,
+      "landscape_component_count": 16,
+      "landscape_transform_exact": true,
+      "candidate_landscape_material_bound": true,
+      "legacy_land_tiles_visible": false,
+      "pcg_generation_invoked": false,
+      "generated_pcg_component_count": 0,
+      "generated_pcg_instance_count": 0
+    },
+    "silhouette": {
+      "human_review_required": true,
+      "all_components_visible_in_C05": true,
+      "no_vertical_edge_cliff_inside_route_view": true,
+      "no_floating_landscape_pixels": true,
+      "no_flat_infinite_slab_read": true
+    },
+    "seams": {
+      "visible_component_cracks": 0,
+      "visible_black_seam_lines": 0,
+      "z_fighting_frames_after_warmup": 0,
+      "district_gap_pixels_in_C03": 0
+    },
+    "shoreline_transition": {
+      "maximum_vertical_discontinuity_cm": 10.0,
+      "dry_gap_pixels_in_C02_and_C03": 0,
+      "water_over_land_pixels_in_C02_and_C03": 0,
+      "hard_material_border_pixels_in_C04": 0,
+      "wet_dry_transition_is_continuous": true
+    },
+    "water_relationship": {
+      "water_below_landscape_and_beach": true,
+      "minimum_water_to_land_vertical_separation_cm": 40.0,
+      "maximum_water_to_land_vertical_separation_cm": 140.0,
+      "shoreline_remains_world_fixed": true,
+      "no_water_surface_tilt_with_camera_or_aircraft": true
+    },
+    "cost": {
+      "mean_frame_time_ms_max": 16.7,
+      "p95_frame_time_ms_max": 22.2,
+      "mean_gpu_time_ms_max": 11.0,
+      "p95_gpu_time_ms_max": 14.0,
+      "candidate_minus_baseline_mean_frame_time_ms_max": 2.0,
+      "candidate_minus_baseline_p95_frame_time_ms_max": 3.0,
+      "candidate_minus_baseline_p95_gpu_time_ms_max": 2.0,
+      "candidate_minus_baseline_draw_calls_max": 32,
+      "candidate_minus_baseline_peak_working_set_mib_max": 512,
+      "frames_over_50_ms_after_warmup": 0,
+      "texture_pool_over_budget_frames": 0,
+      "shader_compiles_during_measured_interval": 0,
+      "critical_log_hits": 0
+    }
+  },
+  "execution_safety": {
+    "requires_root_exclusive_heavy_lane_authorization": true,
+    "single_Unreal_or_UBT_process_tree": true,
+    "preflight_requires_zero_Unreal_UBT_Uba_ShaderCompileWorker_processes": true,
+    "postflight_requires_zero_Unreal_UBT_Uba_ShaderCompileWorker_processes": true,
+    "no_Fab_or_Quixel_import": true,
+    "no_network_download": true,
+    "no_PCG_generate_or_generate_local_call": true,
+    "no_runtime_PCG_regeneration": true,
+    "fail_closed_on_missing_hash_or_capture": true
+  },
+  "promotion": {
+    "this_contract_or_offline_readiness_pass_can_promote": [
+      "ready_for_authorized_gpu_authoring"
+    ],
+    "requires_completed_visible_gpu_gate": [
+      "landscape_material_visible_acceptance",
+      "shoreline_relationship_acceptance",
+      "landscape_cost_acceptance"
+    ],
+    "cannot_promote": [
+      "production_vegetation_complete",
+      "mission01_AAA_complete",
+      "gold_master"
+    ]
+  }
+}

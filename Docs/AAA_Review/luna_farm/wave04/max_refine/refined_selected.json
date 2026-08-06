@@ -1,0 +1,464 @@
+{
+  "freeze": "Base freeze L56 (11/11 usable); retain L52 HF unlit boards in FOV; authored content stays behind wall at x=bx+3.15..3.35 or tiny additive emissive at x=bx+2.35..2.55; no dark PBR as sole FOV material; no large multi-stage hero stacks; protect Prop, PropNose, YakBeauty, City, Ocean, and Wide from black/white collapse.",
+  "model_effort": "MAXIMUM",
+  "refined": [
+    {
+      "id": "MAT-040",
+      "pillar": "materials",
+      "title": "Behind-wall salt-streak roughness",
+      "keep": true,
+      "placement": "behind_wall",
+      "stage_targets": [
+        "Combat",
+        "Harbor"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.22,
+            -0.48,
+            0.68
+          ],
+          "scale_xyz": [
+            0.025,
+            0.035,
+            0.28
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            -4
+          ],
+          "label_suffix": "SaltStreak_A",
+          "mat_key": "m_plate"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.24,
+            0.22,
+            0.8
+          ],
+          "scale_xyz": [
+            0.025,
+            0.045,
+            0.22
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            5
+          ],
+          "label_suffix": "SaltStreak_B",
+          "mat_key": "m_rust"
+        }
+      ],
+      "materials_preference": [
+        "m_plate",
+        "m_rust"
+      ],
+      "capture_risk_notes": "Behind-wall only; the rust accent is micro-scale and cannot become a foreground decal or dark FOV fill.",
+      "acceptance_test": "Exactly two short broken streaks read on the behind-wall support with no foreground spill; Combat and Harbor remain usable and L56 remains 11/11.",
+      "priority": 2
+    },
+    {
+      "id": "AIR-024",
+      "pillar": "aircraft",
+      "title": "Cowling inspection-plate gap",
+      "keep": true,
+      "placement": "behind_wall",
+      "stage_targets": [
+        "YakBeauty"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.28,
+            0.14,
+            1.06
+          ],
+          "scale_xyz": [
+            0.028,
+            0.12,
+            0.08
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "InspectionPlate_Center",
+          "mat_key": "m_bright_metal"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.3,
+            -0.01,
+            1.06
+          ],
+          "scale_xyz": [
+            0.03,
+            0.014,
+            0.1
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "InspectionPlate_LeftGap",
+          "mat_key": "m_plate"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.3,
+            0.29,
+            1.06
+          ],
+          "scale_xyz": [
+            0.03,
+            0.014,
+            0.1
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "InspectionPlate_RightGap",
+          "mat_key": "m_plate"
+        }
+      ],
+      "materials_preference": [
+        "m_bright_metal",
+        "m_plate"
+      ],
+      "capture_risk_notes": "One localized behind-wall plate only; the three cubes must not connect into a continuous fuselage line or create a dark patch.",
+      "acceptance_test": "YakBeauty capture distance shows one small lighter center with two short warm-gray border gaps; the plate does not merge into a black fuselage region and YakBeauty remains usable.",
+      "priority": 6
+    },
+    {
+      "id": "MAT-036",
+      "pillar": "materials",
+      "title": "Behind-wall vertical oxidation variation",
+      "keep": true,
+      "placement": "behind_wall",
+      "stage_targets": [
+        "Combat"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.18,
+            -0.34,
+            0.72
+          ],
+          "scale_xyz": [
+            0.03,
+            0.09,
+            0.42
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            -2
+          ],
+          "label_suffix": "Oxidation_Vertical",
+          "mat_key": "m_rust"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.2,
+            -0.19,
+            0.48
+          ],
+          "scale_xyz": [
+            0.025,
+            0.045,
+            0.14
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            5
+          ],
+          "label_suffix": "Oxidation_Fleck",
+          "mat_key": "m_bright_brick"
+        }
+      ],
+      "materials_preference": [
+        "m_rust",
+        "m_bright_brick"
+      ],
+      "capture_risk_notes": "Both accents remain behind the wall; the lifted brick variation limits m_rust to a small localized mark with no dark PBR-only FOV region.",
+      "acceptance_test": "Behind-wall inspection shows one localized vertical oxidation mark and one small fleck, with no tiled rectangle or foreground overlap; Combat remains usable and L56 remains 11/11.",
+      "priority": 1
+    },
+    {
+      "id": "VFX-021",
+      "pillar": "vfx",
+      "title": "Ocean spray pinpoint droplets",
+      "keep": true,
+      "placement": "additive_emissive",
+      "stage_targets": [
+        "Ocean",
+        "Harbor"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "sphere",
+          "offset_xyz": [
+            2.46,
+            -0.18,
+            0.36
+          ],
+          "scale_xyz": [
+            0.055,
+            0.055,
+            0.055
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "SprayDroplet_01",
+          "mat_key": "unlit_w"
+        },
+        {
+          "mesh": "sphere",
+          "offset_xyz": [
+            2.48,
+            -0.06,
+            0.49
+          ],
+          "scale_xyz": [
+            0.04,
+            0.04,
+            0.04
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "SprayDroplet_02",
+          "mat_key": "unlit_y"
+        },
+        {
+          "mesh": "sphere",
+          "offset_xyz": [
+            2.44,
+            0.1,
+            0.41
+          ],
+          "scale_xyz": [
+            0.05,
+            0.05,
+            0.05
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "SprayDroplet_03",
+          "mat_key": "unlit_w"
+        },
+        {
+          "mesh": "sphere",
+          "offset_xyz": [
+            2.5,
+            0.22,
+            0.58
+          ],
+          "scale_xyz": [
+            0.035,
+            0.035,
+            0.035
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "SprayDroplet_04",
+          "mat_key": "unlit_y"
+        }
+      ],
+      "materials_preference": [
+        "unlit_w",
+        "unlit_y"
+      ],
+      "capture_risk_notes": "Additive unlit only; use these four seed points with NS_OceanSpray capped at five total droplets per burst, confined to the narrow arc with no opaque fan or foam volume.",
+      "acceptance_test": "Ocean and Harbor show no more than five tiny readable droplets per burst; there is no white spray wall, sky washout, waterline loss, or camera usability loss.",
+      "priority": 3
+    },
+    {
+      "id": "VFX-003",
+      "pillar": "vfx",
+      "title": "Muzzle flash twin filament streaks",
+      "keep": true,
+      "placement": "additive_emissive",
+      "stage_targets": [
+        "Cockpit",
+        "ADS"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            2.45,
+            -0.1,
+            0.03
+          ],
+          "scale_xyz": [
+            0.025,
+            0.22,
+            0.022
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            -8,
+            0
+          ],
+          "label_suffix": "MuzzleFilament_Left",
+          "mat_key": "m_muzzle"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            2.47,
+            0.1,
+            -0.02
+          ],
+          "scale_xyz": [
+            0.025,
+            0.17,
+            0.02
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            8,
+            0
+          ],
+          "label_suffix": "MuzzleFilament_Right",
+          "mat_key": "m_muzzle"
+        }
+      ],
+      "materials_preference": [
+        "m_muzzle",
+        "unlit_w"
+      ],
+      "capture_risk_notes": "Exactly two restrained additive filaments at the muzzle; cap lifetime below 0.06 seconds and keep brightness below flash-washout threshold so the reticle and protected props remain clear.",
+      "acceptance_test": "Cockpit and ADS show exactly two short asymmetric filaments for less than 0.06 seconds; the reticle remains clear with no sun/sky washout or protected-camera collapse.",
+      "priority": 1
+    },
+    {
+      "id": "CO-022",
+      "pillar": "city_ocean",
+      "title": "Submarine Hull Panel Highlight",
+      "keep": true,
+      "placement": "behind_wall",
+      "stage_targets": [
+        "Ocean",
+        "Harbor"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.26,
+            -0.42,
+            0.58
+          ],
+          "scale_xyz": [
+            0.035,
+            0.28,
+            0.12
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "SubmarinePanel_Highlight",
+          "mat_key": "m_bright_metal"
+        }
+      ],
+      "materials_preference": [
+        "m_bright_metal",
+        "m_panel"
+      ],
+      "capture_risk_notes": "Single shallow behind-wall panel only; use a midtone blue-gray response and keep the accent off the water surface, silhouette edge, and protected hero stacks.",
+      "acceptance_test": "Ocean and Harbor retain the same submarine silhouette and waterline while the single small blue-gray panel reads as a midtone highlight behind the wall; both stages remain usable.",
+      "priority": 4
+    },
+    {
+      "id": "CO-023",
+      "pillar": "city_ocean",
+      "title": "Coast Block Utility Boxes",
+      "keep": true,
+      "placement": "behind_wall",
+      "stage_targets": [
+        "City",
+        "Wide"
+      ],
+      "spawn_recipe": [
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.22,
+            -0.36,
+            0.66
+          ],
+          "scale_xyz": [
+            0.055,
+            0.13,
+            0.16
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            0
+          ],
+          "label_suffix": "UtilityBox_Cream",
+          "mat_key": "m_bright_white"
+        },
+        {
+          "mesh": "cube",
+          "offset_xyz": [
+            3.24,
+            0.0,
+            0.88
+          ],
+          "scale_xyz": [
+            0.05,
+            0.1,
+            0.12
+          ],
+          "rot_pitch_yaw_roll": [
+            0,
+            0,
+            2
+          ],
+          "label_suffix": "UtilityBox_Orange",
+          "mat_key": "m_bright_brick"
+        }
+      ],
+      "materials_preference": [
+        "m_bright_white",
+        "m_bright_brick"
+      ],
+      "capture_risk_notes": "Two compact bright behind-wall boxes only; no text, facade-wide treatment, large occluder, or white block that could trigger City/Wide collapse.",
+      "acceptance_test": "City and Wide show two distinct small service boxes, cream and muted orange, without a large occluder or white facade wash; both stages remain usable.",
+      "priority": 5
+    }
+  ]
+}

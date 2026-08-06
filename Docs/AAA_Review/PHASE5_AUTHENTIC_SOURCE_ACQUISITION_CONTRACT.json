@@ -1,0 +1,434 @@
+{
+  "schema": "skyguard.phase5.authentic-source-acquisition-contract.v1",
+  "contract_id": "phase5-authentic-source-acquisition-20260802-v1",
+  "purpose": "Govern acquisition readiness for the exact 25 null WaveAsset inputs in the accepted Phase 5 MetaSound topology. This contract inventories allowed source routes, required rights/provenance evidence, semantic acceptance, and current missing-source truth. It does not authorize purchase, license acceptance, download, import, topology mutation, production-readiness, shipping, or packaged audible acceptance.",
+  "immutability_policy": {
+    "change_method": "Create a new versioned contract file and a new immutable verification attempt; never silently rewrite accepted requirements or evidence.",
+    "contract_hash_algorithm": "SHA-256",
+    "external_evidence_must_be_content_hashed": true,
+    "source_media_must_remain_outside_unreal_content_until_governed_import": true
+  },
+  "accepted_topology_boundary": {
+    "attempt_id": "attempt_20260802T151943423Z_7fd745f0",
+    "attempt_status": "PASS_TOPOLOGY_ONLY_SOURCES_MISSING",
+    "status_path": "Saved/Reports/Phase5MetaSoundTopology/attempt_20260802T151943423Z_7fd745f0/status.json",
+    "status_sha256": "6b5ef6e8a31b2f2c8415122df14d946715d9d0ef6f30f017f9fd4698c9887b14",
+    "fresh_audit_path": "Saved/Reports/Phase5MetaSoundTopology/attempt_20260802T151943423Z_7fd745f0/fresh_topology_audit.json",
+    "fresh_audit_sha256": "ec1463d7d8080e3aeb916d31301d41b810cdff9df8bb75be1f517413b787bf1e",
+    "topology_contract_path": "Docs/AAA_Review/PHASE5_METASOUND_TOPOLOGY_CONTRACT.json",
+    "topology_contract_sha256": "2bf4a869f383247e0e0bf742c67c6d8259b49be05ae6635aa862637463b74c74",
+    "topology_contract_bundle_sha256": "296f1ce6cfff00b949d8ae8e83461eedf73f56321dc34c0d27a9fbb4cc9afcfd",
+    "graph_count": 6,
+    "required_source_slot_count": 25,
+    "authentic_source_count": 0,
+    "metasound_soundwave_binding_count": 0,
+    "wave_asset_defaults_must_remain_null": true
+  },
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/PHASE5_AUDIO_CATEGORY_ACQUISITION_BRIEFS.json",
+      "sha256": "c03ea24d0bde32e2c2bba5ffd86f9f057cfe96c54ac0a21aad579f0ff6b4cd1e",
+      "role": "Per-slot identity, technical, routing, and acceptance requirements"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE5_AUTHENTIC_AUDIO_ACQUISITION_SCHEMA.json",
+      "sha256": "30aa826da485c6bc05b3de4e7f3c48d0d695ccf2116f499653789d7e9c7ee2dd",
+      "role": "Governed acquisition evidence envelope"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE5_AUTHENTIC_AUDIO_ACQUISITION_MANIFEST.json",
+      "sha256": "0495b46dac46f935b1243cee2127c7bab3969efb526e827f2ce2fe052b53e2d4",
+      "role": "Current empty and blocked acquisition state"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE5_AUDIO_SOURCE_ACQUISITION_LEDGER.json",
+      "sha256": "de64168007ef20cb58af8df26287ae4583ad4b39fed0736841483a39daa83a43",
+      "role": "Research-only candidate inventory; no media acquired"
+    }
+  ],
+  "allowed_source_routes": {
+    "PROJECT_OWNED_RECORDING": {
+      "allowed_for_slots": [
+        "EngineIdle",
+        "EngineCruise",
+        "EnginePower",
+        "Propeller",
+        "OpenCockpitWind"
+      ],
+      "required_rights_evidence": [
+        "Signed recordist work-for-hire or rights assignment",
+        "Aircraft owner or operator authorization",
+        "Location and property releases where applicable",
+        "Identifiable performer releases where applicable",
+        "Commercial interactive-game modification, embedding, distribution, marketing, and archival rights",
+        "Written confirmation that raw-source redistribution is not required"
+      ],
+      "required_capture_evidence": [
+        "Original lossless filename, byte size, SHA-256, acquisition UTC, sample rate, bit depth, channels, and duration",
+        "Recorder, microphone, placement, perspective, subject, operating state, and environmental metadata",
+        "For Yak-52 identity sources: aircraft identity, RPM or power state, load, canopy state, and listener position",
+        "Safety and authorization log without operational or personally sensitive data in the public build"
+      ]
+    },
+    "LICENSED_LIBRARY": {
+      "allowed_for_slots": [
+        "RifleMuzzle",
+        "RifleMechanical",
+        "RifleCasing",
+        "RifleReflection",
+        "IglaSearch",
+        "IglaLock",
+        "IglaLaunch",
+        "IglaFlyby",
+        "IglaImpact",
+        "DroneLightMotor",
+        "DroneHeavyMotor",
+        "DroneFlyby",
+        "ExplosionSmallCrack",
+        "ExplosionSmallBody",
+        "ExplosionSmallDebris",
+        "ExplosionSmallTail",
+        "ExplosionHeavyCrack",
+        "ExplosionHeavyBody",
+        "ExplosionHeavyDebris",
+        "ExplosionHeavyTail"
+      ],
+      "required_rights_evidence": [
+        "Direct publisher or source page",
+        "Immutable license text or purchase/grant receipt",
+        "License identity, version or date, licensed person or entity, seat scope, territory, and term",
+        "Commercial interactive-game use",
+        "Modification and derivative creation",
+        "Embedding and end-user distribution in cooked builds",
+        "Marketing or promotional synchronization where required",
+        "No unresolved attribution, share-alike, noncommercial, raw-redistribution, trademark, privacy, publicity, performer, or underlying-recording conflict"
+      ],
+      "required_source_evidence": [
+        "Publisher, creator, product or source identifier, title, original filename, source URL, acquisition UTC, byte size, and SHA-256",
+        "Original lossless technical metadata and independently reviewed semantic fit",
+        "Evidence must apply to the exact downloaded file, not merely a similarly titled web page"
+      ]
+    }
+  },
+  "state_model": {
+    "allowed_states": [
+      "MISSING_SOURCE",
+      "CANDIDATE_RESEARCH_ONLY",
+      "ACQUIRED_QUARANTINED",
+      "RIGHTS_AND_SEMANTIC_REVIEW_PENDING",
+      "APPROVED_FOR_GOVERNED_IMPORT"
+    ],
+    "current_required_state": "MISSING_SOURCE",
+    "promotion_rules": {
+      "CANDIDATE_RESEARCH_ONLY": "A URL or descriptive lead exists but no file is trusted, acquired, hashed, or approved.",
+      "ACQUIRED_QUARANTINED": "A lossless file is held outside Unreal Content with exact source, rights, and hash evidence; no import is authorized.",
+      "RIGHTS_AND_SEMANTIC_REVIEW_PENDING": "Rights evidence and technical inspection exist, but independent legal, semantic, and audio-quality acceptance is incomplete.",
+      "APPROVED_FOR_GOVERNED_IMPORT": "All exact-file rights, source, semantic, derivative, metering, packaging-risk, and reviewer evidence passes the acquisition manifest verifier. This state authorizes only a separately governed import attempt."
+    }
+  },
+  "universal_promotion_requirements": [
+    "The slot identity and listener-perspective requirements in the category brief are met by the exact source or documented derivative.",
+    "The original source and each derivative have unique SHA-256 values, immutable filenames, and a complete edit chain.",
+    "Production derivative is lossless PCM WAV at 48000 Hz and 24 bit, mono or stereo as specified, with no clipped samples and true peak no higher than -3 dBTP before in-engine mix.",
+    "Raw source archives are excluded from Unreal Content, cooked builds, source-control packaging, and standalone redistribution.",
+    "Rights reviewer, semantic reviewer, and audio QA reviewer are identified with UTC acceptance records.",
+    "No candidate page, search result, uploader assertion, CC0 badge, or audible audition alone constitutes exact-file production approval.",
+    "No source may replace an explicitly required Yak-52, piston-UAV, final-rifle, shoulder-launched-missile, or environmental identity with a generic or mismatched recording.",
+    "No slot is shipping-ready until a separate fresh Unreal import audit and packaged audible acceptance pass."
+  ],
+  "research_candidate_inventory": {
+    "ledger_state": "RESEARCH_COMPLETE_DOWNLOADS_BLOCKED_PENDING_HUMAN_AUDIO_AND_PROVENANCE_REVIEW",
+    "downloaded_asset_count": 0,
+    "hashed_asset_count": 0,
+    "candidate_count": 14,
+    "dispositions": {
+      "RESEARCH_ONLY_UNAUDITIONED": [
+        "FS_CRAIGSMITH_437835",
+        "FS_CRAIGSMITH_437726",
+        "FS_PRSHS70_445137",
+        "FS_FELIXBLUME_710084",
+        "FS_ZOTT820_370345",
+        "FS_AUGUSTSANDBERG_508747",
+        "FS_SAMSTERBIRDIES_592000",
+        "FS_DEGANOTH_165911",
+        "FS_NOX_SOUND_560510"
+      ],
+      "REJECTED_IDENTITY_OR_ENVIRONMENT_MISMATCH": [
+        "FS_COLUMBIA23_395684",
+        "FS_FLORIANREICHELT_563015",
+        "FS_FELIXBLUME_613855",
+        "FS_QUBODUP_188243"
+      ],
+      "BLOCKED_UNDERLYING_RIGHTS_OR_PERFORMER_PROVENANCE": [
+        "FS_QUBODUP_182817"
+      ]
+    },
+    "inventory_note": "The radio candidate is outside the 25 accepted MetaSound source slots and remains blocked; it is inventoried only to prevent accidental use."
+  },
+  "slots": [
+    {
+      "category": "EngineIdle",
+      "graph": "MS_Yak52IdentityBed",
+      "wave_input": "Source_EngineIdle",
+      "allowed_route": "PROJECT_OWNED_RECORDING",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_CRAIGSMITH_437835"],
+      "candidate_disposition": "REFERENCE_ONLY_GENERIC_C47_NOT_YAK52",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineIdle"
+    },
+    {
+      "category": "EngineCruise",
+      "graph": "MS_Yak52IdentityBed",
+      "wave_input": "Source_EngineCruise",
+      "allowed_route": "PROJECT_OWNED_RECORDING",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_CRAIGSMITH_437835"],
+      "candidate_disposition": "REFERENCE_ONLY_GENERIC_C47_NOT_YAK52",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineCruise"
+    },
+    {
+      "category": "EnginePower",
+      "graph": "MS_Yak52IdentityBed",
+      "wave_input": "Source_EnginePower",
+      "allowed_route": "PROJECT_OWNED_RECORDING",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_CRAIGSMITH_437726"],
+      "candidate_disposition": "REFERENCE_ONLY_GENERIC_BIPLANE_NOT_YAK52",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EnginePower"
+    },
+    {
+      "category": "Propeller",
+      "graph": "MS_Yak52IdentityBed",
+      "wave_input": "Source_Propeller",
+      "allowed_route": "PROJECT_OWNED_RECORDING",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_CRAIGSMITH_437726", "FS_PRSHS70_445137"],
+      "candidate_disposition": "REFERENCE_ONLY_AIRCRAFT_IDENTITY_AND_LOOPABILITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Propeller/SW_Propeller"
+    },
+    {
+      "category": "OpenCockpitWind",
+      "graph": "MS_Yak52IdentityBed",
+      "wave_input": "Source_OpenCockpitWind",
+      "allowed_route": "PROJECT_OWNED_RECORDING",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_COLUMBIA23_395684"],
+      "candidate_disposition": "REJECTED_SYNTHETIC_WHITE_NOISE_NOT_OPEN_YAK52_REAR_COCKPIT",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Wind/SW_OpenCockpitWind"
+    },
+    {
+      "category": "RifleMuzzle",
+      "graph": "MS_RifleShot",
+      "wave_input": "Source_RifleMuzzle",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_FELIXBLUME_710084"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AND_FINAL_RIFLE_MATCH_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleMuzzle"
+    },
+    {
+      "category": "RifleMechanical",
+      "graph": "MS_RifleShot",
+      "wave_input": "Source_RifleMechanical",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_ZOTT820_370345", "FS_AUGUSTSANDBERG_508747"],
+      "candidate_disposition": "LICENSE_PAGES_RESEARCHED_FINAL_RIFLE_ACTION_MATCH_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleMechanical"
+    },
+    {
+      "category": "RifleCasing",
+      "graph": "MS_RifleShot",
+      "wave_input": "Source_RifleCasing",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": [],
+      "candidate_disposition": "NO_CANDIDATE",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleCasing"
+    },
+    {
+      "category": "RifleReflection",
+      "graph": "MS_RifleShot",
+      "wave_input": "Source_RifleReflection",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_FLORIANREICHELT_563015"],
+      "candidate_disposition": "REJECTED_WOODLAND_REFLECTION_NOT_AIRBORNE_COASTAL_OR_CITY",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleReflection"
+    },
+    {
+      "category": "IglaSearch",
+      "graph": "MS_IglaWeapon",
+      "wave_input": "Source_IglaSearch",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": [],
+      "candidate_disposition": "NO_SYSTEM_APPROPRIATE_CANDIDATE",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaSearch"
+    },
+    {
+      "category": "IglaLock",
+      "graph": "MS_IglaWeapon",
+      "wave_input": "Source_IglaLock",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": [],
+      "candidate_disposition": "NO_SYSTEM_APPROPRIATE_CANDIDATE",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaLock"
+    },
+    {
+      "category": "IglaLaunch",
+      "graph": "MS_IglaWeapon",
+      "wave_input": "Source_IglaLaunch",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_FELIXBLUME_613855"],
+      "candidate_disposition": "REJECTED_ORBITAL_ROCKET_SCALE_MISMATCH",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaLaunch"
+    },
+    {
+      "category": "IglaFlyby",
+      "graph": "MS_IglaWeapon",
+      "wave_input": "Source_IglaFlyby",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": [],
+      "candidate_disposition": "NO_SYSTEM_APPROPRIATE_CANDIDATE",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaFlyby"
+    },
+    {
+      "category": "IglaImpact",
+      "graph": "MS_IglaWeapon",
+      "wave_input": "Source_IglaImpact",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": [],
+      "candidate_disposition": "NO_SYSTEM_APPROPRIATE_CANDIDATE",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaImpact"
+    },
+    {
+      "category": "DroneLightMotor",
+      "graph": "MS_DronePropulsion",
+      "wave_input": "Source_DroneLightMotor",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_QUBODUP_188243"],
+      "candidate_disposition": "REJECTED_ELECTRIC_TOY_MULTIROTOR_NOT_PISTON_UAV",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneLightMotor"
+    },
+    {
+      "category": "DroneHeavyMotor",
+      "graph": "MS_DronePropulsion",
+      "wave_input": "Source_DroneHeavyMotor",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_QUBODUP_188243"],
+      "candidate_disposition": "REJECTED_ELECTRIC_TOY_MULTIROTOR_NOT_PISTON_UAV",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneHeavyMotor"
+    },
+    {
+      "category": "DroneFlyby",
+      "graph": "MS_DronePropulsion",
+      "wave_input": "Source_DroneFlyby",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_QUBODUP_188243"],
+      "candidate_disposition": "REJECTED_ELECTRIC_TOY_MULTIROTOR_NOT_PISTON_UAV",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneFlyby"
+    },
+    {
+      "category": "ExplosionSmallCrack",
+      "graph": "MS_ExplosionSmall",
+      "wave_input": "Source_ExplosionSmallCrack",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_DEGANOTH_165911"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallCrack"
+    },
+    {
+      "category": "ExplosionSmallBody",
+      "graph": "MS_ExplosionSmall",
+      "wave_input": "Source_ExplosionSmallBody",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_DEGANOTH_165911"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallBody"
+    },
+    {
+      "category": "ExplosionSmallDebris",
+      "graph": "MS_ExplosionSmall",
+      "wave_input": "Source_ExplosionSmallDebris",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_NOX_SOUND_560510"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallDebris"
+    },
+    {
+      "category": "ExplosionSmallTail",
+      "graph": "MS_ExplosionSmall",
+      "wave_input": "Source_ExplosionSmallTail",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_DEGANOTH_165911"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallTail"
+    },
+    {
+      "category": "ExplosionHeavyCrack",
+      "graph": "MS_ExplosionHeavy",
+      "wave_input": "Source_ExplosionHeavyCrack",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_SAMSTERBIRDIES_592000"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyCrack"
+    },
+    {
+      "category": "ExplosionHeavyBody",
+      "graph": "MS_ExplosionHeavy",
+      "wave_input": "Source_ExplosionHeavyBody",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_SAMSTERBIRDIES_592000"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyBody"
+    },
+    {
+      "category": "ExplosionHeavyDebris",
+      "graph": "MS_ExplosionHeavy",
+      "wave_input": "Source_ExplosionHeavyDebris",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_NOX_SOUND_560510"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyDebris"
+    },
+    {
+      "category": "ExplosionHeavyTail",
+      "graph": "MS_ExplosionHeavy",
+      "wave_input": "Source_ExplosionHeavyTail",
+      "allowed_route": "LICENSED_LIBRARY",
+      "current_state": "MISSING_SOURCE",
+      "candidate_ids": ["FS_SAMSTERBIRDIES_592000"],
+      "candidate_disposition": "LICENSE_PAGE_RESEARCHED_EXACT_FILE_AUDIO_QUALITY_UNVERIFIED",
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyTail"
+    }
+  ],
+  "current_truth": {
+    "slot_count": 25,
+    "missing_source_count": 25,
+    "slots_with_candidate_reference_count": 20,
+    "slots_without_candidate_reference_count": 5,
+    "approved_source_count": 0,
+    "downloaded_source_count": 0,
+    "hashed_source_count": 0,
+    "unreal_imported_source_count": 0,
+    "production_ready": false,
+    "shipping_allowed": false,
+    "packaged_audible_acceptance": false,
+    "status": "CONTRACT_VALID_AUTHENTIC_SOURCES_MISSING"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery07-design-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY07",
+  "disposition": "OFFLINE_HIGHRES_NATIVE_DESIGN_REQUIRES_SEPARATE_FULL_MODULE_COMPILE_AND_POST_BUILD_REBIND",
+  "contract_id": "M01-HERO-GROUPED-TOPOLOGY-ATTEMPT03-RECOVERY07",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "recovery06_failure_evidence": {
+    "execution_contract": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY06_NATIVE_EXECUTION_CONTRACT.json",
+      "bytes": 8207,
+      "sha256": "ba00928cd7d2a5bc529288fc8fb0b3020dd37df7ff46ccea9fef1879272d8e6c"
+    },
+    "preflight_snapshot": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native/preflight_snapshot.json",
+      "bytes": 17215,
+      "sha256": "3b358c1d198640ef6c66b974af9d48742479344ecbd0bdc544a8acd43b89427c"
+    },
+    "supervisor_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native/supervisor_receipt.json",
+      "bytes": 1201,
+      "sha256": "6b10d72bb986cd48edd8aa69f1d1f784216433aeef2757983de62d5c59e8b07d"
+    },
+    "unreal_engine_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native/unreal.engine.log",
+      "bytes": 199634,
+      "sha256": "9d53f2c19ac13e03882ac5ec6e6137ed654ca327b3ac8c3749047f7c2bc9dd5f"
+    },
+    "unreal_stdout": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native/unreal.stdout.log",
+      "bytes": 199573,
+      "sha256": "b2ff99d18702fe4e74c0a68e2c8df62a99307c7054f924ed7eee162f03b8508d"
+    },
+    "unreal_stderr": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native/unreal.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "root_cause": {
+    "requested_command_line_resolution": [2048, 2048],
+    "observed_live_viewport_resolution": [888, 500],
+    "render_offscreen_enabled": true,
+    "rhi": "D3D12",
+    "feature_level": "SM6",
+    "map_loaded_correctly": true,
+    "screenshots_written": 0,
+    "native_receipt_written": false,
+    "failure": "Recovery06 hard-required a 2048x2048 live viewport and therefore waited indefinitely when UE created an 888x500 offscreen viewport.",
+    "recovery06_disposition": "IMMUTABLE_FAIL_CLOSED_PRESERVED"
+  },
+  "ue58_api_evidence": {
+    "highres_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Public/HighResScreenshot.h",
+      "bytes": 2782,
+      "sha256": "4b8ea84199d4dfe460e1a2aed304c219a2daa26d9aa55bdde070c7a6a1fdd3fa"
+    },
+    "highres_source": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/HighResScreenshot.cpp",
+      "bytes": 8700,
+      "sha256": "24e43df08e2f0f3fd3dc55d3c6a7d9e494e8b41788848040e95adaf97ea52dca"
+    },
+    "unreal_client_source": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/UnrealClient.cpp",
+      "bytes": 94930,
+      "sha256": "f5ca882721c6be8cee8671b80b07a9b1db3fb46d5705021e9d6b1b5353666bcb"
+    },
+    "game_viewport_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Engine/GameViewportClient.h",
+      "bytes": 46654,
+      "sha256": "27d3171e7f28a8791cb9f1639557405fc59b7a4b8f977fb73aaec1eeb21198ba"
+    },
+    "game_viewport_source": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/GameViewportClient.cpp",
+      "bytes": 162050,
+      "sha256": "ca334450efebbaacb459b1eafe9342a02a83b94c532619dd187d426101cc0996"
+    },
+    "game_engine_source": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/GameEngine.cpp",
+      "bytes": 75450,
+      "sha256": "5725223d99aa838a0cae7c916527f8a759ac7d23204a7b4303642dedee16ebaa"
+    }
+  },
+  "selected_resolution_strategy": {
+    "primary": "FHighResScreenshotConfig::SetResolution(2048,2048,1.0f) followed by FSceneViewport::TakeHighResScreenShot",
+    "render_target": "UE-created high-resolution dummy viewport",
+    "callback": "FScreenshotRequest::OnScreenshotCaptured",
+    "acceptance_dimension": [2048, 2048],
+    "live_viewport_exact_resolution_required": false,
+    "live_viewport_nonzero_extent_required": true,
+    "force_res_command_line_defense_in_depth": true,
+    "runtime_r_setres_dependency": false,
+    "runtime_resize_frame_dependency": false,
+    "reason": "Installed UE 5.8 creates the high-resolution dummy viewport at GScreenshotResolutionX/Y and broadcasts the resulting bitmap dimensions through the existing screenshot delegate."
+  },
+  "native_sources": {
+    "header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.h",
+      "bytes": 3163,
+      "sha256": "f23d3492e2f7a9a20947a58b5ec51580307a82c2bcd344fcf2b508a171c596e5"
+    },
+    "implementation": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+      "bytes": 26610,
+      "sha256": "d8864cc19dc2d99e9d6eb37ddfe9dc48e6285860558b6da74c8edb1b45f221a9"
+    }
+  },
+  "bounded_diagnostics": {
+    "world_readiness_timeout_seconds": 45.0,
+    "screenshot_callback_timeout_seconds": 30.0,
+    "absolute_session_timeout_seconds": 300.0,
+    "diagnostic_interval_seconds": 2.0,
+    "state_log_marker": "[RECOVERY07][STATE]",
+    "capture_request_marker": "[RECOVERY07][CAPTURE_REQUEST]",
+    "capture_callback_marker": "[RECOVERY07][CAPTURE_CALLBACK]",
+    "failure_marker": "[RECOVERY07][FAIL]",
+    "failure_receipt_created_even_before_scene_configuration": true,
+    "self_exit_code_on_failure": 3
+  },
+  "future_execution_wrapper": {
+    "path": "Scripts/run_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07.ps1",
+    "bytes": 11073,
+    "sha256": "993500b976d552056cc02f8a8238a17a1ac15755fac5b66db8305d9c78d32aa7"
+  },
+  "offline_validation": {
+    "readiness_auditor": {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07_design.py",
+      "bytes": 8969,
+      "sha256": "f3ac8817e5e0f4b602065601ed2cf95798c74ed2df5a243732c8862811c4738b"
+    },
+    "tests": {
+      "path": "Scripts/tests/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery07_design.py",
+      "bytes": 3684,
+      "sha256": "49c09ba144e81ed468fdb10dc8fccfa562c1c5ac5550003e079e3edd90bc7849"
+    }
+  },
+  "future_build": {
+    "full_module_compile_required": true,
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "unreal_launch_allowed_during_build": false,
+    "post_build_required_artifact": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "post_build_dll_hash_must_be_bound": true,
+    "post_build_source_inventory_must_be_bound": true,
+    "post_build_execution_contract_required": true,
+    "post_build_execution_contract_path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY07_EXECUTION_CONTRACT.json"
+  },
+  "future_output": {
+    "attempt_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres",
+    "capture_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/capture",
+    "must_be_absent_before_execution": true,
+    "overwrite_or_retry_in_same_namespace": false
+  },
+  "immutability": {
+    "recovery01_through_recovery06_evidence_must_remain_unchanged": true,
+    "review_map_package_must_remain_unchanged": true,
+    "content_package_writes": 0,
+    "runtime_map_writes": 0,
+    "config_writes": 0,
+    "reassembly_allowed": false
+  },
+  "native_build_authorized": false,
+  "native_build_executed": false,
+  "unreal_launch_authorized": false,
+  "unreal_launched": false,
+  "content_packages_created_or_modified": 0,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

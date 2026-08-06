@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skyguard52.local/schemas/m01-third-party-final-use-receipt-v1.json",
+  "title": "Skyguard 52 Mission 1 Third-Party Final-Use Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "receipt_id",
+    "status",
+    "project_root",
+    "candidate",
+    "policy",
+    "assets",
+    "final_assertions",
+    "final_disposition"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.m01.third-party-final-use-receipt.v1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+        "EVIDENCE_COMPLETE_READY_FOR_RELEASE_AUDIT"
+      ]
+    },
+    "project_root": {
+      "const": "D:\\Skyguard52"
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "package_or_build_artifact"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "package_or_build_artifact": {
+          "$ref": "#/$defs/artifact"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_presence_is_license_evidence",
+        "catalog_metadata_is_acquisition_evidence",
+        "quarantine_acceptance_is_runtime_acceptance",
+        "runtime_promotion_requires_exact_project_file_hashes",
+        "runtime_promotion_requires_visual_acceptance",
+        "runtime_promotion_requires_performance_acceptance",
+        "runtime_promotion_allowed"
+      ],
+      "properties": {
+        "content_presence_is_license_evidence": {
+          "const": false
+        },
+        "catalog_metadata_is_acquisition_evidence": {
+          "const": false
+        },
+        "quarantine_acceptance_is_runtime_acceptance": {
+          "const": false
+        },
+        "runtime_promotion_requires_exact_project_file_hashes": {
+          "const": true
+        },
+        "runtime_promotion_requires_visual_acceptance": {
+          "const": true
+        },
+        "runtime_promotion_requires_performance_acceptance": {
+          "const": true
+        },
+        "runtime_promotion_allowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    },
+    "final_assertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "every_third_party_runtime_asset_listed",
+        "every_source_and_license_receipt_hash_bound",
+        "every_project_file_hash_bound",
+        "every_dependency_resolved",
+        "every_mission_use_declared",
+        "every_visual_acceptance_hash_bound",
+        "every_performance_acceptance_hash_bound",
+        "shipping_notice_obligations_resolved",
+        "no_quarantine_package_referenced",
+        "no_engine_content_reference_used_as_project_copy"
+      ],
+      "properties": {
+        "every_third_party_runtime_asset_listed": {
+          "type": "boolean"
+        },
+        "every_source_and_license_receipt_hash_bound": {
+          "type": "boolean"
+        },
+        "every_project_file_hash_bound": {
+          "type": "boolean"
+        },
+        "every_dependency_resolved": {
+          "type": "boolean"
+        },
+        "every_mission_use_declared": {
+          "type": "boolean"
+        },
+        "every_visual_acceptance_hash_bound": {
+          "type": "boolean"
+        },
+        "every_performance_acceptance_hash_bound": {
+          "type": "boolean"
+        },
+        "shipping_notice_obligations_resolved": {
+          "type": "boolean"
+        },
+        "no_quarantine_package_referenced": {
+          "type": "boolean"
+        },
+        "no_engine_content_reference_used_as_project_copy": {
+          "type": "boolean"
+        }
+      }
+    },
+    "final_disposition": {
+      "enum": [
+        "HOLD_NO_RUNTIME_PROMOTION",
+        "FINAL_USE_RECEIPT_COMPLETE_NOT_RELEASE_ACCEPTANCE"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string"
+        }
+      }
+    },
+    "finalArtifact": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifact"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        }
+      ]
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_record_id",
+        "provider",
+        "source_identity",
+        "license",
+        "source_inventory",
+        "project_assets",
+        "mission_uses",
+        "modifications",
+        "dependencies",
+        "acceptance",
+        "release",
+        "final_disposition"
+      ],
+      "properties": {
+        "asset_record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "enum": [
+            "FAB",
+            "QUIXEL_BRIDGE",
+            "POLY_HAVEN",
+            "OTHER_LICENSED"
+          ]
+        },
+        "source_identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "product_or_asset_id",
+            "asset_name",
+            "creator_or_publisher",
+            "source_url",
+            "version"
+          ],
+          "properties": {
+            "product_or_asset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "asset_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "creator_or_publisher": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_url": {
+              "type": "string",
+              "pattern": "^https://"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "license_name",
+            "license_tier",
+            "acquired_at",
+            "cooked_windows_redistribution_covered",
+            "license_snapshot",
+            "acquisition_record"
+          ],
+          "properties": {
+            "license_name": {
+              "type": "string"
+            },
+            "license_tier": {
+              "type": "string"
+            },
+            "acquired_at": {
+              "type": "string"
+            },
+            "cooked_windows_redistribution_covered": {
+              "type": "boolean"
+            },
+            "license_snapshot": {
+              "$ref": "#/$defs/artifact"
+            },
+            "acquisition_record": {
+              "$ref": "#/$defs/artifact"
+            }
+          }
+        },
+        "source_inventory": {
+          "$ref": "#/$defs/artifact"
+        },
+        "project_assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "game_package_path",
+              "asset_class",
+              "project_file"
+            ],
+            "properties": {
+              "game_package_path": {
+                "type": "string",
+                "pattern": "^/Game/Skyguard/"
+              },
+              "asset_class": {
+                "type": "string",
+                "minLength": 1
+              },
+              "project_file": {
+                "$ref": "#/$defs/artifact"
+              }
+            }
+          }
+        },
+        "mission_uses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mission_id",
+              "map_path",
+              "purpose",
+              "visibility_zone"
+            ],
+            "properties": {
+              "mission_id": {
+                "type": "string"
+              },
+              "map_path": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "visibility_zone": {
+                "enum": [
+                  "HERO",
+                  "NEAR",
+                  "MID",
+                  "FAR"
+                ]
+              }
+            }
+          }
+        },
+        "modifications": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "items",
+            "evidence"
+          ],
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "evidence": {
+              "$ref": "#/$defs/artifact"
+            }
+          }
+        },
+        "acceptance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intake_record",
+            "technical_evaluation",
+            "visual_acceptance",
+            "performance_acceptance"
+          ],
+          "properties": {
+            "intake_record": {
+              "$ref": "#/$defs/artifact"
+            },
+            "technical_evaluation": {
+              "$ref": "#/$defs/artifact"
+            },
+            "visual_acceptance": {
+              "$ref": "#/$defs/artifact"
+            },
+            "performance_acceptance": {
+              "$ref": "#/$defs/artifact"
+            }
+          }
+        },
+        "release": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "shipping_notice_required",
+            "shipping_notice",
+            "ship_original_source_files",
+            "redistribution_constraints"
+          ],
+          "properties": {
+            "shipping_notice_required": {
+              "type": "boolean"
+            },
+            "shipping_notice": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/$defs/artifact"
+                }
+              ]
+            },
+            "ship_original_source_files": {
+              "const": false
+            },
+            "redistribution_constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "final_disposition": {
+          "enum": [
+            "HOLD_NOT_ACCEPTED",
+            "ACCEPTED_FOR_M01_FINAL_CANDIDATE"
+          ]
+        }
+      }
+    }
+  }
+}

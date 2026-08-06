@@ -1,0 +1,62 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery01-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-01",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "terminal": true,
+  "authorized_invocation_count": 1,
+  "automatic_retry_count": 0,
+  "unreal_process_launched": false,
+  "original_offline_freeze": {
+    "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_FREEZE.json",
+    "bytes": 3409,
+    "sha256": "c455f3aa447c725f53be5333b14e76b41bd97fa63bf3d4a158ea3074f1361760"
+  },
+  "terminal_files": [
+    {
+      "file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_SUPERVISOR_STDERR.txt",
+      "bytes": 555,
+      "sha256": "60f552c8344dc439a8d6e679cb36cc633b0e6a1416bea54b2f3b5c4cbea54a68"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_TERMINAL_MANIFEST.json",
+      "bytes": 2944,
+      "sha256": "f436862ab91f0a9f29bfe5ce22c787e7aa1491e3f4dd661c852dcfe5720bc56c"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_TERMINAL_EVIDENCE.json",
+      "bytes": 2553,
+      "sha256": "fedec639849134aa24ff445d654b16eb090d6b9dec62a665941737aebfc5d004"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_VISUAL_REVIEW_2026-08-02.md",
+      "bytes": 928,
+      "sha256": "9de59dce069a4059724df0866a082959caf8a9e8e885cadeccfd5c5cdb630dc0"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY01_TERMINAL_2026-08-02.md",
+      "bytes": 1725,
+      "sha256": "004cf32e17968f747643972cfc16b3bfb91cf8d2420d6d02a76301e3ae12ac60"
+    },
+    {
+      "file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY01_TERMINAL_2026-08-02.md",
+      "bytes": 1558,
+      "sha256": "63126c29db8bad9eb661fd474aa1f5fe4aabfcd8169ae21320e317d8e1a2ab65"
+    }
+  ],
+  "installed_editor_evidence": {
+    "path": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "bytes": 512952,
+    "version": "++UE5+Release-5.8-CL-56057345",
+    "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+  },
+  "preservation": {
+    "failed_attempt08_preserved": true,
+    "recovery01_frozen_design_unchanged": true,
+    "recovery01_attempt_namespace_absent": true,
+    "recovery01_proof_namespace_absent": true,
+    "world_saved": false,
+    "asset_mutation_invoked": false,
+    "promotion_integration_packaging_invoked": false
+  },
+  "next_gate": "Offline-only P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-02 design gate. No Unreal execution is authorized by this freeze."
+}

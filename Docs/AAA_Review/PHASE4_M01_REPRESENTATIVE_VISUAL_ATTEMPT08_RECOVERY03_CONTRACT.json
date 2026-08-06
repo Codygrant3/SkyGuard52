@@ -1,0 +1,130 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery03.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "reason": "The selected persistent lifecycle requires a new native editor plugin, but this offline gate forbids the native build needed to place that lifecycle in the loaded editor binary.",
+  "terminal_recovery02": {
+    "freeze": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_TERMINAL_FREEZE.json",
+    "sha256": "d0aa35e85168ad900b90fd753d74ffb939a14cc7195e7e9c4ec17354ccccc238",
+    "immutable": true,
+    "rerun_forbidden": true
+  },
+  "engine_authority": {
+    "file": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "version": "++UE5+Release-5.8-CL-56057345",
+    "bytes": 512952,
+    "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+  },
+  "epic_manifest_authority": {
+    "file": "C:\\ProgramData\\Epic\\EpicGamesLauncher\\Data\\Manifests\\BAE053CA4AA43E5C5F1B9AAFB1B443BD.item",
+    "bytes": 2350,
+    "sha256": "c5351c98aca53b7a3bd21910d977eab01add3b61dfb0c7c204406bbdaca71110"
+  },
+  "locked_assets": {
+    "map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "bytes": 532796,
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "bytes": 15059,
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    }
+  },
+  "fresh_namespaces": {
+    "attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03/attempt_01",
+    "proof": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03/attempt_01/proof",
+    "launcher": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03/launcher_attempt_01",
+    "execution_preflight": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_EXECUTION_PREFLIGHT.json",
+    "must_remain_absent_during_offline_gate": true
+  },
+  "authorization": {
+    "token_switch": "SkyguardRecovery03Authorization",
+    "token": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-ONE-SHOT",
+    "contract_switch": "SkyguardRecovery03ContractId",
+    "output_switch": "SkyguardRecovery03AttemptRoot",
+    "inert_without_exact_triplet": true
+  },
+  "lifecycle": {
+    "owner": "Recovery03-only Unreal Editor plugin module plus FTSTicker state machine",
+    "execute_python_script_forbidden": true,
+    "multiple_distinct_ticks_required": true,
+    "heartbeat_file": "lifecycle_heartbeat.jsonl",
+    "terminal_receipt_before_shutdown": true,
+    "shutdown_without_terminal_receipt": "FAILED_WITH_EVIDENCE",
+    "world_save_forbidden": true,
+    "disk_asset_mutation_forbidden": true,
+    "original_material_recorded": true,
+    "transient_non_null_validation_material_required": true,
+    "restoration_in_finally_equivalent": true,
+    "independent_restoration_verification": true
+  },
+  "landscape": {
+    "label": "M01_P4_Landscape_Production",
+    "exact_count": 1,
+    "component_count": 16,
+    "shader_resource_count": 16
+  },
+  "render": {
+    "rhi": "D3D12",
+    "shader_model": "SM6",
+    "scalability": "Epic",
+    "screen_percentage": 100,
+    "vsync": false,
+    "stable_shader_ready_polls": 2,
+    "warmup_seconds": 30,
+    "measurement_seconds": 30,
+    "minimum_frame_samples": 900,
+    "static_png_count": 5,
+    "temporal_png_count": 3,
+    "total_png_count": 8,
+    "png_width": 2560,
+    "png_height": 1440
+  },
+  "network": {
+    "global_settings_mutation_forbidden": true,
+    "editor_settings_override": "-ini:EditorSettings:[/Script/UnrealEd.AnalyticsPrivacySettings]:bSendUsageData=False",
+    "disabled_plugins": [
+      "Fab",
+      "Bridge",
+      "EditorTelemetry",
+      "RuntimeTelemetry",
+      "EOSShared"
+    ],
+    "network_attempts_required": 0,
+    "blocked_or_failed_dns_attempts_fail": true,
+    "postflight_terms": [
+      "http://",
+      "https://",
+      "EOS",
+      "Telemetry",
+      "AnalyticsET",
+      "datarouter",
+      "Fab",
+      "Bridge",
+      "SourceControl",
+      "DNS",
+      "socket"
+    ]
+  },
+  "supervisor": {
+    "single_start_process_path": true,
+    "retry_loop_forbidden": true,
+    "pass_thru_process_retained": true,
+    "wait_for_exit_required": true,
+    "refresh_required": true,
+    "numeric_exit_code_and_type_required": true,
+    "null_or_nonnumeric_exit_code": "FAILED_WITH_EVIDENCE",
+    "terminal_supervisor_receipt_always_required": true
+  },
+  "inherited_authority": {
+    "cameras": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json",
+    "visual_rubric": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json",
+    "performance_rubric": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json"
+  },
+  "next_gate": "One offline native plugin build, binary rebind, and hash-freeze gate. Unreal execution remains unauthorized."
+}
+

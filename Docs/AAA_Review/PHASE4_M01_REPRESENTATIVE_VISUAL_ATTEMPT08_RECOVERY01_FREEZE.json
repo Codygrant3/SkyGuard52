@@ -1,0 +1,39 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery01-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-01",
+  "gate": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY01_UNREAL_AUTHORIZATION",
+  "offline_only": true,
+  "execution_authorized_by_this_freeze": false,
+  "frozen_files": [
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_CONTRACT.json", "bytes": 10059, "sha256": "b5df6e876bb1056fdb2deb405ca23892e16f2f615a093ef0628321e3d3ed3cb8"},
+    {"file": "Scripts/capture_skyguard_phase4_m01_representative_visual_attempt08_recovery01.py", "bytes": 16853, "sha256": "bee8459b81ea5388b7cfee58874bbafa9a7b62f4bfff14c3171930b70db764dd"},
+    {"file": "Scripts/invoke_skyguard_phase4_m01_representative_visual_attempt08_recovery01.ps1", "bytes": 4000, "sha256": "d07195b0f656775b08c7e23c81e11a9fe01d56f61e14d2f62836b92a545c73f2"},
+    {"file": "Scripts/verify_skyguard_phase4_m01_representative_visual_attempt08_recovery01.py", "bytes": 7438, "sha256": "b05a64ae9f8ab9ffb83c440ca68bf20027fd3c7ba3d8bc5c8c2f4c82363d8b51"},
+    {"file": "Scripts/tests/test_phase4_m01_representative_visual_attempt08_recovery01.py", "bytes": 5352, "sha256": "40729a8c0c1cecdc9aa36a6f5d537839158eac8076a3b6c41c5276d0980cce92"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_SOURCE_INVENTORY.json", "bytes": 5963, "sha256": "61a0725ab3aacf04a7e89853ad175ec9319a48dfbdf315b89d99449879f1b998"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_READINESS.json", "bytes": 2578, "sha256": "084da3d3d19bb6f5b756f77fc637c4ceaadc5b5e9da7386502cc2dd55ef9e256"},
+    {"file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_SINGLE_EXECUTION.md", "bytes": 3651, "sha256": "e7169b61f18541e7d66a137b15dc715a5ed29ae37bb9c20e796ca6b685e12031"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json", "bytes": 2651, "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json", "bytes": 1986, "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json", "bytes": 1332, "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"}
+  ],
+  "immutable_namespaces": {
+    "failed_attempt08": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08/attempt_01",
+    "future_recovery01_attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01/attempt_01",
+    "future_recovery01_proof": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01/attempt_01/proof"
+  },
+  "namespace_state_at_freeze": {
+    "failed_attempt08_preserved": true,
+    "future_recovery01_attempt_absent": true,
+    "future_recovery01_proof_absent": true
+  },
+  "validation": {
+    "json_valid": true,
+    "python_syntax_valid": true,
+    "powershell_syntax_valid": true,
+    "focused_tests_passed": 14,
+    "focused_tests_failed": 0,
+    "offline_verifier_gate": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY01_UNREAL_AUTHORIZATION"
+  },
+  "next_gate": "Use the separately frozen execution prompt only after explicit authorization for one Recovery01 Unreal process."
+}

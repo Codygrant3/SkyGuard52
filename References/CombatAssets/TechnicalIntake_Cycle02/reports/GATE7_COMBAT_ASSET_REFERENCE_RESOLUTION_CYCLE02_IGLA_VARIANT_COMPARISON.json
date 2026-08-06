@@ -1,0 +1,54 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "project_authority_search": "No existing source or design authority selects 9K38 or 9K338.",
+  "historical_evidence": {
+    "9K38": "Frozen ODIN/CIA-derived authority supports a 1574 mm by 72 mm missile blockout.",
+    "9K338_Igla_S": "Visual references are mixed into public imagery, but no frozen dimension set governs this project.",
+    "training_VISMOD": "May differ from operational launcher details and cannot govern final production geometry."
+  },
+  "component_comparison": [
+    {
+      "component": "missile",
+      "9K38": "dimensioned blockout available",
+      "9K338": "not dimensioned in frozen gate",
+      "status": "READY_FOR_BLOCKOUT_ONLY"
+    },
+    {
+      "component": "nose",
+      "9K38": "variant-specific detail unresolved",
+      "9K338": "variant-specific detail unresolved",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    },
+    {
+      "component": "launch tube",
+      "9K38": "global visual reference only",
+      "9K338": "mixed imagery",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    },
+    {
+      "component": "gripstock",
+      "9K38": "close measured reference absent",
+      "9K338": "mixed imagery",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    },
+    {
+      "component": "battery/coolant assembly",
+      "9K38": "close measured reference absent",
+      "9K338": "variant differs",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    },
+    {
+      "component": "sight",
+      "9K38": "close measured reference absent",
+      "9K338": "variant differs",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    },
+    {
+      "component": "caps, bands, fasteners and markings",
+      "9K38": "partial visual evidence",
+      "9K338": "mixed imagery",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT"
+    }
+  ],
+  "anti_mix_rule": "No nose, gripstock, battery, sight, cap, band or marking may be copied between 9K38, 9K338, trainer or VISMOD records."
+}

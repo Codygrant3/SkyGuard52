@@ -1,0 +1,67 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt05-implementation-revision.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-005",
+  "recorded_on": "2026-08-02",
+  "status": "PASS_IMPLEMENTATION_COMPILED_READY_PENDING_UNREAL_EXECUTION",
+  "scope": "Attempt05 implementation sources and offline validation only",
+  "execution": {
+    "unreal_editor_launched_for_attempt05": false,
+    "attempt05_packages_authored": false,
+    "attempt05_evidence_captured": false,
+    "promotion_allowed": false,
+    "cpp_recompile_pending_exclusive_lane": false
+  },
+  "previous_compile_observation": {
+    "compilation_units_completed": true,
+    "link_failed": true,
+    "failed_symbol": "ALandscapeProxy::EditorSetLandscapeMaterial",
+    "root_cause": "The editor helper is declared but not exported from the Landscape module.",
+    "source_fix": "Use the public LandscapeMaterial property, then refresh generated material instances and render state through exported APIs.",
+    "fix_recompiled": true
+  },
+  "accepted_compile": {
+    "target": "Skyguard52Editor Win64 Development",
+    "result": "Succeeded",
+    "total_execution_seconds": 20.14,
+    "attempt05_translation_units_compiled": [
+      "SkyguardPhase4LandscapePerformanceCapture.cpp",
+      "SkyguardMission01EnvironmentAuthoringLibrary.cpp"
+    ],
+    "module_library_linked": true,
+    "module_dll_linked": true,
+    "metadata_written": true,
+    "build_stdout": "Saved/Logs/Phase4Attempt05Compile/20260802T164359408Z/build.stdout.log",
+    "build_stdout_sha256": "b7efb4058b51cb01155f016396cb1b5ebec5f5be055003ba83756d053d8166d2",
+    "compiled_module": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "compiled_module_sha256": "1905af8f7f57c02a1b237c70415f569f477b30bb7632d94624e7dc3f32b0ec4b",
+    "compiled_module_is_fresh_for_attempt05_sources": true
+  },
+  "implemented_controls": [
+    "Native Landscape visible-state preparation and fail-closed 16-component live audit",
+    "SceneCapture2D-local coverage, component-ID, and shader-complexity diagnostics",
+    "Thirty-second same-process warmup followed by sixty-second measured CSV capture",
+    "Sequential bounded supervisor with exact heavy-process exclusion",
+    "Immutable attempt04 hash checks and distinct attempt05 package paths",
+    "Technical gate pass is preserved as pending human review instead of misclassified as process failure"
+  ],
+  "offline_validation": {
+    "readiness_gate": "PASS_IMPLEMENTATION_COMPILED_READY_PENDING_UNREAL_EXECUTION",
+    "direct_test_count": 26,
+    "direct_tests_passed": 26,
+    "powershell_parse": "PASS",
+    "python_compile": "PASS"
+  },
+  "source_hashes": {
+    "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.h": "ca4efaf9d1376462258e8234e9b8f845183fc60174f271db7543d4f901418422",
+    "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.cpp": "df4efc5fcba3f040db914f89a0b62b9b515d112ed4db7c16c7c2c5a1fa2386e9",
+    "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCapture.h": "30c43d3bc18f168300663d1e27ca12b17749fcb4b8d5ddf4c52d9ece492b528c",
+    "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCapture.cpp": "f68977f78275ccfddc067ddc5c84dd33fe20d324a8a6327dd9f1d84567f3e554",
+    "Scripts/run_skyguard_phase4_m01_landscape_visible_gpu_gate_attempt05.ps1": "84577463eff34359795e848f707999b035d19b2fbc1579bfe9ed44fe038d7e5c",
+    "Scripts/verify_skyguard_phase4_m01_landscape_repair_readiness.py": "acedb47e496a53d3b768aece51ed4395efefb74287551efd252e7ca20201b1cd",
+    "Scripts/tests/test_phase4_m01_landscape_attempt05_supervisor.py": "4f514ec8cafe3918d4b6bb2b9648444f65f50a3df9341f9a69ed8295cf3d1ada",
+    "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_REPAIR_READINESS_ATTEMPT05.json": "939b7b17237ec60e33efcdfc6074b75fb5a6e06445b03fb9d97e45276d0594f2"
+  },
+  "next_gate": [
+    "Request root authorization for the one sequential attempt05 Unreal evidence run."
+  ]
+}

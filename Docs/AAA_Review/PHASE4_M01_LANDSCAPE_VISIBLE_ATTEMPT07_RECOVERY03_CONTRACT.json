@@ -1,0 +1,292 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery03.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-03",
+  "status": "OFFLINE_IMPLEMENTED_BLOCKED_ON_SEPARATE_FULL_MODULE_COMPILE_PROOF",
+  "scope": "Proof-only continuation of the frozen Recovery02 deferred editor-tick material-readiness proof. Recovery03 cannot build or author. It may run exactly once only after a separately executed full Skyguard52Editor module compile is proven by a hash-bound activation record covering an exhaustive current Source inventory, compile receipt, logs, and the activated DLL.",
+  "immutable_recovery02_failure": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_02",
+    "terminal_state_required": "FAILED",
+    "stage_count_required": 1,
+    "build_exit_code_required": 6,
+    "author_stage_invoked_required": false,
+    "proof_stage_invoked_required": false,
+    "full_capture_invoked_required": false,
+    "profile_invoked_required": false,
+    "compiler_errors_required": [
+      "use of undefined type 'USkyLightComponent'",
+      "'GetDirectionalLightComponent': is not a member of 'ADirectionalLight'",
+      "Result: Failed (OtherCompilationError)"
+    ],
+    "files": {
+      "build_stderr_log": {
+        "file": "logs/build_recovery02_deferred_material_bridge.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build_stdout_log": {
+        "file": "logs/build_recovery02_deferred_material_bridge.stdout.log",
+        "bytes": 6173,
+        "sha256": "11dda78f3fef474740853b11a80c7a92974044b1c535d36d094668c9f50fba5e"
+      },
+      "run_manifest": {
+        "file": "run_manifest.json",
+        "bytes": 5973,
+        "sha256": "57acd58c1ebd5f8ae02737c1a94e43dbedfaa31c017feb3712c973bb04821fd6"
+      }
+    },
+    "mutation_allowed": false,
+    "overwrite_allowed": false,
+    "retry_recovery02_forbidden": true
+  },
+  "immutable_recovery01_failure": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_01",
+    "terminal_state_required": "FAILED",
+    "stage_exit_codes_required": [0, 0, 3],
+    "tiny_proof_receipt_required_absent": true,
+    "full_capture_invoked_required": false,
+    "profile_invoked_required": false,
+    "files": {
+      "author_receipt": {
+        "file": "author_receipt.json",
+        "bytes": 2204,
+        "sha256": "2b0fa6d0988f020773871bd0b8b45dd7434572a0c4b59afd86ed629d80ab3e48"
+      },
+      "coverage_c04": {
+        "file": "captures/coverage_C04.png",
+        "bytes": 7216,
+        "sha256": "60cc679d96cb42dc56fa9e5fb60f095298b0addf1529a47c9b8bbba9f5d957c7"
+      },
+      "coverage_c05": {
+        "file": "captures/coverage_C05.png",
+        "bytes": 7405,
+        "sha256": "dc3ee4e0e9a0daa2a8f1cebb185b94433bdd93fb51e6b18478d5059adebb0896"
+      },
+      "author_engine_log": {
+        "file": "logs/author_recovery01_diagnostic_materials.engine.log",
+        "bytes": 226742,
+        "sha256": "7c4641d6fd1e7eb1b42caa30e5f85be56f03196ab4065958626d30d7366bc4a5"
+      },
+      "author_stderr_log": {
+        "file": "logs/author_recovery01_diagnostic_materials.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "author_stdout_log": {
+        "file": "logs/author_recovery01_diagnostic_materials.stdout.log",
+        "bytes": 25804,
+        "sha256": "33a026fee6120dda6d561a42891cfbef50f7a5677922024c1131e61c5cf96044"
+      },
+      "build_stderr_log": {
+        "file": "logs/build_native_landscape_usage_bridge.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build_stdout_log": {
+        "file": "logs/build_native_landscape_usage_bridge.stdout.log",
+        "bytes": 4959,
+        "sha256": "7e0c012d0aa919b07e1b21b009b72d48769ec83407473ceef743a9fb64672cf9"
+      },
+      "proof_engine_log": {
+        "file": "logs/recovery01_tiny_live_proof_d3d12_sm6.engine.log",
+        "bytes": 269093,
+        "sha256": "1c311c5da33052aa3af809cab47db12b0801075099b3855a54d45a2474d2250b"
+      },
+      "proof_stderr_log": {
+        "file": "logs/recovery01_tiny_live_proof_d3d12_sm6.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "proof_stdout_log": {
+        "file": "logs/recovery01_tiny_live_proof_d3d12_sm6.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "run_manifest": {
+        "file": "run_manifest.json",
+        "bytes": 8801,
+        "sha256": "400b4212994f32f4fe60234893b7649334633e112a488b679d7e1b4b94e2667c"
+      }
+    },
+    "mutation_allowed": false,
+    "overwrite_allowed": false
+  },
+  "full_module_compile_prerequisite": {
+    "state": "REQUIRED_AND_CURRENTLY_UNSATISFIED",
+    "activation_schema": "skyguard.full-module-compile-activation.v1",
+    "required_gate": "PASS_FULL_SKYGUARD52EDITOR_MODULE_COMPILE",
+    "contract_id_required": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-03",
+    "target": "Skyguard52Editor",
+    "platform": "Win64",
+    "configuration": "Development",
+    "build_exit_code_required": 0,
+    "activation_created_after_utc": "2026-08-02T19:15:02.334910Z",
+    "activation_path_and_sha256_must_be_supplied_explicitly": true,
+    "activation_must_bind": [
+      "exhaustive current Source inventory",
+      "successful full-module compile receipt",
+      "build stdout",
+      "build stderr",
+      "Binaries/Win64/UnrealEditor-Skyguard52.dll bytes and SHA256"
+    ],
+    "source_inventory_schema": "skyguard.full-module-source-inventory.v1",
+    "source_inventory_root": "Source",
+    "source_inventory_must_be_exhaustive_and_current_at_proof_launch": true,
+    "compiled_module_file": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "old_dll_is_not_activation": {
+      "bytes": 2817536,
+      "sha256": "be944520eb73fb6a29ec3fcb992cd6db7d46174774b8ced3e93ac0b6d92293ee"
+    },
+    "build_or_activation_creation_allowed_by_recovery03": false
+  },
+  "locked_production_packages": {
+    "baseline_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "candidate_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap",
+      "sha256": "3403a518e6c24ded6285f03f136f9009f6387d697432b48b82942fa6b2c551fc"
+    },
+    "candidate_material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    },
+    "attempt06_coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset",
+      "sha256": "954d76f572085a7aa06e07de731d5fa4bbffe68c155c4ce19770ede0ece1afde"
+    },
+    "attempt06_component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset",
+      "sha256": "4d8373e935f2accd7bbfa76ade25d272a638f8436bae6b1d433a6898a9afcefc"
+    },
+    "recovery01_coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "cf62304e86a504e716ea87a569f0bee34b954e695f95d078c3c8eb70052c4d06"
+    },
+    "recovery01_component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "5c2e0a22cab4b1adde943eb199f36760b0565b6c6df1f6189c19fc1a4cafaf04"
+    }
+  },
+  "recovery01_diagnostic_materials": {
+    "coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "cf62304e86a504e716ea87a569f0bee34b954e695f95d078c3c8eb70052c4d06"
+    },
+    "component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "5c2e0a22cab4b1adde943eb199f36760b0565b6c6df1f6189c19fc1a4cafaf04"
+    },
+    "reauthoring_forbidden": true
+  },
+  "tiny_live_proof": {
+    "execution_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_03",
+    "rhi_required": "D3D12|SM6",
+    "resolution": [640, 360],
+    "fov_degrees": 90.0,
+    "deferred_slate_post_tick_required": true,
+    "minimum_poll_interval_seconds": 0.1,
+    "stable_ready_ticks_required": 2,
+    "phase_timeout_seconds": 45.0,
+    "whole_timeout_seconds": 120.0,
+    "maximum_editor_ticks": 30000,
+    "captures": [
+      "coverage_C05.png",
+      "coverage_C04.png",
+      "component_id_C05.png"
+    ],
+    "capture_before_coverage_ready_for_two_ticks_forbidden": true,
+    "capture_before_component_ready_for_two_ticks_forbidden": true,
+    "coverage_white_rgb8_minimum": 240,
+    "coverage_c05_minimum_fraction": 0.05,
+    "coverage_c04_minimum_fraction": 0.01,
+    "component_palette_rgb8_tolerance_per_channel": 12,
+    "component_palette_minimum_pixels_per_id": 500,
+    "landscape_component_count_required": 16,
+    "generated_material_instance_count_required": 16,
+    "material_resource_count_required": 16,
+    "compilation_finished_resource_count_required": 16,
+    "valid_shader_map_resource_count_required": 16,
+    "asset_compilation_queue_empty_required": true,
+    "shader_compilation_queue_empty_required": true,
+    "valid_shader_maps_alone_are_never_sufficient": true,
+    "same_stack_finish_all_compilation_forbidden": true,
+    "governed_material_restore_wait_required": true,
+    "world_save_forbidden": true,
+    "pcg_generation_forbidden": true,
+    "author_stage_forbidden": true,
+    "full_capture_forbidden": true,
+    "profile_forbidden": true,
+    "automatic_retry_forbidden": true,
+    "promotion_forbidden": true,
+    "inherited_receipt_schema_note": "The frozen Recovery02 proof implementation may retain its recovery02 receipt schema label. Recovery03 identity is established by this contract ID, the Recovery03 execution namespace, activation hash, supervisor manifest, and frozen wrapper hash."
+  },
+  "expected_future_processes_and_runtime": {
+    "recovery03_build_stage": "FORBIDDEN",
+    "proof_stage": {
+      "processes": [
+        "UnrealEditor.exe",
+        "ShaderCompileWorker.exe children as needed"
+      ],
+      "supervisor_timeout_seconds": 180,
+      "internal_whole_timeout_seconds": 120,
+      "typical_runtime_seconds": "20-75 including editor startup"
+    },
+    "maximum_total_recovery03_runtime_seconds": 180
+  },
+  "execution_authorization": {
+    "current_state": "BLOCKED_PREREQUISITE_FULL_MODULE_COMPILE_PROOF_REQUIRED",
+    "unreal_launch_allowed": false,
+    "native_build_allowed": false,
+    "author_stage_allowed": false,
+    "tiny_live_proof_allowed": false,
+    "full_capture_allowed": false,
+    "profile_allowed": false,
+    "automatic_retry_allowed": false,
+    "network_allowed": false,
+    "promotion_allowed": false,
+    "explicit_switch_required": "-AuthorizeSingleRecovery03TinyProof",
+    "compile_activation_path_and_sha256_required": true,
+    "conditional_command_template": "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\Skyguard52\\Scripts\\run_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.ps1\" -CompileActivationPath \"<ABS_PATH>\" -CompileActivationSha256 \"<64HEX>\" -AuthorizeSingleRecovery03TinyProof",
+    "next_gate": "A different authorized lane must first complete and prove a full Skyguard52Editor module compile. Only then may Recovery03 run exactly one proof-only deferred three-image D3D12 attempt and stop regardless of pass or fail."
+  },
+  "implementation_files": {
+    "frozen_recovery02_tiny_proof": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery02_tiny_live.py",
+      "sha256": "5635d15262db7e7f597f62e2f8466a640bccde61088acc2a232842a713a31ffc"
+    },
+    "recovery03_tiny_proof": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery03_tiny_live.py",
+      "sha256": "0ae1a049a11f6ce0a4c1a12d32b80f91d4b43e62a9f766753c78b768f7b69a61"
+    },
+    "recovery03_supervisor": {
+      "file": "Scripts/supervise_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.py",
+      "sha256": "c763cf793b58ab442e8072f07705b3d40dce708bfdfe6e7ef3813776f3bfa882"
+    },
+    "recovery03_launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.ps1",
+      "sha256": "4ac04d43fa0a7d3977a44f223a2ed6b658a6b5ad73bd5bdf65113db688a96f34"
+    },
+    "capture_analysis_helpers": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_tiny_live.py",
+      "sha256": "e7e0a89bf539e6d47e804023be093357322cc067aea2375a6e8f7939b7e8be56"
+    },
+    "attempt06_contract_loader": {
+      "file": "Scripts/phase4_m01_landscape_attempt06_contract.py",
+      "sha256": "6834274d48477a01c0374d66195530bea915f1e0cd7d09292610c0d2519ce771"
+    },
+    "gpu_gate_helpers": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+      "sha256": "d0d515781c173939b9d564ecda5146266e9c969a91ec1465a0aabf3794d946cb"
+    }
+  }
+}

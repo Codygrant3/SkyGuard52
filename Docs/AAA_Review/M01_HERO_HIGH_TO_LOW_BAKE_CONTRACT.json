@@ -1,0 +1,113 @@
+{
+  "schema": "skyguard.m01.hero-high-to-low-bake.contract.v1",
+  "build_id": "BLD_M01_HERO_HILO_001",
+  "scope": "Mission 01 Pathfinder, lighthouse, and radar-post geometric normal/AO projection",
+  "source_blend": "Content/Skyguard/Meshes/Source/Mission01/Wave1_Refinement/M01_WAVE1_AAA_REFINEMENT_MASTER.blend",
+  "outputs": {
+    "master_blend": "Content/Skyguard/Meshes/Source/Mission01/HeroHighToLow_001/BLD_M01_HERO_HILO_001_MASTER.blend",
+    "low_glb": "Content/Skyguard/Meshes/Source/Mission01/HeroHighToLow_001/bld_m01_hero_hilo_001_low.glb",
+    "texture_root": "Content/Skyguard/Textures/Source/Mission01/HeroHighToLow_001",
+    "manifest": "Saved/Reports/M01_HERO_HIGH_TO_LOW_BAKE_MANIFEST.json",
+    "report": "Saved/Reports/M01_HERO_HIGH_TO_LOW_BAKE_REPORT.json"
+  },
+  "bake_contract": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "selected_to_active": true,
+    "explicit_cage_required": true,
+    "normal_space": "TANGENT",
+    "tangent_basis": "MikkTSpace",
+    "normal_convention": "OpenGL",
+    "uv_layer": "UV_M01_AAA_0",
+    "resolution": 2048,
+    "margin_pixels": 32,
+    "samples": 16,
+    "maps": [
+      {
+        "type": "Normal",
+        "color_space": "Non-Color",
+        "minimum_varied_rgb_channels": 2
+      },
+      {
+        "type": "AO",
+        "color_space": "Non-Color",
+        "minimum_varied_rgb_channels": 1
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "Pathfinder",
+      "source_object": "SM_Boss_Pathfinder_Body_AAA",
+      "low_object": "LOW_M01_Pathfinder",
+      "high_object": "HIGH_M01_Pathfinder",
+      "cage_object": "CAGE_M01_Pathfinder",
+      "texture_prefix": "T_M01_Pathfinder_HiLo",
+      "cage_extrusion_m": 0.018,
+      "max_ray_distance_m": 0.06,
+      "minimum_high_to_low_vertex_ratio": 1.35,
+      "maximum_high_to_low_bounds_delta_m": 0.08,
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "wing_panel_fasteners",
+        "service_hatch_fasteners",
+        "raised_panel_seams"
+      ]
+    },
+    {
+      "id": "Lighthouse",
+      "source_object": "SM_M01_Landmark_Lighthouse_Hero_A",
+      "low_object": "LOW_M01_Lighthouse",
+      "high_object": "HIGH_M01_Lighthouse",
+      "cage_object": "CAGE_M01_Lighthouse",
+      "texture_prefix": "T_M01_Lighthouse_HiLo",
+      "cage_extrusion_m": 0.025,
+      "max_ray_distance_m": 0.08,
+      "minimum_high_to_low_vertex_ratio": 1.25,
+      "maximum_high_to_low_bounds_delta_m": 0.08,
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "tower_section_seams",
+        "gallery_fasteners",
+        "access_panel_fasteners"
+      ]
+    },
+    {
+      "id": "RadarPost",
+      "source_object": "SM_M01_Landmark_RadarPost_Hero_A",
+      "low_object": "LOW_M01_RadarPost",
+      "high_object": "HIGH_M01_RadarPost",
+      "cage_object": "CAGE_M01_RadarPost",
+      "texture_prefix": "T_M01_RadarPost_HiLo",
+      "cage_extrusion_m": 0.02,
+      "max_ray_distance_m": 0.07,
+      "minimum_high_to_low_vertex_ratio": 1.3,
+      "maximum_high_to_low_bounds_delta_m": 0.08,
+      "required_detail_groups": [
+        "beveled_primary_shell",
+        "bunker_access_fasteners",
+        "dish_mount_fasteners",
+        "mast_joint_fasteners"
+      ]
+    }
+  ],
+  "required_manifest_checks": [
+    "source_hash_bound",
+    "separate_low_high_mesh_datablocks",
+    "explicit_cage_per_asset",
+    "selected_to_active_projection",
+    "required_uv_on_low",
+    "high_vertex_ratio",
+    "bounds_alignment",
+    "map_dimensions_and_channels",
+    "map_hashes_and_nonempty_content",
+    "deterministic_package_fingerprint"
+  ],
+  "promotion": "high_to_low_bake_candidate_requires_blender_execution_artifact_verification_and_unreal_visual_acceptance",
+  "non_claims": [
+    "This source contract does not prove that Blender has executed successfully.",
+    "It does not classify any asset family as production.",
+    "It does not prove artifact-free projection at grazing angles.",
+    "It does not replace Unreal master-material or multi-lighting validation."
+  ]
+}

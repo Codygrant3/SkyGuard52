@@ -1,0 +1,88 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery04-freeze.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-04",
+  "created_at_utc": "2026-08-02T19:35:40.8859896Z",
+  "state": "FROZEN_OFFLINE_TOOLING_READY_EXECUTION_BLOCKED_HEAVY_LANE_ACTIVE",
+  "offline_tooling_ready": true,
+  "execution_ready_at_freeze": false,
+  "blocking_condition_at_freeze": "Pre-existing UnrealEditor.exe PID 33244 occupied the heavy lane.",
+  "offline_audit_executed": false,
+  "recovery04_namespace_created": false,
+  "unreal_launched_by_recovery04": false,
+  "native_build_launched_by_recovery04": false,
+  "recapture_performed": false,
+  "full_capture_invoked": false,
+  "profile_invoked": false,
+  "promotion_allowed": false,
+  "offline_tests_passed": 7,
+  "files": {
+    "contract": {
+      "file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY04_CONTRACT.json",
+      "bytes": 9350,
+      "sha256": "0b66c6df9b67d920b2c114aeb4fdc9f9e82f3732bc1330d3c27d719a36280e79"
+    },
+    "readiness": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY04_READINESS.json",
+      "bytes": 9149,
+      "sha256": "67037669160fe2c5ab3cd74e8b84ff68785ae7f0b939ed7c1619eef2018176cb"
+    },
+    "offline_auditor": {
+      "file": "Scripts/audit_skyguard_phase4_m01_landscape_attempt07_recovery04.py",
+      "bytes": 12397,
+      "sha256": "86817c075ddae32a5701d9fa3af5a5191088fc7ebad6ae5bea713057fc268e15"
+    },
+    "offline_launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery04.ps1",
+      "bytes": 950,
+      "sha256": "6ab8d3b0f9699ac59c357ed82c98bff89aa2bfddc193b4232bb4cdeb307bba55"
+    },
+    "readiness_verifier": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_attempt07_recovery04_readiness.py",
+      "bytes": 6539,
+      "sha256": "65930a8f9589d26b40285c31a5c3e78700f4aa2cfb8edde67981fe49987a25fd"
+    },
+    "offline_tests": {
+      "file": "Scripts/tests/test_phase4_m01_landscape_attempt07_recovery04.py",
+      "bytes": 5217,
+      "sha256": "f277873d98808da95f92297cc69fefd344c3c10b1a27ba47435ba32d873558ff"
+    },
+    "immutable_component_capture": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_03/captures/component_id_C05.png",
+      "bytes": 7610,
+      "sha256": "d339f669db5987fc5629cb6560a5cffa89767af35d68f4739d2d728cdbc8d39c"
+    },
+    "immutable_recovery03_receipt": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_03/tiny_proof_receipt.json",
+      "bytes": 16560,
+      "sha256": "d9fc61ae63001a136ca972a5420bee82d62b366eb1e08a0ed5c6873d8cbdbc2e"
+    },
+    "immutable_recovery03_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_03/run_manifest.json",
+      "bytes": 5630,
+      "sha256": "84f5a22a81e010994c695e63f4a24e9e9631b3fd250921158b2880c02bff161f"
+    }
+  },
+  "analytical_preflight": {
+    "diagnosis": "The old analyzer decoded direct linear RGB8 bytes as sRGB. No capture defect is present.",
+    "unique_rgb8_colors": 17,
+    "black_background_colors": 1,
+    "governed_component_colors": 16,
+    "nonblack_pixels": 72022,
+    "coverage_c05_white_pixels": 72022,
+    "component_area_range_pixels": [4487, 4541],
+    "maximum_to_minimum_area_ratio": 1.012035881434143,
+    "all_components_single_four_connected_regions": true,
+    "horizontal_8_by_2_order_valid": true,
+    "vertical_pairing_valid": true,
+    "recapture_contractually_required": false
+  },
+  "authorized_future_command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\Skyguard52\\Scripts\\run_skyguard_phase4_m01_landscape_visible_attempt07_recovery04.ps1\" -AuthorizeSingleRecovery04OfflineAudit",
+  "future_execution_condition": "Run only when the heavy lane is free. The launcher will refuse to run while UnrealEditor, UnrealBuildTool, or Blender is active.",
+  "expected_future_processes": [
+    "powershell.exe",
+    "python.exe"
+  ],
+  "expected_future_runtime_seconds": "1-5",
+  "next_gate_on_pass": "Stop for independent acceptance. No full capture, profiling, or promotion.",
+  "freeze_rule": "Do not edit the frozen contract, readiness, tooling, tests, or immutable Recovery03 evidence. Future execution must verify all hashes and create the Recovery04 namespace exactly once."
+}

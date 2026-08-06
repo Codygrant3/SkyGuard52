@@ -1,0 +1,40 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "conflicts": [
+    {
+      "id": "RIFLE-EXACT-IDENTITY",
+      "status": "OPEN",
+      "decision": "AR/M4 family only"
+    },
+    {
+      "id": "RIFLE-COLOR-SEGMENTS",
+      "status": "OPEN",
+      "decision": "Do not infer separate rifles or finish identity from exposure/color shift"
+    },
+    {
+      "id": "IGLA-VARIANT",
+      "status": "OPEN",
+      "decision": "9K38 recommended; explicit project acceptance required"
+    },
+    {
+      "id": "NASA-PERCENTILE-VECTOR",
+      "status": "OPEN",
+      "decision": "Use accommodation bounds; do not fabricate a 50th-percentile vector"
+    },
+    {
+      "id": "SHAHED-CROSS-SECTIONS",
+      "status": "OPEN",
+      "decision": "global envelope only"
+    },
+    {
+      "id": "SHAHED-SCALE-CONFLICT",
+      "status": "BOUNDED",
+      "decision": "retain official 3300 x 3000 mm without averaging"
+    },
+    {
+      "id": "FICTIONAL-BOSSES",
+      "status": "OPEN",
+      "decision": "separate fictional design authority"
+    }
+  ]
+}

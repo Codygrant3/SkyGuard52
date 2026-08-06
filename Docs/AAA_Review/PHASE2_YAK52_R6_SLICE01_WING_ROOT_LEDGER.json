@@ -1,0 +1,33 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-wing-root.v1",
+  "status": "TOPOLOGY_DESIGNED_TOP_PLANFORM_REFERENCE_MISSING",
+  "construction": {
+    "root_airfoil":"Explicit upper/lower airfoil curves, not a prism",
+    "span_sections":["root","20_percent","50_percent","80_percent","tip"],
+    "root_fillet":"Boundary surface bridging fuselage shoulder/keel to upper/lower wing skins",
+    "controls":["separate aileron and flap gaps with governed hinge axes"],
+    "thickness_policy":"Thickness decreases continuously toward tip; trailing edge has finite production thickness"
+  },
+  "provisional_geometry": {
+    "full_span_m":9.3,
+    "root_chord_m":2.12,
+    "tip_chord_m":1.08,
+    "dihedral_deg":2.0,
+    "root_thickness_ratio":0.15,
+    "tip_thickness_ratio":0.12,
+    "confidence":"LOW_UNTIL_TOP_VIEW"
+  },
+  "root_camera_contract": {
+    "fuselage_visible_fraction_min":0.2,
+    "semispan_visible_fraction_min":0.25,
+    "semispan_visible_fraction_max":0.4,
+    "junction_screen_coverage_min":0.25,
+    "junction_screen_coverage_max":0.55
+  },
+  "acceptance": [
+    "No overlapping oval fairing",
+    "G2-like highlight continuity across visible upper root",
+    "No root self-intersection after subdivision",
+    "Wing planform cannot be locked without dimensioned top reference"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_RECONCILIATION",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RAIL_COUPON_RECOVERY01_BLENDER_AUTHORIZATION",
+  "immutable": true,
+  "mode": "offline_only",
+  "created_at_utc": "2026-08-06T13:17:00Z",
+  "root_cause": "CYCLIC_HASH_DEPENDENCY_AND_POST_FREEZE_FINALIZATION",
+  "provenance_model": "DIRECTED_ACYCLIC_ONE_WAY",
+  "blender_launched": false,
+  "unreal_launched": false,
+  "accepted_blockouts_modified": false,
+  "failed_attempt01_modified": false,
+  "future_attempt_namespace_created": false,
+  "future_output_namespace_created": false,
+  "source_inventory": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_SOURCE_INVENTORY.json",
+    "bytes": 5529,
+    "sha256": "5790c54a59591670a3c4af0e7a643ffa1d83589420bb507d20b068eb37e0f443",
+    "member_count": 17,
+    "all_members_verified": true,
+    "lists_itself": false,
+    "lists_this_freeze": false
+  },
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_TERMINAL_EVIDENCE_RECONCILIATION.json",
+      "bytes": 3728,
+      "sha256": "e5ddcb97dceb2e1a6b982f9eecab909d4587ea091a7199e8d3c0f0cd657534f0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_MEMBER_PARITY.json",
+      "bytes": 2566,
+      "sha256": "99bdd10bb437bced1b237a963cb08547fbcf77fbfb51f16722c5d7ff4a3fb7a6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_INVENTORY_SEMANTIC_COMPARISON.json",
+      "bytes": 1591,
+      "sha256": "232b1d60ad181fc5b006277c090a20d24f221f878291eb0803a37846390bfbd9"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ROOT_CAUSE.json",
+      "bytes": 1602,
+      "sha256": "ad01e0789c04c58d9da3cb0db9a19a250e46b4d074eda4853b9fce6c3a238cb4"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Rail_Coupon_Recovery01_OfflineDesign\\contracts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_EXECUTION_CONTRACT.json",
+      "bytes": 6798,
+      "sha256": "f57e5251344e8eda6b8ab6a91a50bf745d9b8ca2b5316558acb0438253b520a0"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Rail_Coupon_Recovery01_OfflineDesign\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_attempt01.py",
+      "bytes": 1715,
+      "sha256": "1a82efe7cdd7c412cf3d8d200558ac97801c7afbfbcb356851ce5d65b4f2843e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\invoke_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_once.ps1",
+      "bytes": 16781,
+      "sha256": "6fb9926ddf01050ca3f556dd0bf848c1d498280be8bb07b640db5914ee376c2d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_offline.py",
+      "bytes": 7554,
+      "sha256": "c27378bd64289af84cf92c5b9763a304027b0e0867e4423de9983abbf21592b8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_TEST_RESULT.json",
+      "bytes": 1249,
+      "sha256": "235e7152854fc0afaaa3de12829c91aa1f1da5d075789c76d0226518d22a1e99"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_NAMESPACE_PROCESS_RECEIPT.json",
+      "bytes": 1084,
+      "sha256": "b80dd331c07985d831421c058cda2450cb077204df52143e0712f5f1110ce526"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_READINESS.json",
+      "bytes": 1179,
+      "sha256": "69d3f4b22d562a2aafe460a3bcdc7f1a24a8e6242f49406f42eeed9fd9c45733"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_AUDIT_2026-08-06.md",
+      "bytes": 1774,
+      "sha256": "28ae948fb525d613f81c8277886ef7a82e308fa80d9403f7df6435266ab581a5"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_2026-08-06.md",
+      "bytes": 1487,
+      "sha256": "e6c7db8b2a6f71728f5328bab4d03828f70ae35c7de6bcbebc2e2c923d19b62a"
+    }
+  ],
+  "immutable_historical_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 4857,
+      "sha256": "6c2b75200e09e8189bbd203e8a2c0f6c9271a938e14a564502770e7dd3fe2f02"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 9362,
+      "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 3481,
+      "sha256": "38447d27a3f1b10e10fd2d6818093dc05f4391099b1c1cc8768ca4c76ff973ce"
+    }
+  ],
+  "future_execution": {
+    "asset": "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON",
+    "blender_launches": 1,
+    "retries": 0,
+    "unreal_launches": 0,
+    "attempt_namespace": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01",
+    "output_namespace": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01"
+  },
+  "next_prompt_state": "CREATED_AFTER_THIS_FREEZE_AND_BOUND_SEPARATELY"
+}

@@ -1,0 +1,10 @@
+--- a/Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp
++++ b/Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp
+@@ -28,6 +28,7 @@ ASkyguardMission01EnvironmentDirector::ASkyguardMission01EnvironmentDirector()
+ 	PrimaryActorTick.bCanEverTick = true;
+ 
+ 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Mission01EnvironmentRoot"));
++	Root->SetMobility(EComponentMobility::Static);
+ 	SetRootComponent(Root);
+ 
+ 	OceanTiles = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>(TEXT("OceanTiles"));

@@ -1,0 +1,96 @@
+{
+  "schema": "skyguard52.polyhaven-empty-placeholder-disposition.recovery01-freeze.v1",
+  "generated_at_utc": "2026-08-04T23:10:42.1116735Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED_OFFLINE_EXCLUDED_FROM_CURRENT_CANDIDATE",
+  "parent_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_OFFLINE_READINESS_ADDENDUM_FREEZE_2026-08-04.json",
+      "bytes": 5545,
+      "sha256": "52df6c7d4d95cf647325840ecff6ebaa53cd0d269511aa0785e22ecbc591ef49"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\polyhaven-provenance-manifest.json",
+      "bytes": 47802,
+      "sha256": "9817fa40dca9bfec370e208921c925eeb9858a4b3a2254e8101260dca1cc2e57"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_LANDSCAPE_VISIBLE_GPU_REVIEW_CONTRACT.json",
+      "bytes": 11724,
+      "sha256": "a82c85a2dde46ebdf668129c94c5fa2a953fc738d65f6f8dc6bb6d5647a07cb0"
+    }
+  ],
+  "failed_original_attempt": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_skyguard_polyhaven_empty_placeholder_exclusion.py",
+      "bytes": 5720,
+      "sha256": "f0a475939ce89a825bcfef145fb81d8b2aacde33175514e2a2b26f02175f914c"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\test_skyguard_polyhaven_empty_placeholder_exclusion.py",
+      "bytes": 2894,
+      "sha256": "fd5a347051aa2d35ad199925c2266c5e96616e84eb69379a1a8837392b631646"
+    }
+  ],
+  "accepted_recovery01_outputs": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_skyguard_polyhaven_empty_placeholder_exclusion_recovery01.py",
+      "bytes": 5715,
+      "sha256": "33f7b889f9400c3a816acbed089c2adfeeb21498fd29f5b42041697171f2d070"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\test_skyguard_polyhaven_empty_placeholder_exclusion_recovery01.py",
+      "bytes": 2895,
+      "sha256": "925b117298786270a29ebdc25d592509acd0d968e386dcbfb950fd9b28cabd2c"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_POLYHAVEN_EMPTY_PLACEHOLDER_DISPOSITION_RECOVERY01_2026-08-04.json",
+      "bytes": 4056,
+      "sha256": "7af37a9b4ff3a2261f331cc2d90d71f7ebb840ee203306a424f8283a7112e07e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_POLYHAVEN_EMPTY_PLACEHOLDER_DISPOSITION_RECOVERY01_2026-08-04.md",
+      "bytes": 1459,
+      "sha256": "83020aa7f470eefa22652925ed771e48603e8f56e09987aa53859376002d965d"
+    }
+  ],
+  "acceptance": {
+    "runtime_roots_scanned": [
+      "Source",
+      "Config",
+      "Plugins",
+      "Content"
+    ],
+    "runtime_file_count": 2001,
+    "uasset_count": 1417,
+    "families_checked": 3,
+    "source_files_present": 0,
+    "runtime_marker_matches": 0,
+    "contract_exclusions_present": 3,
+    "focused_test_count": 4,
+    "focused_test_failures": 0,
+    "verifier_exit_code": 0
+  },
+  "family_disposition": {
+    "metal_walkway_01": "EXCLUDED_FROM_CURRENT_CANDIDATE_NOT_DELETED",
+    "painted_metal_02": "EXCLUDED_FROM_CURRENT_CANDIDATE_NOT_DELETED",
+    "ship_hull": "EXCLUDED_FROM_CURRENT_CANDIDATE_NOT_DELETED"
+  },
+  "limits": [
+    "No source or runtime asset was created.",
+    "No empty directory was deleted.",
+    "Future use requires a new governed acquisition and acceptance chain.",
+    "Final packaged dependency and Asset Registry scans must reconfirm absence.",
+    "This is not Shipping acceptance."
+  ],
+  "execution_receipt": {
+    "unreal_launched": false,
+    "blender_launched": false,
+    "native_build_launched": false,
+    "download_performed": false,
+    "import_performed": false,
+    "runtime_files_modified": false,
+    "heavy_process_count": 0,
+    "automatic_retry_count": 0
+  }
+}

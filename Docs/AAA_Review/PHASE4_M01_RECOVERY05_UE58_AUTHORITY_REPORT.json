@@ -1,0 +1,35 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-ue58-authority-report.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "plugin_disable_authority": {
+    "path": "D:/UE_5.8/Engine/Source/Runtime/Projects/Private/PluginManager.cpp",
+    "bytes": 143416,
+    "sha256": "b2aa3a2c551fcbd86a3de72103030331591f619ca2c66aff8b6eae7e662bd2df",
+    "lines": [1585, 1599],
+    "finding": "UE 5.8 parses DisablePlugins= and configures each named plugin disabled for the current target."
+  },
+  "tcp_messaging_descriptor": {
+    "path": "D:/UE_5.8/Engine/Plugins/Messaging/TcpMessaging/TcpMessaging.uplugin",
+    "bytes": 870,
+    "sha256": "a47d14505131225b926c7324f49fa856d55b9e02a4b1fefc977c621b1b32880d",
+    "enabled_by_default": true,
+    "loading_phase": "PreDefault"
+  },
+  "udp_messaging_descriptor": {
+    "path": "D:/UE_5.8/Engine/Plugins/Messaging/UdpMessaging/UdpMessaging.uplugin",
+    "bytes": 1437,
+    "sha256": "7d8dbd8f1f3227aabfb0958905e0f6eae059c0dc6435cdaef2cbf235a412c994",
+    "enabled_by_default": true,
+    "loading_phase": "PreDefault"
+  },
+  "scene_component_mobility_authority": {
+    "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/Components/SceneComponent.cpp",
+    "bytes": 167288,
+    "sha256": "58c6337430d41c3fb9acd8060221a8b46696e0f372c2cc590bc2b865ed89b757",
+    "rejection_lines": [2380, 2395],
+    "set_mobility_lines": [3098, 3114],
+    "finding": "Outside a user construction script, UE rejects a static child attached to a non-static parent. SetMobility updates component mobility and propagates Movable to children."
+  },
+  "plugin_extension_selected": false,
+  "plugin_extension_reason": "Recovery05 is a standalone governed editor plugin, not an extension of Recovery01. A unique plugin and module identity is the bounded correction."
+}

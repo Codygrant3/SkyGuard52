@@ -1,0 +1,78 @@
+{
+  "schema": "skyguard.bld-m01-yak-uplift-003-r3.compatibility-audit.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R3",
+  "status": "source_only_compatibility_boundary_verified",
+  "parent_source_inventory_audit": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_SOURCE_AUDIT.json",
+    "bytes": 4943,
+    "sha256": "28ff3c9ae15451fa2e29458209390a9a32093267e2f80ba84d5b509c4abcdf1a",
+    "inherited_findings": {
+      "governed_component_count": 240,
+      "exact_object_requirement_count": 232,
+      "source_absent_hold_count": 8,
+      "source_absent_hold_required_as_object": false,
+      "source_absent_hold_synthesis_allowed": false
+    }
+  },
+  "failed_r2_attempt_evidence": {
+    "attempt_namespace": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01",
+    "stderr": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/stderr.log",
+      "bytes": 792,
+      "sha256": "2a01848bc8b4b4e066fe056c6ef87da81c152f4ca810639001c09cd81255159c"
+    },
+    "stdout": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/stdout.log",
+      "bytes": 236,
+      "sha256": "2d17ff2a1e8e85e295fcc2da14493a90fe51b210714cb272a2a7e4eab566fc53"
+    },
+    "terminal": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/terminal.json",
+      "bytes": 312,
+      "sha256": "c6a923179b89e34401b9166a235335b438aafc1fff0aa89281f7cea597c753b3"
+    },
+    "isolated_partial_blend": {
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R2/BLD_M01_YAK_UPLIFT_003_R2_MASTER.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993"
+    },
+    "preserve_as_immutable_evidence": true
+  },
+  "verified_compatibility_boundary": {
+    "installed_blender_reported_version": "5.2.0 LTS",
+    "installed_blender_hash": "fbe6228777e7",
+    "rejected_value": "BLENDER_EEVEE_NEXT",
+    "supported_values_reported": [
+      "BLENDER_EEVEE",
+      "BLENDER_WORKBENCH",
+      "CYCLES"
+    ],
+    "r3_required_value": "BLENDER_EEVEE",
+    "failure_type": "TypeError",
+    "failure_location": "scene.render.engine assignment before export or matched comparison rendering"
+  },
+  "allowed_delta": {
+    "behavior_change": "Replace only the incompatible render-engine enum BLENDER_EEVEE_NEXT with BLENDER_EEVEE.",
+    "required_rebinding": [
+      "build id",
+      "source governance hashes",
+      "Blender object namespace",
+      "output paths",
+      "manifest path",
+      "comparison paths",
+      "attempt namespace"
+    ],
+    "component_strategy_change_allowed": false,
+    "component_accounting_change_allowed": false,
+    "camera_or_clearance_change_allowed": false,
+    "donor_geometry_change_allowed": false,
+    "comparison_camera_change_allowed": false
+  },
+  "claims": {
+    "blender_run_performed_for_r3": false,
+    "unreal_run_performed_for_r3": false,
+    "final": false,
+    "aaa": false,
+    "accepted": false
+  }
+}

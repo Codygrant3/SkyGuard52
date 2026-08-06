@@ -1,0 +1,76 @@
+{
+  "schema": "skyguard.phase8.mission-soak-matrix.v1",
+  "required_mission_count": 10,
+  "missions": [
+    {
+      "id": "M01",
+      "name": "Coastal Intercept",
+      "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M02",
+      "name": "Harbor Shield",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M02_HarborShield_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M03",
+      "name": "Convoy Escort",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M03_ConvoyEscort_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M04",
+      "name": "Night Blackout",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M04_NightBlackout_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M05",
+      "name": "Storm Front",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M05_StormFront_Playable_v1",
+      "status": "PROXY_ASSEMBLY_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M06",
+      "name": "Airfield Defense",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M06_AirfieldDefense_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M07",
+      "name": "Search and Intercept",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M07_SearchIntercept_Playable_v1",
+      "status": "PROXY_ASSEMBLY_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M08",
+      "name": "Rescue Cover",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M08_RescueCover_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M09",
+      "name": "Saturation Attack",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M09_SaturationAttack_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    },
+    {
+      "id": "M10",
+      "name": "Evacuation Finale",
+      "map": "/Game/Skyguard/Maps/Campaign_v1/Lvl_M10_EvacuationFinale_Playable_v1",
+      "status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "soak_seconds": 300
+    }
+  ]
+}

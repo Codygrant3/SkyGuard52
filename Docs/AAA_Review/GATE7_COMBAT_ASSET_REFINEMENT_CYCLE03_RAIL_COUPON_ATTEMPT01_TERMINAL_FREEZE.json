@@ -1,0 +1,77 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "immutable": true,
+  "terminal": true,
+  "created_at_utc": "2026-08-06T13:01:20.5032014Z",
+  "failure_stage": "AUTHORITY_PREFLIGHT",
+  "failure_summary": "Cycle03 source-inventory member does not match the byte count and SHA-256 recorded in the otherwise intact offline-design freeze.",
+  "launch_counts": {
+    "supervisor": 1,
+    "blender": 0,
+    "unreal": 0,
+    "retry": 0
+  },
+  "namespaces": {
+    "attempt_created": false,
+    "output_created": false
+  },
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 1303,
+      "sha256": "10bef8bc2f9bffc43bc6f02d361ce4dee3457d1b8dc5e2dd45ebf462f2d53317"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01_TERMINAL_POSTFLIGHT.json",
+      "bytes": 3349,
+      "sha256": "ab39dee7707bab41c30715dde8d87c3ab103506fe90fd1f05eee26ebdb9e5c6a"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Execution\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_attempt01.py",
+      "bytes": 23398,
+      "sha256": "1be92884de1bdc38f84c30d71a2daf4753f2d4054f6432f61b3e7f4a28d7799e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\invoke_gate7_combat_asset_refinement_cycle03_rail_coupon_once.ps1",
+      "bytes": 13967,
+      "sha256": "72591f967ca06d03fb3cd09b43d446f7fe56eecf4b7ed22ba3a9c07db1c222a4"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01_FAILURE_AUDIT_2026-08-06.md",
+      "bytes": 2143,
+      "sha256": "2cbfccbf77d9d814d57d58f0f4966d0b2f4b11bbfb4912aa0da12ae32e58796a"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01_2026-08-06.md",
+      "bytes": 1803,
+      "sha256": "5d7e6d3e8b71b77f777cae780dbd5dba222b1259d0362325ffcea21f17a92f47"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_RECONCILIATION.md",
+      "bytes": 2905,
+      "sha256": "fd6fcdd2c5dca63bae543455db91a4290c0d26adf34b81e9ebcdbe8560e32834"
+    }
+  ],
+  "immutable_authorities_preserved": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 4857,
+      "sha256": "6c2b75200e09e8189bbd203e8a2c0f6c9271a938e14a564502770e7dd3fe2f02"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 9362,
+      "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228"
+    }
+  ],
+  "mismatched_frozen_member": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_SOURCE_INVENTORY.json",
+    "expected_bytes": 8366,
+    "expected_sha256": "be8f4582bdd994c07b8d5da892d1bfdc4c43216cb92b621b175cfe4f6a0cc89f",
+    "observed_bytes": 9333,
+    "observed_sha256": "1030ebfcc54bacc4d1e2cf7dcd26b9da0f4b90f5ecb702772ab75e5d5eaadafc"
+  },
+  "next_executable_gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_RECONCILIATION",
+  "automatic_retry_permitted": false
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery11-freeze-manifest.v1",
+  "gate": "PASS_RECOVERY11_COMPILE_READY_NOT_RUN",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE_FIX_CONTRACT.json",
+      "bytes": 2962,
+      "sha256": "95fca2c76e798658bb6a50f3d78b364b46219ef1339c07d0794c36f7ccdb1d18"
+    },
+    {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery11CompileFix.h",
+      "bytes": 2428,
+      "sha256": "b6d50fde0a856a4ae3f5792c15a2f121317bab4623d19a433698cdebc06e611c"
+    },
+    {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1531,
+      "sha256": "3af6b6046b9e8c3472bad15415dad7b195211295fd1d99fd60429ccda78ac7d2"
+    },
+    {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery11_compile_fix.py",
+      "bytes": 4874,
+      "sha256": "43f7e2e5e28e7685bbc1a4deef50dfa56ce38f84abbfec8667215e251722e223"
+    },
+    {
+      "path": "Scripts/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery11_compile_fix.py",
+      "bytes": 1631,
+      "sha256": "211bc50e9404db4e10d46bad4c02b4292647d77e350b953d080f98c377359c08"
+    },
+    {
+      "path": "Scripts/invoke_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery11_compile.py",
+      "bytes": 4925,
+      "sha256": "2d65cfd3e1a36f4c2f37f68c0bec3909630d6eb27bd11283dec47edc4a98a9e4"
+    },
+    {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE_FIX_READINESS.json",
+      "bytes": 1537,
+      "sha256": "7cbdd385747cdae66fd49c246bd08406469ebcc46525b534d15be8ec5c218a43"
+    }
+  ],
+  "frozen_predecessors": {
+    "recovery09_source_sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08",
+    "recovery09_header_sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0",
+    "recovery10_bridge_sha256": "04964485f02f77515e186890f349464aa48dbbbb5f2b93137de9ccd7a5c6a047"
+  },
+  "execution_state": {
+    "compile_attempts_used": 0,
+    "maximum_compile_attempts": 1,
+    "automatic_retry_forbidden": true,
+    "native_build_executed": false,
+    "unreal_launched": false,
+    "promotion_allowed": false
+  }
+}

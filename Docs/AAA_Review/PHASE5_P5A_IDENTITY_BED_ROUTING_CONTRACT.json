@@ -1,0 +1,144 @@
+{
+  "schema": "skyguard.phase5.p5a-identity-bed-routing.v1",
+  "wave_id": "P5-A",
+  "wave_name": "Yak-52 Identity Bed",
+  "scope": "Source-independent Unreal routing scaffold and explicit unsourced identity-bed placeholders",
+  "production_bank": {
+    "asset_path": "/Game/Skyguard/Audio/Production/DA_P5A_ProductionAudioBank",
+    "native_class": "SkyguardAudioProductionBank",
+    "required_full_bank_category_count": 25,
+    "initialize_only_when_created": true,
+    "preserve_existing_entries_on_rerun": true
+  },
+  "routing_assets": [
+    {
+      "contract_name": "MasterSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Master",
+      "asset_class": "SoundSubmix",
+      "parent": null
+    },
+    {
+      "contract_name": "CockpitSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Cockpit",
+      "asset_class": "SoundSubmix",
+      "parent": "MasterSubmix"
+    },
+    {
+      "contract_name": "ExteriorSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Exterior",
+      "asset_class": "SoundSubmix",
+      "parent": "MasterSubmix"
+    },
+    {
+      "contract_name": "WeaponsSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Weapons",
+      "asset_class": "SoundSubmix",
+      "parent": "MasterSubmix"
+    },
+    {
+      "contract_name": "ExplosionsSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Explosions",
+      "asset_class": "SoundSubmix",
+      "parent": "MasterSubmix"
+    },
+    {
+      "contract_name": "RadioSubmix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Radio",
+      "asset_class": "SoundSubmix",
+      "parent": "MasterSubmix"
+    },
+    {
+      "contract_name": "CockpitSoundMix",
+      "asset_path": "/Game/Skyguard/Audio/Routing/Mixes/MIX_Cockpit",
+      "asset_class": "SoundMix",
+      "parent": null
+    }
+  ],
+  "identity_bed_placeholders": [
+    {
+      "category": "EngineIdle",
+      "source_status": "MISSING_SOURCE",
+      "sound": null,
+      "provenance_id": null,
+      "source_sha256": null,
+      "future_sound_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineIdle",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer"
+    },
+    {
+      "category": "EngineCruise",
+      "source_status": "MISSING_SOURCE",
+      "sound": null,
+      "provenance_id": null,
+      "source_sha256": null,
+      "future_sound_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineCruise",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer"
+    },
+    {
+      "category": "EnginePower",
+      "source_status": "MISSING_SOURCE",
+      "sound": null,
+      "provenance_id": null,
+      "source_sha256": null,
+      "future_sound_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EnginePower",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer"
+    },
+    {
+      "category": "Propeller",
+      "source_status": "MISSING_SOURCE",
+      "sound": null,
+      "provenance_id": null,
+      "source_sha256": null,
+      "future_sound_destination": "/Game/Skyguard/Audio/Production/Aircraft/Propeller/SW_Propeller",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer"
+    },
+    {
+      "category": "OpenCockpitWind",
+      "source_status": "MISSING_SOURCE",
+      "sound": null,
+      "provenance_id": null,
+      "source_sha256": null,
+      "future_sound_destination": "/Game/Skyguard/Audio/Production/Aircraft/Wind/SW_OpenCockpitWind",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "NonSpatialCockpitBed",
+      "concurrency_contract": "SinglePersistentAircraftLayer"
+    }
+  ],
+  "routing_defaults": {
+    "cockpit_exterior_attenuation": 0.72,
+    "cockpit_low_pass_hz": 7200.0
+  },
+  "performance_contract": {
+    "director_hard_voice_limit": 24,
+    "packaged_acceptance_voice_limit": 48,
+    "p5a_isolated_identity_voice_limit": 8,
+    "maximum_audio_thread_ms": 2.0,
+    "maximum_true_peak_dbtp": -1.0,
+    "maximum_underruns": 0,
+    "minimum_metered_samples": 600,
+    "prime_during_briefing": true,
+    "synchronous_gameplay_loads_allowed": false,
+    "procedural_qa_sources_allowed_in_shipping": false
+  },
+  "current_state": {
+    "identity_sources_bound": 0,
+    "routing_assets_built": 0,
+    "production_ready": false,
+    "status": "CONTRACT_VALID_NOT_BUILT_MISSING_SOURCE"
+  },
+  "acceptance_policy": {
+    "source_independent_scaffold_label": "P5A_ROUTING_SCAFFOLD_BUILT",
+    "identity_bed_acceptance_label": "P5-A_IDENTITY_BED_ACCEPTED",
+    "forbidden_claim": "PHASE5_PRODUCTION_READY",
+    "full_phase5_requires_bound_categories": 25,
+    "full_phase5_requires_missing_source_count": 0,
+    "full_phase5_requires_routing_missing_count": 0
+  }
+}

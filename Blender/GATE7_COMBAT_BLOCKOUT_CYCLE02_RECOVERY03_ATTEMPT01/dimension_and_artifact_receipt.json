@@ -1,0 +1,185 @@
+{
+  "gate": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01",
+  "blender_version": "5.2.0 LTS",
+  "classification": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": "PASSED_PROVISIONAL_BLOCKOUT",
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": "PASSED_PROVISIONAL_BLOCKOUT",
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": "PASSED_PROVISIONAL_BLOCKOUT",
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": "PASSED_PROVISIONAL_BLOCKOUT",
+    "PROVISIONAL_SHAHED136_ENVELOPE": "PASSED_PROVISIONAL_BLOCKOUT"
+  },
+  "units": "metres",
+  "dimensions": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "min_m": [
+        -0.05999999865889549,
+        -0.010604499839246273,
+        0.0
+      ],
+      "max_m": [
+        0.05999999865889549,
+        0.010604499839246273,
+        0.009321999736130238
+      ],
+      "size_m": [
+        0.11999999731779099,
+        0.021208999678492546,
+        0.009321999736130238
+      ]
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "min_m": [
+        -0.3075000047683716,
+        -0.03700000047683716,
+        -0.03750000149011612
+      ],
+      "max_m": [
+        0.5600000023841858,
+        0.03700000047683716,
+        0.09650000184774399
+      ],
+      "size_m": [
+        0.8675000071525574,
+        0.07400000095367432,
+        0.1340000033378601
+      ]
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "min_m": [
+        -0.7870000004768372,
+        -0.03999999910593033,
+        -0.03999999910593033
+      ],
+      "max_m": [
+        0.7870000004768372,
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "size_m": [
+        1.5740000009536743,
+        0.07999999821186066,
+        0.07999999821186066
+      ]
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "min_m": [
+        -0.36500000953674316,
+        -0.0790371224284172,
+        -0.04500000923871994
+      ],
+      "max_m": [
+        0.15700000524520874,
+        0.04500000178813934,
+        0.04500000923871994
+      ],
+      "size_m": [
+        0.5220000147819519,
+        0.12403712421655655,
+        0.09000001847743988
+      ]
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "min_m": [
+        -1.649999976158142,
+        -1.5,
+        0.0
+      ],
+      "max_m": [
+        1.649999976158142,
+        1.5,
+        0.03099999949336052
+      ],
+      "size_m": [
+        3.299999952316284,
+        3.0,
+        0.03099999949336052
+      ]
+    }
+  },
+  "authoritative_validations": {
+    "9K38_missile": {
+      "expected_length_m": 1.574,
+      "expected_diameter_m": 0.072
+    },
+    "Shahed136": {
+      "expected_length_m": 3.3,
+      "expected_wingspan_m": 3.0
+    },
+    "MIL_STD_1913": {
+      "top_width_m": 0.021209,
+      "dovetail_width_m": 0.018999,
+      "profile_height_min_m": 0.009322,
+      "groove_width_m": 0.005232,
+      "pitch_m": 0.010008
+    },
+    "hand_mannequin": {
+      "selected_hand_length_m": 0.19,
+      "selected_hand_breadth_m": 0.085,
+      "selected_forearm_plus_hand_m": 0.46,
+      "claim": "project blockout only; not a measured percentile"
+    }
+  },
+  "prohibited_claims": [
+    "exact rifle make/model, chambering or accessory configuration",
+    "final Igla launcher or missile detail",
+    "measured character percentile",
+    "Shahed airfoil, cross-section, propeller or internal dimensions"
+  ],
+  "artifacts": [
+    {
+      "path": "renders/PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.png",
+      "bytes": 642756,
+      "sha256": "5bc010e3e3606ee2defc3d883134cdeb6bb2931bbff49344caaca871f3a9db6f"
+    },
+    {
+      "path": "exports/PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb",
+      "bytes": 27768,
+      "sha256": "27c15fceedcafe36b14106d2508b8d53e982c214f7d16cb1d50f968733c81855"
+    },
+    {
+      "path": "renders/PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.png",
+      "bytes": 693375,
+      "sha256": "27ab88460950aaa1ab9c4dc704bcf92bf844c6be3ff1c95a2b39cc96613e9ca4"
+    },
+    {
+      "path": "exports/PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
+      "bytes": 737176,
+      "sha256": "562e3cd9df397f8c21d06d57a3036b54405f74a8985b9ecd84dca5cf5738e71d"
+    },
+    {
+      "path": "renders/PROVISIONAL_9K38_MISSILE_ENVELOPE.png",
+      "bytes": 616327,
+      "sha256": "62bb8d027751ca6f2d16a6c494d1302f3a2dd31adf37d8a696569647ae63663f"
+    },
+    {
+      "path": "exports/PROVISIONAL_9K38_MISSILE_ENVELOPE.glb",
+      "bytes": 37112,
+      "sha256": "0b4d61e60dd46a752bb3534638bb7c402f9bb141675678a40915ee684f32f687"
+    },
+    {
+      "path": "renders/PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.png",
+      "bytes": 651467,
+      "sha256": "616912058409e1124bc357fbcd3e73b9e8a5fc0feb68de0d59435d146e395a5c"
+    },
+    {
+      "path": "exports/PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
+      "bytes": 416684,
+      "sha256": "c5761337f8fb8658375bc04625670ef22ab5a841a18fd379bd0d4074e6a4dad0"
+    },
+    {
+      "path": "renders/PROVISIONAL_SHAHED136_ENVELOPE.png",
+      "bytes": 723366,
+      "sha256": "afa063771a483fc45af54ac8e442d8f8f9b277261a25eebdfa9e6e1ee26f511c"
+    },
+    {
+      "path": "exports/PROVISIONAL_SHAHED136_ENVELOPE.glb",
+      "bytes": 29344,
+      "sha256": "eba964eddcfe84e7c08e4e72f54cf0bfae5f1b9519b2ac491bb87396a62e03d9"
+    },
+    {
+      "path": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01.blend",
+      "bytes": 205836,
+      "sha256": "a9a05718c3359392d3dc0d994b9cafb0b3ac5873f17a904e15a8c4ffe8e7239d"
+    }
+  ]
+}

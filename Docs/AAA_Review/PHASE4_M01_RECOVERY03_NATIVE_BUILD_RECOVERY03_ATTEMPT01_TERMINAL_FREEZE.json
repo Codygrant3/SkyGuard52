@@ -1,0 +1,109 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery03-attempt01-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY03",
+  "created_utc": "2026-08-03T17:36:06.4333158Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The one authorized Recovery03 build validated the corrected supervisor and reached UE 5.8 compilation, then failed with numeric System.Int32 exit code 6. The frozen plugin source has incomplete weak-object-pointer type declarations and missing GEditor declarations. No retry, UnrealEditor launch, Blender launch, runtime attempt, binary rebinding, promotion, integration, or game packaging occurred.",
+  "offline_authority_freeze": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_FREEZE.json",
+    "bytes": 4013,
+    "sha256": "1d82d76d613b3e5fbf638f2c14630f9a90e7644e74f7902a8d16e167f452c7d9"
+  },
+  "supervisor_launch_count": 1,
+  "bundled_dotnet_launch_count": 1,
+  "automation_tool_invocation_count": 1,
+  "retry_count": 0,
+  "automatic_retry": false,
+  "preflight_passed": true,
+  "native_compilation_passed": false,
+  "numeric_exit_code": 6,
+  "exit_code_type": "System.Int32",
+  "terminal_supervisor_manifest_present": true,
+  "expected_plugin_dll_present": false,
+  "expected_plugin_pdb_present": false,
+  "expected_module_receipt_present": false,
+  "binary_rebound": false,
+  "runtime_namespace_present": false,
+  "unreal_editor_launched": false,
+  "blender_launched": false,
+  "failed_build_namespace_reuse_forbidden": true,
+  "partial_package_root_reuse_forbidden": true,
+  "frozen_files": [
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 965,
+      "sha256": "879cea521a7d6066badc3072162ad5796b8ed1a1f7cdee79b8aa735f99cafcb6"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/build.stdout.log",
+      "bytes": 5997,
+      "sha256": "d2eaf15a83a84f483b23e919b33bfbc8beb1c28e6b9db24f14c5d92921033109"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/process_tree_samples.jsonl",
+      "bytes": 31276,
+      "sha256": "a499639a4c7f1a2cf1dad14aaad43e300d42e8e0cb46eeecbfcb07526de4416e"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/AutomationTool.Log.json",
+      "bytes": 64861,
+      "sha256": "2d98c017add7f02907df5ecd18af333e5d0e657ac6e8df10df805176fe21bb8d"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/AutomationTool.Log.txt",
+      "bytes": 24070,
+      "sha256": "1f250118d294da3b2208d90b2a4055969729ac12c570965087e622ee1e1c53ff"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/UBA-UnrealEditor-Win64-Development.json",
+      "bytes": 723890,
+      "sha256": "74c355b08b8cec751ac4b33511fc09d9a124eb1c74ea7a2f2317971c4ca6d5c7"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/UBA-UnrealEditor-Win64-Development.txt",
+      "bytes": 206164,
+      "sha256": "eb6f32a391d3158e8d369d8429add4f7c83fed4869350e9d4cca20795ad0c177"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY03/build_attempt_01/logs/Trace.uba",
+      "bytes": 12007,
+      "sha256": "7264285f69ff4faf18bfe00cedfbde77c5121a3861eda778da6304796651989f"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_ATTEMPT01_PARTIAL_PACKAGE_INVENTORY.json",
+      "bytes": 11053,
+      "sha256": "4b61291c3a6aa4aeaddbdfc3a27fd6d08590c667e789dc5cbb1a2c1991408bae"
+    },
+    {
+      "file": "Scripts/inventory_skyguard_recovery03_native_recovery03_failed_package.py",
+      "bytes": 1591,
+      "sha256": "7ad2171930d6c68272307aa0c20777bca39118f4ead9b716f429f20a72f2a033"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_ATTEMPT01_TERMINAL_EVIDENCE.json",
+      "bytes": 5118,
+      "sha256": "86356eeba5fdf9faf4d3811b17444bc3a6a9ed5b5ee569fc726590f6776e5324"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_ATTEMPT01_READINESS.json",
+      "bytes": 805,
+      "sha256": "7e87dc5cee88548f958ae9fdcfdd2fee954fde10ff335cb2d67b334914c6034f"
+    },
+    {
+      "file": "Scripts/build_skyguard_recovery03_native_recovery03_once.ps1",
+      "bytes": 20657,
+      "sha256": "c07760dddc539e2303c343830b5ef2a67a79ac16dc0ea9ad61579382a0988337"
+    }
+  ],
+  "compiler_error_codes": [
+    "C2079",
+    "C2065"
+  ],
+  "next_gate": "OFFLINE_RECOVERY04_PLUGIN_SOURCE_COMPATIBILITY_CORRECTION",
+  "next_gate_scope": "Create a fresh plugin source namespace derived from the frozen source. Make only bounded UE 5.8 include and declaration corrections for FWeakObjectPtr/TWeakObjectPtr and GEditor. Validate source contracts and hashes offline. Do not compile or launch Unreal during that gate."
+}

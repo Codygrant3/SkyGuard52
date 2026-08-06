@@ -1,0 +1,7 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "identity": "AR/M4-pattern rifle with free-float ventilated handguard; exact configuration unresolved",
+  "classification": "READY_FOR_BLOCKOUT_ONLY",
+  "reason": "Visible family cues are strong, but the receiver, magazine, stock, controls and markings never become verifiable.",
+  "production_boundary": "Use only a replaceable AR/M4-family silhouette blockout. Do not finalize ammunition, ejection, receiver controls, stock, magazine, sights, muzzle or markings."
+}

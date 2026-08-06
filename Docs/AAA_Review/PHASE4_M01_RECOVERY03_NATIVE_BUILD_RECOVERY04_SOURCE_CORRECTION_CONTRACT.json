@@ -1,0 +1,40 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery04-source-correction-contract.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY04",
+  "base_plugin": "Plugins/SkyguardRecovery03NativeRecovery01",
+  "corrected_plugin": "Plugins/SkyguardRecovery03NativeRecovery04",
+  "module_identity": "SkyguardRecovery03NativeRecovery01",
+  "allowed_changes": {
+    "descriptor": [
+      "Version",
+      "VersionName",
+      "FriendlyName",
+      "Description",
+      "descriptor filename"
+    ],
+    "public_header_added_lines": [
+      "#include \"UObject/WeakObjectPtr.h\""
+    ],
+    "private_source_added_lines": [
+      "#include \"Editor.h\""
+    ],
+    "build_cs_changes": []
+  },
+  "prohibited_changes": [
+    "function bodies",
+    "executable statements",
+    "conditions",
+    "runtime constants",
+    "member declarations",
+    "camera contract",
+    "material behavior",
+    "shader polling",
+    "timings",
+    "capture requirements",
+    "restoration logic",
+    "receipt logic",
+    "authorization behavior"
+  ],
+  "future_package_root": "D:/SG52R03B05",
+  "compile_authorized": false
+}

@@ -1,0 +1,1 @@
+EXIT=0 (extracted from raw agent_message; schema -o file incomplete)

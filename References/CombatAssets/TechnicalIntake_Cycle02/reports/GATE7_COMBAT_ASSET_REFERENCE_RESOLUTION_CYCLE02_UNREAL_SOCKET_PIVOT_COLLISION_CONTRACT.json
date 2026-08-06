@@ -1,0 +1,34 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "import_authorized": false,
+  "future_socket_contract": {
+    "rifle_blockout": [
+      "muzzle_axis_provisional",
+      "support_hand",
+      "trigger_hand",
+      "ads_rear",
+      "ads_front"
+    ],
+    "igla_missile_blockout": [
+      "forward_origin",
+      "rear_axis"
+    ],
+    "gunner_blockout": [
+      "hand_l",
+      "hand_r",
+      "forearm_l",
+      "forearm_r",
+      "eye_ads",
+      "shoulder_contact"
+    ],
+    "shahed_blockout": [
+      "engine_visual",
+      "wing_l",
+      "wing_r",
+      "damage_core"
+    ]
+  },
+  "collision": "Keep visual, gameplay, cockpit-safety and clearance volumes separate.",
+  "pivots": "Use metric Blender sources, forward-axis documentation and centimetre validation in Unreal.",
+  "provisional_rule": "Every Cycle02 blockout name must contain PROVISIONAL and be replaceable without changing gameplay socket consumers."
+}

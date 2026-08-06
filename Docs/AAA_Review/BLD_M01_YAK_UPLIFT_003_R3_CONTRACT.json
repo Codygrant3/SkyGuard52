@@ -1,0 +1,257 @@
+{
+  "schema": "skyguard.blender-uplift-source-contract.v3",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R3",
+  "title": "Preserved L88 Yak-52 selective production uplift R3 Blender 5.2 render compatibility repair",
+  "status": "source_only_not_run",
+  "promotion": "provisional_uplift_candidate_requires_matched_visual_review_offline_artifact_gate_and_later_unreal_acceptance",
+  "supersedes_attempt_for_execution_only": "BLD-M01-YAK-UPLIFT-003-R2/attempt_01",
+  "does_not_modify_or_invalidate_prior_evidence": true,
+  "blender_version": {
+    "major": 5,
+    "minor": 2
+  },
+  "coordinate_contract": {
+    "units": "metres",
+    "forward_axis": "+X",
+    "right_axis": "+Y",
+    "up_axis": "+Z",
+    "preserve_l88_world_transforms": true
+  },
+  "immutable_sources": {
+    "l88_blend": {
+      "path": "Content/Skyguard/Meshes/Source/L88/YAK52_L88_MASTER_BLOCKOUT.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993",
+      "allowed_use": "Byte-copy to isolated Uplift_003_R3 working blend, then open only the copy.",
+      "must_remain_unchanged": true
+    },
+    "l88_glb_inventory": {
+      "path": "Content/Skyguard/Meshes/Source/L88/yak52_l88_silhouette_blockout.glb",
+      "bytes": 8721608,
+      "sha256": "85f7c3d5164ba1fb9056dd206ff8be29716c6db81f152e045dd31ec051e418fb"
+    },
+    "l88_runtime_contract": {
+      "path": "Saved/Reports/L88_RUNTIME_ASSEMBLY_CONTRACT.json",
+      "bytes": 57068,
+      "sha256": "a5cd8244b996a32b50392663ccce7d4509845e6619ad90bc38b2ca0aaa669c25"
+    },
+    "donor_002_source": {
+      "path": "Scripts/blender_bld_m01_yak_prod_002.py",
+      "bytes": 48077,
+      "sha256": "a67bd8d4cb6437e11cc3f1effffdd06e1bf0a89d5da1bfe28818b7e983e1f055",
+      "allowed_use": "Selected Python construction helpers only; never open or import the 002 blend or GLB."
+    },
+    "visual_review": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_PROD_002_VISUAL_REVIEW.md",
+      "bytes": 2814,
+      "sha256": "640f05d5757f18373b2eff7a21e06e9012370d8bf71347421bf227c4ef6009cb"
+    },
+    "attempt_01_stderr": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003/attempt_01/stderr.log",
+      "bytes": 778,
+      "sha256": "954e484c1346eca396a609977e457e0c864dd59e899c74069da9e8b7d89326d9"
+    },
+    "r1_component_ledger": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_COMPONENT_LEDGER.json",
+      "bytes": 6822,
+      "sha256": "55278c347d275fac8afc7c64f252d7a24af8a72ee493f4f33347bc202d7e1b44"
+    },
+    "r1_generator_helper_source": {
+      "path": "Scripts/blender_bld_m01_yak_uplift_003.py",
+      "bytes": 21143,
+      "sha256": "f3aafd9d4d922792032d3b1dc6325f24ac3a7906eb68fb9acedf692c0ffa5bb9",
+      "allowed_use": "Generic helper functions only after rebinding build id; never invoke the R1 main function or use R1 output paths."
+    },
+    "r2_source_inventory_audit": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_SOURCE_AUDIT.json",
+      "bytes": 4943,
+      "sha256": "28ff3c9ae15451fa2e29458209390a9a32093267e2f80ba84d5b509c4abcdf1a"
+    },
+    "r2_component_ledger": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_COMPONENT_LEDGER.json",
+      "bytes": 2679,
+      "sha256": "c2e5f15ec0ce621c5e2afb7c5f7ba2e4331c68d7234fadd0bf986fbe610eba4e"
+    },
+    "r2_source_contract": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_CONTRACT.json",
+      "bytes": 8427,
+      "sha256": "bf9a76493fc120fee5d981bba00e2d2fe69fcb4655b56a5ef9db6ecb54548a54"
+    },
+    "r2_generator_source": {
+      "path": "Scripts/blender_bld_m01_yak_uplift_003_r2.py",
+      "bytes": 22615,
+      "sha256": "59c8162cc72e0911d701e0c29d7b301731e039329bf4695935ede61b44e28bce"
+    },
+    "r2_attempt_stderr": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/stderr.log",
+      "bytes": 792,
+      "sha256": "2a01848bc8b4b4e066fe056c6ef87da81c152f4ca810639001c09cd81255159c"
+    },
+    "r2_attempt_stdout": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/stdout.log",
+      "bytes": 236,
+      "sha256": "2d17ff2a1e8e85e295fcc2da14493a90fe51b210714cb272a2a7e4eab566fc53"
+    },
+    "r2_attempt_terminal": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003_R2/attempt_01/terminal.json",
+      "bytes": 312,
+      "sha256": "c6a923179b89e34401b9166a235335b438aafc1fff0aa89281f7cea597c753b3"
+    },
+    "r2_partial_blend": {
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R2/BLD_M01_YAK_UPLIFT_003_R2_MASTER.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993"
+    },
+    "r3_source_audit": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_SOURCE_AUDIT.json",
+      "bytes": 2958,
+      "sha256": "0e422071cecfdef7b7bf6fe3dc64b1f0329922ad6449defe53b681fdb04429f9"
+    },
+    "r3_component_ledger": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_COMPONENT_LEDGER.json",
+      "bytes": 3329,
+      "sha256": "f574d1bece9de888d16834661c4c18b5e7df8fc56eff676b26f000b3d5369dd5"
+    }
+  },
+  "component_ledger": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_COMPONENT_LEDGER.json",
+  "source_audit": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_SOURCE_AUDIT.json",
+  "outputs": {
+    "directory": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3",
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3/BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3/bld_m01_yak_uplift_003_r3.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK_UPLIFT_003_R3_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3"
+  },
+  "required_stage_order": [
+    "source_inventory_exception_gate",
+    "camera_and_clearance",
+    "component_ledger_tags",
+    "selective_002_donors",
+    "matched_comparison_setup",
+    "isolated_save_export_and_comparison"
+  ],
+  "render_compatibility": {
+    "installed_blender": "5.2.0 LTS",
+    "required_engine": "BLENDER_EEVEE",
+    "forbidden_engine": "BLENDER_EEVEE_NEXT",
+    "allowed_behavioral_delta_from_r2": "render_engine_enum_only"
+  },
+  "component_accounting": {
+    "governed_total": 240,
+    "exact_object_required": 232,
+    "source_absent_hold": 8,
+    "required_equation": "232 + 8 = 240",
+    "source_absent_hold_required_as_object": false,
+    "source_absent_hold_synthesis_allowed": false
+  },
+  "first_stage_camera": {
+    "name": "CAM_UPLIFT003R3_RearGunnerEye",
+    "location_m": [-0.9, -0.64, 1.08],
+    "target_m": [1.58, -0.64, 1.06],
+    "lens_mm": 46.0,
+    "clip_start_m": 0.04,
+    "required_clearance_volume": "VOL_UPLIFT003R3_CameraClearance"
+  },
+  "required_safety_and_clearance_volumes": {
+    "VOL_UPLIFT003R3_CameraClearance": {
+      "center_m": [-0.9, -0.64, 1.08],
+      "half_extents_m": [0.24, 0.24, 0.22],
+      "role": "rear_gunner_camera_occlusion_clearance"
+    },
+    "VOL_UPLIFT003R3_PilotSafety": {
+      "center_m": [0.62, 0.0, 1.06],
+      "half_extents_m": [0.72, 0.55, 0.62],
+      "role": "pilot_no_fire_volume"
+    },
+    "VOL_UPLIFT003R3_RifleMuzzleClearance": {
+      "center_m": [0.38, -0.64, 1.02],
+      "half_extents_m": [1.45, 0.23, 0.23],
+      "role": "rifle_safe_sweep_volume"
+    },
+    "VOL_UPLIFT003R3_IglaBackblastClearance": {
+      "center_m": [-1.25, -0.42, 1.24],
+      "half_extents_m": [0.72, 0.34, 0.34],
+      "role": "igla_backblast_exclusion_volume"
+    }
+  },
+  "required_donor_objects": [
+    "GEO_UPLIFT003R3_DONOR_CowlingShell",
+    "GEO_UPLIFT003R3_DONOR_CowlingFrontRing",
+    "GEO_UPLIFT003R3_DONOR_CowlingShutters",
+    "GEO_UPLIFT003R3_DONOR_CowlingInletCone",
+    "GEO_UPLIFT003R3_DONOR_Spinner",
+    "GEO_UPLIFT003R3_DONOR_PropBlade_A",
+    "GEO_UPLIFT003R3_DONOR_PropBlade_B",
+    "GEO_UPLIFT003R3_DONOR_MainWheelWell_L",
+    "GEO_UPLIFT003R3_DONOR_MainWheelWell_R",
+    "GEO_UPLIFT003R3_DONOR_NoseWheelWell",
+    "DATUM_UPLIFT003R3_DONOR_CanopyTravel",
+    "DATUM_UPLIFT003R3_DONOR_MainGearPivot_L",
+    "DATUM_UPLIFT003R3_DONOR_MainGearPivot_R",
+    "DATUM_UPLIFT003R3_DONOR_NoseGearPivot"
+  ],
+  "preserved_bundles": [
+    "Aircraft_RearCockpit",
+    "Crew_Pilot",
+    "Crew_RearGunner_FirstPerson",
+    "Crew_RearGunner_ThirdPerson",
+    "Weapon_Rifle",
+    "Weapon_Igla"
+  ],
+  "matched_comparison_slots": [
+    {
+      "slot": "beauty",
+      "baseline": {
+        "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_Beauty_FINAL.png",
+        "bytes": 2481987,
+        "sha256": "794c0a0260d0b88476d6e35aaed8d5ec99ad86489ca3925bb5a9006fa8c694f7"
+      },
+      "candidate": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3/UPLIFT003R3_Beauty.png"
+    },
+    {
+      "slot": "side",
+      "baseline": {
+        "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_SideOrtho_FINAL.png",
+        "bytes": 2020544,
+        "sha256": "d7d1c0c6fa57d1de92b0013bd17d0379bf9a5f99038cfa81228a6cfd6309fe2d"
+      },
+      "candidate": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3/UPLIFT003R3_SideOrtho.png"
+    },
+    {
+      "slot": "top",
+      "baseline": {
+        "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_TopOrtho_FINAL.png",
+        "bytes": 2612089,
+        "sha256": "fb796d1469de1f560ac09529d8dcd8e20154dd4914e688b141735ddd1359d3e1"
+      },
+      "candidate": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3/UPLIFT003R3_TopOrtho.png"
+    },
+    {
+      "slot": "rear_cockpit",
+      "baseline": {
+        "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_RearCockpitHero_FINAL.png",
+        "bytes": 2684264,
+        "sha256": "5be5afa04d879d149eaf58e7ed37f05a16d198d1514f07a6412a2d68a127b3da"
+      },
+      "candidate": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3/UPLIFT003R3_RearCockpit.png"
+    },
+    {
+      "slot": "rear_gunner_eye",
+      "baseline": {
+        "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_RearGunnerADS_FINAL.png",
+        "bytes": 2084452,
+        "sha256": "94c49b8d7677216556f2350fa860de31cfc73adfc9e99c8577a8bfbe762fb96c"
+      },
+      "candidate": "Saved/Screenshots/BLD_M01_YAK_UPLIFT_003_R3/UPLIFT003R3_RearGunnerEye.png"
+    }
+  ],
+  "inheritance_policy": {
+    "inherited_name_preserved": true,
+    "inherited_component_property": "SKG_UpliftClass",
+    "promotion_property": "SKG_PromotionAllowed",
+    "promotion_allowed_value": false,
+    "original_sources_never_overwritten": true,
+    "source_absent_hold_never_synthesized": true,
+    "no_aaa_or_final_claim": true
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-buildplugin01-contract.v1",
+  "created_utc": "2026-08-05T15:40:34.106495+00:00",
+  "classification": "PASS",
+  "gate": "RECOVERY05_BUILDPLUGIN01_OFFLINE_DESIGN",
+  "future_execution": {
+    "executable": "D:\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64\\dotnet.exe",
+    "arguments": [
+      "D:\\UE_5.8\\Engine\\Binaries\\DotNET\\AutomationTool\\AutomationTool.dll",
+      "BuildPlugin",
+      "-Plugin=D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\SkyguardRecovery03NativeRecovery05.uplugin",
+      "-Package=D:\\SG52R05P01",
+      "-TargetPlatforms=Win64",
+      "-Rocket",
+      "-StrictIncludes",
+      "-NoP4"
+    ],
+    "working_directory": "D:\\UE_5.8\\Engine\\Binaries\\DotNET\\AutomationTool",
+    "timeout_seconds": 1200,
+    "supervisor_launches": 1,
+    "bundled_dotnet_launches": 1,
+    "automation_tool_invocations": 1,
+    "retries": 0,
+    "copy_back": false,
+    "unreal_editor_launches": 0,
+    "blender_launches": 0
+  },
+  "preflight": [
+    "verify_every_frozen_hash_and_byte_count",
+    "verify_5_active_and_18_quarantined_records",
+    "verify_only_recovery05_is_active",
+    "verify_disabled_by_default",
+    "verify_unique_plugin_module_and_modulerules_identity",
+    "verify_recovery04_project_build_freeze_and_isolated_outputs",
+    "verify_no_heavy_process",
+    "verify_all_future_namespaces_absent"
+  ],
+  "success_requirements": [
+    "numeric_System.Int32_exit_code_0",
+    "packaged_dll_pdb_modules_descriptor_buildcs_and_source",
+    "packaged_source_parity",
+    "complete_package_inventory_and_logs",
+    "one_launch_zero_retries",
+    "plugin_remains_disabled_by_default",
+    "no_active_or_quarantine_mutation"
+  ],
+  "forbidden": [
+    "AutomationTool.exe",
+    "RunUAT.bat",
+    "cmd.exe",
+    "system_dotnet",
+    "wrapper",
+    "retry",
+    "namespace_reuse",
+    "copy_back",
+    "UnrealEditor",
+    "Blender"
+  ]
+}

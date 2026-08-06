@@ -1,0 +1,33 @@
+{
+    "schema":  "skyguard.phase4.m01-recovery05-unreal-proof01-launcher-supervisor-design.v1",
+    "created_utc":  "2026-08-05T22:20:19.0946415Z",
+    "classification":  "PASS",
+    "launcher":  {
+                     "path":  "D:\\Skyguard52\\Scripts\\invoke_phase4_m01_recovery05_unreal_proof01_once.ps1",
+                     "bytes":  9142,
+                     "sha256":  "44f99abddbb4ce5979797662d77d8c4b2e59ff51c78411fa1c271ac38a030c2c"
+                 },
+    "verifier":  {
+                     "path":  "D:\\Skyguard52\\Scripts\\verify_phase4_m01_recovery05_unreal_proof01_postflight.py",
+                     "bytes":  16950,
+                     "sha256":  "3f8d340b1d395bebe533bd654fb8af2998efd61cd98e95e464e2b63f31759583"
+                 },
+    "executable":  "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "one_unreal_start_process_path":  true,
+    "one_heavy_process":  true,
+    "timeout_seconds":  600,
+    "retry_count":  0,
+    "failed_namespace_reuse":  false,
+    "exact_argument_count":  16,
+    "in_memory_binding_only":  true,
+    "world_save_prohibited":  true,
+    "terminal_manifest_on_all_outcomes":  true,
+    "emergency_receipt_fallback":  true,
+    "frozen_runtime_attempt_suffix_reused_once":  true,
+    "future_namespaces":  [
+                              "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01\\runtime_attempt_01",
+                              "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01\\launcher_attempt_01",
+                              "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_EXECUTION_PREFLIGHT.json",
+                              "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_TERMINAL_SUPERVISOR.json"
+                          ]
+}

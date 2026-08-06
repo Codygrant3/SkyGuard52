@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard://schemas/m01-fab-quarantine-provenance-v1",
+  "title": "Skyguard 52 Mission 01 Fab/Quixel Quarantine Provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "intake_id",
+    "status",
+    "policy",
+    "decision_basis",
+    "assets"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.m01.fab-quarantine-provenance.v1"
+    },
+    "intake_id": {
+      "const": "M01-FAB-QUARANTINE-INTAKE-001"
+    },
+    "status": {
+      "enum": [
+        "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+        "EVIDENCE_COMPLETE_READY_FOR_MANUAL_QUARANTINE_INSPECTION",
+        "EVIDENCE_COMPLETE_REJECTED"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "automatic_purchase_allowed",
+        "automatic_download_allowed",
+        "automatic_import_allowed",
+        "content_presence_is_acceptance",
+        "first_inspection_city_kit_limit",
+        "first_inspection_coast_kit_limit",
+        "quarantine_only",
+        "runtime_promotion_allowed"
+      ],
+      "properties": {
+        "automatic_purchase_allowed": { "const": false },
+        "automatic_download_allowed": { "const": false },
+        "automatic_import_allowed": { "const": false },
+        "content_presence_is_acceptance": { "const": false },
+        "first_inspection_city_kit_limit": { "const": 1 },
+        "first_inspection_coast_kit_limit": { "const": 1 },
+        "quarantine_only": { "const": true },
+        "runtime_promotion_allowed": { "const": false }
+      }
+    },
+    "decision_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shortlist_path",
+        "shortlist_sha256",
+        "visual_review_path",
+        "visual_review_sha256",
+        "visual_review_status"
+      ],
+      "properties": {
+        "shortlist_path": {
+          "const": "Docs/AAA_Review/M01_FAB_VISIBLE_ART_SHORTLIST_2026-08-02.md"
+        },
+        "shortlist_sha256": { "$ref": "#/$defs/sha256" },
+        "visual_review_path": {
+          "const": "Docs/AAA_Review/BLD_M01_COAST_PROD_001_VISUAL_REVIEW.md"
+        },
+        "visual_review_sha256": { "$ref": "#/$defs/sha256" },
+        "visual_review_status": {
+          "const": "ACCEPTED_AS_LAYOUT_SCAFFOLD_REJECTED_AS_VISIBLE_AAA_ART"
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/assetRecord" }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evidenceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "textureResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "count", "formats", "usage"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "count": { "type": "integer", "minimum": 1 },
+        "formats": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "usage": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "featureSupport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported", "evidence"],
+      "properties": {
+        "supported": { "type": "boolean" },
+        "evidence": { "$ref": "#/$defs/evidenceFile" }
+      }
+    },
+    "assetRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot",
+        "catalog",
+        "commerce",
+        "compatibility",
+        "storage",
+        "texture_inventory",
+        "runtime_features",
+        "dependencies",
+        "immutable_artifacts",
+        "quarantine_disposition",
+        "final_disposition"
+      ],
+      "properties": {
+        "slot": {
+          "enum": ["CITY_KIT", "BEACH_COAST_KIT"]
+        },
+        "catalog": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "product_name",
+            "source_url",
+            "product_id",
+            "seller",
+            "product_page_snapshot"
+          ],
+          "properties": {
+            "product_name": { "type": "string", "minLength": 1 },
+            "source_url": {
+              "type": "string",
+              "pattern": "^https://www\\.fab\\.com/listings/[0-9a-f-]{36}$"
+            },
+            "product_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f-]{36}$"
+            },
+            "seller": { "type": "string", "minLength": 1 },
+            "product_page_snapshot": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "commerce": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "paid_free_status",
+            "price_paid",
+            "currency",
+            "acquired_at",
+            "license_tier",
+            "license_text_snapshot",
+            "receipt_or_acquisition_record"
+          ],
+          "properties": {
+            "paid_free_status": { "enum": ["PAID", "FREE"] },
+            "price_paid": { "type": "number", "minimum": 0 },
+            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+            "acquired_at": { "type": "string", "format": "date-time" },
+            "license_tier": { "type": "string", "minLength": 1 },
+            "license_text_snapshot": { "$ref": "#/$defs/evidenceFile" },
+            "receipt_or_acquisition_record": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "compatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "supported_unreal_versions",
+            "target_engine",
+            "target_engine_supported",
+            "platform_restrictions",
+            "cooked_windows_redistribution_covered",
+            "evidence"
+          ],
+          "properties": {
+            "supported_unreal_versions": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "target_engine": { "const": "5.8" },
+            "target_engine_supported": { "const": true },
+            "platform_restrictions": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "cooked_windows_redistribution_covered": { "const": true },
+            "evidence": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "download_bytes",
+            "installed_bytes",
+            "download_package",
+            "installed_inventory_manifest"
+          ],
+          "properties": {
+            "download_bytes": { "type": "integer", "minimum": 1 },
+            "installed_bytes": { "type": "integer", "minimum": 1 },
+            "download_package": { "$ref": "#/$defs/evidenceFile" },
+            "installed_inventory_manifest": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "texture_inventory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["total_textures", "resolutions", "inventory_evidence"],
+          "properties": {
+            "total_textures": { "type": "integer", "minimum": 1 },
+            "resolutions": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/textureResolution" }
+            },
+            "inventory_evidence": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "runtime_features": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nanite", "lod", "collision", "material_instances"],
+          "properties": {
+            "nanite": { "$ref": "#/$defs/featureSupport" },
+            "lod": { "$ref": "#/$defs/featureSupport" },
+            "collision": { "$ref": "#/$defs/featureSupport" },
+            "material_instances": { "$ref": "#/$defs/featureSupport" }
+          }
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["items", "inventory_evidence"],
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "inventory_evidence": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "immutable_artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/evidenceFile" }
+        },
+        "quarantine_disposition": {
+          "enum": [
+            "HOLD_EVIDENCE_INCOMPLETE",
+            "APPROVED_FOR_MANUAL_QUARANTINE_INSPECTION",
+            "REJECTED_BEFORE_IMPORT"
+          ]
+        },
+        "final_disposition": {
+          "enum": [
+            "NOT_EVALUATED",
+            "QUARANTINE_ONLY_NOT_RUNTIME_APPROVED",
+            "REJECTED"
+          ]
+        }
+      }
+    }
+  }
+}

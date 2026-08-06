@@ -1,0 +1,97 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery03-freeze.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY03",
+  "created_utc": "2026-08-03T16:22:49.6175867Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY03_NATIVE_BUILD_AUTHORIZATION",
+  "prior_recovery02_supervisor_attempt_terminal": true,
+  "failed_namespace_reuse_forbidden": true,
+  "native_build_launched": false,
+  "automation_tool_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "future_build_namespace_absent": true,
+  "future_runtime_namespace_absent": true,
+  "future_terminal_manifest_absent": true,
+  "short_package_root_absent": true,
+  "frozen_files": [
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_SUPERVISOR_CONTRACT.json",
+      "bytes": 2170,
+      "sha256": "cfec0948a2aaebc3f8434141117051b4c0aa9d8472c58c5b201097343e51d008"
+    },
+    {
+      "file": "Scripts/build_skyguard_recovery03_native_recovery03_once.ps1",
+      "bytes": 20657,
+      "sha256": "c07760dddc539e2303c343830b5ef2a67a79ac16dc0ea9ad61579382a0988337"
+    },
+    {
+      "file": "Scripts/test_skyguard_recovery03_native_recovery03_exact_host.ps1",
+      "bytes": 3115,
+      "sha256": "617e8079d7394a32240b01598f4071b2578012907e7604f02cfa4c2aee059028"
+    },
+    {
+      "file": "Scripts/verify_skyguard_recovery03_native_recovery03_offline.py",
+      "bytes": 5667,
+      "sha256": "e0e44e4659f62b37999de35aace2537f76ab0f9a827d6b5c890d4059c756a45d"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_PROJECTED_PATHS.json",
+      "bytes": 519,
+      "sha256": "3ff29fd61d133a2b74afcdc64a66cd9e94834f239369f7019ea16a3a5dab1792"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_EXACT_HOST_TEST.json",
+      "bytes": 2337,
+      "sha256": "8fc75d46a5d7ce05d521bd4f84b93b9fd6de6dac6965e2cce7652ff7c00098ee"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_BUNDLED_HOST_TEST.json",
+      "bytes": 1184,
+      "sha256": "2ee67face4fdf5f7e13fc784f38e473f51ced6dafc6dce85af7c08f3d40ed4a3"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_RECONCILIATION.json",
+      "bytes": 2182,
+      "sha256": "d00efa1e9034fe9869f1bfe8571cb13924dfb184509ffbea24af9f79be47ad8b"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_OFFLINE_VERIFICATION.json",
+      "bytes": 1247,
+      "sha256": "428b1dfdb844f389528ad3a56a7036d70c8ca9a064bf953c608963a4454f515f"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_SOURCE_INVENTORY.json",
+      "bytes": 2465,
+      "sha256": "c1250fb79892b12c5d78a221ffa1b2223795a7077f49e36a955cd1eb44032fba"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_READINESS.json",
+      "bytes": 1510,
+      "sha256": "eddf13559e790daaf1a907c2653c960bbebe733ed4f98e73832a03a44607ffde"
+    },
+    {
+      "file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_SINGLE_BUILD.md",
+      "bytes": 2083,
+      "sha256": "dbecef5da129a2aee38960c33d61faca3daba69d589711d4176b60b1c1fdc7c1"
+    }
+  ],
+  "offline_test_results": {
+    "authority_verification": "PASS",
+    "current_powershell_syntax": "PASS",
+    "windows_powershell_5_1_syntax": "PASS",
+    "self_contained_sha256": "PASS",
+    "missing_file_rejected": true,
+    "wrong_byte_count_rejected": true,
+    "wrong_hash_rejected": true,
+    "lowercase_digest_validated": true,
+    "terminal_manifest_serialization": "PASS",
+    "bundled_dotnet_success_exit_code": 0,
+    "bundled_dotnet_failure_exit_code": 1,
+    "numeric_exit_code_type": "System.Int32",
+    "null_exit_code_rejected": true,
+    "normal_build_start_process_count": 1,
+    "projected_longest_path": 213,
+    "heavy_process_count": 0
+  },
+  "next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY03_SINGLE_BUILD.md"
+}

@@ -1,0 +1,51 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "profile_status": "PROJECT_PROFILE_SELECTED_AT_DESIGN_LEVEL; FINAL_DIMENSION_VECTOR_BLOCKED",
+  "profile": "median-size adult rear gunner, male presentation, fully clothed and gloved",
+  "critical_caveat": "The frozen NASA tables provide mixed-sex Min/Max accommodation bounds, not a coherent 50th-percentile male vector. No independent midpoint averaging is permitted.",
+  "accommodation_envelope_mm": {
+    "sitting_height": [
+      777,
+      1013
+    ],
+    "sitting_eye_height": [
+      665,
+      889
+    ],
+    "shoulder_elbow": [
+      296,
+      419
+    ],
+    "hand_length": [
+      158,
+      221
+    ],
+    "hand_breadth": [
+      71,
+      102
+    ],
+    "hand_circumference": [
+      168,
+      241
+    ],
+    "forearm_hand_length": [
+      387,
+      546
+    ]
+  },
+  "blockout_rule": "Preserve the existing governed R3 proportions as a replaceable mannequin and validate clearance against the full NASA envelope. Do not label the mannequin as a measured percentile.",
+  "visual_design_spec": {
+    "gloves": "black close-fitting padded leather/tactical appearance with articulated fingers, thumb web, knuckle plane and cuff; exact manufacturer unresolved",
+    "sleeves": "muted olive/gray flight-suit fabric with wrist folds and no block geometry",
+    "headgear": "rear-gunner headgear is not visible in the camera-worn footage; exact helmet/hood is blocked",
+    "headset": "rear-gunner headset identity blocked; pilot headset is not authority for the rear gunner",
+    "harness": "retain governed safety concept, but webbing and buckle model remain blocked"
+  },
+  "pose_contracts": {
+    "rifle": "two-hand support, articulated fingers, no palm/barrel interpenetration, replaceable family blockout",
+    "Igla": "shoulder contact plus two governed grips only after exact launcher variant is accepted",
+    "ADS": "rear sight, front sight and eye must share one alignment axis; no UI reticle substitute",
+    "cockpit": "test hands, elbows, weapon sweep, canopy rim, pilot safety and rear-frame clearance"
+  },
+  "classification": "READY_FOR_BLOCKOUT_ONLY"
+}

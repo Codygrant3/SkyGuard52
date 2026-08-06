@@ -1,0 +1,20 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-object-hierarchy.v1",
+  "root":"R6_S01_ROOT",
+  "collections": {
+    "R6_S01_REFERENCE":["REF_R6_SidePrimary","REF_R6_SideSecondary","REF_R6_Top_REQUIRED","REF_R6_CockpitFront","REF_R6_CockpitRear"],
+    "R6_S01_HIGH":["HP_R6_Fuselage","HP_R6_Cowling","HP_R6_RadialFace","HP_R6_Propeller","HP_R6_WingRoot_L","HP_R6_WingRoot_R","HP_R6_CanopyFixed","HP_R6_RearCanopy"],
+    "R6_S01_GAME":["GEO_R6_AirframeExterior","GEO_R6_CowlingShell","GEO_R6_CowlingLip","GEO_R6_RadialFace","GEO_R6_CoolingShutters","GEO_R6_PropHub","GEO_R6_PropBlade_A","GEO_R6_PropBlade_B","GEO_R6_Wing_L","GEO_R6_Wing_R","GEO_R6_WingRootFillet_L","GEO_R6_WingRootFillet_R","GEO_R6_CanopyFixedGlass","GEO_R6_CanopyFixedFrames","GEO_R6_RearCanopyGlass","GEO_R6_RearCanopyFrames","GEO_R6_CanopyRails","GEO_R6_CockpitContext"],
+    "R6_S01_CAGES":["CAGE_R6_Cowling","CAGE_R6_Propeller","CAGE_R6_Canopy","CAGE_R6_WingRoots"],
+    "R6_S01_DATUMS":["DATUM_R6_AircraftOrigin","DATUM_R6_TailExtreme","DATUM_R6_PropPlane","DATUM_R6_WingReference","PIVOT_R6_Propeller","PIVOT_R6_RearCanopy","SOCKET_R6_RearGunnerEye"],
+    "R6_S01_COLLISION":["UCX_R6_Airframe_00","UCX_R6_Wing_L_00","UCX_R6_Wing_R_00","UCX_R6_Canopy_00","VOL_R6_PilotSafety","VOL_R6_RifleSweep"],
+    "R6_S01_CAMERAS":["R6_CAM_BEAUTY_PORT","R6_CAM_SIDE_OVERLAY","R6_CAM_TOP_OVERLAY","R6_CAM_FORWARD_AIRFRAME","R6_CAM_RADIAL_PROP","R6_CAM_COWLING_GRAZE","R6_CAM_CANOPY_CLOSED","R6_CAM_REAR_CANOPY_OPEN","R6_CAM_WING_ROOT_CONTEXT","R6_CAM_REAR_GUNNER_EYE","R6_CAM_MATERIAL_GRAZE"]
+  },
+  "pivot_rules": {
+    "PIVOT_R6_Propeller":"On prop axis at prop plane; +X axis",
+    "PIVOT_R6_RearCanopy":"On governed rail centerline; translation only for Slice01 proof",
+    "aircraft_origin":"Must remain stable through export; all render mesh scales 1,1,1"
+  },
+  "component_identity_must_survive_export":true
+}
+

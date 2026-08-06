@@ -1,0 +1,55 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery02-supervisor-attempt01-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY02",
+  "created_utc": "2026-08-03T15:42:05.7702888Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The single authorized Recovery02 supervisor stopped during immutable-authority preflight because Windows PowerShell could not resolve Get-FileHash. It stopped before creating the governed build namespace or launching bundled dotnet, AutomationTool, Unreal, Blender, or a compiler. No retry occurred.",
+  "offline_authority_freeze": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_FREEZE.json",
+    "bytes": 3528,
+    "sha256": "f70f9a8dd1dfc9a7dd0649de8f141ee416c55e20dde3a4764290eab233430026"
+  },
+  "authorized_supervisor_launch_count": 1,
+  "bundled_dotnet_launch_count": 0,
+  "automation_tool_launch_count": 0,
+  "retry_count": 0,
+  "automatic_retry": false,
+  "numeric_exit_code_persisted": false,
+  "terminal_supervisor_manifest_present": false,
+  "governed_build_attempt_namespace_present": false,
+  "short_package_root_present": false,
+  "runtime_namespace_present": false,
+  "unreal_editor_launched": false,
+  "blender_launched": false,
+  "native_build_launched": false,
+  "failed_namespace_reuse_forbidden": true,
+  "frozen_files": [
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY02/supervisor_launch_attempt_01/logs/supervisor.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY02/supervisor_launch_attempt_01/logs/supervisor.stderr.log",
+      "bytes": 548,
+      "sha256": "fc2d3aa33a509670831b66cffbceadedb5413574cdce34d8fee7d8101e8ab2ef"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SUPERVISOR_ATTEMPT01_TERMINAL_EVIDENCE.json",
+      "bytes": 2238,
+      "sha256": "72e2bb31aafe6ccecd0964afebda316865f7f14bb6a39620a4f8429fa8b5d694"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY02_SUPERVISOR_ATTEMPT01_READINESS.json",
+      "bytes": 636,
+      "sha256": "4c7825f697c2645278eb1dd29e61df899e7df78ec38dfd85f8bce4a76976f986"
+    },
+    {
+      "file": "Scripts/build_skyguard_recovery03_native_recovery02_once.ps1",
+      "bytes": 12689,
+      "sha256": "039e5d05d82bda97f19663bf155fee8b80ae7b1f699195f4bdfcf74dda9744c2"
+    }
+  ],
+  "next_gate": "OFFLINE_RECOVERY03_SUPERVISOR_CORRECTION",
+  "next_gate_scope": "Create a fresh supervisor namespace, remove dependence on module-autoloaded Get-FileHash, and prove all hashing and numeric exit-code behavior under the exact powershell.exe -NoProfile environment. Do not authorize or launch another build during that gate."
+}

@@ -1,0 +1,49 @@
+{
+  "schema":"skyguard.phase2.yak52-r6-slice01-freeze.v1",
+  "status":"HASH_FROZEN_AWAITING_REFERENCE_INPUT_NOT_AUTHORIZED_FOR_BLENDER",
+  "files":[
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_ACCEPTANCE_RUBRIC.json","bytes":2829,"sha256":"ba080f0926a9a83710a223505fc14d9c792dda19238c5e2539cc807e91a7bbab"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_CAMERAS.json","bytes":4271,"sha256":"170e8dcc779d463c7939bbb444fcedbfde21da56c8d72e661de9673b1a8171c8"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_CANOPY_KINEMATICS.json","bytes":1501,"sha256":"beb9d20a9b71ef0eb7d014bf3a49fb32852ce8cd72fac8b41d7c06da7142483b"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_CONTRACT.json","bytes":3229,"sha256":"57ad505ee54f7615de8e29dc4b7bd3026107e328df85bb03d977695c74d59634"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_COWLING_RADIAL_LEDGER.json","bytes":2111,"sha256":"8f6a3f840f560f4c7d5ba671fd62950bd3f848015aadafc24b4498e785c93d41"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_DIMENSION_LEDGER.json","bytes":3735,"sha256":"c1764a56e8e52295c77ba208e9a557380b0addd8255540d0ac5a1fe4a966af17"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_FUSELAGE_STATIONS.json","bytes":2539,"sha256":"3f9a5d066958b5d8d7c7f2761299ef092864f061c0839fab4c1dcdac72dc59ca"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_GUNNER_SIGHTLINE.json","bytes":1761,"sha256":"dffd1e001c2f48aadd592f91154306233fb0e37fa448ffa5ee5e23f8d9c082b3"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_MATERIAL_SURFACE_SPEC.json","bytes":2513,"sha256":"5534c14e1240d050b5b53f5cb26328de4efeb2c2178b70bd82986b438e1e26bc"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_NAMESPACE.json","bytes":791,"sha256":"e63a0584b35c8eb778f13e856909589a7b0cc4e61ebc7ca4e2e1d7ccc7c06860"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_OBJECT_HIERARCHY.json","bytes":1878,"sha256":"393d1ee9e5fa96795caa5ae9d338f8c1876a401f4caa61362d3b02c7936549d2"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_R5_FAILURE_LEDGER.md","bytes":4296,"sha256":"697d86f0c529c7d597927f30ca98a17893a505ae3e5685e3a4e9892f62110366"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_READINESS_2026-08-02.md","bytes":3445,"sha256":"4785f01629609e1edcbe058d3c52d52324894ef59172444d801bf97c003013f6"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_TOPOLOGY_STRATEGY.json","bytes":2246,"sha256":"56906bdf563ea037b1ac3b6e51c823f3411f0f376ff4535984f2460d59c250d1"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_WING_ROOT_LEDGER.json","bytes":1299,"sha256":"0100841c7261519b93159bc3b3fa281235f422148c5d1c645e49db8b413829bf"},
+    {"path":"D:\\Skyguard52\\Scripts\\tests\\test_phase2_yak52_r6_slice01_offline_gate.py","bytes":7168,"sha256":"9f3241a7f833d17f5a956d76d1c649fce8666ae6f863d5f10a8a3a302eb7f4cd"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_SLICE01_SOURCE_INVENTORY.json","bytes":5055,"sha256":"27b0df11d1bcb9425c88607768b9acf82c7bf5bb514c894a6d4042a0256e35a1"}
+  ],
+  "offline_results":{
+    "json_validation":"PASS",
+    "python_compile":"PASS",
+    "focused_tests":"PASS_8_OF_8",
+    "camera_visibility_math":"PASS_10_BOUNDED_CAMERAS",
+    "rear_gunner_ray_contract":"DEFINED_81_SAMPLES",
+    "r6_output_paths_absent":true,
+    "immutable_evidence_verified":true,
+    "user_references_verified":true,
+    "heavy_process_count":0,
+    "blender_launched":false,
+    "unreal_launched":false
+  },
+  "blocking_reference_inputs":[
+    "dimensioned Yak-52 top view or authoritative three-view",
+    "fuselage station or maintenance drawing",
+    "canopy rail/open-position dimensions",
+    "cowling and propeller installation reference"
+  ],
+  "classification":"AWAITING_REFERENCE_INPUT",
+  "execution_policy":{
+    "blender_authorized":false,
+    "unreal_authorized":false,
+    "automatic_retry":false,
+    "next_change_requires_new_hash_freeze_addendum":true
+  }
+}

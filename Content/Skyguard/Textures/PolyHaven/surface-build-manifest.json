@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-30T23:58:32.586Z",
+  "source": "Poly Haven",
+  "source_url": "https://polyhaven.com/",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "processing": "Downloaded 2K PBR JPG maps, verified provider MD5 when supplied, resampled with Lanczos3, and encoded as WebP using Sharp.",
+  "atlas_layout": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "contract_tile": "aged-concrete",
+      "source_asset": "concrete_wall_006"
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "contract_tile": "warm-brick",
+      "source_asset": "brick_wall_006"
+    },
+    {
+      "index": 2,
+      "row": 1,
+      "column": 0,
+      "contract_tile": "weathered-plaster",
+      "source_asset": "blue_plaster_weathered"
+    },
+    {
+      "index": 3,
+      "row": 1,
+      "column": 1,
+      "contract_tile": "modern-panel",
+      "source_asset": "blue_metal_plate"
+    }
+  ],
+  "sources": [
+    {
+      "asset": "blue_metal_plate",
+      "map": "Diffuse",
+      "bytes": 1518621,
+      "sha256": "82855f6297ad07ea7ea4d1c501e6b56ed4c9c758653ca126bda9fd0ebba63c59",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_metal_plate/blue_metal_plate-diffuse-2k.jpg"
+    },
+    {
+      "asset": "blue_metal_plate",
+      "map": "nor_gl",
+      "bytes": 948237,
+      "sha256": "4cd3069a918cf891295b369b26f47c0a0631c634d0fd1006b6b7412a8f2b3550",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_metal_plate/blue_metal_plate-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "blue_metal_plate",
+      "map": "Rough",
+      "bytes": 1588770,
+      "sha256": "dd1726d8217fe4f6c3947cb20700d51774a0773e9abaeb4120769c8f6fce1d69",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_metal_plate/blue_metal_plate-rough-2k.jpg"
+    },
+    {
+      "asset": "blue_plaster_weathered",
+      "map": "Diffuse",
+      "bytes": 2736265,
+      "sha256": "eed0bd3b1484730adb8e79ee767ba9119beeb14ea80d348e4f4ac35e0c530ed9",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_plaster_weathered/blue_plaster_weathered_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_plaster_weathered/blue_plaster_weathered-diffuse-2k.jpg"
+    },
+    {
+      "asset": "blue_plaster_weathered",
+      "map": "nor_gl",
+      "bytes": 2984372,
+      "sha256": "3865f6257ca1b74ad0a83e5e3be6a20d135003fa93abad5e7a730270a1f835cf",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_plaster_weathered/blue_plaster_weathered_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_plaster_weathered/blue_plaster_weathered-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "blue_plaster_weathered",
+      "map": "Rough",
+      "bytes": 1083651,
+      "sha256": "7a126bd5b8edb2d8ef3f053cbb184bc924c9f2b208a2e6dd31d9faa4870c65f2",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_plaster_weathered/blue_plaster_weathered_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/blue_plaster_weathered/blue_plaster_weathered-rough-2k.jpg"
+    },
+    {
+      "asset": "brick_wall_006",
+      "map": "Diffuse",
+      "bytes": 4337453,
+      "sha256": "6b5e1102e30d38c8b7c9885013bbb063817575567487fbdcf2671ebba5256a4b",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brick_wall_006/brick_wall_006_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/brick_wall_006/brick_wall_006-diffuse-2k.jpg"
+    },
+    {
+      "asset": "brick_wall_006",
+      "map": "nor_gl",
+      "bytes": 3471088,
+      "sha256": "229b2263753614807f5acd72370e00c47b411088c2bd100a65d62ed17ba67be9",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brick_wall_006/brick_wall_006_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/brick_wall_006/brick_wall_006-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "brick_wall_006",
+      "map": "Rough",
+      "bytes": 1849251,
+      "sha256": "3675e6d7aa3c069fecc5be2b79456979966a99f5098888d4baf93b31d2d7febe",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brick_wall_006/brick_wall_006_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/brick_wall_006/brick_wall_006-rough-2k.jpg"
+    },
+    {
+      "asset": "concrete_wall_006",
+      "map": "Diffuse",
+      "bytes": 3109558,
+      "sha256": "daee26f5b5dae37e3fb2947c64f4045fd4e6d3b89884eb0d878ba6414746e8e8",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_006/concrete_wall_006_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/concrete_wall_006/concrete_wall_006-diffuse-2k.jpg"
+    },
+    {
+      "asset": "concrete_wall_006",
+      "map": "nor_gl",
+      "bytes": 4939794,
+      "sha256": "22bd9c17a6dfe3441f671cba1b40e2329767c79b6472004d1633aeac368d5210",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_006/concrete_wall_006_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/concrete_wall_006/concrete_wall_006-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "concrete_wall_006",
+      "map": "Rough",
+      "bytes": 1102752,
+      "sha256": "4c463e871c50def9252c38a81e06624ff2fcd8c9ffcdd54534524efacba286ed",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_006/concrete_wall_006_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/concrete_wall_006/concrete_wall_006-rough-2k.jpg"
+    },
+    {
+      "asset": "fabric_leather_01",
+      "map": "Diffuse",
+      "bytes": 2467670,
+      "sha256": "ca8123e6c031365fd782323bee05ce9da8bf05cc2ed57a83a66f0874923648d8",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_01/fabric_leather_01_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/fabric_leather_01/fabric_leather_01-diffuse-2k.jpg"
+    },
+    {
+      "asset": "fabric_leather_01",
+      "map": "nor_gl",
+      "bytes": 2764483,
+      "sha256": "e4b6b2971ef0dfe999cc288db052011e76f7f5c18a17f7a9b7f8e45d77791959",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_01/fabric_leather_01_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/fabric_leather_01/fabric_leather_01-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "fabric_leather_01",
+      "map": "Rough",
+      "bytes": 2621259,
+      "sha256": "f3c5d08786ca78b984e4563d92e551b34a1d7f6845b1376da44694039aa62e3b",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_01/fabric_leather_01_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/fabric_leather_01/fabric_leather_01-rough-2k.jpg"
+    },
+    {
+      "asset": "green_metal_rust",
+      "map": "Diffuse",
+      "bytes": 787402,
+      "sha256": "727515554ffb6410be82d3625a2837fe46612cb186ec391f77c50bd52c4d7ab2",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/green_metal_rust/green_metal_rust_diff_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/green_metal_rust/green_metal_rust-diffuse-2k.jpg"
+    },
+    {
+      "asset": "green_metal_rust",
+      "map": "nor_gl",
+      "bytes": 357436,
+      "sha256": "45ec5d256c91ccf4a87dd4c4a90f6c58b460f3862287f014bfde432055ece239",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/green_metal_rust/green_metal_rust_nor_gl_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/green_metal_rust/green_metal_rust-nor_gl-2k.jpg"
+    },
+    {
+      "asset": "green_metal_rust",
+      "map": "Rough",
+      "bytes": 690649,
+      "sha256": "0a691b35df773ab86dbbc86b787f8efaa81497780820abec0832b1e7aac309a6",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/green_metal_rust/green_metal_rust_rough_2k.jpg",
+      "cached_path": "art/vendor/polyhaven/green_metal_rust/green_metal_rust-rough-2k.jpg"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "public/textures/pbr/city-facade-atlas-albedo.webp",
+      "bytes": 2302644,
+      "sha256": "ac248fc7d85cda744a01fd2f547fb2d9901bd277faec09d893df977581a4ce70",
+      "kind": "albedo",
+      "source_assets": [
+        "concrete_wall_006",
+        "brick_wall_006",
+        "blue_plaster_weathered",
+        "blue_metal_plate"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/city-facade-atlas-normal.webp",
+      "bytes": 2722852,
+      "sha256": "fc42cf2f608c151af362bebfa26ae546302fc22fb6b27ede3e0ece083ef37333",
+      "kind": "normal",
+      "source_assets": [
+        "concrete_wall_006",
+        "brick_wall_006",
+        "blue_plaster_weathered",
+        "blue_metal_plate"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/city-facade-atlas-roughness.webp",
+      "bytes": 497146,
+      "sha256": "f50410095885ae29f8eacd60580f9e49223fdca02b7defcf3cbdc745fd5a422c",
+      "kind": "roughness",
+      "source_assets": [
+        "concrete_wall_006",
+        "brick_wall_006",
+        "blue_plaster_weathered",
+        "blue_metal_plate"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-worn-metal-albedo.webp",
+      "bytes": 344456,
+      "sha256": "50c3b9214a55e5d04dc3948c73992e647727fd920a658fd6600d7137e2a543fe",
+      "kind": "albedo",
+      "source_assets": [
+        "green_metal_rust"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-worn-metal-normal.webp",
+      "bytes": 146798,
+      "sha256": "eb65811e8ec70887ab4e7fb584565e69c65502768f0c5e18532af85aeb800b86",
+      "kind": "normal",
+      "source_assets": [
+        "green_metal_rust"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-worn-metal-roughness.webp",
+      "bytes": 348094,
+      "sha256": "258545064b79fdbabbf6ad0966b1adabf8f115af3c550c4a37ae3a2ad745ed62",
+      "kind": "roughness",
+      "source_assets": [
+        "green_metal_rust"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-leather-albedo.webp",
+      "bytes": 2041386,
+      "sha256": "a464649d1c00904dc3dc4ed580dbb7373690798738a80722f2d448faea35d9c1",
+      "kind": "albedo",
+      "source_assets": [
+        "fabric_leather_01"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-leather-normal.webp",
+      "bytes": 1785258,
+      "sha256": "4f343a14a50bcc4404782323a71e60619945e26a6354f6ccf5397872b02356ce",
+      "kind": "normal",
+      "source_assets": [
+        "fabric_leather_01"
+      ]
+    },
+    {
+      "path": "public/textures/pbr/yak52-cockpit-leather-roughness.webp",
+      "bytes": 2308934,
+      "sha256": "164148a4b2024d09225e69d95d4587fa6def8327eb06ed0f3e7f264d4c58b850",
+      "kind": "roughness",
+      "source_assets": [
+        "fabric_leather_01"
+      ]
+    }
+  ]
+}

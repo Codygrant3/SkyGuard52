@@ -1,0 +1,31 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-authority-report.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "owner_class": "ASkyguardMission01EnvironmentDirector",
+  "source": {
+    "path": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+    "bytes": 14984,
+    "sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980"
+  },
+  "header": {
+    "path": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.h",
+    "bytes": 9413,
+    "sha256": "64f1e798084fe5c8c8fce93fc5aac7289d3afe5112817d2cb7c3bf50128376cb"
+  },
+  "construction": {
+    "root_lines": [30, 31],
+    "ocean_lines": [33, 35],
+    "beach_lines": [37, 39],
+    "land_lines": [41, 43],
+    "static_mobility_lines": [186, 197],
+    "rebuild_lines": [199, 212]
+  },
+  "diagnosis": "Mission01EnvironmentRoot retains the default non-static mobility. OnConstruction changes OceanTiles, BeachTiles, and LandTiles to Static. Subsequent registration or reconstruction therefore attempts to attach static children to a non-static parent, which UE 5.8 rejects.",
+  "ue58_rejection_authority": {
+    "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/Components/SceneComponent.cpp",
+    "lines": [2380, 2395],
+    "sha256": "58c6337430d41c3fb9acd8060221a8b46696e0f372c2cc590bc2b865ed89b757"
+  },
+  "smallest_production_valid_correction": "Set Mission01EnvironmentRoot mobility to Static immediately after CreateDefaultSubobject and before SetRootComponent or any child SetupAttachment call.",
+  "accepted_source_mutated": false
+}

@@ -1,0 +1,110 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-native-build-validation-recovery01-attempt01-terminal-freeze.v1",
+  "created_local_date": "2026-08-04",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The single authorized Gate 2 project build completed without timeout and returned numeric System.Int32 exit code 8. UBT project-rules compilation failed because immutable Recovery01 and Recovery04 plugins declare the same ModuleRules type. The accepted environment source was not compiled and remains unchanged. No retry, Unreal Editor, Blender, external model, integration, or packaging execution occurred.",
+  "attempt_namespace": "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01\\build_attempt_01",
+  "execution": {
+    "supervisor_launch_count": 1,
+    "bundled_dotnet_launch_count": 1,
+    "ubt_invocation_count": 1,
+    "retry_count": 0,
+    "timed_out": false,
+    "numeric_exit_code": 8,
+    "exit_code_type": "System.Int32",
+    "unreal_editor_launched": false,
+    "blender_launched": false
+  },
+  "source_preserved": {
+    "file": "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+    "bytes": 15032,
+    "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+  },
+  "frozen_files": [
+    {
+      "file": "Scripts/build_phase4_m01_recovery05_environment_native_build_validation_recovery01_once.ps1",
+      "bytes": 20841,
+      "sha256": "686e6c94ac50ecf8bba03863916921e1f1f89e7d9f6616d008ea50ad8518b63c"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 3175,
+      "sha256": "6b754d34ba9941ea15cd428f9b85531326e57826d6496da067d64dfb8da79e62"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01_SUPERVISOR.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01_SUPERVISOR.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01_FAILURE_PACKET.json",
+      "bytes": 6261,
+      "sha256": "cf9e86e796bab0cb28ab9f6a28fb4417542d74efa12157254044bb24b6c17df2"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01/build_attempt_01/pre_build_inventory.json",
+      "bytes": 68302,
+      "sha256": "0f9f77498b20e23fec1b416bab377aab4a4466e8dfe8654626dd301dde57e363"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01/build_attempt_01/process_tree_samples.jsonl",
+      "bytes": 1644,
+      "sha256": "9037c7e9e81a70f65d55c9f3a09f48c9c97b46f87df5d6e86df47e9abdfbc8bb"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01/build_attempt_01/logs/build.stdout.log",
+      "bytes": 1256,
+      "sha256": "13ce52b1302cf08f024c849c13ca572ba3db817f33cbb618a2bbd4c13c4824c6"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01/build_attempt_01/logs/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_GATE2_ATTEMPT01_2026-08-04.md",
+      "bytes": 2022,
+      "sha256": "45aaf46b70b0e62af2f232d848670677da8abfc11cbf34617e991675aa4996ad"
+    },
+    {
+      "file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_GATE2_ATTEMPT01_2026-08-04.md",
+      "bytes": 1160,
+      "sha256": "3bc0d950605c7afd0d1e538d37dff76207e852724fdb1e3ee0fd4f7ec6526960"
+    },
+    {
+      "file": "Docs/AAA_Review/SKYGUARD52_AAA_PRODUCTION_DASHBOARD_GATE2_ATTEMPT01_2026-08-04.md",
+      "bytes": 1772,
+      "sha256": "d2cf1e64d2cd23850e8c4e7d0aa576f52b4e2e98e455efd9c35087c3e957b835"
+    },
+    {
+      "file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_OFFLINE_DESIGN.md",
+      "bytes": 6728,
+      "sha256": "64971c97727a2146d16cdab33c3ab455d1580d8fe41b50ab64fb377ad9f75744"
+    }
+  ],
+  "external_installed_authorities": [
+    {
+      "file": "D:\\UE_5.8\\Engine\\Source\\Programs\\Shared\\EpicGames.Build\\System\\EnumeratePlugins.cs",
+      "bytes": 9220,
+      "sha256": "05b88b65a85a9e6b5e15843b1183d6a434bfe711d82d97ef4c78c42aa1a56833"
+    },
+    {
+      "file": "D:\\UE_5.8\\Engine\\Source\\Programs\\UnrealBuildTool\\System\\Plugins.cs",
+      "bytes": 27301,
+      "sha256": "6c6c52016ad86bc6092389a4879695084a81c8e06a1a94038a1a0a2d266e51b5"
+    },
+    {
+      "file": "D:\\UE_5.8\\Engine\\Source\\Programs\\UnrealBuildTool\\Configuration\\Rules\\RulesCompiler.cs",
+      "bytes": 31017,
+      "sha256": "98e597b1c0aab5a824de7b4ee45cacbede352e355e7cb6b4d7eea70e0bb942f6"
+    }
+  ],
+  "next_gate": "OFFLINE_RECOVERY02_PLUGIN_DISCOVERY_ISOLATION_DESIGN",
+  "automatic_retry_authorized": false,
+  "future_build_authorized": false
+}

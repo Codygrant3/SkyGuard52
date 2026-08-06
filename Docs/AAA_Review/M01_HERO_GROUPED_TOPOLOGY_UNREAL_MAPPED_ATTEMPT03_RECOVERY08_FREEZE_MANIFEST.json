@@ -1,0 +1,56 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery08-freeze-manifest.v1",
+  "recovery_id": "ATTEMPT03_RECOVERY08",
+  "gate": "PASS_OFFLINE_RECOVERY08_COMPILE_FIX_READY_AWAITING_SEPARATE_BUILD_AUTHORIZATION",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY08_COMPILE_FIX_CONTRACT.json",
+      "bytes": 6210,
+      "sha256": "99c4a2d63f4ef169ae720c6a07ca4f513738e6b2cf0edd1db3970640a77a8664"
+    },
+    {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery08CompileFix.h",
+      "bytes": 1451,
+      "sha256": "2814e6612493f17b2368e6ba148663d34f64aa4406166641b635b637920bb5a4"
+    },
+    {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1295,
+      "sha256": "81fec3b1bd74bd7fa0471d9d17c2ac528f8f983df15a6aa8bf1393cca89e2d5b"
+    },
+    {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery08_compile_fix.py",
+      "bytes": 11047,
+      "sha256": "3e8bbd1dd2fc5d6c9c00d710893bd9e698597fc798de982f2bf0e774044da1cc"
+    },
+    {
+      "path": "Scripts/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery08_compile_fix.py",
+      "bytes": 4359,
+      "sha256": "990742c3951b268969d0d7a9cb64638330568cf93b752ca7d17bd0358d72478e"
+    },
+    {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY08_COMPILE_FIX_READINESS.json",
+      "bytes": 3646,
+      "sha256": "2f2e589158580a9eba851e889598b22a3528d201c335f20733ac3b37a13b8f55"
+    }
+  ],
+  "upstream_failure_evidence": {
+    "compile_receipt_sha256": "0273d4f41492940bba4074af68bbc3de9888c6c06feed8f2f0e90fdfd16fb598",
+    "build_stdout_sha256": "16cf88afceedf261deecccad15fbfc3cf1d368d25b2fe20c0ec35ab70bcfcf43",
+    "recovery07_source_sha256": "d8864cc19dc2d99e9d6eb37ddfe9dc48e6285860558b6da74c8edb1b45f221a9",
+    "recovery07_header_sha256": "f23d3492e2f7a9a20947a58b5ec51580307a82c2bcd344fcf2b508a171c596e5"
+  },
+  "offline_verification": {
+    "readiness_checks_passed": 18,
+    "readiness_checks_failed": 0,
+    "unit_tests_passed": 11,
+    "unit_tests_failed": 0
+  },
+  "execution_state": {
+    "native_build_executed": false,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "content_packages_created_or_modified": 0
+  },
+  "supersession": "Recovery08 supersedes Recovery07 at the compiler-compatibility boundary only. Recovery07 remains the immutable capture runtime; a future authorized build must produce and bind a new success receipt, source inventory, and DLL hash before execution."
+}

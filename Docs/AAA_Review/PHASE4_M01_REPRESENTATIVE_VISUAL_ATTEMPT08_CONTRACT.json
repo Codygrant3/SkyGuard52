@@ -1,0 +1,83 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008",
+  "status": "OFFLINE_DESIGN_PENDING_VALIDATION",
+  "scope": "One read-only representative Mission 1 D3D12 SM6 proof of the production coastal environment at rear-gunner flight height and exterior review viewpoints.",
+  "immutable_authority": {
+    "recovery04_freeze": {"file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY04_FREEZE.json", "sha256": "58b3059c0bcfdd75e002945721a6e0597402112d312a726c0eb589348b83f194"},
+    "recovery04_receipt": {"file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_04/offline_audit_receipt.json", "sha256": "072ad7bc6334f68b150ccab9e793108c91e9ec545f10469775e86432f8845667"},
+    "recovery04_acceptance": {"file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY04_INDEPENDENT_ACCEPTANCE_2026-08-02.md", "sha256": "29313b6f8cc64842d13b3727804f91079c425f87796555ba40210bd81a5a1699"},
+    "phase_audit_addendum": {"file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_RECOVERY04_ACCEPTANCE_2026-08-02.md", "sha256": "a4f6b761e8385653dd0e59f7c344ce66ab979d594eaeec6ff04796d180cefdf7"},
+    "acceptance_matrix_addendum": {"file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_RECOVERY04_2026-08-02.md", "sha256": "637b95c22e774ab4d76d45036a57ed2bb7221838b302adad89088ab842c63e3b"}
+  },
+  "locked_sources": {
+    "primary_map": {"asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03", "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap", "bytes": 532796, "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"},
+    "playable_route_reference": {"asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_Playable_v1", "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_Playable_v1.umap", "bytes": 70545, "sha256": "9d2ca2e50b446f488926bdd8a29eca9fe33d62ec25656fc77ca55997f5a08afa"},
+    "runtime_environment_reference": {"asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_Environment_Runtime_v3", "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_Environment_Runtime_v3.umap", "bytes": 105640, "sha256": "4781fc63b963f3d37e0887f5e613942f8993ce1e8031e2e46a1cc60008d6a46f"},
+    "height_source": {"file": "Content/Skyguard/Environment/Source/Mission01/HM_M01_CoastalProduction_505x127.r16", "bytes": 128270, "sha256": "636044a61065e72ea18defad4e6893150c3cf9c274c6aa6b06584675f4db7b26"},
+    "serialized_build_report": {"file": "Saved/Reports/PHASE4_M01_PCG_LANDSCAPE_BUILD.json"},
+    "serialized_acceptance_report": {"file": "Saved/Reports/PHASE4_M01_PCG_LANDSCAPE_EDITOR_ACCEPTANCE.json"}
+  },
+  "design_files": {
+    "cameras": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json",
+    "visual_rubric": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json",
+    "performance_rubric": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json",
+    "executor": "Scripts/capture_skyguard_phase4_m01_representative_visual_attempt08.py",
+    "offline_verifier": "Scripts/verify_skyguard_phase4_m01_representative_visual_attempt08.py",
+    "focused_tests": "Scripts/tests/test_phase4_m01_representative_visual_attempt08.py"
+  },
+  "execution": {
+    "attempt_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08/attempt_01",
+    "output_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08/attempt_01/proof",
+    "output_root_must_be_absent": true,
+    "single_execution_only": true,
+    "automatic_retry": false,
+    "failed_namespace_reuse": false,
+    "unreal_process_count": 1,
+    "rhi": "D3D12",
+    "shader_model": "SM6",
+    "resolution": [2560, 1440],
+    "scalability": "Epic",
+    "screen_percentage": 100,
+    "vsync": false,
+    "maximum_process_seconds": 420,
+    "deferred_tick_shader_wait": true,
+    "stable_ready_polls_required": 2,
+    "same_stack_finish_compilation_forbidden": true,
+    "world_save_forbidden": true,
+    "asset_mutation_forbidden": true,
+    "pcg_generation_forbidden": true,
+    "network_forbidden": true
+  },
+  "performance_contract": {
+    "warmup_seconds": 30,
+    "measured_seconds": 30,
+    "minimum_tick_samples": 900,
+    "csv_gpu_stats_required": true,
+    "vram_metric_required": true
+  },
+  "required_outputs": {
+    "lit_png_count": 8,
+    "static_png_count": 5,
+    "temporal_png_count": 3,
+    "capture_receipt": "capture_receipt.json",
+    "run_manifest": "run_manifest.json",
+    "frame_samples": "frame_samples.csv",
+    "engine_log": "logs/representative_visual.engine.log",
+    "stdout_log": "logs/representative_visual.stdout.log",
+    "stderr_log": "logs/representative_visual.stderr.log",
+    "postflight_gate": "gate_report.json"
+  },
+  "stop_conditions": [
+    "source hash mismatch",
+    "output namespace already exists",
+    "another heavy process is active",
+    "RHI or shader model mismatch",
+    "shader or asset queues fail to reach two stable ready polls",
+    "timeout, crash, ensure, fatal, or device removal",
+    "missing capture or metric",
+    "any visual or performance bound fails"
+  ],
+  "prohibited": ["Recovery04 rerun", "diagnostic color-block acceptance", "recapture into a failed namespace", "profiling beyond this bounded proof", "promotion", "integration", "packaging"],
+  "classification_on_offline_pass": "PASSED_READY_FOR_EXPLICIT_SINGLE_UNREAL_VISUAL_PROOF_AUTHORIZATION"
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-dimensions.v1",
+  "units": "metres",
+  "axes": {"forward":"+X","right":"+Y","up":"+Z"},
+  "measurements": [
+    {"id":"overall_length","target":7.745,"tolerance":0.04,"status":"GOVERNED_PRIOR_DIMENSION","confidence":"HIGH","source":"R4/R5 governed dimension ledger; must be independently confirmed against an authoritative Yak-52 manual before final acceptance"},
+    {"id":"wingspan","target":9.3,"tolerance":0.04,"status":"GOVERNED_PRIOR_DIMENSION","confidence":"HIGH","source":"R4/R5 governed dimension ledger; must be independently confirmed against an authoritative Yak-52 manual before final acceptance"},
+    {"id":"propeller_diameter","target":2.4,"tolerance":0.03,"status":"GOVERNED_PRIOR_DIMENSION","confidence":"MEDIUM","source":"R4 governed ledger and exterior photo comparison"},
+    {"id":"cowling_max_diameter","target":1.38,"tolerance":0.04,"status":"PHOTO_DERIVED_INFERENCE","confidence":"MEDIUM_LOW","source":"Primary exterior side photograph scaled to 7.745 m overall length"},
+    {"id":"cowling_depth","target":0.82,"tolerance":0.04,"status":"PHOTO_DERIVED_INFERENCE","confidence":"MEDIUM_LOW","source":"Primary exterior side photograph scaled to 7.745 m overall length"},
+    {"id":"front_cockpit_opening_length","target":1.02,"tolerance":0.05,"status":"PHOTO_DERIVED_INFERENCE","confidence":"LOW","source":"Exterior side photographs; perspective distortion remains"},
+    {"id":"rear_cockpit_opening_length","target":1.07,"tolerance":0.05,"status":"PHOTO_DERIVED_INFERENCE","confidence":"LOW","source":"Exterior side and rear-cockpit photographs"},
+    {"id":"canopy_max_height_above_sill","target":0.72,"tolerance":0.04,"status":"PHOTO_DERIVED_INFERENCE","confidence":"LOW","source":"Exterior side photograph"},
+    {"id":"canopy_max_width","target":0.93,"tolerance":0.04,"status":"PHOTO_DERIVED_INFERENCE","confidence":"LOW","source":"Rear-cockpit photograph and known fuselage envelope"},
+    {"id":"rear_canopy_travel","target":0.78,"tolerance":0.06,"status":"MECHANISM_INFERENCE","confidence":"LOW","source":"Required clear opening inferred from rear-cockpit reference; no authoritative travel drawing supplied"},
+    {"id":"wing_root_chord","target":2.12,"tolerance":0.06,"status":"PHOTO_DERIVED_INFERENCE","confidence":"LOW","source":"Exterior side photograph"},
+    {"id":"wing_tip_chord","target":1.08,"tolerance":0.06,"status":"UNVERIFIED_INFERENCE","confidence":"LOW","source":"No dimensioned top reference supplied"},
+    {"id":"main_dihedral_deg","target":2.0,"tolerance":0.5,"status":"UNVERIFIED_INFERENCE","confidence":"LOW","source":"Exterior photographs only; requires orthographic or manual confirmation"},
+    {"id":"rear_gunner_eye_x","target":-0.72,"tolerance":0.06,"status":"ERGONOMIC_INFERENCE","confidence":"LOW","source":"Rear-cockpit reference and R4 camera datum"},
+    {"id":"rear_gunner_eye_y","target":-0.36,"tolerance":0.05,"status":"ERGONOMIC_INFERENCE","confidence":"LOW","source":"Rear-cockpit reference and seated eye offset"},
+    {"id":"rear_gunner_eye_z","target":1.08,"tolerance":0.05,"status":"ERGONOMIC_INFERENCE","confidence":"LOW","source":"Rear-cockpit reference and R4 camera datum"}
+  ],
+  "blocking_reference_gaps": [
+    "Authoritative dimensioned Yak-52 three-view or maintenance drawing",
+    "Undistorted top view sufficient to lock wing and tail planforms",
+    "Canopy rail and rear-canopy travel dimensions",
+    "Cowling station or radial-engine installation drawing",
+    "Cockpit station/seat/eye datum drawing"
+  ],
+  "policy": {
+    "inferred_values_may_drive_blockout": true,
+    "inferred_values_may_drive_final_silhouette_acceptance": false,
+    "unknown_values_may_be_claimed_confirmed": false
+  }
+}
+

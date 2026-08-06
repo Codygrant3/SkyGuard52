@@ -1,0 +1,86 @@
+{
+  "FileVersion": 3,
+  "Category": "",
+  "Description": "Skyguard 52 AAA track - NetFx 4.8.1 present; C++ module enabled for editor/game",
+  "Plugins": [
+    {
+      "Name": "ModelingToolsEditorMode",
+      "Enabled": true,
+      "TargetAllowList": [
+        "Editor"
+      ]
+    },
+    {
+      "Name": "GameplayStateTree",
+      "Enabled": true
+    },
+    {
+      "Name": "Fab",
+      "Enabled": true
+    },
+    {
+      "Name": "Bridge",
+      "Enabled": true
+    },
+    {
+      "Name": "PythonScriptPlugin",
+      "Enabled": true
+    },
+    {
+      "Name": "Water",
+      "Enabled": false
+    },
+    {
+      "Name": "WaterAdvanced",
+      "Enabled": false
+    },
+    {
+      "Name": "Niagara",
+      "Enabled": true
+    },
+    {
+      "Name": "NiagaraFluids",
+      "Enabled": true
+    },
+    {
+      "Name": "GeometryScripting",
+      "Enabled": true
+    },
+    {
+      "Name": "SunPosition",
+      "Enabled": true
+    },
+    {
+      "Name": "HDRIBackdrop",
+      "Enabled": true
+    },
+    {
+      "Name": "MovieRenderPipeline",
+      "Enabled": true
+    },
+    {
+      "Name": "Landmass",
+      "Enabled": false
+    },
+    {
+      "Name": "PCG",
+      "Enabled": true
+    },
+    {
+      "Name": "Volumetrics",
+      "Enabled": false
+    },
+    {
+      "Name": "ChaosVehiclesPlugin",
+      "Enabled": true
+    }
+  ],
+  "EngineAssociation": "5.8",
+  "Modules": [
+    {
+      "Name": "Skyguard52",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

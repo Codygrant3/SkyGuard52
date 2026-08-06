@@ -1,0 +1,136 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_OFFLINE_RECONCILIATION",
+  "future_execution_gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01",
+  "classification_target": "PASSED_READY_FOR_EXPLICIT_SINGLE_RAIL_COUPON_RECOVERY01_BLENDER_AUTHORIZATION",
+  "supersession_scope": "The Recovery01 contract supersedes only the unusable Attempt01 execution binding. It does not supersede, repair, rewrite, or reinterpret the historical Cycle03 or Recovery03 freezes.",
+  "asset": "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON",
+  "asset_scope": "dimensional validation coupon only; not a complete weapon component",
+  "authoritative_dimensions_m": {
+    "coupon_length": 0.12,
+    "top_width": 0.021209,
+    "profile_height_min": 0.009322,
+    "dovetail_width": 0.018999,
+    "groove_width": 0.005232,
+    "pitch": 0.010008
+  },
+  "future_namespaces": {
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01",
+    "output": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_TERMINAL_SUPERVISOR_MANIFEST.json",
+    "emergency_receipt": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_EMERGENCY_RECEIPT.jsonl"
+  },
+  "execution_rules": {
+    "blender_executable": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+    "blender_bytes": 112975320,
+    "blender_sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7",
+    "blender_launches": 1,
+    "retries": 0,
+    "unreal_launches": 0,
+    "timeout_seconds": 1200,
+    "no_namespace_reuse": true,
+    "no_unreal_import": true
+  },
+  "required_outputs": {
+    "blend": 1,
+    "glb": 1,
+    "png": 11,
+    "socket": "SOCKET_Rail_Origin",
+    "collision": "UCX_RailCoupon_ProfilePrism",
+    "dimension_receipt": 1,
+    "glb_structure_receipt": 1,
+    "artifact_inventory": 1,
+    "terminal_receipt": 1,
+    "external_visual_review": true
+  },
+  "authority_files": [
+    {
+      "role": "cycle03_historical_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 4857,
+      "sha256": "6c2b75200e09e8189bbd203e8a2c0f6c9271a938e14a564502770e7dd3fe2f02"
+    },
+    {
+      "role": "accepted_recovery03_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 9362,
+      "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228"
+    },
+    {
+      "role": "failed_attempt01_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 3481,
+      "sha256": "38447d27a3f1b10e10fd2d6818093dc05f4391099b1c1cc8768ca4c76ff973ce"
+    },
+    {
+      "role": "failed_attempt01_manifest",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 1303,
+      "sha256": "10bef8bc2f9bffc43bc6f02d361ce4dee3457d1b8dc5e2dd45ebf462f2d53317"
+    },
+    {
+      "role": "observed_inventory_provenance_evidence",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_SOURCE_INVENTORY.json",
+      "bytes": 9333,
+      "sha256": "1030ebfcc54bacc4d1e2cf7dcd26b9da0f4b90f5ecb702772ab75e5d5eaadafc"
+    },
+    {
+      "role": "observed_readiness_provenance_evidence",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_READINESS.json",
+      "bytes": 1418,
+      "sha256": "0f88513cbbae10c36f09e3fafe841a87499c4c3a49943f75fa9cc452a5669cc2"
+    },
+    {
+      "role": "attempt01_generator_immutable",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Execution\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_attempt01.py",
+      "bytes": 23398,
+      "sha256": "1be92884de1bdc38f84c30d71a2daf4753f2d4054f6432f61b3e7f4a28d7799e"
+    },
+    {
+      "role": "recovery01_generator",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Rail_Coupon_Recovery01_OfflineDesign\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_attempt01.py",
+      "bytes": 1715,
+      "sha256": "1a82efe7cdd7c412cf3d8d200558ac97801c7afbfbcb356851ce5d65b4f2843e"
+    },
+    {
+      "role": "dimension_sheet",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\design_sheets\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_DESIGN_SHEET_SPEC.json",
+      "bytes": 2302,
+      "sha256": "5b37e9417c6c4b3b8017e86010774f81c4c97031aba3da21a950a02bdfe1babb"
+    },
+    {
+      "role": "camera_contract",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_REVIEW_CAMERA_CONTRACT.json",
+      "bytes": 837,
+      "sha256": "3118c03f0d52d0de9479dc79b6caea2eb33691e7cf50364cf0bb7d4a7ede7d92"
+    },
+    {
+      "role": "visual_rubric",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_VISUAL_ACCEPTANCE_RUBRIC.json",
+      "bytes": 736,
+      "sha256": "67c9b4f7f87e542f78de61f3d23fc1da3ab52e6c94da8e23ce6d4b59923aeb73"
+    },
+    {
+      "role": "unreal_readiness_rubric",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_PERFORMANCE_UNREAL_READINESS_RUBRIC.json",
+      "bytes": 589,
+      "sha256": "a0ed74811680ce9c9437371b9099edc1e4b28422393c0775bbddb2174b2307e8"
+    },
+    {
+      "role": "socket_collision_export_plan",
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\plans\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RIGGING_SOCKET_COLLISION_EXPORT_PLAN.json",
+      "bytes": 1965,
+      "sha256": "b9bbaae9d7d7f8e51ec94d6472eed310db24ccca62aed87fa714bed9f7c18614"
+    }
+  ],
+  "prohibited_changes": [
+    "historical freeze repair",
+    "accepted blockout mutation",
+    "rifle refinement",
+    "missile refinement",
+    "hand refinement",
+    "Shahed refinement",
+    "complete weapon-component identity",
+    "Unreal import or runtime replacement"
+  ],
+  "dependency_rule": "This contract contains no Recovery01 supervisor, readiness, inventory, freeze, or execution-prompt hash. The supervisor may hash this contract; the later freeze may hash both without a cycle."
+}

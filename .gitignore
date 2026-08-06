@@ -1,0 +1,33 @@
+# Unreal generated data
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.VC.db
+*.opensdf
+*.sdf
+
+# Blender transient data
+*.blend1
+*.blend2
+*.blend@
+
+# Python and Node generated data
+__pycache__/
+*.py[cod]
+node_modules/
+.pytest_cache/
+
+# IDE and OS
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
+
+# Production attempts are local evidence, not source
+Production/Attempts/
+Production/.heavy_process.lock
+
+# Keep source, configs, project descriptor, Content, References, Production
+# manifests, and review documentation under source control.

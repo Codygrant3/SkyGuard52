@@ -1,0 +1,21 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-correction-contract.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "target": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+  "target_bytes": 14984,
+  "target_sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980",
+  "patch": "SourceCorrections/Recovery05/SkyguardMission01EnvironmentDirector.mobility.patch",
+  "allowed_added_statement": "Root->SetMobility(EComponentMobility::Static);",
+  "required_location": "immediately after Mission01EnvironmentRoot CreateDefaultSubobject and before SetRootComponent",
+  "allowed_removed_lines": 0,
+  "allowed_other_changed_lines": 0,
+  "accepted_target_mutated_during_offline_gate": false,
+  "rollback": "Restore the hash-frozen pre-correction source file if the separately authorized correction gate fails before acceptance.",
+  "future_validation": [
+    "compile succeeds in a fresh governed build namespace",
+    "environment unit and integration tests pass",
+    "future Unreal log contains no static-to-non-static AttachTo warning for OceanTiles, BeachTiles, or LandTiles",
+    "no production map is saved by the proof plugin"
+  ],
+  "next_gate_precedence": "Apply and validate this bounded project-source correction before building or executing Recovery05."
+}

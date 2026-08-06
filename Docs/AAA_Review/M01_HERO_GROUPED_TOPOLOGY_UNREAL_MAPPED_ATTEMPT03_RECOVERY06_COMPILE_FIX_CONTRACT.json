@@ -1,0 +1,113 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery06-compile-bridge-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY06",
+  "disposition": "OFFLINE_COMPILE_BRIDGE_REQUIRES_SEPARATE_BUILD_AUTHORIZATION",
+  "failed_build_evidence": {
+    "build_log": {
+      "path": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_02/logs/build_recovery02_deferred_material_bridge.stdout.log",
+      "bytes": 6173,
+      "sha256": "11dda78f3fef474740853b11a80c7a92974044b1c535d36d094668c9f50fba5e"
+    },
+    "recovery05_design_contract": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY05_NATIVE_DESIGN_CONTRACT.json",
+      "bytes": 5570,
+      "sha256": "12356dd01591a00d0f19dedeb4f3aa5f7e5263a66c3b3aef3ff9ef8d8c519c0d"
+    },
+    "compiler_errors": [
+      "C2027 use of undefined type USkyLightComponent at lines 374 and 377",
+      "C2039 GetDirectionalLightComponent is not a member of ADirectionalLight at line 378"
+    ],
+    "phase4_recovery02_consumed_and_failed": true
+  },
+  "frozen_recovery05_source": {
+    "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery05Capture.cpp",
+    "bytes": 19893,
+    "sha256": "4c2438dff632f69e3606703f3a4ff8ddd0401ff104f00df1fe7f24e2cc408d81",
+    "must_remain_byte_identical": true,
+    "direct_edit_forbidden": true
+  },
+  "ue58_api_evidence": {
+    "module_rules": {
+      "path": "D:/UE_5.8/Engine/Source/Programs/UnrealBuildTool/Configuration/Rules/ModuleRules.cs",
+      "bytes": 81658,
+      "sha256": "45b529f360183a3d840c59d5e864688481eaaed7bcc037f6c89fe38608b0bc58"
+    },
+    "sky_light_actor_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Engine/SkyLight.h",
+      "bytes": 1354,
+      "sha256": "c0cc4f248929c98fbc19f93d03ab8d47280f5b7b6bda7331fb6dc7395d267725"
+    },
+    "directional_light_actor_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Engine/DirectionalLight.h",
+      "bytes": 1681,
+      "sha256": "e99dd36e542a8ec271b0140eaf370f51b1f113bfc0c9cc6593f0664b0fac3174"
+    },
+    "light_actor_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Engine/Light.h",
+      "bytes": 3763,
+      "sha256": "5b2a18ccc6677b62a72377405a93d0d087a3a75c3c7fac6f510129b4c66e84ee"
+    },
+    "sky_light_component_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Components/SkyLightComponent.h",
+      "bytes": 17041,
+      "sha256": "cb30c4f34c2d354a3b09d60ca9dfce0ddd98a6cad3a1a053782573866935cd20"
+    },
+    "directional_light_component_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Components/DirectionalLightComponent.h",
+      "bytes": 18226,
+      "sha256": "bfe93947077d59b085e69c8205521d268bf9b1f535d50bc5ff758294aa11e23f"
+    }
+  },
+  "recovery06_compile_bridge": {
+    "forced_include_header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery06CompileFix.h",
+      "bytes": 696,
+      "sha256": "fefbf8ad1b77eb01b6a8425878250359fa5b79c541199ff416b8bc3d4b2dea6b"
+    },
+    "runtime_cast_source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery06CompileFix.cpp",
+      "bytes": 487,
+      "sha256": "223ee7070bb7df189b6cc9229fa09682bfcd2e23bb59027382ca7a9e443454b8"
+    },
+    "module_rules_file": {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1177,
+      "sha256": "ca2f532a2b4facc2c86def97c50932afad602edc2fa2820eeadb65308aaba420"
+    },
+    "strategy": [
+      "Force-include the Recovery06 header for every Skyguard52 translation unit using the installed UBT ModuleRules ForceIncludeFiles API.",
+      "Complete USkyLightComponent before the frozen Recovery05 translation unit is parsed.",
+      "Rewrite the single frozen GetDirectionalLightComponent call token into the runtime-safe ALight GetLightComponent path plus a checked typed cast helper.",
+      "Require exactly one frozen call-site occurrence and no other project-source call sites.",
+      "Reject ADirectionalLight GetComponent because that actor getter is editor-only in the installed UE 5.8 header."
+    ],
+    "scope": "single frozen Recovery05 call-site compatibility shim",
+    "macro_collision_scan_required": true,
+    "runtime_checked_cast_required": true
+  },
+  "compile_surface": {
+    "sky_light_component_complete_type_required": true,
+    "directional_light_runtime_api": "Cast<UDirectionalLightComponent>(Light ? Light->GetLightComponent() : nullptr)",
+    "editor_only_adirectional_light_get_component_forbidden": true,
+    "nonexistent_actor_getter_preserved_only_in_frozen_source": true,
+    "typed_component_checkf_required": true,
+    "set_atmosphere_sun_light_api_verified": true
+  },
+  "future_build": {
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "unreal_launch_allowed": false,
+    "post_build_dll": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "post_build_dll_hash_must_be_bound_before_execution": true,
+    "root_must_wait_for_final_execution_handoff": true
+  },
+  "future_execution_output": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_06_native",
+  "native_build_authorized": false,
+  "native_build_executed": false,
+  "unreal_launch_authorized": false,
+  "unreal_launched": false,
+  "content_packages_created_or_modified": 0,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

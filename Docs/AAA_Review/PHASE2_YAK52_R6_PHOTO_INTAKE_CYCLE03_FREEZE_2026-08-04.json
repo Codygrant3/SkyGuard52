@@ -1,0 +1,149 @@
+{
+  "schema": "skyguard52.phase2.yak52-r6-photo-intake-cycle03.freeze.v1",
+  "generated_at_utc": "2026-08-04T23:34:43.6233984Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED_PHOTOGRAPHIC_REFERENCE_INTAKE_R6_STILL_AWAITING_TECHNICAL_REFERENCES",
+  "r6_blender_authorized": false,
+  "r6_unreal_authorized": false,
+  "files": [
+    {
+      "role": "extraction_receipt",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_EXTRACTION_RECEIPT.json",
+      "bytes": 2384,
+      "sha256": "aa5bd504497e484af6f8357cd5d7f6362a216ed1270971747d8ec44c81c695b6"
+    },
+    {
+      "role": "manifest",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_MANIFEST.json",
+      "bytes": 6418,
+      "sha256": "bcb8e99477705ee2bc9aa5b99b40aea3f2127f372a8778efb8963ec2b8dd61a3"
+    },
+    {
+      "role": "visual_review",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_VISUAL_REVIEW.md",
+      "bytes": 3680,
+      "sha256": "7f89e03ef1773424bdf7a60a45cab2e1a72d072162fe38b20ce06cba99869317"
+    },
+    {
+      "role": "cycle03_register",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REFERENCE_ACQUISITION_REGISTER_CYCLE03_2026-08-04.json",
+      "bytes": 4650,
+      "sha256": "95623decbc08b3efd8235905162e92bbfed9be75fe24950074205184d8af8940"
+    },
+    {
+      "role": "verifier",
+      "path": "D:\\Skyguard52\\Scripts\\verify_phase2_yak52_r6_photo_intake_cycle03.py",
+      "bytes": 5409,
+      "sha256": "ded7efeece30309ecac87c90e01e6e123c85a90765d9a2a80d8214435bb1b671"
+    },
+    {
+      "role": "tests",
+      "path": "D:\\Skyguard52\\Scripts\\test_phase2_yak52_r6_photo_intake_cycle03.py",
+      "bytes": 1726,
+      "sha256": "dce9f0b559461152d23bc2920c2a68b64910352fe344209162e94a2ff5e81729"
+    },
+    {
+      "role": "validation_receipt",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_VALIDATION_2026-08-04.json",
+      "bytes": 2341,
+      "sha256": "9ac786671395dceef613401771aef6c1561d7669d8e73e4509da85fbf282c786"
+    },
+    {
+      "role": "raw_exterior_photo",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\Raw\\yak52_exterior_side_user_reference_001.png",
+      "bytes": 2959485,
+      "sha256": "390162ac3d3c73c0567bcf822de2363908b27de9ea79b7796c6bcca143c41f5d"
+    },
+    {
+      "role": "raw_onboard_video",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\Raw\\yak52_onboard_rear_gunner_user_reference_001.mp4",
+      "bytes": 4271526,
+      "sha256": "91c9b0a1d595ab2cf5df6c9b37d4b5e76c46e32d1373e2e7d7871bcafcf62061"
+    },
+    {
+      "role": "derived_frame_01",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_01.png",
+      "bytes": 389811,
+      "sha256": "5bdf2eafc9c9f0e3e390127ee30224a8987a47d070b44c99f5a5f2e86fa2acf9"
+    },
+    {
+      "role": "derived_frame_02",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_02.png",
+      "bytes": 367637,
+      "sha256": "eb736293a3b1ea55572308643d18a0d69120b42d94e5b3020b2da99f102f6045"
+    },
+    {
+      "role": "derived_frame_03",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_03.png",
+      "bytes": 353887,
+      "sha256": "1f32fbb0bb3f4b48b604ed2c1e009714c070fe90dcd1b72cdd58b300296ce087"
+    },
+    {
+      "role": "derived_frame_04",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_04.png",
+      "bytes": 374022,
+      "sha256": "a51920ee1b568c46cfc58bd2f5586e070c50a343d0d9b9f92f5cd1725c6e9078"
+    },
+    {
+      "role": "derived_frame_05",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_05.png",
+      "bytes": 525994,
+      "sha256": "6f3a7a6e2e2ade96942b48380ee50e4a64f58c224e8db0feeb00b53749dc2f3a"
+    },
+    {
+      "role": "derived_frame_06",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_06.png",
+      "bytes": 548955,
+      "sha256": "dfed6808108f669526c8b7500079c65192c0d07c499063359bd0980e28458bac"
+    },
+    {
+      "role": "derived_frame_07",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_07.png",
+      "bytes": 561266,
+      "sha256": "2c5e1ac2ef9554851464d55725988a738a5165a28f2e84613977f26fba9a39da"
+    },
+    {
+      "role": "derived_frame_08",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_08.png",
+      "bytes": 400369,
+      "sha256": "adb25fe9a00e4b6273b8bcc46c9a8181831753ec9192e5e6f6f623e1efaa254a"
+    },
+    {
+      "role": "derived_frame_09",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\DerivedFrames\\onboard_09.png",
+      "bytes": 407414,
+      "sha256": "d3a29c8a9825ada5aedc291dbc3ff756cc8f544a738d011f656e1ecaa69c2f09"
+    },
+    {
+      "role": "ffmpeg_stdout",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\Evidence\\ffmpeg.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "ffmpeg_stderr",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03\\Evidence\\ffmpeg.stderr.log",
+      "bytes": 1568,
+      "sha256": "ad1ee515047e2bd107e66b95f796e585d78d76e53d8354df49b20d8f578faa8c"
+    },
+    {
+      "role": "prior_cycle02_register",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REFERENCE_ACQUISITION_REGISTER_CYCLE02_2026-08-04.json",
+      "bytes": 5824,
+      "sha256": "b1a43c7b5edc07a81686394a65faee369d243c3c2329cfe4c8d92d5875ebb8df"
+    }
+  ],
+  "frozen_conclusions": [
+    "Two surviving user-supplied source files are preserved byte-for-byte.",
+    "One ffmpeg extraction produced nine governed 1280x720 frames with zero retries.",
+    "All nine frames and the exterior photograph were inspected directly at original resolution.",
+    "The package improves photographic understanding of the exterior, open rear canopy, wing surface, pilot/gunner spacing and rifle/arm pose.",
+    "The package is not a dimensioned geometry authority and does not authorize Yak-52 R6 Blender or Unreal work.",
+    "Raw and derived media are internal reference only and must not ship with the game."
+  ],
+  "blocking_condition": "Authoritative dimensioned Yak-52 technical references remain absent.",
+  "next_executable_heavy_gate": {
+    "gate": "Gate 2 Mission 1 environment native project build validation",
+    "authorization": "REQUIRES_SEPARATE_EXPLICIT_ONE_SHOT_AUTHORIZATION"
+  }
+}

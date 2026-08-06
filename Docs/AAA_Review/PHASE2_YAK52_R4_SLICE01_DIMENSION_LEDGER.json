@@ -1,0 +1,202 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-dimension-ledger.v1",
+  "ledger_id": "PHASE2-YAK52-R4-S01-DIMENSIONS-20260802-V1",
+  "purpose": "Govern the first R4 silhouette/proportion authoring slice. Values inherited from prior project contracts are sufficient for a deterministic draft but are not treated as primary-source proof of Yak-52 reference fidelity.",
+  "coordinate_system": {
+    "units": "metres",
+    "forward_axis": "+X",
+    "right_axis": "+Y",
+    "up_axis": "+Z",
+    "origin": "fuselage centerline at wing reference station"
+  },
+  "source_evidence": [
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_PROD_002_CONTRACT.json",
+      "role": "Inherited project dimension and tolerance values",
+      "evidence_class": "INTERNAL_PROJECT_CONTRACT_NOT_PRIMARY_TECHNICAL_SOURCE",
+      "primary_source_verified": false
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md",
+      "role": "Final-art rejection requiring a reference-faithful silhouette rebuild",
+      "evidence_class": "HUMAN_VISUAL_REVIEW",
+      "primary_source_verified": false
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_SideOrtho_FINAL.png",
+      "role": "Preserved current-scope side comparison only",
+      "evidence_class": "PROJECT_BASELINE_RENDER_NOT_REFERENCE_PHOTO",
+      "primary_source_verified": false
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_TopOrtho_FINAL.png",
+      "role": "Preserved current-scope top comparison only",
+      "evidence_class": "PROJECT_BASELINE_RENDER_NOT_REFERENCE_PHOTO",
+      "primary_source_verified": false
+    }
+  ],
+  "reference_package_status": {
+    "orthographic_or_dimensioned_drawing": "MISSING",
+    "cleared_port_side_photo": "MISSING",
+    "cleared_top_or_high_oblique_photo": "MISSING",
+    "cleared_front_three_quarter_photo": "MISSING",
+    "cleared_rear_three_quarter_photo": "MISSING",
+    "cleared_underside_or_gear_photo": "MISSING",
+    "primary_dimension_source": "MISSING",
+    "silhouette_lock_allowed": false,
+    "draft_authoring_allowed": true,
+    "required_resolution": "Add project-owned, public-domain, or clearly licensed references with source URL or file provenance, rights record, capture/view notes, and SHA-256 before human silhouette lock."
+  },
+  "governed_dimensions_m": [
+    {
+      "id": "overall_length",
+      "target": 7.745,
+      "tolerance": 0.08,
+      "measurement": "tail extreme to forward propeller/spinner extreme along +X",
+      "confidence": "MEDIUM_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    },
+    {
+      "id": "wingspan",
+      "target": 9.3,
+      "tolerance": 0.08,
+      "measurement": "left wingtip to right wingtip along Y",
+      "confidence": "MEDIUM_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    },
+    {
+      "id": "overall_height",
+      "target": 2.7,
+      "tolerance": 0.08,
+      "measurement": "lowest tire envelope to highest aircraft envelope along Z",
+      "confidence": "MEDIUM_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    },
+    {
+      "id": "propeller_diameter",
+      "target": 2.4,
+      "tolerance": 0.05,
+      "measurement": "propeller motion-disc diameter in the YZ plane",
+      "confidence": "MEDIUM_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    },
+    {
+      "id": "rear_cockpit_clear_width",
+      "target": 0.72,
+      "tolerance": 0.04,
+      "measurement": "minimum clear width between rear cockpit rails",
+      "confidence": "LOW_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    },
+    {
+      "id": "rear_cockpit_rail_height",
+      "target": 1.34,
+      "tolerance": 0.04,
+      "measurement": "rear cockpit rail reference above aircraft origin",
+      "confidence": "LOW_INTERNAL_CONTRACT",
+      "primary_source_verified": false
+    }
+  ],
+  "provisional_authoring_parameters_m": {
+    "cowling_outer_diameter": {
+      "value": 1.36,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    },
+    "horizontal_tail_span": {
+      "value": 3.55,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    },
+    "main_gear_track": {
+      "value": 3.0,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    },
+    "wing_root_chord": {
+      "value": 2.05,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    },
+    "wing_tip_chord": {
+      "value": 1.05,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    },
+    "canopy_envelope_length": {
+      "value": 2.62,
+      "status": "PROVISIONAL_VISUAL_CALIBRATION_REQUIRED"
+    }
+  },
+  "normalized_station_plan": [
+    {
+      "station": "TAIL_EXTREME",
+      "x_fraction_of_half_length": -1.0,
+      "half_width_m": 0.05,
+      "half_height_m": 0.07,
+      "center_z_m": 0.34
+    },
+    {
+      "station": "AFT_TAILCONE",
+      "x_fraction_of_half_length": -0.82,
+      "half_width_m": 0.18,
+      "half_height_m": 0.22,
+      "center_z_m": 0.32
+    },
+    {
+      "station": "AFT_FUSELAGE",
+      "x_fraction_of_half_length": -0.58,
+      "half_width_m": 0.36,
+      "half_height_m": 0.42,
+      "center_z_m": 0.27
+    },
+    {
+      "station": "REAR_COCKPIT",
+      "x_fraction_of_half_length": -0.28,
+      "half_width_m": 0.55,
+      "half_height_m": 0.61,
+      "center_z_m": 0.24
+    },
+    {
+      "station": "WING_REFERENCE",
+      "x_fraction_of_half_length": 0.0,
+      "half_width_m": 0.68,
+      "half_height_m": 0.68,
+      "center_z_m": 0.18
+    },
+    {
+      "station": "FRONT_COCKPIT",
+      "x_fraction_of_half_length": 0.28,
+      "half_width_m": 0.7,
+      "half_height_m": 0.67,
+      "center_z_m": 0.17
+    },
+    {
+      "station": "FORWARD_FUSELAGE",
+      "x_fraction_of_half_length": 0.57,
+      "half_width_m": 0.69,
+      "half_height_m": 0.65,
+      "center_z_m": 0.15
+    },
+    {
+      "station": "COWLING_AFT",
+      "x_fraction_of_half_length": 0.76,
+      "half_width_m": 0.68,
+      "half_height_m": 0.68,
+      "center_z_m": 0.13
+    },
+    {
+      "station": "COWLING_FRONT",
+      "x_fraction_of_half_length": 0.94,
+      "half_width_m": 0.68,
+      "half_height_m": 0.68,
+      "center_z_m": 0.13
+    }
+  ],
+  "offline_checks": {
+    "dimension_count": 6,
+    "all_targets_positive": true,
+    "all_tolerances_positive": true,
+    "station_count": 9,
+    "stations_strictly_increasing": true,
+    "symmetry_tolerance_m": 0.001,
+    "primary_mesh_total_triangle_budget": 50000,
+    "silhouette_lock_requires_primary_reference_package": true
+  },
+  "current_acceptance": "DRAFT_DIMENSION_CONTRACT_VALID_PRIMARY_REFERENCE_PACKAGE_MISSING"
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "skyguard.m01.grouped-topology.recovery12-freeze-manifest.v1",
+  "gate": "PASS_RECOVERY12_ARCHITECTURE_READY_NOT_RUN",
+  "artifacts": [
+    {"path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_ARCHITECTURE_CONTRACT.json", "bytes": 2645, "sha256": "d7627d093fbf98dbbf55e9df4c6d860c31be0c873df2ea6dc97f138478adc2cc"},
+    {"path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery12Capture.h", "bytes": 3639, "sha256": "511ac0703b57facd4abed2e8d1dc89f357b799003a3cbd966e8a0e4f58e0a0fa"},
+    {"path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery12Capture.cpp", "bytes": 30737, "sha256": "9727db5c10278b4eca2ff6042e6a17be130b8815099fba4c94b5cb44183f7063"},
+    {"path": "Source/Skyguard52/Skyguard52.Build.cs", "bytes": 1058, "sha256": "f6657c2bd89e0038c78308cb3cca65a7de4e5a2e1f868a441492fe1b99461270"},
+    {"path": "Saved/Quarantine/Phase3FailedCaptureSources/Recovery12Retirement/MANIFEST.json", "bytes": 2341, "sha256": "7c2116ef7f3bd4934feb4411e4964c898f6bc081974bd93867687a510f707c7d"},
+    {"path": "Scripts/generate_m01_grouped_topology_recovery12.py", "bytes": 3301, "sha256": "3b76f00f9c92f8e5c1f5e4659fa430509a32cb46f8f872f2baaa749553f180f1"},
+    {"path": "Scripts/audit_m01_grouped_topology_recovery12_architecture.py", "bytes": 5956, "sha256": "bf365dffbb04ebfeadfc5aaf3f52dd03c6db16102cbcb3b7ac52441a376dbf1f"},
+    {"path": "Scripts/tests/test_m01_grouped_topology_recovery12_architecture.py", "bytes": 1581, "sha256": "917dcccc56e731d207291806e16f3afc37cab59f955ada5689429c8b0db784c4"},
+    {"path": "Scripts/invoke_m01_grouped_topology_recovery12_compile.py", "bytes": 4547, "sha256": "a7b2294a0b6a11f19edba552127115d84c4bf35d44604faa524c5eebb37c5cf4"},
+    {"path": "Scripts/invoke_m01_grouped_topology_recovery12_visual_proof.py", "bytes": 5528, "sha256": "a692c8ff2577e45fdea9f15ccee01cffc52cacaa55c241c217b93f04ad78c9a5"},
+    {"path": "Saved/Reports/M01_GROUPED_TOPOLOGY_RECOVERY12_SOURCE_INVENTORY.json", "bytes": 29137, "sha256": "47f9f77c2bb3d7298ecd9c706589bbd6671e4cb597b510d83503d7155828cbc8"},
+    {"path": "Saved/Reports/M01_GROUPED_TOPOLOGY_RECOVERY12_READINESS.json", "bytes": 1733, "sha256": "90bec58f11fcf3c5d48f19f61bb8bd68bf575bc7a39ab0cd29a27d58965dea62"}
+  ],
+  "offline_verification": {
+    "checks_passed": 9,
+    "checks_failed": 0,
+    "tests_passed": 5,
+    "tests_failed": 0
+  },
+  "execution_state": {
+    "compile_attempts_used": 0,
+    "maximum_compile_attempts": 1,
+    "visual_attempts_used": 0,
+    "maximum_visual_attempts": 1,
+    "automatic_retry_forbidden": true,
+    "unreal_launched": false,
+    "promotion_allowed": false
+  }
+}

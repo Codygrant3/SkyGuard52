@@ -1,0 +1,49 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery03-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03",
+  "created_utc": "2026-08-03T01:10:57.0694015Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "Offline architecture and focused tests passed, but a new persistent native lifecycle cannot be executed until its plugin is built and hash-frozen in a separately authorized gate.",
+  "unreal_launched": false,
+  "blender_launched": false,
+  "native_build_launched": false,
+  "heavy_process_count_at_freeze": 0,
+  "reserved_namespaces_absent": true,
+  "attempt03_execution_authorized": false,
+  "blocking_prerequisite": "Compile, rebind, validate, and hash-freeze Plugins/SkyguardRecovery03 without launching UnrealEditor.",
+  "frozen_files": [
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_LIFECYCLE_DECISION_2026-08-02.md", "bytes": 2511, "sha256": "e7df8d67e7cc050bbd9ad739232149a80f3398bab37b04e44f5d8d4156cd1a07"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_CONTRACT.json", "bytes": 5369, "sha256": "b7fd00629c9fe64576b9d4249cf15a2572314eff9e90374a4bfb59165dcc8cd9"},
+    {"file": "Plugins/SkyguardRecovery03/SkyguardRecovery03.uplugin", "bytes": 409, "sha256": "ea11ccaf8d74f67e89cd2a0429300ae774268ffd5f0d3a62640afc2ff355359f"},
+    {"file": "Plugins/SkyguardRecovery03/Source/SkyguardRecovery03/SkyguardRecovery03.Build.cs", "bytes": 619, "sha256": "ae5236cdd7d7b80af194025fd65506f35924f9fa78b9b3e7d9fb584b7ba89088"},
+    {"file": "Plugins/SkyguardRecovery03/Source/SkyguardRecovery03/Public/SkyguardRecovery03Module.h", "bytes": 1381, "sha256": "9d62c510cf94ef6c674aa35cbd07a7e25e3dda102d5b013c827c25a21f47abd5"},
+    {"file": "Plugins/SkyguardRecovery03/Source/SkyguardRecovery03/Private/SkyguardRecovery03Module.cpp", "bytes": 6070, "sha256": "ad712b01075199ddab37984531ee6d6b797760995d0d21c9f8c53f288ca83963"},
+    {"file": "Scripts/invoke_skyguard_phase4_m01_representative_visual_attempt08_recovery03.ps1", "bytes": 5320, "sha256": "82ad6f9ea0023bb69fecacb9e92df4a649a0ca38b2f59fd57655709cb63bacd6"},
+    {"file": "Scripts/test_skyguard_recovery03_process_exit.ps1", "bytes": 1491, "sha256": "63fa89cc92f51eed25a04e808e6bbb8b13a31d5712ae4ee10808d1622bebab01"},
+    {"file": "Scripts/verify_skyguard_phase4_m01_representative_visual_attempt08_recovery03.py", "bytes": 4544, "sha256": "c6d28c287940401e2ee19833ea50a66e8b478a5cff76a5ef4bf2a22fbd6b3473"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_SOURCE_INVENTORY.json", "bytes": 5952, "sha256": "b73ad08128ebd3cc8cc0f16c9186c0afc254b182636e2e72367cce7b0ab5c7d4"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_READINESS.json", "bytes": 2591, "sha256": "f9eb1b28fa2979b716cd8e60bab50b41d3206ad87fa70d05e9c4417aa724a606"},
+    {"file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_GATE.md", "bytes": 1800, "sha256": "3ce6941169d6c55922b841a316561e07d53cadc8f0ff3e6efdd3788af574e13c"}
+  ],
+  "focused_test_results": {
+    "json_validation": "PASS",
+    "python_syntax": "PASS",
+    "powershell_syntax": "PASS",
+    "native_static_configuration": "PASS_WITHOUT_BUILD",
+    "recovery02_preservation": "PASS",
+    "authorization_and_inert_default": "PASS_STATIC",
+    "multiple_tick_heartbeat_contract": "PASS_STATIC",
+    "terminal_receipt_before_exit": "PASS_STATIC",
+    "execute_python_script_absent": "PASS",
+    "numeric_success_exit_code": 0,
+    "numeric_failure_exit_code": 7,
+    "numeric_exit_code_type": "System.Int32",
+    "null_exit_code_rejection": "PASS",
+    "network_attempt_requirement": 0,
+    "single_launch_no_retry": "PASS_STATIC"
+  },
+  "withheld_artifact": {
+    "future_unreal_execution_prompt": "Not produced because the plugin binary is absent and an Unreal one-shot would be unsafe and unexecutable.",
+    "replacement_next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_GATE.md"
+  }
+}

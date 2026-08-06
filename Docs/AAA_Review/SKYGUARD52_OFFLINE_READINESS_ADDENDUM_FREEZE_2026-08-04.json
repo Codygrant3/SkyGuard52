@@ -1,0 +1,126 @@
+{
+  "schema": "skyguard52.aaa-offline-readiness-addendum-freeze.v1",
+  "generated_at_utc": "2026-08-04T22:49:26.9639373Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED_BOUNDED_OFFLINE_READINESS_RECONCILIATION",
+  "scope": [
+    "Reconcile Yak-52 R6 reference acquisition without promoting secondary or unavailable sources to geometry authority.",
+    "Reconcile current Poly Haven source-file provenance against the later expanded manifest.",
+    "Publish a non-mutating dashboard addendum.",
+    "Preserve every earlier freeze and heavy execution gate."
+  ],
+  "parent_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_GATE0_CONTROL_PACKAGE_FREEZE_2026-08-04.json",
+      "bytes": 7895,
+      "sha256": "e7dc82f7fc1b7644cdf49488156bdcccce8f4e654132d7d24a7a106fbc11d0a0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_FREEZE.json",
+      "bytes": 4179,
+      "sha256": "ad2dc00511c70057ba54248b72a2760f07fbf86f94cac1bbf7b1f0708e5052c8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+      "bytes": 9239,
+      "sha256": "11d508230d9d0014260ce966c2974612318b187b352bc6cd7e279512f6d2bd05"
+    }
+  ],
+  "frozen_outputs": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REFERENCE_ACQUISITION_REGISTER_CYCLE02_2026-08-04.json",
+      "bytes": 5824,
+      "sha256": "b1a43c7b5edc07a81686394a65faee369d243c3c2329cfe4c8d92d5875ebb8df"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_skyguard_polyhaven_provenance_reconciliation.py",
+      "bytes": 6895,
+      "sha256": "ed06119651870bf022b6262fd4f132b66f1e177115cd9b94fd15d7996792e1e3"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_POLYHAVEN_PROVENANCE_REVALIDATION_2026-08-04.json",
+      "bytes": 6350,
+      "sha256": "f5a66de5af08efb8a2c935a388351a5fae1711c2223f21bc3adf7a6f617620e0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_PROVENANCE_RECONCILIATION_ADDENDUM_2026-08-04.md",
+      "bytes": 2618,
+      "sha256": "ed1ef462db8e11ff12b68b74588cf1ce506f9aed2193fc939d1dc9a10ff34763"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_OFFLINE_ADDENDUM_2026-08-04.md",
+      "bytes": 2177,
+      "sha256": "d4c1c5db20181fb9df85869ce5ac7b62747fa3c128e8080d49cfa59e6fe43462"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_OFFLINE_READINESS_ADDENDUM_INVENTORY_2026-08-04.json",
+      "bytes": 5279,
+      "sha256": "9ea30241af7c6e56121859b27045e444aba1417855b9da05cdd2d1d63b08c09c"
+    }
+  ],
+  "polyhaven_result": {
+    "classification": "PASSED_LOCAL_AND_RECORDED_REMOTE_PROVENANCE_REVALIDATION",
+    "manifest": {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\polyhaven-provenance-manifest.json",
+      "bytes": 47802,
+      "sha256": "9817fa40dca9bfec370e208921c925eeb9858a4b3a2254e8101260dca1cc2e57"
+    },
+    "license_declaration": {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\README.md",
+      "bytes": 1011,
+      "sha256": "76bcba2f1a8e796b91aad2831e10768f28959c298cd05d2d714bb29f7bec2f00",
+      "license": "CC0-1.0"
+    },
+    "surface_build_manifest": {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\surface-build-manifest.json",
+      "bytes": 11008,
+      "sha256": "cf481e4bb78c7aa6446b17ff921b5dd95607f6488f27b41348dc98d4ca1db4bf"
+    },
+    "verified_file_count": 64,
+    "verified_bytes": 143557070,
+    "verified_nonempty_family_count": 21,
+    "failures": 0,
+    "empty_unverified_families": [
+      "metal_walkway_01",
+      "painted_metal_02",
+      "ship_hull"
+    ],
+    "limits": [
+      "No new network request was made during local revalidation.",
+      "Fab and Bridge receipts remain incomplete.",
+      "Final Shipping used-asset mappings remain incomplete."
+    ]
+  },
+  "yak52_r6_result": {
+    "classification": "AWAITING_REFERENCE_INPUT",
+    "new_authoritative_local_reference_count": 0,
+    "retired_threejs_geometry_accepted": false,
+    "blender_authorized": false,
+    "unreal_authorized": false,
+    "blocking_condition": "No authoritative dimensioned side/top/front geometry, fuselage stations, canopy travel, cowling installation, wing-planform or tail-dimension set is stored in the governed project."
+  },
+  "execution_receipt": {
+    "work_class": "OFFLINE_READ_ONLY_INSPECTION_AND_EVIDENCE_AUTHORING",
+    "heavy_process_count": 0,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "shader_compile_worker_launched": false,
+    "automation_tool_launched": false,
+    "unreal_build_tool_launched": false,
+    "compiler_launched": false,
+    "asset_import_performed": false,
+    "external_download_accepted": false,
+    "external_email_sent": false,
+    "automatic_retry_count": 0,
+    "prior_frozen_artifacts_modified": false
+  },
+  "roadmap_state": {
+    "completed_numbered_gates": 2,
+    "total_numbered_gates": 13,
+    "evidence_weighted_gate_completion_percent": 15.4,
+    "next_executable_gate": "Gate 2 — Mission 1 native project build",
+    "next_gate_authorization": "AWAITING_EXPLICIT_ONE_SHOT_AUTHORIZATION",
+    "next_gate_executed": false
+  },
+  "terminal_statement": "This freeze closes only the bounded offline reconciliation. It does not accept Yak-52 R6, Mission 1 production visuals, gameplay, integration, packaging, performance, stability, combat, input, audio or release readiness."
+}

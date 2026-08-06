@@ -1,0 +1,271 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery01.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-01",
+  "status": "OFFLINE_IMPLEMENTED_PENDING_EXPLICIT_AUTHORIZATION",
+  "scope": "Immutable recovery from the safely failed Attempt07 author stage. Replace the invalid Python-property hypothesis with UE 5.8 generated Landscape material-resource compilation proof, retain camera-transform-before-proxy ordering, and run no Unreal process until separately authorized.",
+  "immutable_failed_attempt07": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01",
+    "terminal_state_required": "FAILED",
+    "stage_count_required": 1,
+    "failure_required": "Attempt07 author stage failed",
+    "full_capture_invoked_required": false,
+    "profile_invoked_required": false,
+    "files": {
+      "engine_log": {
+        "file": "logs/author_attempt07_diagnostic_materials.engine.log",
+        "bytes": 224408,
+        "sha256": "6112fd27722df4432f43d0ed6336139997c0f7cf9f6c5ad0c3a2a916532593fd"
+      },
+      "stderr_log": {
+        "file": "logs/author_attempt07_diagnostic_materials.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout_log": {
+        "file": "logs/author_attempt07_diagnostic_materials.stdout.log",
+        "bytes": 28005,
+        "sha256": "2f36418d05239769ee13baa8df29fc5e77591dbd1a078f7efd23be59c6d323e3"
+      },
+      "run_manifest": {
+        "file": "run_manifest.json",
+        "bytes": 4761,
+        "sha256": "0eefa714a7c6d9b5a62855f7570b9f608839d2f3684b26d2df12215407bd433d"
+      }
+    },
+    "attempt07_material_assets_saved": false,
+    "mutation_allowed": false,
+    "overwrite_allowed": false
+  },
+  "immutable_predecessor": {
+    "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-006-RECOVERY-02",
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_02",
+    "files": {
+      "gate_report": {
+        "file": "gate_report.json",
+        "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"
+      },
+      "latest_gate_snapshot": {
+        "file": "latest_gate_snapshot.json",
+        "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"
+      },
+      "recovery_manifest": {
+        "file": "recovery_manifest.json",
+        "sha256": "7a0d4ae2c380a30f532c7ed1edc8c00551f88c23c3a3f4eb1685e4b5d9636b03"
+      },
+      "recovery_receipt": {
+        "file": "recovery_receipt.json",
+        "sha256": "919083788c2e4a0613eb7f1c34a72c2a9fcc522dcdc87617d73608a07eeeffe7"
+      },
+      "stderr_log": {
+        "file": "logs/offline_gate.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout_log": {
+        "file": "logs/offline_gate.stdout.log",
+        "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"
+      }
+    },
+    "required_gate": "FAIL",
+    "required_technical_gate": "FAIL",
+    "mutation_allowed": false,
+    "promotion_allowed": false
+  },
+  "ue58_source_evidence": {
+    "engine_root": "D:/UE_5.8",
+    "material_interface_header": {
+      "file": "Engine/Source/Runtime/Engine/Public/Materials/MaterialInterface.h",
+      "sha256": "bea770f73328fb86c54d3ccd7199925d99dc4d5954d6424981af3b6dd15d66c5",
+      "ematerial_usage_lines": [76, 135],
+      "matusage_landscape_present": false
+    },
+    "material_header": {
+      "file": "Engine/Source/Runtime/Engine/Public/Materials/Material.h",
+      "sha256": "e5c457d568a54dd1139cf938a4f4018dab2293971d3b08892a2d73fb96c92d74"
+    },
+    "material_implementation": {
+      "file": "Engine/Source/Runtime/Engine/Private/Materials/Material.cpp",
+      "sha256": "2448ace7a84345b03727539a8d1506c7e1689f8be75e64c1c6d52b652fdaa210"
+    },
+    "landscape_module_search": {
+      "roots": [
+        "Engine/Source/Runtime/Landscape",
+        "Engine/Plugins/Editor/Landscape"
+      ],
+      "matusage_landscape_match_count": 0,
+      "landscape_set_material_usage_match_count": 0
+    },
+    "authoritative_conclusion": "UE 5.8 has no MATUSAGE_Landscape and no bUsedWithLandscape authoring contract. The failed Python property and proposed native usage flag are invalid paths and are forbidden."
+  },
+  "formal_diagnosis": {
+    "observed": {
+      "show_only_component_count": 16,
+      "generated_material_instance_count": 16,
+      "material_parent_match_count": 16,
+      "render_thread_synchronized": true,
+      "coverage_c05_and_component_id_c05_decoded_rgb_identical": true,
+      "component_id_all_pixels_grayscale": true,
+      "component_id_matching_palette_ids": 0,
+      "coverage_max_rgb8_by_camera": {
+        "C01_ESTABLISHING_HIGH": 31,
+        "C02_SHORELINE_GRAZE": 0,
+        "C03_ROUTE_LOW": 27,
+        "C04_INLAND_CLOSE": 0,
+        "C05_COVERAGE_HIGH": 30
+      }
+    },
+    "disproven_hypothesis": "A Landscape material usage flag was missing. UE 5.8 source proves that no such EMaterialUsage flag exists.",
+    "remaining_primary_hypothesis": "The generated Landscape material resources and shader maps were not synchronously complete and valid when the immediate SceneCapture ran, allowing fallback/default output despite correct parent-instance bookkeeping.",
+    "remaining_secondary_hypothesis": "Attempt06 configured and flushed the capture proxy before applying the contract camera transform, allowing fresh capture actors to render from stale transforms.",
+    "evidence_strength": "MEDIUM_HIGH_PENDING_TINY_LIVE_PROOF",
+    "correction": [
+      "Author exact constant-emissive white and deterministic component-ID graphs.",
+      "Recompile each completed graph with MaterialEditingLibrary.recompile_material and save only new immutable Recovery01 assets.",
+      "After assigning each diagnostic material in a real D3D12 SM6 editor, rebuild generated Landscape instances.",
+      "Finish all asset and shader compilation, then finish each generated material resource and require a valid game-thread shader map for every one of 16 components.",
+      "Apply camera location and rotation before native capture configuration, proxy dirtiness, and render-thread synchronization.",
+      "Capture only three 640x360 proof images and stop regardless of pass or fail."
+    ]
+  },
+  "locked_production_packages": {
+    "baseline_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "candidate_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap",
+      "sha256": "3403a518e6c24ded6285f03f136f9009f6387d697432b48b82942fa6b2c551fc"
+    },
+    "candidate_material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    },
+    "attempt06_coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset",
+      "sha256": "954d76f572085a7aa06e07de731d5fa4bbffe68c155c4ce19770ede0ece1afde"
+    },
+    "attempt06_component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset",
+      "sha256": "4d8373e935f2accd7bbfa76ade25d272a638f8436bae6b1d433a6898a9afcefc"
+    }
+  },
+  "compiled_module_before_recovery": {
+    "file": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "sha256": "6140def208c2259a4d32261a647b662bcaa88d1c623edbc9b42377e897067e3f",
+    "single_rebuild_required_in_future_authorized_run": true,
+    "rebuild_allowed_now": false
+  },
+  "new_immutable_outputs": {
+    "coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01.uasset"
+    },
+    "component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01.uasset"
+    },
+    "must_not_exist_before_authoring": true,
+    "must_never_overwrite_attempt06_or_attempt07": true
+  },
+  "tiny_live_proof": {
+    "execution_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_01",
+    "rhi_required": "D3D12|SM6",
+    "resolution": [640, 360],
+    "fov_degrees": 90.0,
+    "camera_transform_must_be_applied_before_capture_configuration": true,
+    "captures": [
+      "coverage_C05.png",
+      "coverage_C04.png",
+      "component_id_C05.png"
+    ],
+    "coverage_white_rgb8_minimum": 240,
+    "coverage_c05_minimum_fraction": 0.05,
+    "coverage_c04_minimum_fraction": 0.01,
+    "component_palette_rgb8_tolerance_per_channel": 12,
+    "component_palette_minimum_pixels_per_id": 500,
+    "all_16_component_ids_required": true,
+    "generated_material_resource_count_required": 16,
+    "compilation_finished_resource_count_required": 16,
+    "valid_shader_map_resource_count_required": 16,
+    "asset_compilation_queue_empty_required": true,
+    "shader_compilation_queue_empty_required": true,
+    "show_only_component_count_required": 16,
+    "generated_instance_count_required": 16,
+    "material_parent_match_count_required": 16,
+    "render_thread_sync_required": true,
+    "governed_material_restore_required": true,
+    "world_save_forbidden": true,
+    "pcg_generation_forbidden": true,
+    "full_capture_forbidden": true,
+    "profile_forbidden": true,
+    "automatic_retry_forbidden": true,
+    "promotion_forbidden": true
+  },
+  "execution_authorization": {
+    "unreal_launch_allowed": false,
+    "native_build_allowed": false,
+    "author_new_diagnostic_assets_allowed": false,
+    "tiny_live_proof_allowed": false,
+    "full_capture_allowed": false,
+    "profile_allowed": false,
+    "automatic_retry_allowed": false,
+    "network_allowed": false,
+    "promotion_allowed": false,
+    "explicit_switch_required": "--authorize-single-recovery-tiny-proof",
+    "next_gate": "After separate root authorization: exactly one native build, one immutable Recovery01 author stage, and one three-image D3D12 proof; stop regardless of pass or fail."
+  },
+  "implementation_files": {
+    "native_header": {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.h",
+      "sha256": "4669b35f05d5c74fb2671fe3ae4d6166f528831f43b8f2edc0d140a2158079e4"
+    },
+    "native_implementation": {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.cpp",
+      "sha256": "0b7ce765de03dc60666a4365b742aadf7c3f19bbaa55025a2f9a53c7176b98fd"
+    },
+    "diagnostic_builder": {
+      "file": "Scripts/build_skyguard_phase4_m01_landscape_material_validation.py",
+      "sha256": "81960fb38747d328360ffe7949650e19c9b57aa393d2a9faa6a92bf8c9f505ef"
+    },
+    "recovery01_author": {
+      "file": "Scripts/build_skyguard_phase4_m01_landscape_attempt07_recovery01_diagnostics.py",
+      "sha256": "8c6ea72dfb1227edac64e7ccbb445416335e7d6e3c8248ca54639eae8e496feb"
+    },
+    "recovery01_tiny_proof": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery01_tiny_live.py",
+      "sha256": "509d982c5e18cafc1073fe6b36ba491cfbba7f371bb3eb6899166ca2b9132bc0"
+    },
+    "recovery01_supervisor": {
+      "file": "Scripts/supervise_skyguard_phase4_m01_landscape_visible_attempt07_recovery01.py",
+      "sha256": "b478081af0280e0024f61b444242338a145e9533b266cf123d69f8eaa18d8122"
+    },
+    "recovery01_launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery01.ps1",
+      "sha256": "d66d1b8a0d8272a0d2fb1c4dc0007269a83e0688ee8b5f63ee850b1cab3972f4"
+    },
+    "attempt07_proof_helpers": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_tiny_live.py",
+      "sha256": "e7e0a89bf539e6d47e804023be093357322cc067aea2375a6e8f7939b7e8be56"
+    },
+    "attempt06_contract_loader": {
+      "file": "Scripts/phase4_m01_landscape_attempt06_contract.py",
+      "sha256": "6834274d48477a01c0374d66195530bea915f1e0cd7d09292610c0d2519ce771"
+    },
+    "gpu_gate_helpers": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+      "sha256": "d0d515781c173939b9d564ecda5146266e9c969a91ec1465a0aabf3794d946cb"
+    },
+    "recovery01_readiness": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_attempt07_recovery01_readiness.py",
+      "sha256": "7d259046117170f678a47b4ae94ddcdd0c4f3ecfd6ac7e2ca87a3e7e00878501"
+    },
+    "recovery01_tests": {
+      "file": "Scripts/tests/test_phase4_m01_landscape_attempt07_recovery01.py",
+      "sha256": "b67aceece072a9124d12841ad4fca64f5e61aa0126bcf7779eb571a47be254b4"
+    }
+  }
+}

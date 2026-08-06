@@ -1,0 +1,30 @@
+{
+  "schema": "skyguard.recovery03-native-recovery01-build-attempt01-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+  "created_utc": "2026-08-03T13:48:58.7453414Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The single authorized build stopped before AutomationTool command execution because AutomationTool.exe used the system dotnet host, where Microsoft.NETCore.App 10.0.0 is absent. No retry occurred. The supervisor also failed to create its promised manifest or persist a numeric exit code.",
+  "attempt_namespace": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/build_attempt_01",
+  "attempt_namespace_reuse_forbidden": true,
+  "launch_count": 1,
+  "automatic_retry": false,
+  "unreal_editor_launched": false,
+  "plugin_binary_present": false,
+  "unreal_execution_authorized": false,
+  "frozen_files": [
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/build_attempt_01/process_tree_samples.jsonl", "bytes": 75, "sha256": "5edb62d9f46836e924a28a0797e59b7c21361cd3aa0854c5661684346c492c9d"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/build_attempt_01/logs/build.stdout.log", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/build_attempt_01/logs/build.stderr.log", "bytes": 721, "sha256": "69fbc6bf88422f456085c03d73faf3af1d847cf8a50b889817110e149eec3edb"},
+    {"file": "Scripts/build_skyguard_recovery03_native_recovery01_once.ps1", "bytes": 6357, "sha256": "39f019789b37bcae577e6f14b878cb3d0397080e3e772a0b7801f2d89e215a92"},
+    {"file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY01_ATTEMPT01_TERMINAL_EVIDENCE.json", "bytes": 2604, "sha256": "653c7fea0d1bbdcb2a14977f838f99644b15b63fd6a4b92c2a4ada3839d8ee15"},
+    {"file": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY01_ATTEMPT01_READINESS.json", "bytes": 623, "sha256": "143c220d8371ca8c239d7a8eba890ec3afd9671331bfebbf0fad7241921c29ca"}
+  ],
+  "next_gate_requirements": [
+    "Create a new Recovery02 namespace; never reuse Attempt01.",
+    "Invoke D:/UE_5.8/Engine/Binaries/ThirdParty/DotNet/10.0/win-x64/dotnet.exe directly.",
+    "Pass D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll as the first argument.",
+    "Retain D:/SG52R03B02 or another verified short absent package root.",
+    "Prove numeric exit-code persistence with the exact bundled dotnet host before authorizing a build.",
+    "Do not launch UnrealEditor."
+  ]
+}

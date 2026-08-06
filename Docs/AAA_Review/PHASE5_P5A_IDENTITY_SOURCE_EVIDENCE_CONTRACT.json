@@ -1,0 +1,254 @@
+{
+  "schema": "skyguard.phase5.p5a-identity-source-evidence.v1",
+  "wave_id": "P5-A",
+  "scope": "Evidence required before any Yak-52 identity-bed source may be auditioned, derived, imported, or bound",
+  "identity_categories": [
+    "EngineIdle",
+    "EngineCruise",
+    "EnginePower",
+    "Propeller",
+    "OpenCockpitWind"
+  ],
+  "source_candidate_policy": {
+    "production_candidate_definition": "A specifically identified source whose rights, embedded-game redistribution scope, Yak-52 semantic identity, listener perspective and technical metadata are independently evidenced.",
+    "generic_aircraft_reference_is_candidate": false,
+    "license_only_is_sufficient": false,
+    "source_page_http_200_is_sufficient": false,
+    "synthetic_wind_is_authentic_cockpit_source": false,
+    "download_before_candidate_acceptance_allowed": false,
+    "approved_production_candidate_count": 0
+  },
+  "preferred_acquisition_route": {
+    "route_id": "PROJECT_OWNED_CONTROLLED_YAK52_RECORDING_SESSION",
+    "state": "AWAITING_SIGNED_AGREEMENT_AND_SESSION_EVIDENCE",
+    "is_currently_a_production_source_candidate": false,
+    "reason": "A recording route is not a source candidate until a specific aircraft, rights holder, session, captures and signed permissions are identified.",
+    "may_cover_categories": [
+      "EngineIdle",
+      "EngineCruise",
+      "EnginePower",
+      "Propeller",
+      "OpenCockpitWind"
+    ],
+    "must_not_change_source_status_before_gate": "MISSING_SOURCE"
+  },
+  "rights_evidence_required": [
+    "rights_evidence_id",
+    "legal_rights_holder_name",
+    "signed_recording_or_license_agreement_path",
+    "agreement_sha256",
+    "signing_date_utc",
+    "commercial_interactive_game_use_allowed",
+    "modification_and_derivative_creation_allowed",
+    "cooked_build_embedding_and_distribution_allowed",
+    "marketing_and_trailer_use_allowed",
+    "territory",
+    "term",
+    "raw_source_redistribution_policy",
+    "aircraft_owner_or_operator_permission",
+    "recording_location_permission",
+    "performer_or_crew_releases_if_audible"
+  ],
+  "rights_acceptance_values": {
+    "commercial_interactive_game_use_allowed": true,
+    "modification_and_derivative_creation_allowed": true,
+    "cooked_build_embedding_and_distribution_allowed": true,
+    "marketing_and_trailer_use_allowed": true,
+    "raw_source_redistribution_policy": "EXCLUDED_FROM_DISTRIBUTION",
+    "territory": "WORLDWIDE",
+    "minimum_term": "PERPETUAL_OR_PROJECT_LIFETIME_WITH_DISTRIBUTED_BUILDS_SURVIVING"
+  },
+  "semantic_evidence_required": [
+    "semantic_evidence_id",
+    "aircraft_make_model",
+    "aircraft_identifier",
+    "engine_configuration",
+    "propeller_configuration",
+    "recording_date_utc",
+    "recording_location",
+    "recording_log_path",
+    "recording_log_sha256",
+    "state_or_maneuver",
+    "documented_rpm",
+    "documented_load",
+    "documented_airspeed",
+    "rear_canopy_open_fraction",
+    "microphone_position",
+    "listener_perspective",
+    "semantic_reviewer",
+    "semantic_review_date_utc"
+  ],
+  "category_semantic_contracts": [
+    {
+      "category": "EngineIdle",
+      "required_aircraft": "Yak-52",
+      "required_state": "stabilized idle",
+      "required_perspectives": [
+        "RearCockpit",
+        "ExteriorClose"
+      ],
+      "forbidden_substitutes": [
+        "different aircraft type",
+        "multi-engine aircraft",
+        "fly-by",
+        "unlogged RPM"
+      ]
+    },
+    {
+      "category": "EngineCruise",
+      "required_aircraft": "Yak-52",
+      "required_state": "stabilized cruise RPM and load",
+      "required_perspectives": [
+        "RearCockpit",
+        "ExteriorClose",
+        "ExteriorMedium"
+      ],
+      "forbidden_substitutes": [
+        "different aircraft type",
+        "baked fly-by motion",
+        "unlogged RPM or load"
+      ]
+    },
+    {
+      "category": "EnginePower",
+      "required_aircraft": "Yak-52",
+      "required_state": "sustained high-load state",
+      "required_perspectives": [
+        "RearCockpit",
+        "ExteriorClose",
+        "ExteriorMedium"
+      ],
+      "forbidden_substitutes": [
+        "different aircraft type",
+        "single transient pass",
+        "unlogged RPM or load"
+      ]
+    },
+    {
+      "category": "Propeller",
+      "required_aircraft": "Yak-52",
+      "required_state": "documented blade-passage states tied to RPM",
+      "required_perspectives": [
+        "RearCockpit",
+        "ExteriorClose",
+        "ExteriorMedium"
+      ],
+      "forbidden_substitutes": [
+        "unknown propeller configuration",
+        "baked fly-by motion",
+        "unlogged RPM"
+      ]
+    },
+    {
+      "category": "OpenCockpitWind",
+      "required_aircraft": "Yak-52",
+      "required_state": "rear canopy open at documented safe airspeed and opening fraction",
+      "required_perspectives": [
+        "RearCockpit"
+      ],
+      "forbidden_substitutes": [
+        "synthetic white noise",
+        "generic exterior wind",
+        "closed-canopy recording",
+        "unlogged airspeed or canopy state"
+      ]
+    }
+  ],
+  "technical_evidence_required": [
+    "immutable_original_filename",
+    "immutable_original_sha256",
+    "capture_sample_rate_hz",
+    "capture_bit_depth",
+    "capture_channels",
+    "capture_duration_seconds",
+    "microphone_and_recorder_chain",
+    "unprocessed_capture_confirmed",
+    "clipping_count",
+    "peak_headroom_db",
+    "noise_or_contamination_notes",
+    "phase_coherence_review",
+    "loopability_review"
+  ],
+  "derivative_evidence_required": [
+    "derivative_filename",
+    "derivative_sha256",
+    "delivery_sample_rate_hz",
+    "delivery_bit_depth",
+    "delivery_channels",
+    "edit_decision_log_path",
+    "edit_decision_log_sha256",
+    "loop_start_sample",
+    "loop_end_sample",
+    "loudness_and_true_peak_measurement",
+    "audio_qa_reviewer",
+    "audio_qa_date_utc"
+  ],
+  "candidate_gate": {
+    "required_candidate_state": "EVIDENCE_COMPLETE_ELIGIBLE_FOR_CONTROLLED_AUDITION",
+    "required_independent_approvals": [
+      "RIGHTS_APPROVED",
+      "SEMANTIC_MATCH_APPROVED",
+      "TECHNICAL_INGEST_APPROVED"
+    ],
+    "binding_forbidden_until_audible_qa": true,
+    "audition_does_not_equal_production_binding": true
+  },
+  "reviewed_research_candidates": [
+    {
+      "candidate_id": "FS_CRAIGSMITH_437835",
+      "categories": [
+        "EngineIdle",
+        "EngineCruise"
+      ],
+      "license_evidence": "CC0 page previously recorded in acquisition ledger",
+      "redistribution_evidence": "CC0 terms previously recorded in acquisition ledger",
+      "semantic_match": false,
+      "disposition": "REJECTED_PRODUCTION_IDENTITY_MISMATCH",
+      "reason": "C-47 twin-engine interior material is not a Yak-52 identity recording."
+    },
+    {
+      "candidate_id": "FS_CRAIGSMITH_437726",
+      "categories": [
+        "EnginePower",
+        "Propeller"
+      ],
+      "license_evidence": "CC0 page previously recorded in acquisition ledger",
+      "redistribution_evidence": "CC0 terms previously recorded in acquisition ledger",
+      "semantic_match": false,
+      "disposition": "REJECTED_PRODUCTION_IDENTITY_MISMATCH",
+      "reason": "Generic radial biplane fly-by is not a controlled Yak-52 RPM, load or blade-passage source."
+    },
+    {
+      "candidate_id": "FS_PRSHS70_445137",
+      "categories": [
+        "Propeller"
+      ],
+      "license_evidence": "CC0 page previously recorded in acquisition ledger",
+      "redistribution_evidence": "CC0 terms previously recorded in acquisition ledger",
+      "semantic_match": false,
+      "disposition": "REJECTED_PRODUCTION_IDENTITY_MISMATCH",
+      "reason": "Aircraft and propeller configuration are unknown and the source is a fly-past."
+    },
+    {
+      "candidate_id": "FS_COLUMBIA23_395684",
+      "categories": [
+        "OpenCockpitWind"
+      ],
+      "license_evidence": "CC0 page previously recorded in acquisition ledger",
+      "redistribution_evidence": "CC0 terms previously recorded in acquisition ledger",
+      "semantic_match": false,
+      "disposition": "REJECTED_PRODUCTION_IDENTITY_MISMATCH",
+      "reason": "Synthesized white noise is not authentic Yak-52 rear-cockpit airflow."
+    }
+  ],
+  "approved_production_candidates": [],
+  "current_state": {
+    "approved_production_candidate_count": 0,
+    "identity_sources_bound": 0,
+    "identity_sources_missing": 5,
+    "downloaded_identity_source_count": 0,
+    "hashed_identity_source_count": 0,
+    "production_ready": false,
+    "status": "BLOCKED_NO_EVIDENCE_COMPLETE_YAK52_IDENTITY_SOURCE"
+  }
+}

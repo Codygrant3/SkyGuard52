@@ -1,0 +1,108 @@
+{
+  "schema": "skyguard52.phase2.yak52-r6-reference-acquisition-register.cycle02.v1",
+  "generated_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "AWAITING_REFERENCE_INPUT",
+  "prior_freeze": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_FREEZE.json",
+    "bytes": 4179,
+    "sha256": "ad2dc00511c70057ba54248b72a2760f07fbf86f94cac1bbf7b1f0708e5052c8"
+  },
+  "local_intake": {
+    "approved_inbox": "D:\\Skyguard52\\References\\Yak52\\R6_Inbox",
+    "inbox_exists": false,
+    "new_authoritative_reference_count": 0,
+    "local_search_result": "No dimensioned Yak-52 manual, three-view, station drawing, canopy travel drawing, cowling installation drawing, DWG, DXF, or relevant PDF was found in the searched local reference folders.",
+    "retired_threejs_assets_found": true,
+    "retired_threejs_assets_accepted": false,
+    "reason": "The retired web assets are derived production outputs rather than authoritative aircraft geometry references."
+  },
+  "research_candidates": [
+    {
+      "priority": 1,
+      "source": "Richard Goode Aeros",
+      "url": "https://www.rgaeros.com/manuals-for-yakovlev-and-sukhoi/",
+      "authority_class": "SPECIALIST_OWNER_MAINTENANCE_SOURCE",
+      "verified_availability": [
+        "Yak-52 POH Flight Manual",
+        "Yak-52 Parts Catalogues (2)",
+        "Yak-52 Maintenance Manual",
+        "Yak-52 Operations Manual",
+        "Yak-52 Electrical Systems & Diagrams",
+        "Scheduled Maintenance Manual for Yak-52 aircraft with M14P engine",
+        "V-530 propeller maintenance manuals"
+      ],
+      "acquisition_method": "The source asks owners to request download links by email.",
+      "acquired": false,
+      "side_effect_performed": false,
+      "production_value": "Highest-probability route to parts drawings, aircraft sections, canopy details and propeller installation evidence.",
+      "limitation": "No email was sent and no manual was downloaded. Each received file must be hashed and inspected before it can become authority."
+    },
+    {
+      "priority": 2,
+      "source": "UK Civil Aviation Authority",
+      "url": "https://publicapps.caa.co.uk/AANDocs/28403/28403000000.pdf",
+      "authority_class": "GOVERNMENT_AIRWORTHINESS_APPROVAL",
+      "title": "Airworthiness Approval Note 28403 — Yak-52",
+      "acquired": false,
+      "side_effect_performed": false,
+      "production_value": "Useful for configuration, aircraft description and approved-modification provenance.",
+      "limitation": "Search evidence does not establish a dimensioned three-view or station drawing."
+    },
+    {
+      "priority": 3,
+      "source": "United States National Transportation Safety Board docket",
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?ID=40356078&FileExtension=.PDF&FileName=Pilot%20Operating%20Handbook-Master.PDF",
+      "authority_class": "GOVERNMENT_DOCKET_COPY_OF_OPERATING_HANDBOOK",
+      "title": "Yak-52 Pilot Operating Handbook",
+      "acquired": false,
+      "side_effect_performed": false,
+      "production_value": "Potential authoritative dimensions, systems and cockpit-reference supplement.",
+      "limitation": "The browser endpoint behaved as a file download. No download was accepted without an explicit action-time authorization."
+    },
+    {
+      "priority": 4,
+      "source": "Digital Combat Simulator",
+      "url": "https://www.digitalcombatsimulator.com/upload/iblock/c7e/DCS%20Yak-52%20Manual%20EN.pdf",
+      "authority_class": "SECONDARY_SIMULATION_REFERENCE",
+      "title": "DCS Yak-52 Manual",
+      "acquired": false,
+      "side_effect_performed": false,
+      "production_value": "Useful for cockpit systems, controls, mechanisms and visual cross-checks.",
+      "limitation": "Not authoritative for final aircraft dimensions, station geometry or silhouette acceptance."
+    },
+    {
+      "priority": 5,
+      "source": "United States National Transportation Safety Board docket",
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?ID=40484719&FileExtension=.PDF&FileName=YAK%20Manual%20Excerpt-Master.PDF",
+      "authority_class": "GOVERNMENT_DOCKET_MANUAL_EXCERPT",
+      "title": "Yak Manual Excerpt",
+      "acquired": false,
+      "side_effect_performed": false,
+      "production_value": "Aircraft system-diagram reference.",
+      "limitation": "Search result identifies a four-page air-system excerpt, not a dimensioned geometry authority."
+    }
+  ],
+  "minimum_reference_set_before_blender": [
+    "Authoritative dimensioned side, top and front Yak-52 three-view or equivalent manual drawings",
+    "Fuselage stations or maintenance cross-sections",
+    "Canopy rails, bow locations, overlap and rear-canopy open travel",
+    "Cowling, M-14P engine face, V-530 propeller plane and installation geometry",
+    "Wing planform, root chord/fairing, incidence and dihedral",
+    "Tailplane and fin planform/dimensions"
+  ],
+  "reference_acceptance_protocol": [
+    "Preserve original file unchanged.",
+    "Record source, publisher, URL, acquisition date, rights/use status, bytes and SHA-256.",
+    "Classify manufacturer/manual/government/secondary/photo/model-plan authority separately.",
+    "Extract dimensions with page and figure citations.",
+    "Cross-check dimensions against at least one independent technical authority.",
+    "Revise only ledgers currently labeled inferred.",
+    "Rerun all R6 focused tests and camera/sightline checks.",
+    "Create a new immutable readiness addendum.",
+    "Do not authorize Blender unless classification becomes PASSED_READY_FOR_EXPLICIT_R6_BLENDER_AUTHORIZATION."
+  ],
+  "blocking_condition": "No authoritative dimensioned geometry reference is presently stored in the governed project.",
+  "blender_authorized": false,
+  "unreal_authorized": false
+}

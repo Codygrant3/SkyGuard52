@@ -1,0 +1,153 @@
+{
+  "schema": "skyguard.blender-source-contract.v1",
+  "build_id": "BLD-M01-YAK-PROD-001",
+  "title": "Production-direction Yak-52 exterior and rear cockpit master",
+  "blender_version": {
+    "major": 5,
+    "minor": 2
+  },
+  "coordinate_contract": {
+    "units": "metres",
+    "forward_axis": "+X",
+    "right_axis": "+Y",
+    "up_axis": "+Z",
+    "aircraft_origin": "fuselage centerline at wing reference station",
+    "unreal_conversion": "Exporter writes metres; Unreal import converts to centimetres without applying object pivots."
+  },
+  "reference_dimensions_m": {
+    "overall_length": 7.745,
+    "wingspan": 9.3,
+    "overall_height": 2.7,
+    "propeller_diameter": 2.4,
+    "rear_cockpit_clear_width": 0.72,
+    "rear_cockpit_rail_height": 1.34
+  },
+  "dimension_tolerance_m": {
+    "overall_length": 0.08,
+    "wingspan": 0.08,
+    "overall_height": 0.08,
+    "propeller_diameter": 0.05,
+    "rear_cockpit_clear_width": 0.04,
+    "rear_cockpit_rail_height": 0.04
+  },
+  "l88_reference": {
+    "path": "Content/Skyguard/Meshes/Source/L88/yak52_l88_silhouette_blockout.glb",
+    "sha256": "85f7c3d5164ba1fb9056dd206ff8be29716c6db81f152e045dd31ec051e418fb",
+    "allowed_use": "Hash-bound datum and coordinate-lineage reference only.",
+    "forbidden_use": "No L88 geometry, topology, materials, or object datablocks may be imported, linked, appended, copied, or promoted."
+  },
+  "outputs": {
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Production/BLD_M01_YAK_PROD_001_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Production/bld_m01_yak_prod_001.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK_PROD_001_MANIFEST.json"
+  },
+  "required_mesh_objects": [
+    "GEO_PROD_Fuselage",
+    "GEO_PROD_EngineCowling",
+    "GEO_PROD_Wing_L",
+    "GEO_PROD_Wing_R",
+    "GEO_PROD_Flap_L",
+    "GEO_PROD_Flap_R",
+    "GEO_PROD_Aileron_L",
+    "GEO_PROD_Aileron_R",
+    "GEO_PROD_HorizontalStabilizer_L",
+    "GEO_PROD_HorizontalStabilizer_R",
+    "GEO_PROD_Elevator_L",
+    "GEO_PROD_Elevator_R",
+    "GEO_PROD_VerticalStabilizer",
+    "GEO_PROD_Rudder",
+    "GEO_PROD_PropHub",
+    "GEO_PROD_PropBlade_A",
+    "GEO_PROD_PropBlade_B",
+    "GEO_PROD_CanopyFrontGlass",
+    "GEO_PROD_CanopyRearSlidingGlass",
+    "GEO_PROD_CanopyBowFront",
+    "GEO_PROD_CanopyBowCenter",
+    "GEO_PROD_CanopyBowRear",
+    "GEO_PROD_CockpitTubRear",
+    "GEO_PROD_InstrumentPanelRear",
+    "GEO_PROD_SeatRear",
+    "GEO_PROD_SeatHarnessRear",
+    "GEO_PROD_ControlStickRear",
+    "GEO_PROD_ThrottleRear",
+    "GEO_PROD_PedalRear_L",
+    "GEO_PROD_PedalRear_R",
+    "GEO_PROD_CockpitRail_L",
+    "GEO_PROD_CockpitRail_R"
+  ],
+  "required_socket_objects": [
+    "SOCKET_PilotSeat",
+    "SOCKET_RearGunnerSeat",
+    "SOCKET_ADSEye",
+    "SOCKET_RifleGrip_R",
+    "SOCKET_RifleGrip_L",
+    "SOCKET_RifleMuzzle",
+    "SOCKET_IglaGrip_R",
+    "SOCKET_IglaGrip_L",
+    "SOCKET_IglaLaunchAxis",
+    "SOCKET_CanopyRearTravel",
+    "SOCKET_CockpitSafetyOrigin",
+    "SOCKET_CameraRearGunner"
+  ],
+  "required_datum_objects": [
+    "DATUM_AircraftOrigin",
+    "DATUM_PropAxis",
+    "DATUM_RearSeatEye",
+    "DATUM_LengthNose",
+    "DATUM_LengthTail",
+    "DATUM_Wingtip_L",
+    "DATUM_Wingtip_R",
+    "DATUM_HeightTop",
+    "DATUM_HeightBottom",
+    "DATUM_PropTipTop",
+    "DATUM_PropTipBottom",
+    "DATUM_CockpitClear_L",
+    "DATUM_CockpitClear_R",
+    "DATUM_CockpitRail"
+  ],
+  "required_materials": [
+    "MAT_YakPaint",
+    "MAT_YakBareMetal",
+    "MAT_CockpitGreen",
+    "MAT_CockpitBlack",
+    "MAT_CanopyGlass",
+    "MAT_SeatVinyl",
+    "MAT_HarnessWebbing",
+    "MAT_Propeller"
+  ],
+  "required_uv_layer": "UV0",
+  "minimum_mesh_vertices": {
+    "GEO_PROD_Fuselage": 700,
+    "GEO_PROD_Wing_L": 700,
+    "GEO_PROD_Wing_R": 700,
+    "GEO_PROD_CanopyRearSlidingGlass": 150,
+    "GEO_PROD_CockpitTubRear": 100
+  },
+  "required_separated_groups": [
+    "airframe",
+    "control_surfaces",
+    "propeller",
+    "canopy",
+    "rear_cockpit",
+    "sockets_datums"
+  ],
+  "forbidden_name_tokens": [
+    "blockout",
+    "proxy",
+    "placeholder",
+    "temp",
+    "default",
+    "cube"
+  ],
+  "source_policy": {
+    "clean_factory_scene": true,
+    "no_external_geometry_import": true,
+    "no_l88_datablock_link_or_append": true,
+    "non_destructive_modifiers": true,
+    "separate_control_surface_pivots": true,
+    "separate_propeller_pivot": true,
+    "separate_sliding_canopy_pivot": true,
+    "manifest_hashes_all_outputs": true
+  },
+  "promotion": "production_direction_source_candidate_requires_offline_artifact_verification_and_later_unreal_visual_performance_acceptance"
+}

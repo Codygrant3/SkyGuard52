@@ -1,0 +1,41 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-gunner-sightline.v1",
+  "status": "ERGONOMIC_DATUM_PROVISIONAL",
+  "eye_datum": {
+    "id":"SOCKET_R6_RearGunnerEye",
+    "location_m":[-0.72,-0.36,1.08],
+    "confidence":"LOW",
+    "source":"Rear-cockpit photograph plus R4/R5 camera datum"
+  },
+  "view_cones": [
+    {"id":"forward","yaw_range_deg":[-12,12],"pitch_range_deg":[-8,18],"maximum_hard_occlusion_percent":5},
+    {"id":"port","yaw_range_deg":[-95,-15],"pitch_range_deg":[-20,45],"maximum_hard_occlusion_percent":12},
+    {"id":"starboard","yaw_range_deg":[15,95],"pitch_range_deg":[-20,45],"maximum_hard_occlusion_percent":12}
+  ],
+  "central_proof_region": {
+    "screen_width_fraction":0.6,
+    "screen_height_fraction":0.6,
+    "maximum_canopy_or_bow_coverage_percent":5
+  },
+  "clearance_volumes": [
+    {"id":"GunnerHead","shape":"capsule","radius_m":0.14,"half_height_m":0.13},
+    {"id":"CameraClearance","shape":"box","half_extents_m":[0.20,0.20,0.18]},
+    {"id":"RifleSweep","shape":"swept_capsule","radius_m":0.10,"length_m":1.30},
+    {"id":"PilotSafety","shape":"capsule","center_m":[0.62,0.0,1.06],"radius_m":0.34,"half_height_m":0.34}
+  ],
+  "offline_camera_ray_tests": {
+    "required_sample_count":81,
+    "central_grid":"9x9",
+    "required_unobstructed_samples":77,
+    "hard_blockers":["canopy_frame","glazing_edge","pilot_safety","airframe_structure"],
+    "transparent_glazing_counts_as_hard_blocker":false
+  },
+  "acceptance": [
+    "Rear canopy is in governed fully-open transform",
+    "Central 60% proof region remains visually useful",
+    "Pilot-safety volume remains effective",
+    "No camera starts inside glass, frame or fuselage",
+    "Eye datum must be revalidated when production seat and gunner rig exist"
+  ]
+}
+

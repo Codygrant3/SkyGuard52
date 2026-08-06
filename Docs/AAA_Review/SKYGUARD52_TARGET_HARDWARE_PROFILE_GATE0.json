@@ -1,0 +1,82 @@
+{
+  "schema": "skyguard52.aaa.target-hardware-profile.gate0.v1",
+  "captured_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "classification": "PASSED_PRIMARY_DEVELOPMENT_PROFILE_ONLY",
+  "role": "Primary development, representative visual, combat-performance and initial release-candidate acceptance machine",
+  "system": {
+    "manufacturer": "ASUSTeK COMPUTER INC.",
+    "model": "ROG Strix GA35DX_G35DX",
+    "operating_system": "Microsoft Windows 11 Pro",
+    "os_version": "10.0.26200",
+    "os_build": "26200",
+    "architecture": "64-bit"
+  },
+  "cpu": {
+    "name": "AMD Ryzen 9 5950X 16-Core Processor",
+    "physical_cores": 16,
+    "logical_processors": 32
+  },
+  "memory": {
+    "physical_bytes": 68625178624,
+    "nominal_gib": 64
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "vram_mib": 24576,
+    "driver_nvidia_smi": "610.74",
+    "driver_wmi": "32.0.16.1074",
+    "authority": "nvidia-smi",
+    "note": "WMI AdapterRAM is not used because it truncates large VRAM values."
+  },
+  "display": {
+    "current_width": 3840,
+    "current_height": 2160,
+    "current_refresh_hz": 120,
+    "physical_width_cm": 70,
+    "physical_height_cm": 40
+  },
+  "primary_test_modes": [
+    {
+      "name": "Representative production acceptance",
+      "resolution": "2560x1440",
+      "quality": "Epic",
+      "rhi": "D3D12 SM6",
+      "vsync": false,
+      "target_fps": 60
+    },
+    {
+      "name": "Input-driven combat capture",
+      "resolution": "1920x1080 minimum",
+      "quality": "Epic or frozen release preset",
+      "rhi": "D3D12 SM6",
+      "vsync": false,
+      "target_fps": 60
+    },
+    {
+      "name": "4K scalability observation",
+      "resolution": "3840x2160",
+      "quality": "High or frozen 4K preset",
+      "rhi": "D3D12 SM6",
+      "vsync": "frozen per test",
+      "status": "OBSERVATIONAL_UNTIL_SEPARATELY_ACCEPTED"
+    }
+  ],
+  "stability_rules": {
+    "one_heavy_process_at_a_time": true,
+    "heavy_process_preflight_required": true,
+    "supervised_execution_required": true,
+    "bounded_timeout_required": true,
+    "automatic_retry_forbidden": true,
+    "failed_namespace_reuse_forbidden": true,
+    "stdout_and_stderr_direct_to_attempt_files": true
+  },
+  "release_hardware_gaps": [
+    "Minimum supported GPU/CPU/RAM profile is not yet frozen.",
+    "Recommended mainstream profile is not yet frozen.",
+    "AMD GPU compatibility is unverified.",
+    "Lower-VRAM behavior and scalability are unverified.",
+    "Controller and non-4K display combinations are not fully validated.",
+    "Clean-machine test hardware remains to be designated."
+  ],
+  "acceptance_scope": "Passing on this RTX 3090 workstation is necessary for the current primary gate but is not sufficient to establish the final supported-hardware matrix."
+}

@@ -1,0 +1,12 @@
+2026-08-01T04:31:10.249323Z  WARN codex_core_skills::loader: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-08-01T04:31:10.249437Z  WARN codex_core_skills::loader: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-08-01T04:31:10.251326Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/chris/.codex/plugins/cache/openai-primary-runtime/template-creator/26.731.11130/.codex-plugin/plugin.json
+2026-08-01T04:31:10.255195Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/chris/.codex/plugins/cache/openai-primary-runtime/template-creator/26.731.11130/.codex-plugin/plugin.json
+2026-08-01T04:31:11.183091Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-08-01T04:31:11.998307Z  WARN codex_core_skills::loader: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-08-01T04:31:11.998348Z  WARN codex_core_skills::loader: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-08-01T04:31:12.000478Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/chris/.codex/plugins/cache/openai-primary-runtime/template-creator/26.731.11130/.codex-plugin/plugin.json
+2026-08-01T04:31:12.003974Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/chris/.codex/plugins/cache/openai-primary-runtime/template-creator/26.731.11130/.codex-plugin/plugin.json
+2026-08-01T04:31:14.875586Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:4102/_codex-router/DMYHDV1mkH26tB8jHv6eUFTUjV9tni4cyBUHgCNlbSNma4hR6Ek6nh-1rY9Fi315/v1/responses
+2026-08-01T04:31:14.875718Z  WARN codex_core::client: falling back to HTTP
+2026-08-01T04:32:28.538731Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: handshaking with MCP server failed: connection closed: initialize response

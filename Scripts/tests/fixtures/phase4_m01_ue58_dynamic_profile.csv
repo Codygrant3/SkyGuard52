@@ -1,0 +1,5 @@
+EVENTS,FrameTime,GPUTime,DrawCall/SlateUI,RHI/DrawCalls
+,16.0,7.0,3,200
+"Cmd: BugItGo 22500 -9000 8500",17.0,8.0,4,210,DynamicStatAddedAfterHeader
+,18.0,9.0,5,220,AnotherDynamicStat,SecondDynamicStat
+Footer,not-a-frame

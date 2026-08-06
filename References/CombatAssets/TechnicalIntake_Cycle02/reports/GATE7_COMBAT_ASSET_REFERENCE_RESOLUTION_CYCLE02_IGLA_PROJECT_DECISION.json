@@ -1,0 +1,15 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "decision_status": "RECOMMENDATION_AWAITING_EXPLICIT_ACCEPTANCE",
+  "recommended_variant": "9K38 Igla / SA-18",
+  "basis": [
+    "matches the accepted Cycle01 naming",
+    "has the strongest frozen global missile dimensions",
+    "avoids mixing Igla-S imagery into a generic launcher"
+  ],
+  "accepted_without_further_choice": {
+    "missile_blockout_length_mm": 1574,
+    "missile_body_diameter_mm": 72
+  },
+  "not_accepted": "final launcher, gripstock, battery, sight, caps, bands, fasteners and markings"
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "skyguard.input-combat-performance.contract.v1",
+  "capture_matrix": {
+    "combat_profile": {
+      "required_repeats": 3,
+      "minimum_seconds_each": 120,
+      "resolution": {"x": 1920, "y": 1080},
+      "target_fps": 60
+    },
+    "combat_soak": {
+      "required_repeats": 1,
+      "minimum_seconds_each": 1200,
+      "resolution": {"x": 1920, "y": 1080},
+      "target_fps": 60
+    }
+  },
+  "required_trace_channels": [
+    "cpu",
+    "gpu",
+    "frame",
+    "bookmark",
+    "loadtime",
+    "file",
+    "assetload",
+    "memory"
+  ],
+  "required_csv_categories": [
+    "Global",
+    "FMemory",
+    "GPUUsage",
+    "TextureStreaming",
+    "NaniteStreaming",
+    "LevelStreaming"
+  ],
+  "required_csv_column_patterns": {
+    "frame_time": ["FrameTime", "Frame Time"],
+    "gpu_time": ["GPUTime", "GPU Time"],
+    "physical_memory": ["MemoryFreeMB", "FMemory/*"],
+    "gpu_process_memory_fraction": ["GPUUsage/Memory", "GPUUsage Memory"],
+    "texture_streaming_budget": [
+      "TextureStreaming/StreamingPool",
+      "TextureStreaming/WantedMips",
+      "TextureStreaming/NonStreamingMips"
+    ],
+    "nanite_streaming": ["NaniteStreaming/*"],
+    "level_streaming": ["LevelStreaming/*"]
+  },
+  "required_windows": [
+    {
+      "id": "ads_rifle",
+      "region": "Skyguard.Perf.ADS_Rifle",
+      "begin_bookmark": "Skyguard.Perf.ADS_Rifle.Begin",
+      "end_bookmark": "Skyguard.Perf.ADS_Rifle.End",
+      "required_actions": ["enter ADS", "fire rifle while ADS", "exit ADS"]
+    },
+    {
+      "id": "igla_launch",
+      "region": "Skyguard.Perf.Igla",
+      "begin_bookmark": "Skyguard.Perf.Igla.Begin",
+      "end_bookmark": "Skyguard.Perf.Igla.End",
+      "required_actions": ["acquire lock", "launch Igla", "observe impact"]
+    },
+    {
+      "id": "drone_breakup",
+      "region": "Skyguard.Perf.DroneBreakup",
+      "begin_bookmark": "Skyguard.Perf.DroneBreakup.Begin",
+      "end_bookmark": "Skyguard.Perf.DroneBreakup.End",
+      "required_actions": ["damage drone", "trigger breakup", "observe debris cleanup"]
+    },
+    {
+      "id": "boss_destruction",
+      "region": "Skyguard.Perf.BossDestruction",
+      "begin_bookmark": "Skyguard.Perf.BossDestruction.Begin",
+      "end_bookmark": "Skyguard.Perf.BossDestruction.End",
+      "required_actions": ["expose weak point", "defeat boss", "observe bounded destruction"]
+    },
+    {
+      "id": "weather_fast_camera",
+      "region": "Skyguard.Perf.WeatherFastCamera",
+      "begin_bookmark": "Skyguard.Perf.WeatherFastCamera.Begin",
+      "end_bookmark": "Skyguard.Perf.WeatherFastCamera.End",
+      "required_actions": ["trigger weather transition", "pan rapidly", "look across cockpit sides"]
+    }
+  ],
+  "thresholds": {
+    "frame_time_ms_mean_max": 16.7,
+    "frame_time_ms_p95_max": 22.2,
+    "frame_time_ms_max": 100.0,
+    "hitches_over_100ms_max": 0,
+    "minimum_window_seconds": 1.0,
+    "maximum_window_seconds": 30.0,
+    "soak_memory_growth_mb_max": 256.0
+  },
+  "required_external_gpu_samples": {
+    "provider": "nvidia-smi",
+    "maximum_interval_seconds": 2.0,
+    "required_fields": [
+      "timestamp",
+      "utilization.gpu",
+      "memory.used",
+      "memory.total",
+      "temperature.gpu",
+      "pstate"
+    ]
+  }
+}

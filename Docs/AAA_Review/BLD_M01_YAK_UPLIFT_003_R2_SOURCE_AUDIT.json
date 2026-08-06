@@ -1,0 +1,113 @@
+{
+  "schema": "skyguard.bld-m01-yak-uplift-003-r2.source-audit.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R2",
+  "status": "source_inventory_reconciled_no_blender_run",
+  "audit_method": {
+    "blender_launch_used": false,
+    "steps": [
+      "Read the immutable L88 runtime assembly contract and its 240 governed entries.",
+      "Parsed the JSON chunk of the immutable L88 GLB and selected all named nodes that reference a mesh.",
+      "Compared the 240 GLB mesh-node names with the 240 governed runtime component names.",
+      "Confirmed the exact eight-name failure against attempt_01 stderr from a process that opened the isolated byte-copy of the L88 Blender source.",
+      "Confirmed the dotted source spelling in the immutable L88 Blender generator format strings."
+    ],
+    "limitations": [
+      "This is a source-only audit and does not launch Blender.",
+      "The GLB inventory is the immutable export paired with the L88 Blender source; attempt_01 is the direct Blender-open evidence for the eight exact-name absences."
+    ]
+  },
+  "evidence": {
+    "l88_blend": {
+      "path": "Content/Skyguard/Meshes/Source/L88/YAK52_L88_MASTER_BLOCKOUT.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993"
+    },
+    "l88_glb_mesh_inventory": {
+      "path": "Content/Skyguard/Meshes/Source/L88/yak52_l88_silhouette_blockout.glb",
+      "bytes": 8721608,
+      "sha256": "85f7c3d5164ba1fb9056dd206ff8be29716c6db81f152e045dd31ec051e418fb",
+      "mesh_node_count": 240,
+      "normalized_sorted_names_encoding": "UTF-8, one name per line, trailing newline",
+      "normalized_sorted_names_bytes": 4807,
+      "normalized_sorted_names_sha256": "9604c071b0c8fdb29efbfd1203454c2cb6a01f40694d6a509801c4e5248529bd"
+    },
+    "l88_runtime_contract": {
+      "path": "Saved/Reports/L88_RUNTIME_ASSEMBLY_CONTRACT.json",
+      "bytes": 57068,
+      "sha256": "a5cd8244b996a32b50392663ccce7d4509845e6619ad90bc38b2ca0aaa669c25",
+      "governed_component_count": 240
+    },
+    "attempt_01_stderr": {
+      "path": "Saved/BuildAttempts/BLD_M01_YAK_UPLIFT_003/attempt_01/stderr.log",
+      "bytes": 778,
+      "sha256": "954e484c1346eca396a609977e457e0c864dd59e899c74069da9e8b7d89326d9",
+      "finding": "Blender opened the isolated L88 copy and reported exactly the eight underscore-spelled governed names as missing."
+    },
+    "l88_blender_generator": {
+      "path": "Scripts/blender_l88_yak52_blockout.py",
+      "bytes": 72840,
+      "sha256": "8a8d37611acfd544b2681dd6c3c3a98123562b8c265f20ce41d4f95c2df9856c",
+      "finding": "The source formats canopy hinge and seal names from float values, yielding dotted 0.18 and 0.76 spellings."
+    }
+  },
+  "reconciliation": {
+    "governed_component_count": 240,
+    "actual_glb_mesh_node_count": 240,
+    "exact_name_match_count": 232,
+    "governed_source_absent_count": 8,
+    "actual_source_only_name_count": 8,
+    "accounting_equation": "232 exact required objects + 8 source_absent_hold exceptions = 240 governed components",
+    "promotion_allowed": false
+  },
+  "source_absent_hold_exceptions": [
+    {
+      "governed_name": "GEO_CanopyHinge_0_18_L",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopyHinge_0.18_L"
+    },
+    {
+      "governed_name": "GEO_CanopyHinge_0_18_R",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopyHinge_0.18_R"
+    },
+    {
+      "governed_name": "GEO_CanopyHinge_0_76_L",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopyHinge_0.76_L"
+    },
+    {
+      "governed_name": "GEO_CanopyHinge_0_76_R",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopyHinge_0.76_R"
+    },
+    {
+      "governed_name": "GEO_CanopySeal_0_18_L",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopySeal_0.18_L"
+    },
+    {
+      "governed_name": "GEO_CanopySeal_0_18_R",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopySeal_0.18_R"
+    },
+    {
+      "governed_name": "GEO_CanopySeal_0_76_L",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopySeal_0.76_L"
+    },
+    {
+      "governed_name": "GEO_CanopySeal_0_76_R",
+      "classification": "source_absent_hold",
+      "actual_source_name_observed": "GEO_CanopySeal_0.76_R"
+    }
+  ],
+  "exception_policy": {
+    "exception_classification": "source_absent_hold",
+    "exceptions_count_toward_governed_240_total": true,
+    "exceptions_are_required_blender_objects": false,
+    "exceptions_may_be_synthesized": false,
+    "actual_dotted_source_objects_are_preserved": true,
+    "actual_dotted_source_objects_do_not_silently_satisfy_or_promote_the_underscore_governed_entries": true,
+    "future_reconciliation_requires_new_versioned_contract": true
+  }
+}

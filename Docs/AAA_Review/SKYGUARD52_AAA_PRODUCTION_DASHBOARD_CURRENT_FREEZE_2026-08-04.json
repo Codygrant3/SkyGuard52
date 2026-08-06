@@ -1,0 +1,69 @@
+{
+  "schema": "skyguard52.aaa-production-dashboard-current-freeze.v1",
+  "generated_at_utc": "2026-08-04T23:12:51.6644948Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "ACTIVE_PRODUCTION_AWAITING_NEXT_EXPLICIT_GATE",
+  "dashboard": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_CURRENT_2026-08-04.md",
+    "bytes": 6876,
+    "sha256": "9620a62b13e02140790847e0910c5ca2be83c39cbd0a5ecee3b62da157cfe5d8"
+  },
+  "accepted_gate_authorities": [
+    {
+      "gate": 0,
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_GATE0_CONTROL_PACKAGE_FREEZE_2026-08-04.json",
+      "bytes": 7895,
+      "sha256": "e7dc82f7fc1b7644cdf49488156bdcccce8f4e654132d7d24a7a106fbc11d0a0",
+      "classification": "PASSED"
+    },
+    {
+      "gate": 1,
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_FREEZE.json",
+      "bytes": 10044,
+      "sha256": "0bd0bfee24e28d7cfd8a4f086209ed97cab7d4ffc40b09913e85d9c031b6293a",
+      "classification": "PASSED"
+    }
+  ],
+  "offline_authorities": [
+    {
+      "lane": "Poly Haven source provenance and Yak-52 reference intake",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_OFFLINE_READINESS_ADDENDUM_FREEZE_2026-08-04.json",
+      "bytes": 5545,
+      "sha256": "52df6c7d4d95cf647325840ecff6ebaa53cd0d269511aa0785e22ecbc591ef49"
+    },
+    {
+      "lane": "Mission 1 Fab and Bridge controls",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_M01_FAB_BRIDGE_OFFLINE_CONTROL_FREEZE_2026-08-04.json",
+      "bytes": 5081,
+      "sha256": "e7aa5d5aff8b3c6d9a552f4ca542a0d50c02a6035ce0eec43a0312a269ac54ae"
+    },
+    {
+      "lane": "Empty Poly Haven placeholder exclusion",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_POLYHAVEN_EMPTY_PLACEHOLDER_DISPOSITION_RECOVERY01_FREEZE_2026-08-04.json",
+      "bytes": 3631,
+      "sha256": "d659daadc5ccec35733647d9cec10f0259c82144f2afc28b1669954bf22a2225"
+    }
+  ],
+  "roadmap_state": {
+    "completed_numbered_gates": 2,
+    "total_numbered_gates": 13,
+    "evidence_weighted_gate_completion_percent": 15.4,
+    "next_executable_gate": 2,
+    "next_gate_classification": "AWAITING_EXPLICIT_ONE_SHOT_AUTHORIZATION"
+  },
+  "next_gate_prompt": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+    "bytes": 9239,
+    "sha256": "11d508230d9d0014260ce966c2974612318b187b352bc6cd7e279512f6d2bd05",
+    "executed": false
+  },
+  "execution_receipt": {
+    "unreal_launched": false,
+    "blender_launched": false,
+    "native_build_launched": false,
+    "import_performed": false,
+    "packaging_performed": false,
+    "heavy_process_count": 0
+  },
+  "terminal_statement": "The dashboard reports current evidence; it is not production, Mission 1, campaign, packaged-game, or release acceptance."
+}

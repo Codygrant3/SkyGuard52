@@ -1,0 +1,17 @@
+{
+  "schema": "skyguard.m01.grouped-topology.recovery12-visual-execution-binding-r2.v1",
+  "status": "READY_NOT_RUN",
+  "reason": "The original frozen proof supervisor used a nonexistent guessed map. This was detected after the successful compile but before any visual attempt. The original freeze remains immutable and no failed visual namespace exists.",
+  "compiled_source_unchanged": true,
+  "compiled_module_sha256": "5776561194ddec0fc23c476a41a467aef5d72dcb883b1105deed6ab72daf336f",
+  "compile_receipt": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_COMPILE/attempt_20260802T213839796072Z_88425ad4/compile_receipt.json",
+  "compile_receipt_sha256": "afef09638b008ab364e0d075aa0fe92c7977c40f6b37d0220cc07d3d77ae0f89",
+  "original_supervisor": "Scripts/invoke_m01_grouped_topology_recovery12_visual_proof.py",
+  "corrected_binding": "Scripts/invoke_m01_grouped_topology_recovery12_visual_proof_r2.py",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "review_map_file": "Content/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03.umap",
+  "visual_attempts_used": 0,
+  "maximum_visual_attempts": 1,
+  "automatic_retry_forbidden": true,
+  "promotion_allowed": false
+}

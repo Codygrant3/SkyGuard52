@@ -1,0 +1,172 @@
+{
+  "schema": "skyguard.bld-m01-yak-uplift-003.component-ledger.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003",
+  "source_contract": {
+    "path": "Saved/Reports/L88_RUNTIME_ASSEMBLY_CONTRACT.json",
+    "sha256": "a5cd8244b996a32b50392663ccce7d4509845e6619ad90bc38b2ca0aaa669c25",
+    "expected_component_count": 240
+  },
+  "allowed_classifications": [
+    "provisional_inherited",
+    "rebuild_candidate",
+    "donor_from_002",
+    "hold"
+  ],
+  "silent_promotion_forbidden": true,
+  "classification_policy": {
+    "provisional_inherited": {
+      "promotion_allowed": false,
+      "meaning": "Preserved L88 work remains visible and editable in the isolated uplift copy, but retains its blockout/provisional lineage."
+    },
+    "rebuild_candidate": {
+      "promotion_allowed": false,
+      "meaning": "Preserved in the uplift copy for comparison while scheduled for reference-faithful replacement or refinement."
+    },
+    "donor_from_002": {
+      "promotion_allowed": false,
+      "meaning": "The L88 target remains preserved while a separately named 002-construction donor is staged for matched review."
+    },
+    "hold": {
+      "promotion_allowed": false,
+      "meaning": "Preserved but excluded from current uplift decisions pending markings, damage, relevance, or material review."
+    }
+  },
+  "bundle_defaults": {
+    "Aircraft_CanopyGlass": "provisional_inherited",
+    "Aircraft_Exterior": "rebuild_candidate",
+    "Aircraft_LandingGear": "rebuild_candidate",
+    "Aircraft_MicroDetail": "hold",
+    "Aircraft_Propeller": "donor_from_002",
+    "Aircraft_RearCockpit": "provisional_inherited",
+    "Crew_Pilot": "provisional_inherited",
+    "Crew_RearGunner_FirstPerson": "provisional_inherited",
+    "Crew_RearGunner_ThirdPerson": "provisional_inherited",
+    "Weapon_Igla": "provisional_inherited",
+    "Weapon_Rifle": "provisional_inherited"
+  },
+  "component_overrides": {
+    "GEO_CowlNoseFillet": "donor_from_002",
+    "GEO_EngineCowling": "donor_from_002",
+    "GEO_EngineFace": "donor_from_002",
+    "GEO_CowlVent_L": "provisional_inherited",
+    "GEO_CowlVent_R": "provisional_inherited",
+    "GEO_EngineExhaustCollector": "provisional_inherited",
+    "GEO_EnginePushrod_0": "provisional_inherited",
+    "GEO_EnginePushrod_1": "provisional_inherited",
+    "GEO_EnginePushrod_2": "provisional_inherited",
+    "GEO_RadialCylinder_0": "provisional_inherited",
+    "GEO_RadialCylinder_1": "provisional_inherited",
+    "GEO_RadialCylinder_2": "provisional_inherited",
+    "GEO_RadialCylinder_3": "provisional_inherited",
+    "GEO_RadialCylinder_4": "provisional_inherited",
+    "GEO_RadialCylinder_5": "provisional_inherited",
+    "GEO_RadialCylinder_6": "provisional_inherited",
+    "GEO_RadialCylinder_7": "provisional_inherited",
+    "GEO_RadialCylinder_8": "provisional_inherited",
+    "GEO_FuselageAccessPanel_L": "provisional_inherited",
+    "GEO_FuselageAccessPanel_R": "provisional_inherited",
+    "GEO_FuselagePanelRing_0": "provisional_inherited",
+    "GEO_FuselagePanelRing_1": "provisional_inherited",
+    "GEO_FuselagePanelRing_2": "provisional_inherited",
+    "GEO_FuselagePanelRing_3": "provisional_inherited",
+    "GEO_FuselagePanelRing_4": "provisional_inherited",
+    "GEO_FuselagePanelRing_5": "provisional_inherited",
+    "GEO_NavLamp_L": "provisional_inherited",
+    "GEO_NavLamp_R": "provisional_inherited",
+    "GEO_AileronBreak_L": "hold",
+    "GEO_AileronBreak_R": "hold",
+    "GEO_ElevatorBreak_L": "hold",
+    "GEO_ElevatorBreak_R": "hold",
+    "GEO_FlapBreak_L": "hold",
+    "GEO_FlapBreak_R": "hold",
+    "GEO_LiveryStripe_PortBlue": "hold",
+    "GEO_LiveryStripe_PortYellow": "hold",
+    "GEO_LiveryStripe_StarboardBlue": "hold",
+    "GEO_LiveryStripe_StarboardYellow": "hold",
+    "GEO_TailStripeBlue": "hold",
+    "GEO_TailStripeYellow": "hold",
+    "GEO_WingRoundelCore_L": "hold",
+    "GEO_WingRoundelCore_R": "hold",
+    "GEO_WingRoundel_L": "hold",
+    "GEO_WingRoundel_R": "hold",
+    "GEO_WingHinge_L": "hold",
+    "GEO_WingHinge_R": "hold",
+    "GEO_TailHinge_L": "hold",
+    "GEO_TailHinge_R": "hold",
+    "GEO_BrakeCaliper_L": "provisional_inherited",
+    "GEO_BrakeCaliper_R": "provisional_inherited",
+    "GEO_BrakeDisc_L": "provisional_inherited",
+    "GEO_BrakeDisc_R": "provisional_inherited",
+    "GEO_GearFork_L": "provisional_inherited",
+    "GEO_GearFork_R": "provisional_inherited",
+    "GEO_NoseBrakeCaliper": "provisional_inherited",
+    "GEO_NoseBrakeDisc": "provisional_inherited",
+    "GEO_NoseGearFork": "provisional_inherited",
+    "GEO_TorqueLink_L": "provisional_inherited",
+    "GEO_TorqueLink_R": "provisional_inherited",
+    "GEO_RearTrimWheel": "provisional_inherited",
+    "GEO_CanopyBow_0p18": "rebuild_candidate",
+    "GEO_CanopyBow_0p76": "rebuild_candidate",
+    "GEO_CanopyPortRail": "rebuild_candidate",
+    "GEO_CanopyStarboardRail": "rebuild_candidate"
+  },
+  "donor_replacement_map": {
+    "GEO_CowlNoseFillet": [
+      "GEO_UPLIFT003_DONOR_CowlingFrontRing",
+      "GEO_UPLIFT003_DONOR_CowlingInletCone"
+    ],
+    "GEO_EngineCowling": [
+      "GEO_UPLIFT003_DONOR_CowlingShell"
+    ],
+    "GEO_EngineFace": [
+      "GEO_UPLIFT003_DONOR_CowlingShutters"
+    ],
+    "GEO_PropBlade_A": [
+      "GEO_UPLIFT003_DONOR_PropBlade_A",
+      "GEO_UPLIFT003_DONOR_PropBlade_B"
+    ],
+    "GEO_PropHub": [
+      "GEO_UPLIFT003_DONOR_Spinner"
+    ],
+    "GEO_PropSpinner": [
+      "GEO_UPLIFT003_DONOR_Spinner"
+    ]
+  },
+  "supplemental_002_donors": [
+    {
+      "name": "GEO_UPLIFT003_DONOR_MainWheelWell_L",
+      "purpose": "Missing L88 wheel-well volume; staged as comparison-only donor geometry."
+    },
+    {
+      "name": "GEO_UPLIFT003_DONOR_MainWheelWell_R",
+      "purpose": "Missing L88 wheel-well volume; staged as comparison-only donor geometry."
+    },
+    {
+      "name": "GEO_UPLIFT003_DONOR_NoseWheelWell",
+      "purpose": "Missing L88 nose-wheel-well volume; staged as comparison-only donor geometry."
+    },
+    {
+      "name": "DATUM_UPLIFT003_DONOR_CanopyTravel",
+      "purpose": "002 pivot/metadata donor only; L88 canopy geometry remains preserved."
+    },
+    {
+      "name": "DATUM_UPLIFT003_DONOR_MainGearPivot_L",
+      "purpose": "002 pivot/metadata donor only; L88 gear geometry remains preserved."
+    },
+    {
+      "name": "DATUM_UPLIFT003_DONOR_MainGearPivot_R",
+      "purpose": "002 pivot/metadata donor only; L88 gear geometry remains preserved."
+    },
+    {
+      "name": "DATUM_UPLIFT003_DONOR_NoseGearPivot",
+      "purpose": "002 pivot/metadata donor only; L88 gear geometry remains preserved."
+    }
+  ],
+  "coverage_contract": {
+    "resolve_rule": "component_overrides[name] else bundle_defaults[bundle]",
+    "every_source_component_exactly_once": true,
+    "unknown_bundle_is_failure": true,
+    "unknown_override_is_failure": true,
+    "no_accepted_or_production_classification": true
+  }
+}

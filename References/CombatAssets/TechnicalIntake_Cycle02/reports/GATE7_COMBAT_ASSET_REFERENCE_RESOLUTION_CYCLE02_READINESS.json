@@ -1,0 +1,101 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "classification": "PARTIAL_READY_WITH_BLOCKED_ASSET_FAMILIES",
+  "families": [
+    {
+      "asset": "rifle family silhouette",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "AR/M4 family only; exact configuration unresolved"
+    },
+    {
+      "asset": "rifle final receiver/stock/magazine/sights/muzzle",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "critical features not visible"
+    },
+    {
+      "asset": "MIL-STD-1913 rail coupon",
+      "status": "READY_FOR_BLENDER_PRODUCTION",
+      "basis": "standard dimensions frozen; coupon is validation geometry, not claimed weapon identity"
+    },
+    {
+      "asset": "rifle magazines/ammunition/casings",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "chambering and magazine identity unresolved"
+    },
+    {
+      "asset": "rifle sling",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "attachment and hardware not visible"
+    },
+    {
+      "asset": "9K38 missile envelope",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "1574 x 72 mm"
+    },
+    {
+      "asset": "Igla launch tube/gripstock/battery/sight/caps",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "variant choice and measured closeups absent"
+    },
+    {
+      "asset": "gunner hands/forearms",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "NASA envelope plus footage pose"
+    },
+    {
+      "asset": "gloves/sleeves",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "project visual design only; exact equipment unresolved"
+    },
+    {
+      "asset": "helmet/headset/harness",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "rear-gunner identity absent"
+    },
+    {
+      "asset": "Shahed-136 exterior envelope",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "3300 x 3000 mm official reported"
+    },
+    {
+      "asset": "Shahed engine/servo/connector visual detail",
+      "status": "READY_FOR_BLOCKOUT_ONLY",
+      "basis": "visual evidence but no measured installation"
+    },
+    {
+      "asset": "Shahed final cross-sections/propeller",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "measured authority absent"
+    },
+    {
+      "asset": "Yak-52 propeller final blade geometry",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "inherits Cycle04 missing blade stations/twist/airfoil"
+    },
+    {
+      "asset": "cockpit controls lacking Cycle04 authority",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "no new measured source"
+    },
+    {
+      "asset": "fictional heavy drones",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "separate fictional design authority required"
+    },
+    {
+      "asset": "mission bosses",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "separate silhouette/weak-point/destruction contract required"
+    },
+    {
+      "asset": "destruction fragments and weak points",
+      "status": "BLOCKED_AWAITING_REFERENCE_INPUT",
+      "basis": "must follow accepted production geometry and gameplay contract"
+    }
+  ],
+  "blender_launched": false,
+  "unreal_launched": false,
+  "external_ai_models_invoked": false,
+  "heavy_processes_launched": 0,
+  "next_gate": "Explicitly accept 9K38 as project variant, then run the separate blockout-only Blender prompt; pursue targeted identity references in parallel for blocked final assets."
+}

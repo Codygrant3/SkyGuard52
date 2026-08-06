@@ -1,0 +1,92 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt06-recovery01.v1",
+  "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-006-RECOVERY-01",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-006",
+  "status": "OFFLINE_RECOVERY01_IMPLEMENTED_READY_PENDING_SINGLE_RUN_AUTHORIZATION",
+  "failure_boundary": {
+    "classification": "NULLRHI_CANNOT_PROVE_LANDSCAPE_RENDER_STATE",
+    "failed_attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z",
+    "failed_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/run_manifest.json",
+      "sha256": "a700f1e8176d556d4368dcde58805e91e6ed5098c2983f932359e8f5d6fe1188"
+    },
+    "failed_editor_acceptance": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_MATERIAL_EDITOR_ACCEPTANCE_ATTEMPT06.json",
+      "sha256": "3e8212ca78c66bf32c68de880cba9df35a31148fffd47c2d927251758a993ad4"
+    },
+    "observed": {
+      "rhi": "Null",
+      "feature_level": "SM6",
+      "visible_component_count": 16,
+      "registered_component_count": 16,
+      "render_state_created_component_count": 0,
+      "contract_camera_frustum_intersection_count": 5,
+      "authoring_stage_exit_code": 0,
+      "verification_gate": "FAIL"
+    },
+    "failed_attempt_is_immutable": true,
+    "failed_attempt_must_never_be_resumed_in_place": true
+  },
+  "immutable_packages": {
+    "baseline_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "candidate_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap",
+      "sha256": "3403a518e6c24ded6285f03f136f9009f6387d697432b48b82942fa6b2c551fc"
+    },
+    "candidate_material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    },
+    "coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset",
+      "sha256": "954d76f572085a7aa06e07de731d5fa4bbffe68c155c4ce19770ede0ece1afde"
+    },
+    "component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset",
+      "sha256": "4d8373e935f2accd7bbfa76ade25d272a638f8436bae6b1d433a6898a9afcefc"
+    }
+  },
+  "compiled_module": {
+    "file": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "sha256": "6140def208c2259a4d32261a647b662bcaa88d1c623edbc9b42377e897067e3f",
+    "must_be_newer_than_all_skyguard_cpp_and_h_sources": true,
+    "rebuild_allowed": false
+  },
+  "recovery_execution": {
+    "recovery_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_01",
+    "authoring_forbidden": true,
+    "build_forbidden": true,
+    "null_rhi_forbidden": true,
+    "fresh_render_verification_required": "D3D12|SM6",
+    "render_verification_receipt": "artifacts/render_state_acceptance.json",
+    "render_state_created_component_count_required": 16,
+    "capture_allowed_only_after_render_verification_pass": true,
+    "profile_allowed_only_after_capture_manifest_pass": true,
+    "sequential_processes_only": true,
+    "automatic_retry_allowed": false,
+    "world_or_package_save_allowed": false,
+    "pcg_generation_allowed": false,
+    "network_download_allowed": false,
+    "promotion_allowed": false
+  },
+  "performance": {
+    "warmup_seconds": 30,
+    "measured_seconds": 60,
+    "same_process_warmup_and_measurement": true,
+    "boot_csv_capture_forbidden": true,
+    "baseline_then_candidate": true
+  },
+  "authorization": {
+    "unreal_launch_allowed": false,
+    "single_recovery_run_requires_explicit_switch": true,
+    "next_gate": "exactly one authorized recovery_01 run"
+  }
+}

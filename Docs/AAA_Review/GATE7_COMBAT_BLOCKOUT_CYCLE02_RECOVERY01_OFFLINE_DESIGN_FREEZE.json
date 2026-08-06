@@ -1,0 +1,42 @@
+{
+  "gate": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_BLENDER_RECOVERY01_AUTHORIZATION",
+  "failed_attempt_freeze_sha256": "84b989ec02eee076d4f212d98fb49c10a46041190bd20bd17f8739386adeb632",
+  "member_count": 6,
+  "members": [
+    {
+      "path": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_CONTRACT.json",
+      "bytes": 1651,
+      "sha256": "172a57c3dddbf08def6d22b04a1835d831cdc4f3629338bf2de8a68ca6942414"
+    },
+    {
+      "path": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_READINESS.json",
+      "bytes": 507,
+      "sha256": "20808a7b75aba16da0eded31a078cae1aa92b6914c16a723f69847fc898e256c"
+    },
+    {
+      "path": "NEXT_PROMPT_GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_SINGLE_BLENDER.md",
+      "bytes": 2644,
+      "sha256": "a859ad4946a1963da13e208b42b13fc391dc3d7f3de588e679559224911e7edd"
+    },
+    {
+      "path": "offline_verification.json",
+      "bytes": 1125,
+      "sha256": "9084f6cb5739ed22e4b8ac8548cb91a1ffd3000c48f0ce329cea9e7403906ef2"
+    },
+    {
+      "path": "source/blender_gate7_combat_blockout_cycle02_recovery01_attempt01.py",
+      "bytes": 19609,
+      "sha256": "40b3997ebc6075e702ee659722a90503320e019dc13af3c5d5bec67d67f79a71"
+    },
+    {
+      "path": "source/verify_gate7_combat_blockout_cycle02_recovery01.py",
+      "bytes": 2775,
+      "sha256": "9f3fe431baa2a0bc0850971c5f7956168289391d10f3df3ae149fe79913e9830"
+    }
+  ],
+  "heavy_processes_launched": 0,
+  "blender_launched": false,
+  "unreal_launched": false,
+  "external_ai_model_invoked": false
+}

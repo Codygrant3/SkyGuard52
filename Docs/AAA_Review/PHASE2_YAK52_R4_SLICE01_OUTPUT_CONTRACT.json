@@ -1,0 +1,234 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-output-contract.v1",
+  "contract_id": "PHASE2-YAK52-R4-S01-OUTPUTS-20260802-V1",
+  "build_id": "BLD-M01-YAK-FINAL-ART-R4-S01",
+  "purpose": "Freeze the inputs, namespace, draft geometry, validation, visual evidence, and non-promotion boundary for the first dependency-ordered R4 authoring slice.",
+  "current_status": "AUTHORING_SOURCE_READY_NOT_RUN",
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_OFFLINE_PRODUCTION_CONTRACT.json",
+      "bytes": 38916,
+      "sha256": "9acb79b431e08785b54c4373ee4c70aa1c6803493abea772b796af2bc43ba594",
+      "role": "Accepted R4 production authority"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_DIMENSION_LEDGER.json",
+      "bytes": 6580,
+      "sha256": "b7173be921caed151d87d68cb9abde986d0e35c19d11b0542f36a28328cba19d",
+      "role": "Frozen draft dimension and station ledger"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_CAMERA_MANIFEST.json",
+      "bytes": 2679,
+      "sha256": "94ca4721530fcbeb77b2ec8978fa095f49459cb1dbe38a6e0a0bc8a05c491af9",
+      "role": "Frozen Slice 01 review cameras"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_PROD_002_CONTRACT.json",
+      "bytes": 11106,
+      "sha256": "0ebbff47c3c730c9a5951882a79f9f1f8a10e35178639dbdb0d53f3063625fb2",
+      "role": "Inherited internal project dimensions; not a primary technical source"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md",
+      "bytes": 2803,
+      "sha256": "25fde51185b4a2eea93fc25bc7993a5726ba67b322ec50b901e32f4e38e6494f",
+      "role": "Human review proving the R3 final-art gap"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_Beauty_FINAL.png",
+      "bytes": 2481987,
+      "sha256": "794c0a0260d0b88476d6e35aaed8d5ec99ad86489ca3925bb5a9006fa8c694f7",
+      "role": "Preserved project baseline comparison only"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_SideOrtho_FINAL.png",
+      "bytes": 2020544,
+      "sha256": "d7d1c0c6fa57d1de92b0013bd17d0379bf9a5f99038cfa81228a6cfd6309fe2d",
+      "role": "Preserved project baseline side comparison only"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_TopOrtho_FINAL.png",
+      "bytes": 2612089,
+      "sha256": "fb796d1469de1f560ac09529d8dcd8e20154dd4914e688b141735ddd1359d3e1",
+      "role": "Preserved project baseline top comparison only"
+    }
+  ],
+  "authoring_script": {
+    "path": "Scripts/blender_phase2_yak52_r4_slice01_silhouette.py",
+    "bytes": 27197,
+    "sha256": "5ce121a6773fc59f3e4feadaf2fdc1ca7bc9a627f7927c76eb69a2f606e57923",
+    "required_blender_version": "5.2",
+    "random_seed": 5201,
+    "executed": false
+  },
+  "source_policy": {
+    "scene_origin": "FACTORY_EMPTY_ONLY",
+    "accepted_blend_open_allowed": false,
+    "accepted_blend_append_allowed": false,
+    "accepted_blend_link_allowed": false,
+    "r3_donor_geometry_allowed": false,
+    "external_mesh_import_allowed": false,
+    "network_access_allowed": false,
+    "diagnostic_materials_only": true,
+    "reason": "Slice 01 must establish a clean primary silhouette draft without silently inheriting rejected R3 geometry or untracked sources."
+  },
+  "output_policy": {
+    "overwrite_allowed": false,
+    "atomic_canonical_publication_required": true,
+    "automatic_promotion_allowed": false,
+    "unreal_import_allowed": false,
+    "canonical_outputs_must_be_absent_before_run": true,
+    "paths": {
+      "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01/BLD_M01_YAK_FINAL_ART_R4_S01_MASTER.blend",
+      "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01/bld_m01_yak_final_art_r4_s01.glb",
+      "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_MANIFEST.json",
+      "screenshot_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01"
+    }
+  },
+  "namespace_contract": {
+    "collections": [
+      "R4_S01_ROOT",
+      "R4_S01_GEOMETRY",
+      "R4_S01_PRIMARY",
+      "R4_S01_REFERENCE",
+      "R4_S01_DATUMS",
+      "R4_S01_CAMERAS",
+      "R4_S01_LIGHTING"
+    ],
+    "primary_objects": [
+      "GEO_R4S01_FuselagePrimary",
+      "GEO_R4S01_CowlingEnvelope",
+      "GEO_R4S01_WingPrimary_L",
+      "GEO_R4S01_WingPrimary_R",
+      "GEO_R4S01_HorizontalTail_L",
+      "GEO_R4S01_HorizontalTail_R",
+      "GEO_R4S01_VerticalTail",
+      "GEO_R4S01_CanopyEnvelope_Front",
+      "GEO_R4S01_CanopyEnvelope_Rear",
+      "GEO_R4S01_GearEnvelope_Main_L",
+      "GEO_R4S01_GearEnvelope_Main_R",
+      "GEO_R4S01_GearEnvelope_Nose",
+      "GEO_R4S01_PropellerDisc"
+    ],
+    "datum_objects": [
+      "DATUM_R4S01_AircraftOrigin",
+      "DATUM_R4S01_TailExtreme",
+      "DATUM_R4S01_PropellerPlane",
+      "DATUM_R4S01_WingReference"
+    ],
+    "materials": [
+      "MAT_R4S01_PrimaryNeutral",
+      "MAT_R4S01_CanopyNeutral",
+      "MAT_R4S01_GearNeutral"
+    ],
+    "camera_ids": [
+      "R4_CAM_BEAUTY_PORT",
+      "R4_CAM_SIDE_ORTHO",
+      "R4_CAM_TOP_ORTHO",
+      "R4_CAM_REAR_QUARTER",
+      "R4_CAM_UNDERSIDE_ORTHO"
+    ]
+  },
+  "topology_contract": {
+    "primary_object_count": 13,
+    "datum_object_count": 4,
+    "primary_mesh_total_triangle_budget": 50000,
+    "symmetry_tolerance_m": 0.001,
+    "nonzero_bounds_required": true,
+    "finite_vertices_required": true,
+    "applied_scale_required": true,
+    "duplicate_primary_names_allowed": false,
+    "microdetail_geometry_allowed": false,
+    "slice_scope": [
+      "fuselage primary volume",
+      "cowling envelope",
+      "wing primary planform",
+      "horizontal and vertical tail primary planforms",
+      "front and rear canopy envelopes",
+      "landing gear stance envelopes",
+      "propeller motion disc"
+    ]
+  },
+  "dimension_contract": {
+    "ledger_id": "PHASE2-YAK52-R4-S01-DIMENSIONS-20260802-V1",
+    "required_dimension_ids": [
+      "overall_length",
+      "wingspan",
+      "overall_height",
+      "propeller_diameter",
+      "rear_cockpit_clear_width",
+      "rear_cockpit_rail_height"
+    ],
+    "normalized_station_count": 9,
+    "primary_reference_package_complete": false,
+    "silhouette_lock_allowed": false,
+    "future_successful_run_is_draft_only": true
+  },
+  "visual_evidence_contract": {
+    "camera_manifest_id": "PHASE2-YAK52-R4-S01-CAMERAS-20260802-V1",
+    "required_render_count": 5,
+    "required_outputs": [
+      "R4S01_BeautyPort.png",
+      "R4S01_SideOrtho.png",
+      "R4S01_TopOrtho.png",
+      "R4S01_RearQuarter.png",
+      "R4S01_UndersideOrtho.png"
+    ],
+    "crop_reframe_or_camera_mutation_allowed": false,
+    "rendered": false,
+    "human_reviewed": false
+  },
+  "future_artifact_manifest_contract": {
+    "schema": "skyguard.phase2.yak52-r4-slice01-artifact-manifest.v1",
+    "required_status": "DRAFT_REFERENCE_PACKAGE_MISSING",
+    "required_fields": [
+      "schema",
+      "build_id",
+      "status",
+      "authorities",
+      "authoring_script_sha256",
+      "collection_names",
+      "primary_objects",
+      "datum_objects",
+      "camera_ids",
+      "measurements",
+      "comparisons",
+      "claims",
+      "elapsed_seconds"
+    ]
+  },
+  "claims": {
+    "blender_launched": false,
+    "unreal_launched": false,
+    "outputs_created": false,
+    "reference_package_complete": false,
+    "silhouette_locked": false,
+    "slice01_human_accepted": false,
+    "final": false,
+    "aaa": false,
+    "unreal_imported": false,
+    "runtime_replaced": false,
+    "promotion_allowed": false
+  },
+  "completion_boundary": {
+    "readiness_pass_means": "The deterministic authoring source and its immutable offline contract are consistent and safe to run later.",
+    "readiness_pass_does_not_mean": [
+      "Blender was launched",
+      "Slice 01 outputs exist",
+      "the primary reference package exists",
+      "the Yak-52 silhouette is reference-faithful",
+      "human silhouette approval occurred",
+      "Unreal import or runtime replacement occurred",
+      "final or AAA quality was achieved"
+    ],
+    "silhouette_lock_requires": [
+      "cleared primary reference package with provenance and hashes",
+      "authorized Blender execution in a fresh isolated attempt",
+      "all governed measurements within tolerance",
+      "all five fixed-camera renders",
+      "human comparison against dimensioned references",
+      "explicit separate acceptance"
+    ]
+  }
+}

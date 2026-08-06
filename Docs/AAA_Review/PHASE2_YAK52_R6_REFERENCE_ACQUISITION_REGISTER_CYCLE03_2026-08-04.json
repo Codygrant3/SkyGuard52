@@ -1,0 +1,87 @@
+{
+  "schema": "skyguard52.phase2.yak52-r6-reference-acquisition-register.cycle03.v1",
+  "generated_at_utc": "2026-08-04T23:34:43.6233984Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "AWAITING_REFERENCE_INPUT",
+  "prior_register": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REFERENCE_ACQUISITION_REGISTER_CYCLE02_2026-08-04.json",
+    "bytes": 5824,
+    "sha256": "b1a43c7b5edc07a81686394a65faee369d243c3c2329cfe4c8d92d5875ebb8df"
+  },
+  "cycle03_intake": {
+    "namespace": "D:\\Skyguard52\\References\\Yak52\\R6_PhotoIntake_Cycle03",
+    "raw_source_count": 2,
+    "derived_frame_count": 9,
+    "directly_inspected_original_resolution_view_count": 10,
+    "classification": "PASSED_PHOTOGRAPHIC_REFERENCE_INTAKE_ONLY",
+    "manifest": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_MANIFEST.json",
+    "visual_review": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_VISUAL_REVIEW.md",
+    "extraction_receipt": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_PHOTO_INTAKE_CYCLE03_EXTRACTION_RECEIPT.json"
+  },
+  "newly_governed_reference_value": [
+    "full exterior side appearance",
+    "canopy-bow count and approximate spacing",
+    "cowling, propeller, landing-gear, wing-root and tail appearance",
+    "rear-gunner eye line and side-firing composition",
+    "pilot and rear-gunner relative placement",
+    "open rear-canopy rim and bow appearance",
+    "glove, sleeve, rifle and canopy interaction",
+    "wing-skin rivets, access panels, control-surface seams and paint-weathering language"
+  ],
+  "authority_limits": [
+    "No file is a dimensioned orthographic drawing.",
+    "No file establishes fuselage stations or cross-sections.",
+    "No file establishes exact canopy travel.",
+    "No file establishes exact cowling, engine, propeller, wing or tail dimensions.",
+    "Copyright status permits internal reference treatment only; raw and derived media must not ship."
+  ],
+  "missing_user_supplied_temporary_files": [
+    {
+      "path": "C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-84f46082-7b3b-4a5c-b86b-9cb4c43d8a56.png",
+      "description": "interior cockpit view",
+      "state": "UNAVAILABLE_AT_INTAKE"
+    },
+    {
+      "path": "C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-47bf0604-6525-4282-9149-45cffde4f397.png",
+      "description": "exterior side view",
+      "state": "UNAVAILABLE_AT_INTAKE"
+    },
+    {
+      "path": "C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-1c5365d0-9eff-481d-81ad-4b1edc038620.png",
+      "description": "rear cockpit interior view",
+      "state": "UNAVAILABLE_AT_INTAKE"
+    },
+    {
+      "path": "C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-e6352538-ba88-43aa-9476-b6ef794afdbc.png",
+      "description": "social-post screenshot of onboard footage",
+      "state": "UNAVAILABLE_AT_INTAKE"
+    }
+  ],
+  "minimum_reference_set_before_blender": [
+    "Authoritative dimensioned side, top and front Yak-52 three-view or equivalent manual drawings",
+    "Fuselage stations or maintenance cross-sections",
+    "Canopy rails, bow locations, overlap and rear-canopy open travel",
+    "Cowling, M-14P engine face, V-530 propeller plane and installation geometry",
+    "Wing planform, root chord/fairing, incidence and dihedral",
+    "Tailplane and fin planform/dimensions"
+  ],
+  "reference_acceptance_protocol": [
+    "Preserve original file unchanged.",
+    "Record source, publisher, URL or user-supplied origin, acquisition date, rights/use status, bytes and SHA-256.",
+    "Classify manufacturer/manual/government/secondary/photo/model-plan authority separately.",
+    "Extract dimensions only with page and figure citations.",
+    "Cross-check dimensions against at least one independent technical authority.",
+    "Revise only ledgers currently labeled inferred.",
+    "Rerun all R6 focused tests and camera/sightline checks.",
+    "Create a new immutable readiness addendum.",
+    "Do not authorize Blender unless classification becomes PASSED_READY_FOR_EXPLICIT_R6_BLENDER_AUTHORIZATION."
+  ],
+  "blocking_condition": "The governed project now contains useful photographic references but still lacks authoritative dimensioned geometry references.",
+  "blender_authorized": false,
+  "unreal_authorized": false,
+  "next_actions": [
+    "Request explicit authorization before downloading or communicating for technical manuals.",
+    "Ask the user to reattach the three unavailable cockpit/exterior interior photographs if they should become governed references.",
+    "Do not start R6 Blender production until the minimum technical-reference set passes."
+  ]
+}

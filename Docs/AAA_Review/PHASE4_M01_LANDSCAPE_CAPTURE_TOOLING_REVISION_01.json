@@ -1,0 +1,32 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-capture-tooling-revision.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "accepted_candidate": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04",
+    "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04.umap",
+    "bytes": 535119,
+    "sha256": "cb2c13f3ce18a3462620306bcef4610d87c2f0cf28a7815b444bd68ab773a021",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4.uasset",
+    "material_bytes": 14989,
+    "material_sha256": "e54682b64f43dbaf0e2c61f08436d495493c6db1f28998cce9583d0542c4042e",
+    "fresh_process_editor_acceptance": "Saved/Reports/PHASE4_M01_LANDSCAPE_MATERIAL_EDITOR_ACCEPTANCE_ATTEMPT04.json",
+    "fresh_process_editor_gate": "PASS",
+    "generated_pcg_component_count": 0,
+    "generated_pcg_instance_count": 0
+  },
+  "failed_capture_evidence": {
+    "attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151113015Z",
+    "terminal_state": "FAIL",
+    "baseline_issue": "persistent render target resource was released before export",
+    "candidate_issue": "AutomationLibrary.take_high_res_screenshot crashed FunctionalTesting in commandlet mode",
+    "performance_evidence_eligible": false
+  },
+  "repair": {
+    "render_target_creation": "RenderingLibrary.create_render_target2d_transient_initialized",
+    "lit_capture": "SceneCapture2D",
+    "diagnostic_capture": "SceneCapture2D_after_governed_viewmode_commands",
+    "automation_library_high_res_screenshot_forbidden": true,
+    "candidate_package_mutation": false
+  }
+}

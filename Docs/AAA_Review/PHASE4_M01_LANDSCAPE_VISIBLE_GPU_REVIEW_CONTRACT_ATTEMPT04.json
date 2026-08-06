@@ -1,0 +1,41 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-gpu-review-amendment.v4",
+  "effective_schema": "skyguard.phase4.m01-landscape-visible-gpu-review-contract.v4",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "supersedes_contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-003",
+  "prior_amendment": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_GPU_REVIEW_CONTRACT_ATTEMPT03.json",
+  "prior_amendment_sha256": "7ce98a7584c73867635b34d35b14c187901b32f978e5f82f5b67d5f5362fa95f",
+  "status": "READY_FOR_AUTHORIZED_GPU_AUTHORING",
+  "failed_attempt_evidence": {
+    "candidate_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v3_attempt03",
+    "candidate_file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v3_attempt03.umap",
+    "candidate_file_bytes": 535119,
+    "candidate_file_sha256": "eacc1a073feb01e322bb0ba8679f07201b3410e4e1849094a4fddad04f5863e0",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v3/M_M01_Landscape_Validation_v3",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v3/M_M01_Landscape_Validation_v3.uasset",
+    "material_file_bytes": 14989,
+    "material_file_sha256": "d87d02f7ba3fa2c0dcd78b99a6103f63f6567253f5177ad0bfbe0680ffcd7d91",
+    "attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt03/attempt_20260802T150716671Z",
+    "terminal_state": "FAIL",
+    "failure": "Material.expressions is protected in UE5.8 Python",
+    "performance_evidence_eligible": false,
+    "must_not_be_deleted_renamed_or_overwritten": true
+  },
+  "overrides": {
+    "candidate": {
+      "immutable_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04",
+      "material_root": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v4",
+      "landscape_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4",
+      "must_not_exist_before_authoring": true,
+      "must_never_overwrite_baseline": true
+    },
+    "authoring": {
+      "material_expression_read_api": "MaterialEditingLibrary.get_material_expressions",
+      "material_expression_count_api": "MaterialEditingLibrary.get_num_material_expressions",
+      "protected_material_expressions_property_access_forbidden": true
+    },
+    "execution_safety": {
+      "protected_material_expressions_property_access_forbidden": true
+    }
+  }
+}

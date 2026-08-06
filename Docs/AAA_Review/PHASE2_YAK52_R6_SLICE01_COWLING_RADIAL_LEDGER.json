@@ -1,0 +1,31 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-cowling-radial.v1",
+  "status": "DESIGN_COMPLETE_REFERENCE_CONFIRMATION_PENDING",
+  "assemblies": [
+    {"id":"CowlingShell","construction":"sectioned quad surface with aft fuselage tangent match","required_detail":["upper/lower access breaks","fastener rows","exhaust interface","oil/air openings"]},
+    {"id":"CowlingFrontLip","construction":"separate rounded lip with real thickness and inner return","required_detail":["nonuniform lip profile","drain and seam breaks"]},
+    {"id":"CoolingShutters","construction":"radial array on governed hinge circle","required_detail":["individual pivots","consistent overlap","open and closed diagnostic states"],"floating_geometry_forbidden":true},
+    {"id":"RadialEngineFace","construction":"recessed layered assembly","required_detail":["nine cylinder silhouettes","heads","pushrod tubes","baffles","central reduction housing","depth occlusion"]},
+    {"id":"PropHub","construction":"separate hub, cap, blade cuffs and fasteners","required_detail":["rotation datum","blade-root sockets"]},
+    {"id":"PropBlades","construction":"profile curves lofted through root, 30%, 60%, 85% and tip sections","required_detail":["chord taper","twist","pitch","rounded tip","leading-edge protection"]}
+  ],
+  "governed_datums": {
+    "prop_axis":{"origin":[3.8725,0.0,0.13],"direction":[1.0,0.0,0.0]},
+    "cowling_aft_plane_x":2.84,
+    "cowling_lip_plane_x":3.66,
+    "shutter_hinge_circle_radius_m":0.49,
+    "engine_face_recess_m":0.19
+  },
+  "uncertainties": [
+    "Exact cowling diameter and depth need authoritative drawing confirmation",
+    "Radial-engine visible cylinder arrangement needs engine-installation reference",
+    "Blade section and twist need propeller drawing or calibrated orthographic reference"
+  ],
+  "visual_gates": [
+    "Radial face reads with physical depth at nose and grazing cameras",
+    "No shutter intersects lip, hub or adjacent shutter through test range",
+    "Blade silhouette is curved and tapered at every governed camera",
+    "Cowling-to-fuselage highlight remains continuous"
+  ]
+}
+

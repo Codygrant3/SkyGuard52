@@ -1,0 +1,124 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "global_pipeline": [
+    "preserve dims",
+    "high-poly",
+    "retopo/Nanite decision",
+    "UV/UDIM",
+    "bake",
+    "PBR",
+    "export sockets/collision",
+    "lighting validation"
+  ],
+  "assets": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "high_poly": "hard-surface rail profile",
+      "runtime": "compact static",
+      "uv": "1-2k single",
+      "bake": [
+        "normal",
+        "ao",
+        "curvature",
+        "material_id"
+      ],
+      "pbr": [
+        "phosphate/anodized metal",
+        "edge wear",
+        "micro scratch",
+        "oil"
+      ]
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "high_poly": "modular family silhouette",
+      "runtime": "FP retopo+bake; mid/far Nanite later",
+      "uv": "2-4k or UDIM if needed",
+      "bake": [
+        "normal",
+        "ao",
+        "curvature",
+        "thickness",
+        "material_id"
+      ],
+      "pbr": [
+        "parkerized metal",
+        "handguard polymer/alloy",
+        "paint wear",
+        "carbon",
+        "oil"
+      ],
+      "ergonomics": [
+        "support contact",
+        "trigger contact",
+        "ADS axis geometry",
+        "stock/mag envelopes without identity"
+      ]
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "high_poly": "true cylinder 1.574x0.072",
+      "runtime": "compact static",
+      "uv": "cylindrical 1-2 tiles",
+      "bake": [
+        "normal",
+        "ao",
+        "curvature",
+        "material_id"
+      ],
+      "pbr": [
+        "matte munition paint",
+        "minimal scuff"
+      ],
+      "forbidden": [
+        "launcher",
+        "gripstock",
+        "battery",
+        "sight",
+        "caps",
+        "markings"
+      ]
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "high_poly": "anatomy sculpt + constructed leather glove",
+      "runtime": "deforming production mesh",
+      "uv": "hand dense/UDIM + forearm",
+      "bake": [
+        "normal",
+        "ao",
+        "curvature",
+        "thickness",
+        "material_id"
+      ],
+      "pbr": [
+        "leather",
+        "stitch",
+        "sleeve fabric",
+        "oil/dust"
+      ],
+      "poses": [
+        "rifle_support",
+        "trigger",
+        "igla_gated"
+      ],
+      "do_not_retain": "current mannequin as final"
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "high_poly": "planform massing only",
+      "runtime": "simple shell first",
+      "uv": "planform atlas first",
+      "bake": [
+        "ao",
+        "curvature",
+        "material_id"
+      ],
+      "pbr": [
+        "airframe placeholder",
+        "minimal edge wear"
+      ],
+      "evidence_required_before": [
+        "cross-section",
+        "airfoil",
+        "propeller",
+        "markings"
+      ]
+    }
+  }
+}

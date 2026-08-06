@@ -1,0 +1,295 @@
+You are Luna (gpt-5.6-luna) at MAXIMUM reasoning effort refining 7 already-selected thin-art proposals for Skyguard52 Unreal densify Loop57.
+
+FREEZE LAW
+- Base freeze: L56 (11/11 usable)
+- Capture densify recipe: L52 HF unlit boards remain in FOV
+- Hero/authored content only BEHIND wall (x >= bx+3) OR tiny additive emissive
+- NO dark PBR as sole FOV material
+- NO large multi-stage hero stacks (L53 failure)
+- Protect Prop / PropNose / YakBeauty / City / Ocean / Wide from black/white collapse
+
+COORDINATE SYSTEM for spawn_recipe offsets
+- Camera looks +X, board wall near x=bx+1/+2
+- behind_wall content: offset x in [3.15, 3.35]
+- additive emissive content: offset x in [2.35, 2.55]
+- Keep scales tiny: cube typically <= (0.1, 1.5, 1.8); spheres <= 0.12
+- Max 4 spawn primitives per proposal (prefer 2-3)
+- stage_targets max 2
+
+MATERIALS KEYS allowed in mat_key / materials_preference
+- m_rust, m_plate, m_panel, m_bright_white, m_bright_metal, m_bright_brick, m_muzzle, unlit_w, unlit_y, mats[N]
+
+TASK
+Refine these 7 proposals into exact densify spawn recipes for Python Unreal Editor script loop57.
+Keep all 7 unless one is clearly capture-hostile; if dropping one, still return 7 by improving a safer alternative under same IDs (keep=true preferred).
+Return ONLY JSON matching the schema. No markdown.
+
+SELECTED PROPOSALS JSON:
+[
+  {
+    "id": "MAT-040",
+    "pillar": "materials",
+    "title": "Behind-wall salt-streak roughness",
+    "change": "Add two short salt-streak roughness marks to a weathered support behind the wall.",
+    "stage_targets": [
+      "Combat",
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L23_Dirt",
+        "/Game/Skyguard/Materials/M_L21_Rust"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Place the support at x>=bx+3 and use thin, broken roughness streaks with restrained value contrast; avoid a full-surface rust tile treatment.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The weathering remains fully behind the wall and cannot affect protected FOV materials.",
+    "acceptance_test": "Behind-wall review shows two readable salt streaks with no foreground spill; Combat and Harbor remain usable.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-024",
+    "pillar": "aircraft",
+    "title": "Cowling inspection-plate gap",
+    "change": "Add one short offset gap around a small cowling inspection plate on the Yak body.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_CowlingGap_UnlitHF"
+      ],
+      "textures": [
+        "T_CowlingPlateMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place a thin warm-gray border and a slightly lighter plate center; avoid continuous dark lines across the fuselage.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The change is one localized panel gap behind the wall and cannot create a broad dark FOV region.",
+    "acceptance_test": "The inspection plate reads at capture distance and does not merge into a black fuselage patch.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-036",
+    "pillar": "materials",
+    "title": "Behind-wall vertical oxidation variation",
+    "change": "Add localized reddish oxidation variation to one structural surface behind the wall.",
+    "stage_targets": [
+      "Combat"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_Rust"
+      ],
+      "textures": [],
+      "niagara": []
+    },
+    "implementation_notes": "Keep the surface at x>=bx+3 and use a low-frequency oxidation mask with a lifted value range; avoid a tiled rectangular decal or foreground-wall overlap.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored weathering is fully occluded in active FOV and does not create a new hero stack.",
+    "acceptance_test": "Behind-wall inspection confirms localized oxidation variation; Loop52 remains 11/11 usable.",
+    "effort": "S",
+    "priority_guess": 16,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-021",
+    "pillar": "vfx",
+    "title": "Ocean spray pinpoint droplets",
+    "change": "Add a sparse set of five tiny backlit droplets to NS_OceanSpray.",
+    "stage_targets": [
+      "Ocean",
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_SprayDroplet"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_SprayDropletPearl"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_SprayDroplet"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_OceanSpray"
+      ]
+    },
+    "implementation_notes": "Use five small additive points in a narrow local arc with low brightness and no continuous fan or opaque foam volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Sparse droplets add ocean detail while preserving visibility of the waterline and avoiding a repeated broad spray fan.",
+    "acceptance_test": "Verify Ocean and Harbor show five readable droplets without a white spray wall, sky washout, or camera usability loss.",
+    "effort": "S",
+    "priority_guess": 17,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-003",
+    "pillar": "vfx",
+    "title": "Muzzle flash twin filament streaks",
+    "change": "Add two short asymmetric additive filament streaks to NS_MuzzleFlash to improve silhouette breakup.",
+    "stage_targets": [
+      "Cockpit",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_FlashFilament"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_FlashAmberWhite"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_FlashFilament"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_MuzzleFlash"
+      ]
+    },
+    "implementation_notes": "Spawn exactly two stretched sprites with randomized \u00c2\u00b18 degree yaw, lifetime below 0.06 seconds, and restrained brightness.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small emissive streaks occupy only the muzzle region and cannot form an FOV obstruction.",
+    "acceptance_test": "Verify two readable filaments in Cockpit and ADS without clipping the reticle or producing sun/sky washout.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  },
+  {
+    "id": "CO-022",
+    "pillar": "city_ocean",
+    "title": "Submarine Hull Panel Highlight",
+    "change": "Add one small blue-gray panel highlight to submarine_proxy hull.",
+    "stage_targets": [
+      "Ocean",
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "submarine_proxy"
+      ],
+      "materials": [
+        "M_Submarine_HullPanel_BlueGray"
+      ],
+      "textures": [
+        "T_Submarine_HullPanel_Subtle"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a shallow inset at x>=bx+3 with a midtone blue-gray material; keep it brighter than black and limited to one panel.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "Ocean",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Single small panel breaks hull uniformity behind the wall and does not introduce a dark PBR sole material.",
+    "acceptance_test": "Ocean and Harbor remain usable; panel reads as a small hull-plane variation without changing submarine silhouette.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "CO-023",
+    "pillar": "city_ocean",
+    "title": "Coast Block Utility Boxes",
+    "change": "Add two small bright plaster utility boxes to coast_block_proxy service wall.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "coast_block_proxy"
+      ],
+      "materials": [
+        "M_Coast_UtilityBox_BrightPlaster"
+      ],
+      "textures": [
+        "T_Coast_UtilityBox_PaintVariation"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place compact cream and muted-orange boxes at x>=bx+3 on an existing service facade; use shallow projections and no readable text.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Two small bright facade props add human-scale coastal detail while remaining behind the wall and off protected hero stacks.",
+    "acceptance_test": "City and Wide remain usable; boxes read as distinct small service details without adding a large occluder.",
+    "effort": "S",
+    "priority_guess": 20,
+    "risk": "low"
+  }
+]

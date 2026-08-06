@@ -1,0 +1,44 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery02-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-02",
+  "gate": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY02_UNREAL_AUTHORIZATION",
+  "offline_only": true,
+  "execution_authorized_by_this_freeze": false,
+  "only_functional_correction": "The frozen Unreal editor authority is D:\\UE_5.8 instead of Recovery01's nonexistent C-drive path.",
+  "frozen_files": [
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_CONTRACT.json", "bytes": 7507, "sha256": "c50afca8af224e177847c077da97d479622e52cfbcd5198337fd2e6bc3e2370a"},
+    {"file": "Scripts/capture_skyguard_phase4_m01_representative_visual_attempt08_recovery02.py", "bytes": 15243, "sha256": "685a1ebb4994545b45fa8d70afea008bfb220899044285bc0cf383a55c4c64b4"},
+    {"file": "Scripts/invoke_skyguard_phase4_m01_representative_visual_attempt08_recovery02.ps1", "bytes": 7345, "sha256": "39865714c9ac95e58844c8c884cb166af573f200c3b954fdac1875c39d23020f"},
+    {"file": "Scripts/verify_skyguard_phase4_m01_representative_visual_attempt08_recovery02.py", "bytes": 7803, "sha256": "83963e287b676e11342c29ea00074eef7e501ef43a867bd899db9fd99bb13fd4"},
+    {"file": "Scripts/tests/test_phase4_m01_representative_visual_attempt08_recovery02.py", "bytes": 6054, "sha256": "ee5c7d0a4049cd62c114c79bcea4f2e82de9a68743ccec2f5fc7ae11581f2078"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_SOURCE_INVENTORY.json", "bytes": 4846, "sha256": "43dd9a181a279327a02574809f67603d2b2ea883057dd2cc1963f24385464b4a"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_READINESS.json", "bytes": 2700, "sha256": "aca9a2254d2538b1c204b5b59bc71b8afe34193380fb5a7fe9edda06a3d6c0ef"},
+    {"file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_SINGLE_EXECUTION.md", "bytes": 3548, "sha256": "1780cb6e5c2f536c828977adea818c6a8b64c12ec1cec0199899904cc4cb5206"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json", "bytes": 2651, "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json", "bytes": 1986, "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json", "bytes": 1332, "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"}
+  ],
+  "engine_authority": {
+    "path": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "version": "++UE5+Release-5.8-CL-56057345",
+    "bytes": 512952,
+    "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+  },
+  "namespace_state_at_freeze": {
+    "attempt_absent": true,
+    "proof_absent": true,
+    "launcher_absent": true,
+    "execution_preflight_absent": true
+  },
+  "validation": {
+    "recovery01_terminal_records_verified": 7,
+    "json_valid": true,
+    "python_syntax_valid": true,
+    "powershell_syntax_valid": true,
+    "offline_verifier_gate": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY02_UNREAL_AUTHORIZATION",
+    "focused_tests_passed": 16,
+    "focused_tests_failed": 0,
+    "heavy_process_count": 0
+  },
+  "next_gate": "Use the separately frozen execution prompt only after explicit authorization for exactly one Recovery02 Unreal process."
+}

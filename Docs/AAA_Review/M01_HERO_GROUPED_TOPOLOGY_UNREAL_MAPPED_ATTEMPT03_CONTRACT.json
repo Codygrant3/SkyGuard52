@@ -1,0 +1,201 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-contract.v1",
+  "contract_id": "M01-HERO-GROUPED-TOPOLOGY-UNREAL-MAPPED-ATTEMPT03",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "disposition": "OFFLINE_READY_REQUIRES_SEPARATE_UNREAL_AUTHORIZATION",
+  "bound_inputs": {
+    "diagnosis": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_DIAGNOSIS.json",
+      "bytes": 33215,
+      "sha256": "31189012e5c19386e270b361b2e7c4f09d322c5044a192e7a185a97404b7e2e6"
+    },
+    "persistence": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_CANDIDATE_008_PERSISTENCE.json",
+      "bytes": 19869,
+      "sha256": "2bd9bbaf4750d57d3a3b9ca92dde14995a5b84d4332294a2ce61bfd690d8f185"
+    },
+    "failed_visual_review": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/unreal_mapped_view_original_resolution_review_receipt.json",
+      "bytes": 21689,
+      "sha256": "0d7d53bf46c08fe4b6833500bb41a178f50e6289620168db6a593848f1e6c2fb"
+    },
+    "capture_attempt01": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_01/capture_manifest.json",
+      "bytes": 27264,
+      "sha256": "ab52f0749a41a578d9306b757839a3e62e4a5b6fc6559fc9bcb8a07ced97c3bf"
+    },
+    "capture_attempt02": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_02/capture_manifest.json",
+      "bytes": 27264,
+      "sha256": "29b52fe8f7d13384859b9e2e5d7eafb58651442ed52ede4b7dff067bf56af9c5"
+    },
+    "capture_attempt02_supervisor": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_02_supervisor_receipt.json",
+      "bytes": 1777,
+      "sha256": "4e26b2341c9a3d1bc287f1c23b98a3d5ad276ddd3090e0e594ea96ebfa790130"
+    },
+    "low_glb": {
+      "path": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_008/bld_m01_hero_grouped_topology_008_low.glb",
+      "bytes": 355160,
+      "sha256": "3d9aa21a4ec1430142b03666b32453e9c42280fa6658f0a403c2a04fc3b3163b"
+    },
+    "bake_manifest": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_MANIFEST_008.json",
+      "bytes": 138176,
+      "sha256": "57bc413b867090d798ed8ec1fb8d39d5955fffcb2901bd9355fbfe0e49b3a102"
+    },
+    "mapped_blender_review": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_008/attempt_20260802T161843676Z/mapped_mesh_grazing_angle_review_receipt.json",
+      "bytes": 7341,
+      "sha256": "f1c36c794515d6299a38caa3f41dedd27aa62ba4f12b28a9f4551a47da57e9cb"
+    }
+  },
+  "candidate": {
+    "existing_root": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008",
+    "existing_mesh_root": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes",
+    "existing_packages_are_immutable": true,
+    "attempt03_root": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03",
+    "attempt03_review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+    "attempt03_new_package_count": 1,
+    "replace_existing": false,
+    "geometry_change_allowed": false,
+    "uv_change_allowed": false,
+    "bake_change_allowed": false,
+    "material_change_allowed": false,
+    "mesh_setting_change_allowed": false,
+    "runtime_map_change_allowed": false,
+    "config_change_allowed": false
+  },
+  "assembly": {
+    "source_authority": "GLB POSITION accessor bounds from bound low_glb",
+    "axis_conversion": "UnrealCm = [gltfX*100, -gltfZ*100, gltfY*100]",
+    "family_offsets_cm": {
+      "Pathfinder": [0.0, 0.0, 0.0],
+      "Lighthouse": [3000.0, 0.0, 0.0],
+      "RadarPost": [6000.0, 0.0, 0.0]
+    },
+    "location_tolerance_cm": 0.01,
+    "rotation_degrees": [0.0, 0.0, 0.0],
+    "scale": [1.0, 1.0, 1.0],
+    "actors": [
+      {
+        "key": "Lighthouse/LanternGlass",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Lighthouse_LanternGlass",
+        "relative_location_cm": [0.0, 0.0, 2170.000076],
+        "actor_location_cm": [3000.0, 0.0, 2170.000076]
+      },
+      {
+        "key": "Lighthouse/RedBandsRoof",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Lighthouse_RedBandsRoof",
+        "relative_location_cm": [0.0, 0.0, 1595.000005],
+        "actor_location_cm": [3000.0, 0.0, 1595.000005]
+      },
+      {
+        "key": "Lighthouse/SteelGallery",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Lighthouse_SteelGallery",
+        "relative_location_cm": [0.0, 0.0, 2073.250008],
+        "actor_location_cm": [3000.0, 0.0, 2073.250008]
+      },
+      {
+        "key": "Lighthouse/WhiteTower",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Lighthouse_WhiteTower",
+        "relative_location_cm": [0.0, 0.0, 1000.0],
+        "actor_location_cm": [3000.0, 0.0, 1000.0]
+      },
+      {
+        "key": "Pathfinder/AccessPanels",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Pathfinder_AccessPanels",
+        "relative_location_cm": [-72.000001, 0.0, 34.0],
+        "actor_location_cm": [-72.000001, 0.0, 34.0]
+      },
+      {
+        "key": "Pathfinder/EdgeHardware",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Pathfinder_EdgeHardware",
+        "relative_location_cm": [-39.988148, 0.0, 35.648181],
+        "actor_location_cm": [-39.988148, 0.0, 35.648181]
+      },
+      {
+        "key": "Pathfinder/PaintShell",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Pathfinder_PaintShell",
+        "relative_location_cm": [15.00001, 0.0, 8.0],
+        "actor_location_cm": [15.00001, 0.0, 8.0]
+      },
+      {
+        "key": "Pathfinder/ThermalHardware",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_Pathfinder_ThermalHardware",
+        "relative_location_cm": [-170.000005, 0.0, -2.0],
+        "actor_location_cm": [-170.000005, 0.0, -2.0]
+      },
+      {
+        "key": "RadarPost/BlastDoor",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_RadarPost_BlastDoor",
+        "relative_location_cm": [-509.000015, 0.0, 154.999995],
+        "actor_location_cm": [5490.999985, 0.0, 154.999995]
+      },
+      {
+        "key": "RadarPost/ConcreteBunker",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_RadarPost_ConcreteBunker",
+        "relative_location_cm": [0.0, 0.0, 209.99999],
+        "actor_location_cm": [6000.0, 0.0, 209.99999]
+      },
+      {
+        "key": "RadarPost/DishFeed",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_RadarPost_DishFeed",
+        "relative_location_cm": [-76.012039, 0.0, 1700.0],
+        "actor_location_cm": [5923.987961, 0.0, 1700.0]
+      },
+      {
+        "key": "RadarPost/MastDrive",
+        "mesh": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008/Meshes/SM_M01C008_RadarPost_MastDrive",
+        "relative_location_cm": [-47.500002, 0.0, 1062.999988],
+        "actor_location_cm": [5952.499998, 0.0, 1062.999988]
+      }
+    ]
+  },
+  "exposure_sweep": {
+    "single_unreal_process": true,
+    "rhi": "D3D12|SM6",
+    "capture_resolution": [2048, 2048],
+    "views_per_family": ["three_quarter", "grazing_port", "grazing_starboard"],
+    "families": ["Pathfinder", "Lighthouse", "RadarPost"],
+    "manual_exposure_bias_candidates_ev": [-12, -10, -8, -6, -4, -2, 0],
+    "pilot_capture_count": 63,
+    "one_global_bias_for_all_views": true,
+    "lighting": {
+      "key_directional_lux": 100000.0,
+      "fill_directional_lux": 12000.0,
+      "skylight_intensity": 2.25,
+      "auto_exposure_method": "AEM_MANUAL"
+    },
+    "selector": {
+      "active_pixel_threshold_luma": 8,
+      "maximum_active_clipped_fraction_luma_ge_250": 0.02,
+      "active_p50_range": [35, 210],
+      "active_p95_range": [100, 248],
+      "minimum_active_dynamic_range_p95_minus_p05": 35,
+      "tie_break": ["minimum_maximum_normalized_penalty", "minimum_mean_penalty", "minimum_absolute_ev", "numeric_ev"],
+      "canonical_capture_count": 9,
+      "selector_must_run_after_unreal_exit": true
+    }
+  },
+  "acceptance": {
+    "fresh_transform_persistence_required": true,
+    "exact_12_actor_set_required": true,
+    "exact_source_relative_locations_required": true,
+    "exact_63_pilot_captures_required": true,
+    "exact_9_canonical_captures_required": true,
+    "original_resolution_review_required": true,
+    "mapped_blender_comparison_required": true,
+    "promotion_allowed_on_pass": false,
+    "p3_4_closed_on_pass": false
+  },
+  "rollback": {
+    "scope": "attempt03_root_only",
+    "automatic_delete_on_failure": false,
+    "preserve_all_attempts": true,
+    "existing_candidate_deletion_allowed": false,
+    "runtime_asset_deletion_allowed": false
+  },
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

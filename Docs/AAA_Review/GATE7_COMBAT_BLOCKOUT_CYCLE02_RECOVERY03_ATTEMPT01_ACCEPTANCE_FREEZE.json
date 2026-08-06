@@ -1,0 +1,140 @@
+{
+    "gate":  "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01",
+    "classification":  "PASSED_RECOVERY03_PROVISIONAL_BLOCKOUTS_ACCEPTED",
+    "immutable":  true,
+    "timestamp_utc":  "2026-08-06T02:16:00.0431075Z",
+    "attempt_namespace":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01",
+    "output_namespace":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01",
+    "native_handle_retained":  true,
+    "exit_code":  0,
+    "exit_code_type":  "System.Int32",
+    "blender_launch_count":  1,
+    "retry_count":  0,
+    "unreal_launch_count":  0,
+    "accepted_scope":  "provisional blockouts only",
+    "final_aaa_assets":  false,
+    "unreal_import_authorized":  false,
+    "members":  [
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_TERMINAL_SUPERVISOR_MANIFEST.json",
+                        "bytes":  10859,
+                        "sha256":  "085cdc65d01b1587a370481615be6bc267c244e9fd54d3e55c84524eb4253a9c"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_POSTFLIGHT.json",
+                        "bytes":  927,
+                        "sha256":  "3be4108a556cc56dc83331d736f876c483e3adb8516c8e65286e830d1570a1c8"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ARTIFACT_INVENTORY.json",
+                        "bytes":  13075,
+                        "sha256":  "6ce03d9a87b032755747224f77400170c39c6f561c24d6fd4286eb4d06273692"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_DIMENSION_VALIDATION.json",
+                        "bytes":  2476,
+                        "sha256":  "fe009879604ec2f411dfbc270ec2e1af3260c14fb1dd98b78795650658fd9db2"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_VISUAL_REVIEW.json",
+                        "bytes":  6749,
+                        "sha256":  "2a8caed0e48e8ad2112cfb9854eb87b55bcd19c6f738eb4864753a8831a0c864"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_GLB_STRUCTURE_VALIDATION.json",
+                        "bytes":  4396,
+                        "sha256":  "d694982b9eb5d97ee2bca0ed73317546e6c6c3c2cd306de245730eced7896e0e"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01\\blender.stderr.log",
+                        "bytes":  268,
+                        "sha256":  "9e99355d5533a40b5e14a55e864ededd0ae297ac39a4e91cae960bc50c266f63"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01\\blender.stdout.log",
+                        "bytes":  10668,
+                        "sha256":  "577fe08111d202136946f2c3359954bc4b9d886984f5b6fa8f05cfa66ececa66"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_CORRECTION_CONTRACT.json",
+                        "bytes":  5294,
+                        "sha256":  "1222a53f3e7adfb69c801610599ea7a18e242d27056f3b5b9674e580132dfa8d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01\\preflight_receipt.json",
+                        "bytes":  983,
+                        "sha256":  "d33eb34df492c15d5a40f322b8248a35d17a09f7ffa8b0c6f01b8461caadd224"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03\\attempt_01\\source\\blender_gate7_combat_blockout_cycle02_recovery03_attempt01.py",
+                        "bytes":  19609,
+                        "sha256":  "f486afea2547d246d653a5507a9957ea39b1f4dcdcc9a6ac66447ebd7fd84c9a"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\dimension_and_artifact_receipt.json",
+                        "bytes":  5591,
+                        "sha256":  "7566ba0c4d485e3c1e84ea5e15be4a8b048d28a0900e46c3af9ad274a6f0607b"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01.blend",
+                        "bytes":  205836,
+                        "sha256":  "a9a05718c3359392d3dc0d994b9cafb0b3ac5873f17a904e15a8c4ffe8e7239d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\terminal_receipt.json",
+                        "bytes":  472,
+                        "sha256":  "6d1d9fe3b077c3a75373020577573c3b64e624cdc3b8679c676dd53d73c04931"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb",
+                        "bytes":  37112,
+                        "sha256":  "0b4d61e60dd46a752bb3534638bb7c402f9bb141675678a40915ee684f32f687"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
+                        "bytes":  737176,
+                        "sha256":  "562e3cd9df397f8c21d06d57a3036b54405f74a8985b9ecd84dca5cf5738e71d"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb",
+                        "bytes":  27768,
+                        "sha256":  "27c15fceedcafe36b14106d2508b8d53e982c214f7d16cb1d50f968733c81855"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
+                        "bytes":  416684,
+                        "sha256":  "c5761337f8fb8658375bc04625670ef22ab5a841a18fd379bd0d4074e6a4dad0"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_SHAHED136_ENVELOPE.glb",
+                        "bytes":  29344,
+                        "sha256":  "eba964eddcfe84e7c08e4e72f54cf0bfae5f1b9519b2ac491bb87396a62e03d9"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_9K38_MISSILE_ENVELOPE.png",
+                        "bytes":  616327,
+                        "sha256":  "62bb8d027751ca6f2d16a6c494d1302f3a2dd31adf37d8a696569647ae63663f"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.png",
+                        "bytes":  693375,
+                        "sha256":  "27ab88460950aaa1ab9c4dc704bcf92bf844c6be3ff1c95a2b39cc96613e9ca4"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.png",
+                        "bytes":  642756,
+                        "sha256":  "5bc010e3e3606ee2defc3d883134cdeb6bb2931bbff49344caaca871f3a9db6f"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.png",
+                        "bytes":  651467,
+                        "sha256":  "616912058409e1124bc357fbcd3e73b9e8a5fc0feb68de0d59435d146e395a5c"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_SHAHED136_ENVELOPE.png",
+                        "bytes":  723366,
+                        "sha256":  "afa063771a483fc45af54ac8e442d8f8f9b277261a25eebdfa9e6e1ee26f511c"
+                    }
+                ],
+    "next_prompt_path":  "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN.md"
+}

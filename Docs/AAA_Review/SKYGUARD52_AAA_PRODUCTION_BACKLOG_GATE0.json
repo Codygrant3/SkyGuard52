@@ -1,0 +1,275 @@
+{
+  "schema": "skyguard52.aaa.production-backlog.gate0.v1",
+  "generated_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED",
+  "policy": {
+    "one_heavy_process_at_a_time": true,
+    "automatic_retries": false,
+    "failed_namespace_reuse": false,
+    "explicit_one_shot_authorization_required": true,
+    "editor_evidence_can_replace_packaged_evidence": false,
+    "exit_code_alone_is_acceptance": false
+  },
+  "gates": [
+    {
+      "gate": 0,
+      "name": "Evidence reconciliation and production control",
+      "status": "PASSED",
+      "priority": "P0",
+      "effort_band": "M",
+      "deliverables": [
+        "Authoritative artifact index",
+        "Dependency graph",
+        "Production backlog",
+        "Mission 1 and campaign acceptance matrices",
+        "Known-failure register",
+        "Provenance/license ledger",
+        "Performance budget and target hardware",
+        "Release definition of done",
+        "Current audit and dashboard",
+        "Immutable Gate 0 freeze"
+      ],
+      "remaining": []
+    },
+    {
+      "gate": 1,
+      "name": "Mission 1 environment source validation",
+      "status": "PASSED",
+      "priority": "P0",
+      "effort_band": "S",
+      "accepted_input": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_FREEZE.json",
+      "remaining": []
+    },
+    {
+      "gate": 2,
+      "name": "Mission 1 native project build",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "M",
+      "authorization_required": true,
+      "next_prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+      "work": [
+        "Run exactly one bundled-dotnet UnrealBuildTool build in a fresh namespace",
+        "Preserve compiler, linker, process, timeout, and numeric exit-code evidence",
+        "Verify the static root-mobility correction compiles",
+        "Run focused environment unit and integration tests",
+        "Freeze the accepted build or terminal failure"
+      ],
+      "acceptance": [
+        "Numeric exit code 0",
+        "No timeout or second build launch",
+        "Required current binaries and receipts exist and hash correctly",
+        "Focused tests pass",
+        "No UnrealEditor or Blender launch"
+      ]
+    },
+    {
+      "gate": 3,
+      "name": "Recovery05 native proof plugin",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "M",
+      "blocked_by": [
+        2
+      ],
+      "work": [
+        "Build unique Recovery05 plugin/module identity",
+        "Keep plugin disabled by default",
+        "Preserve Recovery04 behavioral parity except authorized corrections",
+        "Disable TCP and UDP messaging",
+        "Retain tick-driven shader readiness, warmup, metrics, restoration, terminal receipts, no world save"
+      ]
+    },
+    {
+      "gate": 4,
+      "name": "Recovery05 runtime binding",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "M",
+      "blocked_by": [
+        3
+      ],
+      "work": [
+        "Bind exact accepted plugin binary, production map, material, cameras, metrics, rubrics, and fresh namespaces",
+        "Verify plugin enable/disable arguments and messaging isolation",
+        "Freeze timeout, restoration, process, and evidence protocols",
+        "Produce a one-shot Unreal supervisor without launching it"
+      ]
+    },
+    {
+      "gate": 5,
+      "name": "Representative Mission 1 Unreal visual proof",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "M",
+      "blocked_by": [
+        4
+      ],
+      "work": [
+        "Run one UE 5.8 D3D12 SM6 proof",
+        "Require stable readiness, 30-second warmup, 30-second measurement, and at least 900 samples",
+        "Capture five static and three temporal 2560x1440 originals",
+        "Independently verify material restoration and no world save",
+        "Inspect all captures at full resolution"
+      ]
+    },
+    {
+      "gate": 6,
+      "name": "Yak-52 R6 production asset",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "XL",
+      "blocked_by": [
+        "Complete reference input",
+        "Explicit Blender authorization"
+      ],
+      "work": [
+        "Complete verified dimensions and orthographic/sectional reference intake",
+        "Correct fuselage, wing root, cowling, propeller, tail, gear, canopy, cockpit, pilot and rear-gunner arrangement",
+        "Build production topology, UVs, bake sources, PBR materials, pivots, collision, sockets, hierarchy, and damage states",
+        "Produce ten unobstructed validation renders",
+        "Pass dimensional and direct visual review before Unreal import"
+      ]
+    },
+    {
+      "gate": 7,
+      "name": "Player, weapons, drones, bosses, and combat art",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "XL",
+      "blocked_by": [
+        6
+      ],
+      "work": [
+        "Production pilot and rear-gunner bodies, anatomically convincing arms and leather gloves",
+        "Production rifle, iron sights, ADS, recoil, reload, and airframe-safe firing arcs",
+        "Production Igla, lock feedback, correct missile orientation, launch, tracking, impact, and reload",
+        "Production Shahed/heavy drones, ten bosses, weak points, damage states, debris, fire, smoke, sparks, and explosions",
+        "Pool and prewarm destruction/audio to eliminate multi-second stalls",
+        "Measure ADS plus fire, drone breakup, missile impact, and boss destruction"
+      ]
+    },
+    {
+      "gate": 8,
+      "name": "Mission 1 mapped environment and vertical slice",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "XL",
+      "blocked_by": [
+        5,
+        7,
+        "Used-asset provenance complete"
+      ],
+      "work": [
+        "Replace proxy/diagnostic geometry with grounded production environment",
+        "Complete ocean, waterline, beach, dunes, terrain, city, roads, promenade, vegetation, traffic, lighthouse, radar, atmosphere and boss encounter",
+        "Use licensed Fab/Quixel support assets, Blender hero assets, and Unreal assembly/PCG/Nanite/Lumen/Niagara/audio",
+        "Pass visual, traversal, combat, input, audio, performance, and stability gates"
+      ]
+    },
+    {
+      "gate": 9,
+      "name": "Mission 1 integration and packaged validation",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "L",
+      "blocked_by": [
+        8
+      ],
+      "work": [
+        "Create fresh Development package",
+        "Validate briefing/warmup, input, ADS/fire, Igla, protection arcs, destruction, boss phases, success/failure, pause/settings, save/progression, audio, memory, VRAM, restarts and soak",
+        "Run three 1080p input-driven combat captures and one 20-minute combat soak"
+      ]
+    },
+    {
+      "gate": 10,
+      "name": "Ten-mission campaign production",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P1",
+      "effort_band": "XXL",
+      "blocked_by": [
+        9
+      ],
+      "production_waves": [
+        {
+          "wave": 1,
+          "missions": [
+            "M02 Harbor Shield",
+            "M03 Convoy Escort"
+          ]
+        },
+        {
+          "wave": 2,
+          "missions": [
+            "M04 Night Blackout",
+            "M05 Storm Front",
+            "M06 Airfield Defense"
+          ]
+        },
+        {
+          "wave": 3,
+          "missions": [
+            "M07 Search and Intercept",
+            "M08 Rescue Cover"
+          ]
+        },
+        {
+          "wave": 4,
+          "missions": [
+            "M09 Saturation Attack",
+            "M10 Evacuation Finale"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Unique route, briefing, objective structure, skyline, weather, pacing, threats, hero assets, boss phases, destruction and aftermath per mission",
+        "Approximately 65-70% modular geometry reuse without duplicated layouts",
+        "Per-mission packaged visual, input, combat, audio, performance, and stability evidence"
+      ]
+    },
+    {
+      "gate": 11,
+      "name": "Presentation, sound, and player experience",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P1",
+      "effort_band": "XL",
+      "blocked_by": [
+        10
+      ],
+      "work": [
+        "Mission briefings, radio chatter, pictograms, flight cards, military aviation UI",
+        "Physical iron sights and diegetic Igla lock feedback",
+        "Realistic spatial engine, propeller, wind, canopy, rifle, missile, impact, explosion, debris, radio, city, ocean and weather audio",
+        "Subtitles, sliders, presets, key rebinding, sensitivity, ADS settings, accessibility, save, unlocks, scoring, debriefing, tutorial"
+      ]
+    },
+    {
+      "gate": 12,
+      "name": "Optimization and final release candidate",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "priority": "P0",
+      "effort_band": "XL",
+      "blocked_by": [
+        11
+      ],
+      "work": [
+        "Freeze scalability and supported-hardware matrix",
+        "Eliminate destruction and ADS/fire stalls",
+        "Validate HLOD, Nanite, streaming, PCG, Niagara, audio, AI, shader warmup, memory, VRAM and transitions",
+        "Run extended soaks, repeated restarts and full campaign regression",
+        "Build Development and Shipping release candidates",
+        "Validate clean-machine install, launch, progression, shutdown, crash recovery and uninstall",
+        "Close all provenance, privacy, configuration and release-documentation gaps"
+      ]
+    }
+  ],
+  "next_executable_gate": {
+    "gate": 2,
+    "name": "Mission 1 native project build",
+    "status": "AWAITING_NEXT_EXPLICIT_GATE",
+    "authorization_required": true,
+    "prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md"
+  }
+}

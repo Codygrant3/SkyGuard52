@@ -1,0 +1,109 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "units": "millimetres unless stated",
+  "modeling_only": true,
+  "records": [
+    {
+      "asset": "9K38 Igla missile",
+      "values": {
+        "overall_length": 1574.0,
+        "body_diameter": 72.0
+      },
+      "confidence": "high for named 9K38 record",
+      "authority": "U.S. Army ODIN, corroborated by CIA-hosted reference",
+      "permitted_use": "missile blockout and scale validation"
+    },
+    {
+      "asset": "Igla launcher assembly",
+      "values": {
+        "reported_visual_simulator_length": 1710.0
+      },
+      "confidence": "low-to-medium",
+      "authority": "ODIN JRTC VISMOD record",
+      "permitted_use": "sanity check only; not final production dimension"
+    },
+    {
+      "asset": "Colt M4A1 candidate",
+      "values": {
+        "collapsed_length": 775.0,
+        "extended_length": 858.0,
+        "barrel_length_from_14_5_in": 368.3
+      },
+      "confidence": "candidate only; rifle identity not accepted",
+      "authority": "Colt manufacturer sheet",
+      "conflict": "sheet pairs 14.5 inches with 386 mm; 14.5 inches converts to 368.3 mm"
+    },
+    {
+      "asset": "AK-74 comparison",
+      "values": {
+        "fixed_stock_length": 945.0,
+        "folding_stock_extended_length": 933.0,
+        "folding_stock_closed_length": 695.0,
+        "barrel_length": 477.0
+      },
+      "confidence": "comparison only; rifle identity not accepted",
+      "authority": "Small Arms Survey"
+    },
+    {
+      "asset": "MIL-STD-1913 rail",
+      "values": {
+        "top_width_nominal": 21.209,
+        "top_width_minus_tolerance": 0.127,
+        "dovetail_width_nominal": 18.999,
+        "dovetail_width_tolerance": 0.051,
+        "profile_height_minimum": 9.322,
+        "recoil_groove_width_nominal": 5.232,
+        "recoil_groove_width_plus_tolerance": 0.203,
+        "groove_pitch": 10.008,
+        "groove_depth_nominal": 2.997,
+        "groove_depth_plus_tolerance": 0.203
+      },
+      "confidence": "high for standard profile",
+      "authority": "MIL-STD-1913 figures 1 and 2"
+    },
+    {
+      "asset": "rear-gunner human envelope",
+      "values": {
+        "sitting_height_range": [
+          777.0,
+          1013.0
+        ],
+        "sitting_eye_height_range": [
+          665.0,
+          889.0
+        ],
+        "shoulder_to_elbow_range": [
+          296.0,
+          419.0
+        ],
+        "hand_length_range": [
+          158.0,
+          221.0
+        ],
+        "hand_breadth_range": [
+          71.0,
+          102.0
+        ],
+        "hand_circumference_range": [
+          168.0,
+          241.0
+        ],
+        "forearm_hand_length_range": [
+          387.0,
+          546.0
+        ]
+      },
+      "confidence": "high as population envelope; character percentile not selected",
+      "authority": "NASA Human Integration Design Handbook Rev. 1, tables 1b and 1c"
+    },
+    {
+      "asset": "Shahed-136 airframe",
+      "values": {
+        "overall_length": 3300.0,
+        "wingspan": 3000.0
+      },
+      "confidence": "official-source blockout only; cross-source scale conflict remains",
+      "authority": "2023 official Ukrainian/Estonian handbook"
+    }
+  ]
+}

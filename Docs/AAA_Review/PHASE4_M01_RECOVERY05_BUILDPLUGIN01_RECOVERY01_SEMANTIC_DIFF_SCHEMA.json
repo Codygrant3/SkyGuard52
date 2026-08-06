@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recovery01 packaged descriptor semantic diff",
+  "type": "object",
+  "required": [
+    "classification",
+    "pre_sha256",
+    "post_sha256",
+    "permitted_change",
+    "all_other_semantics_unchanged"
+  ],
+  "properties": {
+    "classification": {
+      "const": "PASS"
+    },
+    "pre_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "post_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "permitted_change": {
+      "const": "EnabledByDefault added_or_changed_to_boolean_false"
+    },
+    "all_other_semantics_unchanged": {
+      "const": true
+    }
+  },
+  "additionalProperties": true
+}

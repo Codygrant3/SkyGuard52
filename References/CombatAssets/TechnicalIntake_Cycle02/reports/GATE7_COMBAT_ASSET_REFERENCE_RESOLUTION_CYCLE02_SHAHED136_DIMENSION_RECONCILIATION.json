@@ -1,0 +1,45 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "global_dimensions": [
+    {
+      "dimension": "overall length",
+      "value_mm": 3300,
+      "class": "OFFICIAL_REPORTED",
+      "authority": "2023 Ukrainian/Estonian military handbook frozen in Cycle01"
+    },
+    {
+      "dimension": "wingspan",
+      "value_mm": 3000,
+      "class": "OFFICIAL_REPORTED",
+      "authority": "2023 Ukrainian/Estonian military handbook frozen in Cycle01"
+    }
+  ],
+  "visual_authorities": [
+    {
+      "element": "airframe silhouette and component placement",
+      "class": "OFFICIAL_REPORTED",
+      "authority": "DIA illustration"
+    },
+    {
+      "element": "MD550 engine appearance",
+      "class": "OFFICIAL_REPORTED",
+      "authority": "UN S/2023/418 imagery"
+    },
+    {
+      "element": "servo and connector appearance",
+      "class": "OFFICIAL_REPORTED",
+      "authority": "UN S/2023/418 imagery"
+    }
+  ],
+  "unknowns": [
+    "wing airfoil and thickness stations",
+    "fuselage cross-sections",
+    "propeller diameter, pitch and blade stations",
+    "engine mount dimensions",
+    "servo installation dimensions",
+    "antenna, fastener and access-panel exact positions"
+  ],
+  "conflict_resolution": "Retain 3300 x 3000 mm as the sole official blockout envelope. Do not reconcile conflicts by averaging.",
+  "new_measured_primary_found": false,
+  "classification": "READY_FOR_BLOCKOUT_ONLY"
+}

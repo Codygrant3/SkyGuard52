@@ -1,0 +1,80 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-active-plugin-root-migration01-terminal-freeze.v1",
+  "created_utc": "2026-08-05T13:55:00Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_RECOVERY05_PLUGIN_BUILD_AUTHORIZATION",
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 3499,
+      "sha256": "57b25ec46c719d3ce708a60d59195793bc9b22a7eefb7aa5958d67fc92c9a328"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_TERMINAL_MANIFEST.json",
+      "bytes": 1072,
+      "sha256": "597a9cb9b64aa87d12ed37462e18367dcc35ada328b13a86e30db8d1aac8a314"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_POST_MIGRATION_INVENTORY.json",
+      "bytes": 12569,
+      "sha256": "8c4db237b825e88941b48c232898f087cb0fe23253b4a3f96500af52d3cb9fc6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_ACTIVE_DISCOVERY_SET_REPORT.json",
+      "bytes": 1372,
+      "sha256": "cdeb7f756fd00f8e2bc7cedb0c29bffd6d05f598e86ea79eb76d5e04fb2ec672"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_TERMINAL_ACCEPTANCE_MANIFEST.json",
+      "bytes": 1404,
+      "sha256": "08982271eb648ef7e46e8ad0d943d425d250bd36d08780abdcf78851357234aa"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_ACTIVE_PLUGIN_ROOT_MIGRATION01_2026-08-05.md",
+      "bytes": 968,
+      "sha256": "a9898d731a47da988078f1d42343f9df30d2cedc0eb4ae5d829320542b7bce71"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_ACTIVE_PLUGIN_ROOT_MIGRATION01_2026-08-05.md",
+      "bytes": 737,
+      "sha256": "1df66d12434b84bccbefae6fe1274699fdd22a5178448d37a81823e77cad9d1d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_ACTIVE_PLUGIN_ROOT_MIGRATION01_2026-08-05.md",
+      "bytes": 607,
+      "sha256": "5b4f77c254cc91a10e3990742f34f07fe36adb06e19dc00f5b049d4c82cf9dcd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_PLUGIN_BUILDPLUGIN_OFFLINE_DESIGN.md",
+      "bytes": 5248,
+      "sha256": "1239dbc999d087b0f6f1065865673385ce4ba9dff162cbdab2ce1b0260dff777"
+    }
+  ],
+  "member_count": 9,
+  "plugin_file_authority": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_PLUGIN_ROOT_INVENTORY.json",
+    "bytes": 5457,
+    "sha256": "a8c6e995807a94d6074f2ad6611f6a98e6d7340dd4892498db855077dc574fe2",
+    "record_count": 23
+  },
+  "execution": {
+    "exit_code": 0,
+    "exit_code_type": "System.Int32",
+    "move_count": 3,
+    "retry_count": 0,
+    "delete_count": 0,
+    "overwrite_count": 0,
+    "copy_count": 0,
+    "rollback_attempted": false
+  },
+  "final_state": {
+    "active_root": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05",
+    "active_files": 5,
+    "quarantined_files": 18,
+    "enabled_by_default": false,
+    "duplicate_module_count": 0,
+    "duplicate_module_rules_count": 0
+  },
+  "next_gate": "RECOVERY05_PLUGIN_BUILDPLUGIN_OFFLINE_DESIGN",
+  "mission01_production_accepted": false,
+  "aaa_production_accepted": false
+}

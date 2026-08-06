@@ -1,0 +1,191 @@
+{
+  "schema": "skyguard52.aaa.gate0-control-package-freeze.v1",
+  "frozen_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "gate": 0,
+  "classification": "PASSED_PRODUCTION_CONTROL_PACKAGE_ESTABLISHED",
+  "scope": "Offline evidence reconciliation and production-control artifacts only.",
+  "non_claims": [
+    "The game is not production ready.",
+    "Mission 1 is not production accepted.",
+    "No current Yak-52 production asset is accepted.",
+    "No current Development or Shipping release candidate is accepted.",
+    "No Unreal, Blender, native build, shader compile, integration or packaging process was launched by this gate."
+  ],
+  "frozen_input_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Skyguard52.uproject",
+      "bytes": 1542,
+      "sha256": "99461a1a562ede732da52c84f05002dcc88f772cd30fdccd45ff46d6836f3b60"
+    },
+    {
+      "path": "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_FREEZE.json",
+      "bytes": 10044,
+      "sha256": "0bd0bfee24e28d7cfd8a4f086209ed97cab7d4ffc40b09913e85d9c031b6293a"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\gate_report.json",
+      "bytes": 36825,
+      "sha256": "b74ae7a13a6543199272deac520703cda6d80137a8cb80606d4b5a59236be6e6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\run_manifest.json",
+      "bytes": 145636,
+      "sha256": "1aa4529bb3ca9736643d9c040074649fc5a5173af87fd077240a5e351011afd7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE8_SOAK_PERFORMANCE_BASELINE_20260802T092516016Z.json",
+      "bytes": 19077,
+      "sha256": "f4d501b5097d85aa437d687dfb7df30d0fc5bfb19ca72cb4944d28bb797463bd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\M01_TEXTURE_MATERIAL_PROVENANCE_LEDGER.json",
+      "bytes": 130284,
+      "sha256": "29a23435ad2b7ea8231d3832cb33dd8cadb6e0bba64f05af21680f3f43183da3"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_RECOVERY01_VISUAL_REVIEW_2026-08-02.md",
+      "bytes": 3848,
+      "sha256": "e601b6b87c7c58475a3851da6fcf274ca016aedc90e714697da6b338afd8d557"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_FREEZE.json",
+      "bytes": 4179,
+      "sha256": "ad2dc00511c70057ba54248b72a2760f07fbf86f94cac1bbf7b1f0708e5052c8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_VISUAL_REVIEW.md",
+      "bytes": 2256,
+      "sha256": "4d78d11e6faa039236af238d298c1b250b8cf02f9bdaf836d319819049965567"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY04_BINDING01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 4933,
+      "sha256": "483e1c2489ded78db7763a12c8b85836c2151940fe7c82eff6ac102d196c4258"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 6462,
+      "sha256": "9184f81c4bfb1ac8397add8f84807839a2612e4f990292f66c04d912fae3285e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\INPUT_COMBAT_PERFORMANCE_GATE_LATEST.json",
+      "bytes": 11500,
+      "sha256": "5edef372bbf84877f6e93c30ea42e304134ee1bc9e07e4991f2488d0ee5f5c1a"
+    }
+  ],
+  "frozen_outputs": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_CURRENT_GATE0_2026-08-04.md",
+      "bytes": 5822,
+      "sha256": "43268217d4f8bd20990328b2c506540ad1cb882266944c256616d822d7885b01"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_AUTHORITATIVE_ARTIFACT_INDEX_GATE0.json",
+      "bytes": 16902,
+      "sha256": "e6045a45e1fa7bc5761b29eb0498c0faad9b60f8703c4f045564be077de0df05"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_DEPENDENCY_GRAPH_GATE0.md",
+      "bytes": 4653,
+      "sha256": "2c865b456348b1aa508ff1d706e3225b323e57fc44765f2211741130c3c30c73"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_BACKLOG_GATE0.json",
+      "bytes": 10152,
+      "sha256": "5553df0c5f7d4fae5412c7ec2767b38439615d84ab4d6338b109d3b0b05fff18"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_GATE0_COMPLETE_2026-08-04.md",
+      "bytes": 4726,
+      "sha256": "887cdd217a02d3d67e5ef7d99da199f6712afdacd8d41e48f3b6af1020209c72"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_ASSET_PROVENANCE_LICENSE_LEDGER_GATE0.json",
+      "bytes": 7881,
+      "sha256": "46fe10e330f55bbee0c32e0e3fc51fc033e053c4093104502f6b980c29fc306d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_CAMPAIGN_ACCEPTANCE_MATRIX_GATE0.md",
+      "bytes": 4419,
+      "sha256": "94f31ae3b20809f0ffdd96d4e39c89231df9befb0e5d27a53ddc82b7118053e0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_KNOWN_FAILURE_REGISTER_GATE0.json",
+      "bytes": 7756,
+      "sha256": "5599e6c24b55f66044597356a90342a55a7fb24357eb9539de46a0edec807971"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_M01_CURRENT_ACCEPTANCE_MATRIX_GATE0.md",
+      "bytes": 5944,
+      "sha256": "bcb7512790777148908a1008b9922bdb51d9abbdfb248f71a8cc344c645e174c"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_PERFORMANCE_BUDGET_CONTRACT_GATE0.json",
+      "bytes": 6012,
+      "sha256": "5cf922031281abb32d176c8e1f53c69c783a2141671f82a306a8ac9734a6c333"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_RELEASE_DEFINITION_OF_DONE_GATE0.md",
+      "bytes": 8312,
+      "sha256": "0e4147a5740987866011693557e49030ba9a3af004a70705dd227f4c59744260"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_TARGET_HARDWARE_PROFILE_GATE0.json",
+      "bytes": 2772,
+      "sha256": "c037358e9fa7aa7611104698246d5ea59da59082551ca5b57c8235086e34b8c8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_AAA_GATE0_CONTROL_PACKAGE_INVENTORY_2026-08-04.json",
+      "bytes": 5874,
+      "sha256": "b0d3ded638b84bf31922022ff9f7fe24fd5b12fb2eb3f72694a3ece6bb4c7ff4"
+    }
+  ],
+  "validation_results": {
+    "frozen_output_count": 13,
+    "json_parse_pass_count": 7,
+    "json_parse_failure_count": 0,
+    "markdown_nonempty_count": 6,
+    "all_frozen_files_exist": true,
+    "all_byte_counts_match": true,
+    "all_sha256_match": true,
+    "ten_current_playable_maps_present": true,
+    "ten_current_playable_map_hashes_match_phase8_sources": true,
+    "ten_mission_integration_directors_present": true,
+    "ten_boss_mappings_verified": true,
+    "heavy_process_count_before_publication": 0,
+    "heavy_process_count_after_publication": 0,
+    "unreal_launch_count": 0,
+    "blender_launch_count": 0,
+    "native_build_launch_count": 0,
+    "shader_compile_launch_count": 0,
+    "integration_launch_count": 0,
+    "packaging_launch_count": 0
+  },
+  "roadmap_state": {
+    "green_gates": [
+      0,
+      1
+    ],
+    "total_gates": 13,
+    "evidence_weighted_gate_completion_percent": 15.4,
+    "accepted_production_missions": 0,
+    "accepted_current_release_candidates": 0
+  },
+  "next_executable_gate": {
+    "gate": 2,
+    "name": "Mission 1 native project build",
+    "classification": "AWAITING_NEXT_EXPLICIT_GATE",
+    "explicit_authorization_required": true,
+    "prompt": {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+      "bytes": 9239,
+      "sha256": "11d508230d9d0014260ce966c2974612318b187b352bc6cd7e279512f6d2bd05"
+    }
+  }
+}

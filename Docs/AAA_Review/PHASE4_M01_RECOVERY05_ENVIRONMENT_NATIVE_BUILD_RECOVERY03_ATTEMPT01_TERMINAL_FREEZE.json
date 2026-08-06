@@ -1,0 +1,106 @@
+{
+  "schema": "skyguard.immutable_terminal_freeze.v1",
+  "created_utc": "2026-08-05T02:06:00Z",
+  "gate": "PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03",
+  "attempt": "build_attempt_01",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "terminal_facts": {
+    "supervisor_launch_count": 1,
+    "parity_record_count": 170,
+    "parity_copy_passed": true,
+    "view_namespace_created": true,
+    "actual_module_rules_classes": [
+      "SkyguardRecovery03",
+      "SkyguardRecovery03NativeRecovery05"
+    ],
+    "actual_duplicate_count": 0,
+    "supervisor_module_rules_unique": false,
+    "failure_stage": "view_creation_build_or_postflight",
+    "failure_message": "Duplicate ModuleRules classes remain in build view: ",
+    "ubt_launch_count": 0,
+    "compiler_launch_count": 0,
+    "linker_launch_count": 0,
+    "retry_count": 0,
+    "copy_back_performed": false,
+    "unreal_launched": false,
+    "blender_launched": false
+  },
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 6448,
+      "sha256": "c44c48b496b9d150dd8a7151f54e1e6d3099e84ab202b3fea9e46d3e7c8edca0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\build_phase4_m01_recovery05_environment_native_build_recovery03_once.ps1",
+      "bytes": 21904,
+      "sha256": "07b94689525496afecb3867ee91898223f32c9b1327d45a709729767dfbd4eb4"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 2017,
+      "sha256": "49cca0ba620c1d870e412ae040772656b2aed9ea637fcdcf4a084a180073d004"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_SUPERVISOR.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_SUPERVISOR.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_ATTEMPT01_VIEW_INVENTORY.json",
+      "bytes": 49106,
+      "sha256": "4e40d2a3cd43aa662489b08538f873e4112a54d6853744f07bf207e4de0b13cc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_ATTEMPT01_MODULERULES_ANALYSIS.json",
+      "bytes": 1475,
+      "sha256": "378ffab79356ac50c4dcc3bb1e19cf315f02cc314858b3011478bb6736b3b1d8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_ATTEMPT01_FAILURE_PACKET.json",
+      "bytes": 1825,
+      "sha256": "33a6847369a8365bf9d079848122c4996f6dddd35c4a22d809fa4a0927b09cb1"
+    },
+    {
+      "path": "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_GATE2_RECOVERY03_ATTEMPT01_2026-08-04.md",
+      "bytes": 1146,
+      "sha256": "9131c04e8a921446b0edcf0fe7fa2342c14e7be62a9a2c4fe745cbc0723b5f21"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_GATE2_RECOVERY03_ATTEMPT01_2026-08-04.md",
+      "bytes": 840,
+      "sha256": "f84ded39eb5427445f8ca56fdeef9577a8bbba060ccf21917b0e5cc2130141cd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_GATE2_RECOVERY03_ATTEMPT01_2026-08-04.md",
+      "bytes": 806,
+      "sha256": "32ec6b0a77cfb5cc6d5878d829cc259a5a1f5a6ed0da7b7e0b98d52d582b17fe"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY04_OFFLINE_DESIGN.md",
+      "bytes": 5417,
+      "sha256": "6dd75dc1554d0f30ea71a9f9a647b08b39b3a364ebe32e5eed448f5bf1228cbf"
+    }
+  ],
+  "failed_namespaces": [
+    "D:\\SG52M01R03",
+    "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03\\build_attempt_01"
+  ],
+  "next_gate": {
+    "name": "Recovery04 offline supervisor correction design",
+    "prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY04_OFFLINE_DESIGN.md",
+    "prompt_sha256": "6dd75dc1554d0f30ea71a9f9a647b08b39b3a364ebe32e5eed448f5bf1228cbf",
+    "build_authorized": false
+  },
+  "immutability_rule": "Never rerun, modify, repair, rename, overwrite, delete, or reuse Recovery03 Build Attempt 01 or its isolated view."
+}

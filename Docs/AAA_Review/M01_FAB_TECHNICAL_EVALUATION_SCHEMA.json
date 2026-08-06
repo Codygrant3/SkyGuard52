@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard://schemas/m01-fab-technical-evaluation-v1",
+  "title": "Skyguard 52 M01 Fab Quarantine Technical Evaluation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "evaluation_id",
+    "status",
+    "policy",
+    "intake_record",
+    "slots"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.m01.fab-technical-evaluation.v1"
+    },
+    "evaluation_id": {
+      "const": "M01-FAB-TECH-EVAL-001"
+    },
+    "status": {
+      "enum": [
+        "EVIDENCE_INCOMPLETE_FAIL_CLOSED",
+        "ACQUIRED_READY_FOR_MANUAL_QUARANTINE_IMPORT",
+        "TECHNICAL_EVALUATION_COMPLETE"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manual_acquisition_required",
+        "automatic_download_allowed",
+        "automatic_import_allowed",
+        "quarantine_only",
+        "runtime_promotion_allowed",
+        "city_kit_limit",
+        "coast_kit_limit"
+      ],
+      "properties": {
+        "manual_acquisition_required": { "const": true },
+        "automatic_download_allowed": { "const": false },
+        "automatic_import_allowed": { "const": false },
+        "quarantine_only": { "const": true },
+        "runtime_promotion_allowed": { "const": false },
+        "city_kit_limit": { "const": 1 },
+        "coast_kit_limit": { "const": 1 }
+      }
+    },
+    "intake_record": { "$ref": "#/$defs/evidenceFile" },
+    "slots": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/slot" }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evidenceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_path", "kind", "approved"],
+      "properties": {
+        "object_path": { "type": "string", "pattern": "^/" },
+        "kind": { "type": "string", "minLength": 1 },
+        "approved": { "const": true }
+      }
+    },
+    "mesh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object_path",
+        "triangle_count",
+        "nanite_enabled",
+        "lod_count",
+        "collision",
+        "foreground",
+        "material_slots"
+      ],
+      "properties": {
+        "object_path": { "type": "string", "pattern": "^/Game/" },
+        "triangle_count": { "type": "integer", "minimum": 1 },
+        "nanite_enabled": { "type": "boolean" },
+        "lod_count": { "type": "integer", "minimum": 1 },
+        "collision": {
+          "enum": ["SIMPLE", "COMPLEX_AS_SIMPLE", "CUSTOM_UCX"]
+        },
+        "foreground": { "type": "boolean" },
+        "material_slots": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object_path",
+        "kind",
+        "parent_material",
+        "blend_mode",
+        "shader_complexity",
+        "texture_references"
+      ],
+      "properties": {
+        "object_path": { "type": "string", "pattern": "^/Game/" },
+        "kind": { "enum": ["MASTER", "INSTANCE"] },
+        "parent_material": { "type": ["string", "null"] },
+        "blend_mode": {
+          "enum": ["OPAQUE", "MASKED", "TRANSLUCENT"]
+        },
+        "shader_complexity": {
+          "enum": ["LOW", "MEDIUM"]
+        },
+        "texture_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^/Game/" }
+        }
+      }
+    },
+    "unrealContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "destination_root",
+        "required_name_prefixes",
+        "production_reference_allowed",
+        "nanite_or_authored_lods_required",
+        "collision_required",
+        "material_instances_required_for_variants",
+        "import_status",
+        "asset_registry_evidence",
+        "meshes",
+        "materials"
+      ],
+      "properties": {
+        "destination_root": {
+          "enum": [
+            "/Game/Skyguard/Quarantine/M01/CityKit",
+            "/Game/Skyguard/Quarantine/M01/BeachCoastKit"
+          ]
+        },
+        "required_name_prefixes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "static_mesh",
+            "master_material",
+            "material_instance",
+            "texture",
+            "blueprint"
+          ],
+          "properties": {
+            "static_mesh": { "type": "string", "minLength": 1 },
+            "master_material": { "type": "string", "minLength": 1 },
+            "material_instance": { "type": "string", "minLength": 1 },
+            "texture": { "type": "string", "minLength": 1 },
+            "blueprint": { "type": "string", "minLength": 1 }
+          }
+        },
+        "production_reference_allowed": { "const": false },
+        "nanite_or_authored_lods_required": { "const": true },
+        "collision_required": { "const": true },
+        "material_instances_required_for_variants": { "const": true },
+        "import_status": { "enum": ["NOT_IMPORTED", "QUARANTINE_IMPORTED"] },
+        "asset_registry_evidence": {
+          "oneOf": [
+            { "$ref": "#/$defs/evidenceFile" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "bytes", "sha256"],
+              "properties": {
+                "path": { "const": "" },
+                "bytes": { "const": 0 },
+                "sha256": { "const": "" }
+              }
+            }
+          ]
+        },
+        "meshes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/mesh" }
+        },
+        "materials": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/material" }
+        }
+      }
+    },
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot",
+        "product_id",
+        "staging",
+        "dependencies",
+        "unreal_contract"
+      ],
+      "properties": {
+        "slot": { "enum": ["CITY_KIT", "BEACH_COAST_KIT"] },
+        "product_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f-]{36}$"
+        },
+        "staging": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["payload_root", "inventory_manifest"],
+          "properties": {
+            "payload_root": { "type": "string", "minLength": 1 },
+            "inventory_manifest": { "$ref": "#/$defs/evidenceFile" }
+          }
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["evidence", "items"],
+          "properties": {
+            "evidence": { "$ref": "#/$defs/evidenceFile" },
+            "items": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/dependency" }
+            }
+          }
+        },
+        "unreal_contract": { "$ref": "#/$defs/unrealContract" }
+      }
+    }
+  }
+}

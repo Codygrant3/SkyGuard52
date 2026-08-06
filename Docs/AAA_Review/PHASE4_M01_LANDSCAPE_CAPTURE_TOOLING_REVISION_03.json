@@ -1,0 +1,108 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-capture-tooling-revision.v3",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "attempt_id": "attempt_20260802T152356512Z",
+  "terminal_state": "FAIL",
+  "run_manifest": {
+    "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/run_manifest.json",
+    "sha256": "ffeda856271f94eb716f05ff6138335a74cfc4d3e3f38b0b3761403e28f2d0a7"
+  },
+  "supervisor_receipt": {
+    "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/supervisor_receipt.json",
+    "sha256": "332cec500515d481f5d2d68666c11847a0082fddc72b13a70030a570b837db6b"
+  },
+  "runtime_evidence": {
+    "baseline_rhi": "D3D12|SM6",
+    "candidate_rhi": "D3D12|SM6",
+    "gpu_health_event_count": 0,
+    "exact_heavy_process_count_at_exit": 0,
+    "profiles_run": 0,
+    "baseline_sha256_after": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72",
+    "candidate_sha256_after": "cb2c13f3ce18a3462620306bcef4610d87c2f0cf28a7815b444bd68ab773a021",
+    "candidate_material_sha256_after": "e54682b64f43dbaf0e2c61f08436d495493c6db1f28998cce9583d0542c4042e"
+  },
+  "root_cause": {
+    "summary": "ExportRenderTarget writes the exact FileName supplied and does not append .png.",
+    "result": "All 13 payloads were valid PNG data but had extensionless names, so the supervisor correctly rejected the expected .png paths.",
+    "performance_evidence_eligible": false
+  },
+  "preserved_extensionless_png_payloads": [
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/baseline/baseline_lit_C01_ROUTE_WIDE",
+      "bytes": 3090912,
+      "sha256": "e4ebd3804c4677073b62e6d9ee430a60b0b048cdcb94ba1d3a81abadd27bcf0b"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/baseline/baseline_lit_C02_SHORE_APPROACH",
+      "bytes": 3090912,
+      "sha256": "6f86eb299cb86c4d21c19c58ce590df8dc65a3198b3e26d30f782e4502f6a2b2"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/baseline/baseline_lit_C03_SHORE_GRAZE",
+      "bytes": 3090912,
+      "sha256": "798a961e6ee208a6af76f62f24fb90883096f14346cdd75ab03ddd8a4be09cc0"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/baseline/baseline_lit_C04_INLAND_CLOSE",
+      "bytes": 2244875,
+      "sha256": "f57554f66ab7d48bd18ba96eeaa6cbbbe0d3376e95158554e91a578ef43c83af"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/baseline/baseline_lit_C05_COVERAGE_HIGH",
+      "bytes": 2244875,
+      "sha256": "1be208ceb2d7e3f3d62a90ee6df86a479811e5dacec859a578edb7ef3b0348cc"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_diagnostic_component_boundary_C05",
+      "bytes": 2244875,
+      "sha256": "8929e0b65a7daa6a919cb0f16260d15eafc86142a455399b0a9bbf017a1c7dda"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_diagnostic_landscape_lod_C05",
+      "bytes": 2244875,
+      "sha256": "fe322f907a3fa009e02ed9f1c522afa3ebff867336b382b4e9b5321815c57ab8"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_diagnostic_shader_complexity_C04",
+      "bytes": 2244875,
+      "sha256": "6a4d07fbe638b67415c56244ae60c80bf4fefbbe93cbec7a869a16cda61df898"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_lit_C01_ROUTE_WIDE",
+      "bytes": 3090912,
+      "sha256": "3a03ff16dcefaa0ac33f0413dffea5b6ba8283b6dc75dbcf88e24d7d7c8c203c"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_lit_C02_SHORE_APPROACH",
+      "bytes": 3090912,
+      "sha256": "ae5f1cf83b064ac11571dac862b3871c82a8f4f6179f78baf189675101192a37"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_lit_C03_SHORE_GRAZE",
+      "bytes": 3090912,
+      "sha256": "d89375debf9038d4910703f3b69ee80b191c9bebe992514ba51d4f4830f5cec2"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_lit_C04_INLAND_CLOSE",
+      "bytes": 2244875,
+      "sha256": "8996f47309b559a200eaf17ffb600ffc5f184b4d6cdb575b2f644e18abc58eec"
+    },
+    {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/artifacts/captures/candidate/candidate_lit_C05_COVERAGE_HIGH",
+      "bytes": 2244875,
+      "sha256": "55fb9da0c5e40364564defc837dc25898bee13aa039a233bf6067d8fd929cb73"
+    }
+  ],
+  "offline_repair": {
+    "lit_export_filename": "filename + .png",
+    "diagnostic_export_filename": "output.name",
+    "regression_assertion_required": true
+  },
+  "provisional_launcher_receipt_correction": {
+    "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T152356512Z/launcher_aborted_receipt.json",
+    "status": "SUPERSEDED_BY_LIVE_SUPERVISOR_CONTINUATION",
+    "explanation": "The external shell wrapper timed out, but supervisor PID 4476 continued and completed the governed attempt. The final run manifest and supervisor receipt are authoritative."
+  },
+  "execution_state": "OFFLINE_FILENAME_REPAIR_ONLY_REQUIRES_FRESH_EXCLUSIVE_GPU_LANE_GRANT",
+  "promotion": "FORBIDDEN_UNTIL_TECHNICAL_GATE_AND_HUMAN_VISIBLE_REVIEW_PASS"
+}

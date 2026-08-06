@@ -1,0 +1,205 @@
+{
+  "schema": "skyguard.phase5.audio-unreal-import-naming-loudness.v1",
+  "governed_root": "/Game/Skyguard/Audio/Production/",
+  "source_delivery": {
+    "container": "WAV",
+    "codec": "PCM_INTEGER",
+    "sample_rate_hz": 48000,
+    "bit_depth": 24,
+    "allowed_channels": [1, 2],
+    "lossy_source_forbidden": true,
+    "immutable_original_import_forbidden": true,
+    "derivative_hash_required": true
+  },
+  "asset_prefixes": {
+    "SoundWave": "SW_",
+    "MetaSoundSource": "MS_",
+    "SoundCue": "SC_",
+    "SoundAttenuation": "ATT_",
+    "SoundConcurrency": "CON_",
+    "SoundSubmix": "SMX_",
+    "SoundMix": "MIX_"
+  },
+  "variant_contract": {
+    "variant_suffix_pattern": "_V[0-9]{2}$",
+    "listener_suffixes": [
+      "_RearCockpit",
+      "_ExteriorClose",
+      "_ExteriorMedium",
+      "_ExteriorDistant"
+    ],
+    "ASCII_only": true,
+    "spaces_forbidden": true
+  },
+  "derivative_qa": {
+    "max_true_peak_dbtp": -3.0,
+    "max_dc_offset_dbfs": -60.0,
+    "clipped_sample_count": 0,
+    "minimum_head_samples": 16,
+    "minimum_tail_samples": 16,
+    "integrated_loudness_policy": "Do not loudness-normalize individual identity loops or transients to a shared LUFS value; preserve dynamics and record measured LUFS-I, LUFS-S maximum and true peak for mix decisions.",
+    "required_measurements": [
+      "integrated_lufs",
+      "max_short_term_lufs",
+      "true_peak_dbtp",
+      "dc_offset_dbfs",
+      "clipped_sample_count",
+      "duration_seconds"
+    ]
+  },
+  "runtime_mix_acceptance": {
+    "master_true_peak_ceiling_dbtp": -1.0,
+    "minimum_measured_samples": 600,
+    "minimum_combat_soak_seconds": 180,
+    "required_listener_checks": [
+      "RearCockpit",
+      "ExteriorClose",
+      "ExteriorMedium"
+    ],
+    "required_scenarios": [
+      "briefing_to_gameplay_identity_bed",
+      "ADS_repeated_rifle_fire",
+      "Igla_search_lock_launch_flyby_impact",
+      "multiple_light_drone_destructions",
+      "heavy_boss_destruction",
+      "radio_over_peak_combat",
+      "cockpit_to_exterior_translation"
+    ],
+    "acceptance_note": "A category derivative passing offline metering is not proof that the interactive mix passes. Final acceptance requires audible packaged-build telemetry and independent listening."
+  },
+  "routing_assets": {
+    "MasterSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Master",
+    "CockpitSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Cockpit",
+    "ExteriorSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Exterior",
+    "WeaponsSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Weapons",
+    "ExplosionsSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Explosions",
+    "RadioSubmix": "/Game/Skyguard/Audio/Routing/Submixes/SMX_Radio",
+    "CockpitSoundMix": "/Game/Skyguard/Audio/Routing/Mixes/MIX_Cockpit"
+  },
+  "required_bank_categories": [
+    "EngineIdle",
+    "EngineCruise",
+    "EnginePower",
+    "Propeller",
+    "OpenCockpitWind",
+    "RifleMuzzle",
+    "RifleMechanical",
+    "RifleCasing",
+    "RifleReflection",
+    "IglaSearch",
+    "IglaLock",
+    "IglaLaunch",
+    "IglaFlyby",
+    "IglaImpact",
+    "DroneLightMotor",
+    "DroneHeavyMotor",
+    "DroneFlyby",
+    "ExplosionSmallCrack",
+    "ExplosionSmallBody",
+    "ExplosionSmallDebris",
+    "ExplosionSmallTail",
+    "ExplosionHeavyCrack",
+    "ExplosionHeavyBody",
+    "ExplosionHeavyDebris",
+    "ExplosionHeavyTail"
+  ],
+  "category_profiles": {
+    "EngineIdle": "LOOP_IDENTITY",
+    "EngineCruise": "LOOP_IDENTITY",
+    "EnginePower": "LOOP_IDENTITY",
+    "Propeller": "LOOP_IDENTITY",
+    "OpenCockpitWind": "LOOP_AIRFLOW",
+    "RifleMuzzle": "TRANSIENT_WEAPON",
+    "RifleMechanical": "TRANSIENT_DETAIL",
+    "RifleCasing": "TRANSIENT_DETAIL",
+    "RifleReflection": "TAIL_ENVIRONMENT",
+    "IglaSearch": "LOOP_UI_DIEGETIC",
+    "IglaLock": "TRANSIENT_UI_DIEGETIC",
+    "IglaLaunch": "TRANSIENT_WEAPON",
+    "IglaFlyby": "TRANSIENT_FLYBY",
+    "IglaImpact": "TRANSIENT_EXPLOSION",
+    "DroneLightMotor": "LOOP_PROPULSION",
+    "DroneHeavyMotor": "LOOP_PROPULSION",
+    "DroneFlyby": "TRANSIENT_FLYBY",
+    "ExplosionSmallCrack": "TRANSIENT_EXPLOSION",
+    "ExplosionSmallBody": "TRANSIENT_EXPLOSION",
+    "ExplosionSmallDebris": "TRANSIENT_DETAIL",
+    "ExplosionSmallTail": "TAIL_ENVIRONMENT",
+    "ExplosionHeavyCrack": "TRANSIENT_EXPLOSION",
+    "ExplosionHeavyBody": "TRANSIENT_EXPLOSION",
+    "ExplosionHeavyDebris": "TRANSIENT_DETAIL",
+    "ExplosionHeavyTail": "TAIL_ENVIRONMENT"
+  },
+  "profiles": {
+    "LOOP_IDENTITY": {
+      "minimum_variants": 2,
+      "loop_metadata_required": true,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "LOOP_AIRFLOW": {
+      "minimum_variants": 2,
+      "loop_metadata_required": true,
+      "attenuation_required": false,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "LOOP_UI_DIEGETIC": {
+      "minimum_variants": 1,
+      "loop_metadata_required": true,
+      "attenuation_required": false,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "LOOP_PROPULSION": {
+      "minimum_variants": 2,
+      "loop_metadata_required": true,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TRANSIENT_WEAPON": {
+      "minimum_variants": 6,
+      "loop_metadata_required": false,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TRANSIENT_DETAIL": {
+      "minimum_variants": 4,
+      "loop_metadata_required": false,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TRANSIENT_UI_DIEGETIC": {
+      "minimum_variants": 2,
+      "loop_metadata_required": false,
+      "attenuation_required": false,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TRANSIENT_FLYBY": {
+      "minimum_variants": 4,
+      "loop_metadata_required": false,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TRANSIENT_EXPLOSION": {
+      "minimum_variants": 4,
+      "loop_metadata_required": false,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    },
+    "TAIL_ENVIRONMENT": {
+      "minimum_variants": 4,
+      "loop_metadata_required": false,
+      "attenuation_required": true,
+      "concurrency_required": true,
+      "preload_during_briefing": true
+    }
+  }
+}

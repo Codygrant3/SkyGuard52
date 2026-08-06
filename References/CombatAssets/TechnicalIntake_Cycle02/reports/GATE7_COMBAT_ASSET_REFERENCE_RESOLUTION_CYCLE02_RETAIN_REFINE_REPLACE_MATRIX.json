@@ -1,0 +1,38 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "retain": [
+    "pilot safety volume",
+    "rifle muzzle-clearance volume",
+    "Igla rear-clearance volume",
+    "existing gameplay socket consumers",
+    "Cycle04 accepted Yak-52 geometry not superseded by this gate"
+  ],
+  "refine_provisionally": [
+    "GEO_GunnerRifleTopRail to standard coupon where visually applicable",
+    "GEO_GunnerForearm and hand components as replaceable anatomy blockout",
+    "9K38 missile envelope as a new separate provisional mesh",
+    "Shahed exterior envelope as a provisional silhouette mesh"
+  ],
+  "replace_after_identity": [
+    "GEO_GunnerRifleReceiver",
+    "GEO_GunnerRifleBarrel",
+    "GEO_GunnerRifleHandguard",
+    "GEO_GunnerRifleMagazine",
+    "GEO_GunnerRifleStock",
+    "GEO_GunnerRifleFrontSight",
+    "GEO_GunnerRifleRearSight_L",
+    "GEO_GunnerRifleRearSight_R",
+    "GEO_GunnerRifleRearSightAperture",
+    "GEO_IglaLauncherTube",
+    "GEO_IglaBattery",
+    "GEO_IglaSight",
+    "GEO_IglaGrip",
+    "GEO_IglaFrontCap",
+    "GEO_IglaRearCap"
+  ],
+  "do_not_promote": [
+    "WebGame rifle, glove, sleeve and Igla proxies",
+    "engine-cylinder missile",
+    "procedural Shahed proxy as final art"
+  ]
+}

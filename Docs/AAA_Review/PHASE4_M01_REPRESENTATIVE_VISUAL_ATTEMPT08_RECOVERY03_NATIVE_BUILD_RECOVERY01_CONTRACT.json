@@ -1,0 +1,60 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery01.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+  "authorization_token": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01-ONE-SHOT",
+  "plugin": {
+    "name": "SkyguardRecovery03NativeRecovery01",
+    "source": "Plugins/SkyguardRecovery03NativeRecovery01",
+    "enabled_by_default": false
+  },
+  "runtime": {
+    "expected_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+    "landscape_label": "M01_P4_Landscape_Production",
+    "landscape_count": 1,
+    "component_count": 16,
+    "shader_resource_count": 16,
+    "validation_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+    "rhi": "D3D12",
+    "feature_level": "SM6",
+    "stable_shader_polls": 2,
+    "warmup_seconds": 30,
+    "measurement_seconds": 30,
+    "minimum_frame_samples": 900,
+    "capture_count": 8,
+    "capture_width": 2560,
+    "capture_height": 1440,
+    "fov_degrees": 90,
+    "maximum_process_seconds": 480
+  },
+  "immutable_inputs": [
+    {"file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap", "bytes": 532796, "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"},
+    {"file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset", "bytes": 15059, "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json", "bytes": 2651, "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json", "bytes": 1986, "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json", "bytes": 1332, "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"}
+  ],
+  "camera_ids": [
+    "C01_REAR_GUNNER_PORT",
+    "C02_REAR_GUNNER_STARBOARD",
+    "C03_SHORELINE_APPROACH",
+    "C04_ROUTE_EXTERIOR",
+    "C05_CITY_INLAND",
+    "T01_ROUTE_ENTRY",
+    "T02_ROUTE_MID",
+    "T03_ROUTE_EXIT"
+  ],
+  "network": {
+    "attempts_allowed": 0,
+    "editor_settings_override": "-ini:EditorSettings:[/Script/UnrealEd.AnalyticsPrivacySettings]:bSendUsageData=False",
+    "disabled_plugins": "Fab,Bridge,EditorTelemetry,RuntimeTelemetry,EOSShared"
+  },
+  "build": {
+    "automation_tool": "D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool/AutomationTool.exe",
+    "short_package_root": "D:/SG52R03B02",
+    "attempt_namespace": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/build_attempt_01",
+    "single_launch": true,
+    "automatic_retry": false,
+    "maximum_projected_path": 239
+  }
+}
+

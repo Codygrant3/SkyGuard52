@@ -1,0 +1,79 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery03-freeze.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-03",
+  "created_at_utc": "2026-08-02T19:22:37.6628354Z",
+  "state": "FROZEN_OFFLINE_BLOCKED_PREREQUISITE_FULL_MODULE_COMPILE_PROOF_REQUIRED",
+  "offline_tooling_ready": true,
+  "execution_ready": false,
+  "native_build_launched": false,
+  "unreal_launched": false,
+  "recovery02_retried": false,
+  "source_files_modified_for_recovery03": false,
+  "files": {
+    "contract": {
+      "file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY03_CONTRACT.json",
+      "bytes": 14406,
+      "sha256": "ce443812565c2e740a8ab4879009777abffd9d05bcc2b5ff2a01355c78b08264"
+    },
+    "readiness": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY03_READINESS.json",
+      "bytes": 3523,
+      "sha256": "9500123f17d523680f198151f149ea0f5e6d07e7dfc3323d4c31d87c4af52170"
+    },
+    "frozen_recovery02_deferred_proof": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery02_tiny_live.py",
+      "bytes": 21411,
+      "sha256": "5635d15262db7e7f597f62e2f8466a640bccde61088acc2a232842a713a31ffc"
+    },
+    "recovery03_proof_wrapper": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery03_tiny_live.py",
+      "bytes": 4305,
+      "sha256": "0ae1a049a11f6ce0a4c1a12d32b80f91d4b43e62a9f766753c78b768f7b69a61"
+    },
+    "recovery03_proof_only_supervisor": {
+      "file": "Scripts/supervise_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.py",
+      "bytes": 15845,
+      "sha256": "c763cf793b58ab442e8072f07705b3d40dce708bfdfe6e7ef3813776f3bfa882"
+    },
+    "recovery03_launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.ps1",
+      "bytes": 1794,
+      "sha256": "4ac04d43fa0a7d3977a44f223a2ed6b658a6b5ad73bd5bdf65113db688a96f34"
+    },
+    "readiness_verifier": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_attempt07_recovery03_readiness.py",
+      "bytes": 8067,
+      "sha256": "02c6235bd203388ea1e44303a58c0394031c351d4c389d35f5f0a9c2b169dde7"
+    },
+    "offline_tests": {
+      "file": "Scripts/tests/test_phase4_m01_landscape_attempt07_recovery03.py",
+      "bytes": 5461,
+      "sha256": "77489a7263db7dd20ee327f9dbcc071c6c8053d04ae2c964e5cba07822f49d76"
+    }
+  },
+  "immutable_recovery02_failure": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_02",
+    "manifest_sha256": "57acd58c1ebd5f8ae02737c1a94e43dbedfaa31c017feb3712c973bb04821fd6",
+    "terminal_state": "FAILED",
+    "build_exit_code": 6,
+    "proof_stage_launched": false
+  },
+  "blocked_prerequisite": {
+    "activation_schema": "skyguard.full-module-compile-activation.v1",
+    "required_gate": "PASS_FULL_SKYGUARD52EDITOR_MODULE_COMPILE",
+    "target": "Skyguard52Editor",
+    "platform": "Win64",
+    "configuration": "Development",
+    "build_exit_code": 0,
+    "exhaustive_current_source_inventory_required": true,
+    "bound_compiled_module_sha256_required": true
+  },
+  "conditional_command_template": "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\Skyguard52\\Scripts\\run_skyguard_phase4_m01_landscape_visible_attempt07_recovery03.ps1\" -CompileActivationPath \"<ABS_PATH>\" -CompileActivationSha256 \"<64HEX>\" -AuthorizeSingleRecovery03TinyProof",
+  "expected_recovery03_processes": [
+    "UnrealEditor.exe",
+    "ShaderCompileWorker.exe children as needed"
+  ],
+  "expected_typical_runtime_seconds": "20-75",
+  "supervisor_timeout_seconds": 180,
+  "freeze_rule": "No edits to any frozen file after this record. A future run must verify every listed hash and supply a separately created compile activation path and exact SHA256."
+}

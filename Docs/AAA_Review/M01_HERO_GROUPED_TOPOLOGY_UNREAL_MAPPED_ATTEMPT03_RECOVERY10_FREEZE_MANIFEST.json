@@ -1,0 +1,68 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery10-freeze-manifest.v1",
+  "gate": "PASS_OFFLINE_RECOVERY10_COMPILE_COMPAT_READY_AWAITING_SEPARATE_FULL_MODULE_BUILD_AUTHORIZATION",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY10_COMPILE_FIX_CONTRACT.json",
+      "bytes": 6576,
+      "sha256": "525800b236ec70c315b3c24244528a894caa59a0ca403447915f42c64bb09ffb"
+    },
+    {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery10CompileFix.h",
+      "bytes": 1304,
+      "sha256": "04964485f02f77515e186890f349464aa48dbbbb5f2b93137de9ccd7a5c6a047"
+    },
+    {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1413,
+      "sha256": "0d731c5a44f015d8cfebb861be7ffdfb03c7808babe5f44d17515d3f38977c08"
+    },
+    {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery10_compile_fix.py",
+      "bytes": 11181,
+      "sha256": "c14e64f350909f1dea73e8119f001900ad561aaf1b818842d82d494ee502114e"
+    },
+    {
+      "path": "Scripts/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery10_compile_fix.py",
+      "bytes": 4208,
+      "sha256": "e9890ea230af6cbf1f51cd5fc9e12616c83e040b273ec4630fbdc1936bf3dc6e"
+    },
+    {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY10_COMPILE_FIX_READINESS.json",
+      "bytes": 3117,
+      "sha256": "22da219d787bca9869cce30159e918e6f3ac7ee46002ced42933ff1000605e58"
+    }
+  ],
+  "recovery09_terminal_compile_failure": {
+    "attempt_root": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611",
+    "compile_receipt_sha256": "48276b440483619b327ef99de02621dcec5ee94341af16c96149272dadcfb59d",
+    "build_stdout_sha256": "67cf0f2ddfbfd673e7e5b997fe84e9d9cf1fcb8d73ae3c2b8620c8a8d0b4206f",
+    "source_inventory_sha256": "4c658611ca8330184b112b28be5babbdbdc43c61c51afe40bc14c3218571f464",
+    "retry_same_namespace_forbidden": true
+  },
+  "frozen_recovery09": {
+    "header_sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0",
+    "source_sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08",
+    "remains_byte_identical": true
+  },
+  "correction_scope": {
+    "format_argument_line": 380,
+    "header_declarations": ["BuildRecord", "WritePng"],
+    "recovery09_direct_edits": 0,
+    "validation_suppressed": false
+  },
+  "offline_verification": {
+    "readiness_checks_passed": 15,
+    "readiness_checks_failed": 0,
+    "unit_tests_passed": 10,
+    "unit_tests_failed": 0
+  },
+  "execution_state": {
+    "native_build_executed": false,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "content_packages_created_or_modified": 0,
+    "promotion_allowed": false,
+    "p3_4_closed": false
+  }
+}

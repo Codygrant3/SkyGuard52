@@ -1,0 +1,185 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "created_at_utc": "2026-08-05T23:59:46.193460+00:00",
+  "classification": "BLOCKED_AWAITING_REFERENCE_INPUT",
+  "blender_execution_authorized": false,
+  "unreal_execution_authorized": false,
+  "member_count": 35,
+  "members": [
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_BLENDER_BOUNDARY_CONTRACT.json",
+      "bytes": 1939,
+      "sha256": "af24645312ea42dd93b01aba64617260985455cc1ac3349e79bd72c829fbcb45"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_CONFLICT_REGISTER.json",
+      "bytes": 2227,
+      "sha256": "31838e8792efe4796a7b0545f23ecdcb95876ffc6fc78749bd114fc9d64cdc18"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_DIMENSION_AUTHORITY_MATRIX.json",
+      "bytes": 3320,
+      "sha256": "47fb2e97ff4a2a1d74bbba1a80449bff3db57cbe897410b73b88e0622fdbcf4f"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_MODELING_REPORT.md",
+      "bytes": 2760,
+      "sha256": "dd9d819b27f9d8f2707bcdfcd39b868b07109b9ad08ad1ecf435639161f4ca36"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_NEXT_PROMPT.md",
+      "bytes": 1196,
+      "sha256": "28d796a66dccf8952854f72d5e38c7458567742d1307180e122bff2aaf98e85e"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_PROVENANCE.json",
+      "bytes": 4534,
+      "sha256": "2f6133cf996b8ae90ae12f2f353e6533ba640718e174bd4b642788e6b87e9e6f"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_READINESS.json",
+      "bytes": 1701,
+      "sha256": "95a68b513c4306d6cbc04c329ac1d7d2f0bca69a3514a97b9a59ce2b3b00851a"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_SOURCE_INVENTORY.json",
+      "bytes": 5911,
+      "sha256": "8644aa364af148c470bbc2be6417b1ef1c1de650f1d6a5522eb0ae10d70ba629"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_UNREAL_EXPORT_SOCKET_CONTRACT.json",
+      "bytes": 1123,
+      "sha256": "bb46d16de7fa66a789db8d0c9fa768009587b3ee0d318fc219f53dcc12c96109"
+    },
+    {
+      "path": "reports/GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_VISUAL_ACCEPTANCE_RUBRIC.json",
+      "bytes": 1090,
+      "sha256": "f42a7ad4d1051312882018f7ad02bb477e2b8dd3bf76b08def4fda8050d2d942"
+    },
+    {
+      "path": "source_archive/colt_mle_smart_sheet_2026.pdf",
+      "bytes": 4287202,
+      "sha256": "c93591731967a3b2af175cb917d469ed046209a317a542406919eb4ce1b3b09d"
+    },
+    {
+      "path": "source_archive/dia_shahed136_drawing_via_commons.jpg",
+      "bytes": 110781,
+      "sha256": "982568c320a6813697e44c2e824e5bd46810b8f4144956940e6311c1de5a3063"
+    },
+    {
+      "path": "source_archive/estonian_defence_shahed136_handbook_2023.pdf",
+      "bytes": 1963015,
+      "sha256": "f6363cd69d837251120166cc6509e3c6017248cbb62c449989e93097884fc1ca"
+    },
+    {
+      "path": "source_archive/igla_9k38_cia_public_reference.pdf",
+      "bytes": 188282,
+      "sha256": "caf0d7816b7a3de568e8c91ee6a272f542f37cbe28e14184f09698294e869da5"
+    },
+    {
+      "path": "source_archive/mil_std_1913_accessory_rail.pdf",
+      "bytes": 283632,
+      "sha256": "3f7db59805f7f95280ccd885b41adff8e288777df7d87ccc81b13ce89cf390e4"
+    },
+    {
+      "path": "source_archive/nasa_anthropometric_source_book_v2.pdf",
+      "bytes": 21490000,
+      "sha256": "1e41eb7b9b270762fbbf61e3db4df882652cb03d35d95780bd14b134ce432c46"
+    },
+    {
+      "path": "source_archive/nasa_human_integration_design_handbook_rev1.pdf",
+      "bytes": 25268606,
+      "sha256": "a6a8758b9116984d62fe4b7bc31fa9cf5da2479d57b7da9a3e31a00385ed303f"
+    },
+    {
+      "path": "source_archive/odin_igla_9k38_a.jpg",
+      "bytes": 112722,
+      "sha256": "0caf494cfa8f62770e4a16e56973fa32ccd312488456c9a6f8bc16d74bc728f9"
+    },
+    {
+      "path": "source_archive/odin_igla_sa18_a.jpg",
+      "bytes": 12727,
+      "sha256": "0c47f3e3304804bb349a4fd04827b2a563fe295085e7b875660b8dd7c37da6b3"
+    },
+    {
+      "path": "source_archive/odin_igla_sa18_b.jpg",
+      "bytes": 39169,
+      "sha256": "5ed6feb5f378227f60da9d1000c1880d0c265bad8007be4ffd4c8316429daab5"
+    },
+    {
+      "path": "source_archive/pdf_text_inventory.json",
+      "bytes": 819038,
+      "sha256": "95bacc4aa7a2b893cd816521f857d6161651e9469532b69d76d0a44d75abaf45"
+    },
+    {
+      "path": "source_archive/render_colt_m4a1_p002.png",
+      "bytes": 363455,
+      "sha256": "3c24c2b1d368099d28d3f3d6fb2d3d50f9b6045b7d1faab473c39e009989b98d"
+    },
+    {
+      "path": "source_archive/render_igla_reference_p002.png",
+      "bytes": 170549,
+      "sha256": "421cd24ad2c17d2aef5bf99467379d297002ea9443760fdd98abf3665da19e76"
+    },
+    {
+      "path": "source_archive/render_mil1913-08.png",
+      "bytes": 51457,
+      "sha256": "1b45378a5379212286129a1a8e66d42897e15764b22da3b4de273adc1e4fb10f"
+    },
+    {
+      "path": "source_archive/render_mil1913-09.png",
+      "bytes": 41105,
+      "sha256": "860d8e116f0f79e395db6114f6faefc95daa5c99cd07c9c6b52cb42d49b68a35"
+    },
+    {
+      "path": "source_archive/render_nasa_hidh_anthro_p1173.png",
+      "bytes": 286760,
+      "sha256": "b3e2da7c70930ae5ec021881f5db4a47f6b9faf392e50fb65b0680120761f18b"
+    },
+    {
+      "path": "source_archive/render_nasa_hidh_anthro_p1174.png",
+      "bytes": 314371,
+      "sha256": "a743f25bfeeefcb17c64a3ccb2544451262f9710808fb9442fca781159a239b5"
+    },
+    {
+      "path": "source_archive/render_sas_ak74_p001.png",
+      "bytes": 466459,
+      "sha256": "13d85db29c9ac4d437a7aa42ff081e562d434f1d46e2c1ec3b581104a015a14c"
+    },
+    {
+      "path": "source_archive/render_shahed136_handbook_p011.png",
+      "bytes": 650467,
+      "sha256": "406a5b9be17d0fe28e261c143a8cf99ec66aba58220153da0572215bf1c68310"
+    },
+    {
+      "path": "source_archive/render_un_shahed_engine_p006.png",
+      "bytes": 1043851,
+      "sha256": "5dc892d571866bcfb3de0375ebfe08bfac0008db230440c49d86106c1af45211"
+    },
+    {
+      "path": "source_archive/render_un_shahed_servo_p013.png",
+      "bytes": 1104005,
+      "sha256": "0cd15becd34a6b71da38e88f2a536501347920acb683998b8134b33d152bd909"
+    },
+    {
+      "path": "source_archive/small_arms_survey_ak74_reference.pdf",
+      "bytes": 407074,
+      "sha256": "a29acf427f39a7a41592d60c765b562302f5a2963896d3ebd65e61b88b045cf6"
+    },
+    {
+      "path": "source_archive/un_security_council_s_2023_418.pdf",
+      "bytes": 1813427,
+      "sha256": "e87cbb58e040efcfe5dd0a7e251fa0c2584fd7c868053b9386ef0b50032417cc"
+    },
+    {
+      "path": "source_archive/user_reference_ads_iron_sights.png",
+      "bytes": 923062,
+      "sha256": "94e8bccc0866bfc5131ccfb7de78c281b117d7bfb6e94a4116c1c1d610a64d35"
+    },
+    {
+      "path": "source_archive/user_reference_real_onboard_footage.mp4",
+      "bytes": 4271526,
+      "sha256": "91c9b0a1d595ab2cf5df6c9b37d4b5e76c46e32d1373e2e7d7871bcafcf62061"
+    }
+  ]
+}

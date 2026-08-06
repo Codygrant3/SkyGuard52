@@ -1,0 +1,94 @@
+{
+  "lossless_crops": [
+    {
+      "source": "frames_full/frame_0000_0000.000s.png",
+      "crop_box_xyxy": [
+        230,
+        270,
+        880,
+        720
+      ],
+      "observation_scope": "top rail, muzzle, support hand",
+      "path": "rifle_crops/frame_0000_0000.000s_rifle_crop.png",
+      "width": 650,
+      "height": 450,
+      "bytes": 107345,
+      "sha256": "9b08900cf8335ecd4a35d8b99358b21c8fa4ea8d76bb3cc9e01374e052e1c0c6"
+    },
+    {
+      "source": "frames_full/frame_0435_0014.500s.png",
+      "crop_box_xyxy": [
+        480,
+        0,
+        1120,
+        720
+      ],
+      "observation_scope": "tan handguard and muzzle",
+      "path": "rifle_crops/frame_0435_0014.500s_rifle_crop.png",
+      "width": 640,
+      "height": 720,
+      "bytes": 279707,
+      "sha256": "10a9ae19946011bb876e3b3a41252d3aac86a33105979b23fef2ba7a5f084039"
+    },
+    {
+      "source": "frames_full/frame_0450_0015.000s.png",
+      "crop_box_xyxy": [
+        520,
+        0,
+        1120,
+        720
+      ],
+      "observation_scope": "tan handguard, barrel and open-tine muzzle",
+      "path": "rifle_crops/frame_0450_0015.000s_rifle_crop.png",
+      "width": 600,
+      "height": 720,
+      "bytes": 254333,
+      "sha256": "feb32573bfaa7ca5fba963222528ccac0b169aab807245bafb1cbf00ea4c514e"
+    },
+    {
+      "source": "frames_full/frame_0480_0016.000s.png",
+      "crop_box_xyxy": [
+        480,
+        0,
+        1100,
+        720
+      ],
+      "observation_scope": "handguard vent pattern and rail",
+      "path": "rifle_crops/frame_0480_0016.000s_rifle_crop.png",
+      "width": 620,
+      "height": 720,
+      "bytes": 238852,
+      "sha256": "3b7b2a1618f0eabb839c387905e90987592e69bfc07e27a1bec38866b045cf70"
+    },
+    {
+      "source": "frames_full/frame_0510_0017.000s.png",
+      "crop_box_xyxy": [
+        380,
+        0,
+        930,
+        720
+      ],
+      "observation_scope": "handguard close view",
+      "path": "rifle_crops/frame_0510_0017.000s_rifle_crop.png",
+      "width": 550,
+      "height": 720,
+      "bytes": 284655,
+      "sha256": "2949d9ab3d7268a420fa1a86dec59af7ef9b4084459ffa06b06663bfd1e50afc"
+    },
+    {
+      "source": "frames_full/frame_0675_0022.500s.png",
+      "crop_box_xyxy": [
+        250,
+        20,
+        1160,
+        720
+      ],
+      "observation_scope": "dark-lighting weapon view and rear rail",
+      "path": "rifle_crops/frame_0675_0022.500s_rifle_crop.png",
+      "width": 910,
+      "height": 700,
+      "bytes": 265779,
+      "sha256": "d2a94a96de4b00f4b4b2e3ffb6738a1867af12a4d2948a3bad27807ba8e52c91"
+    }
+  ]
+}

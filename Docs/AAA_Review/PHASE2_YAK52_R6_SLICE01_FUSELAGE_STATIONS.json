@@ -1,0 +1,36 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-fuselage-stations.v1",
+  "status": "PHOTO_DERIVED_PRELIMINARY_NOT_REFERENCE_LOCKED",
+  "coordinate_datum": "Aircraft origin at wing-reference station; +X forward",
+  "construction": "Single controlled quad cage loft with longitudinal guide curves for crown, sill, shoulder, keel and maximum breadth; no rotational primitive.",
+  "stations": [
+    {"id":"FS00_tail_extreme","x":-3.8725,"half_width":0.06,"half_height":0.09,"center_z":0.43,"confidence":"LOW"},
+    {"id":"FS10_tailcone","x":-3.25,"half_width":0.26,"half_height":0.30,"center_z":0.40,"confidence":"LOW"},
+    {"id":"FS20_aft_fuselage","x":-2.45,"half_width":0.39,"half_height":0.43,"center_z":0.36,"confidence":"LOW"},
+    {"id":"FS30_rear_canopy_aft","x":-1.52,"half_width":0.49,"half_height":0.54,"center_z":0.33,"confidence":"MEDIUM_LOW"},
+    {"id":"FS40_rear_seat","x":-0.78,"half_width":0.53,"half_height":0.59,"center_z":0.30,"confidence":"MEDIUM_LOW"},
+    {"id":"FS50_cockpit_bridge","x":-0.05,"half_width":0.56,"half_height":0.61,"center_z":0.27,"confidence":"MEDIUM_LOW"},
+    {"id":"FS60_front_seat","x":0.70,"half_width":0.59,"half_height":0.63,"center_z":0.24,"confidence":"MEDIUM_LOW"},
+    {"id":"FS70_windscreen","x":1.42,"half_width":0.62,"half_height":0.64,"center_z":0.21,"confidence":"MEDIUM_LOW"},
+    {"id":"FS80_forward_fuselage","x":2.18,"half_width":0.66,"half_height":0.66,"center_z":0.17,"confidence":"MEDIUM_LOW"},
+    {"id":"FS90_cowling_transition","x":2.80,"half_width":0.68,"half_height":0.68,"center_z":0.14,"confidence":"MEDIUM_LOW"},
+    {"id":"FS100_cowling_aft","x":3.02,"half_width":0.69,"half_height":0.69,"center_z":0.13,"confidence":"MEDIUM_LOW"},
+    {"id":"FS110_cowling_lip","x":3.66,"half_width":0.65,"half_height":0.65,"center_z":0.13,"confidence":"MEDIUM_LOW"},
+    {"id":"FS120_prop_plane","x":3.8725,"half_width":0.18,"half_height":0.18,"center_z":0.13,"confidence":"MEDIUM"}
+  ],
+  "required_cross_section_controls": [
+    "Crown flatter through cockpit stations than belly",
+    "Shoulder volume peaks below canopy sill",
+    "Keel remains continuous through wing carry-through",
+    "Cowling transition is tangent-continuous without cylindrical step",
+    "Tail cone terminates into empennage reference shell rather than a point"
+  ],
+  "acceptance": {
+    "evaluated_length_m":7.745,
+    "length_tolerance_m":0.04,
+    "maximum_section_position_error_m":0.02,
+    "silhouette_overlay_max_mean_error_percent":1.5,
+    "silhouette_overlay_max_local_error_percent":3.0
+  }
+}
+

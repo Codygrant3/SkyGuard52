@@ -1,0 +1,321 @@
+{
+  "schema": "skyguard.phase5.p5a-network-source-research.v1",
+  "researched_at_utc": "2026-08-02T07:46:07.8182432Z",
+  "scope": "Read-only source and license research for EngineIdle, EngineCruise, EnginePower, Propeller and OpenCockpitWind",
+  "network_method": {
+    "integrated_search_attempts": 2,
+    "integrated_search_result": "ABORTED_BEFORE_RESULTS",
+    "fallback": "Read-only HTTP requests to first-party library, archive and license pages",
+    "audio_files_downloaded": 0,
+    "preview_files_downloaded": 0,
+    "assets_imported": 0
+  },
+  "verification_receipt": {
+    "pro_sound_effects_sitemap_url": "https://www.prosoundeffects.com/sitemap.xml",
+    "pro_sound_effects_yak52_page_count": 87,
+    "selected_pro_sound_effects_pages_http_200": 7,
+    "pro_sound_effects_licensing_page_http_200": true,
+    "pro_sound_effects_eula_page_http_200": true,
+    "wikimedia_source_page_http_200": true,
+    "dcs_product_page_http_200": true,
+    "dcs_eula_page_http_200": true
+  },
+  "license_sources": [
+    {
+      "publisher": "Pro Sound Effects",
+      "license_overview_url": "https://www.prosoundeffects.com/licensing",
+      "license_agreement_url": "https://www.prosoundeffects.com/individual-end-user-license-agreement",
+      "verified_terms": {
+        "commercial_synchronization": true,
+        "all_media": true,
+        "worldwide": true,
+        "perpetual_for_lifetime_purchase": true,
+        "editing_and_looping_allowed": true,
+        "standalone_redistribution_allowed": false,
+        "single_user_default": true,
+        "multi_user_requires_separate_license": true
+      },
+      "project_interpretation": "Potentially suitable for cooked-game synchronization after purchase and confirmation of the correct user or team license. Raw or readily extractable audio must not ship.",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED"
+    },
+    {
+      "publisher": "Wikimedia Commons / source creator",
+      "license_agreement_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "verified_terms": {
+        "commercial_use_allowed": true,
+        "adaptation_allowed": true,
+        "attribution_required": true,
+        "share_alike_required_for_adaptation": true
+      },
+      "project_interpretation": "Useful as an identity reference. Share-alike, attribution, source quality and perspective make it unsuitable for binding without a separate legal and audio review.",
+      "rights_state": "LICENSE_VISIBLE_REFERENCE_ONLY"
+    },
+    {
+      "publisher": "Eagle Dynamics",
+      "license_agreement_url": "https://www.digitalcombatsimulator.com/en/support/license/",
+      "verified_terms": {
+        "program_sounds_owned_or_licensed_by_publisher": true,
+        "reverse_engineering_prohibited": true,
+        "derivative_extraction_right_granted": false
+      },
+      "project_interpretation": "The DCS Yak-52 product confirms authentic Yak-52 recordings exist, but installed-product audio cannot be extracted or reused.",
+      "rights_state": "BLOCKED_NO_REUSE_RIGHT"
+    }
+  ],
+  "production_candidates": [
+    {
+      "candidate_id": "PSE_FL_D6AlU",
+      "category": "EngineIdle",
+      "classification": "CONDITIONAL_PRODUCTION_CANDIDATE",
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/D6AlU/aircraft-yakovlev-yak52-1979-idle-interior01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Idle Interior01 Stereo",
+      "creator": "Stephan Schutze",
+      "publisher": "Pro Sound Effects",
+      "library": "Foundation",
+      "page_declared_format": "wav",
+      "page_declared_duration_seconds": 55,
+      "page_declared_identity": "1979 Yakovlev Yak-52",
+      "page_declared_perspective": "Interior",
+      "semantic_fit": "EXACT_AIRCRAFT_AND_IDLE_INTERIOR_COARSE_STATE",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED",
+      "technical_state": "NOT_DOWNLOADED_NOT_AUDITIONED",
+      "remaining_gates": [
+        "Duration is five seconds below the preferred 60-second bed",
+        "Confirm stable RPM and absence of system-check transitions",
+        "Confirm rear-cockpit microphone position",
+        "Confirm loopability, noise, clipping, sample rate and bit depth",
+        "Purchase correct license and preserve invoice/EULA evidence"
+      ],
+      "source_status_must_remain": "MISSING_SOURCE"
+    },
+    {
+      "candidate_id": "PSE_FL_pcON0",
+      "category": "EngineCruise",
+      "classification": "CONDITIONAL_PRODUCTION_CANDIDATE",
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/pcON0/aircraft-yakovlev-yak52-1979-flying-interior01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Flying Interior01 Stereo",
+      "creator": "Stephan Schutze",
+      "publisher": "Pro Sound Effects",
+      "library": "Foundation",
+      "page_declared_format": "wav",
+      "page_declared_duration_seconds": 77,
+      "page_declared_identity": "1979 Yakovlev Yak-52",
+      "page_declared_perspective": "Interior",
+      "semantic_fit": "EXACT_AIRCRAFT_AND_IN_FLIGHT_INTERIOR_COARSE_STATE",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED",
+      "technical_state": "NOT_DOWNLOADED_NOT_AUDITIONED",
+      "remaining_gates": [
+        "Confirm stabilized cruise RPM and load",
+        "Confirm rear-cockpit microphone position and canopy state",
+        "Confirm no maneuver or throttle transition is baked into loop region",
+        "Confirm loopability, noise, clipping, sample rate and bit depth",
+        "Purchase correct license and preserve invoice/EULA evidence"
+      ],
+      "source_status_must_remain": "MISSING_SOURCE"
+    },
+    {
+      "candidate_id": "PSE_FL_TR4z6",
+      "category": "EngineCruise",
+      "classification": "CONDITIONAL_PRODUCTION_CANDIDATE",
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/TR4z6/aircraft-yakovlev-yak52-1979-flying-interior02-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Flying Interior02 Stereo",
+      "creator": "Stephan Schutze",
+      "publisher": "Pro Sound Effects",
+      "library": "Foundation",
+      "page_declared_format": "wav",
+      "page_declared_duration_seconds": 86,
+      "page_declared_identity": "1979 Yakovlev Yak-52",
+      "page_declared_perspective": "Interior",
+      "semantic_fit": "EXACT_AIRCRAFT_AND_IN_FLIGHT_INTERIOR_COARSE_STATE",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED",
+      "technical_state": "NOT_DOWNLOADED_NOT_AUDITIONED",
+      "remaining_gates": [
+        "Confirm stabilized cruise RPM and load",
+        "Confirm air-release event does not contaminate loop regions",
+        "Confirm rear-cockpit microphone position and canopy state",
+        "Confirm loopability, noise, clipping, sample rate and bit depth",
+        "Purchase correct license and preserve invoice/EULA evidence"
+      ],
+      "source_status_must_remain": "MISSING_SOURCE"
+    },
+    {
+      "candidate_id": "PSE_FL_NbnZ4",
+      "category": "EnginePower",
+      "classification": "CONDITIONAL_PRODUCTION_CANDIDATE",
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/NbnZ4/aircraft-yakovlev-yak52-1979-take-off-interior01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Take Off Interior01 Stereo",
+      "creator": "Stephan Schutze",
+      "publisher": "Pro Sound Effects",
+      "library": "Foundation",
+      "page_declared_format": "wav",
+      "page_declared_duration_seconds": 47,
+      "page_declared_identity": "1979 Yakovlev Yak-52",
+      "page_declared_perspective": "Interior",
+      "semantic_fit": "EXACT_AIRCRAFT_AND_HIGH_LOAD_EVENT_NOT_STABILIZED_BED",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED",
+      "technical_state": "NOT_DOWNLOADED_NOT_AUDITIONED",
+      "remaining_gates": [
+        "Confirm a stable high-load region exists despite takeoff transition",
+        "Duration is below the preferred 60-second bed",
+        "Confirm rear-cockpit microphone position",
+        "Confirm loopability, noise, clipping, sample rate and bit depth",
+        "Purchase correct license and preserve invoice/EULA evidence"
+      ],
+      "source_status_must_remain": "MISSING_SOURCE"
+    },
+    {
+      "candidate_id": "PSE_AC_Wq32C",
+      "category": "Propeller",
+      "classification": "CONDITIONAL_PRODUCTION_CANDIDATE",
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-AC/Wq32C/aircraft-1977-yakovlev-yak52-idle01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft 1977 Yakovlev Yak52 Idle01 Stereo",
+      "creator": "Stephan Schutze",
+      "publisher": "Pro Sound Effects",
+      "library": "Aviation",
+      "page_declared_format": "wav",
+      "page_declared_duration_seconds": 54,
+      "page_declared_identity": "1977 Yakovlev Yak-52",
+      "page_declared_perspective": "Exterior unspecified",
+      "semantic_fit": "EXACT_AIRCRAFT_PAGE_EXPLICITLY_DESCRIBES_PROPELLER_WHIR",
+      "rights_state": "TERMS_VERIFIED_PURCHASE_AND_SEAT_CONFIRMATION_REQUIRED",
+      "technical_state": "NOT_DOWNLOADED_NOT_AUDITIONED",
+      "remaining_gates": [
+        "Confirm propeller configuration and documented RPM",
+        "Confirm blade-passage layer can be separated without engine combing",
+        "Duration is six seconds below the preferred 60-second bed",
+        "Confirm microphone distance, loopability, noise, sample rate and bit depth",
+        "Purchase correct license and preserve invoice/EULA evidence"
+      ],
+      "source_status_must_remain": "MISSING_SOURCE"
+    }
+  ],
+  "reference_only_sources": [
+    {
+      "reference_id": "PSE_FL_pmw4E",
+      "categories": [
+        "EnginePower"
+      ],
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/pmw4E/aircraft-yakovlev-yak52-1979-idle-high-interior01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Idle High Interior01 Stereo",
+      "creator": "Stephan Schutze",
+      "duration_seconds": 76,
+      "classification": "REFERENCE_ONLY_STATE_MISMATCH",
+      "reason": "High idle can inform timbre but does not prove sustained flight load."
+    },
+    {
+      "reference_id": "PSE_FL_MUAbD",
+      "categories": [
+        "EngineIdle"
+      ],
+      "source_page_url": "https://www.prosoundeffects.com/sound-effects/PSE_SL-FL/MUAbD/aircraft-yakovlev-yak52-1979-idle-system-check-interior01-stereo",
+      "source_page_http_status": 200,
+      "title": "Aircraft Yakovlev Yak52 1979 Idle System Check Interior01 Stereo",
+      "creator": "Stephan Schutze",
+      "duration_seconds": 31,
+      "classification": "REFERENCE_ONLY_TRANSITION_CONTAMINATION",
+      "reason": "System-check and air-release events are not a clean persistent idle bed."
+    },
+    {
+      "reference_id": "WIKIMEDIA_YAK52_START_2015",
+      "categories": [
+        "EngineIdle",
+        "Propeller"
+      ],
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Yakovlev_Yak-52_beim_Starvorgang.webm",
+      "source_page_http_status": 200,
+      "title": "Yakovlev Yak-52 beim Starvorgang.webm",
+      "creator": "Fiver, der Hellseher",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "duration_seconds": 11,
+      "classification": "REFERENCE_ONLY_SHORT_EXTERIOR_VIDEO",
+      "reason": "Exact aircraft startup reference, but too short, exterior, video-derived and share-alike for direct production binding without further review."
+    }
+  ],
+  "blocked_or_ambiguous_sources": [
+    {
+      "source_id": "DCS_YAK52_INSTALLED_AUDIO",
+      "categories": [
+        "EngineIdle",
+        "EngineCruise",
+        "EnginePower",
+        "Propeller",
+        "OpenCockpitWind"
+      ],
+      "product_page_url": "https://www.digitalcombatsimulator.com/en/shop/modules/yak52/",
+      "license_url": "https://www.digitalcombatsimulator.com/en/support/license/",
+      "classification": "BLOCKED_NO_REUSE_OR_EXTRACTION_RIGHT",
+      "reason": "The product page says its sounds were recorded from a Yak-52, while the EULA reserves sound rights and prohibits reverse engineering or derivative extraction."
+    },
+    {
+      "source_id": "PSE_INTERIOR_FLIGHT_AS_OPEN_COCKPIT_WIND",
+      "categories": [
+        "OpenCockpitWind"
+      ],
+      "classification": "BLOCKED_CANOPY_AND_AIRSPEED_AMBIGUOUS",
+      "reason": "Interior flight pages do not document an open rear canopy, airspeed, microphone position or isolated airflow."
+    }
+  ],
+  "category_disposition": [
+    {
+      "category": "EngineIdle",
+      "conditional_production_candidate_count": 1,
+      "reference_only_count": 2,
+      "status": "CANDIDATE_FOUND_NOT_LICENSED_NOT_AUDITIONED"
+    },
+    {
+      "category": "EngineCruise",
+      "conditional_production_candidate_count": 2,
+      "reference_only_count": 0,
+      "status": "CANDIDATES_FOUND_NOT_LICENSED_NOT_AUDITIONED"
+    },
+    {
+      "category": "EnginePower",
+      "conditional_production_candidate_count": 1,
+      "reference_only_count": 1,
+      "status": "CANDIDATE_FOUND_NOT_LICENSED_NOT_AUDITIONED"
+    },
+    {
+      "category": "Propeller",
+      "conditional_production_candidate_count": 1,
+      "reference_only_count": 1,
+      "status": "CANDIDATE_FOUND_NOT_LICENSED_NOT_AUDITIONED"
+    },
+    {
+      "category": "OpenCockpitWind",
+      "conditional_production_candidate_count": 0,
+      "reference_only_count": 0,
+      "status": "BLOCKED_NO_EXPLICIT_OPEN_CANOPY_SOURCE"
+    }
+  ],
+  "overall_status": {
+    "categories_with_conditional_candidate": 4,
+    "categories_without_candidate": 1,
+    "licensed_source_count": 0,
+    "downloaded_source_count": 0,
+    "production_bound_count": 0,
+    "production_ready": false,
+    "status": "RESEARCH_COMPLETE_ACQUISITION_AUTHORIZATION_REQUIRED"
+  },
+  "next_authorized_acquisition_action": {
+    "action": "Obtain a written project-specific quote and license confirmation from Pro Sound Effects before purchase or download.",
+    "recipient": "licensing@prosoundeffects.com",
+    "request_must_confirm": [
+      "Correct single-user versus multi-user license for this development workflow",
+      "Commercial Windows game use and cooked executable distribution",
+      "Editing, layering, looping and loudness processing",
+      "Trailer and promotional synchronization",
+      "No raw source redistribution and expected anti-extraction safeguards",
+      "Whether the selected products are available individually or require Foundation/Aviation library purchase",
+      "Recorder notes for RPM, load, microphone position and canopy state",
+      "Whether an explicit Yak-52 open-rear-canopy airflow recording exists"
+    ],
+    "purchase_or_download_authorized_by_this_research": false
+  }
+}

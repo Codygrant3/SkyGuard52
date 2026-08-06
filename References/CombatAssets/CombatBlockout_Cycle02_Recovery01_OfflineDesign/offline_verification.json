@@ -1,0 +1,33 @@
+{
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_BLENDER_RECOVERY01_AUTHORIZATION",
+  "original": {
+    "path": "_offline_gate\\blender_gate7_combat_blockout_cycle02_attempt01.py",
+    "bytes": 19603,
+    "sha256": "0ffbf0af4b3778b10afb7fc7d91890ad5b222bf61d979ca9a18ddc804b4239d7"
+  },
+  "recovery": {
+    "path": "_offline_gate\\blender_gate7_combat_blockout_cycle02_recovery01_attempt01.py",
+    "bytes": 19609,
+    "sha256": "40b3997ebc6075e702ee659722a90503320e019dc13af3c5d5bec67d67f79a71"
+  },
+  "changes": [
+    {
+      "line": 14,
+      "before": "GATE = \"GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01\"",
+      "after": "GATE = \"GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01\""
+    },
+    {
+      "line": 319,
+      "before": "    scene.render.engine = \"BLENDER_EEVEE_NEXT\"",
+      "after": "    scene.render.engine = \"BLENDER_EEVEE\""
+    }
+  ],
+  "checks": {
+    "exactly_two_changed_lines": true,
+    "recovery_gate_identity": true,
+    "blender_5_2_eevee_enum": true,
+    "invalid_enum_absent": true,
+    "no_unreal_launch": true,
+    "no_external_model": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery11-terminal-failure.v1",
+  "gate": "FAIL_RECOVERY11_FULL_MODULE_COMPILE_TERMINAL",
+  "attempt_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE/attempt_20260802T204251703979Z_e51691b0",
+  "evidence": {
+    "compile_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE/attempt_20260802T204251703979Z_e51691b0/compile_receipt.json",
+      "bytes": 1137,
+      "sha256": "b76bd4fe37259ceccbe5f0453bc9be19763a324797f6125846d0daecb45d1bc3"
+    },
+    "build_stdout": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE/attempt_20260802T204251703979Z_e51691b0/build.stdout.log",
+      "bytes": 31323,
+      "sha256": "47f15874465f521e93607e1eb0bd282560f24e0bbf8423df70d3dbbcc57ed293"
+    },
+    "build_stderr": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE/attempt_20260802T204251703979Z_e51691b0/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_inventory": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE/attempt_20260802T204251703979Z_e51691b0/source_inventory.json",
+      "bytes": 30149,
+      "sha256": "e51691b088d828e25fcfd79c760743b5e6f0ce3ba4dd86958c31a3b81d4c7d17"
+    }
+  },
+  "result": {
+    "build_exit_code": 6,
+    "timed_out": false,
+    "source_inventory_unchanged": true,
+    "compiler_error_count": 96,
+    "activation_created": false,
+    "mapped_visual_proof_authorized": false
+  },
+  "root_cause": {
+    "summary": "The global line-dispatch macros did not preserve physical source line numbers after Unreal's force-include preprocessing. Recovery11 identifiers resolved three to four lines later and affected Recovery05, Recovery07, and Recovery09 method definitions, producing invalid member names and cascading undeclared Record errors.",
+    "first_primary_errors": [
+      "Recovery05Capture.cpp(540): SKYGUARD_RECOVERY11_BUILD_RECORD_543",
+      "Recovery05Capture.cpp(610): SKYGUARD_RECOVERY11_WRITE_PNG_614",
+      "Recovery07Capture.cpp(657): SKYGUARD_RECOVERY11_BUILD_RECORD_660",
+      "Recovery07Capture.cpp(727): SKYGUARD_RECOVERY11_WRITE_PNG_731",
+      "Recovery09Capture.cpp(783): SKYGUARD_RECOVERY11_BUILD_RECORD_786",
+      "Recovery09Capture.cpp(853): SKYGUARD_RECOVERY11_WRITE_PNG_857"
+    ]
+  },
+  "lane_disposition": {
+    "phase3_status": "FAILED_WITH_IMMUTABLE_EVIDENCE",
+    "same_namespace_retry_forbidden": true,
+    "recovery12_creation_forbidden_by_current_directive": true,
+    "automatic_retry_performed": false,
+    "next_action": "Independent architecture decision is required before any future Phase3 recovery; current production run continues only through non-Phase3 evidence and planning work."
+  }
+}

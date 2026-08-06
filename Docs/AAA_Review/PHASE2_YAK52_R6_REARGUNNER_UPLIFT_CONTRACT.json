@@ -1,0 +1,36 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-reargunner-uplift-contract.v1",
+  "generated_at_utc": "2026-08-05T23:32:35.636909+00:00",
+  "status": "DESIGNED_NOT_AUTHORIZED",
+  "workflow": [
+    "Grok design",
+    "Codex validation",
+    "Blender MCP execution",
+    "render",
+    "direct visual inspection",
+    "Grok critique",
+    "bounded correction",
+    "Opus 5 acceptance"
+  ],
+  "preserve_existing_names": true,
+  "one_heavy_process": true,
+  "one_authorized_blender_execution_per_attempt": true,
+  "automatic_retry": false,
+  "failed_namespace_reuse": false,
+  "external_asset_downloads": false,
+  "required_future_outputs": [
+    "versioned blend",
+    "Unreal-ready FBX or GLB",
+    "manifest",
+    "SHA-256 inventory",
+    "fixed-camera renders",
+    "topology and deformation report"
+  ],
+  "blocking_prerequisites": [
+    "dimensioned fuselage stations or maintenance cross-sections",
+    "canopy rail/bow/overlap/open-travel dimensions",
+    "cockpit seat and eye datum drawing",
+    "cowling and M-14P/V-530 installation geometry",
+    "detailed wing-root/fairing and tail planform authority"
+  ]
+}

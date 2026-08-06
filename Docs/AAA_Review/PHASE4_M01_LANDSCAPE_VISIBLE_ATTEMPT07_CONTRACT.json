@@ -1,0 +1,157 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007",
+  "status": "OFFLINE_TINY_PROOF_IMPLEMENTED_PENDING_EXPLICIT_AUTHORIZATION",
+  "scope": "New immutable diagnostic-material and capture-lifecycle proof after Attempt06 Recovery02 formally failed visual and absolute performance gates.",
+  "immutable_predecessor": {
+    "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-006-RECOVERY-02",
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_02",
+    "files": {
+      "gate_report": {"file": "gate_report.json", "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"},
+      "latest_gate_snapshot": {"file": "latest_gate_snapshot.json", "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"},
+      "recovery_manifest": {"file": "recovery_manifest.json", "sha256": "7a0d4ae2c380a30f532c7ed1edc8c00551f88c23c3a3f4eb1685e4b5d9636b03"},
+      "recovery_receipt": {"file": "recovery_receipt.json", "sha256": "919083788c2e4a0613eb7f1c34a72c2a9fcc522dcdc87617d73608a07eeeffe7"},
+      "stderr_log": {"file": "logs/offline_gate.stderr.log", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "stdout_log": {"file": "logs/offline_gate.stdout.log", "sha256": "b23e4f2fa9b89f0323580f98b40425676de83be2603922a8fb1798f35f186dce"}
+    },
+    "required_gate": "FAIL",
+    "required_technical_gate": "FAIL",
+    "mutation_allowed": false,
+    "promotion_allowed": false
+  },
+  "locked_production_packages": {
+    "baseline_map": {"asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03", "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap", "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"},
+    "candidate_map": {"asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06", "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap", "sha256": "3403a518e6c24ded6285f03f136f9009f6387d697432b48b82942fa6b2c551fc"},
+    "candidate_material": {"asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06", "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset", "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"},
+    "attempt06_coverage_material": {"asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06", "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset", "sha256": "954d76f572085a7aa06e07de731d5fa4bbffe68c155c4ce19770ede0ece1afde"},
+    "attempt06_component_id_material": {"asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06", "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset", "sha256": "4d8373e935f2accd7bbfa76ade25d272a638f8436bae6b1d433a6898a9afcefc"}
+  },
+  "compiled_module": {
+    "file": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "sha256": "6140def208c2259a4d32261a647b662bcaa88d1c623edbc9b42377e897067e3f",
+    "rebuild_allowed": false
+  },
+  "formal_diagnosis": {
+    "show_only_lifecycle": {
+      "explicit_component_count": 16,
+      "generated_material_instance_count": 16,
+      "material_parent_match_count": 16,
+      "render_thread_synchronized": true,
+      "conclusion": "Component selection and parent-instance bookkeeping passed, but those checks do not prove that a Landscape shader permutation rendered."
+    },
+    "diagnostic_pixels": {
+      "coverage_max_rgb8_by_camera": {
+        "C01_ESTABLISHING_HIGH": 31,
+        "C02_SHORELINE_GRAZE": 0,
+        "C03_ROUTE_LOW": 27,
+        "C04_INLAND_CLOSE": 0,
+        "C05_COVERAGE_HIGH": 30
+      },
+      "component_id_unique_rgb8_count": 12,
+      "component_id_all_pixels_grayscale": true,
+      "coverage_c05_and_component_id_c05_decoded_rgb_identical": true,
+      "expected_coverage_white_rgb8": 255,
+      "expected_component_palette_ids": 16,
+      "observed_matching_palette_ids": 0
+    },
+    "root_cause": {
+      "primary": "Attempt06 diagnostic materials were authored without used_with_landscape, so the generated Landscape instances passed parent checks while the renderer used a dark default/fallback permutation.",
+      "secondary": "The capture actor transform was applied after native capture configuration and its render-thread flush. Fresh capture actors could therefore capture before the contract camera transform reached the render proxy, matching the all-black C02 and C04 diagnostics.",
+      "evidence_strength": "HIGH",
+      "full_capture_retry_before_tiny_proof_forbidden": true
+    }
+  },
+  "new_immutable_outputs": {
+    "coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07.uasset"
+    },
+    "component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07.uasset"
+    },
+    "must_not_exist_before_authoring": true,
+    "must_never_overwrite_attempt06": true
+  },
+  "tiny_live_proof": {
+    "execution_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01",
+    "rhi_required": "D3D12|SM6",
+    "resolution": [640, 360],
+    "fov_degrees": 90.0,
+    "camera_transform_must_be_applied_before_capture_configuration": true,
+    "camera_ids": ["C05_COVERAGE_HIGH", "C04_INLAND_CLOSE"],
+    "captures": [
+      "coverage_C05.png",
+      "component_id_C05.png",
+      "coverage_C04.png"
+    ],
+    "coverage_white_rgb8_minimum": 240,
+    "coverage_c05_minimum_fraction": 0.05,
+    "coverage_c04_minimum_fraction": 0.01,
+    "component_palette_rgb8_tolerance_per_channel": 12,
+    "component_palette_minimum_pixels_per_id": 500,
+    "all_16_component_ids_required": true,
+    "used_with_landscape_required": true,
+    "show_only_component_count_required": 16,
+    "generated_instance_count_required": 16,
+    "material_parent_match_count_required": 16,
+    "render_thread_sync_required": true,
+    "governed_material_restore_required": true,
+    "world_save_forbidden": true,
+    "pcg_generation_forbidden": true,
+    "full_capture_forbidden": true,
+    "profile_forbidden": true,
+    "automatic_retry_forbidden": true,
+    "promotion_forbidden": true
+  },
+  "absolute_performance_diagnosis": {
+    "candidate": {
+      "mean_frame_time_ms": 23.086890003844676,
+      "p95_frame_time_ms": 33.4134,
+      "mean_gpu_time_ms": 15.944529834678969,
+      "p95_gpu_time_ms": 28.9545,
+      "frames_over_50_ms": 16
+    },
+    "absolute_budgets": {
+      "mean_frame_time_ms_max": 16.7,
+      "p95_frame_time_ms_max": 22.2,
+      "mean_gpu_time_ms_max": 11.0,
+      "p95_gpu_time_ms_max": 14.0,
+      "frames_over_50_ms": 0
+    },
+    "baseline_also_misses_absolute_budgets": true,
+    "candidate_passes_all_relative_delta_budgets": true,
+    "candidate_mean_frame_improvement_vs_baseline_ms": 1.0212956244170677,
+    "candidate_p95_frame_improvement_vs_baseline_ms": 2.120299999999993,
+    "classification": "ENVIRONMENT_WIDE_ABSOLUTE_FRAME_BUDGET_MISS_NOT_LANDSCAPE_REGRESSION",
+    "dominant_existing_signals": [
+      "RenderThread mean 23.025 ms and frame mean 23.087 ms",
+      "RenderThread RenderOther mean 6.651 ms",
+      "RenderThread EventWait/Visibility mean 5.925 ms",
+      "GPU ShadowDepths mean 2.331 ms with p95 11.617 ms",
+      "GPU VolumetricCloud mean 2.257 ms with p95 11.420 ms",
+      "GPU LumenReflections mean 1.678 ms with p95 10.857 ms",
+      "GPU Postprocessing mean 1.298 ms with p95 9.080 ms"
+    ],
+    "unchanged_full_profile_rerun_has_no_evidentiary_value": true,
+    "next_performance_step_after_visual_proof": "Authorize separate short controlled cvar attribution probes before changing quality settings or running another full 60-second profile."
+  },
+  "execution_authorization": {
+    "unreal_launch_allowed": false,
+    "author_new_diagnostic_assets_allowed": false,
+    "tiny_live_proof_allowed": false,
+    "full_capture_allowed": false,
+    "profile_allowed": false,
+    "automatic_retry_allowed": false,
+    "network_allowed": false,
+    "promotion_allowed": false,
+    "explicit_switch_required": "--authorize-single-tiny-proof",
+    "next_gate": "exactly one bounded author plus tiny D3D12 proof; stop regardless of pass or fail"
+  },
+  "implementation_hashes": {
+    "diagnostic_builder": "9066d2738dc3238e8f4f79513ca7ed161afde891e69f5fd14137373889970eb6",
+    "attempt07_author": "a931b038fae53f129d4aeed413ae87948432f2d460f53168e5340c499fbc326d",
+    "attempt07_tiny_proof": "e7e0a89bf539e6d47e804023be093357322cc067aea2375a6e8f7939b7e8be56",
+    "attempt07_supervisor": "37341682457f65500461175f9fc3297424e0530964a7f23125dd983afc5e08c7"
+  }
+}

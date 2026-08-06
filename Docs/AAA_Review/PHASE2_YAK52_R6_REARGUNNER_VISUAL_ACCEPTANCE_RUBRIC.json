@@ -1,0 +1,33 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-reargunner-visual-rubric.v1",
+  "generated_at_utc": "2026-08-05T23:32:35.636909+00:00",
+  "status": "FROZEN_FOR_FUTURE_USE",
+  "cameras": [
+    "rear_gunner_neutral",
+    "rear_gunner_ads",
+    "port_sweep_extreme",
+    "starboard_sweep_extreme",
+    "canopy_open_clearance",
+    "pilot_safety_exterior",
+    "glove_closeup",
+    "weapon_sight_profile"
+  ],
+  "automatic_bounds": [
+    "81 sightline rays with at least 77 unobstructed",
+    "zero camera start inside glass, frame, or fuselage",
+    "zero pilot-safety-volume penetration",
+    "zero canopy/weapon/wing hard intersections",
+    "manifold deformation-critical meshes",
+    "nonzero UV area and no unintended mirrored hand UVs",
+    "front and rear iron sights align within frozen ADS pixel tolerance"
+  ],
+  "human_rejections": [
+    "block-like arm or fingers",
+    "rubber-tube wrist",
+    "floating grip",
+    "misaligned physical sights",
+    "canopy or wing clipping",
+    "featureless plastic materials",
+    "visible low-poly silhouette at first-person distance"
+  ]
+}

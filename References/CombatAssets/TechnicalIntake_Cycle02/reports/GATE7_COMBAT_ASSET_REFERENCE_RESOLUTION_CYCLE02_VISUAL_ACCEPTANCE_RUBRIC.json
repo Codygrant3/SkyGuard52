@@ -1,0 +1,22 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "blockout_acceptance": [
+    "matches only accepted family/envelope evidence",
+    "contains PROVISIONAL naming",
+    "dimension report passes",
+    "no unsupported make/model markings",
+    "hand silhouette has palm, articulated fingers, thumb, knuckle plane and cuff",
+    "no weapon/hand/cockpit interpenetration",
+    "ADS axis is geometrically coherent without a UI reticle",
+    "Igla missile forward end and export axis are unambiguous",
+    "Shahed wingspan and length match the frozen envelope"
+  ],
+  "automatic_rejection": [
+    "claims Colt M4A1, AK-74, 9K338 or another exact identity",
+    "mixes Igla variants",
+    "adds ammunition or chambering details",
+    "labels a fabricated character vector as a NASA percentile",
+    "adds invented Shahed cross-sections",
+    "removes or overwrites accepted runtime assets"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema":"skyguard.phase2.yak52-r6-slice01-contract.v1",
+  "contract_id":"PHASE2-YAK52-R6-S01-REFERENCE-LOCK-20260802-V1",
+  "status":"OFFLINE_DESIGN_COMPLETE_AWAITING_REFERENCE_INPUT",
+  "purpose":"Govern a future one-attempt Blender production slice for the reference-locked Yak-52 forward airframe without modifying R4/R5 evidence or runtime assets.",
+  "coordinate_system":{"units":"metres","forward":"+X","right":"+Y","up":"+Z"},
+  "scope":[
+    "station-lofted full fuselage context",
+    "production forward fuselage and cowling transition",
+    "radial-engine face and propeller",
+    "airfoil wing roots with contextual wing surfaces",
+    "continuous fixed canopy and sliding rear canopy",
+    "bounded cockpit context and rear-gunner sightline",
+    "diagnostic production PBR and surface proof",
+    "eleven fixed review cameras"
+  ],
+  "out_of_scope":[
+    "complete cockpit instruments",
+    "final crew or weapon art",
+    "Unreal import",
+    "runtime replacement",
+    "packaging",
+    "AAA or shipping completion claim"
+  ],
+  "authorities":[
+    "PHASE1_8_COMPLETION_AUDIT_UPDATE_R5_RECOVERY01_2026-08-02.md",
+    "PHASE2_YAK52_R6_SLICE01_R5_FAILURE_LEDGER.md",
+    "PHASE2_YAK52_R6_SLICE01_DIMENSION_LEDGER.json",
+    "PHASE2_YAK52_R6_SLICE01_FUSELAGE_STATIONS.json",
+    "PHASE2_YAK52_R6_SLICE01_COWLING_RADIAL_LEDGER.json",
+    "PHASE2_YAK52_R6_SLICE01_WING_ROOT_LEDGER.json",
+    "PHASE2_YAK52_R6_SLICE01_CANOPY_KINEMATICS.json",
+    "PHASE2_YAK52_R6_SLICE01_GUNNER_SIGHTLINE.json",
+    "PHASE2_YAK52_R6_SLICE01_MATERIAL_SURFACE_SPEC.json",
+    "PHASE2_YAK52_R6_SLICE01_TOPOLOGY_STRATEGY.json",
+    "PHASE2_YAK52_R6_SLICE01_OBJECT_HIERARCHY.json",
+    "PHASE2_YAK52_R6_SLICE01_CAMERAS.json",
+    "PHASE2_YAK52_R6_SLICE01_ACCEPTANCE_RUBRIC.json",
+    "PHASE2_YAK52_R6_SLICE01_NAMESPACE.json"
+  ],
+  "immutable_inputs":[
+    {"id":"R4_BASELINE","sha256":"a7694e012e1dbdef06c432919f2a93d62ec3845c888506fe7019ef81aeb2f30e"},
+    {"id":"R5_SOURCE","sha256":"446b4e8d71457b2f9bac3798c22b82fec212e89161ec30c7d2d800683fdfa1f2"},
+    {"id":"R5_RECOVERY01_RECEIPT","sha256":"cc75467220c9a07e3d0dcef7bd2ed1ce4e1eab949bae77b2d70ac77d539be72a"},
+    {"id":"RECOVERY12_TERMINAL","sha256":"a7a12b5c817a45a5596fbb8dc9602339bc61aac2425a6c1fb22c1711e48ca81a"}
+  ],
+  "reference_policy":{
+    "four_user_images_hash_bound":true,
+    "photo_derived_values_must_be_labeled_inferred":true,
+    "dimensioned_top_reference_required_before_blender":true,
+    "authoritative_station_or_three_view_required_before_final_silhouette_acceptance":true
+  },
+  "reserved_namespace":"Docs/AAA_Review/PHASE2_YAK52_R6_SLICE01_NAMESPACE.json",
+  "execution_policy":{
+    "this_contract_authorizes_blender":false,
+    "this_contract_authorizes_unreal":false,
+    "future_blender_attempts_maximum":1,
+    "automatic_retry":false,
+    "one_heavy_process_at_a_time":true,
+    "hash_freeze_required_before_launch":true
+  },
+  "readiness_rule":"Gate may become PASSED_READY_FOR_EXPLICIT_R6_BLENDER_AUTHORIZATION only after missing reference inputs are supplied, hashed, integrated into ledgers, and all focused tests pass again.",
+  "claims":{"reference_locked":false,"blender_ready":false,"final":false,"aaa":false,"promotion_allowed":false}
+}

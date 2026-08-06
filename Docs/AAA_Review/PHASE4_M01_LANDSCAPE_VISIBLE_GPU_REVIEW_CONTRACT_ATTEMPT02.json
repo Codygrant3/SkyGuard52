@@ -1,0 +1,51 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-gpu-review-amendment.v2",
+  "effective_schema": "skyguard.phase4.m01-landscape-visible-gpu-review-contract.v2",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-002",
+  "supersedes_contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-001",
+  "base_contract": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_GPU_REVIEW_CONTRACT.json",
+  "base_contract_sha256": "a82c85a2dde46ebdf668129c94c5fa2a953fc738d65f6f8dc6bb6d5647a07cb0",
+  "status": "READY_FOR_AUTHORIZED_GPU_AUTHORING",
+  "failed_attempt_evidence": {
+    "candidate_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v1_attempt01",
+    "candidate_file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v1_attempt01.umap",
+    "candidate_file_bytes": 6698,
+    "candidate_file_sha256": "88203beaea1f100c50c4863e3e119023871e49807f6d6ae8da06b95e2b206970",
+    "attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible/attempt_20260802T144942492Z",
+    "terminal_state": "FAIL",
+    "failure": "T_L4_grassrock_N has flip_green_channel false under the superseded all-assets-preflipped policy",
+    "performance_evidence_eligible": false,
+    "overlap_disclosure": "NullRHI authoring briefly overlapped Phase 3 Blender build006 before HOLD arrived; no captures or profiles ran",
+    "must_not_be_deleted_renamed_or_overwritten": true
+  },
+  "overrides": {
+    "candidate": {
+      "immutable_map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v2_attempt02",
+      "material_root": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v2",
+      "landscape_material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v2/M_M01_Landscape_Validation_v2",
+      "must_not_exist_before_authoring": true,
+      "must_never_overwrite_baseline": true
+    },
+    "material_design": {
+      "normal_policy": "mixed_locked_OpenGL_handling_without_source_mutation",
+      "normal_green_handling": {
+        "/Game/Skyguard/Textures/Imported/T_L3_sand_N": {
+          "required_source_flip_green_channel": true,
+          "material_space_green_inversion": false
+        },
+        "/Game/Skyguard/Textures/Imported/T_L4_grassrock_N": {
+          "required_source_flip_green_channel": false,
+          "material_space_green_inversion": true,
+          "correction_vector": [1.0, -1.0, 1.0]
+        }
+      },
+      "locked_source_texture_mutation_allowed": false,
+      "selected_texture_samples": 6,
+      "texture_sample_budget": 8
+    },
+    "execution_safety": {
+      "no_locked_source_texture_mutation": true,
+      "preflight_requires_zero_Blender_processes": true
+    }
+  }
+}

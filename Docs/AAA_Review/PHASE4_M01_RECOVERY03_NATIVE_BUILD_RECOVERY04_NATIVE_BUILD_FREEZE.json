@@ -1,0 +1,101 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery04-native-build-freeze.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY04",
+  "created_utc": "2026-08-03T22:54:34.2533774Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY04_UNREAL_AUTHORIZATION",
+  "authority": {
+    "offline_freeze": {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_FREEZE.json",
+      "bytes": 4817,
+      "sha256": "1ae3e80e5e04f83fe63806ef2898e8e2704cbfb3acf7a1d32453a59006a7e524"
+    },
+    "terminal_supervisor_manifest": {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_TERMINAL_SUPERVISOR_MANIFEST.json",
+      "bytes": 2487,
+      "sha256": "4e7495eb91a225d12cae0dab13758aeb077922e0327fbc344ac723e0010e88f2"
+    }
+  },
+  "evidence": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_NATIVE_BUILD_TERMINAL_MANIFEST.json",
+      "bytes": 1542,
+      "sha256": "fc6fb8aace76e2aef79abad9fb54919c2885fbf3c63c2bbe2f21af8e828164ce"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_SOURCE_BINARY_INVENTORY.json",
+      "bytes": 2732,
+      "sha256": "93310ab10b0168b1fab332f52b72b415d975febda41e51e911119c03cf912717"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_SOURCE_PARITY.json",
+      "bytes": 1191,
+      "sha256": "57511e2ad5c9a3582e6fcc3496a4fd229297481676cd0776c7b91fc33e26ed0b"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_POSTBUILD_VERIFICATION.json",
+      "bytes": 1157,
+      "sha256": "0d4729197808338a9a6c83a07ff735d5347ad0dd8fee721d91c1b671fff85b80"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_BUILD_ACCEPTANCE.json",
+      "bytes": 624,
+      "sha256": "7969be4249167f1e1749a93d49289ef70f5608f4d020f3accf3d608890f3514e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_BUILD_READINESS.json",
+      "bytes": 576,
+      "sha256": "02288d376e19c73958e916e056cc8e0220ce98f9d7734f9152c2134fab3f4400"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY04_SINGLE_UNREAL_PROOF.md",
+      "bytes": 4451,
+      "sha256": "4666e8de493c0c26f25925d367cace40557204f9402cf606719e149ca5db8ffb"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY04\\build_attempt_01\\logs\\build.stdout.log",
+      "bytes": 3530,
+      "sha256": "126da94fd0e74fb0157f8c99e374b6cbb2bc2a67ae2e96c441f00e5480f76a45"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY04\\build_attempt_01\\logs\\build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY04\\build_attempt_01\\process_tree_samples.jsonl",
+      "bytes": 23127,
+      "sha256": "303421a73869f71da26cacbb731d75b490def48b6db70596ec7519dd5e41f59d"
+    }
+  ],
+  "accepted_binaries": [
+    {
+      "path": "D:\\SG52R03B05\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery01.dll",
+      "bytes": 177664,
+      "sha256": "2070765a5d44199f7116c2038c97d866b91a509706de73953ead1cad057cb6e3"
+    },
+    {
+      "path": "D:\\SG52R03B05\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery01.pdb",
+      "bytes": 24514560,
+      "sha256": "5a670aecd58b1e84af532e55209315a92647b567998cd09baa470bf9c13ebd26"
+    },
+    {
+      "path": "D:\\SG52R03B05\\Binaries\\Win64\\UnrealEditor.modules",
+      "bytes": 146,
+      "sha256": "ea9474c57a12a344e31d5bdd87a498464c8be2c8e0e977faa6633f9bc707a892"
+    }
+  ],
+  "execution_facts": {
+    "exit_code": 0,
+    "exit_code_type": "System.Int32",
+    "supervisor_launch_count": 1,
+    "bundled_dotnet_launch_count": 1,
+    "automation_tool_invocation_count": 1,
+    "retry_count": 0,
+    "timed_out": false,
+    "rebound": true,
+    "unreal_editor_launched": false,
+    "blender_launched": false,
+    "runtime_proof_executed": false
+  },
+  "next_gate": "EXPLICIT_SINGLE_RECOVERY04_UNREAL_AUTHORIZATION"
+}

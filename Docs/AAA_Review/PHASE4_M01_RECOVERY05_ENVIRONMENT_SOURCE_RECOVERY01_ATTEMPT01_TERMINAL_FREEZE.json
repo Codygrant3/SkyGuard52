@@ -1,0 +1,130 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-source-recovery01-attempt01-terminal-freeze.v1",
+  "created_utc": "2026-08-04T21:43:08.1871089Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "Binary candidate generation and atomic replacement succeeded, leaving the project source at the exact expected 15032-byte LF hash. Final validation tooling then failed because Windows PowerShell byte arrays do not expose the attempted SequenceEqual instance method. The frozen gate prohibited retrying validation, so the source remains correct but unaccepted for native build.",
+  "authority": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 5456,
+    "sha256": "98e8be964ed2fdc060c5eaa02528b828ef174725555e4290e59729aabbc00e42"
+  },
+  "binary_generator_launch_count": 1,
+  "binary_generator_exit_code": 0,
+  "binary_generator_exit_code_type": "System.Int32",
+  "atomic_replacement_result": 0,
+  "atomic_replacement_result_type": "System.Int32",
+  "validation_retry_count": 0,
+  "source_current": {
+    "bytes": 15032,
+    "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44",
+    "crlf": 0,
+    "lone_lf": 417
+  },
+  "candidate_evidence_sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44",
+  "failed_crlf_state_preserved": true,
+  "compile_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "native_build_authorized": false,
+  "source_mutation_authorized_in_next_gate": false,
+  "frozen_files": [
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/atomic_replacement_receipt.json",
+      "bytes": 898,
+      "sha256": "9c4a81b9f222f1a2a5ab8390e3c3862d778d2dfe6e963a26cde51100954e4fbe"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/byte_generation_receipt.json",
+      "bytes": 1397,
+      "sha256": "3000a03a3caa3b80ca99751d453b87b6554dcd67506529b92d0ce45684506959"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/candidate_validation_report.json",
+      "bytes": 655,
+      "sha256": "b597099121ab800ddcea1eabd6c488f74eb05ecfcd38566c671d3830498b25b4"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/candidate/SkyguardMission01EnvironmentDirector.corrected.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/focused_static_tests.json",
+      "bytes": 503,
+      "sha256": "b2ce2a19f43add0b7062f9bb211737c4eb2440ee13f37e930fd01bfe13dc9538"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/generate_recovery05_environment_candidate_bytes.ps1",
+      "bytes": 4259,
+      "sha256": "24bb0b746cc0d3dd817b8a56ac36d6702fda2a75806977d11a539a7c770e6f25"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/inputs/failed_crlf_source.cpp",
+      "bytes": 15449,
+      "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/inputs/immutable_lf_source.cpp",
+      "bytes": 14984,
+      "sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/logs/candidate_generation.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/logs/candidate_generation.stdout.log",
+      "bytes": 615,
+      "sha256": "e6ab182e757d02f3d6324b591c777043152e5953ba8db037cbba2a5f5cdb9ffc"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/logs/final_validation_tool_error.txt",
+      "bytes": 202,
+      "sha256": "245c46e6da5ea5a02ebfd2d675e8fa46367786610419c51a23ebde47b3433f98"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/post_replacement_validation.json",
+      "bytes": 1030,
+      "sha256": "98c3684f41f263459d73bb72f6a5c7cbd7119ea83c3d7054f248aa3709dbbdd9"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/preflight_receipt.json",
+      "bytes": 997,
+      "sha256": "c4d8ee917abdeaa39e2ddfd734cfaaf6638209c8e0c21cd675f1f89a270415ed"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/replacement/failed_crlf_before_replace.cpp",
+      "bytes": 15449,
+      "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/replacement/replaced_target_backup.cpp",
+      "bytes": 15449,
+      "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/replacement/validated_candidate_evidence.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_ATTEMPT01_READINESS.json",
+      "bytes": 613,
+      "sha256": "9565b83c62a1ea52f1bccc85135e03e25a3eb53acb5ff5d70dc5671507169213"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_ATTEMPT01_TERMINAL_EVIDENCE.json",
+      "bytes": 1640,
+      "sha256": "09de8b3d28df30a45971cb7fbdabcd70854476794b59bb08612f9b40a6a9944e"
+    },
+    {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    }
+  ],
+  "failed_namespace_reuse_forbidden": true,
+  "next_gate": "EXPLICIT_OFFLINE_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_AUTHORIZATION_REQUIRED",
+  "next_gate_scope": "Validate the existing target and candidate evidence without altering either, using a frozen byte comparison supported by Windows PowerShell. If validation passes, freeze acceptance and create the one-shot native-build prompt. Do not compile or launch Unreal during validation recovery."
+}

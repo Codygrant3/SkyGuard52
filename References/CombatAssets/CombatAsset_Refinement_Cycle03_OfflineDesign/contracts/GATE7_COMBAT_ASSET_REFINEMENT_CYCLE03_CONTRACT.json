@@ -1,0 +1,25 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "created_at_utc": "2026-08-06T12:48:24.684131+00:00",
+  "mode": "offline_only_no_blender_no_unreal",
+  "classification_target": "PASSED_READY_FOR_EXPLICIT_FIRST_COMBAT_ASSET_REFINEMENT_AUTHORIZATION",
+  "immutable_accepted_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+    "bytes": 9362,
+    "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228",
+    "classification": "PASSED_RECOVERY03_PROVISIONAL_BLOCKOUTS_ACCEPTED"
+  },
+  "first_execution_asset": "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON",
+  "forbidden_actions_this_gate": [
+    "launch Blender/MCP",
+    "launch Unreal/builds",
+    "modify accepted blockouts",
+    "Unreal import",
+    "final AAA claims"
+  ],
+  "future_namespaces_reserved": {
+    "blender_output": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_ATTEMPT01",
+    "build_attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON\\attempt_01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_TERMINAL_SUPERVISOR_MANIFEST.json"
+  }
+}

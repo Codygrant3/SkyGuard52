@@ -1,0 +1,41 @@
+{
+  "schema": "skyguard.phase4.m01-recovery04-unreal-execution-preflight-terminal-freeze.v1",
+  "created_utc": "2026-08-03T23:00:00Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "unreal_launch_count": 0,
+  "automatic_retry": false,
+  "accepted_native_build_preserved": true,
+  "authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_NATIVE_BUILD_FREEZE.json",
+    "bytes": 4475,
+    "sha256": "ab5add337f66614b7b25eb7e6e700357889d8f14c4428ecc95c59ed5c77a93fd"
+  },
+  "frozen_files": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY04_UNREAL_EXECUTION_PREFLIGHT_TERMINAL.json",
+      "bytes": 3366,
+      "sha256": "7d1fc83746d034985e0240385669168d0e77f3e14c91dda820a84862ba854571"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_RECOVERY04_UNREAL_PREFLIGHT_TERMINAL_2026-08-03.md",
+      "bytes": 1468,
+      "sha256": "efac0ec0aae4dacf8071e8d5ee80572342d3f38d0a98f3f8342abee20efd8853"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_RECOVERY04_UNREAL_PREFLIGHT_TERMINAL_2026-08-03.md",
+      "bytes": 1288,
+      "sha256": "950b2a50a1fb8924554b521dd22b3d17c6c6ab2826bc15694720ff315bde26f7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY04_RUNTIME_BINDING_OFFLINE_GATE.md",
+      "bytes": 4375,
+      "sha256": "b223e8125f6850a6239c56052d4f90af39a93499f3a761050506a882f58c41a0"
+    }
+  ],
+  "blocking_conditions": [
+    "No frozen Recovery04 runtime contract exists.",
+    "No frozen Recovery04 one-shot launcher exists.",
+    "The accepted binary requires inherited Recovery01 tokens and runtime-attempt suffix, but no frozen Recovery04 provenance binding reconciles them."
+  ],
+  "next_gate": "OFFLINE_RECOVERY04_RUNTIME_BINDING_AND_LAUNCHER_FREEZE_ONLY"
+}

@@ -1,0 +1,317 @@
+{
+  "schema": "skyguard.aaa.gate7-combat-art-production-acceptance-contract.v1",
+  "contract_id": "G7-COMBAT-ART-PRODUCTION-001",
+  "generated_at_utc": "2026-08-04T23:21:49.4596256Z",
+  "project_root": "D:\\Skyguard52",
+  "engine": "Unreal Engine 5.8",
+  "dcc": "Blender",
+  "scope": {
+    "included": [
+      "Mission 1 production pilot and rear-gunner character presentation",
+      "rear-gunner anatomy, sleeves, gloves, harnesses and weapon poses",
+      "production rifle, physical iron sights, ADS, fire, recoil and reload presentation",
+      "production Igla launcher and missile presentation, lock feedback and reload presentation",
+      "production Shahed and heavy-drone visual families with damage and breakup states",
+      "Mission 1 Pathfinder boss, readable weak points, phase states, destruction and aftermath",
+      "pooled and prewarmed Niagara, audio and debris presentation for combat",
+      "packaged input-driven combat, performance and stability acceptance"
+    ],
+    "excluded_until_later_gates": [
+      "production boss art for Missions 2 through 10",
+      "mission-specific production environments outside Mission 1",
+      "final campaign packaging and release acceptance"
+    ]
+  },
+  "current_classification": "AWAITING_GATE6_AND_EXPLICIT_PRODUCTION_AUTHORIZATION",
+  "gate_dependencies": {
+    "hard_prerequisites": [
+      {
+        "gate": "Gate 6",
+        "requirement": "Yak-52 R6 must pass reference-locked Blender production, Unreal import, close-view visual review, cockpit geometry, canopy state, sockets and collision acceptance.",
+        "current_state": "AWAITING_REFERENCE_INPUT"
+      },
+      {
+        "gate": "Gate 2 through Gate 5",
+        "requirement": "The current Mission 1 environment source must compile, the Recovery05 proof must pass, and the representative production environment proof must be accepted before final combat integration.",
+        "current_state": "AWAITING_NEXT_EXPLICIT_GATE"
+      }
+    ],
+    "parallel_safe_offline_work": [
+      "reference-board curation",
+      "candidate inventory and license/provenance work",
+      "dimensioned design contracts",
+      "naming, socket, material-slot and animation-state contracts",
+      "strict source-only verifier and test design"
+    ],
+    "heavy_gate_rule": "Every Blender production, Unreal import, native build, integration, capture, profiling or packaging attempt requires its own explicit one-shot authorization."
+  },
+  "production_candidate_namespace": {
+    "required_root": "/Game/Skyguard/Production/Gate7",
+    "blender_source_root": "D:\\Skyguard52\\ArtSource\\Gate7",
+    "attempt_root": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ART",
+    "rules": [
+      "Every candidate uses a fresh immutable attempt namespace.",
+      "Failed attempts are never overwritten, renamed, reused or automatically retried.",
+      "Accepted source, exports, imports, renders, logs, receipts and manifests are hash-frozen together.",
+      "No candidate becomes runtime authority through naming, presence or a successful tool exit alone."
+    ]
+  },
+  "disallowed_as_production_authority": {
+    "path_fragments": [
+      "/Game/Skyguard/Meshes/WebGame",
+      "/Game/Skyguard/Meshes/Hero",
+      "/Game/Skyguard/Meshes/L88/yak52_l88_silhouette_blockout",
+      "/Engine/BasicShapes"
+    ],
+    "name_fragments": [
+      "_proxy",
+      "proxy_art",
+      "blockout",
+      "webgame"
+    ],
+    "specific_current_examples": [
+      "/Game/Skyguard/Meshes/WebGame/skyguard-rifle/StaticMeshes/rifle-fde",
+      "/Game/Skyguard/Meshes/WebGame/skyguard-rifle/StaticMeshes/rifle-glove",
+      "/Game/Skyguard/Meshes/WebGame/skyguard-rifle/StaticMeshes/rifle-sleeve",
+      "/Game/Skyguard/Meshes/WebGame/skyguard-interceptor/StaticMeshes/compact-launcher-tube",
+      "/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-body",
+      "/Game/Skyguard/Meshes/Hero/rifle_ads_proxy",
+      "/Game/Skyguard/Meshes/Hero/rifle_irons_proxy",
+      "/Game/Skyguard/Meshes/Hero/igla_proxy",
+      "/Game/Skyguard/Meshes/Hero/glove_hand_proxy",
+      "/Game/Skyguard/Meshes/Hero/glove_arm_proxy",
+      "/Game/Skyguard/Meshes/Hero/shahed_proxy",
+      "/Game/Skyguard/Meshes/Hero/shahed_heavy_proxy",
+      "/Game/Skyguard/Meshes/Hero/propeller_proxy"
+    ],
+    "policy": "These assets may remain immutable historical or engineering evidence, but they cannot satisfy any production-art acceptance criterion and cannot be the selected mesh in a final candidate."
+  },
+  "shared_candidate_requirements": {
+    "reference_and_scale": [
+      "A dimensioned, source-cited reference board is frozen before modeling.",
+      "Scale, orientation, origin, pivots, material slots and socket coordinates are recorded in centimeters and verified after Unreal import.",
+      "Reference uncertainty is disclosed; no unsupported detail is promoted as factual."
+    ],
+    "geometry_and_uv": [
+      "Close-view silhouette is continuous, correctly proportioned and free of disconnected slabs, floating members or primitive fallback forms.",
+      "Subdivision/high-poly or equivalent source supports believable bevels, panel transitions and manufactured forms.",
+      "Production retopology, Nanite strategy or skeletal topology is chosen per asset and justified by measured screen use.",
+      "UVs have no unintended overlap, required padding at final mip resolution, consistent texel density and dedicated lightmap handling where applicable.",
+      "Collision is authored for gameplay purpose and independently checked against visible geometry."
+    ],
+    "materials_and_textures": [
+      "Calibrated PBR base color, normal and packed roughness/metallic/AO data are supplied; emissive, opacity, thickness or masks are added only where physically justified.",
+      "No baked directional lighting, crushed AO, normal-map projection contamination or featureless overexposure is accepted.",
+      "Macro variation, micro detail, decals and controlled wear remain material-appropriate under daylight, overcast, night, wet and storm lighting.",
+      "Every third-party texture or material used in a final candidate has a passing final-use provenance receipt."
+    ],
+    "visual_review": [
+      "Original-resolution images are inspected directly, not only thumbnails or automated statistics.",
+      "Each close-view asset has fixed daylight, overcast, night/wet, grazing-angle and gameplay-context cameras.",
+      "First-person assets include hip, ADS, recoil, reload, left-look, right-look, canopy-edge and pilot-protection views.",
+      "Temporal review rejects mesh jitter, camera-coupled world motion, LOD popping, unstable materials, clipping or animation discontinuity.",
+      "A successful import, render or automation exit never substitutes for human visual acceptance."
+    ],
+    "runtime_and_packaging": [
+      "No synchronous asset load, runtime mesh construction, shader compilation or unbounded allocation occurs inside firing, impact, damage or destruction paths.",
+      "Required assets, Niagara systems, audio voices and breakup actors are pooled or prewarmed before play.",
+      "Final validation runs from a fresh packaged Development candidate and is repeated for the Shipping candidate.",
+      "Asset Registry, cook and packaged dependency scans prove no disallowed proxy or retired WebGame asset is selected by the accepted runtime path."
+    ]
+  },
+  "lanes": [
+    {
+      "id": "G7.1",
+      "name": "Pilot and rear-gunner production characters",
+      "depends_on": [
+        "accepted Yak-52 R6 cockpit, seats, canopy, camera, protection volumes and sockets"
+      ],
+      "deliverables": [
+        "production pilot and rear-gunner meshes",
+        "shared or governed skeleton and physics assets",
+        "seat, harness, head, eye, shoulder, hand and weapon sockets",
+        "seated idle, look, brace, fire, reload, Igla raise/lower and reaction poses"
+      ],
+      "acceptance": [
+        "anatomy, scale and seated posture are believable from rear-gunner and exterior cameras",
+        "pilot, gunner, harness and airframe never interpenetrate through the governed motion range",
+        "pilot remains protected from rifle and missile firing traces in every weapon state",
+        "rear canopy remains visibly open for the gunner while the pilot canopy reads as closed and protective"
+      ]
+    },
+    {
+      "id": "G7.2",
+      "name": "Arms, sleeves and gloves",
+      "depends_on": [
+        "G7.1 skeleton, shoulder, elbow, wrist and weapon socket contract"
+      ],
+      "deliverables": [
+        "anatomical upper arms, forearms, hands and articulated fingers",
+        "leather glove materials with seams, folds, roughness and wear",
+        "two-hand rifle grips, Igla grips, recoil support and reload poses",
+        "first-person corrective shapes and IK targets"
+      ],
+      "acceptance": [
+        "no block, cylinder or sphere primitive reads as a human limb",
+        "finger contact, wrist angle and forearm volume remain credible through hip, ADS, fire and reload states",
+        "no clipping through the rifle, Igla, canopy, cockpit rim or pilot",
+        "skin, sleeve and glove materials remain distinct under all required lighting"
+      ]
+    },
+    {
+      "id": "G7.3",
+      "name": "Production rifle and physical ADS",
+      "depends_on": [
+        "G7.1 and G7.2 sockets, poses and safe firing arcs"
+      ],
+      "deliverables": [
+        "production rifle with high/low or Nanite source, calibrated PBR materials and physical iron sights",
+        "muzzle, eject, left-hand, right-hand and ADS sockets",
+        "hip-to-ADS, recoil, recovery, reload and manipulation animations",
+        "muzzle flash, casing, impact and spatial audio integration"
+      ],
+      "acceptance": [
+        "right mouse holds ADS and left mouse fires while ADS remains held",
+        "front post and rear aperture align physically with the camera without a HUD reticle or crosshair",
+        "weapon does not fire through the pilot, protected cockpit, canopy or airframe",
+        "muzzle effects originate from the barrel and do not obscure the sight picture",
+        "model, hands and sights remain stable during aircraft motion, banking and recoil"
+      ]
+    },
+    {
+      "id": "G7.4",
+      "name": "Production Igla and missile",
+      "depends_on": [
+        "G7.1 and G7.2 sockets, poses and safe firing arcs"
+      ],
+      "deliverables": [
+        "production launcher, sighting/control hardware and separate missile",
+        "launcher rear, forward muzzle, seeker, exhaust and hand sockets",
+        "raise, acquire, track, fire, recoil/backblast presentation, lower and reload states",
+        "lock acquire, decay, loss and launch feedback using audio and diegetic presentation"
+      ],
+      "acceptance": [
+        "missile visibly exits the forward end with correct orientation",
+        "lock eligibility respects target class, line of sight, seeker cone and acquire/decay timing",
+        "launch is blocked by the pilot, canopy, airframe and unsafe arcs",
+        "missile trail, exhaust, detonation and audio are spatial, pooled and free of first-use stalls"
+      ]
+    },
+    {
+      "id": "G7.5",
+      "name": "Shahed and heavy-drone production families",
+      "depends_on": [
+        "accepted dimensioned drone reference boards"
+      ],
+      "deliverables": [
+        "standard and heavy production silhouettes",
+        "propulsion, control-surface and material variants",
+        "intact, damaged, critical, breakup and wreck states",
+        "governed collision, hit zones, LOD/Nanite strategy and destruction sockets"
+      ],
+      "acceptance": [
+        "each variant is recognizable at engagement distance and credible at close flyby distance",
+        "damage progression is readable without relying on a HUD reticle",
+        "breakup follows authored pieces and pooled effects rather than spawning unbounded primitives",
+        "destroyed drones produce impact/explosion audio, not placeholder pew sounds",
+        "no drone breakup or cleanup path causes a visible multi-second freeze"
+      ]
+    },
+    {
+      "id": "G7.6",
+      "name": "Mission 1 Pathfinder production boss",
+      "depends_on": [
+        "G7.5 material, damage and destruction language",
+        "accepted Mission 1 environment proof"
+      ],
+      "deliverables": [
+        "continuous production silhouette",
+        "distinct weak-point modules with readable protected and exposed states",
+        "phase-specific materials, motion, damage and destruction states",
+        "aftermath wreckage and objective-completion presentation"
+      ],
+      "acceptance": [
+        "the rejected Recovery12 disconnected slabs, floating cylinders, clipped framing and featureless overexposure are absent",
+        "weak points are visually legible from the rear-gunner route and align with gameplay collision",
+        "rifle and Igla each have intentional, tested roles in the encounter",
+        "phase transitions and final destruction remain within frozen performance and stability limits"
+      ]
+    },
+    {
+      "id": "G7.7",
+      "name": "Combat VFX, audio and destruction systems",
+      "depends_on": [
+        "G7.3 through G7.6 accepted source candidates"
+      ],
+      "deliverables": [
+        "pooled Niagara systems for muzzle, impact, missile, fire, smoke, debris and explosions",
+        "realistic spatial rifle, Igla, impact, explosion, debris, engine, wind, ocean, city and radio audio",
+        "voice, debris and effect concurrency budgets",
+        "prewarm manifest and first-use shader/PSO evidence"
+      ],
+      "acceptance": [
+        "no placeholder pew sound is used for explosions",
+        "effects remain readable without washing out iron sights or weak points",
+        "audio has distance, occlusion, cockpit and open-rear-canopy behavior",
+        "systems are pooled, bounded, reclaim cleanly and do not trigger runtime shader compilation during measured combat"
+      ]
+    },
+    {
+      "id": "G7.8",
+      "name": "Mission 1 combat integration and packaged proof",
+      "depends_on": [
+        "G7.1 through G7.7 accepted",
+        "accepted Mission 1 environment and Yak-52 R6"
+      ],
+      "deliverables": [
+        "fresh packaged Development candidate",
+        "three accepted 1920x1080 input-driven combat captures",
+        "one accepted 20-minute input-driven combat soak",
+        "ADS rifle, Igla, drone breakup, boss destruction and weather-fast-camera traces",
+        "contextual shader/PSO review and machine-readable terminal receipts"
+      ],
+      "acceptance": [
+        "all 15 existing performance bookmark literals are exercised in context",
+        "no ADS/fire freeze, drone-breakup stall, boss-destruction stall, crash, timeout or material restoration failure",
+        "frozen frame-time, hitch, GPU, memory, VRAM and stability rubrics pass",
+        "pilot/airframe firing protection passes for rifle and Igla in every camera and weapon state",
+        "original-resolution gameplay captures pass direct visual inspection",
+        "the Shipping candidate repeats the accepted input, combat, save/settings and stability gates before release"
+      ]
+    }
+  ],
+  "required_lane_evidence": [
+    "dimensioned reference board and source provenance",
+    "Blender source and export manifest",
+    "object, material, UV, skeleton, socket, pivot and collision inventory",
+    "source and output hashes",
+    "fresh namespace-absence and heavy-process preflight",
+    "tool stdout, stderr, PID, actual numeric exit code and timeout status",
+    "original-resolution governed renders",
+    "Unreal import, Asset Registry, cook and dependency receipts",
+    "direct human visual acceptance",
+    "performance, stability and packaged-game evidence appropriate to the lane"
+  ],
+  "promotion_rules": {
+    "required_classifications": [
+      "PASSED_SOURCE_AND_REFERENCE",
+      "PASSED_BLENDER_ARTIFACT_VALIDATION",
+      "PASSED_DIRECT_VISUAL_REVIEW",
+      "PASSED_UNREAL_IMPORT_AND_RUNTIME_BINDING",
+      "PASSED_PACKAGED_COMBAT_PERFORMANCE_AND_STABILITY"
+    ],
+    "failure_classification": "FAILED_WITH_EVIDENCE",
+    "waiting_classification": "AWAITING_NEXT_EXPLICIT_GATE",
+    "prohibitions": [
+      "No lane is accepted because a file exists, a tool exits zero, or an automated count passes.",
+      "No failed attempt is repaired in place or silently replaced.",
+      "No production candidate is integrated before all upstream hashes and visual decisions are frozen.",
+      "No Gate 7 completion claim is allowed while any proxy, WebGame, L88 or engine primitive remains selected by the accepted runtime path."
+    ]
+  },
+  "next_executable_gate": {
+    "gate": "Gate 2 Mission 1 environment native project build validation",
+    "prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+    "authorization_state": "NOT_AUTHORIZED_IN_THIS_OFFLINE_GATE"
+  }
+}

@@ -1,0 +1,18 @@
+Launching 5 Luna jobs model=gpt-5.6-luna wave=wave03
+00:13:01 running=5 done=0
+00:13:13 running=5 done=0
+00:13:25 running=5 done=0
+00:13:37 running=5 done=0
+00:13:49 running=5 done=0
+00:14:01 running=5 done=0
+00:14:13 running=2 done=3
+00:14:25 running=1 done=4
+00:14:37 running=1 done=4
+00:14:49 running=1 done=4
+00:15:01 running=1 done=4
+00:15:13 running=1 done=4
+00:15:25 running=0 done=5
+wrote D:\Skyguard52\Docs\AAA_Review\luna_farm\wave03\wave03_ranked.csv rows=100 A-band=86
+WAVE_DONE proposals=100 rank_exit=0 selected=7
+selected_md=D:\Skyguard52\Docs\AAA_Review\luna_farm\wave03\selected_next_loop.md
+ranked_csv=D:\Skyguard52\Docs\AAA_Review\luna_farm\wave03\wave03_ranked.csv

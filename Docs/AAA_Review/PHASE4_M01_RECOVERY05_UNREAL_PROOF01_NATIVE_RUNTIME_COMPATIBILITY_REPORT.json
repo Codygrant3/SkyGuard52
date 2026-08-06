@@ -1,0 +1,94 @@
+{
+    "schema":  "skyguard.phase4.m01-recovery05-unreal-proof01-native-runtime-compatibility.v1",
+    "created_utc":  "2026-08-05T22:20:19.0536392Z",
+    "classification":  "PASS",
+    "active_plugin":  {
+                          "descriptor":  {
+                                             "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\SkyguardRecovery03NativeRecovery05.uplugin",
+                                             "bytes":  465,
+                                             "sha256":  "63e70f723e27f3c29536834dac8a7757629e43b02c13a02ae954fe2c432d57a5"
+                                         },
+                          "dll":  {
+                                      "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery05.dll",
+                                      "bytes":  177664,
+                                      "sha256":  "a231397c5a0692424963c88a62a7f463d74cb9fc6a96c677527ae9521ee38b3b"
+                                  },
+                          "pdb":  {
+                                      "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Binaries\\Win64\\UnrealEditor-SkyguardRecovery03NativeRecovery05.pdb",
+                                      "bytes":  24514560,
+                                      "sha256":  "cf52429896a8e18ff3b0ba4f631c335e1a0cf8c83d15ec93f79f84524c0e4268"
+                                  },
+                          "modules":  {
+                                          "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Binaries\\Win64\\UnrealEditor.modules",
+                                          "bytes":  146,
+                                          "sha256":  "0afbc2d8947a01a59e9e17ed031eca5618f33a30a5733438740ac5888fafe36a"
+                                      },
+                          "cpp":  {
+                                      "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Source\\SkyguardRecovery03NativeRecovery05\\Private\\SkyguardRecovery03NativeRecovery05Module.cpp",
+                                      "bytes":  26694,
+                                      "sha256":  "c814efbbe8c3ebc25e58a37b1097fd4bf6d8d68959c4e2139268f09d430fa6e6"
+                                  },
+                          "header":  {
+                                         "path":  "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Source\\SkyguardRecovery03NativeRecovery05\\Public\\SkyguardRecovery03NativeRecovery05Module.h",
+                                         "bytes":  3161,
+                                         "sha256":  "6c786f823f30dc5fe733e2c2eef2de13c34793f4a136fe9921e89fd93b986129"
+                                     },
+                          "enabled_by_default":  false,
+                          "module_identity":  "SkyguardRecovery03NativeRecovery05"
+                      },
+    "inherited_native_contract":  {
+                                      "contract_id":  "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01",
+                                      "authorization_token":  "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03-NATIVE-BUILD-RECOVERY-01-ONE-SHOT",
+                                      "runtime_attempt_suffix":  "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01/runtime_attempt_01",
+                                      "namespace_absent":  true,
+                                      "source_contract":  {
+                                                              "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_CONTRACT.json",
+                                                              "bytes":  3016,
+                                                              "sha256":  "3e66b5005d5ca995039fd6d96a3b9553960a91d8b017261f2ecd99d89e85afac"
+                                                          }
+                                  },
+    "ue58_compatibility":  {
+                               "exact_editor":  {
+                                                    "path":  "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+                                                    "bytes":  512952,
+                                                    "sha256":  "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+                                                },
+                               "d3d12_sm6_required":  true,
+                               "deferred_tick_driven_readiness":  true,
+                               "stable_ready_polls":  2,
+                               "material_restoration_in_finally":  true,
+                               "world_save_prohibited":  true
+                           },
+    "production_authorities":  {
+                                   "map":  {
+                                               "path":  "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+                                               "bytes":  532796,
+                                               "sha256":  "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+                                           },
+                                   "material":  {
+                                                    "path":  "D:\\Skyguard52\\Content\\Skyguard\\Materials\\Mission01\\LandscapeValidation_v6_attempt06\\M_M01_Landscape_Validation_v6_attempt06.uasset",
+                                                    "bytes":  15059,
+                                                    "sha256":  "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+                                                },
+                                   "environment_source":  {
+                                                              "path":  "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+                                                              "bytes":  15032,
+                                                              "sha256":  "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+                                                          },
+                                   "expected_landscape":  "M01_P4_Landscape_Production",
+                                   "expected_components":  16
+                               },
+    "legacy_plugins_explicitly_disabled":  [
+                                               "SkyguardRecovery03",
+                                               "SkyguardRecovery03NativeRecovery01",
+                                               "SkyguardRecovery03NativeRecovery04"
+                                           ],
+    "telemetry_network_plugins_disabled":  [
+                                               "Fab",
+                                               "Bridge",
+                                               "EditorTelemetry",
+                                               "RuntimeTelemetry",
+                                               "EOSShared"
+                                           ],
+    "runtime_source_change_required":  false
+}

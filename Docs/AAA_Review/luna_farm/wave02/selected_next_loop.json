@@ -1,0 +1,271 @@
+[
+  {
+    "id": "MAT-019",
+    "pillar": "materials",
+    "title": "Behind-wall oxidized fastener patch",
+    "change": "Add one compact oxidized-fastener patch to a background metal panel.",
+    "stage_targets": [
+      "Combat"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/Meshes/SM_MetalPanel_Weathered"
+      ],
+      "materials": [
+        "/Game/Skyguard/Materials/M_AirframeMetal",
+        "/Game/Skyguard/Materials/M_L23_Rust"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported/M_Tex_Oxidized_Fasteners"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small cluster of rust spots with a brighter metal center and place the panel beyond x>=bx+3.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored weathering stays behind the wall and uses localized positive-value fastener contrast.",
+    "acceptance_test": "Capture Combat; verify the patch reads as a small material story without competing with the rifle or reducing target contrast.",
+    "effort": "S",
+    "priority_guess": 19,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-011",
+    "pillar": "aircraft",
+    "title": "Instrument cluster bezel separators",
+    "change": "Add three thin bright bezel separator bars between the main instrument groups.",
+    "stage_targets": [
+      "Cockpit",
+      "ADS"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "instrument_cluster_proxy"
+      ],
+      "materials": [
+        "M_Cockpit_UnlitHF_BezelSeparator"
+      ],
+      "textures": [
+        "T_Cockpit_BezelSeparatorMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Keep bars at x>=bx+3, use light neutral unlit HF values, and preserve all existing instrument faces and panel fill.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Thin separators add readable grouping behind the wall and do not darken or occlude instrument faces.",
+    "acceptance_test": "Cockpit and ADS remain usable; separators clarify three groups without reducing gauge readability or creating glare.",
+    "effort": "S",
+    "priority_guess": 11,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-006",
+    "pillar": "materials",
+    "title": "Airframe paint scuff accents",
+    "change": "Add two or three small pale scuff patches to high-contact airframe zones.",
+    "stage_targets": [
+      "PropNose",
+      "YakBeauty"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_YakAirframe",
+        "/Game/Skyguard/Materials/M_L23_Scuff"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported/M_Tex_Scuff_Sparse"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use tiny additive masks with subdued neutral-white response; place only on already bright panel edges.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropNose",
+        "YakBeauty"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Tiny additive accents are bounded to existing bright edges and cannot turn the FOV into a dark material field.",
+    "acceptance_test": "Capture PropNose and YakBeauty; confirm scuffs improve authored wear readability without visible glow or camera usability loss.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-013",
+    "pillar": "aircraft",
+    "title": "Instrument switch-cap highlights",
+    "change": "Add five tiny bright shell caps to the visible instrument toggle switches.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "instrument_cluster_proxy"
+      ],
+      "materials": [
+        "M_Cockpit_Additive_SwitchCap"
+      ],
+      "textures": [
+        "T_Cockpit_SwitchCapMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Limit caps to existing switch locations, keep each below pixel-cluster scale where possible, and use restrained additive intensity without bloom.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Tiny additive caps improve instrument specificity without creating a dark panel or large bright region.",
+    "acceptance_test": "Cockpit remains usable; at least three switch caps are distinguishable and no cap blooms into neighboring gauges.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-015",
+    "pillar": "vfx",
+    "title": "Thin ocean spray fan",
+    "change": "Add a three-particle additive emissive spray fan to NS_OceanSpray at the principal wave break.",
+    "stage_targets": [
+      "Ocean",
+      "Harbor"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "M_VFX_Water_Additive"
+      ],
+      "textures": [
+        "T_OceanSpray_Thin"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX NS_OceanSpray"
+      ]
+    },
+    "implementation_notes": "Use tiny cool-white droplets with narrow spread, low count, and no opaque foam sheet.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Ocean",
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Tiny bright droplets preserve ocean readability and avoid broad dark or washed-out water coverage.",
+    "acceptance_test": "Ocean and Harbor remain usable; spray is confined to the selected wave break.",
+    "effort": "S",
+    "priority_guess": 15,
+    "risk": "low"
+  },
+  {
+    "id": "CO-001",
+    "pillar": "city_ocean",
+    "title": "Bright brick tower vertical strip",
+    "change": "Add one narrow warm-brick vertical facade strip to facade_tower_proxy behind the primary wall.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "facade_tower_proxy"
+      ],
+      "materials": [
+        "M_Brick_WarmBright"
+      ],
+      "textures": [
+        "T_Brick_SubtleVariation"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place at x>=bx+3 with a single narrow strip, restrained roughness variation, and no dark-only facade material.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The accent stays behind the wall and does not alter the frozen HF silhouette or primary FOV materials.",
+    "acceptance_test": "Loop52 recipe remains 11/11 usable; City and Wide show one readable brick plane without black-pixel growth.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "CO-002",
+    "pillar": "city_ocean",
+    "title": "Apartment bright plaster panel",
+    "change": "Add one pale plaster infill panel to apartment_midrise_proxy behind the wall.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "apartment_midrise_proxy"
+      ],
+      "materials": [
+        "M_Plaster_Sunlit"
+      ],
+      "textures": [
+        "T_Plaster_FineGrain"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a thin rectangular panel at x>=bx+3 with warm ivory albedo and soft value variation.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Tiny behind-wall geometry adds facade readability without competing with the L52 unlit HF foreground.",
+    "acceptance_test": "City and Wide retain usable framing and the panel reads as bright plaster rather than a washout patch.",
+    "effort": "S",
+    "priority_guess": 2,
+    "risk": "low"
+  }
+]

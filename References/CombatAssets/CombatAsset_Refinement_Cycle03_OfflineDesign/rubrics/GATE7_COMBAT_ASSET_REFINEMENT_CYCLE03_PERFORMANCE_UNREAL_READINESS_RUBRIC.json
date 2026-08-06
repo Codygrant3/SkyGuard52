@@ -1,0 +1,26 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "unreal_import_authorized_now": false,
+  "before_future_import": [
+    "scale",
+    "pivot/forward-axis",
+    "sockets",
+    "collision separation",
+    "texture density",
+    "Nanite vs classic",
+    "no diagnostic mats"
+  ],
+  "budgets": {
+    "rail": "tiny static",
+    "rifle_fp": "retopo+bake",
+    "missile": "low cylinder",
+    "hand": "FP deforming",
+    "shahed": "simple shell"
+  },
+  "stability": [
+    "one Blender process",
+    "no concurrent Unreal",
+    "immutable namespaces",
+    "no auto retry"
+  ]
+}

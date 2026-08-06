@@ -1,0 +1,138 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery03-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY03",
+  "disposition": "OFFLINE_READY_REQUIRES_SEPARATE_RECOVERY03_AUTHORIZATION",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "bound_evidence": {
+    "diagnosis": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY03_DIAGNOSIS.json",
+      "bytes": 4143,
+      "sha256": "a500f27986dec89ec1b7cd211555f35ddea8a5bd2dd21ccb52fb4fc6f99b5ae7"
+    },
+    "known_nonblank_attempt03_sweep": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03/sweep/capture_manifest.json",
+      "bytes": 31035,
+      "sha256": "37eaefec4da5461fc11ca1c153dc30fa314ec6100728d7ed6e5933ab4547235c"
+    },
+    "recovery02_supervisor_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_02/supervisor_receipt.json",
+      "bytes": 1296,
+      "sha256": "99248682da9d3b25809a6de48ca53e03a7ff151688b03cc3adb61be59f3b538f"
+    },
+    "recovery02_pilot_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_02/capture/pilot_receipt.json",
+      "bytes": 2385,
+      "sha256": "fb8e44751155c0a5fba5010d7ccab496771e0d6a9b1c91be2666980b559d0485"
+    },
+    "recovery02_engine_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_02/unreal.engine.log",
+      "bytes": 274722,
+      "sha256": "6b35a21e39b2e4e3b2f88f24fdd93082400f8fc4e221b752e617dbc03111c62e"
+    },
+    "known_nonblank_capture_source": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03.py",
+      "bytes": 14187,
+      "sha256": "42f72fe894944ac5d990d8de1bdaeeb717d10be4613313a88f069c65a721bd3d"
+    },
+    "recovery02_capture_source": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery02.py",
+      "bytes": 19577,
+      "sha256": "af405a1b1c90fb2d18a4c5b778675a46aa4603f746c93d12d2289d62cc3250ab"
+    },
+    "existing_review_map_package": {
+      "path": "Content/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03.umap",
+      "bytes": 29983,
+      "sha256": "2437baec361615433926d48776f206bb53f8abe7880384e3c4ba0e751e080def"
+    }
+  },
+  "pilot": {
+    "must_pass_before_full_sweep": true,
+    "capture_count": 3,
+    "rig": {
+      "key_lux": 100000.0,
+      "fill_lux": 12000.0,
+      "skylight": 2.25,
+      "manual_exposure_bias_ev": -12
+    },
+    "family_view_pairs": [
+      {"family": "Pathfinder", "view": "three_quarter"},
+      {"family": "Lighthouse", "view": "three_quarter"},
+      {"family": "RadarPost", "view": "three_quarter"}
+    ],
+    "sentinel_clear_rgba": [1.0, 0.0, 1.0, 1.0],
+    "hard_liveness_bounds": {
+      "unique_png_hash_count": 3,
+      "minimum_active_pixel_fraction_luma_gt_8": 0.02,
+      "minimum_max_channel_value": 64,
+      "minimum_unique_color_count": 64,
+      "maximum_sentinel_magenta_fraction": 0.001
+    }
+  },
+  "capture": {
+    "single_unreal_process": true,
+    "persistent_scene_capture_actor_count": 1,
+    "persistent_render_target_count": 1,
+    "reuse_same_capture_and_target_for_pilot_and_sweep": true,
+    "sentinel_clear_before_every_export": true,
+    "immediate_capture_scene_calls_per_export": 6,
+    "unexported_warmup_captures_after_rig_change": 3,
+    "reuse_existing_review_map_without_reassembly": true,
+    "content_package_save_allowed": false,
+    "fixed_manual_exposure_bias_ev": -12,
+    "resolution": [2048, 2048],
+    "families": ["Pathfinder", "Lighthouse", "RadarPost"],
+    "views_per_family": ["three_quarter", "grazing_port", "grazing_starboard"],
+    "rig_candidates": [
+      {"rig_id": "R00", "rig_index": 0, "key_lux": 36000.0, "fill_lux": 4320.0, "skylight": 0.81},
+      {"rig_id": "R01", "rig_index": 1, "key_lux": 44000.0, "fill_lux": 5280.0, "skylight": 0.99},
+      {"rig_id": "R02", "rig_index": 2, "key_lux": 52000.0, "fill_lux": 6240.0, "skylight": 1.17},
+      {"rig_id": "R03", "rig_index": 3, "key_lux": 60000.0, "fill_lux": 7200.0, "skylight": 1.35},
+      {"rig_id": "R04", "rig_index": 4, "key_lux": 68000.0, "fill_lux": 8160.0, "skylight": 1.53},
+      {"rig_id": "R05", "rig_index": 5, "key_lux": 76000.0, "fill_lux": 9120.0, "skylight": 1.71},
+      {"rig_id": "R06", "rig_index": 6, "key_lux": 84000.0, "fill_lux": 10080.0, "skylight": 1.89},
+      {"rig_id": "R07", "rig_index": 7, "key_lux": 92000.0, "fill_lux": 11040.0, "skylight": 2.07}
+    ],
+    "captures_per_candidate": 9,
+    "full_sweep_capture_count": 72,
+    "total_exported_capture_count": 75,
+    "one_global_rig_for_all_views": true
+  },
+  "selector": {
+    "active_pixel_threshold_luma": 8,
+    "maximum_active_clipped_fraction_luma_ge_250": 0.02,
+    "active_p50_range": [35, 210],
+    "active_p95_range": [100, 248],
+    "minimum_active_dynamic_range_p95_minus_p05": 35,
+    "canonical_capture_count": 9,
+    "selector_must_run_after_unreal_exit": true,
+    "tie_break": [
+      "minimum_maximum_normalized_penalty",
+      "minimum_mean_penalty",
+      "lowest_rig_index"
+    ]
+  },
+  "immutability": {
+    "recovery02_evidence_must_remain_unchanged": true,
+    "existing_review_map_package_must_remain_unchanged": true,
+    "original_candidate_packages_must_remain_unchanged": true,
+    "runtime_maps_must_remain_unchanged": true,
+    "config_must_remain_unchanged": true,
+    "new_content_package_count": 0,
+    "reassembly_allowed": false,
+    "overwrite_allowed": false
+  },
+  "acceptance": {
+    "rhi_validation": "D3D12|SM6",
+    "pilot_gate": "PASS_RECOVERY03_PERSISTENT_PILOT_LIVE_FULL_SWEEP_ALLOWED",
+    "full_sweep_gate": "PASS_RECOVERY03_PERSISTENT_SWEEP_AWAITING_OFFLINE_GLOBAL_RIG_SELECTION",
+    "exact_pilot_capture_count": 3,
+    "exact_full_sweep_capture_count": 72,
+    "exact_canonical_capture_count": 9,
+    "original_resolution_human_review_required": true,
+    "promotion_allowed_on_pass": false,
+    "p3_4_closed_on_pass": false
+  },
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

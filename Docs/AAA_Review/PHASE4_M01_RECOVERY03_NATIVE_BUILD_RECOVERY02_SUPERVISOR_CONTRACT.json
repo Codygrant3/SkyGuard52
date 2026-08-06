@@ -1,0 +1,37 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery02-supervisor.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY02",
+  "classification_pending": true,
+  "immutable_authorities": {
+    "terminal_freeze": {"file": "Docs/AAA_Review/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 2765, "sha256": "2fa345942cc9e4e7b91825257b893479372c7d2b8afcdea8d97067a8239bfb4a"},
+    "source_freeze": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY01_FREEZE.json", "bytes": 3998, "sha256": "35791f4e8b6557d5c85d354cbb2e0a6ab57933fc9d6942381f462d7077315258"},
+    "bundled_dotnet": {"file": "D:/UE_5.8/Engine/Binaries/ThirdParty/DotNet/10.0/win-x64/dotnet.exe", "bytes": 178400, "sha256": "a8d3105441b568cfd44ac5eab8c0fc190cdefb0047e3e84e49cbce819a197a7a"},
+    "automation_tool_dll": {"file": "D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll", "bytes": 34232, "sha256": "ff7d013adf719a4e21be224edb70fb97aac78abf9de127ad81afe63b8ee51125"},
+    "run_uat_evidence_only": {"file": "D:/UE_5.8/Engine/Build/BatchFiles/RunUAT.bat", "bytes": 5025, "sha256": "e2df422b26722a960a0726713336619e65b1013548671cd6cec6d010f993eabb"}
+  },
+  "future_execution": {
+    "executable": "D:/UE_5.8/Engine/Binaries/ThirdParty/DotNet/10.0/win-x64/dotnet.exe",
+    "working_directory": "D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool",
+    "arguments": [
+      "D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll",
+      "BuildPlugin",
+      "-Plugin=D:/Skyguard52/Plugins/SkyguardRecovery03NativeRecovery01/SkyguardRecovery03NativeRecovery01.uplugin",
+      "-Package=D:/SG52R03B03",
+      "-TargetPlatforms=Win64",
+      "-Rocket",
+      "-StrictIncludes",
+      "-NoP4"
+    ],
+    "attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY02/build_attempt_01",
+    "package": "D:/SG52R03B03",
+    "timeout_seconds": 1200,
+    "launch_count": 1,
+    "automatic_retry": false
+  },
+  "required_outputs": [
+    "Binaries/Win64/UnrealEditor-SkyguardRecovery03NativeRecovery01.dll",
+    "Binaries/Win64/UnrealEditor-SkyguardRecovery03NativeRecovery01.pdb",
+    "Binaries/Win64/UnrealEditor.modules"
+  ]
+}
+

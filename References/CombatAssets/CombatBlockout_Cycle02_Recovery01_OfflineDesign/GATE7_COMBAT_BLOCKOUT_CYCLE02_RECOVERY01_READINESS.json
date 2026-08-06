@@ -1,0 +1,13 @@
+{
+  "gate": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_BLENDER_RECOVERY01_AUTHORIZATION",
+  "python_syntax": "PASS",
+  "strict_diff": "PASS",
+  "blender_5_2_enum": "BLENDER_EEVEE",
+  "changed_lines": 2,
+  "heavy_processes_launched_during_offline_gate": 0,
+  "blender_launched_during_offline_gate": false,
+  "unreal_launched": false,
+  "external_ai_model_invoked": false,
+  "next_gate": "Exactly one Recovery01 Blender execution in fresh namespaces."
+}

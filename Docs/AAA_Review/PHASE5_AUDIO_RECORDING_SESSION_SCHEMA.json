@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skyguard52.local/schemas/phase5-audio-recording-session-v1.json",
+  "title": "Skyguard 52 Phase 5 Project-Owned Recording Session",
+  "type": "object",
+  "required": [
+    "schema",
+    "session_id",
+    "session_state",
+    "safety_policy",
+    "rights_packet",
+    "technical_setup",
+    "shots"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.phase5.audio-recording-session.v1"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^P5REC-[A-Z0-9_-]+$"
+    },
+    "session_state": {
+      "enum": [
+        "PLANNING",
+        "SCHEDULED_BLOCKED_EVIDENCE",
+        "CLEARED_TO_RECORD",
+        "CAPTURE_COMPLETE_QUARANTINED",
+        "CANCELLED"
+      ]
+    },
+    "aircraft_identity": {
+      "type": ["object", "null"]
+    },
+    "session_utc": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "location": {
+      "type": ["object", "null"]
+    },
+    "safety_policy": {
+      "type": "object",
+      "required": [
+        "flight_operations_controlled_by_qualified_operator",
+        "recordist_does_not_direct_unsafe_maneuvers",
+        "no_live_weapon_or_missile_capture",
+        "hearing_and_equipment_restraint_plan_required",
+        "abort_authority_documented"
+      ],
+      "properties": {
+        "flight_operations_controlled_by_qualified_operator": {
+          "const": true
+        },
+        "recordist_does_not_direct_unsafe_maneuvers": {
+          "const": true
+        },
+        "no_live_weapon_or_missile_capture": {
+          "const": true
+        },
+        "hearing_and_equipment_restraint_plan_required": {
+          "const": true
+        },
+        "abort_authority_documented": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "rights_packet": {
+      "type": "object",
+      "required": [
+        "aircraft_operator_release",
+        "location_release",
+        "recordist_assignment",
+        "performer_releases",
+        "insurance_and_operational_approval"
+      ],
+      "properties": {
+        "aircraft_operator_release": {
+          "$ref": "#/$defs/evidence"
+        },
+        "location_release": {
+          "$ref": "#/$defs/evidence"
+        },
+        "recordist_assignment": {
+          "$ref": "#/$defs/evidence"
+        },
+        "performer_releases": {
+          "$ref": "#/$defs/evidence"
+        },
+        "insurance_and_operational_approval": {
+          "$ref": "#/$defs/evidence"
+        }
+      },
+      "additionalProperties": false
+    },
+    "technical_setup": {
+      "type": "object",
+      "required": [
+        "target_sample_rate_hz",
+        "target_bit_depth",
+        "lossless_capture",
+        "automatic_gain_control_disabled",
+        "limiter_disabled",
+        "timecode_or_slate_plan",
+        "microphone_plan",
+        "recorder_plan"
+      ],
+      "properties": {
+        "target_sample_rate_hz": {
+          "enum": [48000, 96000, 192000]
+        },
+        "target_bit_depth": {
+          "const": 24
+        },
+        "lossless_capture": {
+          "const": true
+        },
+        "automatic_gain_control_disabled": {
+          "const": true
+        },
+        "limiter_disabled": {
+          "const": true
+        },
+        "timecode_or_slate_plan": {
+          "type": ["string", "null"]
+        },
+        "microphone_plan": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object"
+          }
+        },
+        "recorder_plan": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/shot"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256OrNull": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["state", "path", "sha256", "reviewer", "reviewed_at_utc"],
+      "properties": {
+        "state": {
+          "enum": ["MISSING", "PENDING_REVIEW", "APPROVED"]
+        },
+        "path": {
+          "type": ["string", "null"]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256OrNull"
+        },
+        "reviewer": {
+          "type": ["string", "null"]
+        },
+        "reviewed_at_utc": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "shot": {
+      "type": "object",
+      "required": [
+        "shot_id",
+        "bank_bindings",
+        "subject",
+        "operating_state",
+        "listener_perspective",
+        "canopy_state",
+        "minimum_clean_duration_seconds",
+        "minimum_takes",
+        "required_metadata",
+        "capture_state",
+        "captured_files"
+      ],
+      "properties": {
+        "shot_id": {
+          "type": "string",
+          "pattern": "^P5-[A-Z0-9-]+$"
+        },
+        "bank_bindings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "subject": {
+          "const": "Yak-52"
+        },
+        "operating_state": {
+          "type": "string",
+          "minLength": 1
+        },
+        "listener_perspective": {
+          "enum": [
+            "RearCockpit",
+            "ExteriorCloseStatic",
+            "ExteriorMediumStatic",
+            "ExteriorPass"
+          ]
+        },
+        "canopy_state": {
+          "enum": ["Closed", "RearOpen", "NotApplicable"]
+        },
+        "minimum_clean_duration_seconds": {
+          "type": "number",
+          "minimum": 20
+        },
+        "minimum_takes": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "required_metadata": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string"
+          }
+        },
+        "capture_state": {
+          "enum": [
+            "PLANNED",
+            "CAPTURED_QUARANTINED",
+            "METADATA_VERIFIED",
+            "REJECTED"
+          ]
+        },
+        "captured_files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "filename",
+              "sha256",
+              "byte_size",
+              "sample_rate_hz",
+              "bit_depth",
+              "channels",
+              "take_notes"
+            ],
+            "properties": {
+              "filename": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "byte_size": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sample_rate_hz": {
+                "enum": [48000, 96000, 192000]
+              },
+              "bit_depth": {
+                "const": 24
+              },
+              "channels": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 8
+              },
+              "take_notes": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

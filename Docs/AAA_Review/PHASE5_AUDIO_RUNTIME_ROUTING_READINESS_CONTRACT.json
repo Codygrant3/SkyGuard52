@@ -1,0 +1,138 @@
+{
+  "schema": "skyguard.phase5.audio-runtime-routing-readiness.v1",
+  "purpose": "Fail-closed source and asset contract for the final Unreal audio graph. Asset presence is not proof of serialized topology or audible acceptance.",
+  "required_category_count": 25,
+  "required_event_definition_count": 11,
+  "required_mission_prime_count": 10,
+  "routing_assets": [
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Master",
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Cockpit",
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Exterior",
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Weapons",
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Explosions",
+    "/Game/Skyguard/Audio/Routing/Submixes/SMX_Radio",
+    "/Game/Skyguard/Audio/Routing/Mixes/MIX_Cockpit"
+  ],
+  "metasound_assets": [
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_Yak52IdentityBed",
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_RifleShot",
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_IglaWeapon",
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_DronePropulsion",
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_ExplosionSmall",
+    "/Game/Skyguard/Audio/Production/MetaSounds/MS_ExplosionHeavy"
+  ],
+  "attenuation_asset_root": "/Game/Skyguard/Audio/Routing/Attenuation",
+  "concurrency_asset_root": "/Game/Skyguard/Audio/Routing/Concurrency",
+  "composition_coverage": {
+    "MS_Yak52IdentityBed": [
+      "EngineIdle",
+      "EngineCruise",
+      "EnginePower",
+      "Propeller",
+      "OpenCockpitWind"
+    ],
+    "MS_RifleShot": [
+      "RifleMuzzle",
+      "RifleMechanical",
+      "RifleCasing",
+      "RifleReflection"
+    ],
+    "MS_IglaWeapon": [
+      "IglaSearch",
+      "IglaLock",
+      "IglaLaunch",
+      "IglaFlyby",
+      "IglaImpact"
+    ],
+    "MS_DronePropulsion": [
+      "DroneLightMotor",
+      "DroneHeavyMotor",
+      "DroneFlyby"
+    ],
+    "MS_ExplosionSmall": [
+      "ExplosionSmallCrack",
+      "ExplosionSmallBody",
+      "ExplosionSmallDebris",
+      "ExplosionSmallTail"
+    ],
+    "MS_ExplosionHeavy": [
+      "ExplosionHeavyCrack",
+      "ExplosionHeavyBody",
+      "ExplosionHeavyDebris",
+      "ExplosionHeavyTail"
+    ]
+  },
+  "direct_event_bindings": {
+    "RifleShot": "RifleMuzzle",
+    "RifleMechanical": "RifleMechanical",
+    "IglaSeekerSearch": "IglaSearch",
+    "IglaLock": "IglaLock",
+    "IglaLaunch": "IglaLaunch",
+    "IglaImpact": "IglaImpact",
+    "DroneMotor": "DroneLightMotor",
+    "DroneFlyby": "DroneFlyby",
+    "ExplosionSmall": "ExplosionSmallBody",
+    "ExplosionHeavy": "ExplosionHeavyBody",
+    "DebrisImpact": "ExplosionSmallDebris"
+  },
+  "runtime_source_markers": {
+    "required": [
+      "RequestAsyncLoad(",
+      "Definition->Sound.Get()",
+      "Definition->Attenuation.Get()",
+      "Definition->Concurrency.Get()",
+      "Definition->OutputSubmix.Get()",
+      "Definition->Attenuation = Entry->Attenuation",
+      "Definition->Concurrency = Entry->Concurrency",
+      "Definition->OutputSubmix = Entry->OutputSubmix",
+      "ProductionBankAsset.ToSoftObjectPath()",
+      "OnProductionBankLoaded",
+      "RebuildResolvedLoopRoutes",
+      "Route.Attenuation.Get()",
+      "Route.Concurrency.Get()",
+      "Route.OutputSubmix.Get()",
+      "ProductionBank->Routing.CockpitSoundMix",
+      "PushSoundMixModifier",
+      "PopSoundMixModifier",
+      "RegisteredAudioDirectors.FindOrAdd(World)",
+      "ActiveVoices.Num() >= GlobalVoiceLimit"
+    ],
+    "forbidden": [
+      "LoadSynchronous"
+    ]
+  },
+  "gameplay_source_markers": {
+    "SkyguardGunner.cpp": [
+      "ESkyguardAudioEvent::RifleShot",
+      "ESkyguardAudioEvent::IglaSeekerSearch",
+      "ESkyguardAudioEvent::IglaLock",
+      "ESkyguardAudioEvent::IglaLaunch",
+      "USkyguardAudioDirectorComponent::TriggerWorldEvent"
+    ],
+    "SkyguardIglaMissile.cpp": [
+      "ESkyguardAudioEvent::IglaImpact",
+      "USkyguardAudioDirectorComponent::TriggerWorldEvent"
+    ],
+    "SkyguardDrone.cpp": [
+      "ESkyguardAudioEvent::ExplosionSmall",
+      "ESkyguardAudioEvent::ExplosionHeavy",
+      "USkyguardAudioDirectorComponent::TriggerWorldEvent"
+    ]
+  },
+  "production_bank_source_markers": [
+    "Audit.MissingAttenuationBindings",
+    "Audit.MissingConcurrencyBindings",
+    "Audit.MissingOutputSubmixBindings",
+    "Audit.MissingAttenuationBindings.IsEmpty()",
+    "Audit.MissingConcurrencyBindings.IsEmpty()",
+    "Audit.MissingOutputSubmixBindings.IsEmpty()"
+  ],
+  "acceptance": {
+    "asset_presence_is_topology_proof": false,
+    "fresh_unreal_serialized_audit_required": true,
+    "complete_authentic_source_provenance_required": true,
+    "packaged_audible_acceptance_required": true,
+    "legacy_imported_audio_allowed": false,
+    "synchronous_gameplay_loads_allowed": false
+  }
+}

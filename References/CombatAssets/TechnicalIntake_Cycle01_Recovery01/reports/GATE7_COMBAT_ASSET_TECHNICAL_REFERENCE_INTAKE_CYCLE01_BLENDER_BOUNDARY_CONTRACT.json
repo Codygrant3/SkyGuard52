@@ -1,0 +1,52 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "purpose": "prevent unsupported specificity during Blender production",
+  "allowed_now": [
+    "9K38 missile global blockout at 1574 mm length and 72 mm diameter",
+    "generic human hand/forearm proxy constrained to the NASA envelope",
+    "Shahed-136 airframe reference blockout at 3300 mm length and 3000 mm span",
+    "MIL-STD-1913 rail test coupon using the frozen profile when applicable",
+    "non-destructive comparison overlays against current governed meshes"
+  ],
+  "prohibited_now": [
+    "claiming the current rifle is an accepted M4A1 or AK-74",
+    "mixing Igla and Igla-S components",
+    "finalizing ammunition, magazine, sight, suppressor, or muzzle geometry",
+    "inventing measured Shahed cross-sections or internal dimensions",
+    "final character sculpt without selected percentile and equipment identities",
+    "creating fictional boss geometry under a real-world technical label",
+    "operational, firing, assembly, or employment instructions"
+  ],
+  "current_component_disposition": {
+    "refine_after_identity": [
+      "GEO_RifleReceiver",
+      "GEO_RifleBarrel",
+      "GEO_RifleHandguard",
+      "GEO_RifleMagazine",
+      "GEO_RifleStock",
+      "GEO_RifleFrontSight",
+      "GEO_RifleRearSightL",
+      "GEO_RifleRearSightR",
+      "GEO_RifleRearSightAperture",
+      "GEO_IglaLauncherTube",
+      "GEO_IglaBattery",
+      "GEO_IglaSight",
+      "GEO_IglaGrip",
+      "GEO_IglaRearCap"
+    ],
+    "refine_after_character_contract": [
+      "GEO_GunnerForearm",
+      "GEO_GunnerGlove",
+      "GEO_GunnerCuff",
+      "GEO_GunnerFingers",
+      "GEO_GunnerThumb",
+      "GEO_GunnerKnucklePad",
+      "GEO_GunnerSleeve"
+    ],
+    "retain_governance_volumes": [
+      "Pilot safety volume",
+      "Rifle muzzle clearance volume",
+      "Igla backblast clearance volume"
+    ]
+  }
+}

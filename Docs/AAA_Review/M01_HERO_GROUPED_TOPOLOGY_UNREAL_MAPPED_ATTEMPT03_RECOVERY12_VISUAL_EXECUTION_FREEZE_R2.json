@@ -1,0 +1,31 @@
+{
+  "schema": "skyguard.m01.grouped-topology.recovery12-visual-execution-freeze-r2.v1",
+  "gate": "PASS_RECOVERY12_VISUAL_EXECUTION_BINDING_READY_NOT_RUN",
+  "artifacts": [
+    {
+      "path": "Scripts/invoke_m01_grouped_topology_recovery12_visual_proof_r2.py",
+      "bytes": 864,
+      "sha256": "8653ef8074faecb8fcec66315cc9e9dcd54fd275647b9eeed9a3257a8892c6f8"
+    },
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_VISUAL_EXECUTION_BINDING_R2.json",
+      "bytes": 1360,
+      "sha256": "5fa2588ff29c4ff8a56fff60c8cc5e6378dd063bf3014b471e75445f36aa4451"
+    },
+    {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_COMPILE/attempt_20260802T213839796072Z_88425ad4/compile_receipt.json",
+      "bytes": 1154,
+      "sha256": "afef09638b008ab364e0d075aa0fe92c7977c40f6b37d0220cc07d3d77ae0f89"
+    }
+  ],
+  "preflight": {
+    "governed_map_exists": true,
+    "visual_namespace_unused": true,
+    "compiled_module_sha256": "5776561194ddec0fc23c476a41a467aef5d72dcb883b1105deed6ab72daf336f",
+    "compiled_source_changed_after_compile": false,
+    "visual_attempts_used": 0,
+    "maximum_visual_attempts": 1
+  },
+  "automatic_retry_forbidden": true,
+  "promotion_allowed": false
+}

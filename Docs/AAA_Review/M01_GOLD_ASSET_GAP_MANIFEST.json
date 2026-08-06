@@ -1,0 +1,509 @@
+{
+  "schema": "skyguard.m01.gold-asset-gap.v1",
+  "audit_id": "M01-GOLD-ASSET-GAP-2026-08-02",
+  "project_root": "D:\\Skyguard52",
+  "generated_at_utc": "2026-08-02T05:21:01Z",
+  "scope": "Offline evidence audit of Mission 01 foreground gold-slice art. This does not launch Blender, Unreal, UAT, shader compilation, packaging, or rendering.",
+  "status_contract": {
+    "production": "A final asset has authoritative source, complete production gates, no unresolved required work, and accepted rendered plus packaged-performance evidence.",
+    "blockout_proxy": "An authored or imported candidate exists and is usable for composition or runtime wiring, but its own evidence explicitly identifies it as blockout, proxy, readiness-only, or non-final.",
+    "missing": "No candidate artifact exists for the required asset family.",
+    "unverified": "A non-proxy production-direction candidate exists, but one or more required acceptance gates remain unsupported."
+  },
+  "required_quality_gates": [
+    "authoritative_source",
+    "final_geometry",
+    "uv_and_bake",
+    "pbr_materials",
+    "runtime_binding",
+    "collision_lod_sockets",
+    "rendered_visual_acceptance",
+    "packaged_performance_acceptance",
+    "provenance_complete"
+  ],
+  "required_asset_family_ids": [
+    "yak52_exterior",
+    "rear_cockpit",
+    "crew_arms_gloves",
+    "rifle",
+    "igla",
+    "pathfinder",
+    "lighthouse",
+    "radar_post",
+    "coast"
+  ],
+  "evidence_catalog": {
+    "master_plan": {
+      "path": "Docs/AAA_Review/NEXT_BUILD_MASTER_PLAN_2026-08-02.md",
+      "bytes": 20024,
+      "sha256": "3725a801efd48bc4d17ee289e649ad5dd24211a917342dcb758771d6a6b92686",
+      "kind": "requirement",
+      "claim": "Defines the Mission 01 gold-slice production and acceptance requirements."
+    },
+    "asset_plan": {
+      "path": "Docs/AAA_Review/BLENDER_10_MISSION_ASSET_PLAN.md",
+      "bytes": 18863,
+      "sha256": "888d6feabea053981d40b7a886b29a48f6afee1353605e6bbedf69dd4d2d2f18",
+      "kind": "requirement",
+      "claim": "Defines the Blender/Fab/Unreal ownership split and the Mission 01 asset wave."
+    },
+    "control_board": {
+      "path": "Docs/AAA_Review/CONTROL_BOARD.md",
+      "bytes": 11425,
+      "sha256": "689e3178b09d68e2026c35e61d1ac2fff2f185c5c002cd74952136f84b1ed6fe",
+      "kind": "review",
+      "claim": "Records L88 review and non-final rear-gunner staging."
+    },
+    "l88_master_blend": {
+      "path": "Content/Skyguard/Meshes/Source/L88/YAK52_L88_MASTER_BLOCKOUT.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993",
+      "kind": "source_asset",
+      "claim": "Governed L88 Blender blockout source containing aircraft, cockpit, crew staging, rifle, and Igla candidates."
+    },
+    "l88_source_glb": {
+      "path": "Content/Skyguard/Meshes/Source/L88/yak52_l88_silhouette_blockout.glb",
+      "bytes": 8721608,
+      "sha256": "85f7c3d5164ba1fb9056dd206ff8be29716c6db81f152e045dd31ec051e418fb",
+      "kind": "source_export",
+      "claim": "L88 blockout export imported by the validation/runtime hierarchy."
+    },
+    "l88_import_delta": {
+      "path": "Saved/Reports/L88_IMPORT_DELTA_PASS22.json",
+      "bytes": 1499,
+      "sha256": "ace3065a939d816d109c07672e68f3f2d113ebacac1e155f3f62e9e26476d94f",
+      "kind": "receipt",
+      "claim": "Import delta passes but declares readiness-only, not AAA acceptance."
+    },
+    "l88_assembly_contract": {
+      "path": "Saved/Reports/L88_RUNTIME_ASSEMBLY_CONTRACT.json",
+      "bytes": 57068,
+      "sha256": "a5cd8244b996a32b50392663ccce7d4509845e6619ad90bc38b2ca0aaa669c25",
+      "kind": "receipt",
+      "claim": "Classifies 240 imported meshes into exterior, rear cockpit, crew, rifle, and Igla runtime bundles."
+    },
+    "yak_runtime_build": {
+      "path": "Saved/Reports/PHASE2_YAK_RUNTIME_BUILD.json",
+      "bytes": 5577,
+      "sha256": "f9f0ef2a0c1a6f18f5f7298cd60724d62b6e4e4b799c1299dd0d79ea2b970da0",
+      "kind": "receipt",
+      "claim": "Runtime hierarchy passes while explicitly leaving final topology, PBR, skeletal crew, LOD, collision, visual, and performance acceptance outstanding."
+    },
+    "m01_refinement_master": {
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Wave1_Refinement/M01_WAVE1_AAA_REFINEMENT_MASTER.blend",
+      "bytes": 768696,
+      "sha256": "d94a91c42610d9115e2a5a7e99efc3ec6576beb513af4e1dfc87b7d6304184ad",
+      "kind": "source_asset",
+      "claim": "Blender source for the refined Pathfinder, lighthouse, radar post, coast, road, and urban candidates."
+    },
+    "m01_refinement_glb": {
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Wave1_Refinement/m01_wave1_aaa_refinement.glb",
+      "bytes": 3159664,
+      "sha256": "d12c4509f7234a3fc6fe16917db431a6b5146a6ddcd34264e7885a82c6284a99",
+      "kind": "source_export",
+      "claim": "Shipping-direction GLB candidate for the M01 Wave 1 refinement."
+    },
+    "m01_refinement_manifest": {
+      "path": "Saved/Reports/M01_WAVE1_AAA_REFINEMENT_MANIFEST.json",
+      "bytes": 18402,
+      "sha256": "788b95752a49e3b6875dd27d4b220d2614d5ccaaaee4d3330cedc71c4a6a6190",
+      "kind": "receipt",
+      "claim": "Declares 20 refined static-mesh candidates and their semantic collision, material, pivot, and damage metadata."
+    },
+    "m01_refinement_report": {
+      "path": "Saved/Reports/M01_WAVE1_AAA_REFINEMENT_REPORT.json",
+      "bytes": 2103,
+      "sha256": "4a7ff16d829ba2ca0fbb4228f610b5239fa0810238fade45c233bfaddb4a63ec",
+      "kind": "receipt",
+      "claim": "Passes source/export checks but remains a candidate requiring Unreal visual and performance acceptance."
+    },
+    "m01_unreal_audit": {
+      "path": "Saved/Reports/M01_WAVE1_REFINEMENT_UNREAL_AUDIT.json",
+      "bytes": 13705,
+      "sha256": "e32529a0981a01484a24406ce146cdcd97aae43e07b027bb9e80005d7cf9cf10",
+      "kind": "receipt",
+      "claim": "Verifies import, placement, semantic collision setup, and Pathfinder bindings while leaving rendered and runtime-performance acceptance outstanding."
+    },
+    "m01_pbr_report": {
+      "path": "Saved/Reports/M01_HERO_PBR_BAKE_REPORT.json",
+      "bytes": 774,
+      "sha256": "a734b28b5577ff1a0e4cecb78ef4dc45bb14a7d5b93e47f05046bd7945c31f86",
+      "kind": "receipt",
+      "claim": "Verifies three hero texture candidates but explicitly claims no defensible high-to-low sculpt bake."
+    },
+    "m01_pbr_manifest": {
+      "path": "Saved/Reports/M01_HERO_PBR_BAKE_MANIFEST.json",
+      "bytes": 12710,
+      "sha256": "17dc2fb966262b5579c2c77e06e305b7235655b25fdcb61200a8186116404c4d",
+      "kind": "receipt",
+      "claim": "Records the Pathfinder, lighthouse, and radar-post texture package."
+    },
+    "m01_environment_audit": {
+      "path": "Saved/Reports/PHASE4_M01_PRODUCTION_ENVIRONMENT_AUDIT.json",
+      "bytes": 1899,
+      "sha256": "b61891fadcbad44b59c449e619a450f9cb5b296109d8584a8074451355366d28",
+      "kind": "receipt",
+      "claim": "Environment persistence passes, while rendered GPU review remains pending."
+    },
+    "m01_provenance_ledger": {
+      "path": "Saved/Reports/M01_TEXTURE_MATERIAL_PROVENANCE_LEDGER.json",
+      "bytes": 130284,
+      "sha256": "29a23435ad2b7ea8231d3832cb33dd8cadb6e0bba64f05af21680f3f43183da3",
+      "kind": "receipt",
+      "claim": "Used-asset provenance passes with an explicit art backlog and unmanifested families."
+    }
+  },
+  "asset_families": [
+    {
+      "id": "yak52_exterior",
+      "display_name": "Yak-52 exterior airframe",
+      "status": "blockout_proxy",
+      "evidence": [
+        "master_plan",
+        "l88_master_blend",
+        "l88_source_glb",
+        "l88_import_delta",
+        "l88_assembly_contract",
+        "yak_runtime_build"
+      ],
+      "proxy_markers": [
+        "Source filenames contain MASTER_BLOCKOUT and silhouette_blockout.",
+        "L88 import receipt promotion is readiness_only_not_aaa_acceptance.",
+        "Runtime receipt promotion is runtime_hierarchy_candidate_only."
+      ],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": false,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": false,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Production Yak-52 exterior topology and real-world silhouette acceptance.",
+        "Final material slots, UVs, justified bake sources, decals, rivets, seams, and wear.",
+        "Production collision, LOD or Nanite policy, animation pivots, and gameplay sockets.",
+        "Rendered blind review and packaged performance acceptance."
+      ],
+      "next_action": "Author a production Yak-52 master exterior using the L88 envelope only as reference; preserve governed datums and replace the blockout topology."
+    },
+    {
+      "id": "rear_cockpit",
+      "display_name": "Rear cockpit and open sliding canopy",
+      "status": "blockout_proxy",
+      "evidence": [
+        "master_plan",
+        "control_board",
+        "l88_master_blend",
+        "l88_source_glb",
+        "l88_assembly_contract",
+        "yak_runtime_build"
+      ],
+      "proxy_markers": [
+        "Rear-cockpit meshes are contained in the L88 blockout source.",
+        "Runtime receipt leaves final topology, PBR, collision, and rendered acceptance outstanding.",
+        "Control-board passes describe subject-presence staging, not final cockpit acceptance."
+      ],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": false,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": false,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Production cockpit tub, sidewalls, instrument panel, seat, harness, padding, trim, rails, canopy bows, and sliding glass.",
+        "Pilot-safety geometry plus weapon, ADS-eye, occupant, canopy, and restraint sockets.",
+        "Final cockpit materials, glass response, labels, fasteners, wear, and close-range bake detail.",
+        "First-person rendered review and packaged ADS/fire performance acceptance."
+      ],
+      "next_action": "Build the rear cockpit in the same production Yak master so crew and weapon rigs inherit final dimensions and sockets."
+    },
+    {
+      "id": "crew_arms_gloves",
+      "display_name": "Rear-gunner arms, sleeves, and leather gloves",
+      "status": "blockout_proxy",
+      "evidence": [
+        "master_plan",
+        "control_board",
+        "l88_master_blend",
+        "l88_assembly_contract",
+        "yak_runtime_build"
+      ],
+      "proxy_markers": [
+        "The L88 contract classifies first- and third-person static-mesh staging bundles.",
+        "The runtime receipt explicitly leaves skeletal crew outstanding.",
+        "Control-board notes describe replaceable crew-part visual staging."
+      ],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": false,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": false,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Anatomically credible high-poly hands, fingers, wrist transition, sleeves, and leather glove construction.",
+        "Production retopology, skeletal rig, skin weights, deformation tests, and first-person LOD policy.",
+        "Rifle support-hand, trigger-hand, ADS, recoil, reload, Igla carry, lock, and launch poses.",
+        "Close-range material/bake validation and packaged animation/performance acceptance."
+      ],
+      "next_action": "After the cockpit datums are frozen, author one first-person skeletal arms-and-gloves rig that supports both rifle and Igla pose libraries."
+    },
+    {
+      "id": "rifle",
+      "display_name": "Rear-gunner rifle",
+      "status": "blockout_proxy",
+      "evidence": [
+        "master_plan",
+        "control_board",
+        "l88_master_blend",
+        "l88_assembly_contract",
+        "yak_runtime_build"
+      ],
+      "proxy_markers": [
+        "The 18-part rifle bundle comes from the L88 blockout export.",
+        "A handheld rifle cue passed subject-presence review, not final hero-weapon review.",
+        "No final high-to-low weapon bake or packaged visual acceptance is recorded."
+      ],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": false,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": false,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Production receiver, barrel, handguard, magazine, controls, sling interfaces, and mechanically aligned iron sights.",
+        "Final first-person UV density, high-to-low bakes, metal/polymer/wood or coating materials, markings, wear, and fouling.",
+        "Grip, support-hand, muzzle, casing, ADS-eye, recoil, and animation sockets.",
+        "Physical ADS alignment and fire-while-ADS packaged acceptance."
+      ],
+      "next_action": "Rebuild the rifle as a separate governed hero asset after the final hand positions and ADS eye are frozen."
+    },
+    {
+      "id": "igla",
+      "display_name": "Igla launcher and missile",
+      "status": "blockout_proxy",
+      "evidence": [
+        "master_plan",
+        "control_board",
+        "l88_master_blend",
+        "l88_assembly_contract",
+        "yak_runtime_build"
+      ],
+      "proxy_markers": [
+        "The eight-part Igla assembly is sourced from the L88 blockout export.",
+        "Control-board staging describes a stowed/swap visual assembly.",
+        "No final launcher/missile bake, animation, rendered, or packaged acceptance receipt exists."
+      ],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": false,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": false,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Production launcher tube, gripstock, optics, battery/coolant unit, controls, sight details, and missile.",
+        "Explicit front/rear orientation, launch socket, exhaust clearance, seeker axis, and projectile datum.",
+        "Final UVs, high-to-low bakes, materials, markings, wear, and animation-ready pivots.",
+        "Lock, launch, backblast-safe presentation, and packaged performance acceptance."
+      ],
+      "next_action": "Build the launcher and missile as separate governed assets against the frozen rear-gunner rig and cockpit safety envelope."
+    },
+    {
+      "id": "pathfinder",
+      "display_name": "M01 Pathfinder boss",
+      "status": "unverified",
+      "evidence": [
+        "master_plan",
+        "m01_refinement_master",
+        "m01_refinement_glb",
+        "m01_refinement_manifest",
+        "m01_refinement_report",
+        "m01_unreal_audit",
+        "m01_pbr_report",
+        "m01_pbr_manifest",
+        "m01_provenance_ledger"
+      ],
+      "proxy_markers": [],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": true,
+        "uv_and_bake": false,
+        "pbr_materials": true,
+        "runtime_binding": true,
+        "collision_lod_sockets": true,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": true
+      },
+      "missing_requirements": [
+        "Defensible high-to-low bake source or documented justification for the final close-range geometry/material route.",
+        "Rendered Unreal visual acceptance of body, four weak points, damaged state, and breakup pieces.",
+        "Packaged combat performance acceptance covering destruction and both weapon-resolution paths."
+      ],
+      "next_action": "Retain the governed weak-point and breakup contract; run the later visible Unreal review and packaged destruction gate before production promotion."
+    },
+    {
+      "id": "lighthouse",
+      "display_name": "M01 lighthouse landmark",
+      "status": "unverified",
+      "evidence": [
+        "master_plan",
+        "m01_refinement_master",
+        "m01_refinement_glb",
+        "m01_refinement_manifest",
+        "m01_refinement_report",
+        "m01_unreal_audit",
+        "m01_pbr_report",
+        "m01_pbr_manifest",
+        "m01_environment_audit",
+        "m01_provenance_ledger"
+      ],
+      "proxy_markers": [],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": true,
+        "uv_and_bake": false,
+        "pbr_materials": true,
+        "runtime_binding": true,
+        "collision_lod_sockets": true,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": true
+      },
+      "missing_requirements": [
+        "Final high/low or justified Nanite source and landmark-detail bake acceptance.",
+        "Visible Unreal review under mission daylight, overcast, wet, night, and storm test lighting.",
+        "Route-distance LOD/Nanite, collision, and packaged performance acceptance."
+      ],
+      "next_action": "Keep the refined landmark candidate and close its visible-lighting, material, and packaged route-performance gates."
+    },
+    {
+      "id": "radar_post",
+      "display_name": "M01 coastal radar post",
+      "status": "unverified",
+      "evidence": [
+        "master_plan",
+        "m01_refinement_master",
+        "m01_refinement_glb",
+        "m01_refinement_manifest",
+        "m01_refinement_report",
+        "m01_unreal_audit",
+        "m01_pbr_report",
+        "m01_pbr_manifest",
+        "m01_environment_audit",
+        "m01_provenance_ledger"
+      ],
+      "proxy_markers": [],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": true,
+        "uv_and_bake": false,
+        "pbr_materials": true,
+        "runtime_binding": true,
+        "collision_lod_sockets": true,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": true
+      },
+      "missing_requirements": [
+        "Final high/low or justified Nanite source and close-range bake acceptance.",
+        "Visible Unreal review of radar materials, moving parts, defended-objective readability, and weather response.",
+        "Packaged route and objective-combat performance acceptance."
+      ],
+      "next_action": "Keep the refined radar candidate and close its animation/pivot, visible-material, and packaged objective-performance gates."
+    },
+    {
+      "id": "coast",
+      "display_name": "M01 beach, dunes, seawall, promenade, road, and urban transition",
+      "status": "unverified",
+      "evidence": [
+        "master_plan",
+        "asset_plan",
+        "m01_refinement_master",
+        "m01_refinement_glb",
+        "m01_refinement_manifest",
+        "m01_refinement_report",
+        "m01_unreal_audit",
+        "m01_environment_audit",
+        "m01_provenance_ledger"
+      ],
+      "proxy_markers": [],
+      "quality_gates": {
+        "authoritative_source": true,
+        "final_geometry": true,
+        "uv_and_bake": false,
+        "pbr_materials": false,
+        "runtime_binding": true,
+        "collision_lod_sockets": true,
+        "rendered_visual_acceptance": false,
+        "packaged_performance_acceptance": false,
+        "provenance_complete": false
+      },
+      "missing_requirements": [
+        "Final terrain/surface material acceptance, including macro/micro variation, wetness, shoreline blending, decals, grime, and repetition control.",
+        "Complete provenance for every used Fab/Quixel or third-party source; no unmanifested foreground family.",
+        "Visible GPU review proving grounded districts, stable scenery, correct water/land separation, and no foreground proxies.",
+        "Route HLOD/Nanite/streaming and packaged performance acceptance."
+      ],
+      "next_action": "Complete source/license binding and visible Unreal review before promoting the assembled coast beyond production-direction candidate."
+    }
+  ],
+  "summary": {
+    "required_family_count": 9,
+    "production_count": 0,
+    "blockout_proxy_count": 5,
+    "missing_count": 0,
+    "unverified_count": 4,
+    "gold_slice_ready": false,
+    "asset_gate": "PASS_WITH_GAPS",
+    "interpretation": "The audit is internally complete, but no scoped family has final production acceptance."
+  },
+  "next_serialized_blender_build": {
+    "build_id": "BLD-M01-YAK-PROD-001",
+    "title": "Production Yak-52 master exterior and rear cockpit",
+    "closes_or_unblocks": [
+      "yak52_exterior",
+      "rear_cockpit",
+      "crew_arms_gloves",
+      "rifle",
+      "igla"
+    ],
+    "reason": "The final airframe, cockpit dimensions, canopy envelope, occupant datums, ADS eye, weapon sockets, and safety volumes are upstream dependencies for the first-person crew and both weapons.",
+    "required_outputs": [
+      "Dimensioned production Blender master with real-world Yak-52 silhouette.",
+      "Separated exterior, propeller, canopy, cockpit, controls, seat, harness, trim, and glass objects.",
+      "Named pivots and sockets for pilot, rear gunner, ADS eye, rifle grips, rifle muzzle, Igla grips, Igla launch axis, canopy travel, and cockpit safety.",
+      "Production topology or documented Nanite strategy, UV sets, material IDs, bake cages or justified source route, and Unreal-scale validation.",
+      "Non-destructive export manifest and proof renders; no Unreal import until the offline source gate passes."
+    ],
+    "acceptance_before_unreal_import": [
+      "Silhouette and dimensions pass reference review.",
+      "No blockout-named mesh is marked shipping-ready.",
+      "UV, material-slot, pivot, transform, naming, and non-manifold checks pass.",
+      "Crew and weapon datum contract is frozen and machine-readable."
+    ]
+  }
+}

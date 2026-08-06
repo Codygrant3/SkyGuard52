@@ -1,0 +1,72 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-cameras.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008",
+  "coordinate_system": "Unreal centimeters; pitch yaw roll degrees",
+  "resolution": [2560, 1440],
+  "fov_degrees": 90.0,
+  "cameras": [
+    {
+      "id": "C01_REAR_GUNNER_PORT",
+      "kind": "rear_gunner_gameplay",
+      "location_cm": [22500.0, 3000.0, 1100.0],
+      "rotation_degrees": {"pitch": -6.0, "yaw": 112.0, "roll": 0.0},
+      "required_features": ["coastal_route", "waterline", "beach", "city", "vegetation"]
+    },
+    {
+      "id": "C02_REAR_GUNNER_STARBOARD",
+      "kind": "rear_gunner_gameplay",
+      "location_cm": [22500.0, 3000.0, 1100.0],
+      "rotation_degrees": {"pitch": -5.0, "yaw": 68.0, "roll": 0.0},
+      "required_features": ["ocean", "shore_contact", "atmosphere", "route_context"]
+    },
+    {
+      "id": "C03_SHORELINE_APPROACH",
+      "kind": "flight_height_review",
+      "location_cm": [22500.0, 3000.0, 900.0],
+      "rotation_degrees": {"pitch": -6.0, "yaw": 90.0, "roll": 0.0},
+      "required_features": ["ocean", "waterline", "beach", "terrain_transition", "skyline"]
+    },
+    {
+      "id": "C04_ROUTE_EXTERIOR",
+      "kind": "exterior_review",
+      "location_cm": [22500.0, -9000.0, 8500.0],
+      "rotation_degrees": {"pitch": -28.0, "yaw": 90.0, "roll": 0.0},
+      "required_features": ["full_route", "coast_silhouette", "city_massing", "vegetation_distribution"]
+    },
+    {
+      "id": "C05_CITY_INLAND",
+      "kind": "exterior_review",
+      "location_cm": [22500.0, 9600.0, 800.0],
+      "rotation_degrees": {"pitch": -12.0, "yaw": 25.0, "roll": 0.0},
+      "required_features": ["grounded_buildings", "roads", "urban_infrastructure", "terrain", "vegetation"]
+    }
+  ],
+  "temporal_route_samples": [
+    {
+      "id": "T01_ROUTE_ENTRY",
+      "location_cm": [22500.0, 2400.0, 1050.0],
+      "rotation_degrees": {"pitch": -5.0, "yaw": 92.0, "roll": 0.0},
+      "minimum_tick_gap_from_previous_capture": 15
+    },
+    {
+      "id": "T02_ROUTE_MID",
+      "location_cm": [22500.0, 3000.0, 1050.0],
+      "rotation_degrees": {"pitch": -5.0, "yaw": 92.0, "roll": 0.0},
+      "minimum_tick_gap_from_previous_capture": 15
+    },
+    {
+      "id": "T03_ROUTE_EXIT",
+      "location_cm": [22500.0, 3600.0, 1050.0],
+      "rotation_degrees": {"pitch": -5.0, "yaw": 92.0, "roll": 0.0},
+      "minimum_tick_gap_from_previous_capture": 15
+    }
+  ],
+  "coverage": {
+    "static_camera_count": 5,
+    "temporal_sample_count": 3,
+    "rear_gunner_gameplay_camera_count": 2,
+    "exterior_or_route_review_camera_count": 3,
+    "camera_roll_must_equal_zero": true
+  }
+}
+

@@ -1,0 +1,122 @@
+{
+  "schema": "skyguard.aaa.gate7-combat-art-offline-control-freeze.v1",
+  "freeze_id": "GATE7_COMBAT_ART_OFFLINE_CONTROL_RECOVERY01_2026-08-04",
+  "generated_at_utc": "2026-08-04T23:21:49.4596256Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED_OFFLINE_CONTROL_PACKAGE_AWAITING_GATE6_AND_EXPLICIT_PRODUCTION_AUTHORIZATION",
+  "gate7_complete": false,
+  "accepted_production_asset_count": 0,
+  "heavy_process_count_at_freeze": 0,
+  "heavy_process_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "native_build_launched": false,
+  "runtime_source_or_content_mutated": false,
+  "files": [
+    {
+      "role": "production_acceptance_contract",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ART_PRODUCTION_ACCEPTANCE_CONTRACT_2026-08-04.json",
+      "bytes": 17013,
+      "sha256": "68217f54cf7d9388d73b35a37e4e6ab04256ed2f8576da515014c1b3f3484270"
+    },
+    {
+      "role": "production_backlog",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ART_PRODUCTION_BACKLOG_2026-08-04.md",
+      "bytes": 6870,
+      "sha256": "35f2726ea92a407ce4902a4dcf50224f8b690fc586eb255fe9454971cc69f0bb"
+    },
+    {
+      "role": "current_state_audit",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ART_CURRENT_STATE_AUDIT_2026-08-04.json",
+      "bytes": 9780,
+      "sha256": "a307ee2561403a1084f842abbd887c4dd43b4cae711aebb029d3f38512cd3621"
+    },
+    {
+      "role": "offline_verifier",
+      "path": "D:\\Skyguard52\\Scripts\\verify_gate7_combat_art_offline_control.py",
+      "bytes": 7218,
+      "sha256": "f34dbd9c912f8b5f7590e386b45e92435b67e253d598e295784e974466e2af10"
+    },
+    {
+      "role": "recovery01_tests",
+      "path": "D:\\Skyguard52\\Scripts\\test_gate7_combat_art_offline_control_recovery01.py",
+      "bytes": 2220,
+      "sha256": "cab08779e94b1ee53b981fc64dc42b66ac8b273628740ea71def6d1758659a6c"
+    },
+    {
+      "role": "validation_receipt",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ART_OFFLINE_CONTROL_VALIDATION_RECOVERY01_2026-08-04.json",
+      "bytes": 2364,
+      "sha256": "046d6cb657b6c6313fa2fcbd5bdf2d206c2c9fbca9df5757362cf61ff88c2e8a"
+    },
+    {
+      "role": "source_inventory",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ART_OFFLINE_CONTROL_SOURCE_INVENTORY_RECOVERY01_2026-08-04.json",
+      "bytes": 3661,
+      "sha256": "645408c3dbc1f0bc730f65772d368c5a848116d5842d2cbd0a9a11301ae2a861"
+    },
+    {
+      "role": "preserved_attempt01_failure_receipt",
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ART_OFFLINE_CONTROL\\attempt_01\\GATE7_COMBAT_ART_OFFLINE_CONTROL_ATTEMPT01_FAILURE.json",
+      "bytes": 1253,
+      "sha256": "39c9305baadd55a9dbb26599fd3e4bfc418f09607a84ce01762d3324d380777f"
+    },
+    {
+      "role": "preserved_attempt01_failed_test",
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ART_OFFLINE_CONTROL\\attempt_01\\test_gate7_combat_art_offline_control.py",
+      "bytes": 2210,
+      "sha256": "e500b946bc5a58e46ad23fc899e085d6a9f0c9f8855dbd714360d270b1f25c43"
+    }
+  ],
+  "upstream_authorities": [
+    {
+      "role": "gate0_control_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_GATE0_CONTROL_PACKAGE_FREEZE_2026-08-04.json",
+      "bytes": 7895,
+      "sha256": "e7dc82f7fc1b7644cdf49488156bdcccce8f4e654132d7d24a7a106fbc11d0a0"
+    },
+    {
+      "role": "gate1_correction_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_FREEZE.json",
+      "bytes": 10044,
+      "sha256": "0bd0bfee24e28d7cfd8a4f086209ed97cab7d4ffc40b09913e85d9c031b6293a"
+    },
+    {
+      "role": "offline_readiness_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_OFFLINE_READINESS_ADDENDUM_FREEZE_2026-08-04.json",
+      "bytes": 5545,
+      "sha256": "52df6c7d4d95cf647325840ecff6ebaa53cd0d269511aa0785e22ecbc591ef49"
+    },
+    {
+      "role": "fab_bridge_control_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_M01_FAB_BRIDGE_OFFLINE_CONTROL_FREEZE_2026-08-04.json",
+      "bytes": 5081,
+      "sha256": "e7aa5d5aff8b3c6d9a552f4ca542a0d50c02a6035ce0eec43a0312a269ac54ae"
+    },
+    {
+      "role": "polyhaven_placeholder_disposition_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_POLYHAVEN_EMPTY_PLACEHOLDER_DISPOSITION_RECOVERY01_FREEZE_2026-08-04.json",
+      "bytes": 3631,
+      "sha256": "d659daadc5ccec35733647d9cec10f0259c82144f2afc28b1669954bf22a2225"
+    },
+    {
+      "role": "current_production_dashboard_freeze",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_PRODUCTION_DASHBOARD_CURRENT_FREEZE_2026-08-04.json",
+      "bytes": 2917,
+      "sha256": "cbc2280872332cedada17ec715415bcecf56bdb0e5aac43ada430a0874166789"
+    }
+  ],
+  "frozen_conclusions": [
+    "The ten-mission engineering architecture is real and is preserved.",
+    "Current Gate 7 runtime art remains WebGame-derived, proxy, L88 blockout, primitive fallback or otherwise unaccepted.",
+    "The current Pathfinder visual evidence is terminally rejected and cannot be promoted.",
+    "The combat performance contract is valid but has not completed three captures, a 20-minute soak or contextual shader/PSO review.",
+    "Gate 7 production acceptance requires eight ordered lanes and cannot complete before Yak R6 and the Mission 1 environment prerequisites pass.",
+    "No heavy gate was authorized or executed by this offline package."
+  ],
+  "next_executable_gate": {
+    "gate": "Gate 2 Mission 1 environment native project build validation",
+    "prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+    "authorization": "REQUIRES_SEPARATE_EXPLICIT_ONE_SHOT_AUTHORIZATION"
+  }
+}

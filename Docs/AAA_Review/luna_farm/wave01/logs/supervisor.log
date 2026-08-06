@@ -1,0 +1,24 @@
+Launching 5 Luna jobs model=gpt-5.6-luna wave=wave01
+23:31:12 running=5 done=0
+23:31:24 running=5 done=0
+23:31:36 running=5 done=0
+23:31:48 running=5 done=0
+23:32:00 running=5 done=0
+23:32:12 running=5 done=0
+23:32:24 running=2 done=3
+23:32:36 running=0 done=5
+Traceback (most recent call last):
+  File "D:\Skyguard52\Docs\AAA_Review\luna_farm\rank_luna_proposals.py", line 174, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "D:\Skyguard52\Docs\AAA_Review\luna_farm\rank_luna_proposals.py", line 124, in main
+    proposals = load_proposals(inp)
+  File "D:\Skyguard52\Docs\AAA_Review\luna_farm\rank_luna_proposals.py", line 98, in load_proposals
+    data = json.loads(raw)
+  File "C:\Python313\Lib\json\__init__.py", line 341, in loads
+    raise JSONDecodeError("Unexpected UTF-8 BOM (decode using utf-8-sig)",
+                          s, 0)
+json.decoder.JSONDecodeError: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+WAVE_DONE proposals=100 rank_exit=1 selected=0
+selected_md=D:\Skyguard52\Docs\AAA_Review\luna_farm\wave01\selected_next_loop.md
+ranked_csv=D:\Skyguard52\Docs\AAA_Review\luna_farm\wave01\wave01_ranked.csv

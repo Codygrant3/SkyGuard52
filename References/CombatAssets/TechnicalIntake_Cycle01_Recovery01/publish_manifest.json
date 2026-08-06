@@ -1,0 +1,30 @@
+{
+  "source_root": "C:\\Users\\chris\\OneDrive\\Documents\\Shoot down the drones\\_offline_gate\\combat_asset_reference_gate_cycle01_20260805",
+  "archive_destination": "D:\\Skyguard52\\References\\CombatAssets\\TechnicalIntake_Cycle01",
+  "conventional_copies": [
+    {
+      "source": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_FREEZE.json",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_FREEZE.json"
+    },
+    {
+      "source": "reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_MODELING_REPORT.md",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_MODELING_REPORT.md"
+    },
+    {
+      "source": "reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_NEXT_PROMPT.md",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01.md"
+    },
+    {
+      "source": "reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_READINESS.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_READINESS.json"
+    },
+    {
+      "source": "reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_DIMENSION_AUTHORITY_MATRIX.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_DIMENSION_AUTHORITY_MATRIX.json"
+    },
+    {
+      "source": "reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_SOURCE_INVENTORY.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01_SOURCE_INVENTORY.json"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-runtime-binding01-rollback-contract.v1",
+  "classification": "PASS",
+  "initial_target_state": "absent",
+  "rollback_scope": "only_files_and_directory_created_by_binding01",
+  "rollback_trigger": [
+    "copy_exception",
+    "hash_mismatch",
+    "partial_copy",
+    "unexpected_file",
+    "inventory_failure",
+    "terminal_validation_failure"
+  ],
+  "rollback_order": [
+    "remove_only_recorded_created_files",
+    "remove_created_target_directory_only_if_empty",
+    "persist_rollback_manifest"
+  ],
+  "prohibitions": [
+    "no_broad_recursive_delete",
+    "no_active_descriptor_change",
+    "no_source_change",
+    "no_quarantine_change",
+    "no_retry"
+  ],
+  "success_state": {
+    "rollback_required": false,
+    "rollback_completed": false
+  },
+  "failure_state_requirement": "rollback_completed_true_or_FAILED_WITH_EVIDENCE"
+}

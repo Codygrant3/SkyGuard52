@@ -1,0 +1,107 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt05-recovery02.v1",
+  "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-005-RECOVERY-02",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-005",
+  "status": "OFFLINE_RECOVERY02_DESIGN_READY_PENDING_CPP_RECOMPILE_AND_AUTHORIZATION",
+  "fault_boundary": {
+    "predecessor_recovery": "P4.5-M01-LANDSCAPE-VISIBLE-005-RECOVERY-01",
+    "failed_stage": "baseline_profile_measured",
+    "fault": "CsvProfile START enqueued a start command for a later frame, but the controller checked IsCapturing immediately in the request tick.",
+    "fix": "Wait across frames for IsCapturing with a five-second activation timeout, and start the sixty-second measurement clock only after activation."
+  },
+  "immutable_predecessor_evidence": {
+    "recovery01_failure_receipt": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT05_RECOVERY01_FAILURE.json",
+      "sha256": "bb242d66818b61be9a50a3a4246a2c6cd812c6ce47a14af39eda3c2aa78e6581"
+    },
+    "recovery01_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_01/recovery_manifest.json",
+      "sha256": "a5256e4e5296b656148d014784abec381e3435547e6c875355ed49c2181ecb08"
+    },
+    "render_state_acceptance": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_RENDER_STATE_ACCEPTANCE_ATTEMPT05_RECOVERY01.json",
+      "sha256": "9cde7a563cb17f54aa54d3fc8e611a6f0b77b57025de56b0e8330ad514e0d53f",
+      "required_gate": "PASS"
+    },
+    "baseline_capture_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_01/artifacts/captures/baseline/capture_manifest.json",
+      "sha256": "d40ca4c0a5d3c07be5c86552e67799d2005b05fa89b16e2eee52b071d9ec80d2"
+    },
+    "candidate_capture_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_01/artifacts/captures/candidate/capture_manifest.json",
+      "sha256": "0ceef33528ec13e32b96d93eae1b45abbd97f3ff3d78773501685fcd64c48297"
+    },
+    "failed_baseline_profile_receipt": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_01/artifacts/baseline_profile_receipt.json",
+      "sha256": "2913cba1b0da25ff83d5ab6eb1b52491730abaeb595e7fc521ca7b2938f81a64",
+      "required_gate": "FAIL"
+    }
+  },
+  "immutable_packages": {
+    "baseline_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "candidate_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v5_attempt05",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v5_attempt05.umap",
+      "sha256": "8e291c7ebbb8df731582d18bb8174df743b2139a144ceccfdc0293d339709ee9"
+    },
+    "candidate_material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v5_attempt05/M_M01_Landscape_Validation_v5_attempt05",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v5_attempt05/M_M01_Landscape_Validation_v5_attempt05.uasset",
+      "sha256": "cc1b9000620ad4957879b4041fecc2c7b0564cbb2964e4f51dffaaf7fecce7d2"
+    },
+    "coverage_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v1",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v1.uasset",
+      "sha256": "ecba7e1a6d7a5b40360ed966a08a37b0340624aa48f28381f4e4d88e336541ec"
+    },
+    "component_id_material": {
+      "asset": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v1",
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v1.uasset",
+      "sha256": "bf72fd104d5d70b6f23c68afa961fcbdafe811d027519d2c3a7d8dbc03647d1a"
+    }
+  },
+  "accepted_capture_evidence": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_01/artifacts/captures",
+    "hash_manifest": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT05_RECOVERY01_FAILURE.json",
+    "expected_png_count": 17,
+    "resolution": [1920, 1080],
+    "rhi": "D3D12|SM6",
+    "baseline_lit_count": 5,
+    "candidate_lit_count": 5,
+    "candidate_diagnostic_count": 7
+  },
+  "cpp_fix": {
+    "header": {
+      "file": "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCapture.h",
+      "sha256": "c7c90672396beabc3dbbfff6221b18ecfef1a336f649bed434531fe274e2e817"
+    },
+    "source": {
+      "file": "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCapture.cpp",
+      "sha256": "4ba6c876eb46f6ed42e3915f5269c437fa1a446773727c5f92620460316f7700"
+    },
+    "compile_required_before_execution": true
+  },
+  "recovery_execution": {
+    "recovery_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_02",
+    "recovery_root_must_not_exist_before_execution": true,
+    "authoring_forbidden": true,
+    "render_state_verifier_forbidden": true,
+    "capture_forbidden": true,
+    "first_unreal_stage": "baseline_profile_measured",
+    "second_unreal_stage": "candidate_profile_measured",
+    "active_rhi_required": "D3D12|SM6",
+    "warmup_seconds": 30,
+    "csv_start_activation_timeout_seconds": 5,
+    "measured_seconds": 60,
+    "boot_csv_capture_forbidden": true,
+    "world_or_package_save_allowed": false,
+    "pcg_generation_allowed": false,
+    "network_download_allowed": false,
+    "automatic_retry_allowed": false,
+    "promotion_allowed": false
+  }
+}

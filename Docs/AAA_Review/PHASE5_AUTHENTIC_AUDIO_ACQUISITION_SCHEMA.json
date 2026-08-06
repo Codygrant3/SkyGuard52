@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skyguard52.local/schemas/phase5-authentic-audio-acquisition-v1.json",
+  "title": "Skyguard 52 Phase 5 Authentic Audio Acquisition Manifest",
+  "type": "object",
+  "required": [
+    "schema",
+    "manifest_id",
+    "policy",
+    "entries",
+    "overall_state"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.phase5.authentic-audio-acquisition.v1"
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "raw_files_excluded_from_build",
+        "import_requires_complete_evidence",
+        "audition_does_not_equal_import_approval",
+        "source_hash_algorithm"
+      ],
+      "properties": {
+        "raw_files_excluded_from_build": {
+          "const": true
+        },
+        "import_requires_complete_evidence": {
+          "const": true
+        },
+        "audition_does_not_equal_import_approval": {
+          "const": true
+        },
+        "source_hash_algorithm": {
+          "const": "SHA-256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "overall_state": {
+      "enum": [
+        "EMPTY_BLOCKED",
+        "PARTIAL_BLOCKED",
+        "READY_FOR_GOVERNED_IMPORT"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256OrNull": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{64}$"
+        }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "category_id",
+        "display_label",
+        "bank_bindings",
+        "acquisition_state",
+        "vendor",
+        "license",
+        "source",
+        "semantic",
+        "derivative",
+        "distribution_risk",
+        "unreal_import"
+      ],
+      "properties": {
+        "category_id": {
+          "enum": [
+            "EngineIdle",
+            "EngineCruise",
+            "EnginePower",
+            "Propeller",
+            "OpenCockpitWind",
+            "RifleShot",
+            "IglaLaunch",
+            "MissileFlight",
+            "DronePropulsion",
+            "DroneImpactExplosion"
+          ]
+        },
+        "display_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bank_bindings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acquisition_state": {
+          "enum": [
+            "MISSING_LICENSE_AND_SOURCE",
+            "LICENSE_REVIEW_PENDING",
+            "SOURCE_ACQUIRED_QUARANTINED",
+            "EVIDENCE_REVIEW_PENDING",
+            "APPROVED_FOR_GOVERNED_IMPORT",
+            "REJECTED"
+          ]
+        },
+        "vendor": {
+          "type": "object"
+        },
+        "license": {
+          "type": "object"
+        },
+        "source": {
+          "type": "object"
+        },
+        "semantic": {
+          "type": "object"
+        },
+        "derivative": {
+          "type": "object"
+        },
+        "distribution_risk": {
+          "type": "object"
+        },
+        "unreal_import": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

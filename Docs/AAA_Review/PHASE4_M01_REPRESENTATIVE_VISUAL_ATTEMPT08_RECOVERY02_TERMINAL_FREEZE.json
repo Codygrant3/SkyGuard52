@@ -1,0 +1,42 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery02-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-02",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "terminal": true,
+  "authorized_invocation_count": 1,
+  "automatic_retry_count": 0,
+  "original_offline_freeze": {
+    "file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_FREEZE.json",
+    "bytes": 3493,
+    "sha256": "6b1c3e56b99688c58b2049f6aa1249d6c97a669868f71aa3703d9e9af19ea26e"
+  },
+  "terminal_files": [
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_EXECUTION_PREFLIGHT.json", "bytes": 933, "sha256": "46b7073ebd9fe634d9b6f8d1aca4ba0db0d2976b4396a3773f3a2d8bc1259707"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/launcher_attempt_01/run_manifest.json", "bytes": 1327, "sha256": "dc70b55c5de00cb5e659403f60d7402eda54d5d416c961a0220526d99ab973a4"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/launcher_attempt_01/logs/recovery02.stdout.log", "bytes": 1026, "sha256": "24e06876a7990e8d57f8b20f91d020d2779fddf26a68d51acafb8e088aa09daf"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/launcher_attempt_01/logs/recovery02.stderr.log", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/launcher_attempt_01/logs/recovery02.engine.log", "bytes": 271406, "sha256": "b90974ba83b8a49dbe144ad6cf64e45659d9a0afc186c2662ec50156dfc0f807"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_TERMINAL_MANIFEST.json", "bytes": 3716, "sha256": "ee62bbc28115f62681b0afd254925b1a8a111f61330f70e2e7148ddfdd29c287"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_TERMINAL_EVIDENCE.json", "bytes": 3379, "sha256": "241f78049e6716c9d922b47d51f126e833b917818244378adcbe84947c1f8af6"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_VISUAL_REVIEW_2026-08-02.md", "bytes": 955, "sha256": "b1da9fb904d6752d396f4d77da92b7ee633fb277320d9ed751eaca9bbe4118d1"},
+    {"file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY02_TERMINAL_2026-08-02.md", "bytes": 1894, "sha256": "cb9e44f47d44223e050894d3de3161edc0130d68b3395cfb4f6b96684ae8ddab"},
+    {"file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY02_TERMINAL_2026-08-02.md", "bytes": 1758, "sha256": "95da620f1a3b66bccc8093112467543b756f29a28a1b8674124421369c905596"}
+  ],
+  "attempt_state": {
+    "attempt_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/attempt_01",
+    "proof_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/attempt_01/proof",
+    "proof_file_count": 0,
+    "png_count": 0,
+    "capture_receipt_present": false,
+    "restoration_receipt_present": false,
+    "frame_samples_present": false
+  },
+  "preservation": {
+    "production_map_sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72",
+    "validation_material_sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2",
+    "world_save_observed": false,
+    "heavy_process_count_after_execution": 0,
+    "recovery02_rerun_forbidden": true
+  },
+  "next_gate": "Offline-only P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03 design gate. No Unreal execution is authorized by this freeze."
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.phase4.m01-recovery05-startup-receipt.schema.v1",
+  "title": "Recovery05 Native Startup Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "plugin_identity",
+    "module_identity",
+    "module_load_utc",
+    "process_id",
+    "contract_id",
+    "authorization_token_accepted",
+    "expected_runtime_root",
+    "runtime_root_absent_before_creation",
+    "messaging_plugins_disabled",
+    "map_load_status",
+    "lifecycle_state"
+  ],
+  "properties": {
+    "plugin_identity": {"const": "SkyguardRecovery03NativeRecovery05"},
+    "module_identity": {"const": "SkyguardRecovery03NativeRecovery05"},
+    "module_load_utc": {"type": "string", "format": "date-time"},
+    "process_id": {"type": "integer", "minimum": 1},
+    "contract_id": {"type": "string", "minLength": 1},
+    "authorization_token_accepted": {"type": "boolean"},
+    "expected_runtime_root": {"type": "string", "minLength": 1},
+    "runtime_root_absent_before_creation": {"type": "boolean"},
+    "messaging_plugins_disabled": {
+      "type": "object",
+      "required": ["TcpMessaging", "UdpMessaging"],
+      "properties": {
+        "TcpMessaging": {"const": true},
+        "UdpMessaging": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "map_load_status": {"enum": ["not_checked", "loaded_exact", "failed"]},
+    "lifecycle_state": {
+      "enum": [
+        "module_loaded",
+        "startup_module_executed",
+        "authorization_accepted",
+        "runtime_namespace_created",
+        "ticker_installed",
+        "heartbeat_emitted"
+      ]
+    }
+  }
+}

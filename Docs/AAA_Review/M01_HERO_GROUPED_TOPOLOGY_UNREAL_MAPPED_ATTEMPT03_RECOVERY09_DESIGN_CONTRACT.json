@@ -1,0 +1,176 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery09-design-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_011",
+  "recovery_id": "ATTEMPT03_RECOVERY09",
+  "disposition": "PASS_OFFLINE_DESIGN_READY_REQUIRES_SEPARATE_FULL_MODULE_BUILD_AND_POST_BUILD_REBIND",
+  "contract_id": "M01-HERO-GROUPED-TOPOLOGY-ATTEMPT03-RECOVERY09",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "recovery07_terminal_failure": {
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres",
+    "immutable": true,
+    "retry_in_same_namespace_forbidden": true,
+    "supervisor_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/supervisor_receipt.json",
+      "bytes": 969,
+      "sha256": "6ab4793dd981a8c9a2e9faf2ec1eed83b98af3d68fd2a2e933728d43d87c60b9",
+      "gate": "FAIL_CLOSED_RECOVERY07_NOT_ACCEPTED"
+    },
+    "capture_receipt": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/capture/capture_receipt.json",
+      "bytes": 1410,
+      "sha256": "de6c93994e1f4f3a414ec2ad2b7f325cfce3f222f4fb9a6cd46cef0c0ab85dcc",
+      "gate": "FAIL_CLOSED_RECOVERY07_HIGHRES_CAPTURE",
+      "issue": "High-resolution screenshot callback timeout; family=Pathfinder view=three_quarter live_viewport=X=2048 Y=2048",
+      "pilot_capture_count": 0,
+      "full_view_capture_count": 0
+    },
+    "written_pilot_png": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/capture/pilot/Pilot_00.png",
+      "bytes": 1390491,
+      "sha256": "7a04691431ad3fead9618796f58964f214baa9bd6bbd638725a11df34f028a42",
+      "png_signature_hex": "89504e470d0a1a0a",
+      "ihdr_width": 2048,
+      "ihdr_height": 2048
+    },
+    "unreal_engine_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/unreal.engine.log",
+      "bytes": 207904,
+      "sha256": "fa4d6c592ec9c67ac62e0944361aaba5cc01b0e2febb66c6bf7aed3495eef8e4"
+    },
+    "unreal_stdout": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres/unreal.stdout.log",
+      "bytes": 207777,
+      "sha256": "4d9e1489530a256dcf14635fa157c5e704b9e7d43a7619479aae0609b9092dc1"
+    },
+    "observed_sequence": [
+      "[RECOVERY07][CAPTURE_REQUEST] at exact 2048x2048 live viewport",
+      "Tracing Screenshot Pilot_00 taken with size 2048 x 2048",
+      "High resolution screenshot saved as the governed Pilot_00.png",
+      "No [RECOVERY07][CAPTURE_CALLBACK] marker",
+      "[RECOVERY07][FAIL] after the bounded 30-second callback timeout"
+    ]
+  },
+  "ue58_root_cause_evidence": {
+    "game_viewport_client_source": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Private/GameViewportClient.cpp",
+      "bytes": 162050,
+      "sha256": "ca334450efebbaacb459b1eafe9342a02a83b94c532619dd187d426101cc0996",
+      "relevant_lines": [111, 113, 2543, 2552, 2556]
+    },
+    "game_viewport_client_header": {
+      "path": "D:/UE_5.8/Engine/Source/Runtime/Engine/Classes/Engine/GameViewportClient.h",
+      "bytes": 46654,
+      "sha256": "27d3171e7f28a8791cb9f1639557405fc59b7a4b8f977fb73aaec1eeb21198ba",
+      "relevant_lines": [535, 537, 1059]
+    },
+    "diagnosis": "Recovery07 subscribed to FScreenshotRequest::OnScreenshotCaptured, while UGameViewportClient::ProcessScreenShots broadcasts UGameViewportClient::OnScreenshotCaptured. Those are distinct delegates. Because the correct delegate was unbound, UE 5.8 selected ProcessScreenshotData and wrote the PNG to disk instead of broadcasting to Recovery07.",
+    "r_screenshot_delegate_default": 1,
+    "correct_callback": "UGameViewportClient::OnScreenshotCaptured",
+    "incorrect_recovery07_callback": "FScreenshotRequest::OnScreenshotCaptured"
+  },
+  "preserved_recovery07_08": {
+    "recovery07_header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.h",
+      "bytes": 3163,
+      "sha256": "f23d3492e2f7a9a20947a58b5ec51580307a82c2bcd344fcf2b508a171c596e5"
+    },
+    "recovery07_source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery07Capture.cpp",
+      "bytes": 26610,
+      "sha256": "d8864cc19dc2d99e9d6eb37ddfe9dc48e6285860558b6da74c8edb1b45f221a9"
+    },
+    "recovery08_compile_fix": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery08CompileFix.h",
+      "bytes": 1451,
+      "sha256": "2814e6612493f17b2368e6ba148663d34f64aa4406166641b635b637920bb5a4"
+    },
+    "recovery08_contract": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY08_COMPILE_FIX_CONTRACT.json",
+      "bytes": 6210,
+      "sha256": "99c4a2d63f4ef169ae720c6a07ca4f513738e6b2cf0edd1db3970640a77a8664"
+    },
+    "recovery08_freeze_manifest": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY08_FREEZE_MANIFEST.json",
+      "bytes": 2584,
+      "sha256": "02b77c349e8dbca22b71879f28b8482cee0a27b578c2315ae8de552941105f1d"
+    },
+    "module_rules": {
+      "path": "Source/Skyguard52/Skyguard52.Build.cs",
+      "bytes": 1295,
+      "sha256": "81fec3b1bd74bd7fa0471d9d17c2ac528f8f983df15a6aa8bf1393cca89e2d5b"
+    },
+    "must_remain_byte_identical": true
+  },
+  "recovery09_implementation": {
+    "generator": {
+      "path": "Scripts/generate_m01_hero_grouped_topology_recovery09.py",
+      "bytes": 17459,
+      "sha256": "43dbf956bef6b8cc38219f5920494d9b292666622b2b661fc0a975ebb5a4305a"
+    },
+    "header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.h",
+      "bytes": 3639,
+      "sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0"
+    },
+    "source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.cpp",
+      "bytes": 30714,
+      "sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08"
+    },
+    "future_wrapper": {
+      "path": "Scripts/run_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery09.ps1",
+      "bytes": 11073,
+      "sha256": "0acf939e3c1f89f7c266c4157695fa4e85908a50d65f272d214a5e17f6b0e7a6"
+    },
+    "primary_completion_path": "UGameViewportClient::OnScreenshotCaptured with r.ScreenshotDelegate forced to 1 and restored during deinitialization",
+    "fallback_completion_path": "Three stable frames of an existing PNG larger than 25000 bytes, exact PNG signature and 2048x2048 IHDR, plus exact 2048x2048 live FSceneViewport::ReadPixels validation",
+    "callback_timeout_seconds": 45,
+    "absolute_session_timeout_seconds": 300,
+    "filesystem_stable_frames_required": 3,
+    "minimum_png_bytes": 25000,
+    "completion_methods_recorded_per_capture": true,
+    "no_new_module_dependency": true,
+    "module_rules_unchanged": true
+  },
+  "future_build": {
+    "full_module_compile_required": true,
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "unreal_launch_allowed_during_build": false,
+    "post_build_dll_hash_must_be_bound": true,
+    "post_build_source_inventory_must_be_bound": true,
+    "post_build_execution_contract_required": true,
+    "post_build_execution_contract_path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_EXECUTION_CONTRACT.json",
+    "post_build_execution_contract_currently_absent": true
+  },
+  "future_output": {
+    "attempt_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_011/recovery09_attempt_01/mapped_view_capture_03_recovery_09",
+    "capture_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_011/recovery09_attempt_01/mapped_view_capture_03_recovery_09/capture",
+    "must_be_absent_before_execution": true,
+    "distinct_from_recovery07": true,
+    "overwrite_or_retry_in_same_namespace": false
+  },
+  "acceptance": {
+    "exact_resolution": [2048, 2048],
+    "exact_pilot_png_count": 3,
+    "exact_full_view_png_count": 9,
+    "each_capture_completion_method_required": true,
+    "allowed_completion_methods": [
+      "game_viewport_delegate",
+      "stable_filesystem_png_plus_live_readback"
+    ],
+    "full_view_unique_hash_count_required": 9,
+    "all_pilot_liveness_bounds_must_pass": true,
+    "all_full_view_hard_bounds_must_pass": true,
+    "critical_log_signatures_allowed": 0,
+    "human_original_resolution_review_required": true
+  },
+  "native_build_authorized": false,
+  "native_build_executed": false,
+  "unreal_launch_authorized": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "content_packages_created_or_modified": 0,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

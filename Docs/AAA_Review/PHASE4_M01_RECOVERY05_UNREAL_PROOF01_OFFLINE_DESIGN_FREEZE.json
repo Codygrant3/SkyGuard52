@@ -1,0 +1,74 @@
+{
+    "schema":  "skyguard.phase4.m01-recovery05-unreal-proof01-offline-design-freeze.v1",
+    "created_utc":  "2026-08-05T22:20:19.1256418Z",
+    "classification":  "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY05_UNREAL_PROOF01_AUTHORIZATION",
+    "accepted_runtime_binding":  {
+                                     "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_RUNTIME_BINDING01_TERMINAL_FREEZE.json",
+                                     "bytes":  3702,
+                                     "sha256":  "220a243347ec6bf344bcfae40ff7a42f256aa4b944b8ce3a8188015b14a68ae1"
+                                 },
+    "members":  [
+                    {
+                        "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_CONTRACT.json",
+                        "bytes":  4285,
+                        "sha256":  "28d0c115856fd1023662100ec0156421748730831dcc30b68fbf30b85b54eae3"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_CAMERA_RUBRIC_RECONCILIATION.json",
+                        "bytes":  4105,
+                        "sha256":  "b44ebfd2e9b01c96cfe0a481badc6d12b2b37307f29018631511297dd4596af3"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_NATIVE_RUNTIME_COMPATIBILITY_REPORT.json",
+                        "bytes":  7443,
+                        "sha256":  "07bdf8ef8e2626a9ed535185f3c736ba5ac92cce7a2315e2df9d075ab756acb2"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_LAUNCHER_SUPERVISOR_DESIGN.json",
+                        "bytes":  1896,
+                        "sha256":  "c51be16e1511e2ea07fb723f2205a55efc5787b02782d68d9f6e35bc7bd7b191"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Scripts\\invoke_phase4_m01_recovery05_unreal_proof01_once.ps1",
+                        "bytes":  9142,
+                        "sha256":  "44f99abddbb4ce5979797662d77d8c4b2e59ff51c78411fa1c271ac38a030c2c"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Scripts\\verify_phase4_m01_recovery05_unreal_proof01_postflight.py",
+                        "bytes":  16950,
+                        "sha256":  "3f8d340b1d395bebe533bd654fb8af2998efd61cd98e95e464e2b63f31759583"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_EXACT_HOST_TEST_RESULT.json",
+                        "bytes":  1866,
+                        "sha256":  "1dee66c07e92b5e023141f5c94226965136e72eb17f0ad690b7ddce9affc3f56"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_SOURCE_INVENTORY.json",
+                        "bytes":  19760,
+                        "sha256":  "636a37d63b89ca9f13803258df082bf17a7fc042efd4b837ecbb7e11ed2c3241"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_READINESS.json",
+                        "bytes":  957,
+                        "sha256":  "cfb19baa044622b3160f14965d48dc0b6a985220dc2c5ac9465b35b1684fe04c"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_UNREAL_PROOF01_SINGLE_EXECUTION.md",
+                        "bytes":  3475,
+                        "sha256":  "c8ee721b75f004f4b93bb799044ce64dc1896e17d952c1ba626542e5b8d766fc"
+                    }
+                ],
+    "member_count":  10,
+    "active_plugin_record_count":  8,
+    "quarantined_plugin_record_count":  18,
+    "exact_host_tests_passed":  true,
+    "heavy_process_count":  0,
+    "unreal_launch_count":  0,
+    "blender_launch_count":  0,
+    "capture_count":  0,
+    "future_namespaces_absent":  true,
+    "next_gate":  "EXPLICIT_SINGLE_RECOVERY05_UNREAL_PROOF01_EXECUTION",
+    "mission01_production_accepted":  false,
+    "aaa_production_accepted":  false
+}

@@ -1,0 +1,43 @@
+# True-Art Slice28 - L85 (on L84 freeze)
+Updated: 2026-08-01
+Goal: thin true-art on L84 KEEP — deepen capture-visible combat/prop/ocean particle language and airframe material response without host regression.
+
+## Hard rules
+1. No extra PointLight FOV stacks (L66 reject)
+2. Keep L52 HF densify core in FOV
+3. Behind-wall hero content only (x >= bx+3)
+4. No L53 multi-stage hero stacks
+5. Host 11/11 absolute else REJECT to L84
+6. Author materials once and cache
+7. Host audit glob AAA_Cam_L85_*
+
+## Multi-model sequence
+1. Luna high farm
+2. Luna max refine
+3. Terra high architecture
+4. Grok 4.5 challenge
+5. Sol only on conflict
+6. Codex implement L85 + capture
+7. Host Pillow 11/11
+8. Harsh critic FAIL until blind flips pillars
+9. Opus 5 acceptance on receipts only
+
+## Content targets (thin / capture-safe)
+- New NS_L85_* systems: MuzzleCoreHot, SparkChain, ExplBloomLite, PropWashCore, FoamCrestLite, TracerCoreHot, GunSmokeCoreLite, FlakBloomLite, CitySparkHot, ContrailCoreLite, ShellBurstLite, HitFlashLite, DebrisCoreLite, ExhaustCoreLite, MuzzleSmokeLite, OceanFoamLite
+- Combat: thin muzzle/tracer/shell/debris + spark chain (behind wall)
+- Prop/Yak: prop wash core + exhaust core lite
+- City: CitySparkHot + window response behind wall
+- Ocean/Harbor: foam crest lite + ocean foam lite bounded
+- ADS/Cockpit: thin HF only + optional tiny HitFlashLite
+
+## Success criteria
+- Host 11/11
+- Prop/Yak/Cockpit/City remain strong
+- Map growth modest vs L84
+- Critic may still FAIL until blind prefers Skyguard
+
+## Implement notes
+- Base script: build_skyguard_aaa_loop84_true_art_slice27_capture.py
+- Retarget PREFIX/OUT_DIR/RT/cam labels to L85
+- Append ensure_slice28_vfx_library + thin densify after Slice27 chain
+- Host audit must use AAA_Cam_L85_* (not previous loop)

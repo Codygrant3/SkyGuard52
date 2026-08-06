@@ -1,0 +1,70 @@
+{
+    "schema":  "skyguard.phase4.m01-recovery05-unreal-proof01-camera-rubric-reconciliation.v1",
+    "created_utc":  "2026-08-05T22:20:19.0311257Z",
+    "classification":  "PASS",
+    "reuse_policy":  "Exact-hash reuse only; no camera or rubric reinterpretation",
+    "cameras":  {
+                    "source":  {
+                                   "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json",
+                                   "bytes":  2651,
+                                   "sha256":  "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"
+                               },
+                    "static_count":  5,
+                    "temporal_count":  3,
+                    "required_resolution":  "2560x1440",
+                    "static_ids":  [
+                                       "C01",
+                                       "C02",
+                                       "C03",
+                                       "C04",
+                                       "C05"
+                                   ],
+                    "temporal_ids":  [
+                                         "T01",
+                                         "T02",
+                                         "T03"
+                                     ],
+                    "accepted_for_recovery05":  true
+                },
+    "visual_rubric":  {
+                          "source":  {
+                                         "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json",
+                                         "bytes":  1986,
+                                         "sha256":  "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"
+                                     },
+                          "rejects":  [
+                                          "diagnostic blocks",
+                                          "floating or disconnected geometry",
+                                          "ungrounded buildings",
+                                          "placeholder repetition",
+                                          "bad exposure or crushed shadows",
+                                          "missing shoreline contact",
+                                          "low-poly hero silhouettes",
+                                          "unstable clouds water foliage or world geometry",
+                                          "camera clipping",
+                                          "camera-coupled world motion",
+                                          "unacceptable temporal hitching"
+                                      ],
+                          "direct_full_resolution_human_review_required":  true
+                      },
+    "performance_rubric":  {
+                               "source":  {
+                                              "path":  "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json",
+                                              "bytes":  1332,
+                                              "sha256":  "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"
+                                          },
+                               "warmup_seconds":  30,
+                               "measurement_seconds":  30,
+                               "minimum_frame_samples":  900,
+                               "mean_frame_ms_max":  16.7,
+                               "p95_frame_ms_max":  22.2,
+                               "p99_frame_ms_max":  33.3,
+                               "max_hitch_ms":  50,
+                               "frames_over_50ms_max":  0,
+                               "gpu_mean_ms_max":  14,
+                               "gpu_p95_ms_max":  20,
+                               "working_set_mib_max":  12288,
+                               "gpu_memory_mib_max":  10240
+                           },
+    "changed_camera_or_rubric_semantics":  false
+}

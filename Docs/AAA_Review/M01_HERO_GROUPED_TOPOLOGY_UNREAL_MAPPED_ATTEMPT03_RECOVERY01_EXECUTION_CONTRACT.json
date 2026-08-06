@@ -1,0 +1,111 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery01-execution-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY01",
+  "disposition": "OFFLINE_READY_REQUIRES_EXPLICIT_SINGLE_RECOVERY_RUN_AUTHORIZATION",
+  "authorization": {
+    "authorize_switch": "AuthorizeSingleRecovery01Run",
+    "expected_contract_hash_must_be_supplied": true,
+    "unreal_process_count": 1,
+    "unreal_stage": "existing_review_map_physical_rig_sweep",
+    "offline_stages_after_unreal_exit": [
+      "global_physical_rig_selection",
+      "independent_package_runtime_config_audit"
+    ]
+  },
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "bound_files": {
+    "recovery_contract": {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY01_CONTRACT.json",
+      "bytes": 5280,
+      "sha256": "4ad277bd05711ad579afac409efa98cffa184e75a51387ddc8acc7091a35f3d5"
+    },
+    "powershell_supervisor": {
+      "path": "Scripts/run_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery01.ps1",
+      "bytes": 17176,
+      "sha256": "b9b59af4e0777a21f1ae0b4c0d33871ab47bfcf9c865b14cf8c6f4fef91898fe"
+    },
+    "recovery_capture": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery01.py",
+      "bytes": 10396,
+      "sha256": "0497adc2a5bd5a3662de5eb6582142bfc780bc6330e8a0fe23f03d45b5312e39"
+    },
+    "recovery_selector": {
+      "path": "Scripts/select_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery01.py",
+      "bytes": 8654,
+      "sha256": "5f659097bfbe4f958c5c014f0df3c1e194b51dcbd2ff572c7a511e9076962a33"
+    },
+    "execution_auditor": {
+      "path": "Scripts/verify_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery01_execution.py",
+      "bytes": 6930,
+      "sha256": "93edbe4296efb4cbaaf838894fd2653fecd78d4382e624f6389af6f3a78edd9a"
+    },
+    "readiness_auditor": {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery01.py",
+      "bytes": 9202,
+      "sha256": "1f5beefe8cae7cac08e8be6dc7ae6b026d92107d7f042b203915c1b8b11996cf"
+    },
+    "base_capture_helpers": {
+      "path": "Scripts/capture_m01_hero_grouped_topology_unreal_mapped_attempt03.py",
+      "bytes": 14187,
+      "sha256": "42f72fe894944ac5d990d8de1bdaeeb717d10be4613313a88f069c65a721bd3d"
+    },
+    "base_selector_helpers": {
+      "path": "Scripts/select_m01_hero_grouped_topology_unreal_mapped_attempt03_exposure.py",
+      "bytes": 10509,
+      "sha256": "eb4c2309e944df917f56197dc4b23a3e50533a64749ccdc96cc8fe1654df4cd7"
+    },
+    "review_map_package": {
+      "path": "Content/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03.umap",
+      "bytes": 29983,
+      "sha256": "2437baec361615433926d48776f206bb53f8abe7880384e3c4ba0e751e080def"
+    }
+  },
+  "outputs": {
+    "attempt_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_01",
+    "sweep_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_01/sweep",
+    "selection_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_01/selection",
+    "supervisor_receipt": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_01/supervisor_receipt.json"
+  },
+  "resource_preflight": {
+    "zero_heavy_processes_required": true,
+    "minimum_free_physical_gib": 24.0,
+    "timeout_seconds_default": 1200,
+    "timeout_cleanup_scope": "launched_root_process_and_descendants_only"
+  },
+  "render_contract": {
+    "rhi": "D3D12",
+    "feature_level": "SM6",
+    "resolution": [
+      2048,
+      2048
+    ],
+    "fixed_manual_exposure_bias_ev": -12,
+    "rig_candidate_count": 8,
+    "sweep_capture_count": 72,
+    "canonical_capture_count": 9,
+    "single_global_rig_required": true
+  },
+  "immutability": {
+    "attempt_root_must_be_absent": true,
+    "failed_attempt_evidence_must_remain_unchanged": true,
+    "review_map_package_must_remain_unchanged": true,
+    "original_candidate_packages_must_remain_unchanged": true,
+    "runtime_maps_must_remain_unchanged": true,
+    "config_must_remain_unchanged": true,
+    "new_content_package_count": 0,
+    "reassembly_allowed": false,
+    "overwrite_or_retry_in_same_namespace": false
+  },
+  "acceptance": {
+    "unreal_exit_code": 0,
+    "rhi_validation": "D3D12|SM6",
+    "critical_log_signatures_allowed": 0,
+    "exact_sweep_png_count": 72,
+    "exact_canonical_png_count": 9,
+    "independent_audit_gate": "PASS_RECOVERY01_EXECUTION_AWAITING_ORIGINAL_RESOLUTION_REVIEW",
+    "human_original_resolution_review_required": true
+  },
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

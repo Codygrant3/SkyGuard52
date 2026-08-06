@@ -1,0 +1,41 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "unreal_import_not_authorized": true,
+  "future_requirements": {
+    "coordinate_system": "centimetres in Unreal; Blender source modeled metrically",
+    "rifle_sockets": [
+      "muzzle",
+      "ejection_port",
+      "left_hand",
+      "right_hand",
+      "rear_sight",
+      "front_sight"
+    ],
+    "igla_sockets": [
+      "missile_origin_front",
+      "rear_clearance",
+      "left_hand",
+      "right_hand",
+      "shoulder_contact",
+      "sight_eye"
+    ],
+    "character_sockets": [
+      "hand_l",
+      "hand_r",
+      "forearm_l",
+      "forearm_r",
+      "head",
+      "shoulder_r"
+    ],
+    "shahed_sockets": [
+      "engine",
+      "servo_left",
+      "servo_right",
+      "damage_core",
+      "wing_left",
+      "wing_right"
+    ],
+    "collision": "separate visual mesh, gameplay collision, cockpit safety, and clearance volumes",
+    "lod_nanite": "hero first-person objects require authored close LOD and stable normals; background drone may use Nanite if deformation contract permits"
+  }
+}

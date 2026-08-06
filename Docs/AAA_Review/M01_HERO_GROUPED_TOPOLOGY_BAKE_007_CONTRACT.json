@@ -1,0 +1,226 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-bake.contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_007",
+  "extends_contract": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_BAKE_003_CONTRACT.json",
+  "extends_contract_sha256": "5345210f2d566b4a2cc14d3bd9755ed509ced989c1860f1e5000a3b576b25882",
+  "supersedes_candidates": [
+    "BLD_M01_HERO_HILO_001",
+    "BLD_M01_HERO_HILO_002",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_003",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_004",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_005",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_006"
+  ],
+  "attempt_correction_basis": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_BAKE_006_FAILURE_REVIEW_2026-08-02.md",
+  "classification_report": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_CLASSIFICATION_007.json",
+  "classification_report_sha256": "e575447dc07b8da7bf02f0ecef81f3c9bec3fba1228da21739698b737bd4a30d",
+  "scope": "Repair the two classified production-low topology defects, enforce render visibility isolation, and replace contaminated infinite scene AO with governed per-group direct AO or a dedicated bounded selected-to-active AO occluder.",
+  "outputs": {
+    "master_blend": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_007/BLD_M01_HERO_GROUPED_TOPOLOGY_007_MASTER.blend",
+    "low_glb": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_007/bld_m01_hero_grouped_topology_007_low.glb",
+    "texture_root": "Content/Skyguard/Textures/Source/Mission01/HeroGroupedTopology_007",
+    "manifest": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_MANIFEST_007.json",
+    "report": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_REPORT_007.json"
+  },
+  "bake_contract": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "selected_to_active": true,
+    "group_isolation_required": true,
+    "explicit_cage_required": true,
+    "normal_space": "TANGENT",
+    "tangent_basis": "MikkTSpace",
+    "normal_convention": "OpenGL",
+    "uv_layer": "UV_M01_GROUPED_0",
+    "resolution": 2048,
+    "margin_pixels": 48,
+    "samples": 32,
+    "preserve_neutral_background": true,
+    "maps": [
+      {
+        "type": "Normal",
+        "bake_mode": "selected_to_active_tangent_normal",
+        "color_space": "Non-Color",
+        "neutral_background": [
+          0.5,
+          0.5,
+          1.0
+        ],
+        "minimum_varied_rgb_channels": 2,
+        "maximum_black_pixel_fraction": 0.0001
+      },
+      {
+        "type": "AO",
+        "bake_mode": "governed_per_group_direct_or_dedicated_bounded_occluder",
+        "color_space": "Non-Color",
+        "neutral_background": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "minimum_varied_rgb_channels": 1,
+        "maximum_black_pixel_fraction": 0.35
+      }
+    ]
+  },
+  "topology_contract": {
+    "partition_method": "exact_disjoint_source_material_partition",
+    "source_face_coverage_required": true,
+    "orphan_vertices_allowed": false,
+    "duplicate_material_membership_allowed": false,
+    "face_normal_authoring": {
+      "method": "bmesh_recalc_face_normals_per_partition",
+      "low_after_topology_repair_before_smoothing": true,
+      "high_after_bevel_or_subdivision": true,
+      "zero_normal_faces_allowed": false
+    },
+    "uv_authoring": {
+      "method": "semantic_group_connected_source_charts_repacked_and_seams_authored",
+      "source_chart_seed": "UV_M01_AAA_0",
+      "smart_project_forbidden": true,
+      "average_island_scale": true,
+      "pack_islands": true,
+      "merge_overlap": false,
+      "authored_seams_from_uv_discontinuities": true,
+      "uv_bounds_min": 0.0,
+      "uv_bounds_max": 1.0,
+      "minimum_seam_edges": 1
+    },
+    "smoothing": {
+      "polygon_smoothing": true,
+      "sharp_edges_follow_group_hard_angle": true,
+      "minimum_sharp_edges": 0
+    },
+    "high_source": {
+      "separate_mesh_datablock": true,
+      "three_segment_bevel": true,
+      "linear_subdivision_when_bevel_adds_no_density": true,
+      "minimum_high_to_low_vertex_ratio": 1.01
+    },
+    "cage": {
+      "separate_mesh_datablock": true,
+      "topology_must_match_low": true,
+      "normal_offset_only": true
+    }
+  },
+  "topology_repair_contract": {
+    "analysis_mode": "offline_glb_only_no_blender_no_unreal",
+    "zero_area_faces_after_repair": 0,
+    "nonmanifold_edges_after_repair": 0,
+    "render_visibility_isolation_required": true,
+    "dedicated_ao_occluder_count": 9,
+    "direct_low_ao_count": 3,
+    "group_policies": {
+      "Lighthouse/LanternGlass": {
+        "classification": "closed_exterior_candidate",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "direct_low_self_occlusion"
+      },
+      "Lighthouse/RedBandsRoof": {
+        "classification": "closed_exterior_candidate",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "direct_low_self_occlusion"
+      },
+      "Lighthouse/SteelGallery": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Lighthouse_SteelGallery_007"
+      },
+      "Lighthouse/WhiteTower": {
+        "classification": "closed_exterior_candidate",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "direct_low_self_occlusion"
+      },
+      "Pathfinder/AccessPanels": {
+        "classification": "degenerate",
+        "remove_zero_area_faces": true,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_AccessPanels_007"
+      },
+      "Pathfinder/EdgeHardware": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_EdgeHardware_007"
+      },
+      "Pathfinder/PaintShell": {
+        "classification": "nonmanifold",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": true,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_PaintShell_007"
+      },
+      "Pathfinder/ThermalHardware": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_Pathfinder_ThermalHardware_007"
+      },
+      "RadarPost/BlastDoor": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_BlastDoor_007"
+      },
+      "RadarPost/ConcreteBunker": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_ConcreteBunker_007"
+      },
+      "RadarPost/DishFeed": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_DishFeed_007"
+      },
+      "RadarPost/MastDrive": {
+        "classification": "closed_exterior_candidate_ao_failed",
+        "remove_zero_area_faces": false,
+        "split_nonmanifold_edges": false,
+        "ao_policy": "selected_to_active_from_dedicated_bounded_ao_occluder",
+        "ao_occluder_object": "AOCC_M01_RadarPost_MastDrive_007"
+      }
+    }
+  },
+  "required_manifest_checks": [
+    "source_hash_bound",
+    "classification_report_hash_bound",
+    "exact_disjoint_material_partition",
+    "complete_source_face_coverage_before_governed_repair",
+    "zero_area_faces_removed",
+    "nonmanifold_edges_split",
+    "render_visibility_isolated_per_bake",
+    "twelve_isolated_bake_groups",
+    "nine_dedicated_bounded_ao_occluders",
+    "three_direct_low_ao_groups",
+    "component_consistent_face_normals_per_low_and_high_group",
+    "connected_chart_repack_and_authored_uv_seams_per_group",
+    "angle_governed_smoothing_per_group",
+    "separate_density_proven_high_mesh_datablocks",
+    "explicit_topology_matching_cage_per_group",
+    "selected_to_active_normal_projection_per_group",
+    "twenty_four_map_hashes",
+    "map_specific_black_pixel_limits",
+    "deterministic_package_fingerprint"
+  ],
+  "promotion": "grouped_topology_candidate_requires_direct_original_resolution_map_review_then_mapped_mesh_grazing_angle_and_unreal_acceptance",
+  "non_claims": [
+    "Builds 001 through 006 remain immutable failed or rejected evidence.",
+    "Offline classification and source readiness do not authorize Blender execution.",
+    "Artifact verification does not pass the direct map visual gate.",
+    "A direct map visual pass does not replace mapped-mesh grazing-angle review.",
+    "No Unreal/runtime replacement is authorized by this build alone."
+  ]
+}

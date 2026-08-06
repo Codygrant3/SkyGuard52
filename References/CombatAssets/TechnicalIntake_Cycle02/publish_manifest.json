@@ -1,0 +1,30 @@
+{
+  "source_root": "C:\\Users\\chris\\OneDrive\\Documents\\Shoot down the drones\\_offline_gate\\combat_asset_reference_resolution_cycle02_20260805",
+  "archive_destination": "D:\\Skyguard52\\References\\CombatAssets\\TechnicalIntake_Cycle02",
+  "conventional_copies": [
+    {
+      "source": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_FREEZE.json",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_FREEZE.json"
+    },
+    {
+      "source": "reports/GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_REPORT.md",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_REPORT.md"
+    },
+    {
+      "source": "reports/GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_NEXT_BLENDER_BLOCKOUT_PROMPT.md",
+      "destination": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_BLENDER_BLOCKOUT.md"
+    },
+    {
+      "source": "reports/GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_READINESS.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_READINESS.json"
+    },
+    {
+      "source": "reports/GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_RIFLE_IDENTITY_DECISION.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_RIFLE_IDENTITY_DECISION.json"
+    },
+    {
+      "source": "reports/GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_IGLA_PROJECT_DECISION.json",
+      "destination": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_IGLA_PROJECT_DECISION.json"
+    }
+  ]
+}

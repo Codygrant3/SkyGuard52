@@ -1,0 +1,158 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-repair-contract.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-005",
+  "status": "OFFLINE_REPAIR_DESIGN_READY_NOT_AUTHORIZED_FOR_UNREAL_EXECUTION",
+  "created_at_utc": "2026-08-02T00:00:00Z",
+  "supersedes_for_future_execution": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "accepted_attempt04_is_immutable_failed_visual_evidence": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04",
+    "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04.umap",
+    "sha256": "cb2c13f3ce18a3462620306bcef4610d87c2f0cf28a7815b444bd68ab773a021",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4.uasset",
+    "material_sha256": "e54682b64f43dbaf0e2c61f08436d495493c6db1f28998cce9583d0542c4042e",
+    "human_review_file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_HUMAN_REVIEW_ATTEMPT04.json",
+    "human_review_sha256": "7c7b968a05d56f6a8d7ed4fdd17a355efeaf2b6637de0a64c15e3399fc227bd9",
+    "visual_acceptance": false,
+    "promotion_allowed": false
+  },
+  "future_immutable_outputs": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v5_attempt05",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v5_attempt05/M_M01_Landscape_Validation_v5_attempt05",
+    "coverage_material": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v1",
+    "component_id_material": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v1",
+    "must_not_exist_before_authoring": true,
+    "must_never_overwrite_attempt04": true,
+    "must_never_overwrite_baseline": true
+  },
+  "diagnosis": {
+    "proven": [
+      "attempt04 structural acceptance did not test component registration, visibility, hidden-in-game state, render-state creation, generated material instances, camera-frustum coverage, or rendered pixel coverage",
+      "attempt04 diagnostics changed editor viewport commands but rendered a separate SceneCapture2D with its own default show flags",
+      "candidate lit and diagnostic image hash equality proves the prior diagnostic path did not change the SceneCapture view family"
+    ],
+    "not_proven_offline": [
+      "a single serialized property that fully explains the absent Landscape pixels"
+    ],
+    "engine_specific_correction": "UE 5.8 has no MATUSAGE_Landscape flag. Material readiness is proven through generated Landscape component material instances and render-state readiness."
+  },
+  "authoring_revision": {
+    "required_order": [
+      "import Landscape into the new immutable attempt05 world",
+      "bind the governed material before final render-state validation",
+      "set actor hidden-in-game false and temporary-editor-hidden false",
+      "set all 16 Landscape components visible and hidden-in-game false",
+      "register any unregistered component",
+      "call UpdateAllComponentMaterialInstances(true)",
+      "recreate or dirty component render state after material-instance refresh",
+      "update component cached bounds",
+      "audit all fields below before any package save",
+      "save only the new attempt05 packages",
+      "reopen in a fresh editor process and repeat the audit"
+    ],
+    "serialized_and_live_audit": {
+      "landscape_component_count": 16,
+      "visible_component_count": 16,
+      "registered_component_count": 16,
+      "render_state_created_component_count": 16,
+      "hidden_in_game_component_count": 0,
+      "components_with_generated_material_instance": 16,
+      "components_whose_material_parent_resolves_to_governed_material": 16,
+      "actor_hidden_in_game": false,
+      "actor_temporarily_hidden_in_editor": false,
+      "bounds_are_finite_and_nonzero": true,
+      "bounds_intersect_all_contract_camera_frusta": true
+    }
+  },
+  "capture_revision": {
+    "rhi_required": "D3D12|SM6",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "camera_ids": [
+      "C01_ESTABLISHING_HIGH",
+      "C02_SHORELINE_GRAZE",
+      "C03_ROUTE_LOW",
+      "C04_INLAND_CLOSE",
+      "C05_COVERAGE_HIGH"
+    ],
+    "landscape_coverage_capture": {
+      "primitive_render_mode": "PRM_UseShowOnlyList",
+      "show_only_actor": "M01_P4_Landscape_Production",
+      "material_override": "M_P45_LandscapeCoverage_Unlit_v1",
+      "background": "black",
+      "landscape_output": "opaque white",
+      "override_is_in_memory_only": true,
+      "restore_original_material_and_refresh_instances_before_next_capture": true,
+      "world_save_forbidden": true
+    },
+    "minimum_landscape_pixel_fraction_by_camera": {
+      "C01_ESTABLISHING_HIGH": 0.08,
+      "C02_SHORELINE_GRAZE": 0.1,
+      "C03_ROUTE_LOW": 0.05,
+      "C04_INLAND_CLOSE": 0.3,
+      "C05_COVERAGE_HIGH": 0.2
+    },
+    "readability_inside_coverage_mask": {
+      "minimum_median_luminance": 0.05,
+      "minimum_p90_minus_p10_luminance": 0.02,
+      "minimum_largest_connected_region_fraction_of_mask": 0.5
+    },
+    "shader_complexity": {
+      "viewport_console_command_forbidden": true,
+      "scene_capture_show_flags_source": "FEngineShowFlags(ESFIM_Game) plus ApplyViewMode(VMI_ShaderComplexity, true, ShowFlags)",
+      "capture_source": "SCS_FinalColorLDR"
+    },
+    "component_boundary": {
+      "viewport_console_command_forbidden": true,
+      "material_override": "M_P45_LandscapeComponentId_Unlit_v1",
+      "per_component_color_ids": 16,
+      "all_component_ids_must_have_pixels": true,
+      "override_is_in_memory_only": true,
+      "restore_guard_required": true
+    },
+    "fail_closed_checks": [
+      "all five lit captures exist at exact resolution",
+      "all five coverage masks exist at exact resolution",
+      "all five coverage fractions meet their camera threshold",
+      "all five lit images meet masked readability thresholds",
+      "all 16 component IDs are visible",
+      "shader-complexity hash differs from the corresponding lit image",
+      "component-boundary hash differs from the corresponding lit image",
+      "attempt04, attempt05, baseline, and material hashes do not change during capture"
+    ]
+  },
+  "performance_revision": {
+    "same_process_warmup_and_measurement": true,
+    "boot_capture_forbidden": true,
+    "csvCaptureFrames_switch_forbidden": true,
+    "warmup_seconds_after_world_begin_play_and_camera_ready": 30,
+    "warmup_completion_marker": "[P4_PROFILE_WARMUP_COMPLETE]",
+    "csv_start_marker": "[P4_PROFILE_MEASURED_START]",
+    "measured_seconds": 60,
+    "csv_stop_marker": "[P4_PROFILE_MEASURED_STOP]",
+    "required_csv_metadata": {
+      "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-005",
+      "warmup_seconds": "30",
+      "measured_seconds": "60",
+      "startup_frames_excluded": "true"
+    },
+    "budget_scope": "Only frames captured between the measured start and stop markers are evaluated. EngineInit, map load, shader warmup, streaming warmup, and camera-settling frames are outside the measured CSV by construction, not filtered after capture.",
+    "performance_budgets_unchanged": {
+      "mean_frame_time_ms_max": 16.67,
+      "p95_frame_time_ms_max": 16.67,
+      "mean_gpu_time_ms_max": 16.67,
+      "p95_gpu_time_ms_max": 16.67,
+      "single_frame_time_ms_max": 50.0,
+      "shader_compile_hits_measured_max": 0,
+      "texture_pool_over_budget_hits_max": 0
+    }
+  },
+  "execution_authorization": {
+    "unreal_launch_allowed": false,
+    "candidate_authoring_allowed": false,
+    "promotion_allowed": false,
+    "next_gate": "offline implementation and static tests, then explicit root authorization for a single sequential D3D12 attempt05 run"
+  }
+}

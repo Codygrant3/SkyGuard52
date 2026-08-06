@@ -1,0 +1,101 @@
+asset_readiness,band,capture_safety,complexity_penalty,effort,id,implementability,metric_upside,pillar,placement,regression_risk,risk,score,stage_targets,status,title,visual_roi
+1.0,A,1.0,0.0,S,MAT-015,1.0,1.0,materials,behind_wall,0.1,low,93.5,City,candidate,Behind-wall oxidized seam,0.8
+1.0,A,1.0,0.0,S,MAT-016,1.0,1.0,materials,behind_wall,0.1,low,93.5,Harbor,candidate,Behind-wall dirt runoff stripe,0.8
+1.0,A,1.0,0.0,S,MAT-020,1.0,1.0,materials,behind_wall,0.1,low,93.5,City|Harbor,candidate,Behind-wall layered dirt patch,0.8
+1.0,A,1.0,0.0,S,AIR-002,1.0,1.0,aircraft,behind_wall,0.1,low,93.5,YakBeauty|Prop,candidate,Fuselage inspection hatch rim,0.8
+1.0,A,1.0,0.0,S,AIR-004,1.0,1.0,aircraft,behind_wall,0.1,low,93.5,YakBeauty|PropNose,candidate,Cowling louver break pair,0.8
+1.0,A,1.0,0.0,S,AIR-005,1.0,1.0,aircraft,behind_wall,0.1,low,93.5,YakBeauty|PropNose,candidate,Landing-gear fairing notch,0.8
+1.0,A,0.95,0.0,S,VFX-006,1.0,1.0,vfx,additive_emissive,0.1,low,92.5,Combat|ADS,candidate,Ricochet spark streak,0.8
+1.0,A,0.95,0.0,S,VFX-016,1.0,1.0,vfx,additive_emissive,0.1,low,92.5,Ocean|Harbor,candidate,Water splash crown tips,0.8
+1.0,A,0.95,0.0,S,VFX-020,1.0,1.0,vfx,additive_emissive,0.1,low,92.5,City|PropHub,candidate,Localized flak impact glint,0.8
+1.0,A,1.0,0.0,S,CO-003,1.0,1.0,city_ocean,behind_wall,0.1,low,91.0,City,candidate,Corrugated facade rib cadence,0.8
+1.0,A,1.0,0.0,S,MAT-014,1.0,0.7,materials,behind_wall,0.1,low,90.5,Harbor|Ocean,candidate,Behind-wall damp dirt tile,0.8
+1.0,A,0.95,0.0,S,CO-001,1.0,1.0,city_ocean,additive_emissive,0.1,low,90.0,City|Wide,candidate,Bright facade window rhythm,0.8
+1.0,A,0.95,0.0,S,CO-015,1.0,1.0,city_ocean,additive_emissive,0.1,low,90.0,Ocean|Wide,candidate,Foam lace shoreline edge,0.8
+1.0,A,0.95,0.0,S,AIR-019,1.0,0.7,aircraft,additive_emissive,0.1,low,89.5,PropHub|PropNose,candidate,Spinner center-cap glint,0.8
+1.0,A,1.0,0.0,S,MAT-013,1.0,1.0,materials,behind_wall,0.1,low,88.5,City|Harbor,candidate,Behind-wall rust fleck tile,0.55
+1.0,A,1.0,0.0,S,AIR-001,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,YakBeauty|PropNose,candidate,Yak wing-root seam ladder,0.55
+1.0,A,1.0,0.0,S,AIR-003,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,YakBeauty,candidate,Tailplane hinge tabs,0.55
+1.0,A,1.0,0.0,S,AIR-008,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit,candidate,Cockpit tub sidewall rib pair,0.55
+1.0,A,1.0,0.0,S,AIR-009,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit|ADS,candidate,Instrument cluster separator tabs,0.55
+1.0,A,1.0,0.0,S,AIR-010,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit|ADS,candidate,Glare-shield broken lip,0.55
+1.0,A,1.0,0.0,S,AIR-011,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit,candidate,Switch cap height variation,0.55
+1.0,A,1.0,0.0,S,AIR-013,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit,candidate,Glove cuff fold pair,0.55
+1.0,A,1.0,0.0,S,AIR-014,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit,candidate,Arm harness stitch markers,0.55
+1.0,A,1.0,0.0,S,AIR-015,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit,candidate,Cockpit floor pedal rails,0.55
+1.0,A,1.0,0.0,S,AIR-016,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,Cockpit|ADS,candidate,Gunner station sight rail,0.55
+1.0,A,1.0,0.0,S,AIR-020,1.0,1.0,aircraft,behind_wall,0.1,low,88.5,YakBeauty,candidate,Elevator hinge fastener pair,0.55
+1.0,A,1.0,0.0,S,VFX-018,1.0,1.0,vfx,behind_wall,0.1,low,88.5,Combat|Wide,candidate,Behind-wall missile trail breakup,0.55
+1.0,A,1.0,0.0,S,CO-005,1.0,0.7,city_ocean,behind_wall,0.1,low,88.0,City|Wide,candidate,Bright facade color-block patch,0.8
+1.0,A,0.95,0.0,S,MAT-006,1.0,1.0,materials,additive_emissive,0.1,low,87.5,Prop|PropHub,candidate,Prop disc translucent rim,0.55
+1.0,A,0.95,0.0,S,MAT-010,1.0,1.0,materials,additive_emissive,0.1,low,87.5,ADS,candidate,Rifle worn-metal highlight,0.55
+1.0,A,0.95,0.0,S,AIR-006,1.0,1.0,aircraft,additive_emissive,0.1,low,87.5,YakBeauty|Cockpit,candidate,Canopy frame edge glint,0.55
+1.0,A,0.95,0.0,S,AIR-007,1.0,1.0,aircraft,additive_emissive,0.1,low,87.5,Cockpit|YakBeauty,candidate,Canopy latch pin trio,0.55
+1.0,A,0.95,0.0,S,AIR-012,1.0,1.0,aircraft,additive_emissive,0.1,low,87.5,Cockpit,candidate,Glove palm seam accent,0.55
+1.0,A,0.95,0.0,S,AIR-017,1.0,1.0,aircraft,additive_emissive,0.1,low,87.5,PropHub|PropNose,candidate,Prop hub bright shell ring,0.55
+1.0,A,0.95,0.0,S,AIR-018,1.0,1.0,aircraft,additive_emissive,0.1,low,87.5,Prop|PropNose,candidate,Blade-root bright shell bands,0.55
+1.0,A,0.95,0.0,S,VFX-001,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,PropNose|ADS,candidate,Directional muzzle flash petals,0.55
+1.0,A,0.95,0.0,S,VFX-002,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,ADS|Combat,candidate,Muzzle flash radial pulse,0.55
+1.0,A,0.95,0.0,S,VFX-003,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,PropNose|Cockpit,candidate,Thin gun smoke filament,0.55
+1.0,A,0.95,0.0,S,VFX-004,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,ADS|Combat,candidate,Gun smoke curl breakup,0.55
+1.0,A,0.95,0.0,S,VFX-005,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|PropNose,candidate,Hit spark needle burst,0.55
+1.0,A,0.95,0.0,S,VFX-007,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|YakBeauty,candidate,Drone explosion hot core,0.55
+1.0,A,0.95,0.0,S,VFX-008,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|Wide,candidate,Drone explosion shock ring,0.55
+1.0,A,0.95,0.0,S,VFX-009,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,City|Wide,candidate,Flak pinprick cluster,0.55
+1.0,A,0.95,0.0,S,VFX-010,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,City|Combat,candidate,Flak micro-ring accent,0.55
+1.0,A,0.95,0.0,S,VFX-011,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Prop|YakBeauty,candidate,Prop wash edge ribbons,0.55
+1.0,A,0.95,0.0,S,VFX-012,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,PropHub|YakBeauty,candidate,Prop wash vortex dots,0.55
+1.0,A,0.95,0.0,S,VFX-013,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|ADS,candidate,Tracer segmented streak,0.55
+1.0,A,0.95,0.0,S,VFX-014,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,PropNose|Combat,candidate,Tracer launch spark,0.55
+1.0,A,0.95,0.0,S,VFX-015,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Ocean|Harbor,candidate,Ocean spray bead chain,0.55
+1.0,A,0.95,0.0,S,VFX-017,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|Wide,candidate,Missile trail knot accents,0.55
+1.0,A,0.95,0.0,S,VFX-019,1.0,1.0,vfx,additive_emissive,0.1,low,87.5,Combat|Harbor,candidate,Explosion falling spark flecks,0.55
+1.0,A,0.95,0.0,S,CO-014,1.0,0.7,city_ocean,additive_emissive,0.1,low,87.0,Harbor|Ocean,candidate,Seawall tide-level markers,0.8
+1.0,A,0.95,0.0,S,CO-017,1.0,0.7,city_ocean,additive_emissive,0.1,low,87.0,Ocean,candidate,Tide-pool glint dots,0.8
+1.0,A,1.0,0.0,S,CO-002,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,City|Wide,candidate,Warm tower parapet caps,0.55
+1.0,A,1.0,0.0,S,CO-008,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,Harbor|Wide,candidate,Container corner castings,0.55
+1.0,A,1.0,0.0,S,CO-009,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,Harbor|Ocean,candidate,Ship hull waterline stripe,0.55
+1.0,A,1.0,0.0,S,CO-012,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,Harbor,candidate,Pier deck plank highlight,0.55
+1.0,A,1.0,0.0,S,CO-013,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,Harbor|Ocean,candidate,Seawall capstone rhythm,0.55
+1.0,A,1.0,0.0,S,CO-020,1.0,1.0,city_ocean,behind_wall,0.1,low,86.0,City|Wide,candidate,Coast-block roof vent caps,0.55
+1.0,A,1.0,0.0,S,WPN-004,1.0,1.0,weapon_ads,behind_wall,0.1,low,86.0,ADS,candidate,Grip wrap termination mark,0.55
+1.0,A,1.0,0.0,S,WPN-008,1.0,1.0,weapon_ads,behind_wall,0.1,low,86.0,ADS,candidate,Barrel collar separation line,0.55
+1.0,A,1.0,0.0,S,WPN-014,1.0,1.0,weapon_ads,behind_wall,0.1,low,86.0,ADS,candidate,Magazine release silhouette,0.55
+1.0,A,0.95,0.0,S,CO-004,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,City,candidate,Facade drain downspout,0.55
+1.0,A,0.95,0.0,S,CO-006,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Harbor,candidate,Crane counterweight safety stripe,0.55
+1.0,A,0.95,0.0,S,CO-007,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Harbor,candidate,Crane cable sheave highlights,0.55
+1.0,A,0.95,0.0,S,CO-010,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Harbor,candidate,Freighter deck hatch line,0.55
+1.0,A,0.95,0.0,S,CO-011,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Harbor,candidate,Pier bollard marker pair,0.55
+1.0,A,0.95,0.0,S,CO-018,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Ocean|Harbor,candidate,Submarine sail marker stripe,0.55
+1.0,A,0.95,0.0,S,CO-019,1.0,1.0,city_ocean,additive_emissive,0.1,low,85.0,Harbor,candidate,Freighter bridge window band,0.55
+1.0,A,0.95,0.0,S,WPN-001,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Glove-to-grip contact crescent,0.55
+1.0,A,0.95,0.0,S,WPN-002,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Glove palm pressure plane,0.55
+1.0,A,0.95,0.0,S,WPN-003,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Glove knuckle ridge cue,0.55
+1.0,A,0.95,0.0,S,WPN-005,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Rear sight notch light cut,0.55
+1.0,A,0.95,0.0,S,WPN-006,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Front sight post edge,0.55
+1.0,A,0.95,0.0,S,WPN-007,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Barrel bore rim,0.55
+1.0,A,0.95,0.0,S,WPN-009,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Igla tube identity stripe,0.55
+1.0,A,0.95,0.0,S,WPN-010,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Igla seeker cap rim,0.55
+1.0,A,0.95,0.0,S,WPN-011,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Igla carry-handle contour,0.55
+1.0,A,0.95,0.0,S,WPN-013,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Igla fin leading edge,0.55
+1.0,A,0.95,0.0,S,WPN-015,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Trigger-guard inner arc,0.55
+1.0,A,0.95,0.0,S,WPN-016,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Ejection-port edge cue,0.55
+1.0,A,0.95,0.0,S,WPN-018,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Glove fingertip contact notch,0.55
+1.0,A,0.95,0.0,S,WPN-019,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Iron-sight alignment guide,0.55
+1.0,A,0.95,0.0,S,WPN-020,1.0,1.0,weapon_ads,additive_emissive,0.1,low,85.0,ADS,candidate,Barrel vent interior glints,0.55
+1.0,B,0.55,0.0,S,MAT-002,1.0,1.0,materials,unlit_hf_only,0.1,low,84.5,Prop|YakBeauty,candidate,Airframe normal grain,0.8
+1.0,B,0.55,0.0,S,MAT-005,1.0,1.0,materials,unlit_hf_only,0.1,low,84.5,PropNose|PropHub,candidate,Airframe paint-to-metal transition,0.8
+1.0,B,0.55,0.0,S,MAT-008,1.0,1.0,materials,unlit_hf_only,0.1,low,84.5,PropHub,candidate,Prop hub disc contrast ring,0.8
+1.0,B,0.55,0.0,S,MAT-017,1.0,1.0,materials,unlit_hf_only,0.1,low,84.5,PropNose|YakBeauty,candidate,Airframe edge oxidation tint,0.8
+1.0,A,1.0,0.0,S,WPN-012,1.0,0.7,weapon_ads,behind_wall,0.1,low,83.0,ADS,candidate,Igla warning stencil fragment,0.55
+1.0,A,0.95,0.0,S,WPN-017,1.0,0.7,weapon_ads,additive_emissive,0.1,low,82.0,ADS,candidate,Sling swivel glint,0.55
+1.0,B,0.55,0.0,S,MAT-001,1.0,0.7,materials,unlit_hf_only,0.1,low,81.5,YakBeauty|PropNose,candidate,Airframe roughness breakup,0.8
+1.0,B,0.55,0.0,S,MAT-004,1.0,0.7,materials,unlit_hf_only,0.1,low,81.5,Prop|YakBeauty,candidate,Airframe dirt gradient,0.8
+1.0,B,0.55,0.0,S,MAT-018,1.0,0.7,materials,unlit_hf_only,0.1,low,81.5,Prop|Wide,candidate,Airframe dirt speckle suppression,0.8
+1.0,B,0.55,0.0,S,MAT-003,1.0,1.0,materials,unlit_hf_only,0.1,low,79.5,PropNose|Cockpit,candidate,Airframe AO seam lift,0.55
+1.0,B,0.55,0.0,S,MAT-007,1.0,1.0,materials,unlit_hf_only,0.1,low,79.5,PropNose|YakBeauty,candidate,Prop disc blade-phase tint,0.55
+1.0,B,0.55,0.0,S,MAT-011,1.0,1.0,materials,unlit_hf_only,0.1,low,79.5,ADS|Combat,candidate,Rifle receiver AO lift,0.55
+1.0,B,0.55,0.0,S,MAT-012,1.0,1.0,materials,unlit_hf_only,0.1,low,79.5,ADS,candidate,Rifle magazine edge wear,0.55
+1.0,B,0.55,0.0,S,MAT-019,1.0,1.0,materials,unlit_hf_only,0.1,low,79.5,Prop|PropNose,candidate,Prop disc haze balance,0.55
+1.0,B,0.55,0.0,S,CO-016,1.0,0.7,city_ocean,unlit_hf_only,0.1,low,79.0,Ocean,candidate,Wet sand reflective patches,0.8
+1.0,B,0.55,0.0,S,MAT-009,1.0,0.7,materials,unlit_hf_only,0.1,low,76.5,ADS|Combat,candidate,Rifle tan value variation,0.55

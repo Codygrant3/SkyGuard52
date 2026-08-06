@@ -1,0 +1,34 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-active-plugin-root-migration01-offline-design-freeze.v1",
+  "created_utc": "2026-08-05T12:30:00Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_CONTROLLED_ACTIVE_PLUGIN_ROOT_MIGRATION_AUTHORIZATION",
+  "members": [
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_PLUGIN_ROOT_INVENTORY.json","bytes":5457,"sha256":"a8c6e995807a94d6074f2ad6611f6a98e6d7340dd4892498db855077dc574fe2"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_COLLISION_REPORT.json","bytes":2363,"sha256":"14b0e44c406c4fb20507b9345967878943ed761368663e13d9d990b0953dee04"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_SELECTED_ACTIVE_ROOT_AUTHORITY.json","bytes":2109,"sha256":"f3a9ae0774a2e77fa6b59588449b44315c6d9d23c08d404b936f2f2a4bd7abaa"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_MIGRATION_CONTRACT.json","bytes":2938,"sha256":"4a1a728ed11ebc9eda69b5be92ad1cb3729eb5ca6d2c87681acd662d88b58a02"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_ROLLBACK_CONTRACT.json","bytes":1928,"sha256":"3f9ea27aed285045ea0c9f1f2f18a8c0c7f5a1fc70c24d9cd3619cf4a9de00a8"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_PROJECTED_PATH_REPORT.json","bytes":928,"sha256":"dfd4c45d4c62d2b7508b6eb25d63b53922c72c67331af75cc254c85818d9a758"},
+    {"path":"D:\\Skyguard52\\Scripts\\invoke_phase4_m01_recovery05_active_plugin_root_migration01_once.ps1","bytes":13075,"sha256":"1eff0d216180f10ddcb32cd2853b60d666db2f8486c0e64d06b062e77a7b79ca"},
+    {"path":"D:\\Skyguard52\\Scripts\\rollback_phase4_m01_recovery05_active_plugin_root_migration01_once.ps1","bytes":5643,"sha256":"3fbed4620d6a85542aa04e8baa5e363edb66e9a2852f01b100079c9d819a07b8"},
+    {"path":"D:\\Skyguard52\\Scripts\\verify_phase4_m01_recovery05_active_plugin_root_migration01_offline.py","bytes":8209,"sha256":"6b9fe424c6c1fc4ddd899551bf75edb63f89f2220da8f46106457896006d9c3c"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_EXACT_HOST_OFFLINE_TEST_RESULT.json","bytes":988,"sha256":"da2590e288537caf3b3611335f60db9fa4464b7d4a33db2b075b4cfaa89f5aad"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ACTIVE_PLUGIN_ROOT_MIGRATION01_READINESS.json","bytes":1662,"sha256":"32d42aa55a5cb2f27dd414917914a902d0b77c7fe6494eba1297d1d342bccde9"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_CONTROLLED_ACTIVE_PLUGIN_ROOT_MIGRATION01_SINGLE_EXECUTION.md","bytes":4911,"sha256":"5c5d04669f8596e7aceecfaa93f27f88b59a3fd97f24b63f66ad8b5038c61ff7"}
+  ],
+  "member_count": 12,
+  "controlling_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY04_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 5005,
+    "sha256": "f23f8858ff4e0b65735cd498e022c7dcc32a0755b13a23f18f878ab363002aa5"
+  },
+  "selected_active_root": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05",
+  "legacy_roots_to_quarantine": 3,
+  "plugin_files_verified": 23,
+  "migration_executed": false,
+  "plugin_moves_performed": 0,
+  "builds_launched": 0,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "next_gate": "EXPLICIT_SINGLE_CONTROLLED_ACTIVE_PLUGIN_ROOT_MIGRATION"
+}

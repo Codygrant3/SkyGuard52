@@ -1,0 +1,90 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "created_at_utc": "2026-08-06T12:48:24.684131+00:00",
+  "classification": "PASSED_READY_FOR_EXPLICIT_FIRST_COMBAT_ASSET_REFINEMENT_AUTHORIZATION",
+  "immutable": true,
+  "mode": "offline_only",
+  "blender_launched": false,
+  "unreal_launched": false,
+  "accepted_blockouts_modified": false,
+  "accepted_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+    "bytes": 9362,
+    "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228",
+    "classification": "PASSED_RECOVERY03_PROVISIONAL_BLOCKOUTS_ACCEPTED"
+  },
+  "first_execution_asset": "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON",
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\contracts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_CONTRACT.json",
+      "bytes": 1270,
+      "sha256": "b2aac68120e93b2d85160075cca9431ecf800b5aa09f44d256fb3fcfdf12368b"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\contracts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_ACCEPTED_BLOCKOUT_RECONCILIATION.json",
+      "bytes": 7383,
+      "sha256": "529d044ccbf6114827c2fb94bcfae1d7fd185d1e3ad4f6bae60118b9dcdc62db"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\contracts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_REFERENCE_GAP_MATRIX.json",
+      "bytes": 3043,
+      "sha256": "a64714a17b69dda2b14b5e990ed48d92cf7a0bb029f9a2e30aed4af6c741476a"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\design_sheets\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_DESIGN_SHEET_SPEC.json",
+      "bytes": 2302,
+      "sha256": "5b37e9417c6c4b3b8017e86010774f81c4c97031aba3da21a950a02bdfe1babb"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\plans\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_TOPOLOGY_UV_BAKE_PBR_PLAN.json",
+      "bytes": 2823,
+      "sha256": "571478878b7b96cbd64ea39377a128741f22fc95ae2a2716b2c55edac4fb91aa"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\plans\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RIGGING_SOCKET_COLLISION_EXPORT_PLAN.json",
+      "bytes": 1965,
+      "sha256": "b9bbaae9d7d7f8e51ec94d6472eed310db24ccca62aed87fa714bed9f7c18614"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_REVIEW_CAMERA_CONTRACT.json",
+      "bytes": 837,
+      "sha256": "3118c03f0d52d0de9479dc79b6caea2eb33691e7cf50364cf0bb7d4a7ede7d92"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_VISUAL_ACCEPTANCE_RUBRIC.json",
+      "bytes": 736,
+      "sha256": "67c9b4f7f87e542f78de61f3d23fc1da3ab52e6c94da8e23ce6d4b59923aeb73"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\rubrics\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_PERFORMANCE_UNREAL_READINESS_RUBRIC.json",
+      "bytes": 589,
+      "sha256": "a0ed74811680ce9c9437371b9099edc1e4b28422393c0775bbddb2174b2307e8"
+    },
+    {
+      "path": "D:\\Skyguard52\\References\\CombatAssets\\CombatAsset_Refinement_Cycle03_OfflineDesign\\plans\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_PRODUCTION_SEQUENCE_DEPENDENCY_GRAPH.json",
+      "bytes": 1247,
+      "sha256": "02bcb255b610c5c494da0421099af3d4dab358fc4a0ae813f7a0c8a26573a8c9"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_SOURCE_INVENTORY.json",
+      "bytes": 8366,
+      "sha256": "be8f4582bdd994c07b8d5da892d1bfdc4c43216cb92b621b175cfe4f6a0cc89f"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_READINESS.json",
+      "bytes": 932,
+      "sha256": "5ed81315c369399f95348fd654795ace8c66121328f118ffa73995be4bb6d096"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 9362,
+      "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228",
+      "classification": "PASSED_RECOVERY03_PROVISIONAL_BLOCKOUTS_ACCEPTED"
+    }
+  ],
+  "next_prompt_path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_SINGLE_BLENDER.md",
+  "notes": [
+    "Accepted Recovery03 blockouts remain provisional and must not replace Unreal runtime assets.",
+    "This gate produces design authority only."
+  ]
+}

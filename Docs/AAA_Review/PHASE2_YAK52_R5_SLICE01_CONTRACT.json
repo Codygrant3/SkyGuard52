@@ -1,0 +1,157 @@
+{
+  "schema": "skyguard.phase2.yak52-r5-slice01-contract.v1",
+  "build_id": "BLD-M01-YAK52-R5-SLICE01",
+  "status": "FROZEN_READY_FOR_ONE_BOUNDED_BLENDER_RUN",
+  "scope": {
+    "mission": 1,
+    "purpose": "First production-art proof for the Yak-52 forward fuselage, radial cowling, canopy greenhouse, open rear-gunner station, wing roots, and layered diagnostic PBR response.",
+    "explicitly_out_of_scope": [
+      "runtime replacement",
+      "Unreal import",
+      "complete aircraft acceptance",
+      "crew, rifle, or Igla final art",
+      "shipping or AAA completion claims"
+    ]
+  },
+  "baseline": {
+    "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery05/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY05_MASTER.blend",
+    "sha256": "a7694e012e1dbdef06c432919f2a93d62ec3845c888506fe7019ef81aeb2f30e",
+    "disposition": "IMMUTABLE_DIMENSIONAL_REFERENCE_ONLY"
+  },
+  "reference_images": [
+    {
+      "path": "C:/Users/chris/AppData/Local/Temp/codex-clipboard-04e14908-5ac0-4988-9eec-9d32e74a2ee0.png",
+      "sha256": "390162ac3d3c73c0567bcf822de2363908b27de9ea79b7796c6bcca143c41f5d",
+      "role": "primary exterior side and canopy silhouette"
+    },
+    {
+      "path": "C:/Users/chris/AppData/Local/Temp/codex-clipboard-47bf0604-6525-4282-9149-45cffde4f397.png",
+      "sha256": "ab80a7d0c7327f4b27c22df7d0c9fb881aeef836b0f7a2a98fb51a201a8b46fd",
+      "role": "secondary exterior profile and landing stance"
+    },
+    {
+      "path": "C:/Users/chris/AppData/Local/Temp/codex-clipboard-84f46082-7b3b-4a5c-b86b-9cb4c43d8a56.png",
+      "sha256": "717a6724360032e296b5a91ca1928aa4d67148a9187cc86fca046a88afbb908c",
+      "role": "front cockpit and instrument hierarchy"
+    },
+    {
+      "path": "C:/Users/chris/AppData/Local/Temp/codex-clipboard-1c5365d0-9eff-481d-81ad-4b1edc038620.png",
+      "sha256": "23a63dfff5cad7b052321fdf341d845d777b55bae913b6f116f6af9541ddb366",
+      "role": "rear cockpit opening, rails, padding, and canopy framing"
+    }
+  ],
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_RECOVERY05_VISUAL_REVIEW_2026-08-02.md",
+      "sha256": "0bf79a37bea4a0dd4e1cf42a0d14beec484f50828649f67ae9b33d54e6ae55a6",
+      "role": "accepted R4 deficiencies and next-gate requirements"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R5_SLICE01_CAMERAS.json",
+      "sha256": "bdbb49d656601f5108604216a3eeabe3cf8578d0c69e0381ee3e863d03f6830c",
+      "role": "ten fixed review cameras and neutral render contract"
+    }
+  ],
+  "authoring_script": {
+    "path": "Scripts/blender_phase2_yak52_r5_slice01.py",
+    "sha256": "446b4e8d71457b2f9bac3798c22b82fec212e89161ec30c7d2d800683fdfa1f2",
+    "blender_version": "5.2"
+  },
+  "outputs": {
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R5/Slice01/BLD_M01_YAK52_R5_SLICE01_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R5/Slice01/bld_m01_yak52_r5_slice01.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK52_R5_SLICE01_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK52_R5_SLICE01"
+  },
+  "required_camera_ids": [
+    "R5_CAM_BEAUTY_PORT",
+    "R5_CAM_SIDE_ORTHO",
+    "R5_CAM_TOP_ORTHO",
+    "R5_CAM_NOSE_CLOSE",
+    "R5_CAM_COWLING_GRAZE",
+    "R5_CAM_CANOPY_PORT",
+    "R5_CAM_REAR_OPENING",
+    "R5_CAM_WING_ROOT_L",
+    "R5_CAM_MATERIAL_GRAZE",
+    "R5_CAM_REAR_GUNNER_EYE"
+  ],
+  "required_primary_objects": [
+    "GEO_R5_ForwardFuselage",
+    "GEO_R5_CowlingShell",
+    "GEO_R5_CowlingFrontRing",
+    "GEO_R5_PropHub",
+    "GEO_R5_CowlingShutter_00",
+    "GEO_R5_CowlingShutter_01",
+    "GEO_R5_CowlingShutter_02",
+    "GEO_R5_CowlingShutter_03",
+    "GEO_R5_CowlingShutter_04",
+    "GEO_R5_CowlingShutter_05",
+    "GEO_R5_CowlingShutter_06",
+    "GEO_R5_CowlingShutter_07",
+    "GEO_R5_CowlingShutter_08",
+    "GEO_R5_CowlingShutter_09",
+    "GEO_R5_CowlingShutter_10",
+    "GEO_R5_CowlingShutter_11",
+    "GEO_R5_Wing_L",
+    "GEO_R5_Wing_R",
+    "GEO_R5_WingRootFairing_L",
+    "GEO_R5_WingRootFairing_R",
+    "GEO_R5_CanopyGlassFront",
+    "GEO_R5_CanopyGlassRearStowed",
+    "GEO_R5_CanopyBow_00",
+    "GEO_R5_CanopyBow_01",
+    "GEO_R5_CanopyBow_02",
+    "GEO_R5_CanopyBow_03",
+    "GEO_R5_CanopyBow_04",
+    "GEO_R5_CanopyBow_05",
+    "GEO_R5_CanopyRail_L",
+    "GEO_R5_CanopyRail_R",
+    "GEO_R5_RearCockpitSill",
+    "GEO_R5_InstrumentCoaming",
+    "GEO_R5_PropBlade_A",
+    "GEO_R5_PropBlade_B"
+  ],
+  "measurable_acceptance": {
+    "required_render_count": 10,
+    "required_output_resolution": [1280, 720],
+    "overall_length_target_m": 7.745,
+    "overall_length_tolerance_m": 0.08,
+    "wingspan_target_m": 9.3,
+    "wingspan_tolerance_m": 0.08,
+    "minimum_primary_mesh_objects": 34,
+    "minimum_primary_triangles": 10000,
+    "maximum_primary_triangles": 350000,
+    "required_features": [
+      "rounded sectional forward fuselage",
+      "separate cowling shell, front ring, shutter bank, hub, and two blades",
+      "framed front canopy",
+      "rear glazing visibly stowed with rear-gunner opening exposed",
+      "left and right canopy rails and six aligned bows",
+      "left and right wing-root fairings",
+      "separated paint, metal, rubber, glass, and hub diagnostic PBR families"
+    ],
+    "human_visual_gate": [
+      "recognizable Yak-52 forward silhouette from side and beauty views",
+      "no cube canopy or disconnected frame bows",
+      "cowling reads as a radial-engine assembly rather than a flat disc",
+      "rear opening is physically plausible for the gunner",
+      "no clipping or cropped required feature in its dedicated camera",
+      "lighting permits evaluation without clipped whites or crushed blacks"
+    ]
+  },
+  "claims": {
+    "silhouette_locked": false,
+    "slice01_human_accepted": false,
+    "final": false,
+    "aaa": false,
+    "unreal_imported": false,
+    "runtime_replaced": false,
+    "promotion_allowed": false
+  },
+  "execution_policy": {
+    "one_blender_attempt": true,
+    "automatic_retry": false,
+    "one_heavy_process_at_a_time": true,
+    "preserve_failed_attempt": true
+  }
+}

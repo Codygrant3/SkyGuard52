@@ -1,0 +1,136 @@
+{
+  "schema": "skyguard.immutable_offline_design_freeze.v1",
+  "created_utc": "2026-08-05T01:58:00Z",
+  "gate": "PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03",
+  "classification": "PASSED_READY_FOR_EXPLICIT_M01_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_AUTHORIZATION",
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_SUPERVISOR_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 4535,
+      "sha256": "61dca86176e04d7a0aef6f3d30488630009d5dbcd4665ea07d070836aad98028"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 4691,
+      "sha256": "6daa7c5f0860174567bd027c43c2e7273fda870e97226bb4fbb728d69b479818"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_SOURCE_PARITY_CONTRACT.json",
+      "bytes": 54738,
+      "sha256": "d241f6ecae392d96d18955edb8610fbdfb80518c1f7d85fbbd43084a6b37c1df"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\build_phase4_m01_recovery05_environment_native_build_recovery02_once.ps1",
+      "bytes": 16132,
+      "sha256": "5d42533af89f4223a60531168da446a471a9a26fce50961df4721ef8bc2465dd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\build_phase4_m01_recovery05_environment_native_build_recovery03_once.ps1",
+      "bytes": 21904,
+      "sha256": "07b94689525496afecb3867ee91898223f32c9b1327d45a709729767dfbd4eb4"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_phase4_m01_recovery05_environment_native_build_recovery03_offline.py",
+      "bytes": 7503,
+      "sha256": "9486e64feaca831d50c9151ec7fc621fd418fedb9129fb9def54253bb8abe091"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_PS51_PARSER.json",
+      "bytes": 78,
+      "sha256": "3324092e03d96e1b9b67ab4f6457077a32399feb037c73802b94d32909943c8e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST_STATE_PROBE.json",
+      "bytes": 163,
+      "sha256": "56f4c139b39045ce51b6a5ef839605f9956288485232aa1a8b986d865a052ac5"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST_PREFLIGHT_FAILURE_TERMINAL.json",
+      "bytes": 121,
+      "sha256": "bb42b5860776c35a95daafd10e19a3976fda702defc0b78e7343b367ea727b02"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST_EMERGENCY_RECEIPT.jsonl",
+      "bytes": 248,
+      "sha256": "5735daf1c6ea2954a48f7af48f57ecf165038a072118d0a19d020fd4caf0d2d3"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST_TERMINAL_MANIFEST.json",
+      "bytes": 4669,
+      "sha256": "08109c495dd3391be204b212c63c43e0c195e283ea9b14a46124179e65bf575e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_TERMINAL_RECONCILIATION.json",
+      "bytes": 1049,
+      "sha256": "71a09b32b1e61b574259089cf873399be0f4858360f31187a497e1c3d5f88acd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_SUPERVISOR_CORRECTION_CONTRACT.json",
+      "bytes": 1642,
+      "sha256": "2c29e750540ba7b1623f4586836a48c172123bba61efe68d8a1cbe290553c19a"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_SOURCE_DIFF_REPORT.json",
+      "bytes": 1449,
+      "sha256": "2b46209ef64a5e854403f01246d5f58967da9bdf34dfbefe1b26e384b74eea04"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_OFFLINE_TEST_RESULT.json",
+      "bytes": 2338,
+      "sha256": "c0b4e5c3a415920b2b1323d736c10a47dde485c742d8552c63b21355b9b7ba49"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_PROJECTED_PATHS.json",
+      "bytes": 519,
+      "sha256": "53eacc4c4353120d9d9443be2b53f042db54d58d374a30dfa52478583bfc240f"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_SOURCE_INVENTORY.json",
+      "bytes": 1642,
+      "sha256": "c8ff1d6e1df5680e67b925f786930a9404ea61544550af902f53f233c5a56be1"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY03_READINESS.json",
+      "bytes": 1125,
+      "sha256": "19ab011bbdd56e1728986c50bd5065af39eb75776a0413257a2f5a58a72cdf22"
+    }
+  ],
+  "validation": {
+    "member_count": 21,
+    "all_member_hashes_verified": true,
+    "parity_record_count": 170,
+    "windows_powershell_parser_errors": 0,
+    "offline_test_exit_code": 0,
+    "offline_test_exit_code_type": "System.Int32",
+    "normal_build_start_process_count": 1,
+    "bare_literal_count": 0,
+    "heavy_process_count": 0,
+    "future_view_absent": true,
+    "future_attempt_absent": true,
+    "future_terminal_manifest_absent": true,
+    "build_launched": false,
+    "unreal_launched": false,
+    "blender_launched": false
+  },
+  "future_gate": {
+    "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\\Skyguard52\\Scripts\\build_phase4_m01_recovery05_environment_native_build_recovery03_once.ps1 -AuthorizeSingleBuild",
+    "authorized_by_this_freeze": false,
+    "requires_explicit_user_authorization": true
+  },
+  "immutability_rule": "Do not modify any member of this freeze. Never rerun or reuse Recovery02."
+}

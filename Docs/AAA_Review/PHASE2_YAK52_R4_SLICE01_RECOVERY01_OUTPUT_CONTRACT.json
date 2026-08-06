@@ -1,0 +1,183 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-recovery01-output-contract.v1",
+  "contract_id": "PHASE2-YAK52-R4-S01-RECOVERY01-OUTPUTS-20260802-V1",
+  "build_id": "BLD-M01-YAK-FINAL-ART-R4-S01-RECOVERY01",
+  "purpose": "Recover from the safely contained pre-output KeyError without mutating the frozen Slice 01 package, failure evidence, accepted authorities, or production state.",
+  "current_status": "RECOVERY01_AUTHORING_SOURCE_READY_NOT_RUN",
+  "recovery_evidence": {
+    "failed_invocation_utc": "2026-08-02T19:06:37Z",
+    "failure_stage": "PRE_OUTPUT_CONTRACT_VALIDATION",
+    "exact_failure": "KeyError: 'outputs'",
+    "root_cause": "The frozen Blender source accessed contract['outputs'] while the frozen Slice 01 contract exposed only output_policy.paths.",
+    "canonical_outputs_created": false,
+    "failed_invocation_preserved": true,
+    "frozen_package_modified": false
+  },
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_OFFLINE_PRODUCTION_CONTRACT.json",
+      "bytes": 38916,
+      "sha256": "9acb79b431e08785b54c4373ee4c70aa1c6803493abea772b796af2bc43ba594",
+      "role": "Accepted R4 production authority"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_OUTPUT_CONTRACT.json",
+      "bytes": 8397,
+      "sha256": "845273766b39c3ac6db9fea09b38403b6da1b783507049a98e41ad3d541c07fa",
+      "role": "Frozen failed-attempt Slice 01 output contract"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_DIMENSION_LEDGER.json",
+      "bytes": 6580,
+      "sha256": "b7173be921caed151d87d68cb9abde986d0e35c19d11b0542f36a28328cba19d",
+      "role": "Frozen draft dimension and station ledger"
+    },
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_CAMERA_MANIFEST.json",
+      "bytes": 2679,
+      "sha256": "94ca4721530fcbeb77b2ec8978fa095f49459cb1dbe38a6e0a0bc8a05c491af9",
+      "role": "Frozen Slice 01 review cameras"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_PROD_002_CONTRACT.json",
+      "bytes": 11106,
+      "sha256": "0ebbff47c3c730c9a5951882a79f9f1f8a10e35178639dbdb0d53f3063625fb2",
+      "role": "Inherited internal dimensions; not a primary technical source"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md",
+      "bytes": 2803,
+      "sha256": "25fde51185b4a2eea93fc25bc7993a5726ba67b322ec50b901e32f4e38e6494f",
+      "role": "Human review proving the R3 final-art gap"
+    },
+    {
+      "path": "Scripts/blender_phase2_yak52_r4_slice01_silhouette.py",
+      "bytes": 27197,
+      "sha256": "5ce121a6773fc59f3e4feadaf2fdc1ca7bc9a627f7927c76eb69a2f606e57923",
+      "role": "Frozen deterministic Slice 01 implementation reused as code only"
+    },
+    {
+      "path": "Saved/Logs/phase2_r4_slice01_blender_20260802T190637Z.stdout.log",
+      "bytes": 78,
+      "sha256": "62aa68d052234759fcf2f662c9277a117896bb0a66d46f104de825c9b1ad1ecc",
+      "role": "Immutable failed-invocation stdout"
+    },
+    {
+      "path": "Saved/Logs/phase2_r4_slice01_blender_20260802T190637Z.stderr.log",
+      "bytes": 605,
+      "sha256": "d4b9e5f04981a9e84007746980b86be1aa0ab080d63243398018c80166ded977",
+      "role": "Immutable failed-invocation stderr and traceback"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_Beauty_FINAL.png",
+      "bytes": 2481987,
+      "sha256": "794c0a0260d0b88476d6e35aaed8d5ec99ad86489ca3925bb5a9006fa8c694f7",
+      "role": "Preserved project baseline comparison only"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_SideOrtho_FINAL.png",
+      "bytes": 2020544,
+      "sha256": "d7d1c0c6fa57d1de92b0013bd17d0379bf9a5f99038cfa81228a6cfd6309fe2d",
+      "role": "Preserved project baseline side comparison only"
+    },
+    {
+      "path": "Saved/Screenshots/AAA_L88_Blockout/AAA_Cam_L88_TopOrtho_FINAL.png",
+      "bytes": 2612089,
+      "sha256": "fb796d1469de1f560ac09529d8dcd8e20154dd4914e688b141735ddd1359d3e1",
+      "role": "Preserved project baseline top comparison only"
+    }
+  ],
+  "authoring_script": {
+    "path": "Scripts/blender_phase2_yak52_r4_slice01_recovery01.py",
+    "bytes": 5670,
+    "sha256": "ced23403ed40c31cd91fdac28737b0320daf7478378b12c15f77fc5a1075d3a5",
+    "required_blender_version": "5.2",
+    "executed": false
+  },
+  "frozen_contract_access_manifest": [
+    "build_id",
+    "authority_inputs",
+    "authority_inputs[]",
+    "authority_inputs[].path",
+    "authority_inputs[].bytes",
+    "authority_inputs[].sha256",
+    "authoring_script",
+    "authoring_script.sha256",
+    "outputs",
+    "outputs.blend",
+    "outputs.glb",
+    "outputs.manifest",
+    "outputs.comparison_directory",
+    "claims",
+    "claims.silhouette_locked"
+  ],
+  "outputs": {
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery01/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01_MASTER.blend",
+    "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery01/bld_m01_yak_final_art_r4_s01_recovery01.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01"
+  },
+  "output_policy": {
+    "overwrite_allowed": false,
+    "atomic_canonical_publication_required": true,
+    "automatic_promotion_allowed": false,
+    "unreal_import_allowed": false,
+    "canonical_outputs_must_be_absent_before_run": true,
+    "paths": {
+      "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery01/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01_MASTER.blend",
+      "glb": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery01/bld_m01_yak_final_art_r4_s01_recovery01.glb",
+      "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01_MANIFEST.json",
+      "screenshot_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY01"
+    }
+  },
+  "source_policy": {
+    "frozen_source_reused_as_code_only": true,
+    "scene_origin": "FACTORY_EMPTY_ONLY",
+    "accepted_blend_open_allowed": false,
+    "accepted_blend_append_allowed": false,
+    "accepted_blend_link_allowed": false,
+    "r3_donor_geometry_allowed": false,
+    "external_mesh_import_allowed": false,
+    "network_access_allowed": false
+  },
+  "launch_contract": {
+    "wrapper": "Scripts/invoke_phase2_yak52_r4_slice01_recovery01.ps1",
+    "wrapper_bytes": 6207,
+    "wrapper_sha256": "6d62b3857de0ecf8e3881a16c15de56e45c771a5826fa96a090a6c73d1448fb9",
+    "blender_executable": "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe",
+    "mode": "background_factory_startup_python",
+    "attempt_root": "Saved/Reports/Phase2Yak52R4Slice01Recovery01Production",
+    "required_attempt_files": [
+      "blender.stdout.log",
+      "blender.stderr.log",
+      "launch_receipt.json",
+      "SHA256SUMS.txt"
+    ],
+    "launch_authorized": false,
+    "launched": false
+  },
+  "claims": {
+    "blender_launched": false,
+    "unreal_launched": false,
+    "outputs_created": false,
+    "reference_package_complete": false,
+    "silhouette_locked": false,
+    "slice01_human_accepted": false,
+    "final": false,
+    "aaa": false,
+    "unreal_imported": false,
+    "runtime_replaced": false,
+    "promotion_allowed": false
+  },
+  "completion_boundary": {
+    "readiness_pass_means": "Recovery01 contract keys, frozen authorities, wrapper, unique output paths, and offline checks are internally complete for a later authorized invocation.",
+    "readiness_pass_does_not_mean": [
+      "Blender or Unreal was launched",
+      "Recovery01 outputs exist",
+      "the missing reference package was supplied",
+      "silhouette lock or human acceptance occurred",
+      "final or AAA quality was achieved"
+    ],
+    "future_successful_run_status": "DRAFT_REFERENCE_PACKAGE_MISSING"
+  }
+}

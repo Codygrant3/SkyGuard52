@@ -1,0 +1,49 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-visual-rubric.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008",
+  "automatic_checks": {
+    "png_dimensions_exact": [2560, 1440],
+    "required_png_count": 8,
+    "minimum_unique_rgb8_colors_per_lit_frame": 1024,
+    "maximum_black_pixel_fraction": 0.08,
+    "maximum_white_pixel_fraction": 0.02,
+    "minimum_luma_p01_rgb8": 3,
+    "maximum_luma_p99_rgb8": 250,
+    "maximum_adjacent_temporal_histogram_distance": 0.22,
+    "maximum_adjacent_temporal_mean_luma_delta_rgb8": 18.0,
+    "maximum_camera_roll_degrees": 0.0,
+    "missing_or_zero_byte_files": 0,
+    "critical_log_hits": 0
+  },
+  "human_checks": {
+    "required_reviewers": 1,
+    "all_eight_frames_full_resolution": true,
+    "reject_if_any": [
+      "diagnostic color blocks",
+      "floating or disconnected geometry",
+      "buildings without grounded terrain",
+      "visible tiling or repeating placeholder structures",
+      "overexposure or crushed shadows",
+      "missing water and shore contact",
+      "obvious low-poly hero silhouettes",
+      "unstable clouds, water, foliage, or world geometry",
+      "camera clipping",
+      "world-fixed elements moving with camera",
+      "unacceptable traversal hitch visible in temporal samples"
+    ],
+    "required_feature_presence": {
+      "C01_REAR_GUNNER_PORT": ["coast", "beach", "terrain", "city", "vegetation"],
+      "C02_REAR_GUNNER_STARBOARD": ["ocean", "shore contact", "atmosphere"],
+      "C03_SHORELINE_APPROACH": ["waterline", "beach", "terrain transition", "skyline"],
+      "C04_ROUTE_EXTERIOR": ["route silhouette", "city massing", "vegetation distribution"],
+      "C05_CITY_INLAND": ["grounded buildings", "roads", "urban infrastructure", "terrain"]
+    }
+  },
+  "decision": {
+    "automatic_checks_must_all_pass": true,
+    "human_checks_must_all_pass": true,
+    "no_average_can_hide_a_failed_camera": true,
+    "allowed_results": ["PASS", "FAIL_WITH_EVIDENCE"]
+  }
+}
+

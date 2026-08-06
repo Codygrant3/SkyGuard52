@@ -1,0 +1,421 @@
+{
+  "schema": "skyguard.phase5.audio-category-briefs.v1",
+  "authoritative_category_count": 25,
+  "global_delivery": {
+    "unreal_delivery_format": "WAV PCM, 48 kHz, 24-bit",
+    "source_preference": "Project-owned 96 kHz/24-bit recordings or clearly licensed lossless originals",
+    "raw_capture_headroom": "At least 12 dB below clipping with no AGC, limiting, normalization, denoising, or lossy codec",
+    "derivative_policy": "Preserve immutable original and SHA-256; document and hash every edit/master derivative",
+    "shipping_policy": "Cook derivatives only; exclude raw source archives and procedural QA audition signals"
+  },
+  "technical_profiles": {
+    "AIRCRAFT_LOOP": {
+      "capture_or_library_spec": "Stable engine/propeller beds at documented RPM and load, minimum 60 seconds per state plus 10-second transition handles; phase-coherent microphones; no other aircraft or speech.",
+      "channel_requirement": "Mono close/airframe layer plus stereo or binaural rear-cockpit perspective where available",
+      "loop_requirement": "Two independently reviewed seamless loop regions with no RPM drift, clicks, combing, or phase discontinuity"
+    },
+    "AIRFLOW_LOOP": {
+      "capture_or_library_spec": "Rear-cockpit airflow at documented safe airspeeds and canopy openings, minimum 60 seconds per state; no speech or engine overload.",
+      "channel_requirement": "Stereo/binaural cockpit perspective plus optional mono turbulence layer",
+      "loop_requirement": "Seamless, non-pulsing beds that interpolate without obvious phasing"
+    },
+    "WEAPON_TRANSIENT": {
+      "capture_or_library_spec": "Professionally licensed, safety-compliant source matching the final rifle; separate close transient and environmental tail where legally available.",
+      "channel_requirement": "Mono close transient; stereo reflection/tail",
+      "loop_requirement": "Not applicable; at least six usable variations for high-frequency events"
+    },
+    "WEAPON_MECHANICAL": {
+      "capture_or_library_spec": "Close, isolated action/casing operation matching the final rifle animation; no muzzle blast or unrelated handling.",
+      "channel_requirement": "Mono close",
+      "loop_requirement": "Not applicable; timing handles must support animation sync"
+    },
+    "MISSILE_EVENT": {
+      "capture_or_library_spec": "Clearly licensed shoulder-launched missile or professionally designed equivalent matched by sound designer; reject orbital rockets and unrelated propulsion.",
+      "channel_requirement": "Mono emitter for seeker/lock; mono close plus stereo tail/fly-by for launch and flight",
+      "loop_requirement": "Search tone may loop; other events require multiple clean one-shot variations"
+    },
+    "DRONE_PROPULSION": {
+      "capture_or_library_spec": "Piston-powered UAV source with documented propulsion and steady states; electric multirotors are unacceptable substitutes.",
+      "channel_requirement": "Mono emitter loops plus stereo/binaural fly-by perspectives",
+      "loop_requirement": "At least two seamless steady-state loops per class and directionally clean fly-bys"
+    },
+    "EXPLOSION_LAYER": {
+      "capture_or_library_spec": "Licensed or project-owned isolated crack/body/debris/tail layers with documented perspective; no clipping or baked music.",
+      "channel_requirement": "Mono crack/body emitter where appropriate; stereo debris and environmental tail",
+      "loop_requirement": "Not applicable; at least four variations per frequently repeated layer"
+    }
+  },
+  "rights_profiles": {
+    "PROJECT_OWNED_RECORDING": {
+      "requirements": [
+        "Signed recordist work-for-hire or assignment",
+        "Aircraft/operator/location releases where applicable",
+        "Performer releases for any identifiable voice",
+        "Commercial interactive-game modification, embedding, distribution, marketing, and archival rights",
+        "No obligation to distribute raw sources"
+      ]
+    },
+    "LICENSED_LIBRARY": {
+      "requirements": [
+        "Direct publisher/source page and immutable license evidence",
+        "Commercial interactive-game use",
+        "Modification and derivative creation",
+        "Embedding and end-user distribution in cooked builds",
+        "No conflicting attribution, share-alike, noncommercial, or raw redistribution terms",
+        "Creator/publisher, license ID, source filename, source URL, and SHA-256 recorded"
+      ]
+    }
+  },
+  "categories": [
+    {
+      "category": "EngineIdle",
+      "status": "MISSING_SOURCE",
+      "priority": "P0_IDENTITY",
+      "acquisition_mode": "PROJECT_OWNED_RECORDING",
+      "technical_profile": "AIRCRAFT_LOOP",
+      "identity_requirement": "Yak-52 rear-cockpit radial-engine idle, not a generic aircraft",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineIdle",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer",
+      "acceptance_tests": ["Stable documented idle", "Seamless loop", "No RPM wander", "Cockpit/exterior blend has no phase cancellation"]
+    },
+    {
+      "category": "EngineCruise",
+      "status": "MISSING_SOURCE",
+      "priority": "P0_IDENTITY",
+      "acquisition_mode": "PROJECT_OWNED_RECORDING",
+      "technical_profile": "AIRCRAFT_LOOP",
+      "identity_requirement": "Yak-52 rear-cockpit stabilized cruise RPM/load",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose", "ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineCruise",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer",
+      "acceptance_tests": ["Seamless loop", "Crossfade to idle and power without beating", "No baked fly-by motion"]
+    },
+    {
+      "category": "EnginePower",
+      "status": "MISSING_SOURCE",
+      "priority": "P0_IDENTITY",
+      "acquisition_mode": "PROJECT_OWNED_RECORDING",
+      "technical_profile": "AIRCRAFT_LOOP",
+      "identity_requirement": "Yak-52 sustained high-load radial-engine state",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose", "ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EnginePower",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer",
+      "acceptance_tests": ["No clipping or limiter pumping", "Seamless loop", "Load transition remains phase-stable"]
+    },
+    {
+      "category": "Propeller",
+      "status": "MISSING_SOURCE",
+      "priority": "P0_IDENTITY",
+      "acquisition_mode": "PROJECT_OWNED_RECORDING",
+      "technical_profile": "AIRCRAFT_LOOP",
+      "identity_requirement": "Yak-52 propeller blade-passage layer with documented RPM",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose", "ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Propeller/SW_Propeller",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "AircraftAttachedInteriorExterior",
+      "concurrency_contract": "SinglePersistentAircraftLayer",
+      "acceptance_tests": ["Blade passage tracks RPM", "No speed-of-aircraft baked into loop", "No combing against engine layers"]
+    },
+    {
+      "category": "OpenCockpitWind",
+      "status": "MISSING_SOURCE",
+      "priority": "P0_IDENTITY",
+      "acquisition_mode": "PROJECT_OWNED_RECORDING",
+      "technical_profile": "AIRFLOW_LOOP",
+      "identity_requirement": "Authentic Yak-52 rear-canopy airflow at documented safe states",
+      "listener_perspectives": ["RearCockpit"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Aircraft/Wind/SW_OpenCockpitWind",
+      "output_submix": "CockpitSubmix",
+      "attenuation_contract": "NonSpatialCockpitBed",
+      "concurrency_contract": "SinglePersistentAircraftLayer",
+      "acceptance_tests": ["Tracks airspeed and canopy fraction", "No camera-yaw pumping", "No synthetic white-noise final substitute", "Seamless state interpolation"]
+    },
+    {
+      "category": "RifleMuzzle",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "WEAPON_TRANSIENT",
+      "identity_requirement": "Match final rear-gunner rifle and open-cockpit perspective",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleMuzzle",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "RifleOpenCockpit",
+      "concurrency_contract": "RifleTransientPriority",
+      "acceptance_tests": ["At least six variations", "No clipping", "Repeated fire does not machine-gun identical sample", "Pilot/radio remain intelligible after suppression"]
+    },
+    {
+      "category": "RifleMechanical",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "WEAPON_MECHANICAL",
+      "identity_requirement": "Match final action and reload animation",
+      "listener_perspectives": ["RearCockpit"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleMechanical",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "CloseNonSpatialWeapon",
+      "concurrency_contract": "RifleMechanical",
+      "acceptance_tests": ["Frame-accurate action sync", "No muzzle blast contamination", "No weapon-platform mismatch"]
+    },
+    {
+      "category": "RifleCasing",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "WEAPON_MECHANICAL",
+      "identity_requirement": "Correct casing material and cockpit-contact variants",
+      "listener_perspectives": ["RearCockpit"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleCasing",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "CloseSpatialWeaponDetail",
+      "concurrency_contract": "CasingLowPriorityBounded",
+      "acceptance_tests": ["At least four surface/impact variations", "Voice budget remains bounded", "No audible repetition during sustained fire"]
+    },
+    {
+      "category": "RifleReflection",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "WEAPON_TRANSIENT",
+      "identity_requirement": "Airborne coastal/city reflection tails, not woodland ambience",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle/SW_RifleReflection",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "EnvironmentDependentTail",
+      "concurrency_contract": "ReflectionTailBounded",
+      "acceptance_tests": ["Coast and city tails remain distinct", "No baked unrelated ambience", "Tail ducking does not mask drones"]
+    },
+    {
+      "category": "IglaSearch",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "MISSILE_EVENT",
+      "identity_requirement": "Credible seeker search cue approved by sound designer",
+      "listener_perspectives": ["RearCockpit"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaSearch",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "CloseNonSpatialWeapon",
+      "concurrency_contract": "SingleSeekerState",
+      "acceptance_tests": ["Clean loop", "State change is unmistakable without HUD", "No falsely sourced system recording"]
+    },
+    {
+      "category": "IglaLock",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "MISSILE_EVENT",
+      "identity_requirement": "Credible lock confirmation distinct from search and lock loss",
+      "listener_perspectives": ["RearCockpit"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaLock",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "CloseNonSpatialWeapon",
+      "concurrency_contract": "SingleSeekerState",
+      "acceptance_tests": ["Search-to-lock transition is immediate", "No overlapping state tones", "Readable above engine/wind"]
+    },
+    {
+      "category": "IglaLaunch",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "MISSILE_EVENT",
+      "identity_requirement": "Shoulder-launched missile impulse/motor, not an orbital rocket",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaLaunch",
+      "output_submix": "WeaponsSubmix",
+      "attenuation_contract": "MissileLaunch",
+      "concurrency_contract": "MissileLaunchPriority",
+      "acceptance_tests": ["Launch direction and backblast perspective read correctly", "No clipping", "Hearing suppression recovers deterministically"]
+    },
+    {
+      "category": "IglaFlyby",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "MISSILE_EVENT",
+      "identity_requirement": "Compact missile motor/fly-by matched to in-game speed",
+      "listener_perspectives": ["ExteriorClose", "ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaFlyby",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "MissileFlyby",
+      "concurrency_contract": "MissileFlybyBounded",
+      "acceptance_tests": ["No Doppler baked twice", "Direction and pass timing match projectile", "No orbital-rocket scale"]
+    },
+    {
+      "category": "IglaImpact",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "MISSILE_EVENT",
+      "identity_requirement": "Missile impact pre-layer compatible with target explosion bank",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/SW_IglaImpact",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "MissileImpact",
+      "concurrency_contract": "ExplosionPriority",
+      "acceptance_tests": ["Impact remains distinct from target explosion", "No double transient clipping", "Range attenuation is credible"]
+    },
+    {
+      "category": "DroneLightMotor",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "DRONE_PROPULSION",
+      "identity_requirement": "Piston-powered light one-way UAV; reject electric toy/quadcopter sources",
+      "listener_perspectives": ["ExteriorClose", "ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneLightMotor",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "DroneMotorLongRange",
+      "concurrency_contract": "DroneMotorsDistanceManaged",
+      "acceptance_tests": ["Seamless steady loop", "Readable range and bearing", "Multiple drones remain bounded", "No propulsion mismatch"]
+    },
+    {
+      "category": "DroneHeavyMotor",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "DRONE_PROPULSION",
+      "identity_requirement": "Heavier campaign-drone propulsion distinct from light Shahed class",
+      "listener_perspectives": ["ExteriorClose", "ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneHeavyMotor",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "DroneMotorLongRange",
+      "concurrency_contract": "DroneMotorsDistanceManaged",
+      "acceptance_tests": ["Distinct from light class without UI", "Stable loop", "Boss layers do not mask lock cue"]
+    },
+    {
+      "category": "DroneFlyby",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "DRONE_PROPULSION",
+      "identity_requirement": "Piston-UAV pass perspective without baked electric multirotor character",
+      "listener_perspectives": ["RearCockpit", "ExteriorClose"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Drones/SW_DroneFlyby",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "DroneFlyby",
+      "concurrency_contract": "DroneFlybyBounded",
+      "acceptance_tests": ["No double Doppler", "Correct approach/recede timing", "Direction remains legible"]
+    },
+    {
+      "category": "ExplosionSmallCrack",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Fast transient for light-drone breakup",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallCrack",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionSmall",
+      "concurrency_contract": "ExplosionCrackPriority",
+      "acceptance_tests": ["At least four variations", "No clipping", "No pew/laser character", "Transient layers without peak overshoot"]
+    },
+    {
+      "category": "ExplosionSmallBody",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Compact low/mid body for light-drone destruction",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallBody",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionSmall",
+      "concurrency_contract": "ExplosionBodyPriority",
+      "acceptance_tests": ["At least four variations", "No synthetic arcade signature", "Combines with crack below peak ceiling"]
+    },
+    {
+      "category": "ExplosionSmallDebris",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Light metal/composite fragments appropriate to drone construction",
+      "listener_perspectives": ["ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallDebris",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionSmallDebris",
+      "concurrency_contract": "DebrisLowPriorityBounded",
+      "acceptance_tests": ["Material reads as light drone debris", "Voice pool bounded", "No long unrelated rubble sequence"]
+    },
+    {
+      "category": "ExplosionSmallTail",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Coastal/open-air and urban reflection tails for small blast",
+      "listener_perspectives": ["ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Small/SW_ExplosionSmallTail",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "EnvironmentDependentTail",
+      "concurrency_contract": "ReflectionTailBounded",
+      "acceptance_tests": ["Environment variants remain distinct", "No baked speech/traffic", "Does not mask following target"]
+    },
+    {
+      "category": "ExplosionHeavyCrack",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "High-priority transient for heavy target/boss destruction",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyCrack",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionHeavy",
+      "concurrency_contract": "ExplosionCrackPriority",
+      "acceptance_tests": ["At least four variations", "No clipping", "Stronger than small class without loudness-only distinction"]
+    },
+    {
+      "category": "ExplosionHeavyBody",
+      "status": "MISSING_SOURCE",
+      "priority": "P1_COMBAT",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Sustained heavy low/mid body appropriate to boss or large drone",
+      "listener_perspectives": ["ExteriorMedium", "ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyBody",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionHeavy",
+      "concurrency_contract": "ExplosionBodyPriority",
+      "acceptance_tests": ["At least four variations", "No five-second game hitch", "Combines under master peak ceiling"]
+    },
+    {
+      "category": "ExplosionHeavyDebris",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Heavier metal/composite breakup layers tied to bounded destruction",
+      "listener_perspectives": ["ExteriorMedium"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyDebris",
+      "output_submix": "ExplosionsSubmix",
+      "attenuation_contract": "ExplosionHeavyDebris",
+      "concurrency_contract": "DebrisLowPriorityBounded",
+      "acceptance_tests": ["Variation matches visible fragments", "Voice limit respected", "No unbounded tail stacking"]
+    },
+    {
+      "category": "ExplosionHeavyTail",
+      "status": "MISSING_SOURCE",
+      "priority": "P2_DETAIL",
+      "acquisition_mode": "LICENSED_LIBRARY",
+      "technical_profile": "EXPLOSION_LAYER",
+      "identity_requirement": "Long coastal/open-air and urban heavy-blast tails",
+      "listener_perspectives": ["ExteriorDistant"],
+      "unreal_destination": "/Game/Skyguard/Audio/Production/Explosions/Heavy/SW_ExplosionHeavyTail",
+      "output_submix": "ExteriorSubmix",
+      "attenuation_contract": "EnvironmentDependentTail",
+      "concurrency_contract": "ReflectionTailBounded",
+      "acceptance_tests": ["Environment variant correct", "Tail decays naturally", "Radio ducking and recovery remain intelligible"]
+    }
+  ]
+}

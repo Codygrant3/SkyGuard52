@@ -1,0 +1,27 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-bake.contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_004",
+  "extends_contract": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_BAKE_003_CONTRACT.json",
+  "extends_contract_sha256": "5345210f2d566b4a2cc14d3bd9755ed509ced989c1860f1e5000a3b576b25882",
+  "supersedes_candidates": [
+    "BLD_M01_HERO_HILO_001",
+    "BLD_M01_HERO_HILO_002",
+    "BLD_M01_HERO_GROUPED_TOPOLOGY_003"
+  ],
+  "attempt_correction_basis": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_BAKE_003/attempt_20260802T140659613Z/supervisor_summary.json",
+  "scope": "Execute the unchanged twelve-group production topology recipe after correcting Blender 5.2 UVLoopLayers.active_render assignment and adding traceback-aware supervision. Failed build 003 remains immutable.",
+  "outputs": {
+    "master_blend": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_004/BLD_M01_HERO_GROUPED_TOPOLOGY_004_MASTER.blend",
+    "low_glb": "Content/Skyguard/Meshes/Source/Mission01/HeroGroupedTopology_004/bld_m01_hero_grouped_topology_004_low.glb",
+    "texture_root": "Content/Skyguard/Textures/Source/Mission01/HeroGroupedTopology_004",
+    "manifest": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_MANIFEST_004.json",
+    "report": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_BAKE_REPORT_004.json"
+  },
+  "non_claims": [
+    "Builds 001 and 002 remain immutable rejected visual evidence.",
+    "Build 003 remains immutable failed Blender API evidence.",
+    "Artifact verification does not pass the direct map visual gate.",
+    "A direct map visual pass does not replace mapped-mesh grazing-angle review.",
+    "No Unreal/runtime replacement is authorized by this build alone."
+  ]
+}

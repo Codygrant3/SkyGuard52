@@ -1,0 +1,772 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-offline-production-contract.v1",
+  "contract_id": "PHASE2-YAK52-R4-FINAL-ART-GAP-20260802-V1",
+  "title": "Yak-52 R4 final-art production plan from preserved L88 and R3 evaluation evidence",
+  "purpose": "Define the next isolated Blender production source and later Unreal acceptance package needed to close the visibly blockout-grade Yak-52 gap. This is an offline planning contract only. It does not launch Blender or Unreal, alter accepted assets, import, promote donors, replace the runtime aircraft, or claim final, AAA, production-ready, or shipping acceptance.",
+  "current_state": {
+    "status": "OFFLINE_CONTRACT_VALID_PRODUCTION_NOT_STARTED",
+    "r4_blender_source_created": false,
+    "r4_export_created": false,
+    "r4_unreal_imported": false,
+    "donor_promoted": false,
+    "runtime_replaced": false,
+    "manual_visual_acceptance": false,
+    "runtime_performance_acceptance": false,
+    "final": false,
+    "aaa": false,
+    "production_ready": false,
+    "shipping_allowed": false
+  },
+  "immutability_policy": {
+    "change_method": "Create a new versioned contract and immutable verification attempt; never silently revise accepted R3 evidence or R4 requirements.",
+    "hash_algorithm": "SHA-256",
+    "source_files_read_only_until_isolated_r4_copy": true,
+    "accepted_assets_must_not_be_modified": true
+  },
+  "authority_inputs": [
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md",
+      "bytes": 2803,
+      "sha256": "25fde51185b4a2eea93fc25bc7993a5726ba67b322ec50b901e32f4e38e6494f",
+      "role": "R3 final-art rejection and evaluation-only boundary"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_PROD_002_VISUAL_REVIEW.md",
+      "bytes": 2814,
+      "sha256": "640f05d5757f18373b2eff7a21e06e9012370d8bf71347421bf227c4ef6009cb",
+      "role": "Rejected whole-aircraft donor study and bounded donor direction"
+    },
+    {
+      "path": "Docs/AAA_Review/M01_YAK_R3_DONOR_AUTOMATED_EVALUATION_2026-08-02.md",
+      "bytes": 1865,
+      "sha256": "4a85731e1f59917c1c87edfb1aab54465867f21f337722165a020da26886ae94",
+      "role": "Automated donor compatibility evidence and human-promotion boundary"
+    },
+    {
+      "path": "Docs/AAA_Review/M01_YAK_R3_COMPONENT_IMPORT_CONTRACT.json",
+      "bytes": 4317,
+      "sha256": "536df0f1c3355f40cbb20b1121e296201201675454668b81951f6d13b0bac96b",
+      "role": "Exact ten-mesh quarantine donor set, datums, and safety volumes"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_CONTRACT.json",
+      "bytes": 10456,
+      "sha256": "310783ed6e11d4aa22dbda82333a6f185c7bece754e3240cfb2c790a2793cabb",
+      "role": "R3 coordinate system, source inheritance, cameras, and component accounting"
+    },
+    {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_COMPONENT_LEDGER.json",
+      "bytes": 3329,
+      "sha256": "f574d1bece9de888d16834661c4c18b5e7df8fc56eff676b26f000b3d5369dd5",
+      "role": "240-component provisional classification truth"
+    },
+    {
+      "path": "Saved/Reports/BLD_M01_YAK_UPLIFT_003_R3_MANIFEST.json",
+      "bytes": 138412,
+      "sha256": "0773e2440cad9b65f690c0b7cd6e8004c013275f8883064223ce1b686feaf329",
+      "role": "R3 object inventory, matched images, donor identities, and explicit non-final claims"
+    },
+    {
+      "path": "Saved/Reports/M01_YAK_R3_COMPONENT_QUARANTINE_AUDIT.json",
+      "bytes": 10062,
+      "sha256": "4870f768de0def15f6b4cd3e4a6b9e9308e51447ac7116501f7be4f4e41abab7",
+      "role": "Fresh Unreal quarantine persistence and compatibility evidence"
+    },
+    {
+      "path": "Saved/Reports/L88_RUNTIME_ASSEMBLY_CONTRACT.json",
+      "bytes": 57068,
+      "sha256": "a5cd8244b996a32b50392663ccce7d4509845e6619ad90bc38b2ca0aaa669c25",
+      "role": "Current runtime bundle and component baseline"
+    },
+    {
+      "path": "Saved/Reports/PHASE2_YAK_RUNTIME_PERSISTENCE.json",
+      "bytes": 473,
+      "sha256": "b8a83db419256c2f4bc92d8bef23af076699f65200807d89ea438cd34c76be3e",
+      "role": "Current runtime assembly persistence boundary"
+    }
+  ],
+  "current_blender_source_inventory": [
+    {
+      "id": "L88_PRESERVED_RUNTIME_BLOCKOUT",
+      "path": "Content/Skyguard/Meshes/Source/L88/YAK52_L88_MASTER_BLOCKOUT.blend",
+      "bytes": 1276202,
+      "sha256": "18b88b5dfd4cdd9fb44e83f775dc9474c6146f417b455b6bc7605a07cb39e993",
+      "disposition": "PRESERVE_IMMUTABLE_BASELINE_COPY_ONLY",
+      "allowed_use": "Byte-copy into a new isolated R4 namespace; never save over this source."
+    },
+    {
+      "id": "PRODUCTION_001_REJECTED_STUDY",
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Production/BLD_M01_YAK_PROD_001_MASTER.blend",
+      "bytes": 356743,
+      "sha256": "5fc2cde520749f65920250dfc2efcfc91d2cca3bb67abedc94f2b25d8cd5bd78",
+      "disposition": "REFERENCE_ONLY_NOT_DONOR_AUTHORITY",
+      "allowed_use": "Construction-study reference only; no whole-aircraft reuse."
+    },
+    {
+      "id": "PRODUCTION_002_REJECTED_DONOR_STUDY",
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Production_002/BLD_M01_YAK_PROD_002_MASTER.blend",
+      "bytes": 943318,
+      "sha256": "6fe844fbeee9947dce6d2900782859be30671cbc4a8919079c56d3a6ca0479d4",
+      "disposition": "DO_NOT_OPEN_OR_IMPORT_DONOR_IDEAS_ONLY",
+      "allowed_use": "Only the ten already reconstructed and quarantined R3 donor components and four reference datums may be evaluated."
+    },
+    {
+      "id": "R3_PROVISIONAL_UPLIFT_SOURCE",
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3/BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend",
+      "bytes": 1526526,
+      "sha256": "512f13fde09edaeb77d75f0c27372a340dc0b2b123e7d0b813c89df3acdf22e6",
+      "disposition": "PRESERVE_IMMUTABLE_EVALUATION_SOURCE",
+      "allowed_use": "Inventory and comparison reference; do not overwrite and do not treat inherited components as final."
+    },
+    {
+      "id": "R3_QUARANTINE_EXPORT",
+      "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3/bld_m01_yak_uplift_003_r3.glb",
+      "bytes": 6793008,
+      "sha256": "bcb046ae1fb92ed2a907b331fdabb2627dd364e721d30f394616f21f83ebdf58",
+      "disposition": "QUARANTINE_EVALUATION_ONLY",
+      "allowed_use": "Existing donor compatibility evidence only; never use as R4 whole-aircraft import."
+    },
+    {
+      "id": "R3_GENERATOR_SOURCE",
+      "path": "Scripts/blender_bld_m01_yak_uplift_003_r3.py",
+      "bytes": 22823,
+      "sha256": "a23bdf3c41dfb256af440af58fcc268c234da7e63e33abfe891b99f6ffee31d7",
+      "disposition": "HELPER_AND_CAMERA_REFERENCE_ONLY",
+      "allowed_use": "Reuse generic utilities and matched-camera values only after rebinding all R4 identifiers and paths."
+    }
+  ],
+  "r3_truth_boundary": {
+    "governed_component_count": 240,
+    "exact_object_requirement_count": 232,
+    "source_absent_hold_count": 8,
+    "classification_counts": {
+      "provisional_inherited": 155,
+      "rebuild_candidate": 26,
+      "donor_from_002": 6,
+      "hold": 45,
+      "source_absent_hold": 8
+    },
+    "visible_final_art_rejections": [
+      "Wing, tail, fuselage, and canopy silhouettes remain visibly blockout-grade and not reference-faithful Yak-52 production surfaces.",
+      "Crew anatomy, hands, gloves, sleeves, and weapon grips remain simplified and need rigged production replacements.",
+      "Rifle and Igla geometry, sights, controls, and material response remain insufficient for first-person hero use.",
+      "Cockpit lacks production instruments, trim, harness, padding, fasteners, labels, wiring, and wear.",
+      "Exterior lacks calibrated paint, bare metal, glass, rubber, weathering, livery, panels, seams, and rivets.",
+      "No final component set has passed scale, sockets, collision, ADS, pilot safety, Igla launch axis, animation, LOD, material, or packaged performance validation."
+    ],
+    "r3_final": false,
+    "r3_aaa": false,
+    "r3_production_accepted": false,
+    "r3_runtime_replacement_allowed": false
+  },
+  "donor_compatibility_boundary": {
+    "evaluation_disposition": "AUTOMATED_COMPATIBILITY_PASS_HUMAN_PROMOTION_MISSING",
+    "exact_meshes": [
+      "GEO_UPLIFT003R3_DONOR_CowlingShell",
+      "GEO_UPLIFT003R3_DONOR_CowlingFrontRing",
+      "GEO_UPLIFT003R3_DONOR_CowlingShutters",
+      "GEO_UPLIFT003R3_DONOR_CowlingInletCone",
+      "GEO_UPLIFT003R3_DONOR_Spinner",
+      "GEO_UPLIFT003R3_DONOR_PropBlade_A",
+      "GEO_UPLIFT003R3_DONOR_PropBlade_B",
+      "GEO_UPLIFT003R3_DONOR_MainWheelWell_L",
+      "GEO_UPLIFT003R3_DONOR_MainWheelWell_R",
+      "GEO_UPLIFT003R3_DONOR_NoseWheelWell"
+    ],
+    "reference_datums": [
+      "DATUM_UPLIFT003R3_DONOR_CanopyTravel",
+      "DATUM_UPLIFT003R3_DONOR_MainGearPivot_L",
+      "DATUM_UPLIFT003R3_DONOR_MainGearPivot_R",
+      "DATUM_UPLIFT003R3_DONOR_NoseGearPivot"
+    ],
+    "automated_evidence_proves": [
+      "Exact ten quarantine meshes persisted.",
+      "Bounds origins match governed pivot datums.",
+      "Every mesh has at least one material slot and simple collision.",
+      "Donor bounds do not intersect camera, pilot, rifle, or Igla safety volumes.",
+      "Rear-gunner physical sightline remains level and unobstructed."
+    ],
+    "automated_evidence_does_not_prove": [
+      "Reference-faithful silhouette or surface quality.",
+      "Calibrated production materials.",
+      "Animation deformation or operational motion.",
+      "ADS, firing, launch, backblast, or pilot-safety gameplay behavior.",
+      "Runtime frame time, memory, draw calls, LOD transitions, or packaged persistence.",
+      "Human visual promotion."
+    ],
+    "automatic_promotion_allowed": false,
+    "whole_aircraft_reuse_allowed": false
+  },
+  "coordinate_and_scale_contract": {
+    "blender_units": "metres",
+    "unreal_units": "centimetres",
+    "forward_axis": "+X",
+    "right_axis": "+Y",
+    "up_axis": "+Z",
+    "aircraft_origin": "Defined aircraft reference datum retained from L88 runtime contract",
+    "transform_application": "Production render meshes must export with scale 1,1,1 and documented pivots; armature and animation transforms must remain intentional.",
+    "dimension_acceptance": "Reference-board dimensions, station drawings, and photo-derived proportions must be recorded with confidence and source provenance before silhouette approval.",
+    "symmetry_policy": "Primary airframe may use controlled symmetry during construction; asymmetrical panels, wear, placards, antennas, controls, and crew staging must be authored explicitly."
+  },
+  "ordered_asset_slices": [
+    {
+      "order": 1,
+      "slice_id": "R4-S01",
+      "name": "Reference board, dimensions, and silhouette lock",
+      "depends_on": [],
+      "scope": [
+        "Create a dimensioned Yak-52 reference board with source provenance and confidence labels.",
+        "Lock fuselage stations, cowling diameter, cockpit openings, canopy profile, wing planform, dihedral, tail planform, gear stance, and propeller disc.",
+        "Build clean low-detail primary volumes in an isolated R4 source without surface microdetail."
+      ],
+      "required_outputs": [
+        "R4 reference index and dimension ledger",
+        "Primary silhouette mesh set",
+        "Matched side, top, front three-quarter, rear three-quarter, and underside renders"
+      ],
+      "acceptance_cameras": ["R4_CAM_BEAUTY_PORT", "R4_CAM_SIDE_ORTHO", "R4_CAM_TOP_ORTHO", "R4_CAM_REAR_QUARTER", "R4_CAM_UNDERSIDE_ORTHO"],
+      "exit_gate": "Human silhouette approval against dimensioned references; no later slice may compensate for an inaccurate primary shape."
+    },
+    {
+      "order": 2,
+      "slice_id": "R4-S02",
+      "name": "Production exterior surfaces and control breaks",
+      "depends_on": ["R4-S01"],
+      "scope": [
+        "Rebuild fuselage, wings, wing-root fairings, leading edges, horizontal tail, vertical tail, rudder, elevator, ailerons, and flaps as reference-faithful surfaces.",
+        "Author real panel boundaries, access panels, hinges, control gaps, vent openings, exhaust interfaces, antennas, and navigation-light housings.",
+        "Preserve removable or animated parts as logical production groups with documented pivots."
+      ],
+      "required_outputs": [
+        "Production exterior high and game meshes",
+        "Control-surface pivot ledger",
+        "Surface continuity and normal-quality audit"
+      ],
+      "acceptance_cameras": ["R4_CAM_BEAUTY_PORT", "R4_CAM_SIDE_ORTHO", "R4_CAM_TOP_ORTHO", "R4_CAM_REAR_QUARTER", "R4_CAM_UNDERSIDE_ORTHO"],
+      "exit_gate": "No blockout facets, generic planform, broken shading, nonphysical panel thickness, or silhouette regression at any acceptance camera."
+    },
+    {
+      "order": 3,
+      "slice_id": "R4-S03",
+      "name": "Cowling, radial face, propeller, and landing-gear integration",
+      "depends_on": ["R4-S02"],
+      "scope": [
+        "Evaluate the ten R3 donors individually against the locked R4 silhouette and reference board.",
+        "Rebuild or refine cowling shell, front ring, shutters, inlet cone, spinner, two-blade propeller, wheel wells, struts, forks, hubs, tires, brakes, doors, and fairings.",
+        "Create a single documented propeller axis and separate static-blade, motion-disc, and stopped-state presentation groups.",
+        "Reject any donor that fits mechanically but remains visually generic or under-detailed."
+      ],
+      "required_outputs": [
+        "Per-donor accept-rebuild-reject record with matched images",
+        "Propeller blade profile, pitch, hub, spinner, axis, and motion-state ledger",
+        "Gear pivot, wheel contact, well clearance, and retraction-volume ledger"
+      ],
+      "acceptance_cameras": ["R4_CAM_NOSE_PROP_CLOSE", "R4_CAM_BEAUTY_PORT", "R4_CAM_SIDE_ORTHO", "R4_CAM_UNDERSIDE_ORTHO"],
+      "exit_gate": "Human donor promotion per component plus reference-faithful propeller and gear appearance; compatibility evidence alone is insufficient."
+    },
+    {
+      "order": 4,
+      "slice_id": "R4-S04",
+      "name": "Front canopy and opening rear-gunner canopy system",
+      "depends_on": ["R4-S02", "R4-S03"],
+      "scope": [
+        "Rebuild front and rear canopy glazing, bows, rails, rollers, seals, hinges, latches, handles, cockpit rims, and fairings with correct alignment and thickness.",
+        "Keep the pilot enclosed and protected while the rear canopy can slide to the documented open firing position.",
+        "Document rear-canopy closed, transit, open, and stowed transforms without intersecting crew, rifle, Igla, camera, or airframe.",
+        "Provide glass interior/exterior surfaces, edge treatment, frame masking, dirt breakup, and non-occluding optical response."
+      ],
+      "required_outputs": [
+        "Canopy high and game meshes",
+        "Rear-canopy transform and pivot ledger",
+        "Closed/open clearance sweep",
+        "Glass thickness, normals, UV, and material-interface audit"
+      ],
+      "acceptance_cameras": ["R4_CAM_CANOPY_CLOSED_PORT", "R4_CAM_CANOPY_OPEN_PORT", "R4_CAM_REAR_COCKPIT_HERO", "R4_CAM_REAR_GUNNER_EYE"],
+      "exit_gate": "No cube-like glazing, misaligned bows, missing rear frame, camera occlusion, pilot exposure, weapon intersection, or implausible glass response."
+    },
+    {
+      "order": 5,
+      "slice_id": "R4-S05",
+      "name": "Front and rear cockpit production interiors",
+      "depends_on": ["R4-S04"],
+      "scope": [
+        "Rebuild cockpit tub, front and rear panels, gauges, bezels, needles, glass, warning lamps, placards, switches, guards, throttle quadrants, trim, sticks, pedals, radios, map light, wiring, padding, seats, harnesses, fasteners, and wear.",
+        "Prioritize rear-gunner eye visibility and physical instrument depth while retaining pilot legibility from rear-seat views.",
+        "Use decals or texture detail for sub-pixel fasteners and labels instead of excessive component meshes."
+      ],
+      "required_outputs": [
+        "Cockpit production high and game meshes",
+        "Instrument and control naming/pivot ledger",
+        "Placard and gauge atlas plan",
+        "Rear-eye occlusion audit"
+      ],
+      "acceptance_cameras": ["R4_CAM_REAR_COCKPIT_HERO", "R4_CAM_REAR_GUNNER_EYE", "R4_CAM_PILOT_SAFETY"],
+      "exit_gate": "Rear cockpit reads as a real aircraft interior at first-person distance with no box-driven gaps, floating controls, unreadable hierarchy, or camera obstruction."
+    },
+    {
+      "order": 6,
+      "slice_id": "R4-S06",
+      "name": "Rigged pilot and rear-gunner crew",
+      "depends_on": ["R4-S04", "R4-S05"],
+      "scope": [
+        "Replace simplified pilot and gunner bodies with anatomically credible, clothed, rigged production characters.",
+        "Author pilot head, helmet/headset, torso, arms, gloves, legs, harness contact, control grip, and seated posture.",
+        "Author distinct first-person rear-gunner arms/hands/gloves/sleeves and a third-person seated body with compatible proportions.",
+        "Prevent block limbs, fused fingers, collapsed glove silhouettes, floating elbows, cloth intersections, and weapon-grip mismatch."
+      ],
+      "required_outputs": [
+        "Pilot skeletal mesh and rig",
+        "Rear-gunner first-person arms/hands rig",
+        "Rear-gunner third-person skeletal mesh and rig",
+        "Skinning, pose, harness-contact, and cockpit-clearance audits"
+      ],
+      "acceptance_cameras": ["R4_CAM_CREW_PORT", "R4_CAM_REAR_COCKPIT_HERO", "R4_CAM_REAR_GUNNER_EYE", "R4_CAM_REAR_GUNNER_ADS", "R4_CAM_PILOT_SAFETY"],
+      "exit_gate": "Hands, arms, posture, cockpit contact, and weapon grips remain credible through aim, recoil, reload, Igla shoulder, canopy motion, and pilot-control poses."
+    },
+    {
+      "order": 7,
+      "slice_id": "R4-S07",
+      "name": "First-person rifle and Igla interaction set",
+      "depends_on": ["R4-S05", "R4-S06"],
+      "scope": [
+        "Rebuild rifle receiver, barrel, muzzle, gas system, handguard, magazine, stock, trigger, guard, safety, sights, apertures, sling hardware, and contact surfaces for first-person hero use.",
+        "Rebuild Igla tube, caps, battery, grip, trigger, sight, shoulder rest, launch axis, missile axis, and backblast datum.",
+        "Align rifle front/rear sights to the physical ADS camera and preserve left-click firing while right-click ADS is held.",
+        "Align hand placement, trigger discipline, recoil axis, muzzle sweep, missile launch direction, and backblast clearance."
+      ],
+      "required_outputs": [
+        "Rifle and Igla high/game meshes",
+        "Weapon socket and axis ledger",
+        "ADS alignment and hand-contact pose set",
+        "Pilot no-fire and Igla backblast clearance evidence plan"
+      ],
+      "acceptance_cameras": ["R4_CAM_REAR_GUNNER_EYE", "R4_CAM_REAR_GUNNER_ADS", "R4_CAM_PILOT_SAFETY", "R4_CAM_CANOPY_OPEN_PORT"],
+      "exit_gate": "No artificial reticle is required for alignment; sights, hands, weapon axes, pilot blocker, canopy opening, and firing clearance are physically coherent."
+    },
+    {
+      "order": 8,
+      "slice_id": "R4-S08",
+      "name": "UV, bake, calibrated PBR, livery, and weathering",
+      "depends_on": ["R4-S02", "R4-S03", "R4-S04", "R4-S05", "R4-S06", "R4-S07"],
+      "scope": [
+        "Create non-overlapping game UVs, intentional mirrored regions, bake cages, material IDs, and traceable high-to-low normal, AO, curvature, thickness, and position bakes.",
+        "Build calibrated paint, bare metal, canopy glass, rubber, engine metal, cockpit paint, instrument, gauge glass/emissive, leather, fabric, skin, rifle, Igla, decal, and grime material families.",
+        "Apply livery, stencils, placards, panel seams, rivet rows, fasteners, paint wear, oil, exhaust, salt, dust, fingerprints, and localized wetness at physically plausible scale.",
+        "Use geometry only for silhouette, parallax-critical, animated, or collision-relevant detail; use trim sheets, decals, and normals for repeated microdetail."
+      ],
+      "required_outputs": [
+        "UV and texel-density report",
+        "Bake manifest with source and derivative hashes",
+        "Material and texture-set ledger",
+        "Daylight, overcast, night, wet, and storm material review renders"
+      ],
+      "acceptance_cameras": ["R4_CAM_BEAUTY_PORT", "R4_CAM_NOSE_PROP_CLOSE", "R4_CAM_CANOPY_CLOSED_PORT", "R4_CAM_REAR_COCKPIT_HERO", "R4_CAM_REAR_GUNNER_ADS", "R4_CAM_CREW_PORT"],
+      "exit_gate": "No flat color, uniform roughness, incorrect metalness, painted-on glass, repeating grime, oversized rivets, unreadable labels, or lighting-dependent material failure."
+    },
+    {
+      "order": 9,
+      "slice_id": "R4-S09",
+      "name": "Production grouping, pivots, sockets, rigs, and collision",
+      "depends_on": ["R4-S03", "R4-S04", "R4-S06", "R4-S07", "R4-S08"],
+      "scope": [
+        "Consolidate the 240 governed source identities into bounded render groups without losing traceable component metadata.",
+        "Finalize canopy, propeller, control-surface, landing-gear, crew, and weapon pivots plus named gameplay sockets.",
+        "Author simple collision, ground-contact bodies, pilot/cockpit shot blockers, canopy interaction, camera clearance, rifle sweep, launch axis, and backblast volumes.",
+        "Keep cosmetic microdetail out of gameplay collision and forbid complex-as-simple collision for the aircraft."
+      ],
+      "required_outputs": [
+        "Render-group/component identity map",
+        "Pivot/socket/axis manifest",
+        "Simple-collision and physics-body manifest",
+        "Animation range and deformation test plan",
+        "LOD screen-size and transition plan"
+      ],
+      "acceptance_cameras": ["R4_CAM_SIDE_ORTHO", "R4_CAM_UNDERSIDE_ORTHO", "R4_CAM_CANOPY_OPEN_PORT", "R4_CAM_REAR_GUNNER_ADS", "R4_CAM_PILOT_SAFETY"],
+      "exit_gate": "All gameplay interfaces are deterministic, collision is simple and bounded, cosmetic components cannot block fire, and no required motion changes scale or origin."
+    },
+    {
+      "order": 10,
+      "slice_id": "R4-S10",
+      "name": "Isolated export, matched visual review, and Unreal performance acceptance package",
+      "depends_on": ["R4-S01", "R4-S02", "R4-S03", "R4-S04", "R4-S05", "R4-S06", "R4-S07", "R4-S08", "R4-S09"],
+      "scope": [
+        "Save and export only to the isolated R4 namespace with an immutable source/export manifest.",
+        "Render every fixed acceptance camera under governed lighting and color management.",
+        "Import only into a new Unreal quarantine path after a separate authorization.",
+        "Measure scale, materials, sockets, collisions, ADS, pilot safety, canopy motion, propeller states, crew animation, Igla axes, LODs, draw calls, memory, frame time, and packaged persistence.",
+        "Require explicit human visual and runtime promotion approval before any current aircraft replacement."
+      ],
+      "required_outputs": [
+        "Immutable R4 Blender source and export hashes",
+        "Matched acceptance-camera image set",
+        "Fresh Unreal quarantine import and persistence audit",
+        "Gameplay safety and animation evidence",
+        "Performance capture at the fixed target profile",
+        "Human visual and technical review receipt"
+      ],
+      "acceptance_cameras": ["R4_CAM_BEAUTY_PORT", "R4_CAM_SIDE_ORTHO", "R4_CAM_TOP_ORTHO", "R4_CAM_REAR_QUARTER", "R4_CAM_UNDERSIDE_ORTHO", "R4_CAM_NOSE_PROP_CLOSE", "R4_CAM_CANOPY_CLOSED_PORT", "R4_CAM_CANOPY_OPEN_PORT", "R4_CAM_REAR_COCKPIT_HERO", "R4_CAM_REAR_GUNNER_EYE", "R4_CAM_REAR_GUNNER_ADS", "R4_CAM_PILOT_SAFETY", "R4_CAM_CREW_PORT"],
+      "exit_gate": "Only a complete hash-bound visual, gameplay, persistence, and performance package may be considered for later human runtime promotion."
+    }
+  ],
+  "visual_acceptance_contract": {
+    "render_resolution": [1920, 1080],
+    "pixel_aspect": 1.0,
+    "blender_engine": "BLENDER_EEVEE",
+    "color_management": "Fixed neutral transform and exposure recorded in the R4 manifest; identical across matched candidates.",
+    "lighting_rig": "Governed neutral key-fill-rim plus fixed world; additional daylight, overcast, night, wet, and storm material rigs may not replace neutral matched views.",
+    "camera_mutation_allowed_after_slice_1": false,
+    "crop_or_reframe_after_render_allowed": false,
+    "required_cameras": [
+      {
+        "id": "R4_CAM_BEAUTY_PORT",
+        "projection": "PERSPECTIVE",
+        "location_m": [11.5, -11.5, 6.7],
+        "target_m": [0.0, 0.0, -0.05],
+        "lens_mm": 58.0,
+        "coverage": ["primary_silhouette", "surface", "livery", "material"]
+      },
+      {
+        "id": "R4_CAM_SIDE_ORTHO",
+        "projection": "ORTHOGRAPHIC",
+        "location_m": [0.0, -15.0, 0.4],
+        "target_m": [0.0, 0.0, 0.0],
+        "lens_mm": 58.0,
+        "ortho_scale_m": 10.8,
+        "coverage": ["fuselage_profile", "canopy_profile", "gear_stance", "tail_profile"]
+      },
+      {
+        "id": "R4_CAM_TOP_ORTHO",
+        "projection": "ORTHOGRAPHIC",
+        "location_m": [0.0, 0.0, 15.0],
+        "target_m": [0.0, 0.0, 0.0],
+        "lens_mm": 58.0,
+        "ortho_scale_m": 10.8,
+        "coverage": ["wing_planform", "tail_planform", "symmetry", "control_breaks"]
+      },
+      {
+        "id": "R4_CAM_REAR_QUARTER",
+        "projection": "PERSPECTIVE",
+        "location_m": [-8.0, -8.0, 4.2],
+        "target_m": [-0.2, 0.0, 0.3],
+        "lens_mm": 65.0,
+        "coverage": ["rear_fuselage", "tail", "canopy", "control_surfaces"]
+      },
+      {
+        "id": "R4_CAM_UNDERSIDE_ORTHO",
+        "projection": "ORTHOGRAPHIC",
+        "location_m": [0.0, -0.2, -12.0],
+        "target_m": [0.0, 0.0, 0.0],
+        "lens_mm": 58.0,
+        "ortho_scale_m": 10.8,
+        "coverage": ["underside", "gear", "wheel_wells", "doors", "exhaust"]
+      },
+      {
+        "id": "R4_CAM_NOSE_PROP_CLOSE",
+        "projection": "PERSPECTIVE",
+        "location_m": [7.2, -4.4, 2.0],
+        "target_m": [3.65, 0.0, 0.2],
+        "lens_mm": 70.0,
+        "coverage": ["cowling", "radial_face", "shutters", "spinner", "propeller"]
+      },
+      {
+        "id": "R4_CAM_CANOPY_CLOSED_PORT",
+        "projection": "PERSPECTIVE",
+        "location_m": [-0.3, -4.0, 2.0],
+        "target_m": [-0.2, 0.0, 0.95],
+        "lens_mm": 65.0,
+        "coverage": ["front_canopy", "rear_canopy_closed", "bows", "rails", "glass"]
+      },
+      {
+        "id": "R4_CAM_CANOPY_OPEN_PORT",
+        "projection": "PERSPECTIVE",
+        "location_m": [-1.7, -3.2, 1.9],
+        "target_m": [-0.55, 0.0, 1.0],
+        "lens_mm": 55.0,
+        "coverage": ["rear_canopy_open", "gunner_clearance", "rails", "latches", "crew"]
+      },
+      {
+        "id": "R4_CAM_REAR_COCKPIT_HERO",
+        "projection": "PERSPECTIVE",
+        "location_m": [-1.2, -1.1, 1.1],
+        "target_m": [0.3, -0.55, 0.68],
+        "lens_mm": 38.0,
+        "coverage": ["rear_cockpit", "controls", "instruments", "padding", "wear"]
+      },
+      {
+        "id": "R4_CAM_REAR_GUNNER_EYE",
+        "projection": "PERSPECTIVE",
+        "location_m": [-0.9, -0.64, 1.08],
+        "target_m": [1.58, -0.64, 1.06],
+        "lens_mm": 46.0,
+        "clip_start_m": 0.04,
+        "coverage": ["first_person_clearance", "physical_sights", "pilot", "canopy_opening"]
+      },
+      {
+        "id": "R4_CAM_REAR_GUNNER_ADS",
+        "projection": "PERSPECTIVE",
+        "location_m": [-0.9, -0.64, 1.08],
+        "target_m": [3.0, -0.64, 1.05],
+        "lens_mm": 55.0,
+        "clip_start_m": 0.03,
+        "coverage": ["rear_sight", "front_sight", "sight_axis", "hands", "rifle"]
+      },
+      {
+        "id": "R4_CAM_PILOT_SAFETY",
+        "projection": "PERSPECTIVE",
+        "location_m": [-0.9, -0.64, 1.08],
+        "target_m": [0.62, 0.0, 1.06],
+        "lens_mm": 46.0,
+        "clip_start_m": 0.04,
+        "coverage": ["pilot_no_fire", "cockpit_blocker", "muzzle_sweep", "crew_clearance"]
+      },
+      {
+        "id": "R4_CAM_CREW_PORT",
+        "projection": "PERSPECTIVE",
+        "location_m": [1.2, -3.5, 2.3],
+        "target_m": [-0.2, 0.0, 1.0],
+        "lens_mm": 70.0,
+        "coverage": ["pilot", "rear_gunner", "harness", "posture", "weapon_grip"]
+      }
+    ],
+    "required_manual_review_dimensions": [
+      "Reference fidelity",
+      "Silhouette",
+      "Proportion",
+      "Surface continuity",
+      "Canopy alignment and optical response",
+      "Cockpit completeness and hierarchy",
+      "Crew anatomy, pose, hand and glove quality",
+      "Rifle and Igla first-person quality",
+      "PBR calibration and material separation",
+      "Livery, decals, wear, and scale",
+      "Occlusion and gameplay readability",
+      "No regression against preserved L88 scope"
+    ]
+  },
+  "material_and_texture_contract": {
+    "runtime_texture_format": "Lossless authored masters; Unreal platform compression selected during governed import.",
+    "maximum_authored_resolution": 4096,
+    "eight_k_allowed": false,
+    "target_texel_density_px_per_m": {
+      "exterior_primary": 512,
+      "cockpit_first_person": 1024,
+      "crew_first_person": 1024,
+      "weapon_first_person": 1024,
+      "gear_and_engine": 512
+    },
+    "required_bakes": ["tangent_normal", "ambient_occlusion", "curvature", "thickness", "position", "material_id"],
+    "material_families": [
+      "ExteriorPaint",
+      "BareAndAnodizedMetal",
+      "EngineAndExhaustMetal",
+      "CanopyGlass",
+      "RubberAndSeal",
+      "CockpitPaintedMetal",
+      "InstrumentPanel",
+      "GaugeFaceGlassAndEmissive",
+      "SeatLeatherAndPadding",
+      "HarnessAndFabric",
+      "CrewSkin",
+      "CrewUniformAndGlove",
+      "RifleMetalWoodPolymer",
+      "IglaPaintMetalOptics",
+      "LiveryPlacardAndDecal",
+      "GrimeOilSootSaltAndWetness"
+    ],
+    "pbr_rules": [
+      "Metalness represents material class and is not used as a generic brightness control.",
+      "Roughness contains calibrated macro and micro variation without uniform procedural noise.",
+      "Normal intensity remains physically plausible and cannot replace silhouette detail.",
+      "Glass has modeled thickness, correct normals, bounded refraction, dirt breakup, and cockpit-readable transmission.",
+      "Weathering follows airflow, maintenance access, exhaust, oil, foot, hand, salt, and rain exposure.",
+      "Repeated rivets and fasteners use trim, decal, or normal workflows unless silhouette or animation requires geometry.",
+      "No baked scene lighting, view-dependent highlight, or destructive color grading is stored in base color."
+    ]
+  },
+  "crew_and_rig_contract": {
+    "required_skeletal_assets": ["Pilot", "RearGunner_FirstPersonArms", "RearGunner_ThirdPerson"],
+    "maximum_bones_per_asset": 128,
+    "maximum_influences_per_vertex": 8,
+    "required_pose_tests": [
+      "Pilot seated hands-on-controls",
+      "Rear gunner neutral seated",
+      "Rear gunner rifle hip aim",
+      "Rear gunner rifle ADS",
+      "Rear gunner rifle recoil and reload",
+      "Rear gunner Igla shoulder, launch, and stow",
+      "Rear canopy closed-to-open sweep"
+    ],
+    "required_quality_checks": [
+      "Anatomical limb proportions",
+      "Individual finger and thumb silhouette at first-person distance",
+      "No block arms or glove mitts",
+      "No elbow, wrist, shoulder, thigh, harness, canopy, or cockpit penetration",
+      "Stable wrist and finger deformation through aim and recoil",
+      "Third-person and first-person hand placement agree at shared weapon sockets"
+    ]
+  },
+  "pivot_socket_and_axis_contract": {
+    "required_pivots": [
+      "PIVOT_Propeller",
+      "PIVOT_RearCanopy",
+      "PIVOT_Aileron_L",
+      "PIVOT_Aileron_R",
+      "PIVOT_Elevator",
+      "PIVOT_Rudder",
+      "PIVOT_Flap_L",
+      "PIVOT_Flap_R",
+      "PIVOT_MainGear_L",
+      "PIVOT_MainGear_R",
+      "PIVOT_NoseGear"
+    ],
+    "required_sockets": [
+      "SOCKET_RearGunnerEye",
+      "SOCKET_RifleGrip_R",
+      "SOCKET_RifleSupport_L",
+      "SOCKET_RifleMuzzle",
+      "SOCKET_RifleSightAxis",
+      "SOCKET_IglaGrip_R",
+      "SOCKET_IglaSupport_L",
+      "SOCKET_IglaLaunch",
+      "SOCKET_IglaBackblast",
+      "SOCKET_PropAxis",
+      "SOCKET_PilotHead",
+      "SOCKET_PilotTorso"
+    ],
+    "axis_rules": [
+      "Rifle projectile origin and direction use SOCKET_RifleMuzzle and SOCKET_RifleSightAxis.",
+      "Igla missile exits SOCKET_IglaLaunch along the documented forward axis; backblast extends from SOCKET_IglaBackblast in the opposite direction.",
+      "Propeller rotation is constant mission-speed presentation around PIVOT_Propeller without alternating slowdown or reverse aliasing.",
+      "Rear canopy motion uses PIVOT_RearCanopy and the documented travel path without changing aircraft origin or scale."
+    ]
+  },
+  "collision_and_safety_contract": {
+    "complex_as_simple_allowed": false,
+    "cosmetic_microdetail_collision_allowed": false,
+    "maximum_simple_collision_primitives": 40,
+    "maximum_physics_bodies": 24,
+    "collision_groups": [
+      {
+        "id": "AirframeFlightAndGround",
+        "maximum_primitives": 12,
+        "role": "aircraft obstacle and ground-contact envelope"
+      },
+      {
+        "id": "WingTailControl",
+        "maximum_primitives": 8,
+        "role": "broad wing, tail, and control-surface envelope"
+      },
+      {
+        "id": "LandingGearWheel",
+        "maximum_primitives": 10,
+        "role": "gear, tire, and ground-contact bodies"
+      },
+      {
+        "id": "CanopyInteraction",
+        "maximum_primitives": 4,
+        "role": "opening canopy interaction and obstruction checks"
+      },
+      {
+        "id": "GameplaySafetyVolumes",
+        "maximum_primitives": 6,
+        "role": "camera, pilot no-fire, cockpit blocker, rifle sweep, Igla launch, and backblast"
+      }
+    ],
+    "required_volumes": {
+      "CameraClearance": {
+        "center_m": [-0.9, -0.64, 1.08],
+        "half_extents_m": [0.24, 0.24, 0.22]
+      },
+      "PilotSafety": {
+        "center_m": [0.62, 0.0, 1.06],
+        "half_extents_m": [0.72, 0.55, 0.62]
+      },
+      "RifleMuzzleClearance": {
+        "center_m": [0.38, -0.64, 1.02],
+        "half_extents_m": [1.45, 0.23, 0.23]
+      },
+      "IglaBackblastClearance": {
+        "center_m": [-1.25, -0.42, 1.24],
+        "half_extents_m": [0.72, 0.34, 0.34]
+      }
+    },
+    "trace_rules": [
+      "Pilot and forward cockpit blockers prevent weapon traces through the pilot.",
+      "Cosmetic canopy glass may not become the sole pilot-safety blocker.",
+      "Weapon traces ignore cosmetic rivets, labels, controls, harnesses, and microdetail.",
+      "Propeller motion-disc geometry has no gameplay collision.",
+      "Canopy, crew, rifle, and Igla swept-volume tests must pass through required animations."
+    ]
+  },
+  "performance_budget_contract": {
+    "target_profile": {
+      "platform": "Windows desktop target hardware to be fixed in the R4 Unreal gate",
+      "resolution": "2560x1440",
+      "frame_rate_target_fps": 60,
+      "frame_budget_ms": 16.67,
+      "quality_preset": "High",
+      "measurement_scene": "Isolated Yak plus representative Mission 1 coast, combat VFX disabled for art-cost capture and enabled for combined soak"
+    },
+    "content_budgets": {
+      "maximum_runtime_render_components": 40,
+      "maximum_visible_triangles_rear_gunner_view": 500000,
+      "maximum_visible_triangles_exterior_15m": 350000,
+      "maximum_visible_triangles_exterior_50m": 160000,
+      "maximum_visible_triangles_exterior_150m": 60000,
+      "maximum_yak_draw_calls_rear_gunner_view": 85,
+      "maximum_yak_draw_calls_exterior": 70,
+      "maximum_unique_material_instances": 24,
+      "maximum_resident_texture_memory_mib": 256,
+      "maximum_skeletal_assets_visible": 3,
+      "maximum_bones_per_skeletal_asset": 128,
+      "maximum_simple_collision_primitives": 40,
+      "maximum_physics_bodies": 24
+    },
+    "runtime_delta_budgets_ms": {
+      "game_thread": 1.0,
+      "render_thread": 1.5,
+      "gpu": 2.0
+    },
+    "lod_requirements": [
+      "At least four reviewed render LOD states or an explicitly accepted equivalent for non-skeletal aircraft groups.",
+      "No visible silhouette pop at governed screen-size transitions.",
+      "Cockpit, first-person arms, and held weapon remain highest fidelity only when visible from the rear-gunner camera.",
+      "Distant aircraft removes cockpit microdetail, crew fingers, labels, fastener geometry, and transparent-layer cost before silhouette loss.",
+      "Propeller uses governed stopped/static-blade, fast-motion-disc, and distance states without frame-rate-dependent speed modulation."
+    ],
+    "failure_rules": [
+      "No budget may be waived because the game will be downloadable rather than streamed.",
+      "Median and worst one-percent frame time, not average FPS alone, must pass.",
+      "ADS plus firing, canopy open, rifle impact, Igla launch, and drone-destruction soak must not introduce multi-second stalls.",
+      "Shader compilation, asset warm-up, and first-use hitch evidence must be recorded separately from steady-state frame time.",
+      "Any budget exception requires a new versioned contract, measured justification, and explicit approval."
+    ]
+  },
+  "planned_r4_namespace": {
+    "blender_directory": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4",
+    "blend": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/BLD_M01_YAK_FINAL_ART_R4_MASTER.blend",
+    "export": "Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/bld_m01_yak_final_art_r4.glb",
+    "manifest": "Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_MANIFEST.json",
+    "comparison_directory": "Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4",
+    "unreal_quarantine_destination": "/Game/Skyguard/Quarantine/M01/YakFinalArtR4",
+    "paths_must_be_absent_while_contract_status_is_not_started": true
+  },
+  "r4_completion_gate": {
+    "required_future_evidence": [
+      "All ten asset slices completed in order with immutable receipts.",
+      "Dimensioned reference and silhouette approval.",
+      "Per-donor human accept-rebuild-reject decisions.",
+      "Complete Blender source, export, texture, bake, and edit-chain hashes.",
+      "All thirteen governed acceptance-camera renders with manual review.",
+      "Fresh Unreal quarantine import and persistence audit.",
+      "Scale, material, socket, pivot, collision, ADS, pilot-safety, canopy, propeller, crew, rifle, and Igla functional evidence.",
+      "LOD, draw-call, triangle, texture-memory, CPU, render-thread, GPU, hitch, and packaged-soak evidence.",
+      "Explicit visual, gameplay, technical-art, and performance reviewer approvals.",
+      "Separate explicit authorization before runtime replacement."
+    ],
+    "automatic_promotion": false,
+    "offline_contract_pass_is_completion": false,
+    "offline_contract_pass_is_aaa_acceptance": false,
+    "offline_contract_pass_is_runtime_acceptance": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-performance-rubric.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008",
+  "target": "2560x1440 D3D12 SM6 Epic no VSync",
+  "warmup": {
+    "minimum_seconds": 30,
+    "stable_shader_ready_polls": 2,
+    "shader_and_asset_queues_must_be_empty": true,
+    "captures_during_warmup": 0
+  },
+  "measured_interval": {
+    "minimum_seconds": 30,
+    "minimum_tick_samples": 900,
+    "mean_frame_time_ms_max": 16.7,
+    "p95_frame_time_ms_max": 22.2,
+    "p99_frame_time_ms_max": 33.3,
+    "maximum_single_hitch_ms": 50.0,
+    "frames_over_50_ms": 0,
+    "mean_gpu_time_ms_max": 14.0,
+    "p95_gpu_time_ms_max": 20.0,
+    "texture_pool_over_budget_frames": 0,
+    "shader_compiles_during_measured_interval": 0,
+    "maximum_peak_working_set_mib": 12288,
+    "maximum_peak_gpu_memory_mib": 10240,
+    "critical_log_hits": 0
+  },
+  "stability": {
+    "unreal_exit_code": 0,
+    "timed_out": false,
+    "crash_count": 0,
+    "ensure_count": 0,
+    "fatal_count": 0,
+    "device_removed_count": 0,
+    "postflight_heavy_process_count": 0
+  },
+  "policy": {
+    "absolute_budgets_are_required": true,
+    "relative_improvement_does_not_override_absolute_failure": true,
+    "missing_metric_is_failure": true,
+    "performance_pass_does_not_imply_visual_pass": true
+  }
+}
+

@@ -1,0 +1,60 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "units": "metres_in_blender__cm_validation_in_unreal",
+  "assets": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "pivot": "SOCKET_Rail_Origin",
+      "sockets": [
+        "SOCKET_Rail_Origin"
+      ],
+      "collision": "UCX profile prism",
+      "deform": "none"
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "pivot": "weapon root",
+      "sockets": [
+        "SOCKET_Rifle_ADSFront_PROVISIONAL",
+        "SOCKET_Rifle_ADSRear_PROVISIONAL",
+        "SOCKET_Rifle_MuzzleAxis_PROVISIONAL",
+        "SOCKET_Rifle_SupportHand_PROVISIONAL",
+        "SOCKET_Rifle_TriggerHand_PROVISIONAL"
+      ],
+      "ads_rule": "rear/front/eye one axis; no UI reticle",
+      "collision": "visual/gameplay/cockpit-safety separated",
+      "deform": "none on weapon"
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "pivot": "centerline",
+      "sockets": [
+        "SOCKET_IglaMissile_ForwardOrigin_PROVISIONAL",
+        "SOCKET_IglaMissile_RearAxis_PROVISIONAL"
+      ],
+      "collision": "0.072 body capsule not 0.080 discs",
+      "deform": "none"
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "pivot": "wrist/forearm root",
+      "sockets": [
+        "SOCKET_Hand_GripCenter_PROVISIONAL",
+        "SOCKET_Hand_Wrist_PROVISIONAL"
+      ],
+      "rigging": "finger bones or shape keys for support/trigger; Igla gated",
+      "collision": "gameplay hand volume separate"
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "pivot": "damage-core compatible root",
+      "sockets": [
+        "SOCKET_Shahed_DamageCore_PROVISIONAL",
+        "SOCKET_Shahed_WingL_PROVISIONAL",
+        "SOCKET_Shahed_WingR_PROVISIONAL"
+      ],
+      "collision": "planform + wing slabs",
+      "deform": "destruction later"
+    }
+  },
+  "unreal_rules": {
+    "import_authorized_now": false,
+    "retain_PROVISIONAL_naming": true,
+    "no_overwrite_runtime": true
+  }
+}

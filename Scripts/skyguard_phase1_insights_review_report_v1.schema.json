@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.phase1.insights-review.v1",
+  "title": "Skyguard Phase 1 headless Unreal Insights review report",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at_utc",
+    "attempt_id",
+    "terminal_state",
+    "headless_export_gate",
+    "p1_4_disposition",
+    "bindings",
+    "execution",
+    "exports",
+    "domains",
+    "p1_4_blockers",
+    "required_interactive_action",
+    "required_recapture_action",
+    "limitations"
+  ],
+  "properties": {
+    "schema": {"const": "skyguard.phase1.insights-review.v1"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "attempt_id": {"type": "string", "pattern": "^attempt_[0-9]{8}T[0-9]{9}Z$"},
+    "terminal_state": {"enum": ["EXECUTION_COMPLETE", "EXECUTION_FAILED"]},
+    "headless_export_gate": {"enum": ["PASS", "FAIL"]},
+    "p1_4_disposition": {"const": "INSUFFICIENT_EVIDENCE"},
+    "bindings": {"type": "array", "minItems": 6},
+    "execution": {"type": "object"},
+    "exports": {"type": "object"},
+    "domains": {
+      "type": "object",
+      "required": ["loading_streaming", "shader_pso", "niagara", "memory_vram"]
+    },
+    "p1_4_blockers": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+    "required_interactive_action": {"type": "string", "minLength": 1},
+    "required_recapture_action": {"type": "string", "minLength": 1},
+    "limitations": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+  }
+}

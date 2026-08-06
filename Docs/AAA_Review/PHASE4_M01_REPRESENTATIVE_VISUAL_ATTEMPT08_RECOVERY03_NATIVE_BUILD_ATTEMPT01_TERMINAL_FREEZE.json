@@ -1,0 +1,33 @@
+{
+  "schema": "skyguard.recovery03.native-build-attempt01-terminal-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-03",
+  "created_utc": "2026-08-03T01:20:17.2725744Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The single authorized native build failed before compilation because generated action paths exceeded Windows' 260-character limit. AutomationTool and UnrealBuildTool reported exit code 6, while the supervisor process object exposed a null exit code. No plugin binary was produced and Unreal execution remains unauthorized.",
+  "attempt_namespace": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD/build_attempt_01",
+  "attempt_namespace_reuse_forbidden": true,
+  "automatic_retry": false,
+  "launch_count": 1,
+  "unreal_editor_launched": false,
+  "plugin_binary_present": false,
+  "unreal_execution_authorized": false,
+  "frozen_files": [
+    {"file": "Scripts/build_skyguard_recovery03_plugin_once.ps1", "bytes": 5518, "sha256": "544938f2812910e3757bc453b3c2d45d507395704b45d0a33ddc923742a149dd"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD/build_attempt_01/build_manifest.json", "bytes": 13125, "sha256": "a1d3264d55ae2076b9394d8a61ea26e4976d4703a28d02c97a46a2fd3bc2f120"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD/build_attempt_01/process_tree_samples.jsonl", "bytes": 12943, "sha256": "3f63879b22423b3e1e0218cbe0309454aa2bc5d4fdddee4810e44a8171014d8d"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD/build_attempt_01/logs/build.stdout.log", "bytes": 6864, "sha256": "3149f2b59e068ef1ee986825390115a88a994d62bbe06f5ee81708cc11959700"},
+    {"file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD/build_attempt_01/logs/build.stderr.log", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_ATTEMPT01_TERMINAL_EVIDENCE.json", "bytes": 2969, "sha256": "e06de00a2602b03bdfcf11b59d77d74c33d6bd3e9faebe248bc69e0fd301703c"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_ATTEMPT01_READINESS.json", "bytes": 1343, "sha256": "b27f8322315b33e5294457ccbde3306d36be20ffa56af9492e76f74fc9a79707"}
+  ],
+  "next_executable_gate": {
+    "type": "offline native-build recovery design and one-shot build",
+    "requirements": [
+      "New immutable namespace; never reuse build_attempt_01.",
+      "Short package output root verified to keep all generated paths below 260 characters.",
+      "Correct numeric exit-code capture without relying on the failed cmd.exe wrapper pattern.",
+      "No UnrealEditor launch.",
+      "No automatic retry."
+    ]
+  }
+}

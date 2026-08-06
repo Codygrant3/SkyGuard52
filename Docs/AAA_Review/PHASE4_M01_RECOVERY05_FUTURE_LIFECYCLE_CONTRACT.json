@@ -1,0 +1,44 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-future-lifecycle-contract.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "ordered_future_gates": [
+    "bounded Mission 1 environment source correction and project build",
+    "Recovery05 plugin native build",
+    "offline Recovery05 runtime binding and launcher freeze",
+    "single explicitly authorized Recovery05 Unreal proof"
+  ],
+  "startup_milestones": [
+    "module DLL loaded",
+    "StartupModule executed",
+    "authorization accepted",
+    "runtime namespace created",
+    "deferred ticker installed",
+    "first lifecycle heartbeat emitted"
+  ],
+  "dll_load_alone_is_success": false,
+  "single_heavy_process": true,
+  "single_launch": true,
+  "automatic_retry": false,
+  "failed_namespace_reuse": false,
+  "future_package_root": "D:/SG52R03B06",
+  "future_plugin": "SkyguardRecovery03NativeRecovery05",
+  "disabled_plugins": [
+    "SkyguardRecovery03NativeRecovery01",
+    "SkyguardRecovery03NativeRecovery04",
+    "TcpMessaging",
+    "UdpMessaging"
+  ],
+  "preserved_proof_requirements": {
+    "stable_shader_ready_polls": 2,
+    "warmup_seconds": 30,
+    "measurement_seconds": 30,
+    "minimum_frame_samples": 900,
+    "capture_count": 8,
+    "capture_width": 2560,
+    "capture_height": 1440,
+    "material_restoration_required": true,
+    "terminal_receipt_required": true,
+    "world_save_forbidden": true
+  },
+  "unreal_execution_authorized_by_this_contract": false
+}

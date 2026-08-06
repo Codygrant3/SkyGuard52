@@ -1,0 +1,48 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-source-recovery01-validation-recovery01-contract.v1",
+  "gate": "P4-M01-R05-ENV-SOURCE-R01-VALIDATION-R01",
+  "scope": "Offline validation of the already-correct Mission 1 environment source and its preserved candidate evidence.",
+  "permitted_actions": [
+    "Verify frozen hashes and byte counts.",
+    "Compare current source with preserved candidate using SHA-256, byte count, and System.Collections.StructuralComparisons.StructuralEqualityComparer.",
+    "Prove the base-to-current change is exactly one authorized mobility line.",
+    "Create fresh validation receipts, inventory, diff, readiness, terminal evidence, and freeze artifacts."
+  ],
+  "prohibited_actions": [
+    "Modify the Mission 1 environment source.",
+    "Reuse or alter a failed namespace.",
+    "Invoke SequenceEqual on PowerShell byte arrays.",
+    "Launch Unreal, Blender, ShaderCompileWorker, AutomationTool, UnrealBuildTool, a compiler, a linker, capture, integration, or packaging.",
+    "Authorize or execute the native build during this gate.",
+    "Retry automatically."
+  ],
+  "source": {
+    "file": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+    "bytes": 15032,
+    "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+  },
+  "candidate": {
+    "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/candidate/SkyguardMission01EnvironmentDirector.corrected.cpp",
+    "bytes": 15032,
+    "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+  },
+  "base": {
+    "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01/recovery_attempt_01/inputs/immutable_lf_source.cpp",
+    "bytes": 14984,
+    "sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980"
+  },
+  "authorized_diff": {
+    "added_line": "\tRoot->SetMobility(EComponentMobility::Static);",
+    "added_line_count": 1,
+    "removed_line_count": 0,
+    "other_changed_line_count": 0,
+    "must_follow": "\tRoot = CreateDefaultSubobject<USceneComponent>(TEXT(\"Mission01EnvironmentRoot\"));",
+    "must_precede": "\tSetRootComponent(Root);"
+  },
+  "fresh_attempt_namespace": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01/validation_attempt_01",
+  "success_classification": "PASSED_READY_FOR_EXPLICIT_M01_ENVIRONMENT_NATIVE_BUILD_AUTHORIZATION",
+  "failure_classification": "FAILED_WITH_EVIDENCE",
+  "automatic_retry": false,
+  "source_mutation_authorized": false,
+  "native_build_authorized": false
+}

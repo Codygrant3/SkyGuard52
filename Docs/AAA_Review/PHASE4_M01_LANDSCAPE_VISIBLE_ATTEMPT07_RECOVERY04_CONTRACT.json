@@ -1,0 +1,202 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery04.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-04",
+  "status": "OFFLINE_IMPLEMENTED_PENDING_EXPLICIT_SINGLE_AUDIT_AUTHORIZATION",
+  "scope": "Audit-only recovery of immutable Recovery03 evidence. Reuse component_id_C05.png without recapture. Match the governed material's linear palette directly to exported RGB8, then require exactly 16 nonblack component colors, one connected region per ID, uniform areas, correct 8-by-2 spatial ordering, paired-row alignment, exact immutable evidence hashes, and agreement with the coverage footprint. Unreal, native build, authoring, recapture, full capture, profiling, and promotion are forbidden.",
+  "diagnosis": {
+    "recovery03_gate": "FAIL",
+    "sole_failed_check": "all_16_component_ids_visible",
+    "old_analyzer_matching_id_count": 0,
+    "cause": "The old analyzer applied sRGB8-to-linear decoding before comparison. The governed SCS_FinalColorLDR PNG instead contains the unlit material's linear channel values directly quantized to RGB8.",
+    "observed_unique_colors": 17,
+    "observed_background": [0, 0, 0],
+    "observed_component_color_count": 16,
+    "observed_component_area_range_pixels": [4487, 4541],
+    "observed_nonblack_pixels": 72022,
+    "coverage_c05_white_pixels": 72022,
+    "recapture_needed": false
+  },
+  "immutable_recovery03": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_03",
+    "terminal_state_required": "FAILED",
+    "unreal_stage_exit_code_required": 0,
+    "unreal_stage_timed_out_required": false,
+    "receipt_gate_required": "FAIL",
+    "sole_failed_receipt_check_required": "all_16_component_ids_visible",
+    "build_stage_invoked_required": false,
+    "author_stage_invoked_required": false,
+    "full_capture_invoked_required": false,
+    "profile_invoked_required": false,
+    "promotion_allowed_required": false,
+    "files": {
+      "component_id_c05": {
+        "file": "captures/component_id_C05.png",
+        "bytes": 7610,
+        "sha256": "d339f669db5987fc5629cb6560a5cffa89767af35d68f4739d2d728cdbc8d39c"
+      },
+      "coverage_c04": {
+        "file": "captures/coverage_C04.png",
+        "bytes": 6677,
+        "sha256": "b815baa01d7e257935062441fd64f6be5b08910e33cc5a2a93374b7e2cc36815"
+      },
+      "coverage_c05": {
+        "file": "captures/coverage_C05.png",
+        "bytes": 7087,
+        "sha256": "d39d59d026e0d997995919266cd62f8b1bdcd880bb02bcd394de82f277e0c32f"
+      },
+      "engine_log": {
+        "file": "logs/recovery03_deferred_tiny_live_proof_d3d12_sm6.engine.log",
+        "bytes": 273327,
+        "sha256": "ef763cae75012c6809eccff326fb4e35ca905b6a9396a7d7a5ba550df5df31bb"
+      },
+      "stderr_log": {
+        "file": "logs/recovery03_deferred_tiny_live_proof_d3d12_sm6.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout_log": {
+        "file": "logs/recovery03_deferred_tiny_live_proof_d3d12_sm6.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "run_manifest": {
+        "file": "run_manifest.json",
+        "bytes": 5630,
+        "sha256": "84f5a22a81e010994c695e63f4a24e9e9631b3fd250921158b2880c02bff161f"
+      },
+      "tiny_proof_receipt": {
+        "file": "tiny_proof_receipt.json",
+        "bytes": 16560,
+        "sha256": "d9fc61ae63001a136ca972a5420bee82d62b366eb1e08a0ed5c6873d8cbdbc2e"
+      }
+    },
+    "total_file_count": 8,
+    "total_bytes": 316891,
+    "mutation_allowed": false,
+    "overwrite_allowed": false,
+    "recapture_allowed": false
+  },
+  "recovery03_proof_facts_required": {
+    "three_phases": [
+      "coverage",
+      "component_id",
+      "governed_restore"
+    ],
+    "stable_ready_polls_per_phase": 2,
+    "landscape_component_count": 16,
+    "generated_material_instance_count": 16,
+    "material_resource_count": 16,
+    "compilation_finished_resource_count": 16,
+    "valid_shader_map_resource_count": 16,
+    "asset_compilation_queue_empty": true,
+    "shader_compilation_queue_empty": true,
+    "deferred_tick_wait_used": true,
+    "same_stack_compilation_finish_called": false,
+    "coverage_c05_white_fraction": 0.3125954861111111,
+    "coverage_c04_white_fraction": 0.6270529513888888,
+    "locked_production_packages_unchanged": true,
+    "recovery01_evidence_unchanged": true
+  },
+  "offline_palette_audit": {
+    "component_capture_file": "captures/component_id_C05.png",
+    "dimensions": [640, 360],
+    "expected_unique_rgb8_color_count": 17,
+    "expected_black_background": [0, 0, 0],
+    "expected_component_id_count": 16,
+    "palette_formula": {
+      "component_id": "x_index + 8 * y_index",
+      "x_index_range": [0, 7],
+      "y_index_range": [0, 1],
+      "linear_red": "(x_index + 1) / 9",
+      "linear_green": "(y_index + 1) / 3",
+      "linear_blue": "0.25 + 0.75 * frac(component_id * 0.61803398875)",
+      "rgb8_quantization": "floor(clamp(linear,0,1) * 255 + 0.5)",
+      "srgb_decode_before_matching": false,
+      "exact_rgb8_match_required": true
+    },
+    "minimum_pixels_per_id": 4000,
+    "maximum_pixels_per_id": 5000,
+    "maximum_area_ratio": 1.02,
+    "four_connected_regions_per_id": 1,
+    "minimum_bbox_width": 67,
+    "maximum_bbox_width": 68,
+    "minimum_bbox_height": 67,
+    "maximum_bbox_height": 67,
+    "minimum_centroid_spacing": 66.0,
+    "maximum_centroid_spacing": 68.0,
+    "maximum_paired_x_centroid_delta": 0.5,
+    "horizontal_id_order": "IDs increase from image right to left within each row",
+    "vertical_id_order": "IDs 8-15 form the upper row paired above IDs 0-7",
+    "expected_nonblack_pixel_count": 72022,
+    "nonblack_pixels_must_equal_coverage_c05_white_pixels": true,
+    "coverage_c05_minimum_fraction": 0.05,
+    "coverage_c04_minimum_fraction": 0.01
+  },
+  "locked_production_packages": {
+    "baseline_map": {
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "candidate_map": {
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap",
+      "sha256": "3403a518e6c24ded6285f03f136f9009f6387d697432b48b82942fa6b2c551fc"
+    },
+    "candidate_material": {
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    },
+    "attempt06_coverage_material": {
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset",
+      "sha256": "954d76f572085a7aa06e07de731d5fa4bbffe68c155c4ce19770ede0ece1afde"
+    },
+    "attempt06_component_id_material": {
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset",
+      "sha256": "4d8373e935f2accd7bbfa76ade25d272a638f8436bae6b1d433a6898a9afcefc"
+    },
+    "recovery01_coverage_material": {
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "cf62304e86a504e716ea87a569f0bee34b954e695f95d078c3c8eb70052c4d06"
+    },
+    "recovery01_component_id_material": {
+      "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v3_attempt07_recovery01.uasset",
+      "sha256": "5c2e0a22cab4b1adde943eb199f36760b0565b6c6df1f6189c19fc1a4cafaf04"
+    }
+  },
+  "offline_audit_execution": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt07/tiny_proof_01/recovery_04",
+    "receipt": "offline_audit_receipt.json",
+    "current_state": "NOT_EXECUTED",
+    "single_execution_only": true,
+    "automatic_retry_forbidden": true,
+    "network_allowed": false,
+    "unreal_launch_allowed": false,
+    "native_build_allowed": false,
+    "author_stage_allowed": false,
+    "recapture_allowed": false,
+    "full_capture_allowed": false,
+    "profile_allowed": false,
+    "promotion_allowed": false,
+    "explicit_switch_required": "-AuthorizeSingleRecovery04OfflineAudit",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\Skyguard52\\Scripts\\run_skyguard_phase4_m01_landscape_visible_attempt07_recovery04.ps1\" -AuthorizeSingleRecovery04OfflineAudit",
+    "expected_processes": ["powershell.exe", "python.exe"],
+    "expected_runtime_seconds": "1-5",
+    "next_gate_on_pass": "Stop for independent acceptance. No full capture, profiling, or promotion."
+  },
+  "implementation_files": {
+    "offline_auditor": {
+      "file": "Scripts/audit_skyguard_phase4_m01_landscape_attempt07_recovery04.py",
+      "bytes": 12397,
+      "sha256": "86817c075ddae32a5701d9fa3af5a5191088fc7ebad6ae5bea713057fc268e15"
+    },
+    "offline_launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery04.ps1",
+      "bytes": 950,
+      "sha256": "6ab8d3b0f9699ac59c357ed82c98bff89aa2bfddc193b4232bb4cdeb307bba55"
+    },
+    "stdlib_png_decoder": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+      "bytes": 41451,
+      "sha256": "d0d515781c173939b9d564ecda5146266e9c969a91ec1465a0aabf3794d946cb"
+    }
+  }
+}

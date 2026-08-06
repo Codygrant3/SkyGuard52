@@ -1,0 +1,371 @@
+{
+  "schema": "skyguard52.aaa.authoritative-artifact-index.gate0.v1",
+  "generated_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "engine": "Unreal Engine 5.8",
+  "dcc": "Blender",
+  "retired_project_excluded": "Three.js web build",
+  "classification": "PASSED",
+  "classification_meaning": "The production-control index is established. This does not accept current art, Mission 1, the campaign, or a release candidate.",
+  "evidence_classes": {
+    "ACCEPTED_ENGINEERING_BASELINE": "Immutable evidence that an earlier engineering gate passed; it is not current production acceptance.",
+    "PASSED_CURRENT_GATE": "Current bounded gate passed and is authorized as an input to its dependent gate.",
+    "FAILED_WITH_EVIDENCE": "Terminal failed attempt preserved unchanged; no retry or namespace reuse is authorized.",
+    "AWAITING_NEXT_EXPLICIT_GATE": "Work is ready or blocked at a gate that requires new explicit authorization or a prerequisite.",
+    "UNVERIFIED": "Output exists but has not passed the required acceptance protocol.",
+    "MISSING": "Required production or release evidence does not exist."
+  },
+  "current_project_snapshot": {
+    "uproject": {
+      "path": "D:\\Skyguard52\\Skyguard52.uproject",
+      "bytes": 1542,
+      "sha256": "99461a1a562ede732da52c84f05002dcc88f772cd30fdccd45ff46d6836f3b60"
+    },
+    "source_file_count": 153,
+    "content_file_count": 1817,
+    "content_extensions": {
+      ".uasset": 1417,
+      ".png": 147,
+      ".glb": 64,
+      ".jpg": 64,
+      ".umap": 40,
+      ".obj": 31,
+      ".webp": 25,
+      ".blend": 19,
+      ".blend1": 4
+    },
+    "enabled_plugins": [
+      "ModelingToolsEditorMode",
+      "GameplayStateTree",
+      "Fab",
+      "Bridge",
+      "PythonScriptPlugin",
+      "Niagara",
+      "NiagaraFluids",
+      "GeometryScripting",
+      "SunPosition",
+      "HDRIBackdrop",
+      "MovieRenderPipeline",
+      "PCG",
+      "ChaosVehiclesPlugin"
+    ],
+    "disabled_plugins": [
+      "Water",
+      "WaterAdvanced",
+      "Landmass",
+      "Volumetrics"
+    ],
+    "plugin_state_note": "The disabled state is the current verified project configuration and supersedes earlier assumptions that these plugins were enabled."
+  },
+  "accepted_engineering_baseline": [
+    {
+      "id": "PHASE8_GATE_REPORT",
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\gate_report.json",
+      "bytes": 36825,
+      "sha256": "b74ae7a13a6543199272deac520703cda6d80137a8cb80606d4b5a59236be6e6",
+      "status": "ACCEPTED_ENGINEERING_BASELINE",
+      "scope": "Development and Shipping packages, exact ten-map cook, ten fixed-route 300-second soaks, Shipping startup, input/save/settings round trip, PSO presence, and no new crash receipts."
+    },
+    {
+      "id": "PHASE8_RUN_MANIFEST",
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\run_manifest.json",
+      "bytes": 145636,
+      "sha256": "1aa4529bb3ca9736643d9c040074649fc5a5173af87fd077240a5e351011afd7",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "PHASE8_SHIPPING_STARTUP",
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\artifacts\\shipping_startup_smoke_receipt.json",
+      "bytes": 197,
+      "sha256": "dc7054cf93aa1833e64b5d6822b8ce21bbebcf0735f2920c15b2223bbfd8f519",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "PHASE8_RUNTIME_INPUT_SAVE_SETTINGS",
+      "path": "D:\\Skyguard52\\Saved\\Releases\\Phase8\\attempt_20260802T092516016Z\\artifacts\\runtime_validation_20260802T094223789Z\\runtime_validation_receipt.json",
+      "bytes": 11721,
+      "sha256": "41d1cce18cae9ff5d33c94f2eba2dcaa1eee12778daadbd364786e6943b2279d",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "PHASE8_PROXY_PERFORMANCE_BASELINE",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE8_SOAK_PERFORMANCE_BASELINE_20260802T092516016Z.json",
+      "bytes": 19077,
+      "sha256": "f4d501b5097d85aa437d687dfb7df30d0fc5bfb19ca72cb4944d28bb797463bd",
+      "status": "ACCEPTED_ENGINEERING_BASELINE",
+      "scope": "Old proxy/fixed-route baseline only. It does not establish current final-content, input-driven combat, destruction, streaming, or release-candidate performance."
+    }
+  ],
+  "current_native_project_authorities": [
+    {
+      "id": "CURRENT_EDITOR_DLL",
+      "path": "D:\\Skyguard52\\Binaries\\Win64\\UnrealEditor-Skyguard52.dll",
+      "bytes": 2891264,
+      "sha256": "5776561194ddec0fc23c476a41a467aef5d72dcb883b1105deed6ab72daf336f",
+      "status": "ACCEPTED_ENGINEERING_BASELINE",
+      "note": "This binary predates the uncompiled Mission 1 environment mobility correction."
+    },
+    {
+      "id": "CURRENT_EDITOR_PDB",
+      "path": "D:\\Skyguard52\\Binaries\\Win64\\UnrealEditor-Skyguard52.pdb",
+      "bytes": 98291712,
+      "sha256": "5bd4a7e82d72f71cf7634ea2c09d1126856bcc50675317bb45d8737028ae4cc4",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "CURRENT_EDITOR_MODULE_RECEIPT",
+      "path": "D:\\Skyguard52\\Binaries\\Win64\\UnrealEditor.modules",
+      "bytes": 98,
+      "sha256": "17821e7c0f6aba09788fc98dd80299e0b4de98cbb09cc2e8c8f9b0e17146bfeb",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "GAME_TARGET",
+      "path": "D:\\Skyguard52\\Source\\Skyguard52.Target.cs",
+      "bytes": 346,
+      "sha256": "f7a96095d9c7681c33ad259d4f5d6e9b2e593600d4fd2e0c09fe02bcf4358584",
+      "status": "UNVERIFIED_FOR_CURRENT_CANDIDATE"
+    },
+    {
+      "id": "EDITOR_TARGET",
+      "path": "D:\\Skyguard52\\Source\\Skyguard52Editor.Target.cs",
+      "bytes": 489,
+      "sha256": "83468f9644058f4431f2ffc3fe7e011dbe8a01ce93f9f35fc4f098363fd1e78d",
+      "status": "UNVERIFIED_FOR_CURRENT_CANDIDATE"
+    }
+  ],
+  "current_mission_maps": [
+    {
+      "mission": "M01",
+      "name": "Coastal Intercept",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Lvl_M01_CoastalIntercept_Playable_v1.umap",
+      "bytes": 70545,
+      "sha256": "9d2ca2e50b446f488926bdd8a29eca9fe33d62ec25656fc77ca55997f5a08afa",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M02",
+      "name": "Harbor Shield",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M02_HarborShield_Playable_v1.umap",
+      "bytes": 105727,
+      "sha256": "f07a223890007175d879e75ba8164ed5fac6c7c54bcd660d340b425bbb4f4bbc",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M03",
+      "name": "Convoy Escort",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M03_ConvoyEscort_Playable_v1.umap",
+      "bytes": 113276,
+      "sha256": "31f781e576f0a4e65147f78a9430c8eac51a61014eb4aaa12d70927cef164059",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M04",
+      "name": "Night Blackout",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M04_NightBlackout_Playable_v1.umap",
+      "bytes": 125587,
+      "sha256": "083070291176c0af197e8b45628e7b60fa1ebdd1892045cf0252d8a316a0858d",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M05",
+      "name": "Storm Front",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M05_StormFront_Playable_v1.umap",
+      "bytes": 87006,
+      "sha256": "c8ab1601b53958e0ee684fce7526a1f40c5896064c0406e54471b89789dbf017",
+      "phase8_status": "PROXY_ASSEMBLY_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M06",
+      "name": "Airfield Defense",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M06_AirfieldDefense_Playable_v1.umap",
+      "bytes": 96580,
+      "sha256": "e8302c723ec556e382d3022907eb2bb6643168be91288f717626e97a15daa81f",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M07",
+      "name": "Search and Intercept",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M07_SearchIntercept_Playable_v1.umap",
+      "bytes": 110350,
+      "sha256": "9ac9938455d94a99243ccc60ad73eb5044a0872a42963b5959249fda3d1b553d",
+      "phase8_status": "PROXY_ASSEMBLY_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M08",
+      "name": "Rescue Cover",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M08_RescueCover_Playable_v1.umap",
+      "bytes": 104027,
+      "sha256": "26e7a3a8c6857fcd5a023971e80578e4bdafa0e3afbee02fead7a230f3473736",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M09",
+      "name": "Saturation Attack",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M09_SaturationAttack_Playable_v1.umap",
+      "bytes": 122148,
+      "sha256": "6f037ee4530e2af97ed07f2a8e76ffb917025e632ca1025318405f5a295d8eb4",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    },
+    {
+      "mission": "M10",
+      "name": "Evacuation Finale",
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Maps\\Campaign_v1\\Lvl_M10_EvacuationFinale_Playable_v1.umap",
+      "bytes": 116782,
+      "sha256": "b859a3dd1b44d5113b64e603aa3f11d51861f6c789befab0c8d0fada723f9669",
+      "phase8_status": "PLAYABLE_INTEGRATION_CANDIDATE",
+      "production_status": "UNVERIFIED"
+    }
+  ],
+  "current_passed_gate": [
+    {
+      "id": "M01_ENVIRONMENT_SOURCE",
+      "path": "D:\\Skyguard52\\Source\\Skyguard52\\SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15032,
+      "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44",
+      "status": "PASSED_CURRENT_GATE",
+      "scope": "Offline source validation only; native compilation is not yet authorized or proven."
+    },
+    {
+      "id": "M01_ENVIRONMENT_SOURCE_VALIDATION_FREEZE",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_FREEZE.json",
+      "bytes": 10044,
+      "sha256": "0bd0bfee24e28d7cfd8a4f086209ed97cab7d4ffc40b09913e85d9c031b6293a",
+      "status": "PASSED_CURRENT_GATE",
+      "classification": "PASSED_READY_FOR_EXPLICIT_M01_ENVIRONMENT_NATIVE_BUILD_AUTHORIZATION"
+    },
+    {
+      "id": "M01_ENVIRONMENT_SOURCE_VALIDATION_INVENTORY",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_VALIDATION_RECOVERY01_ARTIFACT_INVENTORY.json",
+      "bytes": 8302,
+      "sha256": "2a649b222addfd43bab8d2393a25668549d6f86b744888efe7458d39cc8fd8d0",
+      "status": "PASSED_CURRENT_GATE"
+    },
+    {
+      "id": "M01_NATIVE_BUILD_ONE_SHOT_PROMPT",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+      "bytes": 9239,
+      "sha256": "11d508230d9d0014260ce966c2974612318b187b352bc6cd7e279512f6d2bd05",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE"
+    }
+  ],
+  "terminal_failures_and_blocked_lanes": [
+    {
+      "id": "M01_SOURCE_VALIDATION_TOOLING_FAILURE",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 7005,
+      "sha256": "c2a3125da2b7d894b76d5c29e397c9cd86b7cdf2e7271f60abc63f6599cc0fff",
+      "status": "FAILED_WITH_EVIDENCE",
+      "note": "Superseded only by the separate accepted validation-recovery gate; the failed namespace remains immutable."
+    },
+    {
+      "id": "YAK52_R5_VISUAL_REVIEW",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_RECOVERY01_VISUAL_REVIEW_2026-08-02.md",
+      "bytes": 3848,
+      "sha256": "e601b6b87c7c58475a3851da6fcf274ca016aedc90e714697da6b338afd8d557",
+      "status": "FAILED_WITH_EVIDENCE",
+      "note": "Artifact publication passed; dimension and visual acceptance failed. No Unreal production import is authorized."
+    },
+    {
+      "id": "YAK52_R6_OFFLINE_DESIGN",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_SLICE01_FREEZE.json",
+      "bytes": 4179,
+      "sha256": "ad2dc00511c70057ba54248b72a2760f07fbf86f94cac1bbf7b1f0708e5052c8",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "note": "AWAITING_REFERENCE_INPUT; not authorized for Blender production."
+    },
+    {
+      "id": "M01_HERO_TOPOLOGY_RECOVERY12_VISUAL_REVIEW",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_VISUAL_REVIEW.md",
+      "bytes": 2256,
+      "sha256": "4d78d11e6faa039236af238d298c1b250b8cf02f9bdaf836d319819049965567",
+      "status": "FAILED_WITH_EVIDENCE",
+      "note": "Clipping, overexposure, disconnected proxy geometry, and failed hero-art inspection."
+    },
+    {
+      "id": "RECOVERY04_UNREAL_VISUAL_PROOF",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY04_BINDING01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 4933,
+      "sha256": "483e1c2489ded78db7763a12c8b85836c2151940fe7c82eff6ac102d196c4258",
+      "status": "FAILED_WITH_EVIDENCE",
+      "note": "Single Unreal launch timed out; no governed runtime namespace, heartbeat, captures, restoration proof, or visual review."
+    },
+    {
+      "id": "RECOVERY05_OFFLINE_PLUGIN_DESIGN",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_OFFLINE_DESIGN_FREEZE.json",
+      "bytes": 6462,
+      "sha256": "9184f81c4bfb1ac8397add8f84807839a2612e4f990292f66c04d912fae3285e",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "note": "Unique plugin/module and messaging-isolation design passed offline. Recovery05 source exists but remains unbuilt."
+    },
+    {
+      "id": "CURRENT_INPUT_COMBAT_PERFORMANCE",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\INPUT_COMBAT_PERFORMANCE_GATE_LATEST.json",
+      "bytes": 11500,
+      "sha256": "5edef372bbf84877f6e93c30ea42e304134ee1bc9e07e4991f2488d0ee5f5c1a",
+      "status": "AWAITING_NEXT_EXPLICIT_GATE",
+      "classification": "VALIDATED_CONTRACT_BLOCKED_PREREQUISITE",
+      "note": "Three packaged 1080p input-driven combat captures and a 20-minute combat soak remain missing."
+    }
+  ],
+  "governance_authorities": [
+    {
+      "id": "PRIOR_PHASE1_8_AUDIT",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_UPDATE_RECOVERY12_R5_2026-08-02.md",
+      "bytes": 4726,
+      "sha256": "414df1720c26b0fec378585b3af16ec6e23baff871e6072d9bb680e21b7f2c43",
+      "status": "ACCEPTED_ENGINEERING_BASELINE"
+    },
+    {
+      "id": "CURRENT_GATE1_AUDIT_ADDENDUM",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_RECOVERY05_ENVIRONMENT_SOURCE_VALIDATION_RECOVERY01_2026-08-04.md",
+      "bytes": 2977,
+      "sha256": "c48b23e8402310e8d044da5a4fadc74b79a570b56b066e32334a15a8690a600c",
+      "status": "PASSED_CURRENT_GATE"
+    },
+    {
+      "id": "CURRENT_GATE1_M01_MATRIX_ADDENDUM",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_RECOVERY05_ENVIRONMENT_SOURCE_VALIDATION_RECOVERY01_2026-08-04.md",
+      "bytes": 2223,
+      "sha256": "beb1fc64d15eaec94f6dc1298dd134dc16473f1ecfc828f99684917772a4a0fc",
+      "status": "PASSED_CURRENT_GATE"
+    },
+    {
+      "id": "M01_DETAILED_PROVENANCE_LEDGER",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\M01_TEXTURE_MATERIAL_PROVENANCE_LEDGER.json",
+      "bytes": 130284,
+      "sha256": "29a23435ad2b7ea8231d3832cb33dd8cadb6e0bba64f05af21680f3f43183da3",
+      "status": "ACCEPTED_ENGINEERING_BASELINE_WITH_BACKLOG"
+    },
+    {
+      "id": "M01_REPRESENTATIVE_VISUAL_PERFORMANCE_RUBRIC",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json",
+      "bytes": 1332,
+      "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644",
+      "status": "ACCEPTED_CONTRACT"
+    }
+  ],
+  "missing_release_evidence": [
+    "Accepted current Mission 1 representative visual proof",
+    "Accepted Yak-52 R6 production asset and Unreal import",
+    "Accepted pilot, rear gunner, rifle, Igla, drone, boss, damage, destruction, and close-view art",
+    "Accepted Mission 1 mapped vertical slice",
+    "Fresh current Development package",
+    "Fresh current Shipping package",
+    "Input-driven combat performance evidence",
+    "Twenty-minute combat soak",
+    "All ten missions with production art and distinct-route acceptance",
+    "Current complete campaign provenance and license receipts",
+    "Clean-machine installation, launch, progression, and uninstall evidence",
+    "Final release regression and signed release-candidate manifest"
+  ]
+}

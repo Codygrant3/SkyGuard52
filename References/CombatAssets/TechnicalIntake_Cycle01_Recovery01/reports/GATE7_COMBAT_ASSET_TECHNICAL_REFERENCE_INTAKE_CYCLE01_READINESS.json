@@ -1,0 +1,55 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "classification": "BLOCKED_AWAITING_REFERENCE_INPUT",
+  "heavy_processes_launched": 0,
+  "blender_launched": false,
+  "unreal_launched": false,
+  "asset_families": [
+    {
+      "asset": "9K38 missile",
+      "status": "READY_FOR_DIMENSIONED_BLOCKOUT_ONLY"
+    },
+    {
+      "asset": "Igla launcher/gripstock/sight/battery",
+      "status": "BLOCKED_VARIANT_AND_CLOSEUP_DIMENSIONS"
+    },
+    {
+      "asset": "rifle",
+      "status": "BLOCKED_EXACT_WEAPON_IDENTITY"
+    },
+    {
+      "asset": "MIL-STD-1913 rail details",
+      "status": "READY_IF_SELECTED_RIFLE_USES_THIS_STANDARD"
+    },
+    {
+      "asset": "rear-gunner hands and forearms",
+      "status": "READY_FOR_ANTHROPOMETRIC_BLOCKOUT_ONLY"
+    },
+    {
+      "asset": "gloves/sleeves/helmet/headset/harness",
+      "status": "BLOCKED_EQUIPMENT_IDENTITY"
+    },
+    {
+      "asset": "Shahed-136 exterior",
+      "status": "READY_FOR_REFERENCE_BLOCKOUT_ONLY"
+    },
+    {
+      "asset": "Shahed MD550/servo/connector internals",
+      "status": "READY_FOR_VISUAL_DETAIL_ONLY_NOT_DIMENSIONED"
+    },
+    {
+      "asset": "ammunition/magazines/casings",
+      "status": "BLOCKED_BY_RIFLE_IDENTITY"
+    },
+    {
+      "asset": "Yak-52 cockpit/propeller",
+      "status": "INHERITS_CYCLE04_PARTIAL_AUTHORITY"
+    },
+    {
+      "asset": "heavy drones and bosses",
+      "status": "BLOCKED_SEPARATE_FICTIONAL_DESIGN_AUTHORITY"
+    }
+  ],
+  "next_gate": "Footage-frame extraction and exact identity selection for rifle and Igla variant, plus crew-equipment reference board.",
+  "blender_execution_authorized": false
+}

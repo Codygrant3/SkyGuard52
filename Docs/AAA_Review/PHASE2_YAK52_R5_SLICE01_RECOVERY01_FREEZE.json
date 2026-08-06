@@ -1,0 +1,34 @@
+{
+  "schema": "skyguard.phase2.yak52-r5-slice01-recovery01-freeze.v1",
+  "status": "HASH_FROZEN_AUTHORIZED_FOR_ONE_BLENDER_ATTEMPT",
+  "functional_change": "CROSS_TO_PLAIN_AXES_ONLY",
+  "files": [
+    {"path":"D:\\Skyguard52\\Scripts\\blender_phase2_yak52_r5_slice01_recovery01.py","bytes":2828,"sha256":"b67b294d1dc8d18deba51d3ac0859e04f4211d67f691601cc38c9ebbc8f1dc9c"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_RECOVERY01_CONTRACT.json","bytes":4017,"sha256":"9126a68b892635bdf628f7e73ac7bb636a946dc7fa14870f08a436e0a2e41f82"},
+    {"path":"D:\\Skyguard52\\Scripts\\tests\\test_phase2_yak52_r5_slice01_recovery01.py","bytes":2837,"sha256":"b2846e819c8d81b57a2ca4bc682b8b807cd3b5070ec35b947065707e61db9c96"},
+    {"path":"D:\\Skyguard52\\Scripts\\blender_phase2_yak52_r5_slice01.py","bytes":11087,"sha256":"446b4e8d71457b2f9bac3798c22b82fec212e89161ec30c7d2d800683fdfa1f2"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R5_SLICE01_CAMERAS.json","bytes":2478,"sha256":"bdbb49d656601f5108604216a3eeabe3cf8578d0c69e0381ee3e863d03f6830c"},
+    {"path":"D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_FinalArt_R4\\Slice01_Recovery05\\BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY05_MASTER.blend","bytes":123942,"sha256":"a7694e012e1dbdef06c432919f2a93d62ec3845c888506fe7019ef81aeb2f30e"},
+    {"path":"D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R5_SLICE01_RECOVERY01_SOURCE_INVENTORY.json","bytes":2728,"sha256":"c932438d4e9e6c162cae28112cf4170d009750962a82f9e2e469a1d0d7ed9735"},
+    {"path":"C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-04e14908-5ac0-4988-9eec-9d32e74a2ee0.png","bytes":2959485,"sha256":"390162ac3d3c73c0567bcf822de2363908b27de9ea79b7796c6bcca143c41f5d"},
+    {"path":"C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-47bf0604-6525-4282-9149-45cffde4f397.png","bytes":2261240,"sha256":"ab80a7d0c7327f4b27c22df7d0c9fb881aeef836b0f7a2a98fb51a201a8b46fd"},
+    {"path":"C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-84f46082-7b3b-4a5c-b86b-9cb4c43d8a56.png","bytes":590521,"sha256":"717a6724360032e296b5a91ca1928aa4d67148a9187cc86fca046a88afbb908c"},
+    {"path":"C:\\Users\\chris\\AppData\\Local\\Temp\\codex-clipboard-1c5365d0-9eff-481d-81ad-4b1edc038620.png","bytes":988847,"sha256":"23a63dfff5cad7b052321fdf341d845d777b55bae913b6f116f6af9541ddb366"}
+  ],
+  "offline_gates": {
+    "python_compile": "PASS",
+    "focused_tests": "PASS_5_OF_5",
+    "contract_json_and_hashes": "PASS",
+    "source_inventory": "PASS",
+    "output_namespace_absent": true,
+    "attempt_namespace_absent": true,
+    "heavy_processes_absent": true
+  },
+  "execution_policy": {
+    "authorized_attempts": 1,
+    "automatic_retry": false,
+    "one_heavy_process": true,
+    "unreal_forbidden": true,
+    "new_namespace_required": true
+  }
+}

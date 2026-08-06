@@ -1,0 +1,147 @@
+{
+  "schema": "skyguard.m01.fab-public-catalog-research.v1",
+  "observed_at": "2026-08-02",
+  "status": "CATALOG_METADATA_ONLY_NOT_ACQUIRED",
+  "policy": {
+    "purchase_performed": false,
+    "download_performed": false,
+    "import_performed": false,
+    "license_tier_selected": false,
+    "catalog_metadata_is_acquisition_evidence": false,
+    "catalog_metadata_is_runtime_promotion_evidence": false
+  },
+  "assets": [
+    {
+      "slot": "CITY_KIT",
+      "product_name": "Soviet Panels - Communist Eastern European Buildings Kit",
+      "product_id": "e0fb40c4-05a7-4e49-9fd6-a10bbcca0ef8",
+      "source_url": "https://www.fab.com/listings/e0fb40c4-05a7-4e49-9fd6-a10bbcca0ef8",
+      "seller": "PolyGo Studios",
+      "catalog": {
+        "included_formats": [
+          "Unreal Engine",
+          "Unity",
+          "Blender"
+        ],
+        "unreal_engine_versions": [
+          "5.0",
+          "5.1",
+          "5.2",
+          "5.3",
+          "5.4",
+          "5.5",
+          "5.6",
+          "5.7",
+          "5.8"
+        ],
+        "distribution_method": "Asset package",
+        "windows_listed_as_target_platform": true,
+        "license_terms_link_label": "Standard License",
+        "displayed_price_range_usd_before_tax": {
+          "minimum": 89.99,
+          "maximum": 349.99
+        },
+        "published": "2026-05-26",
+        "last_update": "2026-06-22",
+        "allows_usage_with_ai": false,
+        "generated_with_ai": false
+      },
+      "declared_content": {
+        "modular_architecture": true,
+        "walls_balconies_roofs_windows_doors_facades": true,
+        "props_vehicles_foliage_roads_urban_decoration": true,
+        "multiple_facade_variations": true,
+        "buildings_include_interiors": false
+      },
+      "unproven_by_catalog": [
+        "selected license tier",
+        "purchase or entitlement",
+        "receipt",
+        "cooked Windows redistribution coverage for the selected account and tier",
+        "download and installed sizes",
+        "download package hash",
+        "installed inventory hash",
+        "Nanite configuration",
+        "LOD quality",
+        "collision quality",
+        "material-instance quality",
+        "dependency closure",
+        "performance in Skyguard 52"
+      ]
+    },
+    {
+      "slot": "BEACH_COAST_KIT",
+      "product_name": "Brushify - Beach Pack",
+      "product_id": "72a92a2e-3c52-46a5-9f17-6cf1f5d35006",
+      "source_url": "https://www.fab.com/listings/72a92a2e-3c52-46a5-9f17-6cf1f5d35006",
+      "seller": "JoeGarth",
+      "catalog": {
+        "included_formats": [
+          "Unreal Engine"
+        ],
+        "unreal_engine_versions": [
+          "4.24",
+          "4.25",
+          "4.26",
+          "4.27",
+          "5.0",
+          "5.1",
+          "5.2",
+          "5.3",
+          "5.4",
+          "5.5",
+          "5.6",
+          "5.7",
+          "5.8"
+        ],
+        "distribution_method": "Asset package",
+        "windows_listed_as_target_platform": true,
+        "license_terms_link_label": "Standard License",
+        "displayed_price_range_usd_before_tax": {
+          "minimum": 49.99,
+          "maximum": 799.99
+        },
+        "published": "2022-06-13",
+        "last_update": "2026-07-15",
+        "rating": 4.3,
+        "rating_count": 16,
+        "allows_usage_with_ai": false,
+        "generated_with_ai": false
+      },
+      "declared_content": {
+        "uhd_8k_drone_scan_variations": 4,
+        "beach_rock_variations": 5,
+        "shingle_rock_variations": 2,
+        "driftwood_variations": 3,
+        "procedural_spawners": true,
+        "maximum_texture_resolution": "8192x8192",
+        "vertex_count_range": {
+          "minimum": 1000,
+          "maximum": 80000
+        },
+        "mesh_lod_count": 5,
+        "requires_dx12": true,
+        "requires_mesh_distance_fields": true,
+        "requires_virtual_texturing": true,
+        "third_party_plugins_shown_in_demo_included": false,
+        "public_domain_boat_scan_disclosed": true
+      },
+      "unproven_by_catalog": [
+        "selected license tier",
+        "purchase or entitlement",
+        "receipt",
+        "cooked Windows redistribution coverage for the selected account and tier",
+        "download and installed sizes",
+        "download package hash",
+        "installed inventory hash",
+        "Nanite configuration",
+        "collision quality",
+        "material-instance quality",
+        "dependency closure",
+        "compatibility of shared Brushify overwrite workflow with the existing project",
+        "performance of 8K content in Skyguard 52"
+      ]
+    }
+  ],
+  "disposition": "HOLD_FOR_MANUAL_ACCOUNT_ACQUISITION_AND_EVIDENCE"
+}

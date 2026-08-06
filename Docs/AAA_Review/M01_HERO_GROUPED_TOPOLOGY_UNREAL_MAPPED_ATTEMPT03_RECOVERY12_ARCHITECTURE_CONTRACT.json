@@ -1,0 +1,55 @@
+{
+  "schema": "skyguard.m01.grouped-topology.recovery12-architecture-contract.v1",
+  "contract_id": "P3-M01-GROUPED-TOPOLOGY-MAPPED-ATTEMPT03-RECOVERY12",
+  "scope": "Mission01 grouped-topology mapped viewport proof only",
+  "architecture": {
+    "active_capture_header": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery12Capture.h",
+    "active_capture_source": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery12Capture.cpp",
+    "type_contract": "TArrayView64<const FColor> for CompleteCurrentCapture, BuildRecord, and WritePng",
+    "array_ownership": "No owned copy is required; UE 5.8 PNGCompressImageArray accepts TArrayView64<const FColor> directly.",
+    "global_force_includes": 0,
+    "line_number_dispatch": false,
+    "name_rewrite_macros": false
+  },
+  "retirement": {
+    "quarantine_root": "Saved/Quarantine/Phase3FailedCaptureSources/Recovery12Retirement",
+    "manifest": "Saved/Quarantine/Phase3FailedCaptureSources/Recovery12Retirement/MANIFEST.json",
+    "active_runtime_references_found": 0,
+    "files_deleted": 0,
+    "historical_audit_tools_preserved": true
+  },
+  "offline_gate": {
+    "auditor": "Scripts/audit_m01_grouped_topology_recovery12_architecture.py",
+    "tests": "Scripts/tests/test_m01_grouped_topology_recovery12_architecture.py",
+    "source_inventory": "Saved/Reports/M01_GROUPED_TOPOLOGY_RECOVERY12_SOURCE_INVENTORY.json",
+    "readiness": "Saved/Reports/M01_GROUPED_TOPOLOGY_RECOVERY12_READINESS.json",
+    "failed_checks_allowed": 0
+  },
+  "compile": {
+    "supervisor": "Scripts/invoke_m01_grouped_topology_recovery12_compile.py",
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_COMPILE",
+    "authorization": "--authorize-single-recovery12-compile",
+    "maximum_attempts": 1,
+    "automatic_retry": false,
+    "target": "Skyguard52Editor",
+    "platform": "Win64",
+    "configuration": "Development"
+  },
+  "visual_proof": {
+    "supervisor": "Scripts/invoke_m01_grouped_topology_recovery12_visual_proof.py",
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY12_VISUAL",
+    "authorization": "--authorize-single-recovery12-visual-proof",
+    "requires_compile_pass": true,
+    "maximum_attempts": 1,
+    "automatic_retry": false,
+    "required_pilot_captures": 3,
+    "required_full_views": 9,
+    "required_width": 2048,
+    "required_height": 2048
+  },
+  "failure_policy": {
+    "compile_failure": "Freeze terminal evidence; do not retry or create Recovery13.",
+    "visual_failure": "Freeze terminal evidence; do not retry or create Recovery13.",
+    "promotion_allowed": false
+  }
+}

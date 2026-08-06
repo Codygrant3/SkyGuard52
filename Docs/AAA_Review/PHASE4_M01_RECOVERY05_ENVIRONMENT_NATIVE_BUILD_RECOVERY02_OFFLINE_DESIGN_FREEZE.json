@@ -1,0 +1,94 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-native-build-recovery02-offline-design-freeze.v1",
+  "created_local_date": "2026-08-04",
+  "classification": "PASSED_READY_FOR_EXPLICIT_M01_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_AUTHORIZATION",
+  "summary": "A fresh isolated native-build view is selected as the minimum non-destructive recovery. It will copy 170 exact project descriptor, Source, Config, and unique-plugin records into D:\\SG52M01R02 while excluding immutable Recovery01 and Recovery04 collision evidence. The future one-shot supervisor passed offline schema, parity, PowerShell 5.1 syntax, launch-count, namespace, and prohibition checks. No build or heavy process was launched.",
+  "prior_terminal_freeze": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 5330,
+    "sha256": "95c485434f0b6cb0fe023c23ad628a6a87c338f9019521ca1730055335479fb5"
+  },
+  "environment_source": {
+    "file": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+    "bytes": 15032,
+    "sha256": "73e736b088dd77dfaed42081bd988094d6743057175626db01a1fb9a92ceec44"
+  },
+  "frozen_files": [
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_TERMINAL_RECONCILIATION.json",
+      "bytes": 1679,
+      "sha256": "e726813da72eb5c0efd57f7c9ad153d0954ccc23ec3faa6f94ef4a2add4e0d6e"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_UBT_PLUGIN_DISCOVERY_AUTHORITY.json",
+      "bytes": 1827,
+      "sha256": "5fade80fec971f0d3cbf2fc1449bd20cf301a9bda4c95a8bf3f90d3c5624e4e4"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_PLUGIN_COLLISION_INVENTORY.json",
+      "bytes": 1996,
+      "sha256": "4cc3ad687114a91bfe82664b3c0e97eb6c39e8609508ef7af7d1057410b8c1a8"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_OPTIONS_MATRIX.json",
+      "bytes": 2018,
+      "sha256": "cbec1ff452c27fc7c6a5f5ab539c7d7a0ca824d9c3afff78816482faccf576d1"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_SELECTED_ARCHITECTURE.json",
+      "bytes": 2498,
+      "sha256": "f9984d4f97e5f5d564169a37f4f236a74630b629c9e061b3232bff041041dc7c"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_NAMESPACE_CONTRACT.json",
+      "bytes": 1150,
+      "sha256": "10ffb11d4f2b23e4a2baaf61de41508f35761957feee20243e535a95cc961849"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_SOURCE_PARITY_CONTRACT.json",
+      "bytes": 54738,
+      "sha256": "d241f6ecae392d96d18955edb8610fbdfb80518c1f7d85fbbd43084a6b37c1df"
+    },
+    {
+      "file": "Scripts/build_phase4_m01_recovery05_environment_native_build_recovery02_once.ps1",
+      "bytes": 16132,
+      "sha256": "5d42533af89f4223a60531168da446a471a9a26fce50961df4721ef8bc2465dd"
+    },
+    {
+      "file": "Scripts/verify_phase4_m01_recovery05_environment_native_build_recovery02_offline.py",
+      "bytes": 5985,
+      "sha256": "9f5fd080f9304d552154c6b72f001a906d755b79075374a52a0b5493f302e7d9"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_OFFLINE_VALIDATION.json",
+      "bytes": 1327,
+      "sha256": "6a76bf1321712e58855b8b8139eb071c86decfbb563e6eb87abff6c17cb0a898"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_READINESS.json",
+      "bytes": 1197,
+      "sha256": "e852735ebfeb0e195fc8df4d95d9c290ff0141f18edaca2c492d8ea9c8c8585a"
+    },
+    {
+      "file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02_SINGLE_BUILD.md",
+      "bytes": 5515,
+      "sha256": "e58bb49c8b07fb5f8c063e0553a5440e4d0d1d9b518357e56e0209a497e53111"
+    }
+  ],
+  "selected_architecture": "fresh_isolated_native_build_view",
+  "future_view_root": "D:\\SG52M01R02",
+  "future_attempt_namespace": "D:\\Skyguard52\\Saved\\BuildAttempts\\PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_RECOVERY02\\build_attempt_01",
+  "parity_record_count": 170,
+  "future_namespaces_absent": true,
+  "source_mutated": false,
+  "plugins_mutated": false,
+  "project_descriptor_mutated": false,
+  "accepted_binaries_mutated": false,
+  "build_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "external_models_invoked": false,
+  "automatic_retry": false,
+  "future_build_authorized": false,
+  "later_runtime_prerequisite": "CONTROLLED_ACTIVE_PLUGIN_ROOT_MIGRATION_BEFORE_RUNTIME_BINDING"
+}

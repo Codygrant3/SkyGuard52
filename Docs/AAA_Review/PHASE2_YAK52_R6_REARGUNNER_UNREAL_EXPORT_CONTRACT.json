@@ -1,0 +1,21 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-reargunner-unreal-export-contract.v1",
+  "generated_at_utc": "2026-08-05T23:32:35.636909+00:00",
+  "status": "DESIGNED_NOT_AUTHORIZED",
+  "units": "centimetres_in_unreal_metres_in_blender",
+  "axes": {
+    "blender_forward": "+X",
+    "blender_right": "+Y",
+    "blender_up": "+Z"
+  },
+  "requirements": [
+    "applied scale 1,1,1",
+    "stable pivots and preserved governed names",
+    "explicit armature and socket mapping",
+    "material slots and texture references inventoried",
+    "triangulation deterministic at export",
+    "collision and gameplay datums exported separately",
+    "no Unreal import before visual and Opus 5 acceptance"
+  ],
+  "nanite_policy": "Do not use Nanite for deforming first-person hands/arms; evaluate rigid weapon/canopy parts separately."
+}

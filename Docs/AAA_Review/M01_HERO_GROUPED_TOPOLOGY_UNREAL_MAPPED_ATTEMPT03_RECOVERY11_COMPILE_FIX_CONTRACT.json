@@ -1,0 +1,62 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery11-compile-fix-contract.v1",
+  "lane": "Phase3",
+  "namespace": "M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11",
+  "purpose": "Resolve only the two remaining UE 5.8 TArrayView64<const FColor> to const TArray<FColor>& call-site mismatches without editing frozen Recovery09 or Recovery10 sources.",
+  "prior_terminal_attempts": [
+    {
+      "namespace": "Recovery09",
+      "attempt": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T201313690617Z_4c658611",
+      "receipt_sha256": "48276b440483619b327ef99de02621dcec5ee94341af16c96149272dadcfb59d",
+      "rerun_forbidden": true
+    },
+    {
+      "namespace": "Recovery10",
+      "attempt": "Saved/BuildAttempts/FullModuleCompileActivation/attempt_20260802T202118949942Z_3a40f42b",
+      "receipt_sha256": "282542a18970aa74f556901983fd84a134d047aa26b3045b23236c093abaf3a0",
+      "rerun_forbidden": true
+    }
+  ],
+  "frozen_inputs": {
+    "recovery09_header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.h",
+      "sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0"
+    },
+    "recovery09_source": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.cpp",
+      "sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08"
+    },
+    "recovery10_bridge": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery10CompileFix.h",
+      "sha256": "04964485f02f77515e186890f349464aa48dbbbb5f2b93137de9ccd7a5c6a047"
+    }
+  },
+  "correction": {
+    "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery11CompileFix.h",
+    "owned_copy_helper": "SkyguardRecovery11::OwnColors",
+    "target_build_record_line": 699,
+    "target_write_png_line": 728,
+    "all_other_inventoried_BuildRecord_and_WritePng_sites": "explicit pass-through",
+    "unexpected_line_behavior": "compile failure",
+    "direct_edits_to_recovery09": 0,
+    "direct_edits_to_recovery10": 0
+  },
+  "execution": {
+    "compile_supervisor": "Scripts/invoke_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery11_compile.py",
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY11_COMPILE",
+    "authorization_switch": "--authorize-single-recovery11-compile",
+    "maximum_attempts": 1,
+    "automatic_retry_forbidden": true,
+    "unreal_editor_launch_forbidden_during_compile": true,
+    "one_heavy_process_at_a_time": true
+  },
+  "acceptance": {
+    "offline_audit_required": true,
+    "offline_tests_required": true,
+    "source_inventory_must_remain_unchanged_during_compile": true,
+    "compiled_module_required": true,
+    "compile_exit_code": 0,
+    "if_compile_fails": "freeze terminal evidence and stop Phase3 lane; do not create Recovery12",
+    "if_compile_passes": "bind activation evidence, then authorize one Recovery11 mapped visual proof"
+  }
+}

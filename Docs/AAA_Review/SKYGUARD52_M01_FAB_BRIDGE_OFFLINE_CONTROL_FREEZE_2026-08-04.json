@@ -1,0 +1,121 @@
+{
+  "schema": "skyguard52.m01.fab-bridge-offline-control-freeze.v1",
+  "generated_at_utc": "2026-08-04T23:03:04.8205476Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED_OFFLINE_CONTROLS_ESTABLISHED_AWAITING_MANUAL_ACQUISITION_EVIDENCE",
+  "parent_freezes": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_AAA_GATE0_CONTROL_PACKAGE_FREEZE_2026-08-04.json",
+      "bytes": 7895,
+      "sha256": "e7dc82f7fc1b7644cdf49488156bdcccce8f4e654132d7d24a7a106fbc11d0a0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_OFFLINE_READINESS_ADDENDUM_FREEZE_2026-08-04.json",
+      "bytes": 5545,
+      "sha256": "52df6c7d4d95cf647325840ecff6ebaa53cd0d269511aa0785e22ecbc591ef49"
+    }
+  ],
+  "inventory": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_M01_FAB_BRIDGE_OFFLINE_CONTROL_INVENTORY_2026-08-04.json",
+    "bytes": 5383,
+    "sha256": "5d0a298ccd663f627e54d3fc8ad46f934e77e13bc6fcadd8d01d9531b4aa148c"
+  },
+  "frozen_outputs": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_THIRD_PARTY_FINAL_USE_RECEIPT_TEMPLATE.json",
+      "bytes": 1343,
+      "sha256": "f097df25faf1ac72f6c5af1c48174f58b04ec75c0f5cab14cb0ea6c814878bcc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_THIRD_PARTY_FINAL_USE_RECEIPT_SCHEMA.json",
+      "bytes": 11391,
+      "sha256": "dadcfc3aaf3810876a3352788cac264e3a642b3e5674b131db15050845ccf436"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_THIRD_PARTY_FINAL_USE_RECEIPT_RUNBOOK.md",
+      "bytes": 2825,
+      "sha256": "433049cff1f91774110bcda6914fb21cd905e979f4859f96bb99b87236d0a590"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\verify_m01_third_party_final_use_receipt.py",
+      "bytes": 17911,
+      "sha256": "2f4cff6a74b566808ce21cfecb978966a6af93830580fccbb7fd2ae2e729cde8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\test_m01_third_party_final_use_receipt.py",
+      "bytes": 7647,
+      "sha256": "3c6658aa635c58d1fb5d82b7a5a7a6ffc5b2a4ddf94ede2db2f62e3c5994ca51"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_M01_FAB_BRIDGE_PROVENANCE_RECONCILIATION_2026-08-04.json",
+      "bytes": 4916,
+      "sha256": "36723a7b38b312de6ce8e5adafb6b2941b61670d536fc56387175d96d0f20ff8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\SKYGUARD52_M01_FAB_BRIDGE_PROVENANCE_RECONCILIATION_2026-08-04.md",
+      "bytes": 2325,
+      "sha256": "71a6c59f207327d383dfd89bb8602d9a6a7e6275d5861ca298e7d60ea57b0ae7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\SKYGUARD52_M01_THIRD_PARTY_FINAL_USE_CONTRACT_VALIDATION_2026-08-04.json",
+      "bytes": 2080,
+      "sha256": "73b8571c1e33506fccc7a9f5dcaf7ec7362a24b0c6a3a3ca9a896da0fcc99faf"
+    }
+  ],
+  "evidence_result": {
+    "fab_plugin_enabled": true,
+    "bridge_plugin_enabled": true,
+    "governed_quarantine_root_exists": false,
+    "catalog_nominations": 2,
+    "governed_acquisitions": 0,
+    "governed_imports": 0,
+    "governed_runtime_promotions": 0,
+    "project_uassets_scanned": 1417,
+    "exact_known_third_party_marker_matches": 0,
+    "existing_intake_gate_status": "FAIL_CLOSED",
+    "existing_intake_issue_count": 50,
+    "existing_intake_tests_passed": 13,
+    "final_use_template_gate_status": "FAIL_CLOSED",
+    "final_use_template_issue_count": 15,
+    "final_use_contract_tests_passed": 9,
+    "schema_and_template_valid": true
+  },
+  "permission_state": {
+    "purchase_authorized": false,
+    "download_authorized": false,
+    "quarantine_import_authorized": false,
+    "runtime_promotion_authorized": false,
+    "unreal_authorized_by_this_freeze": false,
+    "blender_authorized_by_this_freeze": false,
+    "native_build_authorized_by_this_freeze": false
+  },
+  "execution_receipt": {
+    "purchase_performed": false,
+    "download_performed": false,
+    "import_performed": false,
+    "runtime_promotion_performed": false,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "native_build_launched": false,
+    "compiler_launched": false,
+    "heavy_process_count": 0,
+    "automatic_retry_count": 0,
+    "prior_frozen_artifacts_modified": false
+  },
+  "remaining_gates": [
+    "Manual account acquisition and immutable license/receipt capture for at most one city kit and one beach/coast kit.",
+    "Quarantine intake verification.",
+    "Technical evaluation.",
+    "Separate one-shot quarantine import authorization.",
+    "Direct visual and performance acceptance.",
+    "Candidate-specific final-use receipt.",
+    "Separate runtime promotion and release audit."
+  ],
+  "next_executable_heavy_gate": {
+    "gate": "Gate 2 — Mission 1 native project build",
+    "prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_NATIVE_BUILD_VALIDATION_RECOVERY01.md",
+    "classification": "AWAITING_EXPLICIT_ONE_SHOT_AUTHORIZATION",
+    "executed": false
+  },
+  "terminal_statement": "This freeze establishes offline provenance controls only. It does not acquire, import, accept, promote, build, launch, package, or release any third-party asset."
+}

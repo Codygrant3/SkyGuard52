@@ -1,0 +1,34 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "reference_frames": [
+    {
+      "path": "frames_full/frame_0000_0000.000s.png",
+      "use": "support-hand and glove silhouette"
+    },
+    {
+      "path": "frames_full/frame_0450_0015.000s.png",
+      "use": "black glove, tan handguard and olive/gray sleeve relationship"
+    },
+    {
+      "path": "frames_full/frame_0510_0017.000s.png",
+      "use": "glove contact and cockpit proximity"
+    },
+    {
+      "path": "frames_full/frame_0675_0022.500s.png",
+      "use": "two-hand pose and sleeve volume in low light"
+    }
+  ],
+  "accepted_visual_language": [
+    "black articulated gloves",
+    "muted olive/gray sleeve",
+    "functional webbing",
+    "matte low-glare surfaces"
+  ],
+  "blocked_identities": [
+    "glove manufacturer/model",
+    "rear helmet or hood",
+    "rear headset",
+    "harness model and buckle"
+  ],
+  "classification": "READY_FOR_BLOCKOUT_ONLY"
+}

@@ -1,0 +1,110 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_TECHNICAL_REFERENCE_INTAKE_CYCLE01",
+  "created_at_utc": "2026-08-05T23:59:46.193460+00:00",
+  "scope": "visual-modeling reference only; excludes operation, employment, assembly, and firing guidance",
+  "sources": [
+    {
+      "file": "igla_9k38_cia_public_reference.pdf",
+      "publisher": "U.S. Central Intelligence Agency Reading Room",
+      "authority": "government-hosted secondary technical compilation",
+      "use": "corroboration only"
+    },
+    {
+      "files": [
+        "odin_igla_9k38_a.jpg",
+        "odin_igla_sa18_a.jpg",
+        "odin_igla_sa18_b.jpg"
+      ],
+      "publisher": "U.S. Army ODIN",
+      "record_id": "63268c8c6d72b2859ae5f820503019c8",
+      "authority": "official public equipment record",
+      "use": "global missile dimensions and visual comparison; variant contamination flagged"
+    },
+    {
+      "file": "colt_mle_smart_sheet_2026.pdf",
+      "publisher": "Colt's Manufacturing Company",
+      "authority": "manufacturer",
+      "use": "M4A1 candidate dimensions; printed barrel metric conflict flagged"
+    },
+    {
+      "file": "small_arms_survey_ak74_reference.pdf",
+      "publisher": "Small Arms Survey",
+      "authority": "independent technical research",
+      "use": "AK-74 comparison candidate only"
+    },
+    {
+      "file": "mil_std_1913_accessory_rail.pdf",
+      "publisher": "U.S. Department of Defense standard (public mirror)",
+      "authority": "official standard content on secondary host",
+      "use": "rail profile and recoil-groove geometry"
+    },
+    {
+      "file": "nasa_human_integration_design_handbook_rev1.pdf",
+      "publisher": "NASA",
+      "authority": "official government handbook",
+      "use": "human hand, forearm, seated-eye, and limb envelopes"
+    },
+    {
+      "file": "nasa_anthropometric_source_book_v2.pdf",
+      "publisher": "NASA",
+      "authority": "official legacy anthropometric reference",
+      "use": "supporting anthropometric context"
+    },
+    {
+      "file": "estonian_defence_shahed136_handbook_2023.pdf",
+      "publisher": "Estonian Defence Forces; Ukrainian Armed Forces source material",
+      "authority": "official military handbook",
+      "use": "Shahed-136 global scale; conflict register applies"
+    },
+    {
+      "file": "un_security_council_s_2023_418.pdf",
+      "publisher": "United Nations Security Council",
+      "authority": "official international report",
+      "use": "MD550 engine, servo, connector, and internal visual references"
+    },
+    {
+      "file": "dia_shahed136_drawing_via_commons.jpg",
+      "publisher": "U.S. Defense Intelligence Agency via Wikimedia Commons",
+      "authority": "public-domain government illustration",
+      "use": "silhouette and component placement only; not dimensioned"
+    }
+  ],
+  "user_references": [
+    {
+      "path": "source_archive/user_reference_ads_iron_sights.png",
+      "bytes": 923062,
+      "sha256": "94e8bccc0866bfc5131ccfb7de78c281b117d7bfb6e94a4116c1c1d610a64d35",
+      "role": "visual composition reference only"
+    },
+    {
+      "path": "source_archive/user_reference_real_onboard_footage.mp4",
+      "bytes": 4271526,
+      "sha256": "91c9b0a1d595ab2cf5df6c9b37d4b5e76c46e32d1373e2e7d7871bcafcf62061",
+      "role": "primary scene and rifle-identification evidence"
+    }
+  ],
+  "existing_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_ART_CURRENT_STATE_AUDIT_2026-08-04.json",
+      "bytes": 9780,
+      "sha256": "a307ee2561403a1084f842abbd887c4dd43b4cae711aebb029d3f38512cd3621",
+      "role": "current runtime and art-state audit"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_COMPONENT_INVENTORY.json",
+      "bytes": 28732,
+      "sha256": "a984e74d6930261300b4753698e7998bc7798e3d04ac3e0faf65a28711cc9394",
+      "role": "current governed mesh component inventory"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_FREEZE.json",
+      "bytes": 6695,
+      "sha256": "23a65a59e687f3e8ebdce85a27a6d205bed37fc542d0d25830bc8dd640397ee0",
+      "role": "prior Yak-52 reference authority"
+    }
+  ],
+  "missing_user_sources": [
+    "The earlier temporary Igla comparison image has expired and is not present on disk.",
+    "The initial social-media screenshot has expired; the original onboard video remains available."
+  ]
+}

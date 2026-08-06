@@ -1,0 +1,181 @@
+{
+  "schema": "skyguard.phase5.metasound-topology-contract.v1",
+  "purpose": "Govern six silent-until-sourced MetaSound Source graphs. Each graph must expose the declared control interface, one null WaveAsset input and one Wave Player per authentic category, a category mixer, and connected stereo audio outputs. This contract does not authorize synthesized replacement audio or claim final behavior, mix, provenance, or audible acceptance.",
+  "asset_root": "/Game/Skyguard/Audio/Production/MetaSounds",
+  "author": "Skyguard 52 governed audio pipeline",
+  "output_format": "Stereo",
+  "truth_boundary": {
+    "authentic_source_count": 0,
+    "required_explicit_missing_source_count": 25,
+    "wave_asset_defaults_must_be_null": true,
+    "procedural_generators_allowed": false,
+    "production_bank_sound_bindings_allowed": false,
+    "production_ready_allowed": false,
+    "shipping_allowed": false,
+    "packaged_audible_acceptance_claim_allowed": false
+  },
+  "contract_hash_inputs": [
+    "Docs/AAA_Review/PHASE5_AUDIO_ROUTING_PRIMITIVE_SPECS.json",
+    "Docs/AAA_Review/PHASE5_AUDIO_RUNTIME_ROUTING_READINESS_CONTRACT.json",
+    "Docs/AAA_Review/PHASE5_AUDIO_CATEGORY_ACQUISITION_BRIEFS.json",
+    "Docs/AAA_Review/PHASE5_METASOUND_TOPOLOGY_CONTRACT.json"
+  ],
+  "metadata_tags": {
+    "contract_bundle_sha256": "SkyguardContractBundleSha256",
+    "graph_contract_sha256": "SkyguardGraphContractSha256",
+    "topology_schema": "SkyguardTopologySchema",
+    "source_state": "SkyguardAuthenticSourceState",
+    "behavior_state": "SkyguardBehaviorAcceptanceState"
+  },
+  "node_classes": {
+    "wave_player": {
+      "namespace": "UE",
+      "name": "Wave Player",
+      "variant": "Stereo",
+      "major_version": 1,
+      "wave_input": "Wave Asset",
+      "play_input": "Play",
+      "finished_output": "On Finished",
+      "left_output": "Out Left",
+      "right_output": "Out Right"
+    },
+    "mixer": {
+      "namespace": "AudioMixer",
+      "name_template": "Audio Mixer (Stereo, {category_count})",
+      "variant": "",
+      "major_version": 1,
+      "left_input_template": "In {index} L",
+      "right_input_template": "In {index} R",
+      "gain_input_template": "Gain {index}",
+      "left_output": "Out L",
+      "right_output": "Out R"
+    },
+    "finished_trigger_any": {
+      "namespace": "TriggerAny",
+      "name_template": "Trigger Any ({category_count})",
+      "variant": "",
+      "major_version": 1,
+      "input_template": "In {index}",
+      "output": "Out"
+    }
+  },
+  "type_defaults": {
+    "Trigger": null,
+    "Float": 0.0,
+    "Int32": 0,
+    "Bool": false,
+    "WaveAsset": null
+  },
+  "graphs": [
+    {
+      "name": "MS_Yak52IdentityBed",
+      "one_shot": false,
+      "controls": [
+        {"semantic_name": "NormalizedRPM", "serialized_name": "NormalizedRPM", "data_type": "Float", "default": 0.0},
+        {"semantic_name": "NormalizedLoad", "serialized_name": "NormalizedLoad", "data_type": "Float", "default": 0.0},
+        {"semantic_name": "AirspeedKph", "serialized_name": "AirspeedKph", "data_type": "Float", "default": 0.0},
+        {"semantic_name": "RearCanopyOpenFraction", "serialized_name": "RearCanopyOpenFraction", "data_type": "Float", "default": 0.0},
+        {"semantic_name": "ListenerIsRearCockpit", "serialized_name": "ListenerIsRearCockpit", "data_type": "Bool", "default": false}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "OnFinished", "data_type": "Trigger", "uses_source_interface": false}],
+      "categories": [
+        {"category": "EngineIdle", "wave_input": "Source_EngineIdle", "trigger": "On Play", "loop": true},
+        {"category": "EngineCruise", "wave_input": "Source_EngineCruise", "trigger": "On Play", "loop": true},
+        {"category": "EnginePower", "wave_input": "Source_EnginePower", "trigger": "On Play", "loop": true},
+        {"category": "Propeller", "wave_input": "Source_Propeller", "trigger": "On Play", "loop": true},
+        {"category": "OpenCockpitWind", "wave_input": "Source_OpenCockpitWind", "trigger": "On Play", "loop": true}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_AND_RPM_LOAD_CROSSFADE_NOT_ACCEPTED"
+    },
+    {
+      "name": "MS_RifleShot",
+      "one_shot": true,
+      "controls": [
+        {"semantic_name": "OnPlay", "serialized_name": "On Play", "data_type": "Trigger", "uses_source_interface": true},
+        {"semantic_name": "ShotSeed", "serialized_name": "ShotSeed", "data_type": "Int32", "default": 0},
+        {"semantic_name": "ListenerIsRearCockpit", "serialized_name": "ListenerIsRearCockpit", "data_type": "Bool", "default": false},
+        {"semantic_name": "EnvironmentTailIndex", "serialized_name": "EnvironmentTailIndex", "data_type": "Int32", "default": 0}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "On Finished", "data_type": "Trigger", "uses_source_interface": true}],
+      "categories": [
+        {"category": "RifleMuzzle", "wave_input": "Source_RifleMuzzle", "trigger": "On Play", "loop": false},
+        {"category": "RifleMechanical", "wave_input": "Source_RifleMechanical", "trigger": "On Play", "loop": false},
+        {"category": "RifleCasing", "wave_input": "Source_RifleCasing", "trigger": "On Play", "loop": false},
+        {"category": "RifleReflection", "wave_input": "Source_RifleReflection", "trigger": "On Play", "loop": false}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_VARIATION_AND_ENVIRONMENT_TAIL_NOT_ACCEPTED"
+    },
+    {
+      "name": "MS_IglaWeapon",
+      "one_shot": false,
+      "controls": [
+        {"semantic_name": "OnSearch", "serialized_name": "OnSearch", "data_type": "Trigger", "default": null},
+        {"semantic_name": "OnLock", "serialized_name": "OnLock", "data_type": "Trigger", "default": null},
+        {"semantic_name": "OnLaunch", "serialized_name": "OnLaunch", "data_type": "Trigger", "default": null},
+        {"semantic_name": "OnFlyby", "serialized_name": "OnFlyby", "data_type": "Trigger", "default": null},
+        {"semantic_name": "OnImpact", "serialized_name": "OnImpact", "data_type": "Trigger", "default": null},
+        {"semantic_name": "EventSeed", "serialized_name": "EventSeed", "data_type": "Int32", "default": 0}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "OnFinished", "data_type": "Trigger", "uses_source_interface": false}],
+      "categories": [
+        {"category": "IglaSearch", "wave_input": "Source_IglaSearch", "trigger": "OnSearch", "loop": true},
+        {"category": "IglaLock", "wave_input": "Source_IglaLock", "trigger": "OnLock", "loop": false},
+        {"category": "IglaLaunch", "wave_input": "Source_IglaLaunch", "trigger": "OnLaunch", "loop": false},
+        {"category": "IglaFlyby", "wave_input": "Source_IglaFlyby", "trigger": "OnFlyby", "loop": false},
+        {"category": "IglaImpact", "wave_input": "Source_IglaImpact", "trigger": "OnImpact", "loop": false}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_STATE_TRANSITIONS_AND_VARIATION_NOT_ACCEPTED"
+    },
+    {
+      "name": "MS_DronePropulsion",
+      "one_shot": false,
+      "controls": [
+        {"semantic_name": "OnPlay", "serialized_name": "On Play", "data_type": "Trigger", "uses_source_interface": true},
+        {"semantic_name": "HeavyClass", "serialized_name": "HeavyClass", "data_type": "Bool", "default": false},
+        {"semantic_name": "NormalizedRPM", "serialized_name": "NormalizedRPM", "data_type": "Float", "default": 0.0},
+        {"semantic_name": "RelativeSpeed", "serialized_name": "RelativeSpeed", "data_type": "Float", "default": 0.0}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "OnFinished", "data_type": "Trigger", "uses_source_interface": false}],
+      "categories": [
+        {"category": "DroneLightMotor", "wave_input": "Source_DroneLightMotor", "trigger": "On Play", "loop": true},
+        {"category": "DroneHeavyMotor", "wave_input": "Source_DroneHeavyMotor", "trigger": "On Play", "loop": true},
+        {"category": "DroneFlyby", "wave_input": "Source_DroneFlyby", "trigger": "On Play", "loop": false}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_CLASS_SELECTION_RPM_AND_DOPPLER_NOT_ACCEPTED"
+    },
+    {
+      "name": "MS_ExplosionSmall",
+      "one_shot": true,
+      "controls": [
+        {"semantic_name": "OnPlay", "serialized_name": "On Play", "data_type": "Trigger", "uses_source_interface": true},
+        {"semantic_name": "EventSeed", "serialized_name": "EventSeed", "data_type": "Int32", "default": 0},
+        {"semantic_name": "EnvironmentTailIndex", "serialized_name": "EnvironmentTailIndex", "data_type": "Int32", "default": 0}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "On Finished", "data_type": "Trigger", "uses_source_interface": true}],
+      "categories": [
+        {"category": "ExplosionSmallCrack", "wave_input": "Source_ExplosionSmallCrack", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionSmallBody", "wave_input": "Source_ExplosionSmallBody", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionSmallDebris", "wave_input": "Source_ExplosionSmallDebris", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionSmallTail", "wave_input": "Source_ExplosionSmallTail", "trigger": "On Play", "loop": false}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_VARIATION_AND_ENVIRONMENT_TAIL_NOT_ACCEPTED"
+    },
+    {
+      "name": "MS_ExplosionHeavy",
+      "one_shot": true,
+      "controls": [
+        {"semantic_name": "OnPlay", "serialized_name": "On Play", "data_type": "Trigger", "uses_source_interface": true},
+        {"semantic_name": "EventSeed", "serialized_name": "EventSeed", "data_type": "Int32", "default": 0},
+        {"semantic_name": "EnvironmentTailIndex", "serialized_name": "EnvironmentTailIndex", "data_type": "Int32", "default": 0}
+      ],
+      "outputs": [{"semantic_name": "OnFinished", "serialized_name": "On Finished", "data_type": "Trigger", "uses_source_interface": true}],
+      "categories": [
+        {"category": "ExplosionHeavyCrack", "wave_input": "Source_ExplosionHeavyCrack", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionHeavyBody", "wave_input": "Source_ExplosionHeavyBody", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionHeavyDebris", "wave_input": "Source_ExplosionHeavyDebris", "trigger": "On Play", "loop": false},
+        {"category": "ExplosionHeavyTail", "wave_input": "Source_ExplosionHeavyTail", "trigger": "On Play", "loop": false}
+      ],
+      "behavior_acceptance_state": "BLOCKED_AUTHENTIC_SOURCES_VARIATION_AND_ENVIRONMENT_TAIL_NOT_ACCEPTED"
+    }
+  ]
+}

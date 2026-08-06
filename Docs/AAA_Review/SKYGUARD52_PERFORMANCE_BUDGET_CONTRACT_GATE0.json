@@ -1,0 +1,165 @@
+{
+  "schema": "skyguard52.aaa.performance-budget-contract.gate0.v1",
+  "generated_at_utc": "2026-08-04T22:22:55.0553846Z",
+  "project_root": "D:\\Skyguard52",
+  "classification": "PASSED",
+  "primary_acceptance_profile": {
+    "resolution": "2560x1440",
+    "quality": "Epic",
+    "rhi": "D3D12 SM6",
+    "vsync": false,
+    "target_fps": 60,
+    "target_hardware": "SKYGUARD52_TARGET_HARDWARE_PROFILE_GATE0.json"
+  },
+  "representative_visual_proof": {
+    "authority": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json",
+    "authority_sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644",
+    "warmup": {
+      "minimum_seconds": 30,
+      "stable_shader_ready_polls": 2,
+      "shader_and_asset_queues_empty": true,
+      "captures_during_warmup": 0
+    },
+    "measurement": {
+      "minimum_seconds": 30,
+      "minimum_samples": 900,
+      "mean_frame_time_ms_max": 16.7,
+      "p95_frame_time_ms_max": 22.2,
+      "p99_frame_time_ms_max": 33.3,
+      "maximum_single_hitch_ms": 50.0,
+      "frames_over_50_ms": 0,
+      "mean_gpu_time_ms_max": 14.0,
+      "p95_gpu_time_ms_max": 20.0,
+      "texture_pool_over_budget_frames": 0,
+      "shader_compiles_during_measurement": 0,
+      "peak_working_set_mib_max": 12288,
+      "peak_gpu_memory_mib_max": 10240,
+      "critical_log_hits": 0
+    }
+  },
+  "input_driven_combat_capture": {
+    "required_capture_count": 3,
+    "minimum_resolution": "1920x1080",
+    "required_sequences": [
+      "Rifle hip fire and impact",
+      "Right-mouse ADS held while left-click firing",
+      "Igla select, lock, launch, tracking, impact and reload",
+      "Shahed damage and breakup",
+      "Heavy drone damage and breakup",
+      "Boss weak-point and phase transition",
+      "Boss destruction",
+      "Mission success or failure transition"
+    ],
+    "budgets": {
+      "mean_frame_time_ms_max": 16.7,
+      "p95_frame_time_ms_max": 22.2,
+      "p99_frame_time_ms_max": 33.3,
+      "maximum_single_hitch_ms": 50.0,
+      "frames_over_50_ms": 0,
+      "five_second_stalls": 0,
+      "shader_compiles_during_measured_sequences": 0,
+      "asset_synchronous_loads_causing_visible_hitch": 0,
+      "audio_first_use_hitches": 0,
+      "critical_log_hits": 0
+    }
+  },
+  "streaming_and_transition": {
+    "required_sequences": [
+      "Mission briefing to gameplay",
+      "Initial rear-gunner camera possession",
+      "High-speed terrain and city traversal",
+      "Boss introduction",
+      "Mission restart",
+      "Mission completion to debrief",
+      "Debrief to mission select",
+      "Consecutive mission load"
+    ],
+    "budgets": {
+      "shader_or_asset_warmup_visible_to_player": false,
+      "maximum_gameplay_hitch_ms": 50.0,
+      "frames_over_50_ms_during_measured_gameplay": 0,
+      "texture_pool_over_budget_frames": 0,
+      "camera_coupled_world_motion": false,
+      "missing_or_fallback_material_frames": 0
+    }
+  },
+  "soak_and_stability": {
+    "per_mission_fixed_route_minimum_seconds": 300,
+    "input_driven_combat_soak_minimum_seconds": 1200,
+    "full_campaign_soak_required": true,
+    "repeated_mission_restart_count_minimum": 10,
+    "repeated_destruction_sequence_count_minimum": 30,
+    "budgets": {
+      "crash_count": 0,
+      "fatal_count": 0,
+      "ensure_count": 0,
+      "device_removed_count": 0,
+      "out_of_memory_count": 0,
+      "hitches_over_100_ms": 0,
+      "five_second_stalls": 0,
+      "unbounded_working_set_growth": false,
+      "unbounded_gpu_memory_growth": false,
+      "postflight_heavy_process_count": 0
+    }
+  },
+  "content_system_budgets": {
+    "destruction": {
+      "pool_and_prewarm_required": true,
+      "bounded_debris_required": true,
+      "asynchronous_asset_preparation_required": true,
+      "first_use_shader_and_audio_prewarm_required": true
+    },
+    "niagara": {
+      "bounded_system_and_emitter_counts_required": true,
+      "significance_and_culling_required": true,
+      "gpu_particle_budget_must_be_measured": true
+    },
+    "pcg_and_world": {
+      "runtime_generation_during_combat_requires_measured_approval": true,
+      "deterministic_seed_and_bounded_density_required": true,
+      "hlod_or_equivalent_distance_strategy_required": true
+    },
+    "textures_and_materials": {
+      "streaming_pool_over_budget_frames": 0,
+      "virtual_texture_or_streaming_strategy_required_for_large_surfaces": true,
+      "fallback_material_frames": 0
+    },
+    "audio": {
+      "critical_combat_cues_preloaded": true,
+      "voice_and_radio_streaming_must_not_hitch_gameplay": true,
+      "concurrency_and_voice_limits_required": true
+    },
+    "ai": {
+      "bounded_active_actor_and_tick_counts_required": true,
+      "distance_and_relevance_throttling_required": true,
+      "boss_phase spikes must remain inside frame budgets": true
+    }
+  },
+  "packaged_release_requirements": {
+    "development_package": true,
+    "shipping_package": true,
+    "editor_result_can_substitute": false,
+    "clean_machine_required": true,
+    "full_campaign_required": true,
+    "current_candidate_hash_inventory_required": true,
+    "numeric_exit_codes_required": true,
+    "missing_metric_is_failure": true
+  },
+  "baseline_context": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE8_SOAK_PERFORMANCE_BASELINE_20260802T092516016Z.json",
+    "sha256": "f4d501b5097d85aa437d687dfb7df30d0fc5bfb19ca72cb4944d28bb797463bd",
+    "gate": "PASS_BASELINE",
+    "worst_case_mean_frame_ms": 8.0796,
+    "worst_case_p95_frame_ms": 9.8811,
+    "worst_case_max_hitch_ms": 20.8179,
+    "hitches_over_100_ms": 0,
+    "limitation": "These numbers describe the older proxy/fixed-route baseline. They do not accept current final content or input-driven combat."
+  },
+  "policy": {
+    "absolute_budget_required": true,
+    "relative_improvement_cannot_override_failure": true,
+    "missing_metric_is_failure": true,
+    "performance_pass_does_not_imply_visual_or_gameplay_pass": true,
+    "no_claim_from_exit_code_alone": true
+  }
+}

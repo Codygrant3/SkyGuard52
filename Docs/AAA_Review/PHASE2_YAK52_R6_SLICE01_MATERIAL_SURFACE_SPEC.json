@@ -1,0 +1,42 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-material-surface.v1",
+  "status": "PRODUCTION_SPEC_READY_REFERENCE_COLOR_CALIBRATION_PENDING",
+  "texel_density_px_per_m": {
+    "exterior_primary":512,
+    "cowling_and_propeller":768,
+    "canopy_frames_and_sills":1024,
+    "cockpit_context":1024
+  },
+  "maximum_authored_resolution":4096,
+  "uv_policy": {
+    "game_uv_non_overlapping":true,
+    "intentional_mirroring_requires_manifest":true,
+    "lightmap_uv_required_for_non_nanite_static_groups":true,
+    "minimum_padding_pixels_at_4k":16
+  },
+  "required_bakes":["tangent_normal","ambient_occlusion","curvature","thickness","position","material_id"],
+  "material_families": [
+    {"id":"ExteriorPaintedAluminum","metallic_range":[0.0,0.05],"roughness_range":[0.28,0.58],"detail":["orange_peel","panel_variation","edge_wear"]},
+    {"id":"BareAndAnodizedMetal","metallic_range":[0.85,1.0],"roughness_range":[0.18,0.48],"detail":["machining","oxidation","fastener variation"]},
+    {"id":"CanopyGlass","metallic_range":[0.0,0.0],"roughness_range":[0.015,0.10],"detail":["modeled thickness","edge tint","fingerprints","salt spotting"]},
+    {"id":"RubberSeals","metallic_range":[0.0,0.0],"roughness_range":[0.55,0.88],"detail":["compression","age variation"]},
+    {"id":"EngineAndExhaust","metallic_range":[0.75,1.0],"roughness_range":[0.24,0.70],"detail":["heat tint","oil","soot"]},
+    {"id":"CockpitPaintedMetal","metallic_range":[0.0,0.08],"roughness_range":[0.38,0.72],"detail":["chips","hand wear","fasteners"]},
+    {"id":"DecalsAndPlacards","metallic_range":[0.0,0.0],"roughness_range":[0.30,0.62],"detail":["livery","stencils","maintenance labels"]},
+    {"id":"EnvironmentalWeathering","metallic_range":[0.0,0.0],"roughness_range":[0.18,0.95],"detail":["airflow grime","oil leaks","salt","rain streaks","localized wetness"]}
+  ],
+  "surface_detail_policy": {
+    "geometry":["silhouette edges","open vents","hinges","latches","large fasteners","glazing thickness"],
+    "trim_or_normal":["repeated rivets","fine seams","small flush fasteners"],
+    "decals":["stencils","placards","paint breaks","localized wear"],
+    "forbidden":["uniform procedural noise","baked lighting in base color","metalness as brightness control","oversized rivets"]
+  },
+  "material_graze_camera_must_show": [
+    "at least three material families",
+    "at least two structural seams",
+    "one fastener group",
+    "macro and micro roughness response",
+    "no clipped white highlight larger than 2% of frame"
+  ]
+}
+

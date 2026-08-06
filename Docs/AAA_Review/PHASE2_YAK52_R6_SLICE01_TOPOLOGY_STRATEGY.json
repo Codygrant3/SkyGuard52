@@ -1,0 +1,42 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-slice01-topology-strategy.v1",
+  "status": "OFFLINE_STRATEGY_COMPLETE",
+  "principles": [
+    "Sectional quad cages define fuselage, cowling, canopy and wing skins.",
+    "Subdivision is controlled by support loops and explicit creases only where the manufactured form requires them.",
+    "No visible hero surface may remain an unrefined primitive.",
+    "Separate animated or removable assemblies keep independent topology and pivots.",
+    "Boolean results must be retopologized at silhouette, shading or deformation-critical regions."
+  ],
+  "modifier_order": [
+    "Mirror when reference symmetry is valid",
+    "Surface or controlled subdivision",
+    "Boolean cutters for real openings only",
+    "Retopology or cleanup",
+    "Bevel with physically scaled width",
+    "Weighted normal only after evaluated shading proves benefit",
+    "Triangulation only in export duplicate"
+  ],
+  "topology_gates": {
+    "non_manifold_edges":0,
+    "zero_area_faces":0,
+    "unapplied_negative_scale":0,
+    "unplanned_ngons_on_subdivision_surfaces":0,
+    "maximum_pole_valence_on_highlight_path":5,
+    "minimum_bevel_segments_hero":3,
+    "normal_discontinuities_not_at_real_seam":0
+  },
+  "high_to_low_plan": {
+    "high_sources":["cowling lip and panels","radial face","prop hub/blades","canopy frames/latches","wing-root fillets"],
+    "game_meshes":["airframe exterior group","cowling group","propeller group","canopy fixed group","rear canopy movable group","cockpit context group"],
+    "cage_policy":"Per-group named cages with recorded ray distances; no global unattended bake cage.",
+    "bake_validation":"Normal gradients, skew, waviness, seams and cage misses inspected under neutral grazing light."
+  },
+  "unreal_plan": {
+    "nanite_candidates":["non-deforming airframe exterior","cowling shell","static cockpit structure"],
+    "non_nanite":["transparent canopy glass","movable rear canopy where required","propeller motion states","future skeletal crew"],
+    "lod_requirement":"At least four reviewed distance states or accepted Nanite equivalent; transparent and animated groups retain explicit LODs.",
+    "collision":"Simple UCX groups only; cosmetic microdetail has no collision."
+  }
+}
+

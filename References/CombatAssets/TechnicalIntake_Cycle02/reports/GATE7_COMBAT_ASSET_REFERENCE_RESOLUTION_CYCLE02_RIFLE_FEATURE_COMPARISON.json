@@ -1,0 +1,72 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02",
+  "narrowest_defensible_identity": "AR/M4-pattern rifle with free-float ventilated handguard; exact configuration unresolved",
+  "lane_classification": "READY_FOR_FAMILY_ACCURATE_BLOCKOUT_ONLY",
+  "normalized_classification": "READY_FOR_BLOCKOUT_ONLY",
+  "observations": [
+    {
+      "feature": "continuous top rail",
+      "footage": "clearly visible from 0.0 s and 14.5-17.0 s",
+      "M4A1_candidate": "family-compatible but frozen Colt configuration uses a two-piece quad rail",
+      "AK74_candidate": "does not match the frozen conventional AK-74 comparison"
+    },
+    {
+      "feature": "handguard",
+      "footage": "long free-float appearance with large elongated ventilation windows and rail interfaces",
+      "M4A1_candidate": "conflicts with frozen Colt M4A1 two-piece quad-rail configuration",
+      "AK74_candidate": "conflicts with frozen AK-74 handguard/gas-system silhouette"
+    },
+    {
+      "feature": "muzzle device",
+      "footage": "open-tine/pronged device visible; exact tine count and model uncertain",
+      "M4A1_candidate": "not sufficient for exact Colt M4A1 acceptance",
+      "AK74_candidate": "does not match the characteristic comparison geometry"
+    },
+    {
+      "feature": "rear sight",
+      "footage": "a rear aperture/flip-sight-like form is partially visible near 22.5 s",
+      "M4A1_candidate": "family-compatible only",
+      "AK74_candidate": "not consistent with tangent U-notch comparison"
+    },
+    {
+      "feature": "receiver and controls",
+      "footage": "obscured or out of frame",
+      "M4A1_candidate": "cannot verify",
+      "AK74_candidate": "cannot verify directly"
+    },
+    {
+      "feature": "magazine",
+      "footage": "not visible clearly enough for geometry or chambering",
+      "M4A1_candidate": "cannot verify",
+      "AK74_candidate": "cannot verify"
+    },
+    {
+      "feature": "stock",
+      "footage": "not visible",
+      "M4A1_candidate": "cannot verify",
+      "AK74_candidate": "cannot verify"
+    },
+    {
+      "feature": "finish",
+      "footage": "handguard appears tan in bright coastal segment and dark in later low-light segment; color is not identity authority",
+      "M4A1_candidate": "not determinative",
+      "AK74_candidate": "not determinative"
+    }
+  ],
+  "decision": {
+    "Colt_M4A1_exact": "REJECTED_AS_UNPROVEN_CONFIGURATION",
+    "AK74_exact": "REJECTED_BY_VISIBLE_HANDGUARD_AND_SIGHT_FAMILY",
+    "accepted_family": "AR/M4-pattern only",
+    "blocked_details": [
+      "manufacturer and model",
+      "receiver and controls",
+      "barrel length",
+      "stock",
+      "magazine and chambering",
+      "exact handguard",
+      "exact muzzle device",
+      "exact front and rear sights",
+      "markings and accessories"
+    ]
+  }
+}

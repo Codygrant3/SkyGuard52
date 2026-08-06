@@ -1,0 +1,92 @@
+{
+  "schema": "skyguard.phase4.m01-recovery04-binding01-attempt01-terminal-freeze.v1",
+  "created_utc": "2026-08-04T12:53:45.1514060Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "binding_id": "P4.6-M01-RECOVERY04-BINDING-01",
+  "summary": "The single authorized Recovery04 Unreal representative visual proof passed frozen preflight and launched once. The accepted DLL and production map loaded, but the governed runtime namespace and lifecycle heartbeat never appeared. The supervisor timed out after 543.3427171 seconds, returned numeric System.Int32 exit code -1, and terminated Unreal. No retry, second Unreal launch, capture, visual review, restoration proof, promotion, integration, or packaging occurred.",
+  "authority": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY04_RUNTIME_BINDING_FREEZE.json",
+    "bytes": 4585,
+    "sha256": "f68b263354e9b4663d1bb28e518ba38343f0aad35005e8ab2722fe92c07f2a24"
+  },
+  "execution": {
+    "unreal_process_id": 55828,
+    "launch_count": 1,
+    "retry_count": 0,
+    "timed_out": true,
+    "numeric_exit_code": -1,
+    "exit_code_type": "System.Int32",
+    "runtime_namespace_present": false,
+    "capture_count": 0,
+    "human_visual_review_possible": false,
+    "postflight_verifier_run": false
+  },
+  "frozen_files": [
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY04_BINDING01_EXECUTION_PREFLIGHT.json",
+      "bytes": 1036,
+      "sha256": "218c1b61d114c0325ada1257f7b63a9cea744fa8c228c9fda7f319838c1b6d4b"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY04_BINDING01_TERMINAL_SUPERVISOR.json",
+      "bytes": 911,
+      "sha256": "32c61e39bd37a2656f73a5a05eebb25770e3032b46e9cb38647556cbd4aa6e79"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY04_BINDING01_TERMINAL_EVIDENCE.json",
+      "bytes": 4522,
+      "sha256": "d7cdf8937b82d7d7974ba9c74d0f9c6c0dc1e160d68611d107da4eecf9f49c04"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY04_BINDING01/launcher_attempt_01/process_tree_samples.jsonl",
+      "bytes": 18141,
+      "sha256": "d82b0dfa0d2eadc2e42095d43570abeaa7409cbf363ec90c88ee947bfef0d26e"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY04_BINDING01/launcher_attempt_01/logs/recovery04.engine.log",
+      "bytes": 258342,
+      "sha256": "ee61045d84f2937ed6ea54d113e16151895f7916d82181939411c5b4536b8d90"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY04_BINDING01/launcher_attempt_01/logs/recovery04.stdout.log",
+      "bytes": 1026,
+      "sha256": "9ad97e960535b290be0b8ef90d3d775646f490dd8c45cd5f184fc91177f7498c"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY04_BINDING01/launcher_attempt_01/logs/recovery04.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Scripts/invoke_skyguard_phase4_m01_representative_visual_attempt08_recovery04_once.ps1",
+      "bytes": 12112,
+      "sha256": "21a789fd2739ca03709abe30224f2bec52293c5990326dea2d7b3a010a14115e"
+    },
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery04/Binaries/Win64/UnrealEditor-SkyguardRecovery03NativeRecovery01.dll",
+      "bytes": 177664,
+      "sha256": "2070765a5d44199f7116c2038c97d866b91a509706de73953ead1cad057cb6e3"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_RECOVERY04_BINDING01_TERMINAL_2026-08-04.md",
+      "bytes": 2499,
+      "sha256": "c7c9d79e51fbe890e0a23f1868714de7cad61c458c1b91fa5810cc117dfd27b8"
+    },
+    {
+      "file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_RECOVERY04_BINDING01_TERMINAL_2026-08-04.md",
+      "bytes": 1890,
+      "sha256": "61b3447103a4ba29741561a6ab45724a4a81673c61e24c2f195f24d2f16bff76"
+    }
+  ],
+  "blocking_conditions": [
+    "The governed runtime namespace and native lifecycle heartbeat were never produced.",
+    "The Recovery04 plugin retained a duplicate module association with Recovery01.",
+    "TcpMessaging and UdpMessaging initialized and UDP joined multicast interfaces.",
+    "Ocean, beach, and land tile attachments aborted because static children targeted a non-static root.",
+    "No captures, frame samples, metrics, restoration receipt, or native terminal receipt exist."
+  ],
+  "failed_namespace_reuse_forbidden": true,
+  "automatic_retry_forbidden": true,
+  "next_gate": "OFFLINE_RECOVERY05_RUNTIME_STARTUP_AND_ISOLATION_CORRECTION_DESIGN",
+  "next_gate_scope": "Create and freeze a fresh, offline-only Recovery05 source and execution design that resolves the duplicate module identity, proves native startup and namespace creation contracts, disables TcpMessaging and UdpMessaging, and corrects or isolates the environment attachment failures. Do not compile or launch Unreal during that gate."
+}

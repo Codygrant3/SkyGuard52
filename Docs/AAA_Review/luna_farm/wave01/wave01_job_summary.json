@@ -1,0 +1,47 @@
+﻿[
+    {
+        "pillar":  "materials",
+        "status":  "ok",
+        "count":  20,
+        "exit":  "EXIT=0",
+        "error":  "",
+        "canonical":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\canonical\\materials.json",
+        "raw":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\raw\\materials.jsonl"
+    },
+    {
+        "pillar":  "aircraft",
+        "status":  "ok",
+        "count":  20,
+        "exit":  "EXIT=0",
+        "error":  "",
+        "canonical":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\canonical\\aircraft.json",
+        "raw":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\raw\\aircraft.jsonl"
+    },
+    {
+        "pillar":  "city_ocean",
+        "status":  "ok",
+        "count":  20,
+        "exit":  "EXIT=0",
+        "error":  "",
+        "canonical":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\canonical\\city_ocean.json",
+        "raw":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\raw\\city_ocean.jsonl"
+    },
+    {
+        "pillar":  "weapon_ads",
+        "status":  "ok",
+        "count":  20,
+        "exit":  "EXIT=0",
+        "error":  "",
+        "canonical":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\canonical\\weapon_ads.json",
+        "raw":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\raw\\weapon_ads.jsonl"
+    },
+    {
+        "pillar":  "vfx",
+        "status":  "ok",
+        "count":  20,
+        "exit":  "EXIT=0",
+        "error":  "",
+        "canonical":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\canonical\\vfx.json",
+        "raw":  "D:\\Skyguard52\\Docs\\AAA_Review\\luna_farm\\wave01\\raw\\vfx.jsonl"
+    }
+]

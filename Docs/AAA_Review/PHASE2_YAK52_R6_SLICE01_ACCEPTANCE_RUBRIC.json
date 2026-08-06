@@ -1,0 +1,33 @@
+{
+  "schema":"skyguard.phase2.yak52-r6-slice01-acceptance.v1",
+  "automatic_promotion":false,
+  "gates":[
+    {"id":"references","pass":"All required reference planes exist, are hash-bound, scaled, and provenance-labeled","current":"FAIL_MISSING_DIMENSIONED_TOP_AND_STATION_DRAWING"},
+    {"id":"overall_length","pass":"Evaluated bounds equal 7.745 ± 0.04 m","current":"NOT_RUN"},
+    {"id":"wingspan","pass":"Evaluated bounds equal 9.300 ± 0.04 m","current":"NOT_RUN"},
+    {"id":"silhouette_side","pass":"Mean overlay error ≤1.5% and local error ≤3.0% outside documented occlusion zones","current":"NOT_RUN"},
+    {"id":"silhouette_top","pass":"Mean overlay error ≤1.5% and local error ≤3.0% against dimensioned top reference","current":"BLOCKED_REFERENCE"},
+    {"id":"topology","pass":"Zero non-manifold edges, zero zero-area faces, no unplanned highlight-path poles above valence five","current":"NOT_RUN"},
+    {"id":"canopy","pass":"Closed alignment ≤8 mm, glazing 6–12 mm, open aperture ≥0.72 x 0.78 m, sweep collision count zero","current":"NOT_RUN"},
+    {"id":"gunner_sightline","pass":"At least 77 of 81 central rays unobstructed with rear canopy fully open","current":"NOT_RUN"},
+    {"id":"cowling","pass":"Separate shell/lip/shutters/radial face/hub/blades, no intersections, continuous highlights","current":"NOT_RUN"},
+    {"id":"wing_root","pass":"Context camera and G2-like highlight continuity pass with no oval overlap or self-intersection","current":"NOT_RUN"},
+    {"id":"materials","pass":"Required families, UV/bake manifest and material-graze proof pass","current":"NOT_RUN"},
+    {"id":"cameras","pass":"All eleven fixed views meet screen fraction, margins and target visibility; no crop/reframe","current":"OFFLINE_STRUCTURE_PASS_REFERENCE_BLOCKED"},
+    {"id":"human_visual_review","pass":"Explicit reference fidelity, silhouette, surface, canopy, cowling, root, material and sightline approval","current":"NOT_RUN"},
+    {"id":"unreal_import","pass":"Separately authorized only after all Blender gates pass","current":"FORBIDDEN"}
+  ],
+  "silhouette_overlay_method":{
+    "render":"Orthographic flat-black silhouette at 1920 x 1080 with fixed camera and no antialiasing-dependent thresholding",
+    "reference":"Undistorted, scaled reference mask registered by tail extreme, prop plane, wing datum and centerline",
+    "metrics":["intersection_over_union","mean_contour_distance_percent_of_length","p95_contour_distance_percent_of_length","maximum_local_error_percent"],
+    "manual_exclusions":"Only documented photographic occlusions; exclusions recorded as masks and hashes"
+  },
+  "failure_policy":{
+    "failed_blender_attempt_is_immutable":true,
+    "automatic_retry":false,
+    "visual_failure_blocks_unreal":true,
+    "object_or_triangle_count_alone_cannot_pass":true
+  }
+}
+

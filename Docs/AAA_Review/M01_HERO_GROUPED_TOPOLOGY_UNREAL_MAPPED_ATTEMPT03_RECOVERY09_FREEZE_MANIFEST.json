@@ -1,0 +1,78 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery09-freeze-manifest.v1",
+  "gate": "PASS_OFFLINE_RECOVERY09_DESIGN_READY_AWAITING_SEPARATE_FULL_MODULE_BUILD_AUTHORIZATION",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_DESIGN_CONTRACT.json",
+      "bytes": 9158,
+      "sha256": "b41bd541228f3c6cfcf03e6bbcd4783822582b929af9616ac1852db795f39c29"
+    },
+    {
+      "path": "Scripts/generate_m01_hero_grouped_topology_recovery09.py",
+      "bytes": 17459,
+      "sha256": "43dbf956bef6b8cc38219f5920494d9b292666622b2b661fc0a975ebb5a4305a"
+    },
+    {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.h",
+      "bytes": 3639,
+      "sha256": "ef32f7b84a3bf3dd7d20e9154eaf2a4c813c749c9b532a39d5788dd9c29f98f0"
+    },
+    {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery09Capture.cpp",
+      "bytes": 30714,
+      "sha256": "2d5c923751e3f8d4cc0d0db0b8263df522b13324a4d308fea4465a82fb3dba08"
+    },
+    {
+      "path": "Scripts/run_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery09.ps1",
+      "bytes": 11073,
+      "sha256": "0acf939e3c1f89f7c266c4157695fa4e85908a50d65f272d214a5e17f6b0e7a6"
+    },
+    {
+      "path": "Scripts/audit_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery09_design.py",
+      "bytes": 12256,
+      "sha256": "276740cad9ba632e9230a56f76e4830e494198a4d9f6d989d60ef448ccc4aed7"
+    },
+    {
+      "path": "Scripts/test_m01_hero_grouped_topology_unreal_mapped_attempt03_recovery09_design.py",
+      "bytes": 4729,
+      "sha256": "10ffa0c67b760da686068195415f265cecc6858e4d77805c9a9aca9c004f0936"
+    },
+    {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_DESIGN_READINESS.json",
+      "bytes": 3829,
+      "sha256": "d7b0db6ffcdd9067b9056e9f5beb7d751e17b3695b21f2319203a206f0be5788"
+    }
+  ],
+  "recovery07_terminal_failure": {
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_07_highres",
+    "supervisor_receipt_sha256": "6ab4793dd981a8c9a2e9faf2ec1eed83b98af3d68fd2a2e933728d43d87c60b9",
+    "capture_receipt_sha256": "de6c93994e1f4f3a414ec2ad2b7f325cfce3f222f4fb9a6cd46cef0c0ab85dcc",
+    "pilot_png_sha256": "7a04691431ad3fead9618796f58964f214baa9bd6bbd638725a11df34f028a42",
+    "retry_same_namespace_forbidden": true
+  },
+  "root_cause": {
+    "incorrect_recovery07_delegate": "FScreenshotRequest::OnScreenshotCaptured",
+    "correct_ue58_delegate": "UGameViewportClient::OnScreenshotCaptured",
+    "observed_fallback": "UE 5.8 wrote an exact 2048x2048 PNG because its GameViewportClient delegate was unbound"
+  },
+  "future_execution": {
+    "execution_contract": "Docs/AAA_Review/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY09_EXECUTION_CONTRACT.json",
+    "execution_contract_absent_at_freeze": true,
+    "output_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_011/recovery09_attempt_01/mapped_view_capture_03_recovery_09",
+    "output_root_absent_at_freeze": true
+  },
+  "offline_verification": {
+    "readiness_checks_passed": 18,
+    "readiness_checks_failed": 0,
+    "unit_tests_passed": 12,
+    "unit_tests_failed": 0
+  },
+  "execution_state": {
+    "native_build_executed": false,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "content_packages_created_or_modified": 0,
+    "promotion_allowed": false,
+    "p3_4_closed": false
+  }
+}

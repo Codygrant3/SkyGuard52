@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.visible-presentation-preflight.report.v1",
+  "title": "Skyguard visible-presentation preflight report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "attempt_id",
+    "generated_at_utc",
+    "terminal_state",
+    "failure",
+    "package_attempt_root",
+    "configuration",
+    "bindings",
+    "driver",
+    "firewall",
+    "stages"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.visible-presentation-preflight.report.v1"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^attempt_[0-9]{8}T[0-9]{9}Z$"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "terminal_state": {
+      "enum": ["RUNNING", "EXECUTION_COMPLETE", "EXECUTION_FAILED"]
+    },
+    "failure": {
+      "type": ["string", "null"]
+    },
+    "package_attempt_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visible",
+        "rhi",
+        "feature_level",
+        "resolution",
+        "smoke_seconds",
+        "stage_timeout_seconds",
+        "module_sample_milliseconds"
+      ],
+      "properties": {
+        "visible": {"const": true},
+        "rhi": {"const": "D3D12"},
+        "feature_level": {"const": "SM6"},
+        "resolution": {
+          "const": {"x": 1280, "y": 720}
+        },
+        "smoke_seconds": {"const": 10},
+        "stage_timeout_seconds": {"const": 35},
+        "module_sample_milliseconds": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 1000
+        }
+      }
+    },
+    "bindings": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/fileRecord"}
+    },
+    "driver": {
+      "type": "object",
+      "required": [
+        "query_complete",
+        "query_error",
+        "selected_adapter",
+        "adapters"
+      ],
+      "properties": {
+        "query_complete": {"type": "boolean"},
+        "query_error": {"type": ["string", "null"]},
+        "selected_adapter": {
+          "type": ["object", "null"]
+        },
+        "adapters": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      }
+    },
+    "firewall": {
+      "type": "object",
+      "required": [
+        "operation",
+        "mutation_attempted",
+        "target_program",
+        "query_complete",
+        "query_error",
+        "action_summary",
+        "rules"
+      ],
+      "properties": {
+        "operation": {"const": "READ_ONLY_INSPECTION"},
+        "mutation_attempted": {"const": false},
+        "target_program": {"type": "string"},
+        "query_complete": {"type": "boolean"},
+        "query_error": {"type": ["string", "null"]},
+        "action_summary": {
+          "enum": [
+            "ALLOW",
+            "BLOCK",
+            "MIXED",
+            "NO_ENABLED_RULES",
+            "QUERY_FAILED"
+          ]
+        },
+        "rules": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/stage"}
+    }
+  },
+  "$defs": {
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "path", "bytes", "sha256"],
+      "properties": {
+        "label": {
+          "enum": ["package_launcher", "package_runtime"]
+        },
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "required": [
+        "name",
+        "map",
+        "status",
+        "visible",
+        "rhi",
+        "feature_level",
+        "resolution",
+        "smoke_seconds",
+        "supervisor_seconds",
+        "pid",
+        "command_line",
+        "started_at_utc",
+        "finished_at_utc",
+        "elapsed_seconds",
+        "timed_out",
+        "natural_exit",
+        "exit_code",
+        "receipt",
+        "logs",
+        "signatures",
+        "module_scan",
+        "cleanup"
+      ],
+      "properties": {
+        "name": {"enum": ["entry_visible", "m01_visible"]},
+        "map": {
+          "enum": [
+            "/Engine/Maps/Entry",
+            "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_Playable_v1"
+          ]
+        },
+        "status": {"enum": ["COMPLETE", "FAILED", "SKIPPED_ENTRY_FAILED"]},
+        "visible": {"const": true},
+        "rhi": {"const": "D3D12"},
+        "feature_level": {"const": "SM6"},
+        "resolution": {"const": {"x": 1280, "y": 720}},
+        "smoke_seconds": {"const": 10},
+        "supervisor_seconds": {"const": 35},
+        "pid": {"type": ["integer", "null"]},
+        "command_line": {"type": ["string", "null"]},
+        "started_at_utc": {"type": ["string", "null"]},
+        "finished_at_utc": {"type": ["string", "null"]},
+        "elapsed_seconds": {"type": ["number", "null"]},
+        "timed_out": {"type": "boolean"},
+        "natural_exit": {"type": "boolean"},
+        "exit_code": {"type": ["integer", "null"]},
+        "receipt": {"type": "object"},
+        "logs": {"type": "object"},
+        "signatures": {"type": "object"},
+        "module_scan": {"type": "object"},
+        "cleanup": {"type": "object"}
+      }
+    }
+  }
+}

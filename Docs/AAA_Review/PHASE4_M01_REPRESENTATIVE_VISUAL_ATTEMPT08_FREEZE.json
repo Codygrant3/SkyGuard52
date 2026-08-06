@@ -1,0 +1,43 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-freeze.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_UNREAL_VISUAL_PROOF_AUTHORIZATION",
+  "offline_only": true,
+  "files": [
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CONTRACT.json", "bytes": 5556, "sha256": "04b175e21d9c1d766c765b5ab26b47e0ef6dbdc15c570b607e3ec4f60f34b770"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json", "bytes": 2651, "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json", "bytes": 1986, "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"},
+    {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json", "bytes": 1332, "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"},
+    {"file": "Scripts/capture_skyguard_phase4_m01_representative_visual_attempt08.py", "bytes": 11185, "sha256": "5a7188f66e603318246bc3b39051243d9d35e9ac5f7b11f27066487ac369d05a"},
+    {"file": "Scripts/verify_skyguard_phase4_m01_representative_visual_attempt08.py", "bytes": 4535, "sha256": "3221478e2f7384022e710ebc70bd59e9759dc66de0b0237a569b1a9d4e8be18e"},
+    {"file": "Scripts/tests/test_phase4_m01_representative_visual_attempt08.py", "bytes": 2320, "sha256": "9716aaac2831ec0ebe39a3d9ef0de6a65431dc694428d28f0f9aa43972ff3bdd"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_SOURCE_INVENTORY.json", "bytes": 7389, "sha256": "bcaca7c9b0a5fd7ef83570c98f7332585a1aab6237466490def55021d074c6e9"},
+    {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_READINESS.json", "bytes": 1258, "sha256": "a04ceee8ce5995060c4069748d86a9ff02fc588352328312796b2d953c08b210"},
+    {"file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_SINGLE_EXECUTION.md", "bytes": 4225, "sha256": "13c1823c49b3246469fa1c1ed070f0d97a51af8b9570ec5053e1ecf6ab781901"}
+  ],
+  "validation": {
+    "json_documents_valid": 6,
+    "source_inventory_entries_verified": 36,
+    "source_inventory_failures": 0,
+    "python_compile": "PASS",
+    "focused_tests": "PASS_7_OF_7",
+    "output_namespace_absent": true,
+    "heavy_process_count": 0,
+    "unreal_launched": false,
+    "blender_launched": false,
+    "shader_compiler_launched": false,
+    "native_build_launched": false,
+    "capture_invoked": false,
+    "profiling_invoked": false,
+    "promotion_allowed": false,
+    "integration_invoked": false,
+    "packaging_invoked": false
+  },
+  "execution_policy": {
+    "single_execution_requires_separate_explicit_authorization": true,
+    "automatic_retry": false,
+    "failed_namespace_reuse": false,
+    "one_heavy_process": true,
+    "next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_SINGLE_EXECUTION.md"
+  }
+}

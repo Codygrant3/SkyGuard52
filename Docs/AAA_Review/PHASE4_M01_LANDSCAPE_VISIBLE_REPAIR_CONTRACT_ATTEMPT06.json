@@ -1,0 +1,317 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-repair-contract.v2",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-006",
+  "status": "OFFLINE_ATTEMPT06_DESIGN_READY_NATIVE_IMPLEMENTATION_AND_AUTHORIZATION_REQUIRED",
+  "created_at_utc": "2026-08-02T00:00:00Z",
+  "scope": "Immutable visual-diagnostic repair after Recovery03 proved performance green and visual evidence failed.",
+  "immutable_predecessor": {
+    "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-005",
+    "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-005-RECOVERY-03",
+    "recovery_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_03/recovery_manifest.json",
+      "encoding": "utf-16",
+      "sha256": "6c9db305eeb44d6fdf7fa475a6ccd20b72b9025123d657bb37c3141120e433f9"
+    },
+    "gate_report": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt05/attempt_20260802T164911778Z/recovery_03/gate_report.json",
+      "encoding": "utf-8",
+      "sha256": "ebe589fefef35b27cd96e6e73eabfe36c9457ab04246fa7ea9e2d96529c08f76"
+    },
+    "package_hashes": {
+      "baseline_map": {
+        "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+        "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+      },
+      "attempt05_map": {
+        "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v5_attempt05.umap",
+        "sha256": "8e291c7ebbb8df731582d18bb8174df743b2139a144ceccfdc0293d339709ee9"
+      },
+      "attempt05_material": {
+        "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v5_attempt05/M_M01_Landscape_Validation_v5_attempt05.uasset",
+        "sha256": "cc1b9000620ad4957879b4041fecc2c7b0564cbb2964e4f51dffaaf7fecce7d2"
+      },
+      "attempt05_coverage_material": {
+        "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v1.uasset",
+        "sha256": "ecba7e1a6d7a5b40360ed966a08a37b0340624aa48f28381f4e4d88e336541ec"
+      },
+      "attempt05_component_id_material": {
+        "file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v1.uasset",
+        "sha256": "bf72fd104d5d70b6f23c68afa961fcbdafe811d027519d2c3a7d8dbc03647d1a"
+      }
+    },
+    "mutation_allowed": false,
+    "promotion_allowed": false
+  },
+  "attempt05_failure_diagnosis": {
+    "substantive_visual_failure": true,
+    "actual_capture_camera_ids": [
+      "C01_ROUTE_WIDE",
+      "C02_SHORE_APPROACH",
+      "C03_SHORE_GRAZE",
+      "C04_INLAND_CLOSE",
+      "C05_COVERAGE_HIGH"
+    ],
+    "gate_expected_camera_ids": [
+      "C01_ESTABLISHING_HIGH",
+      "C02_SHORELINE_GRAZE",
+      "C03_ROUTE_LOW",
+      "C04_INLAND_CLOSE",
+      "C05_COVERAGE_HIGH"
+    ],
+    "name_contract_mismatch": "The Attempt05 loader changed candidate outputs but did not replace effective.capture.cameras, while the visual gate read renamed camera thresholds from the repair contract.",
+    "actual_per_camera_coverage_fraction": {
+      "C01_ROUTE_WIDE": 0.0,
+      "C02_SHORE_APPROACH": 0.0,
+      "C03_SHORE_GRAZE": 0.0,
+      "C04_INLAND_CLOSE": 0.0,
+      "C05_COVERAGE_HIGH": 0.0
+    },
+    "actual_component_color_bucket_count": 0,
+    "capture_path_failure": [
+      "The diagnostic show-only list was populated through ShowOnlyActorComponents instead of explicitly enumerating and verifying all 16 ULandscapeComponent objects.",
+      "The capture ran immediately after Landscape material instance refresh and render-state dirtying with no render-thread synchronization or generated-instance audit.",
+      "The capture manifest did not record the exact camera transform, explicit show-only count, material-parent match count, or synchronization marker."
+    ],
+    "camera_framing_failure": [
+      "C03_ROUTE_LOW-equivalent actual C03_SHORE_GRAZE has no forward-ray intersection with the governed Landscape bounds.",
+      "C04_INLAND_CLOSE projects less than one percent of the top surface in the governed offline camera model.",
+      "C05_COVERAGE_HIGH is oblique and off-center, so a coarse frustum intersection cannot prove that all 16 components are visible."
+    ],
+    "environment_relationship": {
+      "landscape_bounds_z_cm": [
+        -141.875,
+        71.40625
+      ],
+      "ocean_z_cm": -160.0,
+      "beach_z_cm": -110.0,
+      "beach_y_end_cm": 7000.0,
+      "landscape_y_start_cm": 7000.0,
+      "conclusion": "The ocean plane is below the governed Landscape and the beach terminates at its Y boundary; these slabs do not explain all five blank show-only masks."
+    }
+  },
+  "future_immutable_outputs": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06",
+    "map_file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v6_attempt06.umap",
+    "material": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+    "coverage_material": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06",
+    "coverage_material_file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeCoverage_Unlit_v2_attempt06.uasset",
+    "component_id_material": "/Game/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06",
+    "component_id_material_file": "Content/Skyguard/Materials/Diagnostics/M_P45_LandscapeComponentId_Unlit_v2_attempt06.uasset",
+    "attempt_root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06",
+    "must_not_exist_before_authoring": true,
+    "must_never_overwrite_attempt05": true,
+    "must_never_overwrite_baseline": true
+  },
+  "landscape_geometry_contract": {
+    "heightmap_file": "Content/Skyguard/Environment/Source/Mission01/HM_M01_CoastalProduction_505x127.r16",
+    "heightmap_dimensions": [
+      505,
+      127
+    ],
+    "actor_location_cm": [
+      0.0,
+      7000.0,
+      -120.0
+    ],
+    "actor_scale": [
+      100.0,
+      100.0,
+      100.0
+    ],
+    "bounds_minimum_cm": [
+      0.0,
+      7000.0,
+      -141.875
+    ],
+    "bounds_maximum_cm": [
+      50400.0,
+      19600.0,
+      71.40625
+    ],
+    "component_grid": [
+      8,
+      2
+    ],
+    "component_count": 16,
+    "component_size_cm": 6300.0
+  },
+  "capture_revision": {
+    "rhi_required": "D3D12|SM6",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "horizontal_fov_degrees": 90.0,
+    "aspect_ratio": 1.7777777777777777,
+    "camera_transform_authority": "contract_only_for_baseline_candidate_and_diagnostics",
+    "serialized_camera_actor_fallback_forbidden": true,
+    "cameras": [
+      {
+        "id": "C01_ESTABLISHING_HIGH",
+        "location_cm": [
+          25200.0,
+          -8000.0,
+          10000.0
+        ],
+        "rotation_degrees": {
+          "pitch": -25.226895,
+          "yaw": 90.0,
+          "roll": 0.0
+        },
+        "purpose": "high coastal establishing view with route context",
+        "minimum_landscape_pixel_fraction": 0.08
+      },
+      {
+        "id": "C02_SHORELINE_GRAZE",
+        "location_cm": [
+          25200.0,
+          4000.0,
+          1200.0
+        ],
+        "rotation_degrees": {
+          "pitch": -8.530766,
+          "yaw": 90.0,
+          "roll": 0.0
+        },
+        "purpose": "low ocean-beach-landscape continuity view",
+        "minimum_landscape_pixel_fraction": 0.1
+      },
+      {
+        "id": "C03_ROUTE_LOW",
+        "location_cm": [
+          -5000.0,
+          13300.0,
+          1500.0
+        ],
+        "rotation_degrees": {
+          "pitch": -3.43363,
+          "yaw": 0.0,
+          "roll": 0.0
+        },
+        "purpose": "longitudinal low route and component seam view",
+        "minimum_landscape_pixel_fraction": 0.05
+      },
+      {
+        "id": "C04_INLAND_CLOSE",
+        "location_cm": [
+          25200.0,
+          5000.0,
+          3000.0
+        ],
+        "rotation_degrees": {
+          "pitch": -19.872176,
+          "yaw": 90.0,
+          "roll": 0.0
+        },
+        "purpose": "close material readability and shoreline transition",
+        "minimum_landscape_pixel_fraction": 0.3
+      },
+      {
+        "id": "C05_COVERAGE_HIGH",
+        "location_cm": [
+          25200.0,
+          13300.0,
+          30000.0
+        ],
+        "rotation_degrees": {
+          "pitch": -90.0,
+          "yaw": 90.0,
+          "roll": 0.0
+        },
+        "purpose": "orthographic-like perspective proof of all 16 components",
+        "minimum_landscape_pixel_fraction": 0.2
+      }
+    ],
+    "offline_camera_proof": {
+      "module": "Scripts/phase4_m01_landscape_attempt06_camera_math.py",
+      "all_five_forward_rays_must_intersect_bounds": true,
+      "all_five_projected_top_surface_fractions_must_meet_threshold": true,
+      "c05_all_16_component_bounds_must_be_inside_viewport": true,
+      "c05_minimum_conservative_projected_pixel_area_per_component": 40000.0
+    },
+    "diagnostic_capture": {
+      "primitive_render_mode": "PRM_UseShowOnlyList",
+      "show_only_population": "explicit_16_ULandscapeComponent_enumeration",
+      "show_only_component_count_required": 16,
+      "temporary_material_refresh_required": true,
+      "generated_material_instance_count_required": 16,
+      "diagnostic_material_parent_match_count_required": 16,
+      "flush_rendering_commands_before_capture_required": true,
+      "tonemapper_and_post_processing_disabled": true,
+      "atmosphere_cloud_fog_and_sky_lighting_disabled": true,
+      "clear_background": "opaque_black",
+      "world_save_forbidden": true,
+      "restore_governed_material_in_finally_required": true,
+      "restore_material_instance_count_required": 16,
+      "restore_governed_parent_match_count_required": 16
+    },
+    "capture_manifest_required_per_file": [
+      "camera_id",
+      "exact_location_cm",
+      "exact_rotation_degrees",
+      "forward_ray_intersects_bounds",
+      "projected_top_surface_fraction",
+      "show_only_component_count",
+      "generated_material_instance_count",
+      "material_parent_match_count",
+      "render_thread_synchronization_complete",
+      "sha256",
+      "dimensions"
+    ],
+    "readability_inside_coverage_mask": {
+      "minimum_median_luminance": 0.05,
+      "minimum_p90_minus_p10_luminance": 0.02,
+      "minimum_largest_connected_region_fraction_of_mask": 0.5
+    },
+    "component_id_gate": {
+      "expected_ids": 16,
+      "palette_formula": {
+        "red": "(x_index + 1) / 9",
+        "green": "(y_index + 1) / 3",
+        "blue": "0.25 + 0.75 * frac((x_index + 8 * y_index) * 0.61803398875)"
+      },
+      "rgb8_tolerance_per_channel": 12,
+      "minimum_pixels_per_expected_id": 10000,
+      "generic_color_bucket_count_is_forbidden": true,
+      "all_expected_ids_must_pass_independently": true
+    }
+  },
+  "native_implementation_boundary": {
+    "files": [
+      "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.h",
+      "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.cpp",
+      "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCaptureAttempt06.h",
+      "Source/Skyguard52/SkyguardPhase4LandscapePerformanceCaptureAttempt06.cpp",
+      "Scripts/capture_skyguard_phase4_m01_landscape_visible_review.py",
+      "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py"
+    ],
+    "required_changes": [
+      "Expose and record explicit show-only Landscape component count.",
+      "Enumerate each valid ULandscapeComponent into the SceneCapture show-only list.",
+      "Fail unless exactly 16 Landscape components are present, registered, visible, render-state ready, and selected.",
+      "Refresh temporary diagnostic material instances, validate all 16 parents, flush rendering commands, then capture.",
+      "Use exact contract transforms for every capture; actor transform substitution is forbidden.",
+      "Validate exact expected component-ID palette and minimum pixels per ID."
+    ],
+    "compiled_binary_required_before_execution": true,
+    "implementation_complete": true
+  },
+  "performance_policy": {
+    "recovery03_green_profile_is_preserved_as_attempt05_evidence": true,
+    "attempt06_may_reuse_recovery03_performance": false,
+    "reason": "Attempt06 is a new immutable map/material package and equivalence has not been proven.",
+    "future_execution_requires_sequential_baseline_then_candidate_profile": true,
+    "warmup_seconds": 30,
+    "measured_seconds": 60
+  },
+  "execution_authorization": {
+    "unreal_launch_allowed": false,
+    "authoring_allowed": false,
+    "capture_allowed": false,
+    "profiling_allowed": false,
+    "automatic_retry_allowed": false,
+    "promotion_allowed": false,
+    "next_gate": "implement native and Python capture repairs offline, compile once authorized, then run readiness again before exactly one bounded Attempt06 execution"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "skyguard.m01.hero-grouped-topology-unreal-mapped-attempt03-recovery05-native-design-contract.v1",
+  "build_id": "BLD_M01_HERO_GROUPED_TOPOLOGY_008",
+  "recovery_id": "ATTEMPT03_RECOVERY05",
+  "disposition": "OFFLINE_NATIVE_DESIGN_REQUIRES_SEPARATE_BUILD_AUTHORIZATION_AND_POST_BUILD_REBIND",
+  "contract_id": "M01-HERO-GROUPED-TOPOLOGY-ATTEMPT03-RECOVERY05",
+  "review_map": "/Game/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03",
+  "bound_evidence": {
+    "recovery05_diagnosis": {
+      "path": "Saved/Reports/M01_HERO_GROUPED_TOPOLOGY_UNREAL_MAPPED_ATTEMPT03_RECOVERY05_DIAGNOSIS.json",
+      "bytes": 2901,
+      "sha256": "0bec378230dd709d82dfac7c3ee70331b965eeb76270397d03927b91e497b37a"
+    },
+    "invalid_recovery04_supervisor": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_04/supervisor_receipt.json",
+      "bytes": 1001,
+      "sha256": "0c72ee54dd476e8771710cc4078f36eb0238c17a06a8437b72c49b8d92e0921e"
+    },
+    "invalid_recovery04_pilot": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_04/capture/pilot_receipt.json",
+      "bytes": 7617,
+      "sha256": "a805f41a881b14b25b7112a39ec6c49c8a8a72d55324dccb2d988caf26b1c0f6"
+    },
+    "invalid_recovery04_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_04/unreal.engine.log",
+      "bytes": 274073,
+      "sha256": "75f2a0529b811c14741674ab09319bcb8d2304efc9c23fa513596898836ab24d"
+    },
+    "invalid_recovery04_preflight": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_04/preflight_snapshot.json",
+      "bytes": 16973,
+      "sha256": "88421bcaa29a94e93e7106369d28f391fc6284a85de2606520abe7f38b7e9181"
+    },
+    "known_nonblank_same_process_log": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03/unreal.engine.log",
+      "bytes": 286759,
+      "sha256": "6b6a9c36707a914c1fad6c6b54cfe9d6325b56a38400be01e67bf7bddac6fb3a"
+    },
+    "known_nonblank_supervisor": {
+      "path": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03/supervisor_receipt.json",
+      "bytes": 1817,
+      "sha256": "f9825f0fcaa9ef20d3f23ab27cf815f4af64a295449ecab6163c00c844566284"
+    },
+    "review_map_package": {
+      "path": "Content/Skyguard/Candidates/Mission01/HeroGroupedTopology_008_Attempt03/Review/Lvl_M01_HeroGroupedTopology_008_Attempt03.umap",
+      "bytes": 29983,
+      "sha256": "2437baec361615433926d48776f206bb53f8abe7880384e3c4ba0e751e080def"
+    }
+  },
+  "native_sources": {
+    "header": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery05Capture.h",
+      "bytes": 2879,
+      "sha256": "3a35b5ecc1691c3b1fae8da7e3fcfefbeeb379c3a56175ab7fa10e4eb19f63a2"
+    },
+    "implementation": {
+      "path": "Source/Skyguard52/SkyguardM01GroupedTopologyRecovery05Capture.cpp",
+      "bytes": 19893,
+      "sha256": "4c2438dff632f69e3606703f3a4ff8ddd0401ff104f00df1fe7f24e2cc408d81"
+    }
+  },
+  "native_runtime": {
+    "inert_without_exact_contract_id": true,
+    "world_subsystem": "UTickableWorldSubsystem",
+    "python_scene_capture2d_used": false,
+    "capture_api": "FScreenshotRequest actual game viewport",
+    "rhi": "D3D12",
+    "feature_level": "SM6",
+    "resolution": [2048, 2048],
+    "world_ready_consecutive_frames": 30,
+    "warmup_frames": 120,
+    "warmup_seconds_minimum": 5.0,
+    "shader_compilation_resets_warmup": true,
+    "per_capture_settle_frames": 30,
+    "pilot_capture_count": 3,
+    "full_view_capture_count": 9,
+    "pilot_must_pass_before_full_views": true,
+    "viewport_screenshot_callback_timeout_seconds": 15.0
+  },
+  "hard_bounds": {
+    "active_pixel_threshold_luma": 8,
+    "minimum_active_pixel_fraction": 0.02,
+    "minimum_max_channel_value": 64,
+    "minimum_unique_color_count": 64,
+    "maximum_active_clipped_fraction_luma_ge_250": 0.02,
+    "active_p50_range": [35, 210],
+    "active_p95_range": [100, 248],
+    "minimum_active_dynamic_range_p95_minus_p05": 35
+  },
+  "future_build": {
+    "requires_separate_authorization": true,
+    "command": "& 'D:\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat' Skyguard52Editor Win64 Development 'D:\\Skyguard52\\Skyguard52.uproject' -WaitMutex -NoHotReloadFromIDE",
+    "unreal_launch_allowed_during_build_stage": false,
+    "post_build_required_artifact": "Binaries/Win64/UnrealEditor-Skyguard52.dll",
+    "post_build_dll_hash_must_be_bound_before_execution": true,
+    "post_build_execution_contract_required": true,
+    "root_must_wait_for_final_execution_handoff": true
+  },
+  "future_output": {
+    "attempt_root": "Saved/BuildAttempts/M01_HERO_GROUPED_TOPOLOGY_UNREAL_008/attempt_20260802T173639559Z/mapped_view_capture_03_recovery_05_native",
+    "must_be_absent_before_execution": true,
+    "overwrite_or_retry_in_same_namespace": false
+  },
+  "immutability": {
+    "recovery04_evidence_must_remain_unchanged": true,
+    "review_map_package_must_remain_unchanged": true,
+    "content_package_writes": 0,
+    "runtime_map_writes": 0,
+    "config_writes": 0,
+    "reassembly_allowed": false
+  },
+  "unreal_launch_authorized": false,
+  "native_build_authorized": false,
+  "promotion_allowed": false,
+  "p3_4_closed": false
+}

@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.phase8.runtime-validation-receipt.v1",
+  "title": "Skyguard Phase 8 packaged runtime validation receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "gate",
+    "package_attempt_id",
+    "package_configuration",
+    "package_executable_sha256",
+    "input",
+    "save_round_trip",
+    "settings_round_trip",
+    "evidence"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.phase8.runtime-validation-receipt.v1"
+    },
+    "gate": {
+      "const": "PASS"
+    },
+    "package_attempt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package_configuration": {
+      "enum": [
+        "Development",
+        "Shipping"
+      ]
+    },
+    "package_executable_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input": {
+      "const": "PASS"
+    },
+    "save_round_trip": {
+      "const": "PASS"
+    },
+    "settings_round_trip": {
+      "const": "PASS"
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_cases",
+        "save_cases",
+        "settings_cases",
+        "launches"
+      ],
+      "properties": {
+        "input_cases": {
+          "type": "array",
+          "minItems": 8,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "result"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "result": {
+                "const": "PASS"
+              },
+              "artifact": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "save_cases": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "result"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "result": {
+                "const": "PASS"
+              },
+              "artifact": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "settings_cases": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "result"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "result": {
+                "const": "PASS"
+              },
+              "artifact": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "launches": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "pid",
+              "exit_code",
+              "timed_out",
+              "log"
+            ],
+            "properties": {
+              "pid": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "exit_code": {
+                "type": "integer"
+              },
+              "timed_out": {
+                "const": false
+              },
+              "log": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

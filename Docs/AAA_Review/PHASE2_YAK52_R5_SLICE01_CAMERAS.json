@@ -1,0 +1,35 @@
+{
+  "required_camera_ids": [
+    "R5_CAM_BEAUTY_PORT",
+    "R5_CAM_SIDE_ORTHO",
+    "R5_CAM_TOP_ORTHO",
+    "R5_CAM_NOSE_CLOSE",
+    "R5_CAM_COWLING_GRAZE",
+    "R5_CAM_CANOPY_PORT",
+    "R5_CAM_REAR_OPENING",
+    "R5_CAM_WING_ROOT_L",
+    "R5_CAM_MATERIAL_GRAZE",
+    "R5_CAM_REAR_GUNNER_EYE"
+  ],
+  "render_contract": {
+    "engine": "BLENDER_EEVEE",
+    "resolution_x": 1280,
+    "resolution_y": 720,
+    "resolution_percentage": 100,
+    "pixel_aspect": 1.0,
+    "file_format": "PNG",
+    "neutral_world_color": [0.035, 0.045, 0.06, 1.0]
+  },
+  "cameras": [
+    {"id":"R5_CAM_BEAUTY_PORT","projection":"PERSPECTIVE","location_m":[10.5,-11.0,5.8],"target_m":[0,0,0.25],"lens_mm":58,"clip_start_m":0.05,"output_filename":"00_R5_BeautyPort.png"},
+    {"id":"R5_CAM_SIDE_ORTHO","projection":"ORTHOGRAPHIC","location_m":[0,-15,0.5],"target_m":[0,0,0.25],"lens_mm":58,"clip_start_m":0.05,"ortho_scale_m":10.5,"output_filename":"01_R5_SideOrtho.png"},
+    {"id":"R5_CAM_TOP_ORTHO","projection":"ORTHOGRAPHIC","location_m":[0,0,15],"target_m":[0,0,0],"lens_mm":58,"clip_start_m":0.05,"ortho_scale_m":11.0,"output_filename":"02_R5_TopOrtho.png"},
+    {"id":"R5_CAM_NOSE_CLOSE","projection":"PERSPECTIVE","location_m":[6.5,-3.8,2.0],"target_m":[3.35,0,0.15],"lens_mm":72,"clip_start_m":0.03,"output_filename":"03_R5_NoseClose.png"},
+    {"id":"R5_CAM_COWLING_GRAZE","projection":"PERSPECTIVE","location_m":[4.9,-2.4,0.55],"target_m":[3.35,0,0.15],"lens_mm":85,"clip_start_m":0.03,"output_filename":"04_R5_CowlingGraze.png"},
+    {"id":"R5_CAM_CANOPY_PORT","projection":"PERSPECTIVE","location_m":[0.2,-4.0,2.1],"target_m":[-0.1,0,0.9],"lens_mm":65,"clip_start_m":0.03,"output_filename":"05_R5_CanopyPort.png"},
+    {"id":"R5_CAM_REAR_OPENING","projection":"PERSPECTIVE","location_m":[-2.3,-2.7,2.0],"target_m":[-0.82,0,0.84],"lens_mm":58,"clip_start_m":0.03,"output_filename":"06_R5_RearOpening.png"},
+    {"id":"R5_CAM_WING_ROOT_L","projection":"PERSPECTIVE","location_m":[0.6,3.2,1.6],"target_m":[0,0.65,0.1],"lens_mm":74,"clip_start_m":0.03,"output_filename":"07_R5_WingRootL.png"},
+    {"id":"R5_CAM_MATERIAL_GRAZE","projection":"PERSPECTIVE","location_m":[2.5,-2.1,0.7],"target_m":[1.15,0,0.25],"lens_mm":90,"clip_start_m":0.03,"output_filename":"08_R5_MaterialGraze.png"},
+    {"id":"R5_CAM_REAR_GUNNER_EYE","projection":"PERSPECTIVE","location_m":[-0.9,-0.36,1.03],"target_m":[2.4,-0.36,0.98],"lens_mm":50,"clip_start_m":0.02,"output_filename":"09_R5_RearGunnerEye.png"}
+  ]
+}

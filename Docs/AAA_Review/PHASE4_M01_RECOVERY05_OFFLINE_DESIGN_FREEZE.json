@@ -1,0 +1,142 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-offline-design-freeze.v1",
+  "created_utc": "2026-08-04T13:36:04.4925533Z",
+  "classification": "PASSED_READY_FOR_EXPLICIT_RECOVERY05_BUILD_OR_CORRECTION_AUTHORIZATION",
+  "summary": "Recovery05 now has a unique plugin/module identity with strict Recovery04 behavioral parity. TcpMessaging and UdpMessaging disablement is frozen. The Mission 1 mobility defect is source-owned and represented by one unapplied, one-line patch. No compile, Unreal, Blender, capture, integration, or packaging process ran. The next gate is the bounded offline environment-source correction.",
+  "authoritative_predecessor": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY04_BINDING01_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 4933,
+    "sha256": "483e1c2489ded78db7763a12c8b85836c2151940fe7c82eff6ac102d196c4258"
+  },
+  "recovery05_plugin": "Plugins/SkyguardRecovery03NativeRecovery05",
+  "recovery05_module": "SkyguardRecovery03NativeRecovery05",
+  "environment_source_mutated": false,
+  "environment_patch_applied": false,
+  "messaging_isolation_frozen": true,
+  "build_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "future_package_root_present": false,
+  "future_build_namespace_present": false,
+  "future_runtime_namespace_present": false,
+  "automatic_retry": false,
+  "frozen_files": [
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery05/SkyguardRecovery03NativeRecovery05.uplugin",
+      "bytes": 465,
+      "sha256": "63e70f723e27f3c29536834dac8a7757629e43b02c13a02ae954fe2c432d57a5"
+    },
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery05/Config/FilterPlugin.ini",
+      "bytes": 367,
+      "sha256": "b7776c3df4f21643b440b96bdfcfb22e111f353a1d99bc5e0d8ac95133bfa8c1"
+    },
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery05/Source/SkyguardRecovery03NativeRecovery05/SkyguardRecovery03NativeRecovery05.Build.cs",
+      "bytes": 592,
+      "sha256": "d5735c78adc4fcb24ca3760cec50426d9f039e1a08178ea00a309672efdaa7b6"
+    },
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery05/Source/SkyguardRecovery03NativeRecovery05/Private/SkyguardRecovery03NativeRecovery05Module.cpp",
+      "bytes": 26694,
+      "sha256": "c814efbbe8c3ebc25e58a37b1097fd4bf6d8d68959c4e2139268f09d430fa6e6"
+    },
+    {
+      "file": "Plugins/SkyguardRecovery03NativeRecovery05/Source/SkyguardRecovery03NativeRecovery05/Public/SkyguardRecovery03NativeRecovery05Module.h",
+      "bytes": 3161,
+      "sha256": "6c786f823f30dc5fe733e2c2eef2de13c34793f4a136fe9921e89fd93b986129"
+    },
+    {
+      "file": "SourceCorrections/Recovery05/SkyguardMission01EnvironmentDirector.mobility.patch",
+      "bytes": 532,
+      "sha256": "3c25f8f4ceac21d0169919f39c4e2c08700fbc52ade07e3d31fc9ffff22cc4e5"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_TERMINAL_RECONCILIATION.json",
+      "bytes": 1307,
+      "sha256": "3dc52ddd9a69aab9c65f56f5699b73c0ac9306e340029bd60002c0337d1b0b44"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_UE58_AUTHORITY_REPORT.json",
+      "bytes": 1782,
+      "sha256": "4d6d4be74f7fc18753c776e0be7991db705c1de523a65929286992f264c0e1fb"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_MODULE_IDENTITY_CONTRACT.json",
+      "bytes": 1312,
+      "sha256": "56015829b6c7aa2f98afbcacf97af2fa3a86ef610fd8141a9c7fa4f4a3c086cc"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_STRICT_DIFF_REPORT.json",
+      "bytes": 1070,
+      "sha256": "776eae0b2ff84ea824dbba52f2ae2c5f7ea847c6a22bf65cbc67ef0c345982a2"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_MESSAGING_ISOLATION_CONTRACT.json",
+      "bytes": 1193,
+      "sha256": "da5f6a2a2925bf79ea58724af02b4c2c2a1dbc9729c2cc6e1c9c7d3798470ea5"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_ENVIRONMENT_AUTHORITY_REPORT.json",
+      "bytes": 1544,
+      "sha256": "a5d0ef9ebf78716d72635fb4d51b561aaea047012b8b84b91ecfb0361ee5c2c3"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_ENVIRONMENT_CORRECTION_CONTRACT.json",
+      "bytes": 1311,
+      "sha256": "7057392cb605fe2f5de1be869a5dc48ccfb168a8cf582167842b9b72c2d8df2c"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_STARTUP_RECEIPT_SCHEMA.json",
+      "bytes": 1660,
+      "sha256": "c5a156b6813d876f490c8f59591a20c2571635b34e05e646cee6ee730c353775"
+    },
+    {
+      "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_FUTURE_LIFECYCLE_CONTRACT.json",
+      "bytes": 1442,
+      "sha256": "fe98e04bfd57c162e618aab581e9abe8d56789af457f64af997d45dcc56dd57f"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_PROJECTED_PATHS.json",
+      "bytes": 1538,
+      "sha256": "0022fd471701020bc60787f203f1fb6be01b7061271003c058cabd6ffc95302b"
+    },
+    {
+      "file": "Scripts/verify_skyguard_recovery05_offline.py",
+      "bytes": 13234,
+      "sha256": "b2759daa9fff0b9d161bcad222a0df84816bfa9dfe85e269422cdce7e1c8e8ab"
+    },
+    {
+      "file": "Scripts/tests/test_skyguard_recovery05_offline.py",
+      "bytes": 2495,
+      "sha256": "01481aaebd892ac720bce336c5e2393e70a4fe04d847f4b4b824e26cb85aac88"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_OFFLINE_VERIFICATION.json",
+      "bytes": 356,
+      "sha256": "b1faafdc256a3b44de84f9d46199228332b4f1ef175f884b849ea87a08073800"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_FOCUSED_TESTS.json",
+      "bytes": 510,
+      "sha256": "010ee706aafc3c4c410b03912bb38bb6edc49ff41f88005919ed5de88178a245"
+    },
+    {
+      "file": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION.md",
+      "bytes": 3940,
+      "sha256": "cd7c8535aa294a23fd0015db60c4b552ac6f7caa3665b8c9d4e07031b193e234"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_SOURCE_INVENTORY.json",
+      "bytes": 4942,
+      "sha256": "393e803d9d98e1bddae8f5f530016d708531c7bbc3b57ac0bd79e6af534e8cdd"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_READINESS.json",
+      "bytes": 1274,
+      "sha256": "e97b9c3b035f9e5920a488e7bdba13358aa8df6454be4963aacbf5adf77d5c68"
+    }
+  ],
+  "next_gate": "EXPLICIT_BOUNDED_M01_ENVIRONMENT_SOURCE_CORRECTION",
+  "next_prompt": "Docs/AAA_Review/NEXT_PROMPT_PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION.md"
+}

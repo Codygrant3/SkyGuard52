@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.m01.hero-high-to-low-bake.manifest.v1",
+  "title": "Skyguard 52 Mission 01 high-to-low bake manifest",
+  "type": "object",
+  "required": [
+    "schema",
+    "build_id",
+    "source",
+    "bake_contract",
+    "outputs",
+    "assets",
+    "package_fingerprint_sha256",
+    "validation",
+    "promotion"
+  ],
+  "properties": {
+    "schema": {
+      "const": "skyguard.m01.hero-high-to-low-bake.manifest.v1"
+    },
+    "build_id": {
+      "const": "BLD_M01_HERO_HILO_001"
+    },
+    "source": {
+      "$ref": "#/$defs/fileEvidence"
+    },
+    "bake_contract": {
+      "type": "object",
+      "required": [
+        "engine",
+        "device",
+        "selected_to_active",
+        "explicit_cage_required",
+        "normal_space",
+        "tangent_basis",
+        "normal_convention",
+        "uv_layer",
+        "resolution",
+        "margin_pixels",
+        "samples",
+        "maps"
+      ]
+    },
+    "outputs": {
+      "type": "object",
+      "required": [
+        "master_blend",
+        "low_glb"
+      ],
+      "properties": {
+        "master_blend": {
+          "$ref": "#/$defs/fileEvidence"
+        },
+        "low_glb": {
+          "$ref": "#/$defs/fileEvidence"
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source_object",
+          "low",
+          "high",
+          "cage",
+          "detail_groups",
+          "maps"
+        ]
+      }
+    },
+    "package_fingerprint_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "pass",
+        "failures"
+      ],
+      "properties": {
+        "pass": {
+          "type": "boolean"
+        },
+        "failures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "promotion": {
+      "const": "high_to_low_bake_candidate_requires_blender_execution_artifact_verification_and_unreal_visual_acceptance"
+    }
+  },
+  "$defs": {
+    "fileEvidence": {
+      "type": "object",
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

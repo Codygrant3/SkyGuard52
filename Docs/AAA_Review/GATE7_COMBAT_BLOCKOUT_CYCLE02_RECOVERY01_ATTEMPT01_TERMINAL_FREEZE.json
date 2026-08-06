@@ -1,0 +1,46 @@
+﻿{
+    "gate":  "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01",
+    "classification":  "FAILED_WITH_EVIDENCE",
+    "terminal":  true,
+    "timestamp_utc":  "2026-08-06T00:55:34.0289605Z",
+    "immutable_attempt":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01\\attempt_01",
+    "immutable_output_namespace":  "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01",
+    "blender_launch_count":  0,
+    "retry_count":  0,
+    "unreal_launch_count":  0,
+    "failure_stage":  "SUPERVISOR_PREFLIGHT_HASH_VERIFICATION",
+    "failure_summary":  "The single authorized supervisor created its attempt namespace, then stopped before Blender launch because Get-FileHash was unavailable.",
+    "next_action":  "REQUIRES_SEPARATE_OFFLINE_RECOVERY_DESIGN_AUTHORIZATION",
+    "members":  [
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01\\terminal_manifest.json",
+                        "bytes":  3143,
+                        "sha256":  "e68a07a513785e003d625aec1a3a858d286a5d4ffbd14f7b278978bc980d77ff"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01\\run_gate7_recovery01_once.ps1",
+                        "bytes":  5226,
+                        "sha256":  "02c8ea77c6a1fbed1031dbb5f4f7bb95902290b5ad4e26ab0873d5c57bcb5337"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01\\supervisor.stdout.log",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01\\supervisor.stderr.log",
+                        "bytes":  562,
+                        "sha256":  "699309b1bb85531d983e231dda6e9622ea5de14e17615909841a249d572fcc16"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01\\attempt_01\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_CONTRACT.json",
+                        "bytes":  1651,
+                        "sha256":  "172a57c3dddbf08def6d22b04a1835d831cdc4f3629338bf2de8a68ca6942414"
+                    },
+                    {
+                        "path":  "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01\\attempt_01\\source\\blender_gate7_combat_blockout_cycle02_recovery01_attempt01.py",
+                        "bytes":  19609,
+                        "sha256":  "40b3997ebc6075e702ee659722a90503320e019dc13af3c5d5bec67d67f79a71"
+                    }
+                ]
+}

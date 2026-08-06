@@ -1,0 +1,17 @@
+{
+  "FileVersion": 3,
+  "Version": 5,
+  "VersionName": "1.0.5",
+  "FriendlyName": "Skyguard Recovery03 Native Recovery05",
+  "Description": "Governed Recovery05 module-identity correction derived from immutable Recovery04 source.",
+  "Category": "Skyguard",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "Modules": [
+    {
+      "Name": "SkyguardRecovery03NativeRecovery05",
+      "Type": "Editor",
+      "LoadingPhase": "PostEngineInit"
+    }
+  ]
+}

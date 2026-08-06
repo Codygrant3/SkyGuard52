@@ -1,0 +1,47 @@
+{
+  "schema": "skyguard.phase2.yak52-r4-slice01-recovery05-freeze.v1",
+  "gate": "PASS_RECOVERY05_READY_NOT_RUN",
+  "artifacts": [
+    {
+      "path": "Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_RECOVERY05_OUTPUT_CONTRACT.json",
+      "bytes": 5399,
+      "sha256": "06121e768e2a687bd8ad6e671e957518491c8e43fcfb36608cebf407c43b702d"
+    },
+    {
+      "path": "Scripts/blender_phase2_yak52_r4_slice01_recovery05.py",
+      "bytes": 4148,
+      "sha256": "1b3d2fa3cf3df2510465ad5b7d722486969dbbe1efd1befa355b9417fd733de2"
+    },
+    {
+      "path": "Scripts/invoke_phase2_yak52_r4_slice01_recovery05.ps1",
+      "bytes": 4326,
+      "sha256": "924e9d8850b97b88a400ecfe76e7209bc5321c5a4acfef3a5227caa8dceb0c1b"
+    },
+    {
+      "path": "Scripts/verify_phase2_yak52_r4_slice01_recovery05.py",
+      "bytes": 3169,
+      "sha256": "f206340998c47780907055e7eadb0b03a5416e24f9c050f6521f92de7164c173"
+    },
+    {
+      "path": "Scripts/tests/test_phase2_yak52_r4_slice01_recovery05.py",
+      "bytes": 1312,
+      "sha256": "313976f2873407c2947db73be8b6b1c3114781798796de5aed4c68c46b2cf6cf"
+    }
+  ],
+  "offline_verification": {
+    "readiness_passed": true,
+    "tests_passed": 4,
+    "tests_failed": 0
+  },
+  "execution_state": {
+    "blender_launched": false,
+    "unreal_launched": false,
+    "output_namespace_absent": true,
+    "production_attempt_root_absent": true,
+    "promotion_allowed": false
+  },
+  "terminal_recovery04": {
+    "receipt_sha256": "0088485c6aa6e3b75d08defe55b69ecb3b32e42f4e7f221a5919b2cdc782622e",
+    "retry_same_namespace_forbidden": true
+  }
+}

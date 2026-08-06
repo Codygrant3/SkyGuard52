@@ -1,0 +1,38 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-runtime-binding01-contract.v1",
+  "classification": "PASS",
+  "authorization_switch": "-AuthorizeSingleBinding",
+  "source_inventory": {
+    "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE4_M01_RECOVERY05_RUNTIME_BINDING01_SOURCE_DESTINATION_INVENTORY.json",
+    "bytes": 1479,
+    "sha256": "fc7a99980ddbfc8694b9d8150276085b8c0ba32b0b28ea89f01143a4d9104323"
+  },
+  "destination": "D:\\Skyguard52\\Plugins\\SkyguardRecovery03NativeRecovery05\\Binaries\\Win64",
+  "preconditions": [
+    "all_frozen_hashes_match",
+    "exactly_3_accepted_sources",
+    "destination_absent",
+    "attempt_namespace_absent",
+    "descriptor_boolean_false",
+    "module_identity_match",
+    "no_heavy_process"
+  ],
+  "execution": {
+    "binding_launch_count": 1,
+    "copy_count": 3,
+    "retry_count": 0,
+    "child_process_launch_count": 0,
+    "unreal_launch_count": 0,
+    "blender_launch_count": 0,
+    "overwrite": false
+  },
+  "postconditions": [
+    "exact_file_count_3",
+    "byte_hash_parity",
+    "no_unexpected_files",
+    "descriptor_unchanged",
+    "source_unchanged",
+    "quarantine_unchanged",
+    "terminal_manifest_written"
+  ]
+}

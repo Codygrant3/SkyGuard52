@@ -1,0 +1,184 @@
+{
+  "schema": "skyguard.phase5.authentic-audio-acquisition.v1",
+  "manifest_id": "phase5-authentic-audio-empty-v1",
+  "policy": {
+    "raw_files_excluded_from_build": true,
+    "import_requires_complete_evidence": true,
+    "audition_does_not_equal_import_approval": true,
+    "source_hash_algorithm": "SHA-256"
+  },
+  "entries": [
+    {
+      "category_id": "EngineIdle",
+      "display_label": "Yak-52 engine idle",
+      "bank_bindings": ["EngineIdle"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineIdle"
+      }
+    },
+    {
+      "category_id": "EngineCruise",
+      "display_label": "Yak-52 stabilized cruise",
+      "bank_bindings": ["EngineCruise"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EngineCruise"
+      }
+    },
+    {
+      "category_id": "EnginePower",
+      "display_label": "Yak-52 sustained power",
+      "bank_bindings": ["EnginePower"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Aircraft/Engine/SW_EnginePower"
+      }
+    },
+    {
+      "category_id": "Propeller",
+      "display_label": "Yak-52 propeller blade passage",
+      "bank_bindings": ["Propeller"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Aircraft/Propeller/SW_Propeller"
+      }
+    },
+    {
+      "category_id": "OpenCockpitWind",
+      "display_label": "Yak-52 open rear-cockpit airflow",
+      "bank_bindings": ["OpenCockpitWind"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {
+        "open_canopy_claim": false
+      },
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Aircraft/Wind/SW_OpenCockpitWind"
+      }
+    },
+    {
+      "category_id": "RifleShot",
+      "display_label": "Rear-gunner rifle shot system",
+      "bank_bindings": [
+        "RifleMuzzle",
+        "RifleMechanical",
+        "RifleCasing",
+        "RifleReflection"
+      ],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Weapons/Rifle"
+      }
+    },
+    {
+      "category_id": "IglaLaunch",
+      "display_label": "Igla seeker and launch",
+      "bank_bindings": ["IglaSearch", "IglaLock", "IglaLaunch"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/Launch"
+      }
+    },
+    {
+      "category_id": "MissileFlight",
+      "display_label": "Shoulder-launched missile flight",
+      "bank_bindings": ["IglaFlyby"],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Weapons/Igla/Flight"
+      }
+    },
+    {
+      "category_id": "DronePropulsion",
+      "display_label": "Piston UAV propulsion and fly-by system",
+      "bank_bindings": [
+        "DroneLightMotor",
+        "DroneHeavyMotor",
+        "DroneFlyby"
+      ],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Drones"
+      }
+    },
+    {
+      "category_id": "DroneImpactExplosion",
+      "display_label": "Drone impact and explosion system",
+      "bank_bindings": [
+        "IglaImpact",
+        "ExplosionSmallCrack",
+        "ExplosionSmallBody",
+        "ExplosionSmallDebris",
+        "ExplosionSmallTail",
+        "ExplosionHeavyCrack",
+        "ExplosionHeavyBody",
+        "ExplosionHeavyDebris",
+        "ExplosionHeavyTail"
+      ],
+      "acquisition_state": "MISSING_LICENSE_AND_SOURCE",
+      "vendor": {},
+      "license": {},
+      "source": {},
+      "semantic": {},
+      "derivative": {},
+      "distribution_risk": {},
+      "unreal_import": {
+        "destination": "/Game/Skyguard/Audio/Production/Impacts"
+      }
+    }
+  ],
+  "overall_state": "EMPTY_BLOCKED"
+}

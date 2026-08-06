@@ -1,0 +1,18 @@
+{
+  "schema": "skyguard.m01.yak-r3-component-evaluation.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R3",
+  "status": "NOT_EVALUATED",
+  "promotion_requested": false,
+  "components": [],
+  "global_evidence": {
+    "rear_gunner_camera_evidence": [],
+    "pilot_no_fire_evidence": [],
+    "rifle_muzzle_clearance_evidence": [],
+    "igla_backblast_clearance_evidence": [],
+    "matched_before_after_images": [],
+    "fresh_process_persistence_audit": []
+  },
+  "reviewer": null,
+  "reviewed_at_utc": null,
+  "notes": "Copy to Saved/Reports/M01_YAK_R3_COMPONENT_EVALUATION.json. Add one record for each of the ten contracted components. Evidence entries must be project-relative file paths with bytes and sha256. This record never promotes assets automatically."
+}

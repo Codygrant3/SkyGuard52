@@ -1,0 +1,89 @@
+{
+  "schema": "skyguard.bld-m01-yak-uplift-003-r3.component-ledger-inheritance.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R3",
+  "parent_r2_ledger": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_COMPONENT_LEDGER.json",
+    "bytes": 2679,
+    "sha256": "c2e5f15ec0ce621c5e2afb7c5f7ba2e4331c68d7234fadd0bf986fbe610eba4e",
+    "inherit_without_component_changes": true
+  },
+  "base_ledger": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_COMPONENT_LEDGER.json",
+    "bytes": 6822,
+    "sha256": "55278c347d275fac8afc7c64f252d7a24af8a72ee493f4f33347bc202d7e1b44"
+  },
+  "source_inventory_audit": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R2_SOURCE_AUDIT.json",
+    "bytes": 4943,
+    "sha256": "28ff3c9ae15451fa2e29458209390a9a32093267e2f80ba84d5b509c4abcdf1a"
+  },
+  "r3_compatibility_audit": {
+    "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_SOURCE_AUDIT.json",
+    "bytes": 2958,
+    "sha256": "0e422071cecfdef7b7bf6fe3dc64b1f0329922ad6449defe53b681fdb04429f9"
+  },
+  "component_accounting": {
+    "governed_component_count": 240,
+    "exact_object_requirement_count": 232,
+    "source_absent_hold_count": 8,
+    "equation": "232 + 8 = 240"
+  },
+  "governed_component_count": 240,
+  "exact_object_requirement_count": 232,
+  "source_absent_hold_count": 8,
+  "allowed_classifications": [
+    "provisional_inherited",
+    "rebuild_candidate",
+    "donor_from_002",
+    "hold",
+    "source_absent_hold"
+  ],
+  "classification_counts": {
+    "provisional_inherited": 155,
+    "rebuild_candidate": 26,
+    "donor_from_002": 6,
+    "hold": 45,
+    "source_absent_hold": 8
+  },
+  "compatibility_only_delta": {
+    "component_classification_changes": {},
+    "donor_replacement_changes": {},
+    "source_absent_hold_changes": {},
+    "render_engine_from": "BLENDER_EEVEE_NEXT",
+    "render_engine_to": "BLENDER_EEVEE"
+  },
+  "source_absent_hold_policy": {
+    "promotion_allowed": false,
+    "required_as_blender_object": false,
+    "synthesis_allowed": false,
+    "counts_toward_governed_component_total": true
+  },
+  "classification_overrides": {
+    "GEO_CanopyHinge_0_18_L": "source_absent_hold",
+    "GEO_CanopyHinge_0_18_R": "source_absent_hold",
+    "GEO_CanopyHinge_0_76_L": "source_absent_hold",
+    "GEO_CanopyHinge_0_76_R": "source_absent_hold",
+    "GEO_CanopySeal_0_18_L": "source_absent_hold",
+    "GEO_CanopySeal_0_18_R": "source_absent_hold",
+    "GEO_CanopySeal_0_76_L": "source_absent_hold",
+    "GEO_CanopySeal_0_76_R": "source_absent_hold"
+  },
+  "actual_source_observations": {
+    "GEO_CanopyHinge_0_18_L": "GEO_CanopyHinge_0.18_L",
+    "GEO_CanopyHinge_0_18_R": "GEO_CanopyHinge_0.18_R",
+    "GEO_CanopyHinge_0_76_L": "GEO_CanopyHinge_0.76_L",
+    "GEO_CanopyHinge_0_76_R": "GEO_CanopyHinge_0.76_R",
+    "GEO_CanopySeal_0_18_L": "GEO_CanopySeal_0.18_L",
+    "GEO_CanopySeal_0_18_R": "GEO_CanopySeal_0.18_R",
+    "GEO_CanopySeal_0_76_L": "GEO_CanopySeal_0.76_L",
+    "GEO_CanopySeal_0_76_R": "GEO_CanopySeal_0.76_R"
+  },
+  "resolution_contract": {
+    "classification_source": "parent_r2_ledger",
+    "every_runtime_component_exactly_once": true,
+    "source_absent_hold_never_looked_up_as_required_object": true,
+    "actual_dotted_source_names_preserved_without_renaming": true,
+    "no_accepted_or_production_classification": true,
+    "silent_promotion_forbidden": true
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema": "skyguard.m01.yak-r3-component-import-contract.v1",
+  "build_id": "BLD-M01-YAK-UPLIFT-003-R3",
+  "disposition": "QUARANTINE_COMPONENT_EVALUATION_ONLY",
+  "source": {
+    "path": "Content/Skyguard/Meshes/Source/Mission01/Yak52_Uplift_003_R3/bld_m01_yak_uplift_003_r3.glb",
+    "bytes": 6793008,
+    "sha256": "bcb046ae1fb92ed2a907b331fdabb2627dd364e721d30f394616f21f83ebdf58"
+  },
+  "bound_evidence": {
+    "manifest": {
+      "path": "Saved/Reports/BLD_M01_YAK_UPLIFT_003_R3_MANIFEST.json",
+      "bytes": 138412,
+      "sha256": "0773e2440cad9b65f690c0b7cd6e8004c013275f8883064223ce1b686feaf329"
+    },
+    "visual_review": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_VISUAL_REVIEW.md",
+      "bytes": 2803,
+      "sha256": "25fde51185b4a2eea93fc25bc7993a5726ba67b322ec50b901e32f4e38e6494f"
+    },
+    "source_contract": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_CONTRACT.json",
+      "bytes": 10456,
+      "sha256": "310783ed6e11d4aa22dbda82333a6f185c7bece754e3240cfb2c790a2793cabb"
+    },
+    "component_ledger": {
+      "path": "Docs/AAA_Review/BLD_M01_YAK_UPLIFT_003_R3_COMPONENT_LEDGER.json",
+      "bytes": 3329,
+      "sha256": "f574d1bece9de888d16834661c4c18b5e7df8fc56eff676b26f000b3d5369dd5"
+    }
+  },
+  "unreal": {
+    "destination": "/Game/Skyguard/Quarantine/M01/YakR3ComponentEval",
+    "reference_storage": "metadata_on_each_component",
+    "report": "Saved/Reports/M01_YAK_R3_COMPONENT_QUARANTINE_AUDIT.json",
+    "evaluation_record": "Saved/Reports/M01_YAK_R3_COMPONENT_EVALUATION.json",
+    "must_start_empty": true,
+    "replace_existing": false,
+    "promotion_allowed": false,
+    "runtime_map_change_allowed": false,
+    "config_change_allowed": false
+  },
+  "component_meshes": {
+    "GEO_UPLIFT003R3_DONOR_CowlingShell": "SM_M01Q_YAKR3_CowlingShell",
+    "GEO_UPLIFT003R3_DONOR_CowlingFrontRing": "SM_M01Q_YAKR3_CowlingFrontRing",
+    "GEO_UPLIFT003R3_DONOR_CowlingShutters": "SM_M01Q_YAKR3_CowlingShutters",
+    "GEO_UPLIFT003R3_DONOR_CowlingInletCone": "SM_M01Q_YAKR3_CowlingInletCone",
+    "GEO_UPLIFT003R3_DONOR_Spinner": "SM_M01Q_YAKR3_Spinner",
+    "GEO_UPLIFT003R3_DONOR_PropBlade_A": "SM_M01Q_YAKR3_PropBlade_A",
+    "GEO_UPLIFT003R3_DONOR_PropBlade_B": "SM_M01Q_YAKR3_PropBlade_B",
+    "GEO_UPLIFT003R3_DONOR_MainWheelWell_L": "SM_M01Q_YAKR3_MainWheelWell_L",
+    "GEO_UPLIFT003R3_DONOR_MainWheelWell_R": "SM_M01Q_YAKR3_MainWheelWell_R",
+    "GEO_UPLIFT003R3_DONOR_NoseWheelWell": "SM_M01Q_YAKR3_NoseWheelWell"
+  },
+  "support_materials": [
+    "MAT002_YakBareMetal",
+    "MAT002_YakPaint",
+    "MAT002_CowlingDark",
+    "MAT002_WheelWell",
+    "MAT002_Propeller"
+  ],
+  "support_textures": [],
+  "reference_datums": [
+    "DATUM_UPLIFT003R3_DONOR_CanopyTravel",
+    "DATUM_UPLIFT003R3_DONOR_MainGearPivot_L",
+    "DATUM_UPLIFT003R3_DONOR_MainGearPivot_R",
+    "DATUM_UPLIFT003R3_DONOR_NoseGearPivot"
+  ],
+  "camera_reference": {
+    "name": "CAM_UPLIFT003R3_RearGunnerEye",
+    "glb_node_expected": false,
+    "location_m": [-0.9, -0.64, 1.08],
+    "target_m": [1.58, -0.64, 1.06],
+    "lens_mm": 46.0,
+    "clip_start_m": 0.04,
+    "required_clearance_volume": "VOL_UPLIFT003R3_CameraClearance"
+  },
+  "safety_volumes": [
+    "VOL_UPLIFT003R3_CameraClearance",
+    "VOL_UPLIFT003R3_PilotSafety",
+    "VOL_UPLIFT003R3_RifleMuzzleClearance",
+    "VOL_UPLIFT003R3_IglaBackblastClearance"
+  ],
+  "retained_l88_bundles": [
+    "Aircraft_RearCockpit",
+    "Crew_Pilot",
+    "Crew_RearGunner_FirstPerson",
+    "Crew_RearGunner_ThirdPerson",
+    "Weapon_Rifle",
+    "Weapon_Igla"
+  ],
+  "forbidden_import_classes": ["World", "Blueprint", "SkeletalMesh"],
+  "forbidden_component_tokens": [
+    "Fuselage",
+    "Wing",
+    "Tail",
+    "Canopy",
+    "Cockpit",
+    "Crew",
+    "Pilot",
+    "Gunner",
+    "Rifle",
+    "Igla"
+  ],
+  "promotion_requirements": {
+    "per_component": [
+      "pivot_transform_evidence",
+      "material_slot_evidence",
+      "collision_evidence",
+      "camera_visibility_evidence",
+      "safety_clearance_evidence"
+    ],
+    "global": [
+      "rear_gunner_camera_evidence",
+      "pilot_no_fire_evidence",
+      "rifle_muzzle_clearance_evidence",
+      "igla_backblast_clearance_evidence",
+      "matched_before_after_images",
+      "fresh_process_persistence_audit"
+    ],
+    "automatic_promotion": false
+  }
+}

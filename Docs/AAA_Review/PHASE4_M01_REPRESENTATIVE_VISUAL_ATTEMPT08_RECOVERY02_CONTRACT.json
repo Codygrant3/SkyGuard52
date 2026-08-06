@@ -1,0 +1,126 @@
+{
+  "schema": "skyguard.phase4.m01-representative-visual-attempt08-recovery02.v1",
+  "contract_id": "P4.6-M01-REPRESENTATIVE-VISUAL-008-RECOVERY-02",
+  "status": "OFFLINE_DESIGN_PENDING_VALIDATION",
+  "scope": "One future read-only D3D12 SM6 representative Mission 1 proof using the immutable production map and an in-memory validation-material binding.",
+  "only_functional_correction": "Replace Recovery01's nonexistent C-drive Unreal executable path with the verified D-drive UE 5.8 executable authority; rebind identities, switches, receipts, and namespaces to Recovery02.",
+  "terminal_recovery01_authority": {
+    "terminal_freeze": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_TERMINAL_FREEZE.json", "bytes": 2717, "sha256": "0cf5d9fbc550ef7df2c11f51008b0a0a7ba57a04399169170e4667a23a88255f"},
+    "terminal_manifest": {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_TERMINAL_MANIFEST.json", "bytes": 2944, "sha256": "f436862ab91f0a9f29bfe5ce22c787e7aa1491e3f4dd661c852dcfe5720bc56c"},
+    "terminal_evidence": {"file": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_TERMINAL_EVIDENCE.json", "bytes": 2553, "sha256": "fedec639849134aa24ff445d654b16eb090d6b9dec62a665941737aebfc5d004"},
+    "visual_review": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY01_VISUAL_REVIEW_2026-08-02.md", "bytes": 928, "sha256": "9de59dce069a4059724df0866a082959caf8a9e8e885cadeccfd5c5cdb630dc0"},
+    "phase_audit": {"file": "Docs/AAA_Review/PHASE1_8_COMPLETION_AUDIT_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY01_TERMINAL_2026-08-02.md", "bytes": 1725, "sha256": "004cf32e17968f747643972cfc16b3bfb91cf8d2420d6d02a76301e3ae12ac60"},
+    "acceptance_matrix": {"file": "Docs/AAA_Review/M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_PHASE4_ATTEMPT08_RECOVERY01_TERMINAL_2026-08-02.md", "bytes": 1558, "sha256": "63126c29db8bad9eb661fd474aa1f5fe4aabfcd8169ae21320e317d8e1a2ab65"}
+  },
+  "engine_authority": {
+    "editor": {
+      "absolute_file": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+      "version": "++UE5+Release-5.8-CL-56057345",
+      "bytes": 512952,
+      "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+    },
+    "epic_launcher_manifest": {
+      "absolute_file": "C:\\ProgramData\\Epic\\EpicGamesLauncher\\Data\\Manifests\\BAE053CA4AA43E5C5F1B9AAFB1B443BD.item",
+      "bytes": 2350,
+      "sha256": "c5351c98aca53b7a3bd21910d977eab01add3b61dfb0c7c204406bbdaca71110"
+    }
+  },
+  "locked_assets": {
+    "production_map": {
+      "asset": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+      "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03.umap",
+      "bytes": 532796,
+      "sha256": "447e7ac49dc6c843f33bfc177ff46134b10035b6c6765d354ef790acf7f58d72"
+    },
+    "validation_material": {
+      "asset": "/Game/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06",
+      "file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v6_attempt06/M_M01_Landscape_Validation_v6_attempt06.uasset",
+      "bytes": 15059,
+      "sha256": "28e887486a82a146efe9fe02478851b940b151e40bd02849f2a9709e9b0220b2"
+    }
+  },
+  "inherited_design_authority": {
+    "cameras": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_CAMERAS.json", "bytes": 2651, "sha256": "2f54ab9c9a8338ca344e67a00261f715715e2fb3ab4c7adb341c59ee2a0a5a94"},
+    "visual_rubric": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_VISUAL_RUBRIC.json", "bytes": 1986, "sha256": "43044af006f13beb267146adea6f465872ed31133df36fdf5c41f538201cec59"},
+    "performance_rubric": {"file": "Docs/AAA_Review/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_PERFORMANCE_RUBRIC.json", "bytes": 1332, "sha256": "2c4476d02c87ba84cbdbd6bb69de534cec4fdf04f376589e07678074b372e644"},
+    "native_cpp": {"file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.cpp", "bytes": 38847, "sha256": "ba6c399dd462ff771067eb243bbae914095029992a5abc24f184529e9b54b6c8"},
+    "native_header": {"file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.h", "bytes": 10648, "sha256": "1110d71f33813b212ed880ea21f3126369089de1f59fda6358161dfff46397f1"},
+    "project": {"file": "Skyguard52.uproject", "bytes": 1542, "sha256": "99461a1a562ede732da52c84f05002dcc88f772cd30fdccd45ff46d6836f3b60"}
+  },
+  "strategy": {
+    "selected": "production_map_transient_material_binding",
+    "transient_binding_used": true,
+    "original_material_recorded_before_binding": true,
+    "original_material_may_be_null": true,
+    "non_null_validation_material_before_polling": true,
+    "restoration_required": true,
+    "restoration_location": "finally",
+    "independent_restoration_identity_verification": true,
+    "world_save_forbidden": true
+  },
+  "landscape_contract": {
+    "actor_label": "M01_P4_Landscape_Production",
+    "exact_actor_count": 1,
+    "expected_component_count": 16,
+    "expected_compilation_finished_resource_count": 16,
+    "expected_valid_shader_map_resource_count": 16
+  },
+  "execution": {
+    "attempt_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/attempt_01",
+    "proof_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/attempt_01/proof",
+    "launcher_root": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02/launcher_attempt_01",
+    "preflight_receipt": "Saved/Reports/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY02_EXECUTION_PREFLIGHT.json",
+    "all_future_namespaces_must_be_absent": true,
+    "single_execution_only": true,
+    "automatic_retry": false,
+    "failed_namespace_reuse": false,
+    "unreal_process_count": 1,
+    "rhi": "D3D12",
+    "shader_model": "SM6",
+    "resolution": [2560, 1440],
+    "scalability": "Epic",
+    "screen_percentage": 100,
+    "vsync": false,
+    "maximum_process_seconds": 480,
+    "supervisor_timeout_seconds": 540,
+    "stable_ready_polls_required": 2,
+    "world_save_forbidden": true,
+    "asset_mutation_forbidden": true,
+    "pcg_generation_forbidden": true,
+    "network_forbidden": true,
+    "promotion_forbidden": true,
+    "integration_forbidden": true,
+    "packaging_forbidden": true
+  },
+  "performance_contract": {
+    "warmup_seconds_after_ready": 30,
+    "measured_seconds": 30,
+    "minimum_tick_samples": 900,
+    "mean_frame_time_ms_max": 16.7,
+    "p95_frame_time_ms_max": 22.2,
+    "p99_frame_time_ms_max": 33.3,
+    "maximum_single_hitch_ms": 50.0,
+    "frames_over_50_ms": 0,
+    "mean_gpu_time_ms_max": 14.0,
+    "p95_gpu_time_ms_max": 20.0,
+    "maximum_peak_working_set_mib": 12288,
+    "maximum_peak_gpu_memory_mib": 10240,
+    "shader_compiles_during_measured_interval": 0,
+    "critical_log_hits": 0
+  },
+  "required_outputs": {
+    "lit_png_count": 8,
+    "static_png_count": 5,
+    "temporal_png_count": 3,
+    "png_dimensions": [2560, 1440],
+    "capture_receipt": "capture_receipt.json",
+    "restoration_receipt": "restoration_receipt.json",
+    "frame_samples": "frame_samples.csv",
+    "run_manifest": "run_manifest.json",
+    "engine_log": "logs/recovery02.engine.log",
+    "stdout_log": "logs/recovery02.stdout.log",
+    "stderr_log": "logs/recovery02.stderr.log",
+    "postflight_gate": "gate_report.json"
+  },
+  "classification_on_offline_pass": "PASSED_READY_FOR_EXPLICIT_SINGLE_RECOVERY02_UNREAL_AUTHORIZATION"
+}

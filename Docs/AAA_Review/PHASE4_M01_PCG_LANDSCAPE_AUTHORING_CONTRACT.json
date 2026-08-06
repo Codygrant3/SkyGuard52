@@ -1,0 +1,145 @@
+{
+  "schema": "skyguard.phase4.m01-pcg-landscape-authoring-contract.v1",
+  "contract_id": "P4.4-M01-PCG-LANDSCAPE-001",
+  "mission_id": "M01_CoastalIntercept",
+  "claim_boundary": {
+    "proves_when_offline_gate_passes": [
+      "the deterministic Landscape source has the governed dimensions and hash",
+      "the project declares the PCG and Landscape runtime dependencies",
+      "the M01 director exposes a fail-closed Landscape and authored-PCG binding",
+      "the editor acceptance script checks the exact serialized graph and map handoff"
+    ],
+    "does_not_prove": [
+      "a serialized Landscape or PCG graph exists",
+      "PCG output has been generated or baked",
+      "licensed vegetation has been acquired or approved",
+      "the environment has passed visible GPU or AAA review"
+    ]
+  },
+  "source_heightmap": {
+    "path": "Content/Skyguard/Environment/Source/Mission01/HM_M01_CoastalProduction_505x127.r16",
+    "manifest_path": "Saved/Reports/PHASE4_M01_LANDSCAPE_SOURCE_MANIFEST.json",
+    "width": 505,
+    "height": 127,
+    "encoding": "little-endian-uint16",
+    "components_x": 8,
+    "components_y": 2,
+    "sections_per_component": 1,
+    "quads_per_section": 63,
+    "xy_scale_cm": 100.0,
+    "z_scale_cm": 100.0,
+    "world_origin_cm": [
+      0.0,
+      7000.0,
+      -120.0
+    ],
+    "coverage_cm": [
+      50400.0,
+      12600.0
+    ],
+    "required_mission_coverage_cm": [
+      45000.0,
+      11000.0
+    ]
+  },
+  "serialized_targets": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_ProductionEnvironment_v5_attempt03",
+    "landscape_actor_label": "M01_P4_Landscape_Production",
+    "landscape_actor_tag": "Skyguard.Environment.Mission01.Landscape",
+    "pcg_graph": "/Game/Skyguard/Environment/Mission01/PCG/PCG_M01_InlandVegetation",
+    "director_actor_label": "M01_P4_ProductionEnvironmentDirector"
+  },
+  "director_handoff": {
+    "inclusion_component": "LandScatterBounds",
+    "inclusion_component_tag": "Skyguard.PCG.Inclusion",
+    "exclusion_component": "RouteExclusion",
+    "exclusion_component_tag": "Skyguard.PCG.Exclusion",
+    "pcg_component": "InlandVegetationPCG",
+    "generation_trigger": "GenerateOnDemand",
+    "activation_policy": "inactive_until_landscape_graph_bounds_and_coastline_are_valid_and_licensed_vegetation_and_generation_are_explicitly_approved",
+    "route_length_cm": 45000.0,
+    "route_corridor_half_width_cm": 2800.0,
+    "land_scatter_y_min_cm": 7000.0,
+    "land_scatter_y_max_cm": 18000.0
+  },
+  "graph_contract": {
+    "seed": 5201,
+    "required_node_types": [
+      "UPCGGetLandscapeSettings",
+      "UPCGDataFromActorSettings",
+      "UPCGSurfaceSamplerSettings",
+      "UPCGDifferenceSettings",
+      "UPCGDensityFilterSettings",
+      "UPCGTransformPointsSettings",
+      "UPCGStaticMeshSpawnerSettings"
+    ],
+    "required_node_type_counts": {
+      "UPCGGetLandscapeSettings": 1,
+      "UPCGDataFromActorSettings": 2,
+      "UPCGSurfaceSamplerSettings": 1,
+      "UPCGDifferenceSettings": 1,
+      "UPCGDensityFilterSettings": 1,
+      "UPCGTransformPointsSettings": 1,
+      "UPCGStaticMeshSpawnerSettings": 1
+    },
+    "required_stages_in_order": [
+      "landscape_data",
+      "inclusion_bounds",
+      "surface_sample",
+      "route_and_beach_difference",
+      "density_filter",
+      "deterministic_transform",
+      "governed_mesh_spawn",
+      "graph_output"
+    ],
+    "surface_sampler": {
+      "points_per_squared_meter": 0.0125,
+      "point_extents_cm": [
+        200.0,
+        200.0,
+        100.0
+      ],
+      "unbounded": false
+    },
+    "spawn_limits": {
+      "maximum_generated_instances": 1024,
+      "partitioned": true,
+      "generation_on_demand": true,
+      "runtime_regeneration": false,
+      "licensed_mesh_slots_must_be_nonempty_before_generation": true
+    },
+    "licensed_mesh_slots": []
+  },
+  "acceptance": {
+    "offline_gate": [
+      "contract_schema_valid",
+      "heightmap_manifest_integrity",
+      "heightmap_dimensions_valid",
+      "heightmap_hash_valid",
+      "pcg_plugin_enabled",
+      "pcg_and_landscape_module_dependencies",
+      "director_binding_source_present",
+      "editor_acceptance_source_present"
+    ],
+    "editor_gate": [
+      "target_map_round_trip_loaded",
+      "exactly_one_landscape_actor",
+      "landscape_guid_valid",
+      "landscape_component_grid_is_8_by_2",
+      "exactly_one_environment_director",
+      "authored_pcg_graph_serialized",
+      "all_required_graph_node_types_present",
+      "director_reports_authored_structure_ready",
+      "licensed_mesh_slots_are_empty",
+      "pcg_generation_is_locked",
+      "pcg_instance_count_at_or_below_1024",
+      "route_and_beach_have_zero_generated_instances"
+    ],
+    "visible_gate": [
+      "landscape_silhouette_and_scale_accepted",
+      "no_landscape_or_district_seams",
+      "vegetation_species_density_and_wind_accepted",
+      "gpu_frame_time_overdraw_shadows_and_streaming_accepted"
+    ]
+  }
+}

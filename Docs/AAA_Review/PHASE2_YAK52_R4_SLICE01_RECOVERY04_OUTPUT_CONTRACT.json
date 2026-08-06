@@ -1,0 +1,23 @@
+{
+  "schema":"skyguard.phase2.yak52-r4-slice01-recovery04-output-contract.v1",
+  "build_id":"BLD-M01-YAK-FINAL-ART-R4-S01-RECOVERY04",
+  "status":"RECOVERY04_READY_NOT_RUN",
+  "compatibility":{"datum":{"from":"CROSS","to":"PLAIN_AXES"},"render_engine":{"from":"BLENDER_EEVEE_NEXT","to":"BLENDER_EEVEE"},"world":{"precondition":"scene.world is None","action":"create WORLD_R4S01_Recovery04 and assign to scene.world before frozen configure_render"},"frozen_sources_modified":false},
+  "terminal_recovery03":{"attempt":"Saved/Reports/Phase2Yak52R4Slice01Recovery03Production/attempt_20260802T2019285200774Z_e6ae9d97_000037b0","receipt_sha256":"89ddcb70c14f819fbb2479adace00523263ed4c1a48ffd1377548cc31b8d472b","stderr_sha256":"03dbbffe45ad8d6f94689527c3ec255fb4e83de44b2c638b4166ec2ddadb515a","status":"FAILED","retry_allowed":false},
+  "authority_inputs":[
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_OFFLINE_PRODUCTION_CONTRACT.json","bytes":38916,"sha256":"9acb79b431e08785b54c4373ee4c70aa1c6803493abea772b796af2bc43ba594"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_DIMENSION_LEDGER.json","bytes":6580,"sha256":"b7173be921caed151d87d68cb9abde986d0e35c19d11b0542f36a28328cba19d"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_CAMERA_MANIFEST.json","bytes":2679,"sha256":"94ca4721530fcbeb77b2ec8978fa095f49459cb1dbe38a6e0a0bc8a05c491af9"},
+    {"path":"Scripts/blender_phase2_yak52_r4_slice01_silhouette.py","bytes":27197,"sha256":"5ce121a6773fc59f3e4feadaf2fdc1ca7bc9a627f7927c76eb69a2f606e57923"},
+    {"path":"Docs/AAA_Review/PHASE2_YAK52_R4_SLICE01_RECOVERY03_OUTPUT_CONTRACT.json","bytes":3671,"sha256":"e6ae9d974d9672d1bc0dcdabb95b6cb2ea6e7cb6868d38448973a23197a37398"},
+    {"path":"Scripts/blender_phase2_yak52_r4_slice01_recovery03.py","bytes":2599,"sha256":"09899a9bdc7f0dd7aa962c53f674385fdaba9be3bd6f445654b3094d84ac8490"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery03Production/attempt_20260802T2019285200774Z_e6ae9d97_000037b0/launch_receipt.json","bytes":1157,"sha256":"89ddcb70c14f819fbb2479adace00523263ed4c1a48ffd1377548cc31b8d472b"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery03Production/attempt_20260802T2019285200774Z_e6ae9d97_000037b0/blender.stdout.log","bytes":78,"sha256":"62aa68d052234759fcf2f662c9277a117896bb0a66d46f104de825c9b1ad1ecc"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery03Production/attempt_20260802T2019285200774Z_e6ae9d97_000037b0/blender.stderr.log","bytes":955,"sha256":"03dbbffe45ad8d6f94689527c3ec255fb4e83de44b2c638b4166ec2ddadb515a"},
+    {"path":"Saved/Reports/Phase2Yak52R4Slice01Recovery03Production/attempt_20260802T2019285200774Z_e6ae9d97_000037b0/SHA256SUMS.txt","bytes":257,"sha256":"b086fed612500875a089b702ff3ac2346cccf64aa9bdae9607c87f036516e2ed"}
+  ],
+  "authoring_script":{"path":"Scripts/blender_phase2_yak52_r4_slice01_recovery04.py","bytes":2531,"sha256":"9f7cb69d3a349354a95d798584d1db2a740d777a8df2ac42abbbd5c627dfc0c1"},
+  "launch_wrapper":{"path":"Scripts/invoke_phase2_yak52_r4_slice01_recovery04.ps1","bytes":2518,"sha256":"c473c8ac60e699ebadb879e1a1c32d2a145781aa69c67488618b49560f2d838d","authorized":false,"launched":false,"checksum_format":"one SHA256 and filename per line via WriteAllLines"},
+  "outputs":{"blend":"Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery04/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY04_MASTER.blend","glb":"Content/Skyguard/Meshes/Source/Mission01/Yak52_FinalArt_R4/Slice01_Recovery04/bld_m01_yak_final_art_r4_s01_recovery04.glb","manifest":"Saved/Reports/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY04_MANIFEST.json","comparison_directory":"Saved/Screenshots/BLD_M01_YAK_FINAL_ART_R4_S01_RECOVERY04"},
+  "claims":{"silhouette_locked":false,"outputs_created":false,"blender_launched":false,"unreal_launched":false,"final":false,"aaa":false,"promotion_allowed":false}
+}

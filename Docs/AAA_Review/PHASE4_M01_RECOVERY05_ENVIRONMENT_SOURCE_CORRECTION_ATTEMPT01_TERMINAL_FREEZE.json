@@ -1,0 +1,107 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-environment-source-correction-attempt01-terminal-freeze.v1",
+  "created_utc": "2026-08-04T15:58:24.5077881Z",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "summary": "The single authorized Git patch application returned numeric System.Int32 exit code 0 and applied the intended logical line without offset or fuzz. System Git core.autocrlf=true converted the entire LF source to CRLF, increasing the file by 465 bytes and violating the exact byte/whitespace preservation contract. No retry, restore, compile, Unreal, or Blender execution occurred.",
+  "offline_design_authority": {
+    "file": "Docs/AAA_Review/PHASE4_M01_RECOVERY05_OFFLINE_DESIGN_FREEZE.json",
+    "bytes": 6462,
+    "sha256": "9184f81c4bfb1ac8397add8f84807839a2612e4f990292f66c04d912fae3285e"
+  },
+  "patch_application_launch_count": 1,
+  "retry_count": 0,
+  "patch_exit_code": 0,
+  "patch_exit_code_type": "System.Int32",
+  "offset_or_fuzz_detected": false,
+  "pre_source": {
+    "bytes": 14984,
+    "sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980",
+    "crlf": 0,
+    "lone_lf": 416
+  },
+  "failed_post_source": {
+    "bytes": 15449,
+    "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea",
+    "crlf": 417,
+    "lone_lf": 0
+  },
+  "logical_one_line_parity_after_newline_normalization": true,
+  "byte_exact_contract_passed": false,
+  "source_currently_in_failed_post_patch_state": true,
+  "silent_restore_performed": false,
+  "automatic_retry_performed": false,
+  "build_launched": false,
+  "unreal_launched": false,
+  "blender_launched": false,
+  "frozen_files": [
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/authority_preservation_report.json",
+      "bytes": 882,
+      "sha256": "15c7e4ab23e4330bc38f2bb77377864b94f3f09eba688561596b9ea574b85881"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/byte_diff_report.json",
+      "bytes": 950,
+      "sha256": "c3198ec6efdccee4da49937e4c5a88882839f0968b9740dc1a2208d836cc4b2e"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/logs/patch_apply.stderr.log",
+      "bytes": 159,
+      "sha256": "5fe49f427eef9f9bf98c0896580717421499bf2ff8bc19035dfc314d7759f900"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/logs/patch_apply.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/logs/patch_check.stderr.log",
+      "bytes": 77,
+      "sha256": "09a9b8b04362cab67e58dbf2ef76ab593c214bc5e81a7dca33a6dc3a08b64ecf"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/logs/patch_check.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/patch_execution_receipt.json",
+      "bytes": 1077,
+      "sha256": "ad1534a852d326be509d8be009d030592887c826ac8209d28c0b57e5de8180cd"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/post_correction_failed/SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15449,
+      "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/pre_correction/SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 14984,
+      "sha256": "7cb7dae93bce8c2b0ff3f1eca45ce84cb5f74194f4e38a1ed02bb07c55262980"
+    },
+    {
+      "file": "Saved/BuildAttempts/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION/correction_attempt_01/preflight_receipt.json",
+      "bytes": 1228,
+      "sha256": "0614878d7ccf48f7f4d704ba7dbe2ed0928978b7dbc74563a25c480c2f2b26c2"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION_ATTEMPT01_READINESS.json",
+      "bytes": 740,
+      "sha256": "decd3f2a2e31b0f12fd569127fce2781afed140a7d2b305644265a3f7344289f"
+    },
+    {
+      "file": "Saved/Reports/PHASE4_M01_RECOVERY05_ENVIRONMENT_SOURCE_CORRECTION_ATTEMPT01_TERMINAL_EVIDENCE.json",
+      "bytes": 1494,
+      "sha256": "45e8785364331183263897c13916ce0a79cd69ffd303f3582fef2c59843a7839"
+    },
+    {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentDirector.cpp",
+      "bytes": 15449,
+      "sha256": "372ca763fbf38091bfbd3c942f42a186247c268f8c02a799c24361b0f619fbea"
+    }
+  ],
+  "failed_namespace_reuse_forbidden": true,
+  "native_build_authorized": false,
+  "next_gate": "EXPLICIT_OFFLINE_SOURCE_RECOVERY01_AUTHORIZATION_REQUIRED",
+  "next_gate_scope": "Restore the target from the immutable pre-correction copy, verify the original hash, and reapply the single insertion with a byte-preserving tool that cannot convert line endings. This requires separate explicit authorization and must not compile or launch Unreal."
+}

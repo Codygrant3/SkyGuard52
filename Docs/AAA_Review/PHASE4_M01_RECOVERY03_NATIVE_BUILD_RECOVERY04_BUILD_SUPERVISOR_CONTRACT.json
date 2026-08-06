@@ -1,0 +1,25 @@
+{
+  "schema": "skyguard.recovery03-native-build-recovery04-supervisor-contract.v1",
+  "contract_id": "P4.6-M01-RECOVERY03-NATIVE-BUILD-RECOVERY04",
+  "supervisor": "Scripts/build_skyguard_recovery03_native_recovery04_once.ps1",
+  "authorization_switch": "-AuthorizeSingleBuild",
+  "executable": "D:/UE_5.8/Engine/Binaries/ThirdParty/DotNet/10.0/win-x64/dotnet.exe",
+  "first_argument": "D:/UE_5.8/Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll",
+  "arguments": [
+    "BuildPlugin",
+    "-Plugin=D:/Skyguard52/Plugins/SkyguardRecovery03NativeRecovery04/SkyguardRecovery03NativeRecovery04.uplugin",
+    "-Package=D:/SG52R03B05",
+    "-TargetPlatforms=Win64",
+    "-Rocket",
+    "-StrictIncludes",
+    "-NoP4"
+  ],
+  "future_build_attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY04/build_attempt_01",
+  "future_runtime_attempt": "Saved/BuildAttempts/PHASE4_M01_REPRESENTATIVE_VISUAL_ATTEMPT08_RECOVERY03_NATIVE_BUILD_RECOVERY04/runtime_attempt_01",
+  "terminal_manifest": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_TERMINAL_SUPERVISOR_MANIFEST.json",
+  "emergency_receipt": "Saved/Reports/PHASE4_M01_RECOVERY03_NATIVE_BUILD_RECOVERY04_EMERGENCY_RECEIPT.jsonl",
+  "timeout_seconds": 1200,
+  "launch_count": 1,
+  "automatic_retry": false,
+  "build_authorized_during_offline_gate": false
+}

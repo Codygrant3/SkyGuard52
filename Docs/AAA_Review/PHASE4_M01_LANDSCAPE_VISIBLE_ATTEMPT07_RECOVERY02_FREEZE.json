@@ -1,0 +1,57 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt07-recovery02-freeze.v1",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-007-RECOVERY-02",
+  "frozen_at_utc": "2026-08-02T19:13:03.8725609Z",
+  "status": "FINAL_OFFLINE_HANDOFF_NO_FURTHER_SOURCE_EDITS",
+  "files": {
+    "contract": {
+      "file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY02_CONTRACT.json",
+      "bytes": 13124,
+      "sha256": "fa519d54a01946f4610407839e0dd9d6db7fbeca57c67f9756100d4c002aee32"
+    },
+    "readiness_report": {
+      "file": "Saved/Reports/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT07_RECOVERY02_READINESS.json",
+      "bytes": 2328,
+      "sha256": "9f7922918bb844896160d0d94134d257031651e0843ddd9641465aa217893f49"
+    },
+    "native_header": {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.h",
+      "bytes": 10648,
+      "sha256": "1110d71f33813b212ed880ea21f3126369089de1f59fda6358161dfff46397f1"
+    },
+    "native_implementation": {
+      "file": "Source/Skyguard52/SkyguardMission01EnvironmentAuthoringLibrary.cpp",
+      "bytes": 38847,
+      "sha256": "ba6c399dd462ff771067eb243bbae914095029992a5abc24f184529e9b54b6c8"
+    },
+    "tiny_proof": {
+      "file": "Scripts/prove_skyguard_phase4_m01_landscape_attempt07_recovery02_tiny_live.py",
+      "bytes": 21411,
+      "sha256": "5635d15262db7e7f597f62e2f8466a640bccde61088acc2a232842a713a31ffc"
+    },
+    "supervisor": {
+      "file": "Scripts/supervise_skyguard_phase4_m01_landscape_visible_attempt07_recovery02.py",
+      "bytes": 12367,
+      "sha256": "9d2b1045839859a39686a2102a0fb8690f83cfed23ab65dbd80e2bc517570e3e"
+    },
+    "launcher": {
+      "file": "Scripts/run_skyguard_phase4_m01_landscape_visible_attempt07_recovery02.ps1",
+      "bytes": 1270,
+      "sha256": "e2703fa113f0ad1084971724141f48ac8e935b7cd2a81b6ef3ba214aee91f2ea"
+    },
+    "readiness_tool": {
+      "file": "Scripts/verify_skyguard_phase4_m01_landscape_attempt07_recovery02_readiness.py",
+      "bytes": 10825,
+      "sha256": "1d41621b7b8512d86f15d850595c23696560696f4b4d65227454d99961d47073"
+    },
+    "tests": {
+      "file": "Scripts/tests/test_phase4_m01_landscape_attempt07_recovery02.py",
+      "bytes": 5290,
+      "sha256": "eec8c0543c9655d67253626265c0d9df8c9e284affc515832fce90a955f8da4b"
+    }
+  },
+  "readiness_gate": "PASS_ATTEMPT07_RECOVERY02_OFFLINE_IMPLEMENTATION_READY_PENDING_AUTHORIZATION",
+  "authorized_command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\Skyguard52\\Scripts\\run_skyguard_phase4_m01_landscape_visible_attempt07_recovery02.ps1\" -AuthorizeSingleRecovery02TinyProof",
+  "execution_performed_during_freeze": false,
+  "source_edits_allowed_after_freeze": false
+}

@@ -1,0 +1,95 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "units": "metres",
+  "sheet_standard": {
+    "views": [
+      "front",
+      "side",
+      "top",
+      "rear",
+      "hero_q"
+    ],
+    "scale_bar": "metric",
+    "label_provisional": true
+  },
+  "assets": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "sheet_id": "DS-C03-RAIL-001",
+      "callouts_m": {
+        "length": 0.12,
+        "top_width": 0.021209,
+        "profile_height_min": 0.009322,
+        "dovetail_width": 0.018999,
+        "groove_width": 0.005232,
+        "pitch": 0.010008
+      },
+      "notes": [
+        "section inset",
+        "VALIDATION COUPON only"
+      ]
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "sheet_id": "DS-C03-RIFLE-001",
+      "callouts_m": {
+        "envelope_length": 0.8675,
+        "envelope_width": 0.074,
+        "envelope_height": 0.134
+      },
+      "regions": [
+        "upper_receiver",
+        "lower_receiver",
+        "handguard",
+        "barrel_muzzle",
+        "stock_placeholder",
+        "magwell_placeholder",
+        "ads_front",
+        "ads_rear"
+      ],
+      "notes": [
+        "UNRESOLVED exact config",
+        "family-only title"
+      ]
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "sheet_id": "DS-C03-IGLA-MSL-001",
+      "callouts_m": {
+        "body_length": 1.574,
+        "body_diameter": 0.072
+      },
+      "notes": [
+        "true 0.072 body",
+        "discs are visualization aids",
+        "no launcher systems"
+      ]
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "sheet_id": "DS-C03-HAND-001",
+      "callouts_m": {
+        "selected_hand_length": 0.19,
+        "selected_hand_breadth": 0.085,
+        "selected_forearm_plus_hand": 0.46
+      },
+      "poses": [
+        "neutral",
+        "rifle_support",
+        "trigger",
+        "igla_support_gated"
+      ],
+      "notes": [
+        "project-provisional not percentile",
+        "glove seams/knuckles/thumb web/cuff/sleeve"
+      ]
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "sheet_id": "DS-C03-SHAHED-001",
+      "callouts_m": {
+        "length": 3.3,
+        "span": 3.0
+      },
+      "notes": [
+        "planform orthographics first",
+        "cross-section/propeller EVIDENCE REQUIRED"
+      ]
+    }
+  }
+}

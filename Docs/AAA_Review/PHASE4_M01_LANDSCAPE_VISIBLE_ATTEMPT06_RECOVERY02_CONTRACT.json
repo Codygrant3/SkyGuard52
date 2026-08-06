@@ -1,0 +1,102 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-visible-attempt06-recovery02.v1",
+  "recovery_id": "P4.5-M01-LANDSCAPE-VISIBLE-006-RECOVERY-02",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-006",
+  "status": "OFFLINE_RECOVERY02_IMPLEMENTED_READY_PENDING_EXPLICIT_AUTHORIZATION",
+  "root_cause": {
+    "classification": "ATTEMPT06_VISUAL_THRESHOLD_SCHEMA_ADAPTER_MISSING",
+    "failing_source": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+    "failing_function": "analyze_attempt05_visuals",
+    "caller": "analyze_attempt06_visuals",
+    "exception": "KeyError: minimum_landscape_pixel_fraction_by_camera",
+    "explanation": "Attempt06 replaces contract.repair with its v2 contract. Attempt05 stores coverage minimums in capture_revision.minimum_landscape_pixel_fraction_by_camera, while Attempt06 stores minimum_landscape_pixel_fraction on each capture_revision.cameras record. The shared Attempt05 visual analyzer dereferenced only the legacy mapping and crashed before evidence analysis.",
+    "unreal_evidence_failure": false,
+    "capture_failure": false,
+    "profile_failure": false,
+    "offline_gate_implementation_failure": true
+  },
+  "recovery01_evidence": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_01",
+    "inventory": {
+      "file": "Docs/AAA_Review/PHASE4_M01_LANDSCAPE_VISIBLE_ATTEMPT06_RECOVERY01_IMMUTABLE_INVENTORY.json",
+      "sha256": "9d9a6eeb4d6a8e87f2db8193c3d8fb5f69d74f2dbf72e767f5d7cc5b54bae186",
+      "exhaustive_source_root_file_count": 40,
+      "external_profile_csv_file_count": 2
+    },
+    "manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_01/recovery_manifest.json",
+      "sha256": "d72bdb27cf0d08748fe15349dc6ddd4c19044e87ac129715a8a673fb9fe6b7d6"
+    },
+    "required_successful_stage_names": [
+      "verify_candidate_render_state_d3d12_sm6",
+      "baseline_capture",
+      "candidate_capture",
+      "baseline_profile_measured",
+      "candidate_profile_measured"
+    ],
+    "required_stage_exit_code": 0,
+    "required_terminal_state": "FAILED",
+    "required_only_error_contains": "verify_recovery01_visible_gpu_gate",
+    "mutation_allowed": false
+  },
+  "threshold_normalization": {
+    "legacy_attempt05_source": "capture_revision.minimum_landscape_pixel_fraction_by_camera",
+    "attempt06_source": "capture_revision.cameras[].minimum_landscape_pixel_fraction",
+    "normalized_camera_thresholds": {
+      "C01_ESTABLISHING_HIGH": 0.08,
+      "C02_SHORELINE_GRAZE": 0.1,
+      "C03_ROUTE_LOW": 0.05,
+      "C04_INLAND_CLOSE": 0.3,
+      "C05_COVERAGE_HIGH": 0.2
+    },
+    "readability_source": "capture_revision.readability_inside_coverage_mask",
+    "duplicate_camera_ids_fail_closed": true,
+    "missing_or_out_of_range_thresholds_fail_closed": true,
+    "attempt05_behavior_must_remain_unchanged": true
+  },
+  "performance_schema_normalization": {
+    "latent_mismatch": "Recovery01 profile stages use command arrays and omit peak_working_set_mib, while the shared gate was written for command_line strings and supervisor-sampled peak_working_set_mib.",
+    "primary_peak_source": "stage.peak_working_set_mib when both stages provide it",
+    "attempt06_fallback_peak_source": "maximum immutable CSV PhysicalUsedMB during each governed measured interval",
+    "fallback_is_evidence_backed_not_estimated": true,
+    "fallback_source_must_be_reported": "immutable_csv_PhysicalUsedMB",
+    "profile_command_may_be_command_line_or_command_array": true,
+    "missing_memory_evidence_still_fails_closed": true
+  },
+  "offline_gate_implementation": {
+    "source": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate.py",
+    "before_sha256": "85d4b3b2971dd541cb1950abfff4f2acfb1dc0414fab8697d6c19dca862b88dc",
+    "recovery02_sha256": "d0d515781c173939b9d564ecda5146266e9c969a91ec1465a0aabf3794d946cb",
+    "entrypoint": "Scripts/verify_skyguard_phase4_m01_landscape_visible_gpu_gate_attempt06.py",
+    "entrypoint_sha256": "89cc3d24a30ed278cb8bce3a9ed512f3b48e24f33978f59c91c2797f35ab5f86"
+  },
+  "recovery_execution": {
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt06/attempt_20260802T180523749Z/recovery_02",
+    "manifest": "recovery_manifest.json",
+    "gate_report": "gate_report.json",
+    "latest_snapshot": "latest_gate_snapshot.json",
+    "receipt": "recovery_receipt.json",
+    "stdout_log": "logs/offline_gate.stdout.log",
+    "stderr_log": "logs/offline_gate.stderr.log",
+    "execution_type": "OFFLINE_PYTHON_ONLY",
+    "unreal_launch_allowed": false,
+    "blender_launch_allowed": false,
+    "build_allowed": false,
+    "authoring_allowed": false,
+    "capture_allowed": false,
+    "profile_allowed": false,
+    "network_allowed": false,
+    "automatic_retry_allowed": false,
+    "source_recovery_mutation_allowed": false,
+    "promotion_allowed": false,
+    "duplicate_or_overwrite_allowed": false,
+    "gate_exit_codes_allowed": [0, 2],
+    "technical_fail_is_preserved_not_overridden": true,
+    "missing_performance_evidence_must_not_be_fabricated": true
+  },
+  "authorization": {
+    "offline_recovery_run_allowed": false,
+    "explicit_switch_required": "--authorize-offline-recovery-run",
+    "next_gate": "exactly one explicitly authorized Recovery02 offline analysis"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "created_at_utc": "2026-08-06T12:48:24.684131+00:00",
+  "accepted_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+    "bytes": 9362,
+    "sha256": "a59af7eb4c185b44f824d3933a4cf05e3715654d34af260e93b0911a04b2e228",
+    "classification": "PASSED_RECOVERY03_PROVISIONAL_BLOCKOUTS_ACCEPTED"
+  },
+  "accepted_scope": "provisional blockouts only",
+  "final_aaa_assets": false,
+  "unreal_import_authorized": false,
+  "accepted_assets": {
+    "PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON": {
+      "role": "dimensional_validation_coupon",
+      "dims": {
+        "length": 0.12,
+        "top_width": 0.021209,
+        "profile_height_min": 0.009322,
+        "dovetail_width": 0.018999,
+        "groove_width": 0.005232,
+        "pitch": 0.010008
+      },
+      "sockets": [
+        "SOCKET_Rail_Origin"
+      ],
+      "glb": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb",
+        "bytes": 27768,
+        "sha256": "27c15fceedcafe36b14106d2508b8d53e982c214f7d16cb1d50f968733c81855"
+      },
+      "render": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.png",
+        "bytes": 642756,
+        "sha256": "5bc010e3e3606ee2defc3d883134cdeb6bb2931bbff49344caaca871f3a9db6f"
+      },
+      "identity": "STANDARD_DIMENSION_AUTHORITY"
+    },
+    "PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT": {
+      "role": "hero_weapon_family_blockout",
+      "dims": {
+        "envelope_length": 0.8675,
+        "envelope_width": 0.074,
+        "envelope_height": 0.134
+      },
+      "sockets": [
+        "SOCKET_Rifle_ADSFront_PROVISIONAL",
+        "SOCKET_Rifle_ADSRear_PROVISIONAL",
+        "SOCKET_Rifle_MuzzleAxis_PROVISIONAL",
+        "SOCKET_Rifle_SupportHand_PROVISIONAL",
+        "SOCKET_Rifle_TriggerHand_PROVISIONAL"
+      ],
+      "glb": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
+        "bytes": 737176,
+        "sha256": "562e3cd9df397f8c21d06d57a3036b54405f74a8985b9ecd84dca5cf5738e71d"
+      },
+      "render": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.png",
+        "bytes": 693375,
+        "sha256": "27ab88460950aaa1ab9c4dc704bcf92bf844c6be3ff1c95a2b39cc96613e9ca4"
+      },
+      "identity": "AR_M4_FAMILY_ONLY"
+    },
+    "PROVISIONAL_9K38_MISSILE_ENVELOPE": {
+      "role": "missile_dimensional_envelope",
+      "dims": {
+        "body_length": 1.574,
+        "body_diameter": 0.072,
+        "note": "0.080 m collection bounds include measurement discs"
+      },
+      "sockets": [
+        "SOCKET_IglaMissile_ForwardOrigin_PROVISIONAL",
+        "SOCKET_IglaMissile_RearAxis_PROVISIONAL"
+      ],
+      "glb": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb",
+        "bytes": 37112,
+        "sha256": "0b4d61e60dd46a752bb3534638bb7c402f9bb141675678a40915ee684f32f687"
+      },
+      "render": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_9K38_MISSILE_ENVELOPE.png",
+        "bytes": 616327,
+        "sha256": "62bb8d027751ca6f2d16a6c494d1302f3a2dd31adf37d8a696569647ae63663f"
+      },
+      "identity": "9K38_MISSILE_ENVELOPE_ONLY"
+    },
+    "PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN": {
+      "role": "first_person_hand_forearm_blockout",
+      "dims": {
+        "selected_hand_length": 0.19,
+        "selected_hand_breadth": 0.085,
+        "selected_forearm_plus_hand": 0.46,
+        "claim": "project blockout only; not a measured percentile"
+      },
+      "sockets": [
+        "SOCKET_Hand_GripCenter_PROVISIONAL",
+        "SOCKET_Hand_Wrist_PROVISIONAL"
+      ],
+      "glb": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
+        "bytes": 416684,
+        "sha256": "c5761337f8fb8658375bc04625670ef22ab5a841a18fd379bd0d4074e6a4dad0"
+      },
+      "render": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.png",
+        "bytes": 651467,
+        "sha256": "616912058409e1124bc357fbcd3e73b9e8a5fc0feb68de0d59435d146e395a5c"
+      },
+      "identity": "PROJECT_PROVISIONAL_ANATOMY"
+    },
+    "PROVISIONAL_SHAHED136_ENVELOPE": {
+      "role": "threat_airframe_planform_envelope",
+      "dims": {
+        "length": 3.3,
+        "span": 3.0
+      },
+      "sockets": [
+        "SOCKET_Shahed_DamageCore_PROVISIONAL",
+        "SOCKET_Shahed_WingL_PROVISIONAL",
+        "SOCKET_Shahed_WingR_PROVISIONAL"
+      ],
+      "glb": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_SHAHED136_ENVELOPE.glb",
+        "bytes": 29344,
+        "sha256": "eba964eddcfe84e7c08e4e72f54cf0bfae5f1b9519b2ac491bb87396a62e03d9"
+      },
+      "render": {
+        "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\renders\\PROVISIONAL_SHAHED136_ENVELOPE.png",
+        "bytes": 723366,
+        "sha256": "afa063771a483fc45af54ac8e442d8f8f9b277261a25eebdfa9e6e1ee26f511c"
+      },
+      "identity": "PLANFORM_ENVELOPE_ONLY"
+    }
+  },
+  "reference_authorities": {
+    "reference_resolution_freeze": {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_ASSET_REFERENCE_RESOLUTION_CYCLE02_FREEZE.json",
+      "bytes": 16226,
+      "sha256": "e6f0acc05ed81f397e7f6d98ecce02f060154fe8d6ef694c3fd314fa3eae4ce3"
+    },
+    "dimension_validation": {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_DIMENSION_VALIDATION.json",
+      "bytes": 2476,
+      "sha256": "fe009879604ec2f411dfbc270ec2e1af3260c14fb1dd98b78795650658fd9db2"
+    },
+    "visual_review": {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_VISUAL_REVIEW.json",
+      "bytes": 6749,
+      "sha256": "2a8caed0e48e8ad2112cfb9854eb87b55bcd19c6f738eb4864753a8831a0c864"
+    },
+    "glb_structure": {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01_GLB_STRUCTURE_VALIDATION.json",
+      "bytes": 4396,
+      "sha256": "d694982b9eb5d97ee2bca0ed73317546e6c6c3c2cd306de245730eced7896e0e"
+    },
+    "dimension_receipt": {
+      "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\dimension_and_artifact_receipt.json",
+      "bytes": 5591,
+      "sha256": "7566ba0c4d485e3c1e84ea5e15be4a8b048d28a0900e46c3af9ad274a6f0607b"
+    }
+  },
+  "preservation_rules": [
+    "Do not modify accepted Recovery03 blockout artifacts or freeze.",
+    "Preserve accepted dimensions, pivots, sockets, classifications, receipts, hashes.",
+    "Do not invent exact rifle config, Igla launcher detail, measured percentile anatomy, or Shahed cross-sections.",
+    "Do not replace accepted Unreal runtime assets."
+  ]
+}

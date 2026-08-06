@@ -1,0 +1,145 @@
+{
+  "schema": "skyguard.phase2.yak52-r6-technical-reference-intake-cycle04.freeze.v1",
+  "generated_at_utc": "2026-08-05T23:32:35.636909+00:00",
+  "classification": "BLOCKED_AWAITING_REFERENCE_INPUT",
+  "blender_authorized": false,
+  "unreal_authorized": false,
+  "external_models_invoked": false,
+  "subagents_invoked": false,
+  "files": [
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_R6_REFERENCE_INTAKE_CYCLE05_AFTER_NEW_TECHNICAL_INPUT.md",
+      "bytes": 1110,
+      "sha256": "5522371fd774d831ccf89f029e7fa53c76242d768360ffa677187ce59371dc7b"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REARGUNNER_UNREAL_EXPORT_CONTRACT.json",
+      "bytes": 838,
+      "sha256": "b4a80dcde5c9bc46b48c09fff20d84939f2f90877df5630df949010f89bbb8f2"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REARGUNNER_UPLIFT_CONTRACT.json",
+      "bytes": 1145,
+      "sha256": "682fbed0d346a355fa8d9b4a31da9060995e79a01dc6482301c1922e0fc65924"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_REARGUNNER_VISUAL_ACCEPTANCE_RUBRIC.json",
+      "bytes": 1113,
+      "sha256": "aecfb51baaf02af4502dc72f869de7d85d2f6c52a1b9ffc6548cda5f1745dc9c"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_COMPONENT_INVENTORY.json",
+      "bytes": 28732,
+      "sha256": "a984e74d6930261300b4753698e7998bc7798e3d04ac3e0faf65a28711cc9394"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_DIMENSION_AUTHORITY_MATRIX.json",
+      "bytes": 5138,
+      "sha256": "f5d44b7f0fd26d18c441dddac1e0f11ec06231e345ef8176662c059c6966a237"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_GROK45_EVIDENCE.json",
+      "bytes": 736,
+      "sha256": "861da5a12d12fc443b2e4d5d9b4e996183d4ff5b939b84920a3c82d4323dbe21"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_PROVENANCE.json",
+      "bytes": 2263,
+      "sha256": "a276ea5e97d0bb89bff26d112c2be3ad84cfcc5068d21774dbf1d5161be6b989"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_READINESS.json",
+      "bytes": 1018,
+      "sha256": "2b0fce6277b713e4bb3a6363100943d30e32a0867e9f9663b926afd7755a016e"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_REPORT.md",
+      "bytes": 1626,
+      "sha256": "1e662d68cf5af8a7b50f53a17ce19c594b350fa902eb0b2164faeb4addf511cd"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_RETAIN_REFINE_BLOCK.json",
+      "bytes": 7207,
+      "sha256": "fb1a3a26ea8d005398e9fd126533665771bb6748ff24ace91396e8db7219c1ba"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_SANITIZED_GROK45_BRIEF.md",
+      "bytes": 1313,
+      "sha256": "3621159ddd18ba785db8741265cd8d875214a0a62467d3326c1be16c141957b4"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_SOURCE_INVENTORY.json",
+      "bytes": 6946,
+      "sha256": "068c501d78cd3d2c8a55f24984c28a48aed12beed28dd59c4c808532fa4190cb"
+    },
+    {
+      "role": "cycle04_artifact",
+      "path": "D:\\Skyguard52\\Saved\\Reports\\PHASE2_YAK52_R6_TECHNICAL_REFERENCE_INTAKE_CYCLE04_UNCERTAINTY_REGISTER.json",
+      "bytes": 2123,
+      "sha256": "4354451352f40a376ffdf4ab212ca78d72f0eaa87d3ad54524609d8586f02aa9"
+    },
+    {
+      "role": "primary_content_russian_flight_manual_mirror",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\Raw\\rle_yak52_2001_ru.pdf",
+      "bytes": 5202029,
+      "sha256": "99eeec957448dc24b62dbcde177993c2f2bbaddc82472f4bc01574983d9d6b61"
+    },
+    {
+      "role": "english_operations_manual_mirror",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\Raw\\Yak52OperationsManual.pdf",
+      "bytes": 1199005,
+      "sha256": "0f0b3784f61b915cbac04ac64bb874738fa3ad65e4afc3a3cc93d2c31a70f4b8"
+    },
+    {
+      "role": "secondary_cockpit_handbook",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\Raw\\YAK52-handbook.pdf",
+      "bytes": 662514,
+      "sha256": "85b7209391fcc0437058c1b2d67dde06687efeb751e87daa196afa9d716a71df"
+    },
+    {
+      "role": "derived_manual_page_13_three_view",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\DerivedPages\\render_rle_geometry-013.png",
+      "bytes": 331037,
+      "sha256": "57a0981c6601bd1a15607e79344b0f9d530dbfbcce0aedde8409b22b28bc6a13"
+    },
+    {
+      "role": "derived_manual_page_14_geometry",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\DerivedPages\\render_rle_geometry-014.png",
+      "bytes": 226138,
+      "sha256": "68b4fcd08aad935740bde3e0462fdaee4169b67880b0e869c903a04137811cc7"
+    },
+    {
+      "role": "derived_manual_page_111_front_cockpit",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\DerivedPages\\render_rle_cockpit-111.png",
+      "bytes": 912637,
+      "sha256": "0d78e37d77bc879fbeb814d5d2a8bfd64a3a127b646424f0428536c6a8bd95db"
+    },
+    {
+      "role": "derived_manual_page_112_rear_cockpit",
+      "path": "D:\\Skyguard52\\References\\Yak52\\R6_TechnicalIntake_Cycle04\\DerivedPages\\render_rle_cockpit-112.png",
+      "bytes": 819340,
+      "sha256": "ecd0925445d0899628196751e74657fb81a9784836cc6c2a1d63f65ae5880863"
+    }
+  ],
+  "missing_unlocks": [
+    "dimensioned fuselage stations or maintenance cross-sections",
+    "canopy rail/bow/overlap/open-travel dimensions",
+    "cockpit seat and eye datum drawing",
+    "cowling and M-14P/V-530 installation geometry",
+    "detailed wing-root/fairing and tail planform authority"
+  ],
+  "next_prompt": "D:\\Skyguard52\\Docs\\AAA_Review\\NEXT_PROMPT_R6_REFERENCE_INTAKE_CYCLE05_AFTER_NEW_TECHNICAL_INPUT.md"
+}

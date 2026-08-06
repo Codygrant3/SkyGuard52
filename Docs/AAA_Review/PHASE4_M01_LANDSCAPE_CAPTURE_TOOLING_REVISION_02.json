@@ -1,0 +1,49 @@
+{
+  "schema": "skyguard.phase4.m01-landscape-capture-tooling-revision.v2",
+  "contract_id": "P4.5-M01-LANDSCAPE-VISIBLE-004",
+  "accepted_candidate": {
+    "map": "/Game/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04",
+    "file": "Content/Skyguard/Maps/Lvl_M01_CoastalIntercept_LandscapeMaterialValidation_v4_attempt04.umap",
+    "sha256": "cb2c13f3ce18a3462620306bcef4610d87c2f0cf28a7815b444bd68ab773a021",
+    "material_file": "Content/Skyguard/Materials/Mission01/LandscapeValidation_v4/M_M01_Landscape_Validation_v4.uasset",
+    "material_sha256": "e54682b64f43dbaf0e2c61f08436d495493c6db1f28998cce9583d0542c4042e"
+  },
+  "preserved_failed_capture_attempt": {
+    "attempt_id": "attempt_20260802T151713427Z",
+    "root": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151713427Z",
+    "run_manifest": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151713427Z/run_manifest.json",
+      "sha256": "1515d675b51fa948dda710df53e7e65c4db08edc35562b53843e3dd1b766f173"
+    },
+    "supervisor_receipt": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151713427Z/supervisor_receipt.json",
+      "sha256": "1edcd5485b5e489b05d8568c5571ca9a888639e513284a888fc37bca5cdad46f"
+    },
+    "baseline_capture_log": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151713427Z/logs/baseline_capture.stdout.log",
+      "sha256": "de8c38f4df804510af46291a24412b6f93fe761ba032bd5b91614b32d86906d5"
+    },
+    "candidate_capture_log": {
+      "file": "Saved/Profiling/Phase4/M01_LandscapeVisible_Attempt04/attempt_20260802T151713427Z/logs/candidate_capture.stdout.log",
+      "sha256": "aaf248a6be2266b35117ba41bdb96450bc3c6608078dd9a658704c4f3f6e34ed"
+    },
+    "terminal_state": "FAIL",
+    "cause": "PythonScriptCommandlet initialized NullRHI despite D3D12 and SM6 command-line flags",
+    "screenshots_produced": 0,
+    "profiles_run": 0,
+    "gpu_health_event_count": 0,
+    "exact_heavy_process_count_at_exit": 0,
+    "performance_evidence_eligible": false
+  },
+  "offline_repair": {
+    "gpu_capture_execution_host": "UnrealEditor.exe normal editor mode",
+    "python_entrypoint": "-ExecutePythonScript",
+    "commandlet_capture_forbidden": true,
+    "automation_library_high_res_screenshot_forbidden": true,
+    "scene_capture_transient_render_target_required": true,
+    "runtime_rhi_marker_required_before_screenshot": "D3D12|SM6",
+    "script_errors_are_fatal": true
+  },
+  "execution_state": "OFFLINE_TOOLING_PATCH_ONLY_REQUIRES_FRESH_EXCLUSIVE_GPU_LANE_GRANT",
+  "promotion": "FORBIDDEN_UNTIL_TECHNICAL_GATE_AND_HUMAN_VISIBLE_REVIEW_PASS"
+}

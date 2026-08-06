@@ -1,0 +1,275 @@
+[
+  {
+    "id": "MAT-018",
+    "pillar": "materials",
+    "title": "Behind-wall painted metal chips",
+    "change": "Add a small cluster of pale paint chips over muted rust on one rear metal panel.",
+    "stage_targets": [
+      "Harbor"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L23_*",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single compact mask at x>=bx+3; keep chips off the ground plane and use pale gray edges so the panel does not become a dark mass.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Harbor"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The weathering is rear-only, small in area, and value-balanced toward pale chipped paint.",
+    "acceptance_test": "Harbor remains Usable; the rear panel gains readable paint loss without any new foreground or ocean contrast issue.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-003",
+    "pillar": "aircraft",
+    "title": "Fuselage access-panel offset",
+    "change": "Add one shallow offset border around an existing fuselage access panel behind the wall.",
+    "stage_targets": [
+      "YakBeauty"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "yak52_hd_proxy"
+      ],
+      "materials": [
+        "M_YakAccessPanel_UnlitHF"
+      ],
+      "textures": [
+        "T_YakAccessPanelMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a 1-2 pixel projected border in warm gray; keep the panel face mid-value and avoid adding a full hero decal.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "YakBeauty"
+      ],
+      "cameras_risk": [
+        "Prop",
+        "PropNose",
+        "City",
+        "Ocean",
+        "Wide"
+      ]
+    },
+    "capture_safe_reason": "Only a small existing-surface border is added beyond x>=bx+3, with no new dark or reflective material.",
+    "acceptance_test": "Panel border must be legible in YakBeauty and absent from the frozen foreground overlap; all 11 cameras remain usable.",
+    "effort": "S",
+    "priority_guess": 3,
+    "risk": "low"
+  },
+  {
+    "id": "AIR-018",
+    "pillar": "aircraft",
+    "title": "Gunner station trim notch",
+    "change": "Add one small bright trim notch to the gunner station side panel.",
+    "stage_targets": [
+      "Cockpit"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [
+        "gunner_station_proxy"
+      ],
+      "materials": [
+        "M_GunnerTrim_UnlitHF"
+      ],
+      "textures": [
+        "T_GunnerTrimMask"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a single trapezoid accent with restrained contrast and no additional panel volume.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Cockpit"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single behind-wall trim notch is a controlled local detail and does not affect canopy, aircraft exterior, or exposure.",
+    "acceptance_test": "The notch is readable as a manufactured trim cue in Cockpit with no new black block or loss of usability.",
+    "effort": "S",
+    "priority_guess": 18,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-001",
+    "pillar": "vfx",
+    "title": "Compact twin-lobed muzzle flash",
+    "change": "Add a short-duration, camera-facing twin-lobed muzzle flash proxy to the primary aircraft gun firing point.",
+    "stage_targets": [
+      "Combat",
+      "ADS"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_MuzzleFlash_Card"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_MuzzleFlash_Warm_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_MuzzleFlash_TwinLobe"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_MuzzleFlash"
+      ]
+    },
+    "implementation_notes": "Use a small additive sprite or card, warm white core with restrained amber edge, 0.05-0.09 second lifetime, and bounded size relative to the weapon muzzle.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "Combat",
+        "ADS"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small additive emissive content stays in the muzzle region and cannot create a dark FOV wall or sun-washout field.",
+    "acceptance_test": "Capture Combat and ADS; muzzle flash is readable for one burst, occupies less than 3 percent of frame area, and all 11 cameras remain Usable.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  },
+  {
+    "id": "VFX-006",
+    "pillar": "vfx",
+    "title": "Single impact ember core",
+    "change": "Add one compact orange-white emissive ember core at the first hit location.",
+    "stage_targets": [
+      "PropNose",
+      "Combat"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "/Game/Skyguard/VFX/M_ImpactEmber_Core"
+      ],
+      "materials": [
+        "/Game/Skyguard/VFX/MI_ImpactEmber_Additive"
+      ],
+      "textures": [
+        "/Game/Skyguard/VFX/T_ImpactEmber_Core"
+      ],
+      "niagara": [
+        "/Game/Skyguard/VFX/NS_HitSparks"
+      ]
+    },
+    "implementation_notes": "Use a small billboard with a brief brightness peak and fast fade; keep the radius below the local panel feature scale.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "PropNose",
+        "Combat"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "A single tiny emissive point provides a stable focal cue and cannot obscure the nose or create a smoke wall.",
+    "acceptance_test": "The ember is visible in PropNose and Combat, remains under 1 percent of frame area, and does not alter silhouette readability.",
+    "effort": "S",
+    "priority_guess": 6,
+    "risk": "low"
+  },
+  {
+    "id": "MAT-013",
+    "pillar": "materials",
+    "title": "Behind-wall rust tile",
+    "change": "Add one small rust tile decal/material variation behind the wall on a visible city-side construction surface.",
+    "stage_targets": [
+      "City"
+    ],
+    "placement": "behind_wall",
+    "assets": {
+      "meshes": [],
+      "materials": [
+        "/Game/Skyguard/Materials/M_L21_*",
+        "/Game/Skyguard/Materials/M_Tex_*"
+      ],
+      "textures": [
+        "/Game/Skyguard/Textures/Imported"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Place at x>=bx+3 on an existing wall or utility surface; use a compact orange-brown rust mask with a light base and no foreground overlap.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "flat",
+      "black_delta": "flat",
+      "cameras_helped": [
+        "City"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "The authored weathering is explicitly behind the wall and outside the frozen foreground densify band.",
+    "acceptance_test": "City remains Usable; the rust tile is visible only on the intended rear surface and does not affect Prop, YakBeauty, Ocean, or Wide.",
+    "effort": "S",
+    "priority_guess": 13,
+    "risk": "low"
+  },
+  {
+    "id": "CO-001",
+    "pillar": "city_ocean",
+    "title": "Warm brick bay bands on facade tower",
+    "change": "Add two narrow warm-brick vertical bay bands to facade_tower_proxy with bright unlit height-field breakup.",
+    "stage_targets": [
+      "City",
+      "Wide"
+    ],
+    "placement": "additive_emissive",
+    "assets": {
+      "meshes": [
+        "facade_tower_proxy"
+      ],
+      "materials": [
+        "M_FacadeBrickWarm_UnlitHF"
+      ],
+      "textures": [
+        "T_BrickBand_MicroVariation"
+      ],
+      "niagara": []
+    },
+    "implementation_notes": "Use a small additive proxy offset from the tower face; keep intensity restrained and preserve the existing HF-lit silhouette.",
+    "expected_metric_effect": {
+      "uniq_delta": "up",
+      "edge_delta": "up",
+      "black_delta": "down",
+      "cameras_helped": [
+        "City",
+        "Wide"
+      ],
+      "cameras_risk": []
+    },
+    "capture_safe_reason": "Small bright facade accents preserve the frozen FOV density and avoid dark sole-material coverage.",
+    "acceptance_test": "Loop52 capture remains 11/11 usable; City and Wide show two readable brick bands without clipping or black patches.",
+    "effort": "S",
+    "priority_guess": 1,
+    "risk": "low"
+  }
+]

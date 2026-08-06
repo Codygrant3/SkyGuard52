@@ -1,0 +1,39 @@
+{
+  "gate": "GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_BLENDER_RECOVERY01_AUTHORIZATION",
+  "failed_attempt_freeze": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\GATE7_COMBAT_BLOCKOUT_CYCLE02_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 2224,
+    "sha256": "84b989ec02eee076d4f212d98fb49c10a46041190bd20bd17f8739386adeb632"
+  },
+  "failed_attempt": {
+    "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02\\attempt_01",
+    "classification": "FAILED_WITH_EVIDENCE",
+    "immutable": true,
+    "retry_permitted": false
+  },
+  "correction": {
+    "changed_lines": 2,
+    "functional_change": "Use the Blender 5.2 render-engine enum BLENDER_EEVEE instead of invalid BLENDER_EEVEE_NEXT.",
+    "namespace_change": "Version the embedded gate identity to Recovery01.",
+    "all_geometry_material_export_dimension_and_render_logic_unchanged": true
+  },
+  "recovery_source": {
+    "name": "blender_gate7_combat_blockout_cycle02_recovery01_attempt01.py",
+    "bytes": 19609,
+    "sha256": "40b3997ebc6075e702ee659722a90503320e019dc13af3c5d5bec67d67f79a71"
+  },
+  "future_namespaces": {
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01\\attempt_01",
+    "output": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY01_ATTEMPT01"
+  },
+  "execution_rules": {
+    "blender_launch_count": 1,
+    "retry_count": 0,
+    "one_heavy_process": true,
+    "unreal_launch_permitted": false,
+    "external_ai_model_permitted": false,
+    "reuse_failed_namespace": false,
+    "trust_process_exit_code_without_outputs": false
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "resolution": [
+    2048,
+    2048
+  ],
+  "lighting_sets": [
+    "daylight",
+    "overcast",
+    "night",
+    "wet",
+    "cockpit_light"
+  ],
+  "cameras": {
+    "ortho": [
+      "front",
+      "side",
+      "top",
+      "rear"
+    ],
+    "hero": [
+      "hero_q",
+      "detail"
+    ],
+    "gameplay": [
+      "fp_ads_axis",
+      "support_hand",
+      "muzzle_axis"
+    ],
+    "specific": {
+      "rail": [
+        "section"
+      ],
+      "missile": [
+        "side_true_diameter"
+      ],
+      "hand": [
+        "knuckles",
+        "thumb_web",
+        "sleeve"
+      ],
+      "shahed": [
+        "planform_top",
+        "planform_front"
+      ]
+    }
+  },
+  "rules": [
+    "fixed cameras",
+    "no camera-coupled cheating",
+    "no HUD reticle substitute"
+  ]
+}

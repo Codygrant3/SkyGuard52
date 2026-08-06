@@ -1,0 +1,24 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_OFFLINE_DESIGN",
+  "pass_requires_all": [
+    "accepted dimensions preserved",
+    "PROVISIONAL naming retained",
+    "no unsupported exact identity",
+    "silhouette improved without invention",
+    "sockets present",
+    "materials valid under five lighting sets",
+    "hand not final mannequin blocks",
+    "rail is coupon only",
+    "missile diameter 0.072 not discs",
+    "Shahed planform-only until evidence"
+  ],
+  "automatic_reject": [
+    "exact Colt/AK/9K338 claims",
+    "invented Shahed cross-section/prop/markings",
+    "invented Igla launcher",
+    "measured-percentile claim",
+    "accepted blockout mutation",
+    "Unreal runtime overwrite",
+    "UI reticle ADS"
+  ]
+}

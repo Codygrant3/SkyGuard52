@@ -1,0 +1,34 @@
+{
+  "schema": "skyguard.phase4.m01-recovery05-messaging-isolation-contract.v1",
+  "created_utc": "2026-08-04T13:29:18.0131403Z",
+  "future_disable_plugins": [
+    "SkyguardRecovery03NativeRecovery01",
+    "SkyguardRecovery03NativeRecovery04",
+    "TcpMessaging",
+    "UdpMessaging",
+    "Fab",
+    "Bridge",
+    "EditorTelemetry",
+    "RuntimeTelemetry",
+    "EOSShared"
+  ],
+  "future_enable_plugins": [
+    "SkyguardRecovery03NativeRecovery05"
+  ],
+  "required_argument": "-DisablePlugins=SkyguardRecovery03NativeRecovery01,SkyguardRecovery03NativeRecovery04,TcpMessaging,UdpMessaging,Fab,Bridge,EditorTelemetry,RuntimeTelemetry,EOSShared",
+  "engine_authority": {
+    "path": "D:/UE_5.8/Engine/Source/Runtime/Projects/Private/PluginManager.cpp",
+    "lines": [1585, 1599],
+    "sha256": "b2aa3a2c551fcbd86a3de72103030331591f619ca2c66aff8b6eae7e662bd2df"
+  },
+  "reject_log_patterns": [
+    "Initializing TcpMessaging bridge",
+    "Initializing bridge on interface",
+    "Unicast socket bound",
+    "multicast group",
+    "Added local interface"
+  ],
+  "reject_unexpected_network_transport": true,
+  "global_network_or_user_setting_changes": false,
+  "live_network_test_authorized": false
+}
