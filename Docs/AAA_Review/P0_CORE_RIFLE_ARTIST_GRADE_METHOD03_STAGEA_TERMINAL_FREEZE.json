@@ -1,0 +1,123 @@
+{
+  "schema": "skyguard.artist-grade-stage-terminal-freeze.v1",
+  "project": "D:\\Skyguard52",
+  "asset_id": "core-rifle",
+  "method_id": "artist_grade_method_03_grok_staged",
+  "stage": "A",
+  "attempt": "stage_A_attempt_01",
+  "classification": "FAILED_STAGE_A_WITH_EVIDENCE",
+  "baseline": {
+    "method01_commit": "2794e6e498245f745fe4bf59e6a8539ed4ee0106",
+    "method02_terminal_freeze": {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02_TERMINAL_FREEZE.json",
+      "sha256": "259284ac29db2d291fea02f946f71156690d685d7ce52f6e3465e73806cecbfa"
+    }
+  },
+  "authentication_and_bridge": {
+    "model": "grok-4.5-build",
+    "authentication_category": "stored grok.com OAuth account session",
+    "xai_api_key_removed_from_child_process_only": true,
+    "blender": "5.2.0 LTS",
+    "mcp": "C:\\Users\\chris\\.local\\bin\\blender-mcp.exe",
+    "port": 9876,
+    "initial_bridge_preflight": "failed before Grok launch because factory startup had not enabled the installed addon; preserved",
+    "bridge_recovery01": "passed after explicitly enabling the installed blender_mcp addon; no model quota spent on recovery"
+  },
+  "grok_execution": {
+    "session_id": "019fd961-ce55-7851-90df-64f2f3d97bc3",
+    "stop_reason": "end_turn",
+    "model_turns": 13,
+    "maximum_turns": 14,
+    "correction_passes": 1,
+    "retry_count": 0,
+    "input_tokens": 75203,
+    "cache_read_input_tokens": 592640,
+    "output_tokens": 36565,
+    "reasoning_tokens": 4413,
+    "total_tokens": 704408,
+    "reported_cost_usd": 0.547588,
+    "numeric_process_exit_code": null,
+    "exit_code_note": "unavailable because the short shell supervisor timed out after spawning the persistent Grok child; stdout independently records end_turn and the child later exited",
+    "weekly_usage_percentage_after_run": null,
+    "weekly_usage_note": "the local Grok CLI does not expose the user's SuperGrok weekly percentage"
+  },
+  "grok_handoff": {
+    "classification": "PASSED_STAGE_A_AWAITING_CODEX_VISUAL_REVIEW",
+    "accepted_as_final": false,
+    "path": "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\grok_method03_stageA_handoff.json",
+    "bytes": 3373,
+    "sha256": "b8212b04d59da07332707a2eeba6932a097074080d18d53e658713f6acaee1c9"
+  },
+  "governed_artifacts": [
+    {
+      "path": "Production\\Sources\\core-rifle\\artist_grade_method_03_grok_staged\\method03_stageA_prompt.md",
+      "bytes": 7651,
+      "sha256": "4079cc2be85823958beceb2d723a259255c5ec866409ece97b0c1e0815b841dc"
+    },
+    {
+      "path": "Production\\Sources\\core-rifle\\artist_grade_method_03_grok_staged\\build_core_rifle_method03_stageA.py",
+      "bytes": 33267,
+      "sha256": "c8f7a34972fd331661c48834c70eeda94dc75e869b4e71099018bec9684a1930"
+    },
+    {
+      "path": "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD03\\stage_A\\core-rifle-method03-stageA.blend",
+      "bytes": 366797,
+      "sha256": "82ce3798f2a4acdaf8985c96a4361629fe9f86595d8899a0010d89f6bf8a2ad2"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\stageA_artifact_manifest.json",
+      "bytes": 3808,
+      "sha256": "a4f2f7ac4242420e0c2a71ce65e02f5e0391846a8e5dcec2144d247c4a719550"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\grok.stdout.json",
+      "bytes": 6870,
+      "sha256": "8f97acc6aa6166192aa558ca604820c87998df5dd86f87240d4a461daf9ba6df"
+    },
+    {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\grok.stderr.log",
+      "bytes": 1941,
+      "sha256": "80435103ee863d8f8823a1420e36c705f021609e713da68af6a10bf46f6e39c9"
+    },
+    {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD03_STAGEA_VISUAL_REVIEW.json",
+      "bytes": 2851,
+      "sha256": "bdf339a1108b9502bc2357e54e6e4067b3748e367a8fa70d23a76a2392a52b70"
+    },
+    {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD03_STAGEA_TERMINAL_REPORT.md",
+      "bytes": 3036,
+      "sha256": "6292fc2df615a9f2eec76388326b2f0e9f697da873fb41ad2ab3438fb072f8f1"
+    }
+  ],
+  "final_renders": {
+    "count": 4,
+    "dimensions": [2560, 1440],
+    "direct_full_resolution_review_complete": true,
+    "hashes": {
+      "stageA_left_oblique.png": "5666e5d128ee8762b90373f39d093c5d8f7d8f48026d9e66583817cd89de22b9",
+      "stageA_right_oblique.png": "e9fc2d98d5106d8408a841ed67a85e53a3adbfb09dca83a27939a5cc371a5203",
+      "stageA_top_mechanical.png": "49e8c41d73238fe5b38040dc39e9c9fe4bd9854c679af598abd328a639b4f0bf",
+      "stageA_reference_match.png": "4468eca4d25b7326352477666fff503014cf175f6a33af4cb100a72245321a57"
+    }
+  },
+  "terminal_defects": [
+    "broad beveled slab silhouette",
+    "window and bridge shapes do not faithfully match the governed crop",
+    "simplistic rectangular rail-tooth profile",
+    "chalky and inconsistent FDE material response",
+    "QD cup collapsed to zero triangles",
+    "muzzle silhouette not adequately reviewable",
+    "review cameras still crop assembly endpoints",
+    "boolean and normal artifacts around openings and transitions"
+  ],
+  "prohibitions": {
+    "advance_to_receiver_stage": true,
+    "additional_cosmetic_correction_on_same_foundation": true,
+    "uv_or_bake_work": true,
+    "glb_or_unreal_import": true,
+    "runtime_asset_replacement": true,
+    "claim_aaa_or_artist_grade_acceptance": true
+  },
+  "next_gate": "Fresh topology-driven fore-end construction using an explicit cross-section cage, accepted rail-coupon profile, and curve-profiled window loops; no continuation of the failed boolean-slab foundation."
+}

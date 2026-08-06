@@ -1,0 +1,43 @@
+{
+  "schema": "skyguard.artist-grade-stage-visual-review.v1",
+  "project": "D:\\Skyguard52",
+  "asset_id": "core-rifle",
+  "method_id": "artist_grade_method_03_grok_staged",
+  "stage": "A",
+  "attempt": "stage_A_attempt_01",
+  "reviewer": "codex",
+  "review_scope": "four final 2560x1440 Stage A renders inspected directly at original resolution",
+  "grok_handoff_classification": "PASSED_STAGE_A_AWAITING_CODEX_VISUAL_REVIEW",
+  "independent_classification": "FAILED_STAGE_A_WITH_EVIDENCE",
+  "positive_findings": [
+    "scope stayed limited to the reference-supported forward assembly",
+    "side openings are real negative space rather than decals",
+    "dark barrel is visible through the openings",
+    "the rail has a continuous supporting body",
+    "Method 03 is materially more disciplined than the failed whole-rifle Method 02"
+  ],
+  "terminal_defects": [
+    "handguard envelope still reads as a broad beveled rectangular slab instead of the slim machined profile visible in the governed footage",
+    "window layout and bridge shapes remain inconsistent with the large rounded-rectangle openings in the governed close crop",
+    "rail teeth retain a simple rectangular-block profile rather than a credible MIL-STD-1913 dovetail and recoil-slot profile",
+    "FDE material remains chalky and shifts from near-white to dark brown across the same object",
+    "side QD cup collapsed to zero triangles and only a small button-like cue remains",
+    "open-tine muzzle silhouette is clipped or too small to validate in the review cameras",
+    "left, right, and mechanical cameras still crop the assembly endpoints despite the full-assembly framing requirement",
+    "reference-match camera does not provide a sufficiently close visual correspondence to the governed onboard crop",
+    "boolean and normal treatment produces uneven highlights and soft pinching around openings and rail transitions"
+  ],
+  "gate_decision": {
+    "advance_to_receiver_stage": false,
+    "authorize_uv_or_bake_work": false,
+    "authorize_glb_or_unreal_import": false,
+    "authorize_runtime_asset_replacement": false
+  },
+  "next_method_requirement": "Use topology-driven hard-surface construction from an explicit cross-section cage, a measured rail profile derived from the accepted rail coupon, and curve-profiled window loops; do not extend this boolean slab with another cosmetic correction.",
+  "reviewed_renders": [
+    "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\stageA_left_oblique.png",
+    "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\stageA_right_oblique.png",
+    "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\stageA_top_mechanical.png",
+    "Production\\Attempts\\core-rifle-artist-grade-method03\\stage_A_attempt_01\\stageA_reference_match.png"
+  ]
+}
