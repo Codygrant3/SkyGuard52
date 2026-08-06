@@ -1,0 +1,124 @@
+{
+  "schema": "skyguard.artist-grade-method-visual-review.v1",
+  "project": "D:\\Skyguard52",
+  "asset_id": "core-rifle",
+  "method_id": "artist_grade_method_02_grok_blender",
+  "reviewer": "codex",
+  "review_date": "2026-08-06",
+  "identity": "generic AR/M4-family rifle; exact configuration unresolved",
+  "direct_full_resolution_review_complete": true,
+  "render_count": 8,
+  "render_dimensions": [2560, 1440],
+  "classification": "FAILED_GROK_BLENDER_ARTIST_METHOD_WITH_EVIDENCE",
+  "frames": [
+    {
+      "name": "hero_left.png",
+      "sha256": "d3b8fd9dd9c1f2db11d0651c0bb60076916d431ff2b265b4a98a45c02765e954",
+      "result": "failed",
+      "findings": [
+        "upper and lower receivers remain broad rectangular slabs",
+        "magazine is a rectangular box without a continuous curved shell",
+        "front and rear sight pieces float disconnected above their bases",
+        "handguard side details read as repeated attached blocks rather than credible ventilation or mounting geometry",
+        "material response is nearly monochrome and does not separate polymer, steel, aluminum, and rubber"
+      ]
+    },
+    {
+      "name": "hero_right.png",
+      "sha256": "aa946db5532c0278f00cf391785a1b5a428eca44492ce74f920ddfc8abf50aa0",
+      "result": "failed",
+      "findings": [
+        "receiver silhouette remains toy-like and mechanically unresolved",
+        "stock is an oversized faceted shell with minimal functional exterior articulation",
+        "grip and magazine remain visibly primitive",
+        "floating sight components are plainly visible"
+      ]
+    },
+    {
+      "name": "side_profile_left.png",
+      "sha256": "a687174d2fb6011eebed54f862960fc8b667a73489156cf3ca06de26f97da501",
+      "result": "failed",
+      "findings": [
+        "silhouette does not convincingly resolve an AR/M4-family hero weapon",
+        "magazine has no credible curvature or feed-lip transition",
+        "rail and handguard repetition is visibly procedural",
+        "front sight appears as three disconnected vertical bars"
+      ]
+    },
+    {
+      "name": "top_mechanical.png",
+      "sha256": "cc3c3308079332771b41b41335eaffd63f3e4d60e049fca1c77765b2fe64f3cb",
+      "result": "failed",
+      "findings": [
+        "top rail spacing and construction read as repetitive blocks",
+        "receiver and handguard transitions lack mechanical resolution",
+        "frame is washed out and does not reveal high-poly surface detail",
+        "sight geometry is partially absent or disconnected from the visible assembly"
+      ]
+    },
+    {
+      "name": "muzzle_front.png",
+      "sha256": "3ba18b96f5bd59361b825d6eaa86404489f2cd9106cea8fa5758329d21c8d1bf",
+      "result": "failed",
+      "findings": [
+        "muzzle device is faceted and blocky",
+        "handguard reads as a primitive polygonal tube with attached tiles",
+        "front sight floats far above the handguard",
+        "receiver mass remains a beveled box"
+      ]
+    },
+    {
+      "name": "stock_rear.png",
+      "sha256": "76ab264c210539841ec53f9d8e552671f2f4fd69e88b3f885f060b4e4184868c",
+      "result": "failed",
+      "findings": [
+        "stock lacks credible adjustable-carbine construction, latch detail, and buttpad articulation",
+        "receiver rear remains a featureless slab",
+        "rear aperture assembly floats above its base",
+        "material and edge hierarchy remain insufficient for a first-person hero asset"
+      ]
+    },
+    {
+      "name": "first_person_hip.png",
+      "sha256": "205ed6b769bfa07218e49f85f55f533c8f5cffef6a1c3865c4ca2ef04f79475c",
+      "result": "failed",
+      "findings": [
+        "first-person view exposes coarse rail repetition and broad primitive surfaces",
+        "front sight is disconnected and visually implausible",
+        "weapon lacks close-range material and geometric detail"
+      ]
+    },
+    {
+      "name": "first_person_ads.png",
+      "sha256": "8a0928d1083ccf44ee4a7d4ce27367a346553a2bfd4fd2129b0a44b178d09789",
+      "result": "failed",
+      "findings": [
+        "rear aperture is an oversized faceted ring that fills most of the frame",
+        "front sight components appear as three floating vertical bars rather than a connected sight assembly",
+        "sight picture is not visually credible for first-person iron-sight use",
+        "ADS composition fails the hero-asset realism requirement"
+      ]
+    }
+  ],
+  "technical_checks": {
+    "render_count_exact": true,
+    "all_renders_2560x1440": true,
+    "bake_count_exact": true,
+    "all_bakes_2048x2048": true,
+    "manifest_hashes_match": true,
+    "unexpected_final_artifacts": [
+      "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.blend1"
+    ],
+    "grok_exit_code": 1,
+    "grok_exit_code_type": "System.Int32",
+    "grok_stop_reason": "max turns reached",
+    "authorized_correction_passes_used": 2,
+    "additional_correction_authorized": false
+  },
+  "decision": {
+    "artist_grade_accepted": false,
+    "unreal_import_authorized": false,
+    "opus_review_authorized": false,
+    "reason": "The live OAuth Blender MCP method functioned and produced the required technical package, but the resulting geometry and presentation remain primitive, disconnected, visibly procedural, and non-credible at first-person distance after both authorized correction passes."
+  }
+}

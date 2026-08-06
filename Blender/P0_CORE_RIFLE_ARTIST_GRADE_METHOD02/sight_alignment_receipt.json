@@ -1,0 +1,32 @@
+{
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "blender_version": "5.2.0 LTS",
+  "units": "meters",
+  "axis": {
+    "bore": "+X",
+    "up": "+Z"
+  },
+  "sight_axis_z": 0.174,
+  "rear_aperture_xyz": [
+    -0.08,
+    0.0,
+    0.174
+  ],
+  "front_post_xyz": [
+    0.388,
+    0.0,
+    0.174
+  ],
+  "ads_eye_xyz": [
+    -0.13500000536441803,
+    0.0,
+    0.17399999499320984
+  ],
+  "z_alignment_error": 0.0,
+  "ads_picture": "open_peep_ring_front_post_centered",
+  "bore_z": 0.075,
+  "overall_length_measured": 0.966,
+  "overall_length_target": 0.968,
+  "receiver_width_measured": 0.0862,
+  "receiver_width_target": 0.074
+}

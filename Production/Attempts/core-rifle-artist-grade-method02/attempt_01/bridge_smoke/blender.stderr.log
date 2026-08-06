@@ -1,0 +1,59 @@
+  File "<string>", line 1
+    import
+          ^
+SyntaxError: Expected one or more names after 'import'
+Traceback (most recent call last):
+  File "C:\Users\chris\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\blender_mcp.py", line 329, in _execute_command_internal
+    result = handler(**params)
+  File "C:\Users\chris\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\blender_mcp.py", line 401, in get_object_info
+    raise ValueError(f"Object not found: {name}")
+ValueError: Object not found: SKYGUARD_METHOD02_SMOKE
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:291: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py", line 1937, in <module>
+    main("full")
+    ~~~~^^^^^^^^
+  File "D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py", line 1655, in main
+    game_objs += build_stock(cols["RIFLE_GAME"], mats)
+                 ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py", line 803, in build_stock
+    sling = torus_ring("GAME_SlingRear", (-0.130, 0.0, BORE_Z - 0.02),
+                       0.008, 0.002, col, mats["MAT_CoatedSteel"], segs=14, axis="Y")
+  File "D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py", line 211, in torus_ring
+    bmesh.ops.create_torus(
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: BMeshOpsModule: operator "create_torus" doesn't exist. Did you mean: 'create_cone'?
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:316: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  min(1, base_color[1] * 1.08),
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1202: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  if ltype == "AREA":
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1218: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  top.rotation_euler = (0, 0, 0)
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1367: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if bake_type == "NORMAL":
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1452: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  low.select_set(True)
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1497: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  low.data.materials.append(mat)
+D:\Skyguard52\Production\Sources\core-rifle\artist_grade_method_02_grok_blender\build_core_rifle_method02.py:1546: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  tex.image = img
+Traceback (most recent call last):
+  File "C:\Users\chris\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\blender_mcp.py", line 537, in execute_code
+    exec(code, namespace)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "<string>", line 11, in <module>
+ReferenceError: StructRNA of type Object has been removed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chris\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\blender_mcp.py", line 329, in _execute_command_internal
+    result = handler(**params)
+  File "C:\Users\chris\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\blender_mcp.py", line 542, in execute_code
+    raise Exception(f"Code execution error: {str(e)}")
+Exception: Code execution error: StructRNA of type Object has been removed

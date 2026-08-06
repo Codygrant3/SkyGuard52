@@ -1,0 +1,34 @@
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy;": No such file or directory
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy.context.scene.blendermcp_use_polyhaven=False;": No such file or directory
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy.context.scene.blendermcp_use_hyper3d=False;": No such file or directory
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy.context.scene.blendermcp_use_sketchfab=False;": No such file or directory
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy.context.scene.blendermcp_use_hunyuan3d=False;": No such file or directory
+00:09.281  reports          | ERROR Cannot read file "D:\Skyguard52\bpy.ops.blendermcp.start_server()": No such file or directory
+11:42.844  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_inspect_hero_left.png'
+11:43.953  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_inspect_hero_right.png'
+11:44.937  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_inspect_first_person_ads.png'
+11:46.016  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\hero_left.png'
+11:47.109  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\hero_right.png'
+11:48.141  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\side_profile_left.png'
+11:49.234  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\top_mechanical.png'
+11:50.297  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\muzzle_front.png'
+11:51.406  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\stock_rear.png'
+11:52.375  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\first_person_hip.png'
+11:53.422  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\first_person_ads.png'
+12:44.156  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr1_hero_left.png'
+12:45.125  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr1_hero_right.png'
+12:46.031  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr1_first_person_ads.png'
+13:33.750  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr2_hero_left.png'
+13:34.672  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr2_hero_right.png'
+13:35.531  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr2_first_person_ads.png'
+14:44.031  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr2b_first_person_ads.png'
+14:45.016  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_corr2b_hero_left.png'
+16:03.297  render           | Saved: 'D:\Skyguard52\Production\Attempts\core-rifle-artist-grade-method02\attempt_01\temp_renders\temp_finalcheck_ads.png'
+16:04.187  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\hero_left.png'
+16:05.047  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\hero_right.png'
+16:05.859  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\side_profile_left.png'
+16:06.812  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\top_mechanical.png'
+16:07.672  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\muzzle_front.png'
+16:08.516  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\stock_rear.png'
+16:09.375  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\first_person_hip.png'
+16:10.344  render           | Saved: 'D:\Skyguard52\Blender\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\renders\first_person_ads.png'

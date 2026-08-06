@@ -1,0 +1,97 @@
+{
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "blender_version": "5.2.0 LTS",
+  "units": "meters",
+  "axis": {
+    "bore": "+X",
+    "up": "+Z"
+  },
+  "sockets": {
+    "SOCKET_Origin": {
+      "location": [
+        0.0,
+        0.0,
+        0.07500000298023224
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_Muzzle": {
+      "location": [
+        0.6480000019073486,
+        0.0,
+        0.07500000298023224
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_Ejection": {
+      "location": [
+        0.019999999552965164,
+        -0.03700000047683716,
+        0.0949999988079071
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_Magazine": {
+      "location": [
+        0.03999999910593033,
+        0.0,
+        -0.02500000037252903
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_FiringHand": {
+      "location": [
+        -0.054999999701976776,
+        0.0,
+        0.004999999888241291
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_SupportHand": {
+      "location": [
+        0.2800000011920929,
+        0.0,
+        0.054999999701976776
+      ],
+      "type": "EMPTY"
+    },
+    "SOCKET_ADS_Eye": {
+      "location": [
+        -0.13500000536441803,
+        0.0,
+        0.17399999499320984
+      ],
+      "type": "EMPTY"
+    }
+  },
+  "collision": [
+    {
+      "name": "UCX_Rifle_Receiver",
+      "hide_render": true,
+      "dimensions": [
+        0.2800000011920929,
+        0.07999999821186066,
+        0.12000000476837158
+      ]
+    },
+    {
+      "name": "UCX_Rifle_Handguard",
+      "hide_render": true,
+      "dimensions": [
+        0.2800000309944153,
+        0.05999999865889549,
+        0.06999999284744263
+      ]
+    },
+    {
+      "name": "UCX_Rifle_Stock",
+      "hide_render": true,
+      "dimensions": [
+        0.2199999839067459,
+        0.05999999865889549,
+        0.09000000357627869
+      ]
+    }
+  ],
+  "origin_policy": "near_receiver_centerline_bore_z_0.075"
+}

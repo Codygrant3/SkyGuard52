@@ -1,0 +1,124 @@
+{
+  "schema": "skyguard.core-rifle.method02.artifact_manifest.v1",
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "blender_version": "5.2.0 LTS",
+  "classification": "PASSED_GROK_METHOD02_PRODUCTION_COMPLETE_AWAITING_CODEX_VISUAL_REVIEW",
+  "required_final_renders": 8,
+  "required_bake_maps": 5,
+  "final_render_count": 8,
+  "bake_map_count": 5,
+  "artifacts": [
+    {
+      "kind": "blend",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.blend",
+      "exists": true,
+      "bytes": 1905572,
+      "sha256": "ecb41248868b96ae0d056f2ddd22a09872a649b370d9b6c328b86505090053af"
+    },
+    {
+      "kind": "glb",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.glb",
+      "exists": true,
+      "bytes": 937236,
+      "sha256": "c117a8e0a51eb0c9a0631ced7495817685f646ec516247faf3ce3e5c8a1b3048"
+    },
+    {
+      "kind": "render_hero_left",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\hero_left.png",
+      "exists": true,
+      "bytes": 2910644,
+      "sha256": "d3b8fd9dd9c1f2db11d0651c0bb60076916d431ff2b265b4a98a45c02765e954"
+    },
+    {
+      "kind": "render_hero_right",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\hero_right.png",
+      "exists": true,
+      "bytes": 2900224,
+      "sha256": "aa946db5532c0278f00cf391785a1b5a428eca44492ce74f920ddfc8abf50aa0"
+    },
+    {
+      "kind": "render_side_profile_left",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\side_profile_left.png",
+      "exists": true,
+      "bytes": 2745902,
+      "sha256": "a687174d2fb6011eebed54f862960fc8b667a73489156cf3ca06de26f97da501"
+    },
+    {
+      "kind": "render_top_mechanical",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\top_mechanical.png",
+      "exists": true,
+      "bytes": 3205883,
+      "sha256": "cc3c3308079332771b41b41335eaffd63f3e4d60e049fca1c77765b2fe64f3cb"
+    },
+    {
+      "kind": "render_muzzle_front",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\muzzle_front.png",
+      "exists": true,
+      "bytes": 3026026,
+      "sha256": "3ba18b96f5bd59361b825d6eaa86404489f2cd9106cea8fa5758329d21c8d1bf"
+    },
+    {
+      "kind": "render_stock_rear",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\stock_rear.png",
+      "exists": true,
+      "bytes": 3064660,
+      "sha256": "76ab264c210539841ec53f9d8e552671f2f4fd69e88b3f885f060b4e4184868c"
+    },
+    {
+      "kind": "render_first_person_hip",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\first_person_hip.png",
+      "exists": true,
+      "bytes": 2924985,
+      "sha256": "205ed6b769bfa07218e49f85f55f533c8f5cffef6a1c3865c4ca2ef04f79475c"
+    },
+    {
+      "kind": "render_first_person_ads",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\first_person_ads.png",
+      "exists": true,
+      "bytes": 3139279,
+      "sha256": "8a0928d1083ccf44ee4a7d4ce27367a346553a2bfd4fd2129b0a44b178d09789"
+    },
+    {
+      "kind": "bake",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_normal.png",
+      "exists": true,
+      "bytes": 1274979,
+      "sha256": "745d2ce6719299d78ac8cb770b676d6e645bed2ef08b59b037a039fc061b7042"
+    },
+    {
+      "kind": "bake",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_ao.png",
+      "exists": true,
+      "bytes": 1623979,
+      "sha256": "dafd95d1f37c0b4778c11e854679a80578ff9dbd6bde108793ba8ddee59d6d4c"
+    },
+    {
+      "kind": "bake",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_curvature.png",
+      "exists": true,
+      "bytes": 818325,
+      "sha256": "756867fde4b33b4186ad4340f132ce0ac8c5cd72d9e7f9f576dec5e2129aded4"
+    },
+    {
+      "kind": "bake",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_thickness.png",
+      "exists": true,
+      "bytes": 684529,
+      "sha256": "3795eef234672b31b73294d4c771f9bc4254ca978be3899d6ac494607a4c20e5"
+    },
+    {
+      "kind": "bake",
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_material_id.png",
+      "exists": true,
+      "bytes": 62887,
+      "sha256": "8d9a4973a6142c3caa102a8f2866257c0713077a503d5ab7c385b985de7444b1"
+    },
+    {
+      "kind": "source_script",
+      "path": "D:\\Skyguard52\\Production\\Sources\\core-rifle\\artist_grade_method_02_grok_blender\\build_core_rifle_method02.py",
+      "exists": true,
+      "bytes": 76545,
+      "sha256": "de923245f399ba2e64508c16415fdf1de271c792c144f7eefecca79fcc023a2c"
+    }
+  ]
+}

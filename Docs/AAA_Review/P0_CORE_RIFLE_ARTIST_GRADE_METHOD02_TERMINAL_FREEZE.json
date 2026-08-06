@@ -1,0 +1,155 @@
+{
+  "schema": "skyguard.artist-grade-method-terminal-freeze.v1",
+  "project": "D:\\Skyguard52",
+  "asset_id": "core-rifle",
+  "method_id": "artist_grade_method_02_grok_blender",
+  "classification": "FAILED_GROK_BLENDER_ARTIST_METHOD_WITH_EVIDENCE",
+  "identity": "generic AR/M4-family rifle; exact configuration unresolved",
+  "baseline": {
+    "commit": "2794e6e498245f745fe4bf59e6a8539ed4ee0106",
+    "method01_freeze": {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD01_TERMINAL_FREEZE.json",
+      "sha256": "504f0a158ea1e1e3c7a0c63b301f7532f36560a5265e546eb7d91cb01c120ceb"
+    }
+  },
+  "authentication_and_bridge": {
+    "xai_api_key_removed_from_child_process_only": true,
+    "authentication_category": "stored grok.com account session",
+    "model": "grok-4.5-build",
+    "mcp_name": "blender",
+    "mcp_command": "C:\\Users\\chris\\.local\\bin\\blender-mcp.exe",
+    "blender_mcp_version": "1.29.0",
+    "smoke_classification": "PASSED_GROK45_OAUTH_BLENDER_MCP_SMOKE",
+    "smoke_stdout": {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method02\\attempt_01\\bridge_smoke\\grok.stdout.json",
+      "bytes": 2810,
+      "sha256": "d8de2ed582a2e95f8dad2c54e6e5b56987ea3747e105d42988becfa4afa1f69d"
+    }
+  },
+  "production_process": {
+    "attempt": "Production\\Attempts\\core-rifle-artist-grade-method02\\attempt_01",
+    "grok_pid": 46096,
+    "blender_pid": 77748,
+    "elapsed_seconds": 725.867,
+    "exit_code": 1,
+    "exit_code_type": "System.Int32",
+    "terminal_reason": "max turns reached",
+    "model_turns": 24,
+    "correction_passes": 2,
+    "retry_count": 0,
+    "unreal_launched": false,
+    "handoff": {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method02\\attempt_01\\grok_method02_handoff.json",
+      "bytes": 3426,
+      "sha256": "d69213f9d4a7139c0e813dc6a6a1b2ca2d67805239b0a3a98ae90b31d19cd38a"
+    },
+    "stdout": {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method02\\attempt_01\\grok.stdout.json",
+      "bytes": 6673,
+      "sha256": "9417d78e22c2b9ebb59e0e06aa0a365e3b5025d85bf59920171f7cc7d10e52dc"
+    },
+    "stderr": {
+      "path": "Production\\Attempts\\core-rifle-artist-grade-method02\\attempt_01\\grok.stderr.log",
+      "bytes": 2147,
+      "sha256": "4a2724f89ae3f3ad65618feff6ced495a51eb1aca9710c78e93cbd9d7a6a68ca"
+    }
+  },
+  "governed_sources": [
+    {
+      "path": "Production\\Sources\\core-rifle\\artist_grade_method_02_grok_blender\\method02_production_prompt.md",
+      "bytes": 9476,
+      "sha256": "61f91dc14bb1a016e8e862a1021be0de8abab6b02ec3496b39bf55f1603f89ef"
+    },
+    {
+      "path": "Production\\Sources\\core-rifle\\artist_grade_method_02_grok_blender\\build_core_rifle_method02.py",
+      "bytes": 76545,
+      "sha256": "de923245f399ba2e64508c16415fdf1de271c792c144f7eefecca79fcc023a2c"
+    }
+  ],
+  "final_outputs": [
+    {
+      "path": "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.blend",
+      "bytes": 1905572,
+      "sha256": "ecb41248868b96ae0d056f2ddd22a09872a649b370d9b6c328b86505090053af"
+    },
+    {
+      "path": "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.glb",
+      "bytes": 937236,
+      "sha256": "c117a8e0a51eb0c9a0631ced7495817685f646ec516247faf3ce3e5c8a1b3048"
+    },
+    {
+      "path": "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\artifact_manifest.json",
+      "bytes": 4987,
+      "sha256": "adc92d0d03274c86c272e48c5f60f8775ce51ca28cdd008eba296c6378a292e9"
+    },
+    {
+      "path": "Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.blend1",
+      "bytes": 1905585,
+      "sha256": "4bd0cfe9c728476f30daa5072c21253fc4cdd719b2b0c1f746178cb852746c86",
+      "status": "unexpected_unmanifested_backup_preserved_as_evidence"
+    }
+  ],
+  "review_renders": {
+    "count": 8,
+    "dimensions": [2560, 1440],
+    "direct_full_resolution_review_complete": true,
+    "all_failed_visual_gate": true,
+    "hashes": {
+      "first_person_ads.png": "8a0928d1083ccf44ee4a7d4ce27367a346553a2bfd4fd2129b0a44b178d09789",
+      "first_person_hip.png": "205ed6b769bfa07218e49f85f55f533c8f5cffef6a1c3865c4ca2ef04f79475c",
+      "hero_left.png": "d3b8fd9dd9c1f2db11d0651c0bb60076916d431ff2b265b4a98a45c02765e954",
+      "hero_right.png": "aa946db5532c0278f00cf391785a1b5a428eca44492ce74f920ddfc8abf50aa0",
+      "muzzle_front.png": "3ba18b96f5bd59361b825d6eaa86404489f2cd9106cea8fa5758329d21c8d1bf",
+      "side_profile_left.png": "a687174d2fb6011eebed54f862960fc8b667a73489156cf3ca06de26f97da501",
+      "stock_rear.png": "76ab264c210539841ec53f9d8e552671f2f4fd69e88b3f885f060b4e4184868c",
+      "top_mechanical.png": "cc3c3308079332771b41b41335eaffd63f3e4d60e049fca1c77765b2fe64f3cb"
+    }
+  },
+  "bakes": {
+    "count": 5,
+    "dimensions": [2048, 2048],
+    "hashes": {
+      "ao": "dafd95d1f37c0b4778c11e854679a80578ff9dbd6bde108793ba8ddee59d6d4c",
+      "curvature": "756867fde4b33b4186ad4340f132ce0ac8c5cd72d9e7f9f576dec5e2129aded4",
+      "material_id": "8d9a4973a6142c3caa102a8f2866257c0713077a503d5ab7c385b985de7444b1",
+      "normal": "745d2ce6719299d78ac8cb770b676d6e645bed2ef08b59b037a039fc061b7042",
+      "thickness": "3795eef234672b31b73294d4c771f9bc4254ca978be3899d6ac494607a4c20e5"
+    }
+  },
+  "terminal_documents": [
+    {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02_VISUAL_REVIEW.json",
+      "bytes": 5329,
+      "sha256": "baf1ac57e42cf6b0c0456523d5884e513e54e204969be97ccde08321280b8197"
+    },
+    {
+      "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02_TERMINAL_REPORT.md",
+      "bytes": 5111,
+      "sha256": "5763c42c438dba2d4b211663413247e735555946c75a2026c732afe9492b9ff8"
+    },
+    {
+      "path": "Docs\\AAA_Review\\SKYGUARD52_FULL_PRODUCTION_AUDIT_ADDENDUM_CORE_RIFLE_ARTIST_GRADE_METHOD02_2026-08-06.md",
+      "bytes": 1349,
+      "sha256": "dee9431b10302dae60d45f7e732e613335a9c54e95ac70fc88b09b4bfb3e0a3c"
+    }
+  ],
+  "terminal_defects": [
+    "primitive slab receivers",
+    "box magazine without continuous curvature",
+    "coarse grip and stock ergonomics",
+    "polygonal handguard with repeated attached blocks",
+    "floating disconnected front and rear sight geometry",
+    "faceted toy-like muzzle device",
+    "nearly monochrome material response",
+    "non-credible first-person ADS assembly",
+    "partial high-detail source after sight-copy removal"
+  ],
+  "prohibitions": {
+    "third_method02_correction": true,
+    "unreal_import": true,
+    "accepted_runtime_asset_replacement": true,
+    "opus_acceptance_review": true,
+    "claim_artist_grade_success": true
+  },
+  "next_gate": "Select a materially different artist-quality source method; do not extend Method 02 with another prompt-driven primitive assembly correction."
+}

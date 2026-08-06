@@ -1,0 +1,69 @@
+{
+  "schema": "skyguard.core-rifle.method02.handoff.v1",
+  "worker": "grok-4.5-oauth-artist",
+  "method": "artist_grade_method_02_grok_blender",
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "classification": "PASSED_GROK_METHOD02_PRODUCTION_COMPLETE_AWAITING_CODEX_VISUAL_REVIEW",
+  "correction_passes": 2,
+  "blender_version": "5.2.0 LTS",
+  "counts": {
+    "game": {
+      "mesh_objects": 126,
+      "vertices": 5968,
+      "triangles": 11384
+    },
+    "high": {
+      "mesh_objects": 120,
+      "vertices": 26024,
+      "triangles": 51528
+    },
+    "materials": 5,
+    "sockets": 7,
+    "collision": 3,
+    "final_renders": 8,
+    "bake_maps": 5
+  },
+  "envelope": {
+    "overall_length_m": 0.966,
+    "width_m": 0.0862,
+    "bore_z": 0.075,
+    "sight_z": 0.174,
+    "rear_aperture_x": -0.08,
+    "front_post_x": 0.388
+  },
+  "final_namespace": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02",
+  "blend": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.blend",
+  "glb": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core-rifle-method02.glb",
+  "renders": [
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\hero_left.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\hero_right.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\side_profile_left.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\top_mechanical.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\muzzle_front.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\stock_rear.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\first_person_hip.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\renders\\first_person_ads.png"
+  ],
+  "bakes": [
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_normal.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_ao.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_curvature.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_thickness.png",
+    "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_material_id.png"
+  ],
+  "mcp_calls": [
+    "blender__get_scene_info",
+    "blender__execute_blender_code (full build script)",
+    "blender__execute_blender_code (correction pass 1: cameras/materials/aperture)",
+    "blender__execute_blender_code (correction pass 2: sights/ADS/lights)",
+    "blender__execute_blender_code (open peep + HIGH blocker removal + final renders)",
+    "blender__execute_blender_code (export/receipts)"
+  ],
+  "limitations": [
+    "Exterior game-art only; no functional internal mechanisms",
+    "Identity limited to generic AR/M4-family; exact configuration unresolved",
+    "Bake utility maps (curvature/thickness/matid) use Cycles EMIT node construction where native bake types unavailable",
+    "HIGH-detail rear/front sight bake-source copies that blocked ADS were removed after correction; remaining HIGH set is partial",
+    "Awaiting Codex visual review of eight full-resolution renders; not artist-grade accepted"
+  ]
+}

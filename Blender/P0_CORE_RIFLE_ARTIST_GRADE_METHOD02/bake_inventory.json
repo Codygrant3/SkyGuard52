@@ -1,0 +1,61 @@
+{
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "blender_version": "5.2.0 LTS",
+  "maps": {
+    "core_rifle_normal.png": {
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_normal.png",
+      "exists": true,
+      "bytes": 1274979,
+      "size": [
+        2048,
+        2048
+      ],
+      "sha256": "745d2ce6719299d78ac8cb770b676d6e645bed2ef08b59b037a039fc061b7042"
+    },
+    "core_rifle_ao.png": {
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_ao.png",
+      "exists": true,
+      "bytes": 1623979,
+      "size": [
+        2048,
+        2048
+      ],
+      "sha256": "dafd95d1f37c0b4778c11e854679a80578ff9dbd6bde108793ba8ddee59d6d4c"
+    },
+    "core_rifle_curvature.png": {
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_curvature.png",
+      "exists": true,
+      "bytes": 818325,
+      "size": [
+        2048,
+        2048
+      ],
+      "sha256": "756867fde4b33b4186ad4340f132ce0ac8c5cd72d9e7f9f576dec5e2129aded4"
+    },
+    "core_rifle_thickness.png": {
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_thickness.png",
+      "exists": true,
+      "bytes": 684529,
+      "size": [
+        2048,
+        2048
+      ],
+      "sha256": "3795eef234672b31b73294d4c771f9bc4254ca978be3899d6ac494607a4c20e5"
+    },
+    "core_rifle_material_id.png": {
+      "path": "D:\\Skyguard52\\Blender\\P0_CORE_RIFLE_ARTIST_GRADE_METHOD02\\core_rifle_material_id.png",
+      "exists": true,
+      "bytes": 62887,
+      "size": [
+        2048,
+        2048
+      ],
+      "sha256": "8d9a4973a6142c3caa102a8f2866257c0713077a503d5ab7c385b985de7444b1"
+    }
+  },
+  "resolution": [
+    2048,
+    2048
+  ],
+  "method": "cycles_selected_to_active_plus_emit_utility"
+}

@@ -1,0 +1,1131 @@
+{
+  "identity_limitation": "generic AR/M4-family rifle; exact configuration unresolved",
+  "blender_version": "5.2.0 LTS",
+  "uv_layers": [
+    {
+      "object": "LOW_Trigger",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "LOW_Selector",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 18,
+      "vert_count": 32
+    },
+    {
+      "object": "LOW_SelectorLever",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "LOW_BoltCatch",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "LOW_TakedownPinRear_Boss",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 16,
+      "vert_count": 28
+    },
+    {
+      "object": "LOW_TakedownPinRear",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 14,
+      "vert_count": 24
+    },
+    {
+      "object": "LOW_TakedownPinFront_Boss",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 16,
+      "vert_count": 28
+    },
+    {
+      "object": "LOW_TakedownPinFront",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 14,
+      "vert_count": 24
+    },
+    {
+      "object": "LOW_MagRelease",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 14,
+      "vert_count": 24
+    },
+    {
+      "object": "LOW_GripScrew",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 12,
+      "vert_count": 20
+    },
+    {
+      "object": "GAME_LowerReceiver",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 492,
+      "vert_count": 496
+    },
+    {
+      "object": "UP_ForwardAssistBtn",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 14,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_DustCover",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_CH_Stem",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "UP_CH_Latch",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "UP_RailTooth_00",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_01",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_02",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_04",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_05",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_06",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_07",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_08",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_09",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_10",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_12",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_13",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_14",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_15",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_16",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_18",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_19",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_20",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_RailTooth_21",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "UP_BarrelNut",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 22,
+      "vert_count": 40
+    },
+    {
+      "object": "GAME_UpperReceiver",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 258,
+      "vert_count": 256
+    },
+    {
+      "object": "GAME_Magazine",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 298,
+      "vert_count": 304
+    },
+    {
+      "object": "GAME_MagFloorPlate",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "GAME_MagCatchSlot",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MagSpine",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_PistolGrip",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 806,
+      "vert_count": 816
+    },
+    {
+      "object": "GAME_GripBase",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "GAME_GripPanel",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_BufferTube",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 22,
+      "vert_count": 40
+    },
+    {
+      "object": "GAME_CastleNut",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 18,
+      "vert_count": 32
+    },
+    {
+      "object": "GAME_EndPlate",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_StockBody",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 582,
+      "vert_count": 590
+    },
+    {
+      "object": "GAME_StockLatch",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "GAME_StockDetent_0",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_StockDetent_1",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_StockDetent_2",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_StockDetent_3",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_StockDetent_4",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_StockDetent_5",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Buttpad",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 98,
+      "vert_count": 96
+    },
+    {
+      "object": "GAME_SlingRear",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 112,
+      "vert_count": 112
+    },
+    {
+      "object": "GAME_Handguard",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 67,
+      "vert_count": 78
+    },
+    {
+      "object": "GAME_HG_Junction",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 22,
+      "vert_count": 40
+    },
+    {
+      "object": "GAME_HG_EndCap",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 20,
+      "vert_count": 36
+    },
+    {
+      "object": "GAME_HG_Rail",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_00",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_01",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_02",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_03",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_05",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_06",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_07",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_08",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_09",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_10",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_11",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_12",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_14",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_15",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_16",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_17",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_18",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_19",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_20",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_21",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_23",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_24",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_25",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_26",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Tooth_27",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_0",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_0",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_1",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_1",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_2",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_2",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_3",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_3",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_4",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_4",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_5",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_5",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_L_6",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_Vent_R_6",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_BotRail",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_HG_QD",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 14,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_Barrel",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 22,
+      "vert_count": 40
+    },
+    {
+      "object": "GAME_GasBlock",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 54,
+      "vert_count": 56
+    },
+    {
+      "object": "GAME_GasTube",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 12,
+      "vert_count": 20
+    },
+    {
+      "object": "GAME_MuzzleDevice",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 20,
+      "vert_count": 36
+    },
+    {
+      "object": "GAME_MuzzlePort_0_90",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_0_270",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_1_90",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_1_270",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_2_90",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_2_270",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_3_90",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_MuzzlePort_3_270",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 26,
+      "vert_count": 24
+    },
+    {
+      "object": "GAME_Screw_0",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Screw_1",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Screw_2",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Screw_3",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Screw_4",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_Screw_5",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 10,
+      "vert_count": 16
+    },
+    {
+      "object": "GAME_PivotPinHead",
+      "uv_layers": [
+        "UVMap",
+        "UV1_Bake"
+      ],
+      "poly_count": 12,
+      "vert_count": 20
+    },
+    {
+      "object": "GAME_FrontSight",
+      "uv_layers": [],
+      "poly_count": 104,
+      "vert_count": 96
+    },
+    {
+      "object": "GAME_RearPeep",
+      "uv_layers": [],
+      "poly_count": 128,
+      "vert_count": 128
+    },
+    {
+      "object": "GAME_RearSightBase",
+      "uv_layers": [],
+      "poly_count": 6,
+      "vert_count": 8
+    },
+    {
+      "object": "GAME_RearEar_L",
+      "uv_layers": [],
+      "poly_count": 6,
+      "vert_count": 8
+    },
+    {
+      "object": "GAME_RearEar_R",
+      "uv_layers": [],
+      "poly_count": 6,
+      "vert_count": 8
+    },
+    {
+      "object": "GAME_RearWindage",
+      "uv_layers": [],
+      "poly_count": 14,
+      "vert_count": 24
+    }
+  ],
+  "materials": [
+    "MAT_AnodizedAluminum",
+    "MAT_CoatedSteel",
+    "MAT_PhosphateSteel",
+    "MAT_Polymer",
+    "MAT_Rubber"
+  ],
+  "material_count": 5,
+  "uv_policy": "UV0 non-overlapping smart project; UV1_Bake separate pack where present"
+}
