@@ -40,6 +40,16 @@ The controller:
 - never retries automatically;
 - leaves successful outputs in `awaiting_review`.
 
+Asset-specific Blender workers should derive from:
+
+- `Scripts\skyguard_blender_worker_sdk.py`
+- `Scripts\skyguard_blender_worker_template.py`
+
+The SDK centralizes Blender 5.2 metric units, `PLAIN_AXES` sockets, fixed review
+cameras, renders, `.blend` save, GLB export, validation, and artifact receipts.
+Its exact-host smoke test also proved why output validation is mandatory:
+Blender may return process exit code `0` after a Python traceback.
+
 After directly inspecting the governed renders:
 
 ```powershell

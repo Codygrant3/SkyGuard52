@@ -163,6 +163,8 @@ The following control-plane replacement is now canonical:
 - `D:\Skyguard52\Scripts\skyguard_production.py`
 - `D:\Skyguard52\Scripts\validate_skyguard_production.py`
 - `D:\Skyguard52\Scripts\tests\test_skyguard_production.py`
+- `D:\Skyguard52\Scripts\skyguard_blender_worker_sdk.py`
+- `D:\Skyguard52\Scripts\skyguard_blender_worker_template.py`
 - `D:\Skyguard52\Production\README.md`
 - `D:\Skyguard52\AGENTS.md`
 
@@ -182,6 +184,20 @@ The new system:
 12. uses atomic mutable state and one-way attempt hashes;
 13. forbids circular hash graphs;
 14. allows an independent asset to proceed after another fails.
+
+The shared Blender worker SDK was executed against Blender 5.2 in three fresh,
+non-governed smoke namespaces. The first two probes caught exact-host
+compatibility defects before any production attempt:
+
+- Blender 5.2 uses the `BLENDER_EEVEE` enum rather than
+  `BLENDER_EEVEE_NEXT`;
+- factory-startup can have no World datablock.
+
+The third probe produced one `.blend`, one GLB, six 1920×1080 renders, and one
+artifact receipt. It also exposed an important Blender behavior: a Python
+traceback may still leave the Blender process with exit code 0. The new
+controller therefore requires complete output and receipt validation rather
+than trusting process exit alone.
 
 Historical evidence remains untouched. It is superseded for day-to-day
 production control, not deleted.

@@ -1,0 +1,45 @@
+{
+  "schema": "skyguard.blender-worker-sdk-smoke.v1",
+  "classification": "PASS",
+  "blender_version": "5.2.0 LTS",
+  "blender_process_count": 3,
+  "successful_attempt": 3,
+  "attempts": [
+    {
+      "attempt": 1,
+      "process_exit_code": 0,
+      "required_outputs": false,
+      "failure": "Blender 5.2 does not expose BLENDER_EEVEE_NEXT; it uses BLENDER_EEVEE."
+    },
+    {
+      "attempt": 2,
+      "process_exit_code": 0,
+      "required_outputs": false,
+      "failure": "Factory-startup scene had no World datablock."
+    },
+    {
+      "attempt": 3,
+      "process_exit_code": 0,
+      "required_outputs": true,
+      "blend_count": 1,
+      "glb_count": 1,
+      "png_count": 6,
+      "receipt_count": 1,
+      "output_file_count": 9,
+      "output_bytes": 8189045,
+      "artifact_receipt_sha256": "1a56978a583d0f0c40b03d53eeb2e6131d29528bb7685868d1d26aecccc31cf6"
+    }
+  ],
+  "sdk": {
+    "path": "Scripts\\skyguard_blender_worker_sdk.py",
+    "bytes": 11100,
+    "sha256": "4fff5f06f9dccc44501ba426f63598b92f27724b125a3edd6b3bfac0e81498cb"
+  },
+  "template": {
+    "path": "Scripts\\skyguard_blender_worker_template.py",
+    "bytes": 1226,
+    "sha256": "775459c76f3b77ee5298cfa6e070e90869f6a5b23e57836644bb324514deab9c"
+  },
+  "key_finding": "Blender can return process exit code 0 after a Python traceback. Future acceptance must require output inventory and artifact receipt validation in addition to exit code.",
+  "governed_project_assets_modified": false
+}
