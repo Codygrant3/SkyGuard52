@@ -1,0 +1,27 @@
+{"at_utc":"2026-08-06T14:24:39.256791Z","event":"state_changed","asset_id":"core-yak52-cockpit","state":"ready","reason":"Reference-backed Blender 5.2 worker, eight-view render contract, canopy rig, collision, pivots, sockets, and receipts validated offline."}
+{"at_utc":"2026-08-06T14:25:21.343957Z","event":"attempt_terminal","asset_id":"core-yak52-cockpit","attempt_id":"attempt_20260806T142509354924Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:28:06.836228Z","event":"visual_review","asset_id":"core-yak52-cockpit","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:29:10.237765Z","event":"state_changed","asset_id":"core-yak52-cockpit","state":"ready","reason":"Review-driven refinement 01: corrected only fixed interior and exterior camera positions after full-resolution occlusion findings."}
+{"at_utc":"2026-08-06T14:29:43.615064Z","event":"attempt_terminal","asset_id":"core-yak52-cockpit","attempt_id":"attempt_20260806T142931578093Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:35:54.859864Z","event":"visual_review","asset_id":"core-yak52-cockpit","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:35:55.069731Z","event":"state_changed","asset_id":"core-yak52-cockpit","state":"ready","reason":"Final bounded review-driven geometry and camera refinement"}
+{"at_utc":"2026-08-06T14:36:30.156833Z","event":"attempt_terminal","asset_id":"core-yak52-cockpit","attempt_id":"attempt_20260806T143613845680Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:37:12.451107Z","event":"visual_review","asset_id":"core-yak52-cockpit","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:37:12.675104Z","event":"state_changed","asset_id":"core-hand-forearm","state":"ready","reason":"Begin authorized P0 hand and forearm production after cockpit lane terminal rejection"}
+{"at_utc":"2026-08-06T14:37:25.365714Z","event":"attempt_terminal","asset_id":"core-hand-forearm","attempt_id":"attempt_20260806T143714046878Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:39:44.699074Z","event":"visual_review","asset_id":"core-hand-forearm","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:39:44.907706Z","event":"state_changed","asset_id":"core-hand-forearm","state":"ready","reason":"Review-driven anatomy, material exposure, and framing refinement"}
+{"at_utc":"2026-08-06T14:39:56.467637Z","event":"attempt_terminal","asset_id":"core-hand-forearm","attempt_id":"attempt_20260806T143946364520Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:41:04.798545Z","event":"visual_review","asset_id":"core-hand-forearm","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:41:05.006389Z","event":"state_changed","asset_id":"core-hand-forearm","state":"ready","reason":"Final bounded dark-material and grip-silhouette refinement"}
+{"at_utc":"2026-08-06T14:41:16.478474Z","event":"attempt_terminal","asset_id":"core-hand-forearm","attempt_id":"attempt_20260806T144106414958Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:41:52.545238Z","event":"visual_review","asset_id":"core-hand-forearm","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:41:52.753805Z","event":"state_changed","asset_id":"core-rifle","state":"ready","reason":"Begin authorized P0 rifle production after hand lane terminal rejection"}
+{"at_utc":"2026-08-06T14:42:05.242087Z","event":"attempt_terminal","asset_id":"core-rifle","attempt_id":"attempt_20260806T144154227554Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:44:16.129767Z","event":"visual_review","asset_id":"core-rifle","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:44:16.330794Z","event":"state_changed","asset_id":"core-rifle","state":"ready","reason":"Review-driven full-silhouette, dark-material, and stock-detail refinement"}
+{"at_utc":"2026-08-06T14:44:26.975695Z","event":"attempt_terminal","asset_id":"core-rifle","attempt_id":"attempt_20260806T144417789532Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:46:14.445161Z","event":"visual_review","asset_id":"core-rifle","decision":"reject","reviewer":"Codex direct full-resolution review"}
+{"at_utc":"2026-08-06T14:46:14.648320Z","event":"state_changed","asset_id":"core-rifle","state":"ready","reason":"Final bounded exposure-only refinement for readable full-silhouette review"}
+{"at_utc":"2026-08-06T14:46:25.875682Z","event":"attempt_terminal","asset_id":"core-rifle","attempt_id":"attempt_20260806T144616145298Z","status":"awaiting_review","exit_code":0,"failure":null}
+{"at_utc":"2026-08-06T14:47:27.372117Z","event":"visual_review","asset_id":"core-rifle","decision":"reject","reviewer":"Codex direct full-resolution review"}

@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-06T18:30:00Z"
+    "updated_at_utc": "2026-08-06T14:47:27.370706Z"
   },
   "toolchain": {
     "blender": {
@@ -94,7 +94,16 @@
         "Content\\Skyguard\\Meshes\\Source\\L88\\YAK52_L88_MASTER_BLOCKOUT.blend"
       ],
       "blocker": "Authoritative dimensioned three-view and station geometry remain incomplete; existing 242k-triangle uplift is an unrigged source candidate, not accepted final art.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "collision", "pivots", "sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets"
+      ]
     },
     {
       "id": "core-yak52-cockpit",
@@ -103,10 +112,35 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 2,
-      "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Production_002\\BLD_M01_YAK_PROD_002_MASTER.blend"],
+      "status": "failed",
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Production_002\\BLD_M01_YAK_PROD_002_MASTER.blend"
+      ],
       "blocker": "Reference coverage exists, but the candidate has no armature and has not passed first-person silhouette, canopy-travel, or material review.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "canopy_rig", "collision", "pivots", "sockets"]
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_yak52_cockpit.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-yak52-cockpit"
+        ],
+        "minimum_renders": 8
+      },
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "canopy_rig",
+        "collision",
+        "pivots",
+        "sockets"
+      ],
+      "state_reason": "Final bounded attempt remains below the production-candidate visual bar. It is structurally valid and export-ready, but instrument faces still read as blank discs from governed review angles, upholstery and panel forms remain visibly primitive at cockpit distance, and the gunner composition is not a convincing Yak-52 interior. Refinement budget exhausted; preserve all three attempts and stop this asset lane without retry.",
+      "state_changed_at_utc": "2026-08-06T14:37:12.449689Z",
+      "latest_attempt": "Production\\Attempts\\core-yak52-cockpit\\attempt_20260806T143613845680Z"
     },
     {
       "id": "core-pilot",
@@ -116,9 +150,19 @@
       "quality": "hero",
       "priority": 3,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\gunner_station_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\gunner_station_proxy.uasset"
+      ],
       "blocker": "Only proxy or primitive occupant art exists.",
-      "required": ["blend", "glb", "8_renders", "armature", "skin_weights", "uniform_pbr", "cockpit_pose"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "armature",
+        "skin_weights",
+        "uniform_pbr",
+        "cockpit_pose"
+      ]
     },
     {
       "id": "core-rear-gunner",
@@ -128,9 +172,20 @@
       "quality": "hero",
       "priority": 4,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\WebGame\\skyguard-occupant"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\WebGame\\skyguard-occupant"
+      ],
       "blocker": "No accepted production character, rig, clothing, or weapon interaction poses.",
-      "required": ["blend", "glb", "8_renders", "armature", "skin_weights", "uniform_pbr", "rifle_pose", "igla_pose"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "armature",
+        "skin_weights",
+        "uniform_pbr",
+        "rifle_pose",
+        "igla_pose"
+      ]
     },
     {
       "id": "core-hand-forearm",
@@ -139,14 +194,36 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 5,
-      "status": "provisional_blockout",
+      "status": "failed",
       "existing": [
-        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
         "Content\\Skyguard\\Meshes\\Hero\\glove_hand_proxy.uasset",
         "Content\\Skyguard\\Meshes\\Hero\\glove_arm_proxy.uasset"
       ],
       "blocker": "Accepted dimensional mannequin is deliberately provisional and has no anatomy, glove construction, deformation rig, or PBR finish.",
-      "required": ["blend", "glb", "8_renders", "armature", "skin_weights", "glove_pbr", "rifle_grip", "igla_grip"]
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_hand_forearm.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-hand-forearm"
+        ],
+        "minimum_renders": 8
+      },
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "armature",
+        "skin_weights",
+        "glove_pbr",
+        "rifle_grip",
+        "igla_grip"
+      ],
+      "state_reason": "Final bounded attempt improves material readability and establishes a curled grip pose, but the geometry still reads as a segmented mannequin rather than anatomically credible leather-gloved hands at first-person distance. Refinement budget exhausted; preserve all attempts and stop this lane without retry.",
+      "state_changed_at_utc": "2026-08-06T14:41:52.543940Z",
+      "latest_attempt": "Production\\Attempts\\core-hand-forearm\\attempt_20260806T144106414958Z"
     },
     {
       "id": "core-rifle",
@@ -155,14 +232,37 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 6,
-      "status": "provisional_blockout",
+      "status": "failed",
       "existing": [
-        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
         "Content\\Skyguard\\Meshes\\Hero\\rifle_ads_proxy.uasset",
         "Content\\Skyguard\\Meshes\\Hero\\rifle_irons_proxy.uasset"
       ],
       "blocker": "Exact configuration is unresolved; accepted blockout lacks final ergonomic silhouette, sights, controls, material finish, and ADS review.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "sight_alignment", "muzzle_socket", "grip_sockets", "collision"]
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_rifle.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-rifle"
+        ],
+        "minimum_renders": 8
+      },
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "sight_alignment",
+        "muzzle_socket",
+        "grip_sockets",
+        "collision"
+      ],
+      "state_reason": "Final bounded attempt preserves aligned iron sights, complete outputs, and a readable full silhouette, but the receiver, grip, magazine, stock, and handguard remain visibly primitive at first-person distance and material separation is still insufficient. Refinement budget exhausted; preserve all attempts and stop without retry.",
+      "state_changed_at_utc": "2026-08-06T14:47:27.370699Z",
+      "latest_attempt": "Production\\Attempts\\core-rifle\\attempt_20260806T144616145298Z"
     },
     {
       "id": "core-igla-launcher",
@@ -172,9 +272,20 @@
       "quality": "first_person_hero",
       "priority": 7,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\igla_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\igla_proxy.uasset"
+      ],
       "blocker": "Only a proxy exists; launcher details require governed reference-backed reconstruction.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "missile_socket", "grip_sockets", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "missile_socket",
+        "grip_sockets",
+        "collision"
+      ]
     },
     {
       "id": "core-igla-missile",
@@ -184,9 +295,19 @@
       "quality": "hero",
       "priority": 8,
       "status": "provisional_blockout",
-      "existing": ["Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb"],
+      "existing": [
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb"
+      ],
       "blocker": "Accepted 1.574 m by 0.072 m envelope is not a production missile model.",
-      "required": ["blend", "glb", "6_renders", "uvs", "pbr", "exhaust_socket", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "uvs",
+        "pbr",
+        "exhaust_socket",
+        "collision"
+      ]
     },
     {
       "id": "core-shahed136",
@@ -201,7 +322,17 @@
         "Content\\Skyguard\\Meshes\\Hero\\shahed_proxy.uasset"
       ],
       "blocker": "Accepted 3.3 m by 3.0 m planform envelope lacks authoritative cross-section, propeller, surface construction, damage states, and PBR.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "propeller_rig", "damage_states", "collision", "vfx_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "propeller_rig",
+        "damage_states",
+        "collision",
+        "vfx_sockets"
+      ]
     },
     {
       "id": "core-shahed-heavy",
@@ -211,9 +342,20 @@
       "quality": "hero",
       "priority": 10,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\shahed_heavy_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\shahed_heavy_proxy.uasset"
+      ],
       "blocker": "Only a gameplay proxy exists.",
-      "required": ["blend", "glb", "8_renders", "uvs", "pbr", "damage_states", "collision", "weakpoint_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "damage_states",
+        "collision",
+        "weakpoint_sockets"
+      ]
     },
     {
       "id": "support-rail-coupon",
@@ -223,14 +365,25 @@
       "quality": "validation",
       "priority": 80,
       "status": "ready",
-      "existing": ["Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb"],
+      "existing": [
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb"
+      ],
       "blocker": null,
       "worker": {
         "script": "References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Rail_Coupon_Recovery01_OfflineDesign\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_attempt01.py",
-        "arguments": ["--output", "{output_dir}"],
+        "arguments": [
+          "--output",
+          "{output_dir}"
+        ],
         "minimum_renders": 6
       },
-      "required": ["blend", "glb", "6_renders", "dimension_receipt", "socket"]
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "dimension_receipt",
+        "socket"
+      ]
     },
     {
       "id": "shared-destruction-kit",
@@ -240,9 +393,18 @@
       "quality": "hero",
       "priority": 20,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\VFX"],
+      "existing": [
+        "Content\\Skyguard\\VFX"
+      ],
       "blocker": "Runtime VFX exists, but production fracture geometry and approved material states do not.",
-      "required": ["blend", "glb", "fracture_sets", "lod_or_nanite", "collision", "niagara_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "fracture_sets",
+        "lod_or_nanite",
+        "collision",
+        "niagara_sockets"
+      ]
     },
     {
       "id": "shared-vehicle-kit",
@@ -252,9 +414,18 @@
       "quality": "midground",
       "priority": 21,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\city_car_proxy.uasset", "Content\\Skyguard\\Meshes\\Hero\\city_bus_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\city_car_proxy.uasset",
+        "Content\\Skyguard\\Meshes\\Hero\\city_bus_proxy.uasset"
+      ],
       "blocker": "Current assets are proxies; licensed source selection and hero-vehicle exceptions are unresolved.",
-      "required": ["license_receipts", "nanite_or_lods", "pbr", "collision", "vehicle_variants"]
+      "required": [
+        "license_receipts",
+        "nanite_or_lods",
+        "pbr",
+        "collision",
+        "vehicle_variants"
+      ]
     },
     {
       "id": "shared-road-kit",
@@ -264,9 +435,18 @@
       "quality": "modular",
       "priority": 22,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"
+      ],
       "blocker": "Existing modular sources need material assignment, snapping validation, collision, and Unreal acceptance.",
-      "required": ["blend", "glb", "modular_validation", "pbr", "collision", "nanite_or_lods"]
+      "required": [
+        "blend",
+        "glb",
+        "modular_validation",
+        "pbr",
+        "collision",
+        "nanite_or_lods"
+      ]
     },
     {
       "id": "shared-coastal-terrain-kit",
@@ -276,9 +456,18 @@
       "quality": "modular",
       "priority": 11,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"
+      ],
       "blocker": "Geometry exists; final Unreal landscape, waterline contact, materials, and temporal proof are not accepted.",
-      "required": ["blend", "glb", "pbr", "collision", "waterline_validation", "unreal_materials"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "waterline_validation",
+        "unreal_materials"
+      ]
     },
     {
       "id": "shared-urban-kit",
@@ -288,9 +477,18 @@
       "quality": "modular",
       "priority": 12,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Coastal_Production_001"
+      ],
       "blocker": "Low-density source kit exists but final PBR, variation, grounded assembly, and repetition review are incomplete.",
-      "required": ["blend", "glb", "pbr", "collision", "nanite_or_lods", "variation_set"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "nanite_or_lods",
+        "variation_set"
+      ]
     },
     {
       "id": "shared-vegetation-kit",
@@ -300,9 +498,17 @@
       "quality": "environment",
       "priority": 23,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\coast_tree_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\coast_tree_proxy.uasset"
+      ],
       "blocker": "Proxy foliage exists; licensed production vegetation and wind/LOD validation do not.",
-      "required": ["license_receipts", "nanite_or_lods", "wind", "pcg_rules", "performance_proof"]
+      "required": [
+        "license_receipts",
+        "nanite_or_lods",
+        "wind",
+        "pcg_rules",
+        "performance_proof"
+      ]
     },
     {
       "id": "shared-industrial-props",
@@ -312,9 +518,17 @@
       "quality": "midground",
       "priority": 24,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero"
+      ],
       "blocker": "Only scattered proxies exist; no governed licensed library or coherent material language is accepted.",
-      "required": ["license_receipts", "pbr", "nanite_or_lods", "collision", "variation_set"]
+      "required": [
+        "license_receipts",
+        "pbr",
+        "nanite_or_lods",
+        "collision",
+        "variation_set"
+      ]
     },
     {
       "id": "shared-damage-debris",
@@ -324,9 +538,19 @@
       "quality": "environment",
       "priority": 25,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\rubble_cluster_proxy.uasset", "Content\\Skyguard\\Textures\\PolyHaven"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\rubble_cluster_proxy.uasset",
+        "Content\\Skyguard\\Textures\\PolyHaven"
+      ],
       "blocker": "Source materials and proxy rubble exist, but final reusable damage states and performance limits are not accepted.",
-      "required": ["blend", "glb", "decals", "pbr", "collision", "nanite_or_lods"]
+      "required": [
+        "blend",
+        "glb",
+        "decals",
+        "pbr",
+        "collision",
+        "nanite_or_lods"
+      ]
     },
     {
       "id": "m01-lighthouse",
@@ -336,9 +560,18 @@
       "quality": "hero",
       "priority": 13,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"
+      ],
       "blocker": "High-density source and partial bakes exist, but no accepted full PBR set or mapped visual proof.",
-      "required": ["blend", "glb", "8_renders", "pbr", "collision", "nanite_or_lods"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "pbr",
+        "collision",
+        "nanite_or_lods"
+      ]
     },
     {
       "id": "m01-radar-post",
@@ -348,9 +581,19 @@
       "quality": "hero",
       "priority": 14,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"
+      ],
       "blocker": "High-density source and partial bakes exist, but no accepted full PBR set, animation, or mapped visual proof.",
-      "required": ["blend", "glb", "8_renders", "pbr", "dish_rig", "collision", "nanite_or_lods"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "pbr",
+        "dish_rig",
+        "collision",
+        "nanite_or_lods"
+      ]
     },
     {
       "id": "m01-pathfinder-boss",
@@ -360,9 +603,20 @@
       "quality": "boss_hero",
       "priority": 15,
       "status": "source_candidate",
-      "existing": ["Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"
+      ],
       "blocker": "Engineering boss behavior exists and source geometry is substantial, but rig, weak points, damage states, final PBR, and visual acceptance are missing.",
-      "required": ["blend", "glb", "8_renders", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m02-harbor-cranes",
@@ -372,9 +626,18 @@
       "quality": "hero_modular",
       "priority": 30,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\harbor_crane_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\harbor_crane_proxy.uasset"
+      ],
       "blocker": "Only proxy crane geometry exists.",
-      "required": ["blend", "glb", "pbr", "rigged_boom", "collision", "nanite_or_lods"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rigged_boom",
+        "collision",
+        "nanite_or_lods"
+      ]
     },
     {
       "id": "m02-fuel-terminal",
@@ -386,7 +649,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "vfx_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "vfx_sockets"
+      ]
     },
     {
       "id": "m02-container-ship",
@@ -396,9 +666,18 @@
       "quality": "hero",
       "priority": 32,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\container_ship_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\container_ship_proxy.uasset"
+      ],
       "blocker": "Only proxy ship geometry exists.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "waterline"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "waterline"
+      ]
     },
     {
       "id": "m02-submarine",
@@ -408,9 +687,18 @@
       "quality": "hero",
       "priority": 33,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\submarine_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\submarine_proxy.uasset"
+      ],
       "blocker": "Only blocky proxy geometry exists.",
-      "required": ["blend", "glb", "pbr", "collision", "waterline", "wake_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "waterline",
+        "wake_sockets"
+      ]
     },
     {
       "id": "m02-breakwater-boss",
@@ -422,7 +710,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m03-bridge-tunnel-kit",
@@ -434,7 +730,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "nanite_or_lods", "destruction_states"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "nanite_or_lods",
+        "destruction_states"
+      ]
     },
     {
       "id": "m03-relief-convoy",
@@ -446,7 +749,13 @@
       "status": "queued",
       "existing": [],
       "blocker": "No governed production vehicle set.",
-      "required": ["license_receipts", "pbr", "collision", "vehicle_rigs", "damage_states"]
+      "required": [
+        "license_receipts",
+        "pbr",
+        "collision",
+        "vehicle_rigs",
+        "damage_states"
+      ]
     },
     {
       "id": "m03-road-hunter-boss",
@@ -458,7 +767,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m04-substation-grid",
@@ -470,7 +787,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "electrical_vfx_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "electrical_vfx_sockets"
+      ]
     },
     {
       "id": "m04-searchlight-battery",
@@ -482,7 +806,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "rig", "collision", "light_socket"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "collision",
+        "light_socket"
+      ]
     },
     {
       "id": "m04-black-kite-boss",
@@ -494,7 +825,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m05-offshore-platform",
@@ -506,7 +845,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "waterline"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "waterline"
+      ]
     },
     {
       "id": "m05-sea-stack-buoy-kit",
@@ -518,7 +864,13 @@
       "status": "queued",
       "existing": [],
       "blocker": "No governed production source or license receipts.",
-      "required": ["license_receipts", "pbr", "nanite_or_lods", "collision", "buoy_rig"]
+      "required": [
+        "license_receipts",
+        "pbr",
+        "nanite_or_lods",
+        "collision",
+        "buoy_rig"
+      ]
     },
     {
       "id": "m05-trawler",
@@ -530,7 +882,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "waterline"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "waterline"
+      ]
     },
     {
       "id": "m05-tempest-boss",
@@ -542,7 +901,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m06-airfield-kit",
@@ -554,7 +921,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "nanite_or_lods", "damage_states"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "nanite_or_lods",
+        "damage_states"
+      ]
     },
     {
       "id": "m06-runway-breaker-boss",
@@ -566,7 +940,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m07-radar-island-kit",
@@ -578,7 +960,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "nanite_or_lods", "radar_rig"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "nanite_or_lods",
+        "radar_rig"
+      ]
     },
     {
       "id": "m07-fishing-fleet",
@@ -590,7 +979,13 @@
       "status": "queued",
       "existing": [],
       "blocker": "No governed production source or license receipts.",
-      "required": ["license_receipts", "pbr", "collision", "waterline", "variation_set"]
+      "required": [
+        "license_receipts",
+        "pbr",
+        "collision",
+        "waterline",
+        "variation_set"
+      ]
     },
     {
       "id": "m07-radar-ghost-boss",
@@ -602,7 +997,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m08-rescue-helicopter",
@@ -614,7 +1017,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "rig", "rotor_animation", "hoist_rig", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "rotor_animation",
+        "hoist_rig",
+        "collision"
+      ]
     },
     {
       "id": "m08-survivor-rescue-kit",
@@ -626,7 +1037,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "character_rigs", "raft_rig", "collision", "waterline"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "character_rigs",
+        "raft_rig",
+        "collision",
+        "waterline"
+      ]
     },
     {
       "id": "m08-lifeline-hunter-boss",
@@ -638,7 +1057,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m09-metropolitan-kit",
@@ -648,9 +1075,19 @@
       "quality": "hero_environment",
       "priority": 55,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\facade_tower_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\facade_tower_proxy.uasset"
+      ],
       "blocker": "Proxy tower exists; no governed skyline library or accepted repetition/performance proof.",
-      "required": ["license_receipts", "blend", "glb", "pbr", "nanite_or_lods", "collision", "variation_set"]
+      "required": [
+        "license_receipts",
+        "blend",
+        "glb",
+        "pbr",
+        "nanite_or_lods",
+        "collision",
+        "variation_set"
+      ]
     },
     {
       "id": "m09-power-bridge-kit",
@@ -662,7 +1099,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "vfx_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "vfx_sockets"
+      ]
     },
     {
       "id": "m09-iron-rain-boss",
@@ -674,7 +1118,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "m10-ferry-terminal",
@@ -686,7 +1138,14 @@
       "status": "queued",
       "existing": [],
       "blocker": "No production source.",
-      "required": ["blend", "glb", "pbr", "collision", "nanite_or_lods", "crowd_sockets"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "nanite_or_lods",
+        "crowd_sockets"
+      ]
     },
     {
       "id": "m10-evacuation-ship",
@@ -696,9 +1155,18 @@
       "quality": "hero",
       "priority": 59,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\freighter_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\freighter_proxy.uasset"
+      ],
       "blocker": "Only proxy ship geometry exists.",
-      "required": ["blend", "glb", "pbr", "collision", "damage_states", "waterline"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "collision",
+        "damage_states",
+        "waterline"
+      ]
     },
     {
       "id": "m10-evacuation-vehicle-set",
@@ -708,9 +1176,19 @@
       "quality": "hero_midground",
       "priority": 60,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Meshes\\Hero\\city_bus_proxy.uasset", "Content\\Skyguard\\Meshes\\Hero\\city_car_proxy.uasset"],
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Hero\\city_bus_proxy.uasset",
+        "Content\\Skyguard\\Meshes\\Hero\\city_car_proxy.uasset"
+      ],
       "blocker": "Only proxies exist; no governed production fleet.",
-      "required": ["license_receipts", "pbr", "collision", "vehicle_rigs", "damage_states", "variation_set"]
+      "required": [
+        "license_receipts",
+        "pbr",
+        "collision",
+        "vehicle_rigs",
+        "damage_states",
+        "variation_set"
+      ]
     },
     {
       "id": "m10-last-flight-boss",
@@ -722,7 +1200,15 @@
       "status": "queued",
       "existing": [],
       "blocker": "Gameplay class exists; no production art.",
-      "required": ["blend", "glb", "pbr", "rig", "weakpoint_sockets", "damage_states", "collision"]
+      "required": [
+        "blend",
+        "glb",
+        "pbr",
+        "rig",
+        "weakpoint_sockets",
+        "damage_states",
+        "collision"
+      ]
     },
     {
       "id": "unreal-m01-representative-proof",
@@ -732,9 +1218,17 @@
       "quality": "integration",
       "priority": 16,
       "status": "ready",
-      "existing": ["Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_OFFLINE_DESIGN_FREEZE.json"],
+      "existing": [
+        "Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_OFFLINE_DESIGN_FREEZE.json"
+      ],
       "blocker": null,
-      "required": ["8_captures", "900_frame_samples", "shader_stability", "material_restoration", "human_visual_review"]
+      "required": [
+        "8_captures",
+        "900_frame_samples",
+        "shader_stability",
+        "material_restoration",
+        "human_visual_review"
+      ]
     },
     {
       "id": "unreal-m01-vertical-slice",
@@ -744,9 +1238,17 @@
       "quality": "integration",
       "priority": 70,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Maps\\Lvl_M01_CoastalIntercept_Playable_v1.umap"],
+      "existing": [
+        "Content\\Skyguard\\Maps\\Lvl_M01_CoastalIntercept_Playable_v1.umap"
+      ],
       "blocker": "Depends on accepted cockpit combat art, Mission 1 environment proof, production assets, combat capture, audio, and soak.",
-      "required": ["mapped_visual_acceptance", "combat_acceptance", "audio_acceptance", "performance_acceptance", "20_minute_soak"]
+      "required": [
+        "mapped_visual_acceptance",
+        "combat_acceptance",
+        "audio_acceptance",
+        "performance_acceptance",
+        "20_minute_soak"
+      ]
     },
     {
       "id": "unreal-campaign-m02-m10",
@@ -756,9 +1258,16 @@
       "quality": "integration",
       "priority": 90,
       "status": "queued",
-      "existing": ["Content\\Skyguard\\Maps\\Campaign_v1"],
+      "existing": [
+        "Content\\Skyguard\\Maps\\Campaign_v1"
+      ],
       "blocker": "Engineering maps and tests exist, but production art, unique routes, presentation, performance, and packaged acceptance are missing.",
-      "required": ["9_unique_mapped_missions", "boss_acceptance", "performance_acceptance", "stability_acceptance"]
+      "required": [
+        "9_unique_mapped_missions",
+        "boss_acceptance",
+        "performance_acceptance",
+        "stability_acceptance"
+      ]
     },
     {
       "id": "release-clean-machine",
@@ -768,9 +1277,21 @@
       "quality": "release",
       "priority": 100,
       "status": "queued",
-      "existing": ["Saved\\StagedBuilds\\Windows"],
+      "existing": [
+        "Saved\\StagedBuilds\\Windows"
+      ],
       "blocker": "Existing August 2 package is an engineering baseline, not a production-content release candidate.",
-      "required": ["shipping_package", "clean_machine", "input", "combat", "audio", "performance", "stability", "soak", "crash_free"]
+      "required": [
+        "shipping_package",
+        "clean_machine",
+        "input",
+        "combat",
+        "audio",
+        "performance",
+        "stability",
+        "soak",
+        "crash_free"
+      ]
     }
   ]
 }
