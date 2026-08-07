@@ -1,0 +1,93 @@
+{
+  "gate": "GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01",
+  "classification": "FAILED_WITH_EVIDENCE",
+  "terminal": true,
+  "retry_authorized": false,
+  "timestamp_utc": "2026-08-07T03:18:11.8100750Z",
+  "canonical_project": "D:\\Skyguard52",
+  "immutable_authority": {
+    "method03_commit": "f3e10661b5692f339f74d48bbc5bb2d440689281",
+    "method03_freeze_sha256": "fc43b67ac81ab3f0a5e64d82b9e4ffa370fc1c23ca72c5e9b085e90bfab94ab6",
+    "recovery01_prompt_binding_freeze_sha256": "cd589f8294ee1f46efef6dfa69d3fce2b56331807d18af14c7f5279231714e1b",
+    "recovery01_execution_prompt_sha256": "f620e8ab65c4496d504b7d813b0813aaa4b776e204e768a4ed70a1429a972ada",
+    "recovery01_offline_design_freeze_sha256": "e349fc9e79bad018663d95d2499f4ad1d68ad30825d9f65f1a11432687c659b2"
+  },
+  "preflight": {
+    "offline_verifier": "PASS",
+    "authority_count": 13,
+    "future_namespaces_absent_before_launch": true,
+    "heavy_process_count_before_launch": 0,
+    "port_9876_listener_count_before_launch": 0,
+    "orphaned_blender_mcp_trees_removed_before_launch": 8,
+    "git_head_before_launch": "f3e10661b5692f339f74d48bbc5bb2d440689281",
+    "git_worktree_clean_before_launch": true
+  },
+  "execution": {
+    "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\\Skyguard52\\Scripts\\invoke_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_once.ps1 -AuthorizeSingleBlender",
+    "supervisor_exit_code": 1,
+    "automatic_retry_count": 0,
+    "unreal_launch_count": 0,
+    "blender_version_from_stdout": "Blender 5.2.0 LTS",
+    "blender_launched": true,
+    "blender_quit": true,
+    "heavy_process_count_after_failure": 0
+  },
+  "failure": {
+    "stage": "generated_coupon_dimension_validation",
+    "exception_type": "RuntimeError",
+    "message": "Rail coupon bounding dimensions failed authority validation",
+    "source_line": 569,
+    "render_count": 0,
+    "glb_created": false,
+    "blend_created": false,
+    "dimension_receipt_created": false,
+    "glb_structure_receipt_created": false,
+    "visual_review_available": false,
+    "terminal_supervisor_manifest_created": false,
+    "terminal_manifest_defect": "The governed supervisor returned exit code 1 without producing the required terminal supervisor manifest. The immutable attempt logs and preflight receipt are preserved instead."
+  },
+  "attempt_namespace": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01",
+  "output_namespace": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01",
+  "output_inventory": [
+    {
+      "path": "D:\\Skyguard52\\Blender\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_ATTEMPT01\\exports",
+      "kind": "directory",
+      "children": 0
+    }
+  ],
+  "attempt_files": [
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01\\blender.stderr.log",
+      "bytes": 1393,
+      "sha256": "da047639e922ab6d73360cc559c52a33488dc8dd8047c92274cfc5302ef0badc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01\\blender.stdout.log",
+      "bytes": 78,
+      "sha256": "62aa68d052234759fcf2f662c9277a117896bb0a66d46f104de825c9b1ad1ecc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01_EXECUTION_CONTRACT.json",
+      "bytes": 6798,
+      "sha256": "f57e5251344e8eda6b8ab6a91a50bf745d9b8ca2b5316558acb0438253b520a0"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01\\preflight_receipt.json",
+      "bytes": 1113,
+      "sha256": "f3c86b1d126de62a808d578d73d8daa7a6a1256ccdd235060bd0d2ffd25e2c6d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\GATE7_COMBAT_ASSET_REFINEMENT_CYCLE03_RAIL_COUPON_RECOVERY01\\attempt_01\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_attempt01.py",
+      "bytes": 1715,
+      "sha256": "1a82efe7cdd7c412cf3d8d200558ac97801c7afbfbcb356851ce5d65b4f2843e"
+    }
+  ],
+  "acceptance": {
+    "automatic_validation_passed": false,
+    "eleven_render_requirement_met": false,
+    "direct_full_resolution_visual_review_completed": false,
+    "next_method04_prompt_created": false,
+    "reason_method04_not_created": "The rail-coupon dependency did not pass."
+  },
+  "next_executable_gate": "A separately authorized offline-only recovery design must correct the coupon construction-versus-bounds mismatch and the missing terminal-manifest lifecycle without modifying or reusing this failed namespace."
+}
