@@ -58,7 +58,7 @@ bool FSkyguardCoastalEnvironmentDirectorTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	static const FName CapabilityTags[] = {
+	static const FName ExpectedCapabilityTags[] = {
 		TEXT("Skyguard.Environment.Water"),
 		TEXT("Skyguard.Environment.Landmass"),
 		TEXT("Skyguard.Environment.PCG"),
@@ -67,7 +67,7 @@ bool FSkyguardCoastalEnvironmentDirectorTest::RunTest(const FString& Parameters)
 		TEXT("Skyguard.Environment.Fog"),
 		TEXT("Skyguard.Environment.Wind")
 	};
-	for (const FName Tag : CapabilityTags)
+	for (const FName Tag : ExpectedCapabilityTags)
 	{
 		AActor* CapabilityActor = TestWorld.Get()->SpawnActor<AActor>();
 		TestNotNull(FString::Printf(TEXT("Capability actor %s spawns"), *Tag.ToString()), CapabilityActor);

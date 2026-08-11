@@ -258,6 +258,7 @@ private:
 	int32 RemainingThreatsInWave = 0;
 	int32 ObservedDispenserMilestones = 0;
 	int32 ObservedBossMilestones = 0;
+	bool bInitialized = false;
 	bool bMissionCompleted = false;
 
 	bool NotifyObjectiveProgress(FName ObjectiveId, int32 Amount = 1);

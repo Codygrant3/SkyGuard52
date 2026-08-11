@@ -84,6 +84,13 @@ void ASkyguardMission09IntegrationDirector::EndPlay(
 	const EEndPlayReason::Type EndPlayReason)
 {
 	ASkyguardDrone::OnAnyCityImpacted.RemoveAll(this);
+	if (IronRain)
+	{
+		IronRain->OnBossPhaseChanged.RemoveDynamic(
+			this,
+			&ASkyguardMission09IntegrationDirector::HandleBossPhaseChanged);
+		IronRain->OnPilotCommandNative.RemoveAll(this);
+	}
 	Super::EndPlay(EndPlayReason);
 }
 
@@ -110,6 +117,11 @@ bool ASkyguardMission09IntegrationDirector::NotifyProtectedAssetFailed()
 
 bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 {
+	if (bInitialized)
+	{
+		UpdateReadiness();
+		return IsCorePlayableReady();
+	}
 	ResolvedMission = MissionDefinition.LoadSynchronous();
 	ResolvedCampaign = CampaignDefinition.LoadSynchronous();
 	if (!ConfigureMissionDefinition(ResolvedMission)) return false;
@@ -139,7 +151,7 @@ bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 				Runtime->ConfigureCampaign(ResolvedCampaign);
 			if (bConfigured)
 			{
-				// Restore prior completions before StartMission unlock checks.
+				// Can migrate to SkyguardMissionDirectorCampaignHelpers (see M01/M02).
 				Runtime->LoadCampaignFromSlot(
 					CampaignSaveSlotName,
 					CampaignSaveUserIndex);
@@ -170,6 +182,7 @@ bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 		Lines.Add(Line);
 	}
 	RadioChatter->PrimeLines(Lines);
+	bInitialized = true;
 	UpdateReadiness();
 	Briefing->SetAssetsReady(IsCorePlayableReady());
 	return IsCorePlayableReady();

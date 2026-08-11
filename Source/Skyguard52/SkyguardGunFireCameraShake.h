@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Camera/LegacyCameraShake.h"
+#include "Shakes/LegacyCameraShake.h"
 #include "SkyguardGunFireCameraShake.generated.h"
 
 /** Short muzzle recoil shake scaled by gunner AppliedCameraShakeScale. */
