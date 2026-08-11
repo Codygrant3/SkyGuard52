@@ -1,0 +1,4971 @@
+{
+  "schema": "skyguard.ready-blender-output-contracts.v1",
+  "purpose": "Independent postflight validation for ready Blender asset lanes. This file does not authorize Blender execution or visual acceptance.",
+  "contracts": {
+    "core-yak52-airframe": {
+      "worker_script": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01.py",
+      "supervisor_script": "Scripts\\invoke_phase2_yak52_airframe_refinement01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01.py",
+          "bytes": 21715,
+          "sha256": "9c865d12493183f593a98d6268af0a3493e68f9437acaa7d70cee5b7da28a292"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_yak52_airframe_refinement01_once.ps1",
+          "bytes": 3791,
+          "sha256": "b20f9bc5e7a4d35153afc01fcc0851f3e6f585a187fcb3db62ac0c7cc32b6298"
+        },
+        {
+          "path": "Saved\\Reports\\PHASE2_YAK52_AIRFRAME_REFINEMENT01_EXECUTION_AUTHORITY.json",
+          "bytes": 2479,
+          "sha256": "671cf4af67d9e9b73f96a6657221d023e91e86644d63348f2583c176181c4204"
+        }
+      ],
+      "blend": "SKG_Yak52_Airframe_Refinement01.blend",
+      "glb": "SKG_Yak52_Airframe_Refinement01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 11,
+          "width": 2560,
+          "height": 1440
+        }
+      ],
+      "required_json": {
+        "dimension_receipt.json": "skyguard.phase2.yak52-airframe-refinement01.dimension-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.yak52-airframe-refinement01.source-parity.v1",
+        "topology_material_receipt.json": "skyguard.phase2.yak52-airframe-refinement01.topology-material.v1",
+        "artifact_receipt.json": "skyguard.phase2.yak52-airframe-refinement01.artifact-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "dimension_receipt.json",
+          "path": "global_envelope_pass",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "unchanged",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_dimensions",
+          "op": "eq",
+          "value": [
+            2560,
+            1440
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_Propeller",
+        "SOCKET_MainGear_L",
+        "SOCKET_MainGear_R",
+        "SOCKET_NoseGear",
+        "SOCKET_CanopyRearClosed",
+        "SOCKET_CanopyRearOpen",
+        "SOCKET_RearGunnerCamera",
+        "SOCKET_RifleClearance",
+        "SOCKET_IglaBackblast",
+        "UCX_Yak52_Fuselage",
+        "UCX_Yak52_Wing_L",
+        "UCX_Yak52_Wing_R",
+        "UCX_Yak52_Tail"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "core-reargunner-character-refinement01": {
+      "worker_script": "Scripts\\Workers\\worker_core_reargunner_character_refinement01.py",
+      "supervisor_script": "Scripts\\invoke_phase2_reargunner_character_refinement01_recovery01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_reargunner_character_refinement01.py",
+          "bytes": 43408,
+          "sha256": "524c2622dd9a408b8abd4924560fd6f75053118c28ce621e3b449f33a0889da3"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_reargunner_character_refinement01_recovery01_once.ps1",
+          "bytes": 5743,
+          "sha256": "5fd09a5bdf8f76dedc02afa5c9f944bb47c26a4c4593b20239be65b5490ca937"
+        },
+        {
+          "path": "Saved\\Reports\\PHASE2_REARGUNNER_CHARACTER_REFINEMENT01_RECOVERY01_EXECUTION_AUTHORITY.json",
+          "bytes": 5722,
+          "sha256": "0de4fcf7861826862ed9203b7862c522c24960c341065fe03980b9f4cce65921"
+        },
+        {
+          "path": "Scripts\\skyguard_production.py",
+          "bytes": 26877,
+          "sha256": "7495a6dbb8bff659912f1cfc4bb03be848c35cd15aea1bc61701eee873baa136"
+        }
+      ],
+      "blend": "core-reargunner-character-refinement01.blend",
+      "glb": "core-reargunner-character-refinement01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 12,
+          "width": 2048,
+          "height": 2048
+        }
+      ],
+      "required_json": {
+        "geometry_rig_receipt.json": "skyguard.phase2.reargunner-character-refinement01.geometry-rig-receipt.v1",
+        "pose_deformation_receipt.json": "skyguard.phase2.reargunner-character-refinement01.pose-deformation-receipt.v1",
+        "cockpit_clearance_datum_receipt.json": "skyguard.phase2.reargunner-character-refinement01.cockpit-clearance-datum-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.reargunner-character-refinement01.source-parity-receipt.v1",
+        "production_receipt.json": "skyguard.asset-production-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "deform_bone_count",
+          "op": "ge",
+          "value": 31
+        },
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "exported_hand_mesh_count",
+          "op": "eq",
+          "value": 0
+        },
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "actions",
+          "op": "contains_all",
+          "value": [
+            "ACT_SeatedNeutral",
+            "ACT_RifleSupport",
+            "ACT_RifleTriggerADS",
+            "ACT_IglaSupport",
+            "ACT_TurbulenceBrace"
+          ]
+        },
+        {
+          "file": "pose_deformation_receipt.json",
+          "path": "checks.finite_noncollapsed_bounds",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "external_geometry_imported",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "production_receipt.json",
+          "path": "validations.render_count",
+          "op": "eq",
+          "value": 12
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_SeatDatum",
+        "SOCKET_Pelvis",
+        "SOCKET_Head",
+        "SOCKET_RearGunnerCamera",
+        "SOCKET_Wrist_R",
+        "SOCKET_Wrist_L",
+        "SOCKET_RifleShoulder",
+        "SOCKET_IglaShoulder",
+        "SOCKET_WeaponSweepOrigin"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 1,
+      "minimum_animations": 5,
+      "quality_gate": {
+        "profile": "rear_gunner_character_exposure_contrast_v1",
+        "image_rules": [
+          {
+            "glob": "renders/*.png",
+            "roi_normalized": [
+              0.12,
+              0.1,
+              0.88,
+              0.9
+            ],
+            "dark_threshold": 0.025,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.9,
+            "maximum_bright_pixel_fraction": 0.42
+          }
+        ]
+      }
+    },
+    "core-reargunner-hand-forearm-refinement01": {
+      "worker_script": "Scripts\\Workers\\worker_core_reargunner_hand_forearm_refinement01.py",
+      "supervisor_script": "Scripts\\invoke_phase2_reargunner_hand_forearm_refinement01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_reargunner_hand_forearm_refinement01.py",
+          "bytes": 37705,
+          "sha256": "fbd8598b7f25e24bd1977c60f339a5348f88ea3cce63f5ea89a1273d1aff6e00"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_reargunner_hand_forearm_refinement01_once.ps1",
+          "bytes": 4238,
+          "sha256": "b8a2e8c6e7b106e60c078e9a3b5359f746f24acc6bb43a76ec3aec0827a65c32"
+        },
+        {
+          "path": "Saved\\Reports\\PHASE2_REARGUNNER_HAND_FOREARM_REFINEMENT01_EXECUTION_AUTHORITY.json",
+          "bytes": 3120,
+          "sha256": "fa3b9a6ca9de5d95067f9a8c9b2d06947e8233687781b5011a2bbcd0d7c25262"
+        },
+        {
+          "path": "Scripts\\skyguard_production.py",
+          "bytes": 26877,
+          "sha256": "7495a6dbb8bff659912f1cfc4bb03be848c35cd15aea1bc61701eee873baa136"
+        }
+      ],
+      "blend": "core-reargunner-hand-forearm-refinement01.blend",
+      "glb": "core-reargunner-hand-forearm-refinement01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 12,
+          "width": 2048,
+          "height": 2048
+        }
+      ],
+      "required_json": {
+        "geometry_rig_receipt.json": "skyguard.phase2.reargunner-hand-forearm-refinement01.geometry-rig-receipt.v1",
+        "pose_deformation_receipt.json": "skyguard.phase2.reargunner-hand-forearm-refinement01.pose-deformation-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.reargunner-hand-forearm-refinement01.source-parity-receipt.v1",
+        "production_receipt.json": "skyguard.asset-production-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "deform_bones_per_side.R",
+          "op": "ge",
+          "value": 18
+        },
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "deform_bones_per_side.L",
+          "op": "ge",
+          "value": 18
+        },
+        {
+          "file": "geometry_rig_receipt.json",
+          "path": "actions",
+          "op": "contains_all",
+          "value": [
+            "ACT_Neutral",
+            "ACT_RifleSupport",
+            "ACT_RifleTriggerADS",
+            "ACT_IglaSupport"
+          ]
+        },
+        {
+          "file": "pose_deformation_receipt.json",
+          "path": "checks.finite_noncollapsed_bounds",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "external_geometry_imported",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "production_receipt.json",
+          "path": "validations.render_count",
+          "op": "eq",
+          "value": 12
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_Wrist_R",
+        "SOCKET_Wrist_L",
+        "SOCKET_Rifle_FiringHand",
+        "SOCKET_Rifle_SupportHand",
+        "SOCKET_Igla_FiringHand",
+        "SOCKET_Igla_SupportHand",
+        "SOCKET_ADS_HandAlignment"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 1,
+      "minimum_animations": 4,
+      "quality_gate": {
+        "profile": "rear_gunner_hands_exposure_contrast_v1",
+        "image_rules": [
+          {
+            "glob": "renders/*.png",
+            "roi_normalized": [
+              0.15,
+              0.15,
+              0.85,
+              0.85
+            ],
+            "dark_threshold": 0.025,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.055,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.88,
+            "maximum_bright_pixel_fraction": 0.42
+          }
+        ]
+      }
+    },
+    "core-rifle-method05-stagea": {
+      "worker_script": "Scripts\\Workers\\worker_core_rifle_method05_deterministic_stagea.py",
+      "supervisor_script": "Scripts\\invoke_p0_core_rifle_method05_deterministic_stagea_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_rifle_method05_deterministic_stagea.py",
+          "bytes": 45850,
+          "sha256": "605a903699c356c0c44b2dd02271728a695ee80e5129add1c3df7643e9e89589"
+        },
+        {
+          "path": "Scripts\\invoke_p0_core_rifle_method05_deterministic_stagea_once.ps1",
+          "bytes": 8772,
+          "sha256": "d97997b8c09200d575bd2b2aa312692103c53ce12b4e876e93bac2c8ef355038"
+        },
+        {
+          "path": "Docs\\AAA_Review\\P0_CORE_RIFLE_METHOD05_DETERMINISTIC_STAGEA_EXECUTION_PROMPT_BINDING_FREEZE.json",
+          "bytes": 1060,
+          "sha256": "9c908231e53e71b0d5ce742c8e62e58c9bc4ea44147cbc01fd8c7dcbfc0fda7a"
+        },
+        {
+          "path": "Scripts\\skyguard_production.py",
+          "bytes": 26877,
+          "sha256": "7495a6dbb8bff659912f1cfc4bb03be848c35cd15aea1bc61701eee873baa136"
+        }
+      ],
+      "blend": "core-rifle-method05-stageA.blend",
+      "glb": "core-rifle-method05-stageA.glb",
+      "render_groups": [
+        {
+          "glob": "renders/checkpoints/*/*.png",
+          "count": 15,
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "glob": "renders/final/*.png",
+          "count": 12,
+          "width": 2560,
+          "height": 1440
+        }
+      ],
+      "required_json": {
+        "stageA_dimension_receipt.json": "skyguard.rifle-method05-stagea.dimensions.v1",
+        "stageA_topology_inventory.json": "skyguard.rifle-method05-stagea.topology.v1",
+        "stageA_manifold_intersection_validation.json": "skyguard.rifle-method05-stagea.manifold-intersection.v1",
+        "stageA_material_inventory.json": "skyguard.rifle-method05-stagea.materials.v1",
+        "stageA_pivot_axis_socket_collision_contract.json": "skyguard.rifle-method05-stagea.pivot-axis-socket-collision.v1",
+        "stageA_object_modifier_inventory.json": "skyguard.rifle-method05-stagea.object-modifier-inventory.v1",
+        "stageA_render_receipt.json": "skyguard.rifle-method05-stagea.renders.v1",
+        "stageA_export_receipt.json": "skyguard.rifle-method05-stagea.export.v1",
+        "stageA_artifact_manifest.json": "skyguard.rifle-method05-stagea.artifact-manifest.v1",
+        "stageA_terminal_receipt.json": "skyguard.rifle-method05-stagea.terminal.v1"
+      },
+      "checks": [
+        {
+          "file": "stageA_dimension_receipt.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_topology_inventory.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_manifold_intersection_validation.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_material_inventory.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_pivot_axis_socket_collision_contract.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_render_receipt.json",
+          "path": "checkpoint_render_count",
+          "op": "eq",
+          "value": 15
+        },
+        {
+          "file": "stageA_render_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "stageA_export_receipt.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "stageA_terminal_receipt.json",
+          "path": "classification",
+          "op": "eq",
+          "value": "PASSED_AUTOMATIC_AWAITING_EXTERNAL_FULL_RESOLUTION_VISUAL_REVIEW"
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Rail_Origin",
+        "SOCKET_Muzzle",
+        "SOCKET_Receiver_Interface",
+        "SOCKET_SupportHand",
+        "UCX_M05A_ForwardAssembly"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "core-shahed136": {
+      "worker_script": "Scripts\\Workers\\worker_core_shahed136_refinement01_recovery02.py",
+      "supervisor_script": "Scripts\\invoke_phase2_shahed136_refinement01_recovery02_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_shahed136_refinement01_recovery02.py",
+          "bytes": 3284,
+          "sha256": "68718bb2f710454fb1a350112698ade144c6f65d179baf9f78d362e59f09c070"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_core_shahed136_refinement01.py",
+          "bytes": 31801,
+          "sha256": "7a845f941788c47cb2baab863bc17ce6606f626d7257170eb802f1f4a40c283b"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_shahed136_refinement01_recovery02_once.ps1",
+          "bytes": 968,
+          "sha256": "856e8e7171c87252f345de3b0dadb8694c7af0ad8352060f4f838a6597eb14e9"
+        }
+      ],
+      "blend": "SKG_Shahed136_Refinement01.blend",
+      "glb": "SKG_Shahed136_Refinement01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2560,
+          "height": 1440
+        }
+      ],
+      "required_json": {
+        "dimension_receipt.json": "skyguard.phase2.shahed136-refinement01.dimension-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.shahed136-refinement01.source-parity-receipt.v1",
+        "topology_material_receipt.json": "skyguard.phase2.shahed136-refinement01.topology-material-receipt.v1",
+        "export_structure_receipt.json": "skyguard.phase2.shahed136-refinement01.export-structure-receipt.v1",
+        "artifact_receipt.json": "skyguard.phase2.shahed136-refinement01.artifact-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "dimension_receipt.json",
+          "path": "primary_envelope_pass",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "unchanged",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_meshes_have_uvs",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_dimensions",
+          "op": "eq",
+          "value": [
+            2560,
+            1440
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "hero_airframe_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "measurement_authority",
+            "unreal_collision",
+            "damage_state"
+          ],
+          "primary_roles": [
+            "primary_airframe",
+            "primary_fuselage",
+            "nose_cone",
+            "engine_cowling",
+            "control_surface",
+            "wingtip_stabilizer",
+            "propeller_blade",
+            "propeller_hub"
+          ],
+          "minimum_total_renderable_vertices": 5000,
+          "minimum_primary_vertices": 4000,
+          "minimum_material_count": 6
+        },
+        "image_rules": [
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.03,
+            "maximum_dark_pixel_fraction": 0.97
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_Propeller",
+        "SOCKET_EngineVFX",
+        "SOCKET_DamageCore",
+        "SOCKET_DamageWing_L",
+        "SOCKET_DamageWing_R",
+        "SOCKET_NoseImpact",
+        "UCX_Shahed_Fuselage",
+        "UCX_Shahed_Wing_L",
+        "UCX_Shahed_Wing_R",
+        "UCX_Shahed_Nose"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 1,
+      "minimum_animations": 1
+    },
+    "m01-coastal-corridor-correction06-recovery01-unrealready01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_coastal_corridor_correction06_recovery01_unrealready01.py",
+      "supervisor_script": "Scripts\\invoke_m01_coastal_corridor_correction06_recovery01_unrealready01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_coastal_corridor_correction06_recovery01_unrealready01.py",
+          "bytes": 16216,
+          "sha256": "3c75387fcd5030b4d0ff2a7fb8a2d7d419962a329fd482befd7a36fae091c739"
+        },
+        {
+          "path": "Scripts\\invoke_m01_coastal_corridor_correction06_recovery01_unrealready01_once.ps1",
+          "bytes": 1789,
+          "sha256": "f146254a81b51086db76e171f47bcfacb2b94d13039ef07c812ddb86151c120e"
+        },
+        {
+          "path": "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\output\\M01_CoastalCorridor_Correction06_Recovery01.blend",
+          "bytes": 456427,
+          "sha256": "08d6eec9dfd289a63634e3f12ac203a40d58d6c7a4f547be9210465e3052dec4"
+        },
+        {
+          "path": "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\visual_review.json",
+          "bytes": 1148,
+          "sha256": "9210180b28577e1048470e3bcfc1b48a1ea7db7b260e8fa6e816b6a2423b8f20"
+        }
+      ],
+      "blend": "M01_CoastalCorridor_Correction06_Recovery01_UnrealReady01.blend",
+      "glb": "M01_CoastalCorridor_Correction06_Recovery01_UnrealReady01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 6,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "source_authority_receipt.json": "skyguard.m01-c06r01-unrealready01.source-authority.v1",
+        "semantic_consolidation_receipt.json": "skyguard.m01-c06r01-unrealready01.semantic-consolidation.v1",
+        "render_receipt.json": "skyguard.m01-c06r01-unrealready01.renders.v1"
+      },
+      "checks": [
+        {
+          "file": "source_authority_receipt.json",
+          "path": "accepted_source_regenerated",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "source_authority_receipt.json",
+          "path": "accepted_source_modified",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "source_authority_receipt.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "source_render_mesh_count",
+          "op": "ge",
+          "value": 300
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "semantic_render_mesh_count",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "export_mesh_count_including_collision",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "uv0_complete",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "review_ocean_exported",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "semantic_consolidation_receipt.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "render_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 6
+        },
+        {
+          "file": "render_receipt.json",
+          "path": "passed",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "required_glb_nodes": [
+        "SM_M01_CoastalCorridor_C06R01_TERRAIN",
+        "SM_M01_CoastalCorridor_C06R01_HARDSCAPE",
+        "SM_M01_CoastalCorridor_C06R01_DETAILS",
+        "SM_M01_CoastalCorridor_C06R01_CONTACT",
+        "UCX_SM_M01_CoastalCorridor_C06R01_TERRAIN_00",
+        "SOCKET_M01_CoastalCorridor_C06R01_Origin"
+      ],
+      "minimum_meshes": 5,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-coastal-frontage-cell01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_coastal_frontage_cell01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_coastal_frontage_cell01_once.ps1",
+          "bytes": 1757,
+          "sha256": "c1afbbc1c9a78681a0254475430489f97a4b7894ee07bade0f36e31006e9243b"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_COASTAL_FRONTAGE_CELL01_PRODUCTION_CONTRACT.json",
+          "bytes": 2218,
+          "sha256": "016d16c594b380d00b3872fc79f6ac4fe98b4b547a4f58d6260e19d879d2f6d5"
+        },
+        {
+          "path": "Production\\visual_feedback_memory.json",
+          "bytes": 9714,
+          "sha256": "4a695af7a1d484a5a711d5e357894b7edf36c7dac0de6c9e3c06015c810e915c"
+        },
+        {
+          "path": "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json",
+          "bytes": 5052,
+          "sha256": "e3bbf1e1f5ae3c04dc3d85689959e4ed443c6fb8591c8eb9aa4b51e3afd7f8a2"
+        }
+      ],
+      "blend": "M01_Hero_Coastal_Frontage_Cell01.blend",
+      "glb": "M01_Hero_Coastal_Frontage_Cell01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-coastal-frontage-cell01.topology-material.v1",
+        "design_contract_receipt.json": "skyguard.m01-hero-coastal-frontage-cell01.design-contract.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-coastal-frontage-cell01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 8000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_MANSARD",
+            "B_MODERN_STEPPED",
+            "C_CORNER_TOWER"
+          ]
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "fresh_asset_specific_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_scene_generator",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_authored_hero_frontage_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "primary_architecture",
+            "facade_structure",
+            "window_recess",
+            "window_frame",
+            "balcony",
+            "entrance",
+            "roofline"
+          ],
+          "minimum_total_renderable_vertices": 8000,
+          "minimum_primary_vertices": 5000,
+          "minimum_material_count": 10
+        },
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.07,
+            "maximum_dark_pixel_fraction": 0.88
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.055,
+            "maximum_dark_pixel_fraction": 0.92
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_HeroFrontage_A_MansardRoof",
+        "SM_M01_HeroFrontage_B_StorefrontGlass",
+        "SM_M01_HeroFrontage_C_CornerTower",
+        "SM_M01_HeroFrontage_Sidewalk",
+        "UCX_SM_M01_HeroFrontage_A_00",
+        "UCX_SM_M01_HeroFrontage_B_00",
+        "UCX_SM_M01_HeroFrontage_C_00",
+        "SOCKET_M01_HeroFrontage_Origin",
+        "SOCKET_M01_HeroFrontage_A",
+        "SOCKET_M01_HeroFrontage_B",
+        "SOCKET_M01_HeroFrontage_C"
+      ],
+      "minimum_meshes": 180,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-mansard-building-a01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_mansard_building_a01.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_mansard_building_a01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_mansard_building_a01.py",
+          "bytes": 30606,
+          "sha256": "03cddf7c2a1a553d2bc492f8e133ff0a16e28ac211b50e8df799eb54a4ab018a"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_mansard_building_a01_once.ps1",
+          "bytes": 1761,
+          "sha256": "08cee83ed928163a070889d9406bc2649a82287af7ecfc752796cddd4fa35475"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_PRODUCTION_CONTRACT.json",
+          "bytes": 2970,
+          "sha256": "43dce38582407b50c2b1bd11021adf259d9639a77248c2eafaafd9f90b8f649a"
+        },
+        {
+          "path": "Saved\\Reports\\M01_HERO_COASTAL_FRONTAGE_CELL01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+          "bytes": 6149,
+          "sha256": "e4b3ba9d5c2d5893d3eab5e3d7841c5e12dff61d52932822f26412a26b7fffa2"
+        },
+        {
+          "path": "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json",
+          "bytes": 5052,
+          "sha256": "e3bbf1e1f5ae3c04dc3d85689959e4ed443c6fb8591c8eb9aa4b51e3afd7f8a2"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Mansard_Building_A01.blend",
+      "glb": "M01_Hero_Prewar_Mansard_Building_A01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-mansard-building-a01.topology-material.v1",
+        "design_contract_receipt.json": "skyguard.m01-hero-prewar-mansard-building-a01.design-contract.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-mansard-building-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 300
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 12000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 14
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_MANSARD_PRODUCTION"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame",
+          "op": "ge",
+          "value": 140
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "ge",
+          "value": 55
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "fresh_asset_specific_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_scene_generator",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "single_hero_building_scope",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "actual_open_facade_construction",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_single_hero_prewar_building_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "primary_architecture",
+            "facade_structure",
+            "window_recess",
+            "window_frame",
+            "balcony",
+            "entrance",
+            "entrance_surround",
+            "roofline",
+            "roof_detail"
+          ],
+          "minimum_total_renderable_vertices": 12000,
+          "minimum_primary_vertices": 9000,
+          "minimum_material_count": 14
+        },
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.075,
+            "maximum_dark_pixel_fraction": 0.84
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.06,
+            "maximum_dark_pixel_fraction": 0.88
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_HeroPrewarA01_MansardRoof",
+        "SM_M01_HeroPrewarA01_EntranceArch",
+        "SM_M01_HeroPrewarA01_DormerRoof_02",
+        "SM_M01_HeroPrewarA01_Sidewalk",
+        "UCX_SM_M01_HeroPrewarA01_Body_00",
+        "UCX_SM_M01_HeroPrewarA01_Roof_00",
+        "SOCKET_M01_HeroPrewarA01_Origin",
+        "SOCKET_M01_HeroPrewarA01_Entrance",
+        "SOCKET_M01_HeroPrewarA01_Roof",
+        "SOCKET_M01_HeroPrewarA01_StreetLamp"
+      ],
+      "minimum_meshes": 300,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01.py",
+          "bytes": 24370,
+          "sha256": "bf15d1030fa58318c0c1dcb146f2af35a5bb45fdb5d3b9a957add192b8840a65"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_once.ps1",
+          "bytes": 1755,
+          "sha256": "a311c44c99862999f7e6a2ab1c646c54674f0c15d83bf2888d46035a86249236"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_PRODUCTION_CONTRACT.json",
+          "bytes": 2839,
+          "sha256": "d75b260336488f125b5fe1397a3fbe924df46622db33da77534b495c5d637303"
+        },
+        {
+          "path": "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+          "bytes": 5906,
+          "sha256": "491d310a1eb1e32569731c0c3d1902b39dc086073259722bd5fd666e0f3f3d1f"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 3096,
+          "sha256": "20a941819300d1989e37a362565bc5820d471d3852a85d50907ad36ddd370fa6"
+        },
+        {
+          "path": "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json",
+          "bytes": 5052,
+          "sha256": "e3bbf1e1f5ae3c04dc3d85689959e4ed443c6fb8591c8eb9aa4b51e3afd7f8a2"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.topology-material.v1",
+        "design_contract_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.design-contract.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 60
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 2000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 12
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_WINDOW_BAY_PRODUCTION"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_reveal",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame",
+          "op": "ge",
+          "value": 21
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior",
+          "op": "ge",
+          "value": 14
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "fresh_asset_specific_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "single_closeup_facade_bay_scope",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_building_scope",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_scene_generator",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "coherent_wall_plane",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "clean_rectangular_aperture",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "visible_frame_ahead_of_wall",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "interior_response_not_black_void",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_single_closeup_facade_bay_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame",
+            "window_glazing",
+            "window_interior",
+            "facade_trim",
+            "window_hardware"
+          ],
+          "minimum_total_renderable_vertices": 2000,
+          "minimum_primary_vertices": 1500,
+          "minimum_material_count": 12
+        },
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.095,
+            "maximum_dark_pixel_fraction": 0.7
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.08,
+            "maximum_dark_pixel_fraction": 0.76
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowBayA01_Pier_L",
+        "SM_M01_WindowBayA01_Pier_R",
+        "SM_M01_WindowBayA01_StoneSill",
+        "SM_M01_WindowBayA01_OuterFrame_L",
+        "SM_M01_WindowBayA01_Glass_LL",
+        "SM_M01_WindowBayA01_InteriorBack",
+        "UCX_SM_M01_WindowBayA01_Pier_L_00",
+        "UCX_SM_M01_WindowBayA01_Pier_R_00",
+        "UCX_SM_M01_WindowBayA01_Spandrel_00",
+        "UCX_SM_M01_WindowBayA01_Header_00",
+        "SOCKET_M01_WindowBayA01_Origin",
+        "SOCKET_M01_WindowBayA01_WindowCenter"
+      ],
+      "minimum_meshes": 60,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery01.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery01.py",
+          "bytes": 1224,
+          "sha256": "33096649cf6f1db41fcb4aaa4651933a572886f6c4071e28c88b5d125535a975"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01.py",
+          "bytes": 24370,
+          "sha256": "bf15d1030fa58318c0c1dcb146f2af35a5bb45fdb5d3b9a957add192b8840a65"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery01_once.ps1",
+          "bytes": 1766,
+          "sha256": "ede296247c3de3b5b3a6850f8424f8d751f4afb04e0c7cc3cfe1a9103b69a925"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY01_COMPATIBILITY_CONTRACT.json",
+          "bytes": 1354,
+          "sha256": "240c547588a5f6fc098d1da97039e6667d5b0919e19f6269d839dfffb14d60fb"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 2269,
+          "sha256": "b6dea8cd0e208e9da400cfa136293405d633c9e37d767045989ea84d3468a42a"
+        },
+        {
+          "path": "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+          "bytes": 5906,
+          "sha256": "491d310a1eb1e32569731c0c3d1902b39dc086073259722bd5fd666e0f3f3d1f"
+        },
+        {
+          "path": "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json",
+          "bytes": 5052,
+          "sha256": "e3bbf1e1f5ae3c04dc3d85689959e4ed443c6fb8591c8eb9aa4b51e3afd7f8a2"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.topology-material.v1",
+        "design_contract_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.design-contract.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 60
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 2000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 12
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_WINDOW_BAY_PRODUCTION"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_reveal",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame",
+          "op": "ge",
+          "value": 21
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior",
+          "op": "ge",
+          "value": 14
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "fresh_asset_specific_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "single_closeup_facade_bay_scope",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_building_scope",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_scene_generator",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "coherent_wall_plane",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "clean_rectangular_aperture",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "visible_frame_ahead_of_wall",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "interior_response_not_black_void",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_single_closeup_facade_bay_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame",
+            "window_glazing",
+            "window_interior",
+            "facade_trim",
+            "window_hardware"
+          ],
+          "minimum_total_renderable_vertices": 2000,
+          "minimum_primary_vertices": 1500,
+          "minimum_material_count": 12
+        },
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.095,
+            "maximum_dark_pixel_fraction": 0.7
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.08,
+            "maximum_dark_pixel_fraction": 0.76
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowBayA01_Pier_L",
+        "SM_M01_WindowBayA01_Pier_R",
+        "SM_M01_WindowBayA01_StoneSill",
+        "SM_M01_WindowBayA01_OuterFrame_L",
+        "SM_M01_WindowBayA01_Glass_LL",
+        "SM_M01_WindowBayA01_InteriorBack",
+        "UCX_SM_M01_WindowBayA01_Pier_L_00",
+        "UCX_SM_M01_WindowBayA01_Pier_R_00",
+        "UCX_SM_M01_WindowBayA01_Spandrel_00",
+        "UCX_SM_M01_WindowBayA01_Header_00",
+        "SOCKET_M01_WindowBayA01_Origin",
+        "SOCKET_M01_WindowBayA01_WindowCenter"
+      ],
+      "minimum_meshes": 60,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery02": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery02.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery02_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery02.py",
+          "bytes": 1454,
+          "sha256": "4daea02f72e87a3f8501a72120f096942349308add46d6bf7d59f5d82490368c"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01.py",
+          "bytes": 24370,
+          "sha256": "bf15d1030fa58318c0c1dcb146f2af35a5bb45fdb5d3b9a957add192b8840a65"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery02_once.ps1",
+          "bytes": 1766,
+          "sha256": "668cb1aeed026eab298a54db8e6fac387dea7f0a2bd98393a47f4e910a30b94b"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_COMPATIBILITY_CONTRACT.json",
+          "bytes": 1442,
+          "sha256": "20f4671c2342c2ecc1e800bca320603587d1b6fa05dce1807dd6237414bbc31a"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 2269,
+          "sha256": "b6dea8cd0e208e9da400cfa136293405d633c9e37d767045989ea84d3468a42a"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 1852,
+          "sha256": "23bafdddc22d075e18c1144a3e345a1cc3e60747cddecb1d9062eb8a04ec27fe"
+        },
+        {
+          "path": "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+          "bytes": 5906,
+          "sha256": "491d310a1eb1e32569731c0c3d1902b39dc086073259722bd5fd666e0f3f3d1f"
+        },
+        {
+          "path": "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json",
+          "bytes": 5052,
+          "sha256": "e3bbf1e1f5ae3c04dc3d85689959e4ed443c6fb8591c8eb9aa4b51e3afd7f8a2"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.topology-material.v1",
+        "design_contract_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.design-contract.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 60
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 2000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 12
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_WINDOW_BAY_PRODUCTION"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_reveal",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame",
+          "op": "ge",
+          "value": 21
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior",
+          "op": "ge",
+          "value": 14
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "fresh_asset_specific_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "single_closeup_facade_bay_scope",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_building_scope",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "whole_scene_generator",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "coherent_wall_plane",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "clean_rectangular_aperture",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "visible_frame_ahead_of_wall",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "interior_response_not_black_void",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "design_contract_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 11
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_single_closeup_facade_bay_proxy_rejection_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame",
+            "window_glazing",
+            "window_interior",
+            "facade_trim",
+            "window_hardware"
+          ],
+          "minimum_total_renderable_vertices": 2000,
+          "minimum_primary_vertices": 1500,
+          "minimum_material_count": 12
+        },
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.095,
+            "maximum_dark_pixel_fraction": 0.7
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "minimum_mean_luminance": 0.08,
+            "maximum_dark_pixel_fraction": 0.76
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowBayA01_Pier_L",
+        "SM_M01_WindowBayA01_Pier_R",
+        "SM_M01_WindowBayA01_StoneSill",
+        "SM_M01_WindowBayA01_OuterFrame_L",
+        "SM_M01_WindowBayA01_Glass_LL",
+        "SM_M01_WindowBayA01_InteriorBack",
+        "UCX_SM_M01_WindowBayA01_Pier_L_00",
+        "UCX_SM_M01_WindowBayA01_Pier_R_00",
+        "UCX_SM_M01_WindowBayA01_Spandrel_00",
+        "UCX_SM_M01_WindowBayA01_Header_00",
+        "SOCKET_M01_WindowBayA01_Origin",
+        "SOCKET_M01_WindowBayA01_WindowCenter"
+      ],
+      "minimum_meshes": 60,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-prewar-window-material-glazing-benchmark-a01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+      "supervisor_script": "Scripts\\invoke_m01_prewar_window_material_glazing_benchmark_a01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Scripts\\invoke_m01_prewar_window_material_glazing_benchmark_a01_once.ps1",
+          "bytes": 1891,
+          "sha256": "0fdbb21e30b9d64b448cad1e3d9101d3b131e31fded85521bd6070f9a7ce099a"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_PRODUCTION_CONTRACT.json",
+          "bytes": 4686,
+          "sha256": "8e2c9ecfc7761ed1f6af52172e909303d1a44585e637aa154bd6c522ab4e829f"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 7079,
+          "sha256": "9c5880b682ac3d1a4a47759139cfbdeb99569115d70fe653d1d362e4afc0023c"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 4150,
+          "sha256": "5b23bad2d99769d008ac1bf758118e8b45db6d82f9d7ad529fbf80f4d92815aa"
+        }
+      ],
+      "blend": "M01_Prewar_Window_Material_Glazing_Benchmark_A01.blend",
+      "glb": "M01_Prewar_Window_Material_Glazing_Benchmark_A01.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-prewar-window-material-glazing-benchmark-a01.topology-material.v1",
+        "construction_receipt.json": "skyguard.m01-prewar-window-material-glazing-benchmark-a01.construction.v1",
+        "material_glazing_receipt.json": "skyguard.m01-prewar-window-material-glazing-benchmark-a01.material-glazing.v1",
+        "exposure_intent_receipt.json": "skyguard.m01-prewar-window-material-glazing-benchmark-a01.exposure-intent.v1",
+        "artifact_receipt.json": "skyguard.m01-prewar-window-material-glazing-benchmark-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 50
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 1800
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 8
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_CASEMENT_MATERIAL_BENCHMARK"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame_primary",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_sash",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_hardware",
+          "op": "ge",
+          "value": 24
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_architecture",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_furniture",
+          "op": "ge",
+          "value": 8
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fresh_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "same_geometry_cosmetic_recolor",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "mechanically_coherent_hardware",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "real_room_depth_for_parallax",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_glazing_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_glazing_receipt.json",
+          "path": "physical_glass.ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "material_glazing_receipt.json",
+          "path": "physical_glass.thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "material_glazing_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "exposure_intent_receipt.json",
+          "path": "upper_luminance_postflight_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_physical_glazing_material_parallax_exposure_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only",
+            "review_only_wetness"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame_primary",
+            "window_frame_rebate",
+            "window_sash",
+            "window_glazing",
+            "window_glazing_bead",
+            "window_hardware",
+            "window_interior_architecture",
+            "window_interior_furniture",
+            "window_interior_fixture",
+            "window_interior_textile"
+          ],
+          "minimum_total_renderable_vertices": 1800,
+          "minimum_primary_vertices": 1200,
+          "minimum_material_count": 8
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.07,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.8,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.055,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/overcast_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.055,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/grazing_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.055,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/wet_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.055,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.62,
+            "maximum_dark_pixel_fraction": 0.85,
+            "maximum_bright_pixel_fraction": 0.06
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowBenchmark_Wall_L",
+        "SM_M01_WindowBenchmark_Wall_R",
+        "SM_M01_WindowBenchmark_Frame_L",
+        "SM_M01_WindowBenchmark_Sash_L_L",
+        "SM_M01_WindowBenchmark_Glass_L_LOWER",
+        "SM_M01_WindowBenchmark_LatchLever",
+        "SM_M01_WindowBenchmark_RoomBack",
+        "UCX_SM_M01_WindowBenchmark_Wall_L_00",
+        "UCX_SM_M01_WindowBenchmark_Wall_R_00",
+        "UCX_SM_M01_WindowBenchmark_Wall_B_00",
+        "UCX_SM_M01_WindowBenchmark_Wall_T_00",
+        "SOCKET_M01_PrewarWindow_Origin",
+        "SOCKET_M01_PrewarWindow_Center",
+        "SOCKET_M01_PrewarWindow_Latch"
+      ],
+      "minimum_meshes": 50,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-prewar-window-eevee-glazing-transmission-coupon-a01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_prewar_window_eevee_glazing_transmission_coupon_a01.py",
+      "supervisor_script": "Scripts\\invoke_m01_prewar_window_eevee_glazing_transmission_coupon_a01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_eevee_glazing_transmission_coupon_a01.py",
+          "bytes": 19423,
+          "sha256": "905ac25cd70867f06a56d2da53795963767e8122e582b3039ac344d6ddd2feb6"
+        },
+        {
+          "path": "Scripts\\invoke_m01_prewar_window_eevee_glazing_transmission_coupon_a01_once.ps1",
+          "bytes": 1898,
+          "sha256": "790dba0a6de2a008cb084f3edfa982935ef12e417cd75354a3aadc4bac93f827"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_PRODUCTION_CONTRACT.json",
+          "bytes": 2929,
+          "sha256": "709b965422088f3c553ff1d51de1f9e0dd613f54ba0ca749e27ca639ed99ccea"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 8680,
+          "sha256": "2a2f982cd9b49afef2c9b678d675061f56050dbe713896e08149ebb65b726d8e"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 3930,
+          "sha256": "b1b760943b06c389706b5ded7f59f0e82ea17986ea41c220ada9b2ff0bdd1d57"
+        }
+      ],
+      "blend": "M01_Prewar_Window_Eevee_Glazing_Transmission_Coupon_A01.blend",
+      "glb": "M01_Prewar_Window_Eevee_Glazing_Transmission_Coupon_A01.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 6,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "topology_receipt.json": "skyguard.m01-prewar-window-eevee-glazing-transmission-coupon-a01.topology.v1",
+        "shader_candidate_receipt.json": "skyguard.m01-prewar-window-eevee-glazing-transmission-coupon-a01.shader-candidates.v1",
+        "visibility_intent_receipt.json": "skyguard.m01-prewar-window-eevee-glazing-transmission-coupon-a01.visibility-intent.v1",
+        "artifact_receipt.json": "skyguard.m01-prewar-window-eevee-glazing-transmission-coupon-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 29
+        },
+        {
+          "file": "topology_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 200
+        },
+        {
+          "file": "topology_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_receipt.json",
+          "path": "role_counts.coupon_glazing",
+          "op": "eq",
+          "value": 2
+        },
+        {
+          "file": "topology_receipt.json",
+          "path": "role_counts.coupon_depth_target",
+          "op": "ge",
+          "value": 12
+        },
+        {
+          "file": "shader_candidate_receipt.json",
+          "path": "pure_glass_bsdf_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "shader_candidate_receipt.json",
+          "path": "pane_thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "shader_candidate_receipt.json",
+          "path": "ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "shader_candidate_receipt.json",
+          "path": "same_depth_targets_for_both_candidates",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "shader_candidate_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "visibility_intent_receipt.json",
+          "path": "pane_local_gate_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "visibility_intent_receipt.json",
+          "path": "minimum_pane_luminance_stddev_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "visibility_intent_receipt.json",
+          "path": "left_right_oblique_parallax_proof_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 6
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_eevee_glazing_transmission_pane_local_v1",
+        "topology": {
+          "receipt": "topology_receipt.json",
+          "excluded_roles": [
+            "review_only"
+          ],
+          "primary_roles": [
+            "coupon_wall",
+            "coupon_frame",
+            "coupon_glazing",
+            "coupon_depth_target",
+            "coupon_room"
+          ],
+          "minimum_total_renderable_vertices": 200,
+          "minimum_primary_vertices": 200,
+          "minimum_material_count": 8
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.07,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.78,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.84,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_front_both_candidates.png",
+            "roi_normalized": [
+              0.25,
+              0.28,
+              0.45,
+              0.8
+            ],
+            "dark_threshold": 0.08,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.1,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.055,
+            "maximum_dark_pixel_fraction": 0.74,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_front_both_candidates.png",
+            "roi_normalized": [
+              0.55,
+              0.28,
+              0.75,
+              0.8
+            ],
+            "dark_threshold": 0.08,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.1,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.055,
+            "maximum_dark_pixel_fraction": 0.74,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_front_interior_visibility.png",
+            "roi_normalized": [
+              0.25,
+              0.28,
+              0.45,
+              0.8
+            ],
+            "dark_threshold": 0.06,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.045,
+            "maximum_mean_luminance": 0.65,
+            "minimum_luminance_stddev": 0.035,
+            "maximum_dark_pixel_fraction": 0.84,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/night_front_interior_visibility.png",
+            "roi_normalized": [
+              0.55,
+              0.28,
+              0.75,
+              0.8
+            ],
+            "dark_threshold": 0.06,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.045,
+            "maximum_mean_luminance": 0.65,
+            "minimum_luminance_stddev": 0.035,
+            "maximum_dark_pixel_fraction": 0.84,
+            "maximum_bright_pixel_fraction": 0.08
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_COUPON_Glass_A",
+        "SM_COUPON_Glass_B",
+        "SM_COUPON_Target_A_Near",
+        "SM_COUPON_Target_B_Near",
+        "SM_COUPON_RoomBack",
+        "SOCKET_COUPON_Origin",
+        "SOCKET_COUPON_Pane_A",
+        "SOCKET_COUPON_Pane_B"
+      ],
+      "minimum_meshes": 29,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery03": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery03_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+          "bytes": 36861,
+          "sha256": "cdb4fe32af7a6222e64c63c8ac989ae9dd9f04964830beec3a9f6b7ce90741c9"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery03_once.ps1",
+          "bytes": 1884,
+          "sha256": "73d15c985e84fb1934d55ceb31aac7461b591259c4b32ac86a1d47e8d1d94a0a"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY03_PRODUCTION_CONTRACT.json",
+          "bytes": 3037,
+          "sha256": "55eeec8d07aa0662badb0a785ca1b95ae37879ae559d2a50cb1e04093d9560c0"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 8680,
+          "sha256": "2a2f982cd9b49afef2c9b678d675061f56050dbe713896e08149ebb65b726d8e"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 5105,
+          "sha256": "221354359165758bf92cb8fb35a05f59814457b366968a7d59e26f9d756a0389"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01_Recovery03.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01_Recovery03.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.topology-material.v1",
+        "construction_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.construction.v1",
+        "selected_glazing_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.selected-glazing.v1",
+        "material_provenance_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.material-provenance.v1",
+        "review_intent_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.review-intent.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery03.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 100
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 3000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_CASEMENT_RECOVERY03_CANDIDATE_B"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame_primary",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_sash",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_hardware",
+          "op": "ge",
+          "value": 40
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_architecture",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_furniture",
+          "op": "ge",
+          "value": 20
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fresh_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "failed_recovery_mesh_data_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "coupon_geometry_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "thin_stepped_frame_and_sash",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "rounded_interleaved_hinge_knuckles",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "furnished_room_parallax",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fake_wet_strip_geometry",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "method",
+          "op": "eq",
+          "value": "transparent_principled_fresnel_mix_dithered"
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "reflection_roughness",
+          "op": "eq",
+          "value": 0.11
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pane_thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pure_glass_bsdf_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "candidate_a_used",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "synthetic_high_frequency_hardware_stamp_removed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "uncropped_installed_module_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "pane_local_luminance_and_variation_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "left_right_oblique_parallax_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_prewar_window_recovery03_candidate_b_full_module_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame_primary",
+            "window_frame_rebate",
+            "window_sash",
+            "window_glazing",
+            "window_glazing_bead",
+            "window_hardware",
+            "window_hardware_fastener",
+            "window_interior_architecture",
+            "window_interior_furniture",
+            "window_interior_fixture",
+            "window_interior_textile"
+          ],
+          "minimum_total_renderable_vertices": 3000,
+          "minimum_primary_vertices": 2200,
+          "minimum_material_count": 10
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.06,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.8,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/overcast_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/grazing_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.64,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/cockpit_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.035,
+            "maximum_mean_luminance": 0.66,
+            "maximum_dark_pixel_fraction": 0.88,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowR03_Wall_L",
+        "SM_M01_WindowR03_Wall_R",
+        "SM_M01_WindowR03_Frame_L",
+        "SM_M01_WindowR03_Sash_L_L",
+        "SM_M01_WindowR03_Glass_L_LOWER",
+        "SM_M01_WindowR03_LatchGrip",
+        "SM_M01_WindowR03_RoomBack",
+        "SM_M01_WindowR03_Bookcase",
+        "UCX_SM_M01_WindowR03_Wall_L_00",
+        "UCX_SM_M01_WindowR03_Wall_R_00",
+        "UCX_SM_M01_WindowR03_Wall_B_00",
+        "UCX_SM_M01_WindowR03_Wall_T_00",
+        "SOCKET_M01_PrewarWindowR03_Origin",
+        "SOCKET_M01_PrewarWindowR03_Center",
+        "SOCKET_M01_PrewarWindowR03_Latch"
+      ],
+      "minimum_meshes": 100,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery04": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery04.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery04_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery04.py",
+          "bytes": 3819,
+          "sha256": "6033aece0ef70b08eab0a5a618a81702c67c84bfaa4e4a4a2bccbd6a0510ba7f"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery04_once.ps1",
+          "bytes": 1884,
+          "sha256": "ac6f8565edb5338cc21d2b6a1b89578d9dc1b7c27246174fc3dce5f31e339662"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY04_COMPATIBILITY_CONTRACT.json",
+          "bytes": 2634,
+          "sha256": "e9e017d286e0be1a2b3a32799ca3b8aa6a6f1c19430659bfd2aa1a0cf9ad67e6"
+        },
+        {
+          "path": "Scripts\\tests\\test_blender_worker_import_contract.py",
+          "bytes": 1976,
+          "sha256": "0c5bd377fac11241115c11bbc75131e5c33a4e514a373e59cb198aedc9970a8f"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+          "bytes": 36861,
+          "sha256": "cdb4fe32af7a6222e64c63c8ac989ae9dd9f04964830beec3a9f6b7ce90741c9"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 8680,
+          "sha256": "2a2f982cd9b49afef2c9b678d675061f56050dbe713896e08149ebb65b726d8e"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 5105,
+          "sha256": "221354359165758bf92cb8fb35a05f59814457b366968a7d59e26f9d756a0389"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY03_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 3145,
+          "sha256": "1c0d125a09af4cc4aa1a10fd97e85e1bfce067a57d67581ae04cd4f17fc275ec"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01_Recovery04.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01_Recovery04.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.topology-material.v1",
+        "construction_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.construction.v1",
+        "selected_glazing_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.selected-glazing.v1",
+        "material_provenance_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.material-provenance.v1",
+        "review_intent_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.review-intent.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery04.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 100
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 3000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_CASEMENT_RECOVERY04_CANDIDATE_B"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame_primary",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_sash",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_hardware",
+          "op": "ge",
+          "value": 40
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_architecture",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_furniture",
+          "op": "ge",
+          "value": 20
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fresh_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "failed_recovery_mesh_data_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "coupon_geometry_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "thin_stepped_frame_and_sash",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "rounded_interleaved_hinge_knuckles",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "furnished_room_parallax",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fake_wet_strip_geometry",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "method",
+          "op": "eq",
+          "value": "transparent_principled_fresnel_mix_dithered"
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "reflection_roughness",
+          "op": "eq",
+          "value": 0.11
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pane_thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pure_glass_bsdf_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "candidate_a_used",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "synthetic_high_frequency_hardware_stamp_removed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "uncropped_installed_module_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "pane_local_luminance_and_variation_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "left_right_oblique_parallax_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "recovery04_compatibility_only",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_prewar_window_recovery04_candidate_b_full_module_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame_primary",
+            "window_frame_rebate",
+            "window_sash",
+            "window_glazing",
+            "window_glazing_bead",
+            "window_hardware",
+            "window_hardware_fastener",
+            "window_interior_architecture",
+            "window_interior_furniture",
+            "window_interior_fixture",
+            "window_interior_textile"
+          ],
+          "minimum_total_renderable_vertices": 3000,
+          "minimum_primary_vertices": 2200,
+          "minimum_material_count": 10
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.06,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.8,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/overcast_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/grazing_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.64,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/cockpit_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.035,
+            "maximum_mean_luminance": 0.66,
+            "maximum_dark_pixel_fraction": 0.88,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowR03_Wall_L",
+        "SM_M01_WindowR03_Wall_R",
+        "SM_M01_WindowR03_Frame_L",
+        "SM_M01_WindowR03_Sash_L_L",
+        "SM_M01_WindowR03_Glass_L_LOWER",
+        "SM_M01_WindowR03_LatchGrip",
+        "SM_M01_WindowR03_RoomBack",
+        "SM_M01_WindowR03_Bookcase",
+        "UCX_SM_M01_WindowR03_Wall_L_00",
+        "UCX_SM_M01_WindowR03_Wall_R_00",
+        "UCX_SM_M01_WindowR03_Wall_B_00",
+        "UCX_SM_M01_WindowR03_Wall_T_00",
+        "SOCKET_M01_PrewarWindowR03_Origin",
+        "SOCKET_M01_PrewarWindowR03_Center",
+        "SOCKET_M01_PrewarWindowR03_Latch"
+      ],
+      "minimum_meshes": 100,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery05": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery05.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery05_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery05.py",
+          "bytes": 4002,
+          "sha256": "051d2a59e1e4783e6999a4e634b0a4c7d27643cd7559e97c6f14eb7518e50edb"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery05_once.ps1",
+          "bytes": 1884,
+          "sha256": "047800de4d036b5bccc4d0bbfaf4e3b961f772d6fae1cb216b15bb2fb877af50"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY05_COMPATIBILITY_CONTRACT.json",
+          "bytes": 2696,
+          "sha256": "6d20f29b969a862b270193baaf91c0b74adc6ce851a693653101fb2f3f6fd665"
+        },
+        {
+          "path": "Scripts\\tests\\test_blender_worker_import_contract_recovery05.py",
+          "bytes": 2360,
+          "sha256": "de7aef8b039799884d832d6c7d46743567de379fd2dbc7b8db530e234d800c89"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+          "bytes": 36861,
+          "sha256": "cdb4fe32af7a6222e64c63c8ac989ae9dd9f04964830beec3a9f6b7ce90741c9"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 8680,
+          "sha256": "2a2f982cd9b49afef2c9b678d675061f56050dbe713896e08149ebb65b726d8e"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 5105,
+          "sha256": "221354359165758bf92cb8fb35a05f59814457b366968a7d59e26f9d756a0389"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY04_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 3002,
+          "sha256": "16966068d8576f6db32da0a9bbf4a428624a4363d21d040e65889054b6221653"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01_Recovery05.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01_Recovery05.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.topology-material.v1",
+        "construction_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.construction.v1",
+        "selected_glazing_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.selected-glazing.v1",
+        "material_provenance_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.material-provenance.v1",
+        "review_intent_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.review-intent.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery05.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 100
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 3000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_CASEMENT_RECOVERY03_CANDIDATE_B"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame_primary",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_sash",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_hardware",
+          "op": "ge",
+          "value": 40
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_architecture",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_furniture",
+          "op": "ge",
+          "value": 20
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fresh_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "failed_recovery_mesh_data_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "coupon_geometry_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "thin_stepped_frame_and_sash",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "rounded_interleaved_hinge_knuckles",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "furnished_room_parallax",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fake_wet_strip_geometry",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "method",
+          "op": "eq",
+          "value": "transparent_principled_fresnel_mix_dithered"
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "reflection_roughness",
+          "op": "eq",
+          "value": 0.11
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pane_thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pure_glass_bsdf_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "candidate_a_used",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "synthetic_high_frequency_hardware_stamp_removed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "uncropped_installed_module_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "pane_local_luminance_and_variation_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "left_right_oblique_parallax_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "recovery05_preserved_internal_signature",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_prewar_window_recovery05_candidate_b_full_module_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame_primary",
+            "window_frame_rebate",
+            "window_sash",
+            "window_glazing",
+            "window_glazing_bead",
+            "window_hardware",
+            "window_hardware_fastener",
+            "window_interior_architecture",
+            "window_interior_furniture",
+            "window_interior_fixture",
+            "window_interior_textile"
+          ],
+          "minimum_total_renderable_vertices": 3000,
+          "minimum_primary_vertices": 2200,
+          "minimum_material_count": 10
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.06,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.8,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/overcast_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/grazing_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.64,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/cockpit_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.035,
+            "maximum_mean_luminance": 0.66,
+            "maximum_dark_pixel_fraction": 0.88,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowR03_Wall_L",
+        "SM_M01_WindowR03_Wall_R",
+        "SM_M01_WindowR03_Frame_L",
+        "SM_M01_WindowR03_Sash_L_L",
+        "SM_M01_WindowR03_Glass_L_LOWER",
+        "SM_M01_WindowR03_LatchGrip",
+        "SM_M01_WindowR03_RoomBack",
+        "SM_M01_WindowR03_Bookcase",
+        "UCX_SM_M01_WindowR03_Wall_L_00",
+        "UCX_SM_M01_WindowR03_Wall_R_00",
+        "UCX_SM_M01_WindowR03_Wall_B_00",
+        "UCX_SM_M01_WindowR03_Wall_T_00",
+        "SOCKET_M01_PrewarWindowR03_Origin",
+        "SOCKET_M01_PrewarWindowR03_Center",
+        "SOCKET_M01_PrewarWindowR03_Latch"
+      ],
+      "minimum_meshes": 100,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-prewar-window-r03-topology-signature-diagnostic-a01": {
+      "worker_script": "Scripts\\Workers\\worker_m01_prewar_window_r03_topology_signature_diagnostic_a01.py",
+      "supervisor_script": "Scripts\\invoke_m01_prewar_window_r03_topology_signature_diagnostic_a01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_r03_topology_signature_diagnostic_a01.py",
+          "bytes": 7207,
+          "sha256": "74f1fe9743c7461f0e7f2a13033db44c849e35a5b18985693e43ff37c10865c0"
+        },
+        {
+          "path": "Scripts\\invoke_m01_prewar_window_r03_topology_signature_diagnostic_a01_once.ps1",
+          "bytes": 1898,
+          "sha256": "1af12e8cb93f34ee6b584842c8300149655062cf23074bad32bd10cb245a9673"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_R03_TOPOLOGY_SIGNATURE_DIAGNOSTIC_A01_CONTRACT.json",
+          "bytes": 1555,
+          "sha256": "1e15c51d2f0980473714fcfcc50cd486d1e15202a1bbd3fd8a205c3770cc7c3a"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+          "bytes": 36861,
+          "sha256": "cdb4fe32af7a6222e64c63c8ac989ae9dd9f04964830beec3a9f6b7ce90741c9"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 5105,
+          "sha256": "221354359165758bf92cb8fb35a05f59814457b366968a7d59e26f9d756a0389"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY05_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 2974,
+          "sha256": "17fea8ca3e4abf886e0379fb4e3badffe7fb97440b2ef66c802cfd8a8744966d"
+        }
+      ],
+      "blend": "M01_Prewar_Window_R03_Topology_Signature_Diagnostic_A01.blend",
+      "glb": "M01_Prewar_Window_R03_Topology_Signature_Diagnostic_A01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        }
+      ],
+      "required_json": {
+        "signature_diagnostic_receipt.json": "skyguard.m01-prewar-window-r03-topology-signature-diagnostic-a01.signature-receipt.v1",
+        "topology_material_receipt.json": "skyguard.m01-prewar-window-r03-topology-signature-diagnostic-a01.topology-material.v1",
+        "artifact_receipt.json": "skyguard.m01-prewar-window-r03-topology-signature-diagnostic-a01.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "signature_diagnostic_receipt.json",
+          "path": "diagnostic_complete",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "signature_diagnostic_receipt.json",
+          "path": "expected_signature",
+          "op": "eq",
+          "value": "A_PREWAR_CASEMENT_RECOVERY03_CANDIDATE_B"
+        },
+        {
+          "file": "signature_diagnostic_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 100
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_dimensions",
+          "op": "eq",
+          "value": [
+            512,
+            512
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "diagnostic_only",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "required_glb_nodes": [
+        "SM_M01_WindowR03_Wall_L",
+        "SM_M01_WindowR03_Wall_R",
+        "SM_M01_WindowR03_Frame_L",
+        "SM_M01_WindowR03_Sash_L_L",
+        "SM_M01_WindowR03_Glass_L_LOWER",
+        "SM_M01_WindowR03_LatchGrip",
+        "SM_M01_WindowR03_RoomBack",
+        "SOCKET_M01_PrewarWindowR03_Origin"
+      ],
+      "minimum_meshes": 100,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-hero-prewar-window-bay-a01-recovery06": {
+      "worker_script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery06.py",
+      "supervisor_script": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery06_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery06.py",
+          "bytes": 5860,
+          "sha256": "8d2e4793a9961ee78659b2d32a1a42f8b1175d173aa33824ebcf722114981697"
+        },
+        {
+          "path": "Scripts\\invoke_m01_hero_prewar_window_bay_a01_recovery06_once.ps1",
+          "bytes": 1884,
+          "sha256": "62100ff42f21eec0aff6acda5cdae262305d3872e224e6dc6be447a2dda80a1d"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_CORRECTION_CONTRACT.json",
+          "bytes": 1975,
+          "sha256": "70e90792b8575fcdd900a9dd9eda2a64f35ddc45ebb0b1d4106989ea2b56ee5a"
+        },
+        {
+          "path": "Scripts\\tests\\test_blender_worker_curtain_retag_recovery06.py",
+          "bytes": 1943,
+          "sha256": "a16b87a04ff3c58c3a76ca29a4438141676d24f3bdeb7db492d808d974baec71"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+          "bytes": 36861,
+          "sha256": "cdb4fe32af7a6222e64c63c8ac989ae9dd9f04964830beec3a9f6b7ce90741c9"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+          "bytes": 40936,
+          "sha256": "3bf374ed469708218f16767ba0c60c049fb941095f02d2f2d3fa1ebd34cfd3c5"
+        },
+        {
+          "path": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+          "bytes": 42685,
+          "sha256": "174e81aaa0cb5f4010a98d799b432b98346ada73abbcf422e28509f64365c4fd"
+        },
+        {
+          "path": "Scripts\\blender_hero_quality_gate.py",
+          "bytes": 8680,
+          "sha256": "2a2f982cd9b49afef2c9b678d675061f56050dbe713896e08149ebb65b726d8e"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+          "bytes": 5105,
+          "sha256": "221354359165758bf92cb8fb35a05f59814457b366968a7d59e26f9d756a0389"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_PREWAR_WINDOW_R03_TOPOLOGY_SIGNATURE_DIAGNOSTIC_A01_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+          "bytes": 3822,
+          "sha256": "4a1b71df0629c4e54e9ba4d27756985f16caae2dd170988a262c7c381455caf7"
+        }
+      ],
+      "blend": "M01_Hero_Prewar_Window_Bay_A01_Recovery06.blend",
+      "glb": "M01_Hero_Prewar_Window_Bay_A01_Recovery06.glb",
+      "render_groups": [
+        {
+          "glob": "calibration/*.png",
+          "count": 1,
+          "width": 512,
+          "height": 512
+        },
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "topology_material_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.topology-material.v1",
+        "construction_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.construction.v1",
+        "selected_glazing_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.selected-glazing.v1",
+        "material_provenance_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.material-provenance.v1",
+        "review_intent_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.review-intent.v1",
+        "curtain_signature_correction_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.curtain-signature-correction.v1",
+        "artifact_receipt.json": "skyguard.m01-hero-prewar-window-bay-a01-recovery06.artifacts.v1"
+      },
+      "checks": [
+        {
+          "file": "topology_material_receipt.json",
+          "path": "mesh_object_count",
+          "op": "ge",
+          "value": 100
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "renderable_vertex_count",
+          "op": "ge",
+          "value": 3000
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "all_renderable_meshes_have_uv0",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_material_count",
+          "op": "ge",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "distinct_building_signatures",
+          "op": "contains_all",
+          "value": [
+            "A_PREWAR_CASEMENT_RECOVERY03_CANDIDATE_B"
+          ]
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.facade_structure",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_frame_primary",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_sash",
+          "op": "eq",
+          "value": 10
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_glazing",
+          "op": "eq",
+          "value": 4
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_hardware",
+          "op": "ge",
+          "value": 40
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_architecture",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "topology_material_receipt.json",
+          "path": "role_counts.window_interior_furniture",
+          "op": "ge",
+          "value": 20
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fresh_geometry",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "failed_recovery_mesh_data_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "coupon_geometry_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "thin_stepped_frame_and_sash",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "rounded_interleaved_hinge_knuckles",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "furnished_room_parallax",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "construction_receipt.json",
+          "path": "fake_wet_strip_geometry",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "method",
+          "op": "eq",
+          "value": "transparent_principled_fresnel_mix_dithered"
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "ior",
+          "op": "eq",
+          "value": 1.46
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "reflection_roughness",
+          "op": "eq",
+          "value": 0.11
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pane_thickness_m",
+          "op": "eq",
+          "value": 0.008
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "pure_glass_bsdf_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "candidate_a_used",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "selected_glazing_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "governed_local_pbr",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "material_provenance_receipt.json",
+          "path": "synthetic_high_frequency_hardware_stamp_removed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "uncropped_installed_module_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "pane_local_luminance_and_variation_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "review_intent_receipt.json",
+          "path": "left_right_oblique_parallax_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "corrected_object_count",
+          "op": "eq",
+          "value": 2
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "correction_scope",
+          "op": "eq",
+          "value": "retag_only_two_legacy_curtain_return_objects"
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "geometry_changed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "materials_changed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "lighting_changed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "curtain_signature_correction_receipt.json",
+          "path": "cameras_changed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "calibration_count",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "total_render_count",
+          "op": "eq",
+          "value": 12
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "recovery06_curtain_retag_only",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_prewar_window_recovery06_candidate_b_full_module_v1",
+        "topology": {
+          "receipt": "topology_material_receipt.json",
+          "excluded_roles": [
+            "unreal_collision",
+            "review_only"
+          ],
+          "primary_roles": [
+            "facade_structure",
+            "window_reveal",
+            "window_frame_primary",
+            "window_frame_rebate",
+            "window_sash",
+            "window_glazing",
+            "window_glazing_bead",
+            "window_hardware",
+            "window_hardware_fastener",
+            "window_interior_architecture",
+            "window_interior_furniture",
+            "window_interior_fixture",
+            "window_interior_textile"
+          ],
+          "minimum_total_renderable_vertices": 3000,
+          "minimum_primary_vertices": 2200,
+          "minimum_material_count": 10
+        },
+        "image_rules": [
+          {
+            "glob": "calibration/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.7,
+            "maximum_dark_pixel_fraction": 0.6,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.06,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.8,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/overcast_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/grazing_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.05,
+            "maximum_mean_luminance": 0.72,
+            "maximum_dark_pixel_fraction": 0.82,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.64,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/cockpit_*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.035,
+            "maximum_mean_luminance": 0.66,
+            "maximum_dark_pixel_fraction": 0.88,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/daylight_01_uncropped_installed_module.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.07,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.08,
+            "maximum_mean_luminance": 0.78,
+            "minimum_luminance_stddev": 0.045,
+            "maximum_dark_pixel_fraction": 0.76,
+            "maximum_bright_pixel_fraction": 0.1
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.33,
+              0.36,
+              0.49,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          },
+          {
+            "glob": "renders/night_06_front_interior_visibility.png",
+            "roi_normalized": [
+              0.51,
+              0.36,
+              0.67,
+              0.73
+            ],
+            "dark_threshold": 0.055,
+            "bright_threshold": 0.97,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.68,
+            "minimum_luminance_stddev": 0.03,
+            "maximum_dark_pixel_fraction": 0.86,
+            "maximum_bright_pixel_fraction": 0.08
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_WindowR03_Wall_L",
+        "SM_M01_WindowR03_Wall_R",
+        "SM_M01_WindowR03_Frame_L",
+        "SM_M01_WindowR03_Sash_L_L",
+        "SM_M01_WindowR03_Glass_L_LOWER",
+        "SM_M01_WindowR03_LatchGrip",
+        "SM_M01_WindowR03_RoomBack",
+        "SM_M01_WindowR03_Bookcase",
+        "SM_M01_WindowR03_Curtain_L",
+        "SM_M01_WindowR03_Curtain_R",
+        "UCX_SM_M01_WindowR03_Wall_L_00",
+        "UCX_SM_M01_WindowR03_Wall_R_00",
+        "UCX_SM_M01_WindowR03_Wall_B_00",
+        "UCX_SM_M01_WindowR03_Wall_T_00",
+        "SOCKET_M01_PrewarWindowR03_Origin",
+        "SOCKET_M01_PrewarWindowR03_Center",
+        "SOCKET_M01_PrewarWindowR03_Latch"
+      ],
+      "minimum_meshes": 100,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "core-yak52-airframe-artist-grade-method02": {
+      "worker_script": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02.py",
+      "supervisor_script": "Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02.py",
+          "bytes": 40266,
+          "sha256": "ffb4d39babbc2d5931e16909a2685d3dd1064bbd45ba5aeaa3088cd6bffd7fb5"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_once.ps1",
+          "bytes": 1928,
+          "sha256": "1ac94b72322433628109f0dc1fbecffaa03a5acdad0837833db235ec1550499d"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_OFFLINE_DESIGN_FREEZE.json",
+          "bytes": 3916,
+          "sha256": "b5496b98cc796255b68fc195ecd9550b29440cca7f86f19648d30a64a7f962b5"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CONTRACT.json",
+          "bytes": 2860,
+          "sha256": "3581ed906a927d4fa588cccb689b339f10cc758731a9cefe91759cbad91eac5a"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_SYSTEMS.json",
+          "bytes": 2141,
+          "sha256": "6a8a210453a3b52ec4c823c688752e2f6d6e484685374eec900ca6c3577a78ed"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_SILHOUETTE_STATION_CAGE.json",
+          "bytes": 2307,
+          "sha256": "248a359bdfc22d13663252dcf56a14af708c256a48cec12e63ad386a0c54c0ef"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CAMERAS.json",
+          "bytes": 2807,
+          "sha256": "2ab85028f7dfcebeb7b21118a239f4bf870b8b4c2302930699bf6aece62689f4"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_VISUAL_RUBRIC.json",
+          "bytes": 1915,
+          "sha256": "d8abb2eff2b071f05da3f025057278f2a9c46677289183adae5b7c178b72eee7"
+        }
+      ],
+      "blend": "SKG_Yak52_Airframe_ArtistGrade_Method02.blend",
+      "glb": "SKG_Yak52_Airframe_ArtistGrade_Method02.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 5,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2560,
+          "height": 1440
+        }
+      ],
+      "required_json": {
+        "dimension_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.dimension-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.source-parity.v1",
+        "silhouette_station_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.silhouette-station.v1",
+        "systems_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.systems.v1",
+        "camera_framing_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.camera-framing.v1",
+        "topology_material_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.topology-material.v1",
+        "artifact_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02.artifact-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "dimension_receipt.json",
+          "path": "global_envelope_pass",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "dimension_receipt.json",
+          "path": "rejected_glb_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "unchanged",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "systems_receipt.json",
+          "path": "system_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "systems_receipt.json",
+          "path": "separate_systems",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "camera_framing_receipt.json",
+          "path": "all_passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "required_glb_nodes": [
+        "SYS_Cowling",
+        "SYS_Fuselage",
+        "SYS_Wing",
+        "SYS_Empennage",
+        "SYS_Canopy",
+        "SYS_LandingGear",
+        "SYS_Propeller",
+        "SYS_ControlSurfaces",
+        "SOCKET_Origin",
+        "SOCKET_Propeller",
+        "SOCKET_MainGear_L",
+        "SOCKET_MainGear_R",
+        "SOCKET_NoseGear",
+        "SOCKET_CanopyRearClosed",
+        "SOCKET_CanopyRearOpen",
+        "SOCKET_RearGunnerCamera",
+        "SOCKET_RifleClearance",
+        "SOCKET_IglaBackblast",
+        "UCX_Yak52_Fuselage",
+        "UCX_Yak52_Wing_L",
+        "UCX_Yak52_Wing_R",
+        "UCX_Yak52_Tail"
+      ],
+      "minimum_meshes": 8,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "core-yak52-airframe-artist-grade-method02-plus": {
+      "worker_script": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02_plus.py",
+      "supervisor_script": "Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_plus_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02_plus.py",
+          "bytes": 46386,
+          "sha256": "2c7a3b03027ffd37ce441ee5cb26eaac5457c62436800b05838a8e00a27d9b65"
+        },
+        {
+          "path": "Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_plus_once.ps1",
+          "bytes": 1933,
+          "sha256": "eda5441fe5f895dc35fc5dbf64d41c3a114b6ea156f5083cf7d342d99ee1cd5d"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_OFFLINE_DESIGN_FREEZE.json",
+          "bytes": 4109,
+          "sha256": "4b091037c8a819b7bcf51de89f4f1abb40aac0cbb53a2413b53c42003e367b97"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CONTRACT.json",
+          "bytes": 4046,
+          "sha256": "fdab7e21c95d621d91a507b0ea7267831a25379ccdf8695667d6d9214b11906b"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_SYSTEMS.json",
+          "bytes": 2448,
+          "sha256": "b1be5dd08b03504c38c426042d001d30c094313f35d06305472f21046f7d5fcc"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_SILHOUETTE_STATION_CAGE.json",
+          "bytes": 2696,
+          "sha256": "ecebb22acef3e7ec225bc739a85a608d1e45aa9d4f9bdcc3d5adeda823d52094"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CAMERAS.json",
+          "bytes": 2814,
+          "sha256": "158e7e19350c1de08e6c6c4de78b5c1b0299d019a5df6923dc073d781036438d"
+        },
+        {
+          "path": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_VISUAL_RUBRIC.json",
+          "bytes": 2147,
+          "sha256": "a8592fee3eabf14f3ce40fe4f2d4e88200ddf09e1cb333d9b2e854964335fba6"
+        }
+      ],
+      "blend": "SKG_Yak52_Airframe_ArtistGrade_Method02Plus.blend",
+      "glb": "SKG_Yak52_Airframe_ArtistGrade_Method02Plus.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 5,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2560,
+          "height": 1440
+        }
+      ],
+      "required_json": {
+        "dimension_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.dimension-receipt.v1",
+        "source_parity_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.source-parity.v1",
+        "silhouette_station_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.silhouette-station.v1",
+        "systems_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.systems.v1",
+        "camera_framing_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.camera-framing.v1",
+        "topology_material_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.topology-material.v1",
+        "artifact_receipt.json": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.artifact-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "dimension_receipt.json",
+          "path": "global_envelope_pass",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "dimension_receipt.json",
+          "path": "rejected_glb_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "dimension_receipt.json",
+          "path": "rejected_method02_glb_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "source_parity_receipt.json",
+          "path": "unchanged",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "systems_receipt.json",
+          "path": "system_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "systems_receipt.json",
+          "path": "separate_systems",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "systems_receipt.json",
+          "path": "method02_slab_wing_canopy_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "camera_framing_receipt.json",
+          "path": "all_passed",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "checkpoint_count",
+          "op": "eq",
+          "value": 5
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "unreal_import_authorized",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "required_glb_nodes": [
+        "SYS_Cowling",
+        "SYS_Fuselage",
+        "SYS_Wing",
+        "SYS_Empennage",
+        "SYS_Canopy",
+        "SYS_LandingGear",
+        "SYS_Propeller",
+        "SYS_ControlSurfaces",
+        "SOCKET_Origin",
+        "SOCKET_Propeller",
+        "SOCKET_MainGear_L",
+        "SOCKET_MainGear_R",
+        "SOCKET_NoseGear",
+        "SOCKET_CanopyRearClosed",
+        "SOCKET_CanopyRearOpen",
+        "SOCKET_RearGunnerCamera",
+        "SOCKET_RifleClearance",
+        "SOCKET_IglaBackblast",
+        "UCX_Yak52_Fuselage",
+        "UCX_Yak52_Wing_L",
+        "UCX_Yak52_Wing_R",
+        "UCX_Yak52_Tail"
+      ],
+      "minimum_meshes": 8,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    }
+  }
+}

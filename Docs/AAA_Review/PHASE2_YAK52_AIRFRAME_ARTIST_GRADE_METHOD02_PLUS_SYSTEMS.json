@@ -1,0 +1,67 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.systems.v1",
+  "asset_id": "core-yak52-airframe-artist-grade-method02-plus",
+  "method02_weaknesses_addressed": [
+    "overall_height undershoot (2.375m vs 2.7m)",
+    "slab wing root/tip boxes",
+    "cube canopy glass volumes"
+  ],
+  "systems": [
+    {
+      "id": "cowling",
+      "object_name": "SYS_Cowling",
+      "reviewable": true,
+      "notes": "Separate radial cowling volume with spinner interface; not a uniform cylinder shared with fuselage."
+    },
+    {
+      "id": "fuselage",
+      "object_name": "SYS_Fuselage",
+      "reviewable": true,
+      "notes": "Lofted from Method02-plus station cage with raised z-center; must beat cylindrical blockout silhouette."
+    },
+    {
+      "id": "wing",
+      "object_name": "SYS_Wing",
+      "reviewable": true,
+      "notes": "Lofted tapered airfoil-ish planform (not Method02 slab cubes); root chord/thickness greater than tip."
+    },
+    {
+      "id": "empennage",
+      "object_name": "SYS_Empennage",
+      "reviewable": true,
+      "notes": "Horizontal and vertical stabilizers sized so overall height envelope reaches 2.7m ±12%."
+    },
+    {
+      "id": "canopy",
+      "object_name": "SYS_Canopy",
+      "reviewable": true,
+      "notes": "Two-seat bubble canopy loft with bow language; open-rear gunner configuration; not cube glass."
+    },
+    {
+      "id": "landing_gear",
+      "object_name": "SYS_LandingGear",
+      "reviewable": true,
+      "notes": "Nose and main gear with strut/wheel separation; ground contact preserved at Z≈0."
+    },
+    {
+      "id": "propeller",
+      "object_name": "SYS_Propeller",
+      "reviewable": true,
+      "notes": "Spinner plus blades sized to propeller diameter authority."
+    },
+    {
+      "id": "control_surfaces",
+      "object_name": "SYS_ControlSurfaces",
+      "reviewable": true,
+      "notes": "Aileron, elevator, and rudder volumes as separately named meshes under the system object."
+    }
+  ],
+  "forbidden_construction": [
+    "single GEO_Airframe cylinder reused as cowling+fuselage",
+    "uniform-thickness slab wings/tails without taper",
+    "Method02 TMP_WingRoot/TMP_WingTip cube pair as production wing",
+    "TMP_CanopyFront/TMP_CanopyRear cube glass",
+    "cosmetic edit of rejected Method02 GLB",
+    "toy-scale gear or propeller that fails silhouette landmarks"
+  ]
+}

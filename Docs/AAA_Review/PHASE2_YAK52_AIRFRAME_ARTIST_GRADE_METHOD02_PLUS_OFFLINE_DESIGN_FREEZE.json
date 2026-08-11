@@ -1,0 +1,79 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.offline-design-freeze.v1",
+  "created_utc": "2026-08-11T19:55:00Z",
+  "classification": "PASSED_READY_FOR_AUTONOMOUS_SINGLE_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_BLENDER_EXECUTION",
+  "asset_id": "core-yak52-airframe-artist-grade-method02-plus",
+  "gate": "OFFLINE_P0_CORE_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_ENVELOPE_AND_SILHOUETTE_CORRECTION",
+  "bounded_correction": {
+    "prior_failed_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z",
+    "prior_postflight_rejection": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z.json",
+    "correction": "Independent Method02-plus lane: force overall height envelope to 2.7m ±12% (global_envelope_pass) and rebuild wing/canopy/fuselage/empennage beyond Method02 slab cubes via lofted silhouette systems.",
+    "not_a_blind_retry_of_method02": true,
+    "not_a_blind_retry_of_recovery01": true,
+    "rejected_method02_glb_still_prohibited": true,
+    "rejected_recovery01_glb_still_prohibited": true
+  },
+  "immutable_failed_method02_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z",
+  "prohibited_cosmetic_repair_of_rejected_glb": true,
+  "required_silhouette_station_cage": true,
+  "required_separate_systems": true,
+  "required_camera_framing_gates": true,
+  "required_global_envelope_pass": true,
+  "fresh_namespace": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02-plus",
+  "one_launch": true,
+  "visual_review_still_required": true,
+  "member_count": 8,
+  "verified_members": 8,
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CONTRACT.json",
+      "bytes": 4046,
+      "sha256": "fdab7e21c95d621d91a507b0ea7267831a25379ccdf8695667d6d9214b11906b"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_SYSTEMS.json",
+      "bytes": 2448,
+      "sha256": "b1be5dd08b03504c38c426042d001d30c094313f35d06305472f21046f7d5fcc"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_SILHOUETTE_STATION_CAGE.json",
+      "bytes": 2696,
+      "sha256": "ecebb22acef3e7ec225bc739a85a608d1e45aa9d4f9bdcc3d5adeda823d52094"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CAMERAS.json",
+      "bytes": 2814,
+      "sha256": "158e7e19350c1de08e6c6c4de78b5c1b0299d019a5df6923dc073d781036438d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_VISUAL_RUBRIC.json",
+      "bytes": 2147,
+      "sha256": "a8592fee3eabf14f3ce40fe4f2d4e88200ddf09e1cb333d9b2e854964335fba6"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02_plus.py",
+      "bytes": 46386,
+      "sha256": "2c7a3b03027ffd37ce441ee5cb26eaac5457c62436800b05838a8e00a27d9b65"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_plus_once.ps1",
+      "bytes": 1933,
+      "sha256": "eda5441fe5f895dc35fc5dbf64d41c3a114b6ea156f5083cf7d342d99ee1cd5d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    }
+  ],
+  "offline_results": {
+    "prior_failed_method02_attempt_preserved": true,
+    "failed_namespace_reuse": false,
+    "blender_launch_count": 0,
+    "unreal_launch_count": 0
+  },
+  "execution_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\\Skyguard52\\Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_plus_once.ps1 -ExecuteOnce",
+  "standing_authorization_applies": true,
+  "automatic_retry": false,
+  "unreal_import_authorized": false
+}

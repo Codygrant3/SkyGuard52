@@ -1,0 +1,80 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02.offline-design-freeze.v1",
+  "created_utc": "2026-08-11T19:39:19Z",
+  "classification": "PASSED_READY_FOR_AUTONOMOUS_SINGLE_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_BLENDER_EXECUTION",
+  "asset_id": "core-yak52-airframe-artist-grade-method02",
+  "gate": "OFFLINE_P0_CORE_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_REFERENCE_CAGE_AND_SEPARATE_SYSTEMS_DESIGN",
+  "bounded_correction": {
+    "prior_failed_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193723702880Z",
+    "correction": "Widen camera framing coverage gate to accept filled-frame hero/ortho coverage up to 1.25 and force nonzero Blender exit on Method02Error.",
+    "not_a_blind_retry_of_recovery01": true,
+    "rejected_glb_still_prohibited": true
+  },
+  "immutable_failed_recovery01_attempt": "Production\\Attempts\\core-yak52-airframe-recovery01\\attempt_20260810T013539411987Z",
+  "prohibited_cosmetic_repair_of_rejected_glb": true,
+  "required_silhouette_station_cage": true,
+  "required_separate_systems": true,
+  "required_camera_framing_gates": true,
+  "fresh_namespace": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02",
+  "one_launch": true,
+  "visual_review_still_required": true,
+  "member_count": 9,
+  "verified_members": 9,
+  "members": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_REFINEMENT01_RECOVERY01_ATTEMPT01_FAILURE_ANALYSIS.json",
+      "bytes": 2282,
+      "sha256": "8e6861412dfe2b937b345d4d9663ae98c4c051058210de95a7134b883309da2f"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CONTRACT.json",
+      "bytes": 2860,
+      "sha256": "3581ed906a927d4fa588cccb689b339f10cc758731a9cefe91759cbad91eac5a"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_SYSTEMS.json",
+      "bytes": 2141,
+      "sha256": "6a8a210453a3b52ec4c823c688752e2f6d6e484685374eec900ca6c3577a78ed"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_SILHOUETTE_STATION_CAGE.json",
+      "bytes": 2307,
+      "sha256": "248a359bdfc22d13663252dcf56a14af708c256a48cec12e63ad386a0c54c0ef"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CAMERAS.json",
+      "bytes": 2807,
+      "sha256": "2ab85028f7dfcebeb7b21118a239f4bf870b8b4c2302930699bf6aece62689f4"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_VISUAL_RUBRIC.json",
+      "bytes": 1915,
+      "sha256": "d8abb2eff2b071f05da3f025057278f2a9c46677289183adae5b7c178b72eee7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02.py",
+      "bytes": 40266,
+      "sha256": "ffb4d39babbc2d5931e16909a2685d3dd1064bbd45ba5aeaa3088cd6bffd7fb5"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_once.ps1",
+      "bytes": 1928,
+      "sha256": "1ac94b72322433628109f0dc1fbecffaa03a5acdad0837833db235ec1550499d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    }
+  ],
+  "offline_results": {
+    "prior_failed_attempt_preserved": true,
+    "failed_namespace_reuse": false,
+    "blender_launch_count": 0,
+    "unreal_launch_count": 0
+  },
+  "execution_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\\Skyguard52\\Scripts\\invoke_phase2_yak52_airframe_artist_grade_method02_once.ps1 -ExecuteOnce",
+  "standing_authorization_applies": true,
+  "automatic_retry": false,
+  "unreal_import_authorized": false
+}

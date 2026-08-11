@@ -1,0 +1,28 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02.cameras.v1",
+  "asset_id": "core-yak52-airframe-artist-grade-method02",
+  "checkpoint_resolution": [1280, 720],
+  "final_resolution": [2560, 1440],
+  "framing_gate": {
+    "minimum_subject_coverage": 0.08,
+    "maximum_subject_coverage": 1.25,
+    "require_named_subject_bounds": true
+  },
+  "checkpoint_views": [
+    {"name": "checkpoint_silhouette_front", "mode": "ORTHO", "camera": [12.0, 0.0, 1.35], "target": [0.0, 0.0, 1.2], "ortho_scale": 10.4, "lighting": "overcast", "subject": "ALL_SYSTEMS"},
+    {"name": "checkpoint_silhouette_rear", "mode": "ORTHO", "camera": [-12.0, 0.0, 1.35], "target": [0.0, 0.0, 1.2], "ortho_scale": 10.4, "lighting": "daylight", "subject": "ALL_SYSTEMS"},
+    {"name": "checkpoint_silhouette_side", "mode": "ORTHO", "camera": [0.0, -13.5, 1.45], "target": [0.0, 0.0, 1.2], "ortho_scale": 9.2, "lighting": "daylight", "subject": "ALL_SYSTEMS"},
+    {"name": "checkpoint_silhouette_top", "mode": "ORTHO", "camera": [0.0, 0.0, 15.0], "target": [0.0, 0.0, 0.8], "ortho_scale": 10.8, "lighting": "daylight", "subject": "ALL_SYSTEMS"},
+    {"name": "checkpoint_silhouette_three_quarter", "mode": "PERSP", "camera": [8.8, -9.6, 4.8], "target": [0.5, 0.0, 1.15], "lens_mm": 62, "lighting": "daylight", "subject": "ALL_SYSTEMS"}
+  ],
+  "final_views": [
+    {"name": "front_left_hero", "mode": "PERSP", "camera": [8.8, -9.6, 4.8], "target": [0.5, 0.0, 1.15], "lens_mm": 62, "lighting": "daylight", "subject": "ALL_SYSTEMS"},
+    {"name": "rear_right_hero", "mode": "PERSP", "camera": [-8.4, 8.8, 4.2], "target": [-0.4, 0.0, 1.15], "lens_mm": 66, "lighting": "wet", "subject": "ALL_SYSTEMS"},
+    {"name": "cowling_prop_detail", "mode": "PERSP", "camera": [7.0, -4.0, 2.5], "target": [3.2, 0.0, 1.25], "lens_mm": 72, "lighting": "night", "subject": "SYS_Cowling,SYS_Propeller"},
+    {"name": "wing_root_gear_detail", "mode": "PERSP", "camera": [1.8, -4.4, 2.2], "target": [0.7, -0.9, 0.75], "lens_mm": 78, "lighting": "wet", "subject": "SYS_Wing,SYS_LandingGear"},
+    {"name": "canopy_bow_detail", "mode": "PERSP", "camera": [-0.1, -3.3, 2.7], "target": [-0.55, 0.0, 1.55], "lens_mm": 82, "lighting": "cockpit", "subject": "SYS_Canopy"},
+    {"name": "rear_gunner_sightline", "mode": "PERSP", "camera": [-0.78, -0.36, 1.55], "target": [4.2, -0.55, 1.4], "lens_mm": 44, "lighting": "cockpit", "subject": "SYS_Canopy,SYS_Propeller"},
+    {"name": "side_left_ortho", "mode": "ORTHO", "camera": [0.0, -13.5, 2.35], "target": [0.0, 0.0, 1.25], "ortho_scale": 9.2, "lighting": "daylight", "subject": "ALL_SYSTEMS"},
+    {"name": "top_ortho", "mode": "ORTHO", "camera": [0.0, 0.0, 15.0], "target": [0.0, 0.0, 0.8], "ortho_scale": 10.8, "lighting": "overcast", "subject": "ALL_SYSTEMS"}
+  ]
+}

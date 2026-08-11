@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-11T00:55:47.225691Z"
+    "updated_at_utc": "2026-08-11T19:58:35.803485Z"
   },
   "toolchain": {
     "blender": {
@@ -183,6 +183,145 @@
       "state_reason": "Automatic structure passed, but all 11 original renders fail AAA visual acceptance: blockout cylindrical fuselage/cowling, slab wings and tail, toy gear/propeller, canopy intersections, obstructed rear-gunner sightline, and invalid wing-root/gear detail framing. No Unreal import or promotion.",
       "state_changed_at_utc": "2026-08-10T01:40:58.344869Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe-recovery01\\attempt_20260810T013539411987Z"
+    },
+    {
+      "id": "core-yak52-airframe-artist-grade-method02",
+      "name": "Yak-52 exterior airframe artist-grade Method02 reference cage",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_REFINEMENT01_RECOVERY01_ATTEMPT01_FAILURE_ANALYSIS.json",
+        "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CONTRACT.json",
+        "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_OFFLINE_DESIGN_FREEZE.json",
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend"
+      ],
+      "blocker": null,
+      "strategy_tags": [
+        "artist_grade_method02",
+        "reference_station_cage",
+        "separate_systems",
+        "camera_framing_gates",
+        "fresh_namespace",
+        "no_rejected_glb_repair"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-yak52-airframe-artist-grade-method02"
+        ],
+        "minimum_renders": 13,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-yak52-airframe-artist-grade-method02",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "5_silhouette_checkpoints",
+        "8_final_renders",
+        "reference_station_cage",
+        "separate_systems",
+        "camera_framing_gates",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2.",
+      "state_changed_at_utc": "2026-08-11T19:40:02.189715Z",
+      "latest_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z.json",
+      "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
+    },
+    {
+      "id": "core-yak52-airframe-artist-grade-method02-plus",
+      "name": "Yak-52 exterior airframe artist-grade Method02-plus envelope/silhouette",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "awaiting_review",
+      "existing": [
+        "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CONTRACT.json",
+        "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_OFFLINE_DESIGN_FREEZE.json",
+        "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z",
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend"
+      ],
+      "blocker": null,
+      "strategy_tags": [
+        "artist_grade_method02_plus",
+        "height_envelope_correction",
+        "silhouette_systems_improvement",
+        "reference_station_cage",
+        "separate_systems",
+        "camera_framing_gates",
+        "fresh_namespace",
+        "no_rejected_glb_repair"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_yak52_airframe_artist_grade_method02_plus.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-yak52-airframe-artist-grade-method02-plus"
+        ],
+        "minimum_renders": 13,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-yak52-airframe-artist-grade-method02-plus",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02-plus\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "5_silhouette_checkpoints",
+        "8_final_renders",
+        "reference_station_cage",
+        "separate_systems",
+        "camera_framing_gates",
+        "global_envelope_pass",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Blender output and mandatory automatic postflight passed; direct full-resolution visual review remains required before Unreal import or acceptance.",
+      "state_changed_at_utc": "2026-08-11T19:58:35.803470Z",
+      "latest_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
     },
     {
       "id": "core-yak52-cockpit",

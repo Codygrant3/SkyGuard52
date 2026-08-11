@@ -1,0 +1,37 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02.visual-rubric.v1",
+  "asset_id": "core-yak52-airframe-artist-grade-method02",
+  "automatic_pass_is_not_visual_acceptance": true,
+  "inspect_original_resolution": true,
+  "reject_if_any": [
+    "fuselage or cowling reads as a constant-radius cylinder blockout",
+    "wings or empennage remain untapered slabs at hero distance",
+    "systems are fused into one unreviewable mesh without named separation",
+    "landing gear or propeller absent or toy-scale in governed framing cameras",
+    "canopy reads as a cube, incomplete arch, or blocks rear-gunner sightline",
+    "checkpoint silhouette cameras fail subject framing gates",
+    "rejected Recovery01 GLB geometry or materials were cosmetically reused",
+    "socket or collision display geometry appears in beauty renders",
+    "materials read as unshaded plastic, chrome, or uniform gray blockout with no system differentiation"
+  ],
+  "required_positive_findings": [
+    "station-cage fuselage width varies along length",
+    "cowling, fuselage, wing, empennage, canopy, gear, and propeller are separately named systems",
+    "silhouette checkpoints exist and precede final renders",
+    "wing-root gear framing camera shows landing gear",
+    "rear-gunner sightline is not obstructed by solid blockout interior",
+    "authoritative global dimensions and sockets pass receipts",
+    "candidate is clearly better than Recovery01 cylindrical blockout while remaining truth-labeled PROJECT_DERIVED_NONAUTHORITATIVE"
+  ],
+  "acceptance_classifications": [
+    "PASSED_AS_AIRFRAME_SOURCE_CANDIDATE_READY_FOR_QUARANTINED_UNREAL_EVALUATION",
+    "FAILED_WITH_EVIDENCE"
+  ],
+  "not_proven": [
+    "factory station accuracy",
+    "final weathering and fastener hero detail",
+    "flightworthiness",
+    "runtime performance",
+    "AAA production acceptance"
+  ]
+}

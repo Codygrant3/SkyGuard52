@@ -1,0 +1,75 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02.contract.v1",
+  "created_utc": "2026-08-11T19:20:00Z",
+  "classification": "OFFLINE_P0_CORE_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_REFERENCE_CAGE_AND_SEPARATE_SYSTEMS_DESIGN",
+  "asset_id": "core-yak52-airframe-artist-grade-method02",
+  "gate_authority": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_REFINEMENT01_RECOVERY01_ATTEMPT01_FAILURE_ANALYSIS.json",
+  "immutable_failed_attempts": [
+    {
+      "asset_id": "core-yak52-airframe",
+      "attempt": "Production\\Attempts\\core-yak52-airframe\\attempt_20260810T012355939434Z",
+      "disposition": "IMMUTABLE_FAILED_EVIDENCE"
+    },
+    {
+      "asset_id": "core-yak52-airframe-recovery01",
+      "attempt": "Production\\Attempts\\core-yak52-airframe-recovery01\\attempt_20260810T013539411987Z",
+      "disposition": "IMMUTABLE_FAILED_VISUAL_BLOCKOUT"
+    }
+  ],
+  "prohibited": [
+    "cosmetic repair of the rejected Recovery01 GLB",
+    "import or promotion of rejected Recovery01 / Refinement01 GLB surfaces",
+    "reuse of Production\\Attempts\\core-yak52-airframe or core-yak52-airframe-recovery01 namespaces",
+    "automatic retry of a failed Method02 attempt",
+    "Unreal import before human visual acceptance",
+    "claiming AAA or accepted quality from automatic receipts alone"
+  ],
+  "required_method": {
+    "reference_station_cage": true,
+    "preserve_dimensional_and_socket_authority_only": true,
+    "separate_systems": [
+      "cowling",
+      "fuselage",
+      "wing",
+      "empennage",
+      "canopy",
+      "landing_gear",
+      "propeller",
+      "control_surfaces"
+    ],
+    "silhouette_landmark_receipts": [
+      "front",
+      "rear",
+      "side",
+      "top",
+      "three_quarter"
+    ],
+    "camera_subject_framing_gates": true,
+    "checkpoint_renders_before_final": true,
+    "fresh_namespace": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02",
+    "one_launch": true,
+    "visual_review_still_required": true
+  },
+  "dimensional_authority": {
+    "overall_length_m": 7.745,
+    "overall_height_m": 2.7,
+    "wingspan_m": 9.3,
+    "horizontal_tail_span_m": 3.16,
+    "propeller_diameter_m": 2.4,
+    "gear_track_m": 2.715,
+    "wheelbase_m": 1.285,
+    "source_blend_for_socket_parity": "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend",
+    "source_blend_may_supply_dimensions_only": true,
+    "source_blend_meshes_are_not_production_surface": true
+  },
+  "execution": {
+    "standing_authorization_applies": true,
+    "one_heavy_process": true,
+    "launch_count": 1,
+    "retry_count": 0,
+    "fresh_namespace": true,
+    "direct_full_resolution_review_required": true,
+    "unreal_import_before_acceptance": false,
+    "automatic_acceptance": false
+  }
+}

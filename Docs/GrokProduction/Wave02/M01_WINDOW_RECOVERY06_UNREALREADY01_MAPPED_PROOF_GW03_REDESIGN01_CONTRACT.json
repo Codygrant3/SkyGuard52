@@ -1,0 +1,85 @@
+{
+  "schema": "skyguard.m01-window-recovery06-unrealready01.mapped-proof-gw03-redesign01.contract.v1",
+  "created_utc": "2026-08-11T19:25:00Z",
+  "classification": "READY_FOR_SINGLE_FRESH_DERIVED_MAP_PLACEMENT_AND_EXPOSURE_INDEPENDENT_MAPPED_PROOF",
+  "purpose": "Advance the accepted GW02 structural import into a fresh derived map placement with a redesigned mapped-proof harness that does not reuse failed SceneCapture exposure-sweep namespaces.",
+  "prior_accepted_structural_import": {
+    "freeze": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_WINDOW_RECOVERY06_UNREALREADY01_REVERSIBLE_UNREAL_IMPORT01_RECOVERY02_ACCEPTANCE_FREEZE.json",
+    "content_root": "D:\\SG52T08_ENV01\\Content\\T08\\GW02",
+    "game_path": "/Game/T08/GW02",
+    "status": "STRUCTURALLY_ACCEPTED_NOT_RUNTIME_PROMOTED",
+    "immutable": true
+  },
+  "failed_harness_namespaces_do_not_reuse": [
+    "/Game/T08/GW02Preview",
+    "/Game/T08/GW02PreviewR01",
+    "/Game/T08/GW02PreviewR02",
+    "/Game/T08/GW02PreviewR03",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01_RECOVERY01",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01_RECOVERY02",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01_RECOVERY03",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01_RECOVERY04",
+    "Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PREVIEW01_RECOVERY05_EXPOSURE_SWEEP"
+  ],
+  "failed_method_do_not_retry": [
+    "SceneCaptureComponent2D exposure bias sweep as sole review harness",
+    "rear camera placed physically behind the imported interior shell",
+    "eye-adaptation-dependent capture without fixed exposure control"
+  ],
+  "project": {
+    "path": "D:\\SG52T08_ENV01\\Skyguard52.uproject"
+  },
+  "fresh_derived_map": {
+    "game_path": "/Game/T08/GW03MappedProof01/Lvl_GW03_WindowMappedProof01",
+    "disk_path": "D:\\SG52T08_ENV01\\Content\\T08\\GW03MappedProof01\\Lvl_GW03_WindowMappedProof01.umap",
+    "content_namespace": "/Game/T08/GW03MappedProof01",
+    "placement": {
+      "spawn_accepted_gw02_static_meshes": true,
+      "mutate_gw02_source_assets": false,
+      "mutate_source_campaign_maps": false,
+      "actor_folder": "T08/GW03MappedProof01/WindowBay"
+    }
+  },
+  "review_harness_redesign": {
+    "capture_method": "editor_viewport_or_highresshot_fixed_exposure",
+    "exposure_independent": true,
+    "scene_capture_exposure_sweep_allowed": false,
+    "required_cameras": [
+      {
+        "name": "front_hero_exterior",
+        "placement": "outside_facade_forward_of_frame",
+        "forbids": "camera_inside_or_behind_interior_shell"
+      },
+      {
+        "name": "oblique_parallax_left",
+        "placement": "left_oblique_outside",
+        "forbids": "rear_interior_dead_camera"
+      },
+      {
+        "name": "oblique_parallax_right",
+        "placement": "right_oblique_outside",
+        "forbids": "rear_interior_dead_camera"
+      }
+    ],
+    "capture_resolution": [1920, 1080],
+    "capture_count_min": 6,
+    "direct_d3d12_visual_review_required": true
+  },
+  "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PROOF_GW03_REDESIGN01\\attempt_01",
+  "launch_policy": {
+    "heavy_processes": 1,
+    "unreal_launches": 1,
+    "retries": 0,
+    "null_rhi_structural_only": false,
+    "d3d12_visual_proof": true
+  },
+  "rules": {
+    "map_mutation_of_source_maps": false,
+    "runtime_promotion": false,
+    "failed_namespace_reuse": false,
+    "gw02_bind_immutable": true,
+    "skyguard52_content_runtime_proxy_promotion": false
+  },
+  "next_gate_after_contract": "AUTHOR_AND_EXECUTE_SINGLE_UNREAL_MAPPED_PROOF_UNDER_STANDING_AUTHORITY_WHEN_HEAVY_PROCESS_GATE_CLEAR"
+}

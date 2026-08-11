@@ -1,0 +1,17 @@
+{
+  "schema": "skyguard.m01-window-recovery06-unrealready01.mapped-proof-gw03-redesign01.offline-design-freeze.v1",
+  "created_utc": "2026-08-11T19:25:00Z",
+  "classification": "PASSED_OFFLINE_REDESIGNED_MAPPED_PROOF_CONTRACT_READY_AWAITING_CLEAR_HEAVY_PROCESS_GATE",
+  "contract": "Docs\\GrokProduction\\Wave02\\M01_WINDOW_RECOVERY06_UNREALREADY01_MAPPED_PROOF_GW03_REDESIGN01_CONTRACT.json",
+  "gw02_bind_present": true,
+  "gw02_static_meshes": [
+    "SM_M01_PrewarWindowBay_A01_FrameFacadeHardware",
+    "SM_M01_PrewarWindowBay_A01_Glass",
+    "SM_M01_PrewarWindowBay_A01_Interior"
+  ],
+  "unreal_launched": false,
+  "reason_unreal_not_launched": "Active UnrealEditor-Cmd observed during registration; Item 2 delivers the fresh redesigned contract only in this step.",
+  "map_mutation_of_source_maps": false,
+  "runtime_promotion": false,
+  "failed_exposure_harness_reused": false
+}

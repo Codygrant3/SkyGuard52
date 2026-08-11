@@ -1,0 +1,59 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02.systems.v1",
+  "asset_id": "core-yak52-airframe-artist-grade-method02",
+  "systems": [
+    {
+      "id": "cowling",
+      "object_name": "SYS_Cowling",
+      "reviewable": true,
+      "notes": "Separate radial cowling volume with spinner interface; not a uniform cylinder shared with fuselage."
+    },
+    {
+      "id": "fuselage",
+      "object_name": "SYS_Fuselage",
+      "reviewable": true,
+      "notes": "Lofted from longitudinal station cage profiles; must beat cylindrical blockout silhouette."
+    },
+    {
+      "id": "wing",
+      "object_name": "SYS_Wing",
+      "reviewable": true,
+      "notes": "Tapered planform with root thickness greater than tip; left/right continuous or mirrored pair under one system object."
+    },
+    {
+      "id": "empennage",
+      "object_name": "SYS_Empennage",
+      "reviewable": true,
+      "notes": "Horizontal and vertical stabilizers with tapered chords; not a single slab slab-tail."
+    },
+    {
+      "id": "canopy",
+      "object_name": "SYS_Canopy",
+      "reviewable": true,
+      "notes": "Two-seat canopy with bow/rail language; open-rear gunner configuration legible; no cube glass."
+    },
+    {
+      "id": "landing_gear",
+      "object_name": "SYS_LandingGear",
+      "reviewable": true,
+      "notes": "Nose and main gear with strut/wheel separation; must be visible in wing-root gear framing camera."
+    },
+    {
+      "id": "propeller",
+      "object_name": "SYS_Propeller",
+      "reviewable": true,
+      "notes": "Spinner plus blades sized to propeller diameter authority."
+    },
+    {
+      "id": "control_surfaces",
+      "object_name": "SYS_ControlSurfaces",
+      "reviewable": true,
+      "notes": "Aileron, elevator, and rudder volumes as separately named meshes parented or co-exported with the system."
+    }
+  ],
+  "forbidden_construction": [
+    "single GEO_Airframe cylinder reused as cowling+fuselage",
+    "uniform-thickness slab wings/tails without taper",
+    "toy-scale gear or propeller that fails silhouette landmarks"
+  ]
+}

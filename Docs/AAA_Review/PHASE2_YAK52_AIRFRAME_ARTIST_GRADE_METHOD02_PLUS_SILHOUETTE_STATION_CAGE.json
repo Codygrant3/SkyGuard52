@@ -1,0 +1,41 @@
+{
+  "schema": "skyguard.phase2.yak52-airframe-artist-grade-method02-plus.silhouette-station-cage.v1",
+  "asset_id": "core-yak52-airframe-artist-grade-method02-plus",
+  "derived_from_immutable_method02_cage": "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_SILHOUETTE_STATION_CAGE.json",
+  "axis_convention": {
+    "nose": "+X",
+    "right_wing": "+Y",
+    "up": "+Z",
+    "ground": "Z=0"
+  },
+  "station_count": 11,
+  "fuselage_z_center_m": 1.28,
+  "target_overall_height_m": 2.7,
+  "stations": [
+    {"id": "S00_nose_tip", "x_m": 3.8725, "half_width_m": 0.08, "half_height_m": 0.08, "role": "spinner_tip"},
+    {"id": "S01_spinner", "x_m": 3.62, "half_width_m": 0.22, "half_height_m": 0.22, "role": "spinner"},
+    {"id": "S02_cowling_front", "x_m": 3.35, "half_width_m": 0.58, "half_height_m": 0.62, "role": "cowling"},
+    {"id": "S03_cowling_rear", "x_m": 2.85, "half_width_m": 0.64, "half_height_m": 0.68, "role": "cowling_fuselage_join"},
+    {"id": "S04_forward_fuselage", "x_m": 1.80, "half_width_m": 0.58, "half_height_m": 0.74, "role": "fuselage"},
+    {"id": "S05_wing_root", "x_m": 0.55, "half_width_m": 0.54, "half_height_m": 0.76, "role": "wing_carry_through"},
+    {"id": "S06_front_canopy", "x_m": -0.15, "half_width_m": 0.50, "half_height_m": 0.88, "role": "canopy_front"},
+    {"id": "S07_rear_canopy", "x_m": -0.95, "half_width_m": 0.48, "half_height_m": 0.86, "role": "canopy_rear_open"},
+    {"id": "S08_aft_fuselage", "x_m": -1.90, "half_width_m": 0.36, "half_height_m": 0.56, "role": "aft_taper"},
+    {"id": "S09_tailcone", "x_m": -2.95, "half_width_m": 0.20, "half_height_m": 0.34, "role": "tailcone"},
+    {"id": "S10_tail_tip", "x_m": -3.8725, "half_width_m": 0.05, "half_height_m": 0.10, "role": "empennage_root"}
+  ],
+  "silhouette_landmarks": {
+    "front": ["cowling_oval_not_circle_slab", "prop_disk", "wing_dihedral_hint", "main_gear_track"],
+    "rear": ["tailcone_taper", "rudder_fin", "horizontal_tail_span", "open_rear_canopy_cutout"],
+    "side": ["two_seat_canopy_bubble_profile", "cowling_break", "landing_gear_stance", "prop_spinner", "fin_to_2p7m_envelope"],
+    "top": ["wing_taper_planform_loft", "fuselage_width_variation", "empennage_planform", "canopy_width"],
+    "three_quarter": ["system_separation_readable", "non_cylindrical_fuselage", "gear_and_prop_present", "non_slab_wing_and_canopy"]
+  },
+  "pass_criteria": {
+    "fuselage_half_width_coefficient_of_variation_min": 0.18,
+    "reject_if_constant_radius_cylinder": true,
+    "wing_tip_chord_less_than_root_chord": true,
+    "overall_height_m_within_12pct_of_2p7": true,
+    "reject_method02_slab_wing_canopy_construction": true
+  }
+}
