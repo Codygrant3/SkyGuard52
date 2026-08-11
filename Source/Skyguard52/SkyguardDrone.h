@@ -3,6 +3,8 @@
 #include "GameFramework/Actor.h"
 #include "SkyguardDrone.generated.h"
 
+class ASkyguardYak52Aircraft;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
 	FSkyguardDroneCityImpactSignature,
 	ASkyguardDrone*,
@@ -24,6 +26,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	void ApplyBallisticHit(float Damage, FVector HitLocation, FVector HitDirection);
+
+	/** Ram / sweep contact with the player Yak -- applies collision damage then breaks up. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void ImpactAircraft(ASkyguardYak52Aircraft* Aircraft);
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	bool IsHeavyTarget() const { return bHeavy; }
@@ -69,12 +75,36 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard")
 	bool bHeavy = false;
 
+	/** Integrity subtracted from Yak on direct swept collision (light). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
+	float AircraftCollisionDamage = 30.f;
+
+	/** Integrity subtracted from Yak on direct swept collision (heavy). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
+	float HeavyAircraftCollisionDamage = 50.f;
+
+	/** Integrity splash when this drone breaks up near the Yak (light). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
+	float AircraftExplosionDamage = 12.f;
+
+	/** Integrity splash when this drone breaks up near the Yak (heavy). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
+	float HeavyAircraftExplosionDamage = 20.f;
+
+	/** Radius for breakup explosion splash onto nearby Yak airframes. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
+	float AircraftExplosionRadiusCm = 600.f;
+
 protected:
 	bool bDead = false;
 	bool bReachedCity = false;
 	float Spin = 0.f;
-	void Die(const FVector& HitDir);
+	void Die(const FVector& HitDir, ASkyguardYak52Aircraft* AlreadyDamagedAircraft = nullptr);
 	void ImpactCity(const FVector& ImpactDirection);
 	void SpawnDebris(const FVector& HitDir);
 	void ApplyVariantVisualsAndHealth();
+	void DamageNearbyAircraft(
+		float Amount,
+		float RadiusCm,
+		const ASkyguardYak52Aircraft* ExcludeAircraft = nullptr);
 };

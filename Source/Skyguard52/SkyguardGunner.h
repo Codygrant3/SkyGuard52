@@ -212,6 +212,6 @@ protected:
 
 	int32 SortieShotsFired = 0;
 	int32 SortieHits = 0;
-	/** Remains 0 until Yak/aircraft damage plumbing exists. */
+	/** Fallback only when no owning/attached Yak is available. */
 	float SortieAircraftDamageFraction = 0.f;
 };

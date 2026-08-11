@@ -64,6 +64,10 @@ public:
 	UFUNCTION(BlueprintPure, Category="Skyguard|Aircraft|Damage")
 	float GetDamageFraction() const;
 
+	/** Query hull used by drone sweeps / proximity so threats can hit the airframe. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Aircraft|Damage")
+	TObjectPtr<UBoxComponent> HullCollider;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Aircraft")
 	TObjectPtr<USceneComponent> AircraftRoot;

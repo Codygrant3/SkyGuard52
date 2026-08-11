@@ -82,6 +82,19 @@ ASkyguardYak52Aircraft::ASkyguardYak52Aircraft()
 	CockpitProtection->SetCollisionResponseToAllChannels(ECR_Ignore);
 	CockpitProtection->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
+	// Blocking WorldDynamic lets swept drone bodies register airframe contact
+	// without occluding Visibility rifle/Igla traces (protection boxes handle that).
+	HullCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("HullCollider"));
+	HullCollider->SetupAttachment(AircraftRoot);
+	HullCollider->SetRelativeLocation(FVector(0.f, 0.f, 70.f));
+	HullCollider->SetBoxExtent(FVector(200.f, 140.f, 80.f));
+	HullCollider->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	HullCollider->SetCollisionObjectType(ECC_WorldStatic);
+	HullCollider->SetCollisionResponseToAllChannels(ECR_Ignore);
+	HullCollider->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+	HullCollider->SetGenerateOverlapEvents(false);
+	HullCollider->SetCanEverAffectNavigation(false);
+
 	CurrentPropellerRPM = FMath::Lerp(MinimumFlightRPM, MaximumFlightRPM, EnginePower);
 	CurrentIntegrity = MaxIntegrity;
 }

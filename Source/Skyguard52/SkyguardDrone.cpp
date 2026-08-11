@@ -4,9 +4,11 @@ FSkyguardDroneCityImpactNative ASkyguardDrone::OnAnyCityImpacted;
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardCombatVFX.h"
 #include "SkyguardInputCombatPerformanceCapture.h"
+#include "SkyguardYak52Aircraft.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
+#include "EngineUtils.h"
 
 ASkyguardDrone::ASkyguardDrone()
 {
@@ -139,12 +141,21 @@ void ASkyguardDrone::Tick(float DeltaSeconds)
 	const FVector Loc = GetActorLocation();
 	const FVector ToTarget = (TargetCityLocation - Loc).GetSafeNormal();
 	const FVector NewLoc = Loc + ToTarget * CruiseSpeed * DeltaSeconds;
-	SetActorLocation(NewLoc, true);
+	FHitResult Hit;
+	SetActorLocation(NewLoc, true, &Hit);
+	if (Hit.bBlockingHit)
+	{
+		if (ASkyguardYak52Aircraft* Yak = Cast<ASkyguardYak52Aircraft>(Hit.GetActor()))
+		{
+			ImpactAircraft(Yak);
+			return;
+		}
+	}
 	const FRotator Face = ToTarget.Rotation();
 	SetActorRotation(FMath::RInterpTo(GetActorRotation(), Face, DeltaSeconds, 2.5f));
 	Spin += DeltaSeconds * 40.f;
 	if (Wing) Wing->SetRelativeRotation(FRotator(0.f, Spin, 0.f));
-	if (FVector::DistSquared(NewLoc, TargetCityLocation) < FMath::Square(180.f))
+	if (FVector::DistSquared(GetActorLocation(), TargetCityLocation) < FMath::Square(180.f))
 	{
 		ImpactCity(ToTarget);
 	}
@@ -225,7 +236,52 @@ void ASkyguardDrone::ImpactCity(const FVector& ImpactDirection)
 	SetLifeSpan(0.35f);
 }
 
-void ASkyguardDrone::Die(const FVector& HitDir)
+void ASkyguardDrone::ImpactAircraft(ASkyguardYak52Aircraft* Aircraft)
+{
+	if (bDead || !Aircraft)
+	{
+		return;
+	}
+	const float Damage = bHeavy ? HeavyAircraftCollisionDamage : AircraftCollisionDamage;
+	Aircraft->ApplyDamage(Damage);
+	const FVector Away =
+		(GetActorLocation() - Aircraft->GetActorLocation()).GetSafeNormal();
+	Die(Away.IsNearlyZero() ? GetActorForwardVector() : Away, Aircraft);
+}
+
+void ASkyguardDrone::DamageNearbyAircraft(
+	const float Amount,
+	const float RadiusCm,
+	const ASkyguardYak52Aircraft* ExcludeAircraft)
+{
+	if (Amount <= 0.f || RadiusCm <= 0.f)
+	{
+		return;
+	}
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+	const float RadiusSq = FMath::Square(RadiusCm);
+	const FVector Origin = GetActorLocation();
+	for (TActorIterator<ASkyguardYak52Aircraft> It(World); It; ++It)
+	{
+		ASkyguardYak52Aircraft* Yak = *It;
+		if (!IsValid(Yak) || Yak == ExcludeAircraft)
+		{
+			continue;
+		}
+		if (FVector::DistSquared(Origin, Yak->GetActorLocation()) <= RadiusSq)
+		{
+			Yak->ApplyDamage(Amount);
+		}
+	}
+}
+
+void ASkyguardDrone::Die(
+	const FVector& HitDir,
+	ASkyguardYak52Aircraft* AlreadyDamagedAircraft)
 {
 	if (bDead) return;
 	bDead = true;
@@ -244,5 +300,9 @@ void ASkyguardDrone::Die(const FVector& HitDir)
 			? ESkyguardAudioEvent::ExplosionHeavy
 			: ESkyguardAudioEvent::ExplosionSmall,
 		GetActorLocation());
+
+	// Shoot-down / breakup near the Yak can nick the airframe.
+	const float Splash = bHeavy ? HeavyAircraftExplosionDamage : AircraftExplosionDamage;
+	DamageNearbyAircraft(Splash, AircraftExplosionRadiusCm, AlreadyDamagedAircraft);
 }
 
