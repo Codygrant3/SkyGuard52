@@ -666,8 +666,23 @@ void ASkyguardGunner::ResetSortieCombatStats()
 {
 	SortieShotsFired = 0;
 	SortieHits = 0;
-	// Yak52 has no health/damage API; keep fraction at 0 until one exists.
+	// Fallback cache only; Fill/Get prefer the owning Yak's GetDamageFraction().
 	SortieAircraftDamageFraction = 0.f;
+}
+
+float ASkyguardGunner::GetSortieAircraftDamageFraction() const
+{
+	if (const ASkyguardYak52Aircraft* Yak =
+			Cast<ASkyguardYak52Aircraft>(GetAttachParentActor()))
+	{
+		return Yak->GetDamageFraction();
+	}
+	if (const ASkyguardYak52Aircraft* OwnerYak =
+			Cast<ASkyguardYak52Aircraft>(GetOwner()))
+	{
+		return OwnerYak->GetDamageFraction();
+	}
+	return SortieAircraftDamageFraction;
 }
 
 void ASkyguardGunner::FillSortieCombatStats(FSkyguardMissionResult& OutResult) const

@@ -51,11 +51,11 @@ public:
 
 	/**
 	 * Fraction of aircraft integrity lost this sortie.
-	 * ASkyguardYak52Aircraft has no health/damage API yet, so this stays 0
-	 * until aircraft damage exists (do not invent a damage system here).
+	 * When attached/parented to ASkyguardYak52Aircraft, reads Yak->GetDamageFraction();
+	 * otherwise returns the cached SortieAircraftDamageFraction fallback.
 	 */
 	UFUNCTION(BlueprintPure, Category="Skyguard|Combat|Sortie")
-	float GetSortieAircraftDamageFraction() const { return SortieAircraftDamageFraction; }
+	float GetSortieAircraftDamageFraction() const;
 
 	void RecordRifleShot();
 	void RecordRifleHit();

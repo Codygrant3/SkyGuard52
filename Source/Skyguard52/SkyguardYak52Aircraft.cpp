@@ -83,11 +83,13 @@ ASkyguardYak52Aircraft::ASkyguardYak52Aircraft()
 	CockpitProtection->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
 	CurrentPropellerRPM = FMath::Lerp(MinimumFlightRPM, MaximumFlightRPM, EnginePower);
+	CurrentIntegrity = MaxIntegrity;
 }
 
 void ASkyguardYak52Aircraft::BeginPlay()
 {
 	Super::BeginPlay();
+	CurrentIntegrity = MaxIntegrity;
 	if (RearCanopyGlass)
 	{
 		const FVector AuthoredRelative = RearCanopyGlass->GetRelativeLocation();
@@ -164,6 +166,24 @@ void ASkyguardYak52Aircraft::IssuePilotCommand(const ESkyguardPilotCommand Comma
 void ASkyguardYak52Aircraft::SetRearCanopyOpen(const bool bOpen)
 {
 	bRearCanopyOpen = bOpen;
+}
+
+void ASkyguardYak52Aircraft::ApplyDamage(const float Amount)
+{
+	if (Amount <= 0.f)
+	{
+		return;
+	}
+	CurrentIntegrity = FMath::Max(0.f, CurrentIntegrity - Amount);
+}
+
+float ASkyguardYak52Aircraft::GetDamageFraction() const
+{
+	if (MaxIntegrity <= KINDA_SMALL_NUMBER)
+	{
+		return 1.f;
+	}
+	return FMath::Clamp(1.f - (CurrentIntegrity / MaxIntegrity), 0.f, 1.f);
 }
 
 FRotator ASkyguardYak52Aircraft::GetCommandAttitude() const

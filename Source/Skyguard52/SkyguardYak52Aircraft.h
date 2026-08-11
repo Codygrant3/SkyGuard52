@@ -48,6 +48,22 @@ public:
 	UFUNCTION(BlueprintPure, Category="Skyguard|Aircraft")
 	ESkyguardPilotCommand GetPilotCommand() const { return CurrentPilotCommand; }
 
+	/** Maximum aircraft integrity for sortie damage tracking. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Aircraft|Damage", meta=(ClampMin="1.0"))
+	float MaxIntegrity = 100.f;
+
+	/** Remaining integrity; clamped to [0, MaxIntegrity]. Stays at 0 when depleted. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Aircraft|Damage")
+	float CurrentIntegrity = 100.f;
+
+	/** Subtracts Amount from CurrentIntegrity (clamped at 0). No destroy on zero. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Aircraft|Damage")
+	void ApplyDamage(float Amount);
+
+	/** 1 - CurrentIntegrity/MaxIntegrity, clamped to [0, 1]. */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Aircraft|Damage")
+	float GetDamageFraction() const;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Aircraft")
 	TObjectPtr<USceneComponent> AircraftRoot;

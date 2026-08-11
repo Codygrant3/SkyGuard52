@@ -45,6 +45,21 @@ bool FSkyguardYak52AircraftRuntimeContractTest::RunTest(const FString& Parameter
 			TEXT("Latest pilot command is retained"),
 			Aircraft->GetPilotCommand(),
 			ESkyguardPilotCommand::OrbitLeft);
+
+		TestTrue(
+			TEXT("Undamaged aircraft reports zero damage fraction"),
+			FMath::IsNearlyZero(Aircraft->GetDamageFraction()));
+		Aircraft->ApplyDamage(Aircraft->MaxIntegrity * 0.25f);
+		TestTrue(
+			TEXT("Partial damage reports expected fraction"),
+			FMath::IsNearlyEqual(Aircraft->GetDamageFraction(), 0.25f, 0.01f));
+		Aircraft->ApplyDamage(Aircraft->MaxIntegrity);
+		TestTrue(
+			TEXT("Overkill clamps integrity at zero"),
+			FMath::IsNearlyZero(Aircraft->CurrentIntegrity));
+		TestTrue(
+			TEXT("Depleted aircraft reports full damage fraction"),
+			FMath::IsNearlyEqual(Aircraft->GetDamageFraction(), 1.f, 0.01f));
 	}
 
 	World->DestroyWorld(false);
