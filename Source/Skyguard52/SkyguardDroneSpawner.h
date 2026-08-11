@@ -15,6 +15,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard")
 	float SpawnInterval = 1.35f;
 
+	/** Refuse new spawns while this many live drones remain in the world. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard", meta=(ClampMin="1"))
+	int32 MaxActiveDrones = 24;
+
 protected:
 	float SpawnTimer = 0.f;
+
+	int32 CountActiveDrones() const;
 };
