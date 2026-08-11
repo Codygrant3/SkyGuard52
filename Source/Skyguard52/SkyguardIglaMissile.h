@@ -25,6 +25,16 @@ public:
 	UFUNCTION(BlueprintPure, Category="Skyguard|Igla")
 	bool IsArmed() const { return bArmed; }
 
+	/**
+	 * Returns whether a blocking impact should damage the locked target.
+	 * Direct hits on the lock or nearby proximity impacts qualify; distant
+	 * world/terrain clips do not.
+	 */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Igla")
+	bool ShouldDamageLockedTargetOnImpact(
+		const FVector& ImpactPoint,
+		const AActor* HitActor) const;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Igla")
 	TObjectPtr<USphereComponent> Collision;
@@ -48,7 +58,11 @@ protected:
 	float MaximumFlightSeconds = 8.f;
 
 private:
-	void Detonate(const FVector& ImpactPoint);
+	/**
+	 * Detonates at ImpactPoint. Damage is applied only to DamageTarget when it
+	 * is a boss/drone; null skips damage (terrain self-destruct / miss).
+	 */
+	void Detonate(const FVector& ImpactPoint, AActor* DamageTarget);
 
 	TWeakObjectPtr<AActor> TargetActor;
 	FVector Velocity = FVector::ForwardVector;

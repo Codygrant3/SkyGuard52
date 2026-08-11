@@ -8,6 +8,7 @@
 #include "SkyguardBossDroneBase.h"
 #include "SkyguardCombatVFX.h"
 #include "SkyguardDrone.h"
+#include "SkyguardGunner.h"
 #include "SkyguardInputCombatPerformanceCapture.h"
 
 ASkyguardIglaMissile::ASkyguardIglaMissile()
@@ -52,6 +53,23 @@ void ASkyguardIglaMissile::InitializeMissile(
 	SetActorRotation(Velocity.Rotation());
 }
 
+bool ASkyguardIglaMissile::ShouldDamageLockedTargetOnImpact(
+	const FVector& ImpactPoint,
+	const AActor* HitActor) const
+{
+	AActor* LockedTarget = TargetActor.Get();
+	if (!LockedTarget)
+	{
+		return false;
+	}
+	if (HitActor && HitActor == LockedTarget)
+	{
+		return true;
+	}
+	return FVector::DistSquared(ImpactPoint, LockedTarget->GetActorLocation()) <=
+		FMath::Square(ProximityFuseCentimeters);
+}
+
 void ASkyguardIglaMissile::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
@@ -86,7 +104,7 @@ void ASkyguardIglaMissile::Tick(const float DeltaSeconds)
 		if (bArmed && FVector::DistSquared(GetActorLocation(), Target->GetActorLocation()) <=
 			FMath::Square(ProximityFuseCentimeters))
 		{
-			Detonate(Target->GetActorLocation());
+			Detonate(Target->GetActorLocation(), Target);
 			return;
 		}
 	}
@@ -97,11 +115,26 @@ void ASkyguardIglaMissile::Tick(const float DeltaSeconds)
 	SetActorRotation(Velocity.Rotation());
 	if (bArmed && Hit.bBlockingHit && Hit.GetActor() != GetOwner())
 	{
-		Detonate(Hit.ImpactPoint);
+		AActor* HitActor = Hit.GetActor();
+		AActor* LockedTarget = TargetActor.Get();
+		const bool bHitIsCombatant =
+			HitActor &&
+			(HitActor->IsA(ASkyguardBossDroneBase::StaticClass()) ||
+				HitActor->IsA(ASkyguardDrone::StaticClass()));
+		const bool bShouldDamageLock =
+			ShouldDamageLockedTargetOnImpact(Hit.ImpactPoint, HitActor);
+
+		// Terrain/world clips only damage the lock if the impact is within
+		// proximity of that target. Direct combatant hits always apply.
+		Detonate(
+			Hit.ImpactPoint,
+			bHitIsCombatant ? HitActor : (bShouldDamageLock ? LockedTarget : nullptr));
 	}
 }
 
-void ASkyguardIglaMissile::Detonate(const FVector& ImpactPoint)
+void ASkyguardIglaMissile::Detonate(
+	const FVector& ImpactPoint,
+	AActor* DamageTarget)
 {
 	if (bDetonated)
 	{
@@ -109,16 +142,25 @@ void ASkyguardIglaMissile::Detonate(const FVector& ImpactPoint)
 	}
 	bDetonated = true;
 
-	AActor* Target = TargetActor.Get();
+	AActor* Target = DamageTarget ? DamageTarget : nullptr;
 	const FVector Direction =
 		Velocity.GetSafeNormal(SMALL_NUMBER, FVector::ForwardVector);
+	bool bAppliedDamage = false;
 	if (ASkyguardBossDroneBase* Boss = Cast<ASkyguardBossDroneBase>(Target))
 	{
-		Boss->ApplyIglaStrike(Damage, ImpactPoint, Direction);
+		bAppliedDamage = Boss->ApplyIglaStrike(Damage, ImpactPoint, Direction);
 	}
 	else if (ASkyguardDrone* Drone = Cast<ASkyguardDrone>(Target))
 	{
 		Drone->ApplyBallisticHit(Damage, ImpactPoint, Direction);
+		bAppliedDamage = true;
+	}
+	if (bAppliedDamage)
+	{
+		if (ASkyguardGunner* Gunner = Cast<ASkyguardGunner>(GetOwner()))
+		{
+			Gunner->RecordIglaHit();
+		}
 	}
 
 	USkyguardCombatVFX::SpawnExplosion(GetWorld(), ImpactPoint, 1.35f);

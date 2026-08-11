@@ -47,4 +47,57 @@ bool FSkyguardIglaMissileLaunchContractTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardIglaTerrainImpactDamageGateTest,
+	"Skyguard52.Combat.Igla.TerrainImpactDoesNotDamageDistantLock",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardIglaTerrainImpactDamageGateTest::RunTest(const FString& Parameters)
+{
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game,
+		false,
+		TEXT("SkyguardIglaTerrainGateWorld"));
+	TestNotNull(TEXT("Automation world is created"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardDrone* Target = World->SpawnActor<ASkyguardDrone>(
+		ASkyguardDrone::StaticClass(),
+		FVector(8000.f, 0.f, 0.f),
+		FRotator::ZeroRotator);
+	ASkyguardIglaMissile* Missile = World->SpawnActor<ASkyguardIglaMissile>(
+		ASkyguardIglaMissile::StaticClass(),
+		FVector::ZeroVector,
+		FRotator::ZeroRotator);
+	TestNotNull(TEXT("Igla target spawns"), Target);
+	TestNotNull(TEXT("Igla missile spawns"), Missile);
+	if (!Missile || !Target)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Missile->InitializeMissile(Target, 160.f, FVector::ForwardVector);
+	const FVector DistantTerrainImpact(500.f, 0.f, 0.f);
+	TestFalse(
+		TEXT("Distant terrain impact does not damage the locked target"),
+		Missile->ShouldDamageLockedTargetOnImpact(DistantTerrainImpact, nullptr));
+	TestTrue(
+		TEXT("Direct impact on the lock still damages"),
+		Missile->ShouldDamageLockedTargetOnImpact(
+			Target->GetActorLocation(),
+			Target));
+	TestTrue(
+		TEXT("Near-target world impact still damages within proximity fuse"),
+		Missile->ShouldDamageLockedTargetOnImpact(
+			Target->GetActorLocation() + FVector(50.f, 0.f, 0.f),
+			nullptr));
+
+	World->DestroyWorld(false);
+	return true;
+}
+
 #endif

@@ -1,4 +1,5 @@
 #include "SkyguardGunner.h"
+#include "SkyguardGunFireCameraShake.h"
 #include "SkyguardGameUserSettings.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "Camera/CameraComponent.h"
@@ -17,12 +18,16 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "CollisionQueryParams.h"
+#include "CollisionShape.h"
+#include "Engine/OverlapResult.h"
 #include "Components/SceneComponent.h"
 #include "Materials/MaterialInterface.h"
+#include "GameFramework/PlayerController.h"
 
 ASkyguardGunner::ASkyguardGunner()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	FireCameraShakeClass = USkyguardGunFireCameraShake::StaticClass();
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
@@ -443,9 +448,29 @@ void ASkyguardGunner::UpdateIglaLock(float DeltaSeconds)
 		IglaLockProgress = 0.f;
 		IglaTarget = nullptr;
 		bIglaLockPreviouslyAcquired = false;
+		IglaAcquireCooldownRemaining = 0.f;
 		return;
 	}
-	AActor* Candidate = AcquireIglaTarget();
+
+	// Keep the active seeker target sticky between throttled world queries.
+	AActor* Candidate = nullptr;
+	if (IglaTarget.IsValid() && IsIglaLockCandidateValid(IglaTarget.Get()))
+	{
+		Candidate = IglaTarget.Get();
+	}
+
+	IglaAcquireCooldownRemaining -= DeltaSeconds;
+	const bool bShouldScan =
+		IglaAcquireCooldownRemaining <= 0.f || Candidate == nullptr;
+	if (bShouldScan)
+	{
+		IglaAcquireCooldownRemaining = FMath::Max(0.05f, IglaAcquireIntervalSeconds);
+		if (AActor* Acquired = AcquireIglaTarget())
+		{
+			Candidate = Acquired;
+		}
+	}
+
 	if (Candidate)
 	{
 		if (IglaTarget.Get() != Candidate)
@@ -480,6 +505,87 @@ void ASkyguardGunner::UpdateIglaLock(float DeltaSeconds)
 	bIglaLockPreviouslyAcquired = bIsAcquired;
 }
 
+bool ASkyguardGunner::ScoreIglaLockCandidate(
+	const AActor* Candidate,
+	const FVector& Origin,
+	const FVector& Forward,
+	const float MinimumDot,
+	float& OutScore) const
+{
+	if (!Candidate || !GetWorld())
+	{
+		return false;
+	}
+
+	const FVector CandidateLocation = Candidate->GetActorLocation();
+	const FVector Offset = CandidateLocation - Origin;
+	const float Distance = Offset.Size();
+	if (Distance < IglaMinimumRange || Distance > IglaMaximumRange)
+	{
+		return false;
+	}
+
+	const float Dot = FVector::DotProduct(Forward, Offset / Distance);
+	if (Dot < MinimumDot)
+	{
+		return false;
+	}
+
+	FHitResult Occlusion;
+	FCollisionQueryParams Query(SCENE_QUERY_STAT(SkyguardIglaOcclusion), true, this);
+	const bool bBlocked = GetWorld()->LineTraceSingleByChannel(
+		Occlusion,
+		Origin,
+		CandidateLocation,
+		ECC_Visibility,
+		Query);
+	if (bBlocked && Occlusion.GetActor() != Candidate)
+	{
+		return false;
+	}
+
+	OutScore = (1.f - Dot) * IglaMaximumRange + Distance * 0.05f;
+	return true;
+}
+
+bool ASkyguardGunner::IsIglaLockCandidateValid(const AActor* Candidate) const
+{
+	if (!Candidate || !GetWorld() || !GunnerCamera)
+	{
+		return false;
+	}
+
+	if (const ASkyguardBossDroneBase* Boss = Cast<ASkyguardBossDroneBase>(Candidate))
+	{
+		if (!Boss->IsIglaLockEligible())
+		{
+			return false;
+		}
+	}
+	else if (const ASkyguardDrone* Drone = Cast<ASkyguardDrone>(Candidate))
+	{
+		if (!(Drone->IsHeavyTarget() || Drone->MaxHealth >= 80.f))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+
+	const FVector Origin = GunnerCamera->GetComponentLocation();
+	const FVector Forward = GunnerCamera->GetForwardVector();
+	const float MinimumDot =
+		FMath::Cos(FMath::DegreesToRadians(IglaMaximumLockAngleDegrees));
+	float UnusedScore = 0.f;
+	return ScoreIglaLockCandidate(
+		Candidate,
+		Origin,
+		Forward,
+		MinimumDot,
+		UnusedScore);
+}
 
 AActor* ASkyguardGunner::AcquireIglaTarget() const
 {
@@ -490,87 +596,105 @@ AActor* ASkyguardGunner::AcquireIglaTarget() const
 
 	const FVector Origin = GunnerCamera->GetComponentLocation();
 	const FVector Forward = GunnerCamera->GetForwardVector();
-	const float MinimumDot = FMath::Cos(FMath::DegreesToRadians(IglaMaximumLockAngleDegrees));
+	const float MinimumDot =
+		FMath::Cos(FMath::DegreesToRadians(IglaMaximumLockAngleDegrees));
 	AActor* BestTarget = nullptr;
 	float BestScore = TNumericLimits<float>::Max();
 
-	for (TActorIterator<ASkyguardBossDroneBase> It(GetWorld()); It; ++It)
-	{
-		ASkyguardBossDroneBase* Boss = *It;
-		if (!Boss || !Boss->IsIglaLockEligible())
-		{
-			continue;
-		}
-		const FVector Offset = Boss->GetActorLocation() - Origin;
-		const float Distance = Offset.Size();
-		if (Distance < IglaMinimumRange || Distance > IglaMaximumRange)
-		{
-			continue;
-		}
-		const float Dot = FVector::DotProduct(Forward, Offset / Distance);
-		if (Dot < MinimumDot)
-		{
-			continue;
-		}
-		FHitResult Occlusion;
-		FCollisionQueryParams Query(SCENE_QUERY_STAT(SkyguardIglaOcclusion), true, this);
-		const bool bBlocked = GetWorld()->LineTraceSingleByChannel(
-			Occlusion,
-			Origin,
-			Boss->GetActorLocation(),
-			ECC_Visibility,
-			Query);
-		if (bBlocked && Occlusion.GetActor() != Boss)
-		{
-			continue;
-		}
-		const float Score = (1.f - Dot) * IglaMaximumRange + Distance * 0.05f;
-		if (Score < BestScore)
-		{
-			BestScore = Score;
-			BestTarget = Boss;
-		}
-	}
+	// Spatial query in seeker range instead of two full-world actor iterators.
+	FCollisionObjectQueryParams ObjectQuery;
+	ObjectQuery.AddObjectTypesToQuery(ECC_WorldDynamic);
+	ObjectQuery.AddObjectTypesToQuery(ECC_WorldStatic);
+	ObjectQuery.AddObjectTypesToQuery(ECC_Pawn);
+	ObjectQuery.AddObjectTypesToQuery(ECC_PhysicsBody);
 
-	for (TActorIterator<ASkyguardDrone> It(GetWorld()); It; ++It)
+	FCollisionQueryParams QueryParams(SCENE_QUERY_STAT(SkyguardIglaAcquire), false, this);
+	TArray<FOverlapResult> Overlaps;
+	GetWorld()->OverlapMultiByObjectType(
+		Overlaps,
+		Origin,
+		FQuat::Identity,
+		ObjectQuery,
+		FCollisionShape::MakeSphere(IglaMaximumRange),
+		QueryParams);
+
+	for (const FOverlapResult& Overlap : Overlaps)
 	{
-		ASkyguardDrone* Drone = *It;
-		if (!Drone || !(Drone->IsHeavyTarget() || Drone->MaxHealth >= 80.f))
+		AActor* Actor = Overlap.GetActor();
+		if (!Actor)
 		{
 			continue;
 		}
-		const FVector Offset = Drone->GetActorLocation() - Origin;
-		const float Distance = Offset.Size();
-		if (Distance < IglaMinimumRange || Distance > IglaMaximumRange)
+
+		AActor* Candidate = nullptr;
+		if (ASkyguardBossDroneBase* Boss = Cast<ASkyguardBossDroneBase>(Actor))
+		{
+			if (!Boss->IsIglaLockEligible())
+			{
+				continue;
+			}
+			Candidate = Boss;
+		}
+		else if (ASkyguardDrone* Drone = Cast<ASkyguardDrone>(Actor))
+		{
+			if (!(Drone->IsHeavyTarget() || Drone->MaxHealth >= 80.f))
+			{
+				continue;
+			}
+			Candidate = Drone;
+		}
+		else
 		{
 			continue;
 		}
-		const float Dot = FVector::DotProduct(Forward, Offset / Distance);
-		if (Dot < MinimumDot)
+
+		float Score = 0.f;
+		if (!ScoreIglaLockCandidate(Candidate, Origin, Forward, MinimumDot, Score))
 		{
 			continue;
 		}
-		FHitResult Occlusion;
-		FCollisionQueryParams Query(SCENE_QUERY_STAT(SkyguardIglaOcclusion), true, this);
-		const bool bBlocked = GetWorld()->LineTraceSingleByChannel(
-			Occlusion,
-			Origin,
-			Drone->GetActorLocation(),
-			ECC_Visibility,
-			Query);
-		if (bBlocked && Occlusion.GetActor() != Drone)
-		{
-			continue;
-		}
-		const float Score = (1.f - Dot) * IglaMaximumRange + Distance * 0.05f;
 		if (Score < BestScore)
 		{
 			BestScore = Score;
-			BestTarget = Drone;
+			BestTarget = Candidate;
 		}
 	}
 
 	return BestTarget;
+}
+void ASkyguardGunner::ResetSortieCombatStats()
+{
+	SortieShotsFired = 0;
+	SortieHits = 0;
+	// Yak52 has no health/damage API; keep fraction at 0 until one exists.
+	SortieAircraftDamageFraction = 0.f;
+}
+
+void ASkyguardGunner::FillSortieCombatStats(FSkyguardMissionResult& OutResult) const
+{
+	OutResult.ShotsFired = SortieShotsFired;
+	OutResult.Hits = SortieHits;
+	OutResult.AircraftDamageFraction = GetSortieAircraftDamageFraction();
+}
+
+void ASkyguardGunner::RecordRifleShot()
+{
+	++SortieShotsFired;
+}
+
+void ASkyguardGunner::RecordRifleHit()
+{
+	++SortieHits;
+}
+
+void ASkyguardGunner::RecordIglaShot()
+{
+	++SortieShotsFired;
+}
+
+void ASkyguardGunner::RecordIglaHit()
+{
+	++SortieHits;
 }
 
 void ASkyguardGunner::FireIgla()
@@ -599,14 +723,15 @@ void ASkyguardGunner::FireIgla()
 		}
 		USkyguardCombatVFX::SpawnIglaLaunch(GetWorld(), Muzzle, Dir);
 	}
-	if (bMissileSpawned &&
-		(bIglaLaunchRequestedFromPlayerInput || bFireHeldFromPlayerInput))
-	{
-		USkyguardInputCombatPerformanceCapture::RecordGameplayEvent(
-			this, TEXT("igla_launch"));
-	}
 	if (bMissileSpawned)
 	{
+		PlayAppliedCameraShake(1.35f);
+		RecordIglaShot();
+		if (bIglaLaunchRequestedFromPlayerInput || bFireHeldFromPlayerInput)
+		{
+			USkyguardInputCombatPerformanceCapture::RecordGameplayEvent(
+				this, TEXT("igla_launch"));
+		}
 		USkyguardAudioDirectorComponent::TriggerWorldEvent(
 			this,
 			ESkyguardAudioEvent::IglaLaunch,
@@ -615,6 +740,28 @@ void ASkyguardGunner::FireIgla()
 	IglaLockProgress = 0.f;
 	IglaTarget = nullptr;
 	bIglaLockPreviouslyAcquired = false;
+}
+
+
+void ASkyguardGunner::PlayAppliedCameraShake(const float IntensityScale)
+{
+	const float Scale = AppliedCameraShakeScale * IntensityScale;
+	if (Scale <= KINDA_SMALL_NUMBER || !FireCameraShakeClass)
+	{
+		return;
+	}
+
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (!PC)
+	{
+		PC = Cast<APlayerController>(GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr);
+	}
+	if (!PC)
+	{
+		return;
+	}
+
+	PC->ClientStartCameraShake(FireCameraShakeClass, Scale);
 }
 
 void ASkyguardGunner::FireShot()
@@ -635,6 +782,7 @@ void ASkyguardGunner::FireShot()
 	{
 		return;
 	}
+	RecordRifleShot();
 	if (bFireHeldFromPlayerInput)
 	{
 		USkyguardInputCombatPerformanceCapture::RecordGameplayEvent(
@@ -673,15 +821,18 @@ void ASkyguardGunner::FireShot()
 				BaseDamage,
 				Hit.ImpactPoint,
 				Dir);
+			RecordRifleHit();
 		}
 		else if (ASkyguardDrone* Drone = Cast<ASkyguardDrone>(Hit.GetActor()))
 		{
 			Drone->ApplyBallisticHit(BaseDamage, Hit.ImpactPoint, Dir);
+			RecordRifleHit();
 		}
 		USkyguardCombatVFX::SpawnHitSparks(GetWorld(), Hit.ImpactPoint, Hit.ImpactNormal);
 	}
 	Recoil = RecoilPitch;
 	Pitch = FMath::Clamp(Pitch + RecoilPitch * 0.35f, LookPitchMin, LookPitchMax);
+	PlayAppliedCameraShake(1.f);
 }
 
 bool ASkyguardGunner::IsRifleDirectionOutsidePilotSafetyArc() const

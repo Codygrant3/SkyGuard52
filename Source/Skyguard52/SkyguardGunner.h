@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "SkyguardMissionTypes.h"
 #include "SkyguardGunner.generated.h"
 
 class UCameraComponent;
@@ -8,6 +9,7 @@ class USpringArmComponent;
 class UStaticMeshComponent;
 class UInputComponent;
 class USceneComponent;
+class UCameraShakeBase;
 class USkyguardGameUserSettings;
 
 UCLASS()
@@ -33,6 +35,32 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Settings")
 	bool IsVerticalLookInverted() const { return bInvertVerticalLookApplied; }
+
+	/** Clears per-sortie combat counters used for mission result scoring. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Combat|Sortie")
+	void ResetSortieCombatStats();
+
+	/** Copies sortie shots/hits/aircraft-damage into a mission result. */
+	void FillSortieCombatStats(FSkyguardMissionResult& OutResult) const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Combat|Sortie")
+	int32 GetSortieShotsFired() const { return SortieShotsFired; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Combat|Sortie")
+	int32 GetSortieHits() const { return SortieHits; }
+
+	/**
+	 * Fraction of aircraft integrity lost this sortie.
+	 * ASkyguardYak52Aircraft has no health/damage API yet, so this stays 0
+	 * until aircraft damage exists (do not invent a damage system here).
+	 */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Combat|Sortie")
+	float GetSortieAircraftDamageFraction() const { return SortieAircraftDamageFraction; }
+
+	void RecordRifleShot();
+	void RecordRifleHit();
+	void RecordIglaShot();
+	void RecordIglaHit();
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard")
@@ -95,6 +123,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
 	float RecoilPitch = 0.55f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat|Feedback")
+	TSubclassOf<UCameraShakeBase> FireCameraShakeClass;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat|Safety")
 	float MinimumSafeSideFireYaw = 28.f;
 
@@ -112,6 +143,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
 	float IglaMaximumRange = 18000.f;
+
+	/** Full seeker rescan interval; current lock stays sticky between scans. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
+	float IglaAcquireIntervalSeconds = 0.12f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
 	TSubclassOf<AActor> IglaMissileClass;
@@ -143,15 +178,24 @@ protected:
 	void SwitchWeaponPressed();
 	void LaunchIglaPressed();
 	void FireShot();
+	void PlayAppliedCameraShake(float IntensityScale = 1.f);
 	bool IsRifleDirectionOutsidePilotSafetyArc() const;
 	void UpdateADSVisuals(float DeltaSeconds);
 	void UpdateIglaLock(float DeltaSeconds);
 	void FireIgla();
 	AActor* AcquireIglaTarget() const;
+	bool IsIglaLockCandidateValid(const AActor* Candidate) const;
+	bool ScoreIglaLockCandidate(
+		const AActor* Candidate,
+		const FVector& Origin,
+		const FVector& Forward,
+		float MinimumDot,
+		float& OutScore) const;
 
 	bool bFireHeldFromPlayerInput = false;
 	bool bIglaLaunchRequestedFromPlayerInput = false;
 	bool bIglaLockPreviouslyAcquired = false;
+	float IglaAcquireCooldownRemaining = 0.f;
 	bool bAimInputRecorded = false;
 	void ApplyLocalPlayerControlState();
 	void ApplyUserSettings(const USkyguardGameUserSettings& Settings);
@@ -165,4 +209,9 @@ protected:
 	float AppliedCameraShakeScale = 1.f;
 	bool bInvertVerticalLookApplied = false;
 	bool bUserSettingsBound = false;
+
+	int32 SortieShotsFired = 0;
+	int32 SortieHits = 0;
+	/** Remains 0 until Yak/aircraft damage plumbing exists. */
+	float SortieAircraftDamageFraction = 0.f;
 };
