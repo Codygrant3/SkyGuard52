@@ -170,6 +170,14 @@ public:
 	bool bAllowBoundedActorSpawning = true;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission04")
 	bool bAutoLaunchAfterBriefing = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission04|Campaign")
+	FString CampaignSaveSlotName = TEXT("Skyguard52Campaign");
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission04|Campaign",
+		meta=(ClampMin="0"))
+	int32 CampaignSaveUserIndex = 0;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission04")
 	FVector YakSpawnLocation = FVector(0.f, 12000.f, 5800.f);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission04")

@@ -102,6 +102,13 @@ bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 		{
 			const bool bConfigured =
 				Runtime->ConfigureCampaign(ResolvedCampaign);
+			if (bConfigured)
+			{
+				// Restore prior completions before StartMission unlock checks.
+				Runtime->LoadCampaignFromSlot(
+					CampaignSaveSlotName,
+					CampaignSaveUserIndex);
+			}
 			const bool bAlreadyActive =
 				Runtime->GetActiveMission() == ResolvedMission;
 			const bool bStarted =
@@ -380,8 +387,10 @@ void ASkyguardMission09IntegrationDirector::CompleteMissionIfReady()
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
 		FSkyguardMissionResult Result;
-		bMissionCompleted =
-			CampaignRuntime->CompleteActiveMission(Result);
+		bMissionCompleted = CampaignRuntime->FinalizeActiveMission(
+			Result,
+			CampaignSaveSlotName,
+			CampaignSaveUserIndex);
 	}
 	else
 	{

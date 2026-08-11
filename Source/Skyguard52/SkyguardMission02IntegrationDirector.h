@@ -182,6 +182,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission02")
 	bool bAutoLaunchAfterBriefing = true;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission02|Campaign")
+	FString CampaignSaveSlotName = TEXT("Skyguard52Campaign");
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission02|Campaign",
+		meta=(ClampMin="0"))
+	int32 CampaignSaveUserIndex = 0;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission02")
 	FVector YakSpawnLocation = FVector(0.f, 26000.f, 5200.f);
 
