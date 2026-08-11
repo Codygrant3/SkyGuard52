@@ -254,6 +254,10 @@ void ASkyguardMission01IntegrationDirector::BindRuntimeActors(
 
 	YakAircraft = Aircraft;
 	Gunner = InGunner;
+	if (Gunner)
+	{
+		Gunner->ResetSortieCombatStats();
+	}
 	Pathfinder = InPathfinder;
 	ObservedWeakPointsDestroyed = Pathfinder
 		? Pathfinder->GetTelemetry().WeakPointsDestroyed
@@ -345,13 +349,33 @@ bool ASkyguardMission01IntegrationDirector::NotifyObjectiveProgress(
 bool ASkyguardMission01IntegrationDirector::NotifyProtectedAssetFailed()
 {
 	static const FName ProtectObjective(TEXT("ProtectCoastalRadar"));
+	bool bFailedObjective = false;
 	if (CampaignRuntime &&
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
-		return CampaignRuntime->FailObjective(ProtectObjective);
+		bFailedObjective = CampaignRuntime->FailObjective(ProtectObjective);
+		if (!bMissionCompleted)
+		{
+			FSkyguardMissionResult Result;
+			CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
+			bMissionCompleted = CampaignRuntime->FailActiveMission(
+				Result,
+				CampaignSaveSlotName,
+				CampaignSaveUserIndex);
+			if (SortiePresentation)
+			{
+				SortiePresentation->RefreshDebrief();
+			}
+		}
+		return bFailedObjective;
 	}
-	return LocalObjectiveRuntime &&
+	bFailedObjective = LocalObjectiveRuntime &&
 		LocalObjectiveRuntime->FailObjective(ProtectObjective);
+	if (bFailedObjective)
+	{
+		bMissionCompleted = true;
+	}
+	return bFailedObjective;
 }
 
 void ASkyguardMission01IntegrationDirector::SynchronizeRuntimeState()
@@ -441,6 +465,7 @@ void ASkyguardMission01IntegrationDirector::CompleteMissionIfReady()
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
 		FSkyguardMissionResult Result;
+		CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
 		bMissionCompleted = CampaignRuntime->FinalizeActiveMission(
 			Result,
 			CampaignSaveSlotName,

@@ -1,5 +1,7 @@
 #pragma once
 
+class ASkyguardDrone;
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
@@ -17,6 +19,7 @@ class USkyguardMissionBriefingComponent;
 class USkyguardMissionDefinition;
 class USkyguardObjectiveRuntime;
 class USkyguardRadioChatterComponent;
+class USkyguardSortiePresentationComponent;
 
 UENUM(BlueprintType)
 enum class ESkyguardMission07WaveState : uint8
@@ -102,6 +105,8 @@ struct FSkyguardMission07IntegrationReadiness
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bAudioReady = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bSortiePresentationReady = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCampaignRuntimeStarted = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 ObjectiveCount = 0;
@@ -121,6 +126,7 @@ public:
 	ASkyguardMission07IntegrationDirector();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission07|Integration")
 	bool InitializePlayableMission();
@@ -150,6 +156,11 @@ public:
 	bool NotifyProtectedTargetDamage(
 		ESkyguardMission07ProtectedTarget Target,
 		int32 Damage);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission07|Objectives")
+	bool NotifyProtectedAssetFailed();
+
+	void HandleDroneCityImpact(ASkyguardDrone* Drone);
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission07|Boss")
 	bool AdvanceReinforcementTimer(float DeltaSeconds);
 
@@ -199,6 +210,8 @@ public:
 	TObjectPtr<USkyguardAudioDirectorComponent> AudioDirector;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission07")
 	TObjectPtr<USkyguardRadioChatterComponent> RadioChatter;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission07")
+	TObjectPtr<USkyguardSortiePresentationComponent> SortiePresentation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission07")
 	TSoftObjectPtr<USkyguardCampaignDefinition> CampaignDefinition;

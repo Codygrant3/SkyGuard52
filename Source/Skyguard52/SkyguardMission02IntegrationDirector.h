@@ -1,5 +1,7 @@
 #pragma once
 
+class ASkyguardDrone;
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
@@ -17,6 +19,7 @@ class USkyguardMissionBriefingComponent;
 class USkyguardMissionDefinition;
 class USkyguardObjectiveRuntime;
 class USkyguardRadioChatterComponent;
+class USkyguardSortiePresentationComponent;
 
 UENUM(BlueprintType)
 enum class ESkyguardMission02WaveState : uint8
@@ -65,6 +68,9 @@ struct FSkyguardMission02IntegrationReadiness
 	bool bAudioReady = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bSortiePresentationReady = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCampaignRuntimeStarted = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -93,6 +99,7 @@ class SKYGUARD52_API ASkyguardMission02IntegrationDirector : public AActor
 public:
 	ASkyguardMission02IntegrationDirector();
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission02|Integration")
@@ -116,6 +123,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission02|Objectives")
 	bool NotifyFuelTerminalDamage(int32 Damage);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission02|Objectives")
+	bool NotifyProtectedAssetFailed();
+
+	void HandleDroneCityImpact(ASkyguardDrone* Drone);
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission02|Integration")
 	void SynchronizeRuntimeState();
@@ -166,6 +178,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission02")
 	TObjectPtr<USkyguardRadioChatterComponent> RadioChatter;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission02")
+	TObjectPtr<USkyguardSortiePresentationComponent> SortiePresentation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission02")
 	TSoftObjectPtr<USkyguardCampaignDefinition> CampaignDefinition;

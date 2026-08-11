@@ -1,5 +1,7 @@
 #pragma once
 
+class ASkyguardDrone;
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
@@ -17,6 +19,7 @@ class USkyguardMissionBriefingComponent;
 class USkyguardMissionDefinition;
 class USkyguardObjectiveRuntime;
 class USkyguardRadioChatterComponent;
+class USkyguardSortiePresentationComponent;
 
 UENUM(BlueprintType)
 enum class ESkyguardMission06WaveState : uint8
@@ -93,6 +96,8 @@ struct FSkyguardMission06IntegrationReadiness
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bAudioReady = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bSortiePresentationReady = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCampaignRuntimeStarted = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 ObjectiveCount = 0;
@@ -112,6 +117,7 @@ public:
 	ASkyguardMission06IntegrationDirector();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission06|Integration")
 	bool InitializePlayableMission();
@@ -141,6 +147,11 @@ public:
 	bool NotifyAirfieldTargetDamage(
 		ESkyguardAirfieldTarget Target,
 		int32 Damage);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission06|Objectives")
+	bool NotifyProtectedAssetFailed();
+
+	void HandleDroneCityImpact(ASkyguardDrone* Drone);
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission06|Integration")
 	void SynchronizeRuntimeState();
@@ -182,6 +193,8 @@ public:
 	TObjectPtr<USkyguardAudioDirectorComponent> AudioDirector;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission06")
 	TObjectPtr<USkyguardRadioChatterComponent> RadioChatter;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission06")
+	TObjectPtr<USkyguardSortiePresentationComponent> SortiePresentation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission06")
 	TSoftObjectPtr<USkyguardCampaignDefinition> CampaignDefinition;

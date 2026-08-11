@@ -1,5 +1,7 @@
 #pragma once
 
+class ASkyguardDrone;
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
@@ -17,6 +19,7 @@ class USkyguardMissionBriefingComponent;
 class USkyguardMissionDefinition;
 class USkyguardObjectiveRuntime;
 class USkyguardRadioChatterComponent;
+class USkyguardSortiePresentationComponent;
 
 UENUM(BlueprintType)
 enum class ESkyguardMission05WaveState : uint8
@@ -97,6 +100,8 @@ struct FSkyguardMission05IntegrationReadiness
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bAudioReady = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bSortiePresentationReady = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCampaignRuntimeStarted = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 ObjectiveCount = 0;
@@ -116,6 +121,7 @@ public:
 	ASkyguardMission05IntegrationDirector();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission05|Integration")
 	bool InitializePlayableMission();
@@ -146,6 +152,11 @@ public:
 	bool NotifyProtectedTargetDamage(
 		ESkyguardMission05ProtectedTarget Target,
 		int32 Damage);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission05|Objectives")
+	bool NotifyProtectedAssetFailed();
+
+	void HandleDroneCityImpact(ASkyguardDrone* Drone);
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission05|Integration")
 	void SynchronizeRuntimeState();
@@ -187,6 +198,8 @@ public:
 	TObjectPtr<USkyguardAudioDirectorComponent> AudioDirector;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission05")
 	TObjectPtr<USkyguardRadioChatterComponent> RadioChatter;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission05")
+	TObjectPtr<USkyguardSortiePresentationComponent> SortiePresentation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Mission05")
 	TSoftObjectPtr<USkyguardCampaignDefinition> CampaignDefinition;

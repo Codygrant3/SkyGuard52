@@ -1,5 +1,6 @@
 #include "SkyguardMission03IntegrationDirector.h"
 
+#include "SkyguardDrone.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardBossWeakPointComponent.h"
 #include "SkyguardCampaignDefinition.h"
@@ -10,6 +11,7 @@
 #include "SkyguardMissionMapAssemblyDirector.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRadioChatterComponent.h"
+#include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardRoadHunterBoss.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/SceneComponent.h"
@@ -70,6 +72,9 @@ ASkyguardMission03IntegrationDirector::ASkyguardMission03IntegrationDirector()
 		TEXT("AudioDirector"));
 	RadioChatter = CreateDefaultSubobject<USkyguardRadioChatterComponent>(
 		TEXT("RadioChatter"));
+	SortiePresentation =
+		CreateDefaultSubobject<USkyguardSortiePresentationComponent>(
+			TEXT("SortiePresentation"));
 
 	CampaignDefinition = TSoftObjectPtr<USkyguardCampaignDefinition>(
 		FSoftObjectPath(
@@ -84,10 +89,35 @@ ASkyguardMission03IntegrationDirector::ASkyguardMission03IntegrationDirector()
 void ASkyguardMission03IntegrationDirector::BeginPlay()
 {
 	Super::BeginPlay();
+	ASkyguardDrone::OnAnyCityImpacted.AddUObject(
+		this,
+		&ASkyguardMission03IntegrationDirector::HandleDroneCityImpact);
 	if (bAutoInitialize)
 	{
 		InitializePlayableMission();
 	}
+}
+
+void ASkyguardMission03IntegrationDirector::EndPlay(
+	const EEndPlayReason::Type EndPlayReason)
+{
+	ASkyguardDrone::OnAnyCityImpacted.RemoveAll(this);
+	Super::EndPlay(EndPlayReason);
+}
+
+void ASkyguardMission03IntegrationDirector::HandleDroneCityImpact(
+	ASkyguardDrone* Drone)
+{
+	if (!Drone || !bInitialized || bMissionCompleted)
+	{
+		return;
+	}
+	NotifyProtectedAssetFailed();
+}
+
+bool ASkyguardMission03IntegrationDirector::NotifyProtectedAssetFailed()
+{
+	return NotifyConvoyDamage(FMath::Max(ConvoyIntegrity, 1));
 }
 
 void ASkyguardMission03IntegrationDirector::Tick(const float DeltaSeconds)
@@ -229,6 +259,10 @@ void ASkyguardMission03IntegrationDirector::BindRuntimeActors(
 	MapAssembly = InMapAssembly;
 	YakAircraft = Aircraft;
 	Gunner = InGunner;
+	if (Gunner)
+	{
+		Gunner->ResetSortieCombatStats();
+	}
 	RoadHunter = InRoadHunter;
 	ObservedBossWeakPointsDestroyed =
 		RoadHunter ? RoadHunter->GetTelemetry().WeakPointsDestroyed : 0;
@@ -368,6 +402,26 @@ bool ASkyguardMission03IntegrationDirector::NotifyConvoyDamage(
 		}
 		ConvoyRouteState = ESkyguardConvoyRouteState::Destroyed;
 		WaveState = ESkyguardMission03WaveState::Failed;
+
+		if (!bMissionCompleted &&
+			CampaignRuntime &&
+			CampaignRuntime->GetActiveMission() == ResolvedMission)
+		{
+			FSkyguardMissionResult Result;
+			CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
+			bMissionCompleted = CampaignRuntime->FailActiveMission(
+				Result,
+				CampaignSaveSlotName,
+				CampaignSaveUserIndex);
+			if (SortiePresentation)
+			{
+				SortiePresentation->RefreshDebrief();
+			}
+		}
+		else if (!bMissionCompleted)
+		{
+			bMissionCompleted = true;
+		}
 	}
 	return true;
 }
@@ -466,6 +520,8 @@ void ASkyguardMission03IntegrationDirector::ConfigurePresentation()
 		return;
 	}
 	Briefing->ConfigureFromMission(ResolvedMission);
+	SortiePresentation->ConfigureFromMission(ResolvedMission);
+	SortiePresentation->BindCampaignRuntime(CampaignRuntime);
 	AudioDirector->PrimeConfiguredAssets();
 	AudioDirector->SetListenerPerspective(
 		ESkyguardListenerPerspective::RearCockpit);
@@ -504,11 +560,13 @@ void ASkyguardMission03IntegrationDirector::TryLaunchSortie()
 		ESkyguardMissionBriefingState::Launched)
 	{
 		bSortieLaunched = true;
+		SortiePresentation->SetSortieLaunched();
 	}
 	else if (bAutoLaunchAfterBriefing &&
 		Briefing->AcknowledgeAndLaunch())
 	{
 		bSortieLaunched = true;
+		SortiePresentation->SetSortieLaunched();
 	}
 	if (bSortieLaunched &&
 		WaveState == ESkyguardMission03WaveState::AwaitingWave)
@@ -553,10 +611,12 @@ void ASkyguardMission03IntegrationDirector::CompleteMissionIfReady()
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
 		FSkyguardMissionResult Result;
+		CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
 		bMissionCompleted = CampaignRuntime->FinalizeActiveMission(
 			Result,
 			CampaignSaveSlotName,
 			CampaignSaveUserIndex);
+		SortiePresentation->RefreshDebrief();
 	}
 	else
 	{
@@ -615,7 +675,8 @@ bool ASkyguardMission03IntegrationDirector::IsCorePlayableReady() const
 		Readiness.bWavesReady &&
 		Readiness.bConvoyRouteReady &&
 		Readiness.bBriefingReady &&
-		Readiness.bAudioReady;
+		Readiness.bAudioReady &&
+		Readiness.bSortiePresentationReady;
 }
 
 void ASkyguardMission03IntegrationDirector::UpdateReadiness()
@@ -664,6 +725,8 @@ void ASkyguardMission03IntegrationDirector::UpdateReadiness()
 		Briefing->GetBriefingState() !=
 			ESkyguardMissionBriefingState::Unconfigured;
 	Readiness.bAudioReady = AudioDirector && RadioChatter;
+	Readiness.bSortiePresentationReady =
+		SortiePresentation && SortiePresentation->IsConfigured();
 	Readiness.ObjectiveCount =
 		ResolvedMission ? ResolvedMission->Objectives.Num() : 0;
 	Readiness.WaveCount =
