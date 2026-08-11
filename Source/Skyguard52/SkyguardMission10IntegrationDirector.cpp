@@ -8,6 +8,7 @@
 #include "SkyguardLastFlightBoss.h"
 #include "SkyguardMissionBriefingComponent.h"
 #include "SkyguardMissionDefinition.h"
+#include "SkyguardMissionDirectorCampaignHelpers.h"
 #include "SkyguardMissionMapAssemblyDirector.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRadioChatterComponent.h"
@@ -115,6 +116,13 @@ void ASkyguardMission10IntegrationDirector::EndPlay(
 	const EEndPlayReason::Type EndPlayReason)
 {
 	ASkyguardDrone::OnAnyCityImpacted.RemoveAll(this);
+	if (LastFlight)
+	{
+		LastFlight->OnBossPhaseChanged.RemoveDynamic(
+			this,
+			&ASkyguardMission10IntegrationDirector::HandleBossPhaseChanged);
+		LastFlight->OnPilotCommandNative.RemoveAll(this);
+	}
 	Super::EndPlay(EndPlayReason);
 }
 
@@ -185,8 +193,8 @@ bool ASkyguardMission10IntegrationDirector::InitializePlayableMission()
 				CampaignRuntime->ConfigureCampaign(ResolvedCampaign);
 			if (bConfigured)
 			{
-				// Restore prior completions before StartMission unlock checks.
-				CampaignRuntime->LoadCampaignFromSlot(
+				SkyguardMissionDirectorCampaignHelpers::LoadCampaignProgressAfterConfigure(
+					CampaignRuntime,
 					CampaignSaveSlotName,
 					CampaignSaveUserIndex);
 			}
@@ -419,16 +427,14 @@ bool ASkyguardMission10IntegrationDirector::NotifyProtectedGroupDamage(
 			CampaignRuntime &&
 			CampaignRuntime->GetActiveMission() == ResolvedMission)
 		{
-			FSkyguardMissionResult Result;
-			CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
-			bMissionCompleted = CampaignRuntime->FailActiveMission(
-				Result,
-				CampaignSaveSlotName,
-				CampaignSaveUserIndex);
-			if (SortiePresentation)
-			{
-				SortiePresentation->RefreshDebrief();
-			}
+			bMissionCompleted =
+				SkyguardMissionDirectorCampaignHelpers::FillAndFail(
+					CampaignRuntime,
+					Gunner,
+					this,
+					SortiePresentation,
+					CampaignSaveSlotName,
+					CampaignSaveUserIndex);
 		}
 		else if (!bMissionCompleted)
 		{
@@ -681,13 +687,14 @@ void ASkyguardMission10IntegrationDirector::CompleteMissionIfReady()
 	if (CampaignRuntime &&
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
-		FSkyguardMissionResult Result;
-		CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
-		bMissionCompleted = CampaignRuntime->FinalizeActiveMission(
-			Result,
-			CampaignSaveSlotName,
-			CampaignSaveUserIndex);
-		SortiePresentation->RefreshDebrief();
+		bMissionCompleted =
+			SkyguardMissionDirectorCampaignHelpers::FillAndFinalize(
+				CampaignRuntime,
+				Gunner,
+				this,
+				SortiePresentation,
+				CampaignSaveSlotName,
+				CampaignSaveUserIndex);
 	}
 	else
 	{

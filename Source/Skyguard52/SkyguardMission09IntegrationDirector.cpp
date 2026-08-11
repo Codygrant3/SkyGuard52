@@ -10,6 +10,7 @@
 #include "SkyguardIronRainBoss.h"
 #include "SkyguardMissionBriefingComponent.h"
 #include "SkyguardMissionDefinition.h"
+#include "SkyguardMissionDirectorCampaignHelpers.h"
 #include "SkyguardMissionMapAssemblyDirector.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRadioChatterComponent.h"
@@ -151,8 +152,8 @@ bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 				Runtime->ConfigureCampaign(ResolvedCampaign);
 			if (bConfigured)
 			{
-				// Can migrate to SkyguardMissionDirectorCampaignHelpers (see M01/M02).
-				Runtime->LoadCampaignFromSlot(
+				SkyguardMissionDirectorCampaignHelpers::LoadCampaignProgressAfterConfigure(
+					Runtime,
 					CampaignSaveSlotName,
 					CampaignSaveUserIndex);
 			}
@@ -358,16 +359,14 @@ bool ASkyguardMission09IntegrationDirector::NotifyProtectedTargetDamage(
 			CampaignRuntime &&
 			CampaignRuntime->GetActiveMission() == ResolvedMission)
 		{
-			FSkyguardMissionResult Result;
-			CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
-			bMissionCompleted = CampaignRuntime->FailActiveMission(
-				Result,
-				CampaignSaveSlotName,
-				CampaignSaveUserIndex);
-			if (SortiePresentation)
-			{
-				SortiePresentation->RefreshDebrief();
-			}
+			bMissionCompleted =
+				SkyguardMissionDirectorCampaignHelpers::FillAndFail(
+					CampaignRuntime,
+					Gunner,
+					this,
+					SortiePresentation,
+					CampaignSaveSlotName,
+					CampaignSaveUserIndex);
 		}
 		else if (!bMissionCompleted)
 		{
@@ -464,13 +463,14 @@ void ASkyguardMission09IntegrationDirector::CompleteMissionIfReady()
 	if (CampaignRuntime &&
 		CampaignRuntime->GetActiveMission() == ResolvedMission)
 	{
-		FSkyguardMissionResult Result;
-		CampaignRuntime->FillResultCombatStats(Result, Gunner, this);
-		bMissionCompleted = CampaignRuntime->FinalizeActiveMission(
-			Result,
-			CampaignSaveSlotName,
-			CampaignSaveUserIndex);
-		SortiePresentation->RefreshDebrief();
+		bMissionCompleted =
+			SkyguardMissionDirectorCampaignHelpers::FillAndFinalize(
+				CampaignRuntime,
+				Gunner,
+				this,
+				SortiePresentation,
+				CampaignSaveSlotName,
+				CampaignSaveUserIndex);
 	}
 	else
 	{
