@@ -65,6 +65,72 @@ class ProductionPipelineTests(unittest.TestCase):
         errors = PIPELINE.validate_manifest(manifest, check_files=False)
         self.assertTrue(any("Duplicate asset ids" in error for error in errors))
 
+    def test_canonical_manifest_has_active_standing_authorization(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        errors = PIPELINE.validate_manifest(manifest)
+        self.assertEqual(errors, [])
+        policies = manifest["policies"]
+        self.assertTrue(policies["standing_blender_unreal_authorization"])
+        self.assertFalse(policies["per_run_user_authorization_required"])
+
+    def test_manifest_rejects_return_to_per_run_authorization(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        manifest["policies"]["per_run_user_authorization_required"] = True
+        errors = PIPELINE.validate_manifest(manifest, check_files=False)
+        self.assertIn(
+            "Per-run Blender/Unreal user authorization must be disabled.",
+            errors,
+        )
+
+    def test_visual_feedback_guard_blocks_the_rejected_strategy(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            memory_path = Path(directory) / "feedback.json"
+            memory_path.write_text(
+                json.dumps(
+                    {
+                        "schema": "skyguard.visual-feedback-memory.v1",
+                        "updated_at_utc": None,
+                        "policy": {
+                            "pivot_threshold": 2,
+                            "same_source_hash_is_idempotent": True,
+                            "automatic_visual_acceptance": False,
+                            "cosmetic_retry_after_pivot": False,
+                        },
+                        "reviews": [],
+                        "lanes": {
+                            "m01_environment": {
+                                "classification": "PIVOT_REQUIRED",
+                                "required_strategy_tags": ["asset_specific"],
+                                "forbidden_strategy_tags": ["lighting_only_recovery"],
+                                "repeated_categories": ["architecture"],
+                                "next_work_requirements": [],
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rejected = {
+                "id": "rejected",
+                "feedback_guard_required": True,
+                "feedback_lane": "m01_environment",
+                "strategy_tags": ["lighting_only_recovery"],
+            }
+            errors = PIPELINE.visual_feedback_guard_errors(rejected, memory_path)
+            self.assertEqual(len(errors), 1)
+            self.assertIn("strategy blocked", errors[0])
+
+            accepted = {
+                "id": "accepted",
+                "feedback_guard_required": True,
+                "feedback_lane": "m01_environment",
+                "strategy_tags": ["asset_specific"],
+            }
+            self.assertEqual(
+                PIPELINE.visual_feedback_guard_errors(accepted, memory_path),
+                [],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

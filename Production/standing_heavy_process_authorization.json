@@ -1,0 +1,50 @@
+{
+  "schema": "skyguard.production.standing-heavy-process-authorization.v1",
+  "created_utc": "2026-08-09T22:16:46.6295127Z",
+  "status": "ACTIVE",
+  "authority": "USER_STANDING_AUTHORIZATION",
+  "user_direction": "remove the need for me to have to authorize any blender or UE utilization",
+  "canonical_project_root": "D:\\Skyguard52",
+  "scope": {
+    "blender": true,
+    "unreal_editor": true,
+    "unreal_editor_cmd": true,
+    "shader_compile_worker": true,
+    "unreal_build_tool": true,
+    "automation_tool": true,
+    "native_compiler_and_linker": true,
+    "render_and_capture": true,
+    "profiling": true,
+    "governed_import_and_integration": true,
+    "development_packaging_and_validation": true
+  },
+  "execution_policy": {
+    "per_run_user_authorization_required": false,
+    "existing_authorize_single_switches": "MECHANICAL_ONE_SHOT_GUARDS_MAY_BE_SUPPLIED_AUTONOMOUSLY",
+    "offline_readiness_may_authorize_next_governed_execution": true,
+    "one_heavy_process_at_a_time": true,
+    "fresh_namespace_required": true,
+    "automatic_retry_count": 0,
+    "failed_namespace_reuse": false,
+    "immutable_attempt_evidence_required": true,
+    "numeric_exit_and_process_evidence_required": true,
+    "mandatory_postflight_when_contracted": true,
+    "direct_full_resolution_review_when_contracted": true,
+    "reversible_runtime_integration_required": true
+  },
+  "supersession": {
+    "prospective_only": true,
+    "historical_evidence_mutated": false,
+    "historical_per_run_user_authorization_clauses": "SUPERSEDED_FOR_FUTURE_EXECUTION",
+    "all_other_frozen_contract_requirements": "REMAIN_IN_FORCE"
+  },
+  "boundaries": {
+    "retired_threejs_project": "PROHIBITED",
+    "external_ai_models": "PROHIBITED_UNLESS_USER_SEPARATELY_REAUTHORIZES",
+    "external_asset_purchase_or_license_acceptance": "NOT_AUTHORIZED",
+    "destructive_history_or_evidence_deletion": "NOT_AUTHORIZED",
+    "global_system_or_engine_mutation": "NOT_AUTHORIZED_WITHOUT_SEPARATE_SCOPE",
+    "automatic_promotion_without_acceptance": "NOT_AUTHORIZED"
+  },
+  "revocation": "The user may revoke or narrow this standing authorization at any time."
+}

@@ -17,11 +17,22 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+from skyguard_visual_feedback import (  # noqa: E402
+    FeedbackError,
+    evaluate_strategy,
+    load_memory as load_visual_feedback_memory,
+)
+
 PRODUCTION = ROOT / "Production"
 MANIFEST_PATH = PRODUCTION / "production_manifest.json"
 ATTEMPTS_ROOT = PRODUCTION / "Attempts"
 LOCK_PATH = PRODUCTION / ".heavy_process.lock"
 EVENTS_PATH = PRODUCTION / "events.jsonl"
+VISUAL_FEEDBACK_MEMORY_PATH = PRODUCTION / "visual_feedback_memory.json"
 
 HEAVY_PROCESS_NAMES = {
     "blender",
@@ -103,6 +114,36 @@ def asset_index(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {asset["id"]: asset for asset in manifest["assets"]}
 
 
+def visual_feedback_guard_errors(
+    asset: dict[str, Any],
+    memory_path: Path = VISUAL_FEEDBACK_MEMORY_PATH,
+) -> list[str]:
+    if asset.get("feedback_guard_required") is not True:
+        return []
+    lane = asset.get("feedback_lane")
+    tags = asset.get("strategy_tags")
+    if not isinstance(lane, str) or not lane:
+        return [f"{asset.get('id')}: feedback_lane is required by its feedback guard."]
+    if not isinstance(tags, list) or not all(isinstance(tag, str) and tag for tag in tags):
+        return [f"{asset.get('id')}: strategy_tags must be a nonempty string list."]
+    if not memory_path.is_file():
+        return [f"{asset.get('id')}: visual-feedback memory is missing: {memory_path}"]
+    try:
+        result = evaluate_strategy(load_visual_feedback_memory(memory_path), lane, tags)
+    except FeedbackError as exc:
+        return [f"{asset.get('id')}: invalid visual-feedback memory: {exc}"]
+    if result["pass"]:
+        return []
+    detail = {
+        "missing_required_tags": result.get("missing_required_tags", []),
+        "present_forbidden_tags": result.get("present_forbidden_tags", []),
+    }
+    return [
+        f"{asset.get('id')}: strategy blocked by durable visual feedback: "
+        + json.dumps(detail, sort_keys=True)
+    ]
+
+
 def validate_manifest(manifest: dict[str, Any], check_files: bool = True) -> list[str]:
     errors: list[str] = []
     if manifest.get("schema") != "skyguard.production-manifest.v1":
@@ -111,7 +152,48 @@ def validate_manifest(manifest: dict[str, Any], check_files: bool = True) -> lis
     if project.get("root") != str(ROOT):
         errors.append(f"Manifest root {project.get('root')!r} does not equal {ROOT}.")
 
-    allowed = set(manifest.get("policies", {}).get("accepted_states", []))
+    policies = manifest.get("policies", {})
+    if policies.get("standing_blender_unreal_authorization") is not True:
+        errors.append("Standing Blender/Unreal authorization must be enabled.")
+    if policies.get("per_run_user_authorization_required") is not False:
+        errors.append("Per-run Blender/Unreal user authorization must be disabled.")
+    authority_value = policies.get("standing_authorization_authority")
+    if not isinstance(authority_value, str) or not authority_value:
+        errors.append("Standing-authorization authority path is missing.")
+    elif check_files:
+        authority_path = ROOT / authority_value
+        if not authority_path.is_file():
+            errors.append(f"Standing-authorization authority is missing: {authority_path}")
+        else:
+            try:
+                authority = load_json(authority_path)
+            except PipelineError as exc:
+                errors.append(str(exc))
+            else:
+                execution_policy = authority.get("execution_policy", {})
+                required_authority_values = {
+                    "status": "ACTIVE",
+                    "canonical_project_root": str(ROOT),
+                }
+                for key, expected in required_authority_values.items():
+                    if authority.get(key) != expected:
+                        errors.append(
+                            f"Standing-authorization authority mismatch: {key}."
+                        )
+                required_execution_values = {
+                    "per_run_user_authorization_required": False,
+                    "one_heavy_process_at_a_time": True,
+                    "automatic_retry_count": 0,
+                    "failed_namespace_reuse": False,
+                    "immutable_attempt_evidence_required": True,
+                }
+                for key, expected in required_execution_values.items():
+                    if execution_policy.get(key) != expected:
+                        errors.append(
+                            f"Standing-authorization execution-policy mismatch: {key}."
+                        )
+
+    allowed = set(policies.get("accepted_states", []))
     ids: list[str] = []
     for position, asset in enumerate(manifest.get("assets", [])):
         asset_id = asset.get("id")
@@ -130,6 +212,8 @@ def validate_manifest(manifest: dict[str, Any], check_files: bool = True) -> lis
                 errors.append(f"{asset_id}: worker script is missing: {script}")
             if not isinstance(worker.get("arguments"), list):
                 errors.append(f"{asset_id}: worker arguments must be a list.")
+        if check_files:
+            errors.extend(visual_feedback_guard_errors(asset))
 
     duplicates = sorted(asset_id for asset_id, count in Counter(ids).items() if count > 1)
     if duplicates:

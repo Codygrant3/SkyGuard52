@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-06T16:30:58.001811Z"
+    "updated_at_utc": "2026-08-11T00:55:47.225691Z"
   },
   "toolchain": {
     "blender": {
@@ -26,6 +26,10 @@
     "one_heavy_process": true,
     "automatic_retries": 0,
     "reuse_failed_namespace": false,
+    "standing_blender_unreal_authorization": true,
+    "per_run_user_authorization_required": false,
+    "standing_authorization_authority": "Production\\standing_heavy_process_authorization.json",
+    "authorize_single_switches_are_mechanical_guards": true,
     "preserve_historical_evidence": true,
     "circular_hashes_forbidden": true,
     "visual_review_required": true,
@@ -88,12 +92,35 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "blocked_reference",
+      "status": "failed",
       "existing": [
         "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend",
         "Content\\Skyguard\\Meshes\\Source\\L88\\YAK52_L88_MASTER_BLOCKOUT.blend"
       ],
-      "blocker": "Authoritative dimensioned three-view and station geometry remain incomplete; existing 242k-triangle uplift is an unrigged source candidate, not accepted final art.",
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-yak52-airframe"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-yak52-airframe",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
       "required": [
         "blend",
         "glb",
@@ -103,7 +130,59 @@
         "collision",
         "pivots",
         "sockets"
-      ]
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 11 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T01:23:58.734653Z",
+      "latest_attempt": "Production\\Attempts\\core-yak52-airframe\\attempt_20260810T012355939434Z"
+    },
+    {
+      "id": "core-yak52-airframe-recovery01",
+      "name": "Yak-52 exterior airframe Refinement01 Recovery01",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "failed",
+      "existing": [
+        "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01_recovery01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-yak52-airframe-recovery01"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_phase2_yak52_airframe_refinement01_recovery01_attempt.py",
+          "arguments": [
+            "--asset-id",
+            "core-yak52-airframe-recovery01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-recovery01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "11_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets"
+      ],
+      "state_reason": "Automatic structure passed, but all 11 original renders fail AAA visual acceptance: blockout cylindrical fuselage/cowling, slab wings and tail, toy gear/propeller, canopy intersections, obstructed rear-gunner sightline, and invalid wing-root/gear detail framing. No Unreal import or promotion.",
+      "state_changed_at_utc": "2026-08-10T01:40:58.344869Z",
+      "latest_attempt": "Production\\Attempts\\core-yak52-airframe-recovery01\\attempt_20260810T013539411987Z"
     },
     {
       "id": "core-yak52-cockpit",
@@ -226,6 +305,122 @@
       "latest_attempt": "Production\\Attempts\\core-hand-forearm\\attempt_20260806T144106414958Z"
     },
     {
+      "id": "core-reargunner-character-refinement01",
+      "name": "Rear-seat gunner full character Refinement01",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 4,
+      "status": "failed",
+      "existing": [
+        "Content\\Skyguard\\Meshes\\WebGame\\skyguard-occupant"
+      ],
+      "blocker": "Grok MCP Refinement01 produced a rigged primitive mannequin and failed the deterministic finalizer on prohibited HAND_Finger_* placeholder meshes. Direct review rejected all six checkpoint renders; the attempt is immutable and Unreal import is prohibited. Revisit only through a dedicated human-character pipeline with production anatomy and clothing sources.",
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_reargunner_character_refinement01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-reargunner-character-refinement01"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-reargunner-character-refinement01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-reargunner-character-refinement01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "12_renders",
+        "fresh_high_poly_source",
+        "31_deform_bone_armature",
+        "skin_weights",
+        "five_governed_actions",
+        "uniform_pbr",
+        "rifle_support_pose",
+        "trigger_ads_pose",
+        "igla_support_pose",
+        "turbulence_brace_pose",
+        "cockpit_datum_receipt",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Grok MCP Refinement01 is terminal FAILED_WITH_EVIDENCE. Although it created a 31-bone rig, actions, sockets, a governed blend, and six checkpoints, visible geometry remained a capsule-limb mannequin with featureless head, absent hands, segmented joints, and nondistinct weapon-support poses. The deterministic finalizer rejected HAND_Finger_* placeholder meshes and direct review independently rejected the asset.",
+      "state_changed_at_utc": "2026-08-11T08:21:35.5611418Z",
+      "latest_attempt": "Production\\Attempts\\core-reargunner-character-grok-mcp-refinement01\\attempt_20260811T0805000000000Z",
+      "latest_visual_review": "Docs\\AAA_Review\\CORE_REARGUNNER_CHARACTER_GROK_MCP_REFINEMENT01_DIRECT_VISUAL_REVIEW.json",
+      "latest_terminal_freeze": "Docs\\AAA_Review\\CORE_REARGUNNER_CHARACTER_GROK_MCP_REFINEMENT01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "reference_classification": "PROJECT_PROVISIONAL_ACCOMMODATION_PROFILE_NOT_A_MEASURED_PERCENTILE",
+      "supersedes_only_after_acceptance": "core-rear-gunner"
+    },
+    {
+      "id": "core-reargunner-hand-forearm-refinement01",
+      "name": "Rear-gunner hands and forearms Refinement01",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "first_person_hero",
+      "priority": 5,
+      "status": "failed",
+      "existing": [
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_reargunner_hand_forearm_refinement01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-reargunner-hand-forearm-refinement01"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-reargunner-hand-forearm-refinement01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-reargunner-hand-forearm-refinement01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "12_renders",
+        "fresh_high_poly_source",
+        "armature",
+        "skin_weights",
+        "four_governed_actions",
+        "glove_pbr",
+        "rifle_support_pose",
+        "trigger_ads_pose",
+        "igla_support_pose",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2.",
+      "reference_classification": "PROJECT_PROVISIONAL_NOT_A_MEASURED_PERCENTILE",
+      "supersedes_only_after_acceptance": "core-hand-forearm",
+      "state_changed_at_utc": "2026-08-11T00:55:47.225681Z",
+      "latest_attempt": "Production\\Attempts\\core-reargunner-hand-forearm-refinement01\\attempt_20260811T005526186562Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-reargunner-hand-forearm-refinement01\\attempt_20260811T005526186562Z.json",
+      "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
+    },
+    {
       "id": "core-rifle",
       "name": "Rear-gunner AR/M4-family rifle",
       "lane": "P0-cockpit-combat-vertical-slice",
@@ -273,6 +468,69 @@
       }
     },
     {
+      "id": "core-rifle-method05-stagea",
+      "name": "Rear-gunner AR/M4-family rifle Method05 StageA forward assembly",
+      "lane": "P0-cockpit-combat-vertical-slice",
+      "owner": "blender",
+      "quality": "first_person_hero",
+      "priority": 6,
+      "status": "failed",
+      "existing": [
+        "Production\\Attempts\\support-rail-coupon\\attempt_20260807T221818127741Z\\output\\dimension_receipt.json",
+        "Docs\\AAA_Review\\GATE7_RAIL_COUPON_RECOVERY05_ACCEPTANCE_ADDENDUM_2026-08-07.md",
+        "Docs\\AAA_Review\\P0_CORE_RIFLE_METHOD04_STAGEA_RECOVERY01_OFFLINE_DESIGN_FREEZE.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_rifle_method05_deterministic_stagea.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-rifle-method05-stagea"
+        ],
+        "minimum_renders": 27,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-rifle-method05-stagea",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-rifle-method05-stagea\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "15_checkpoint_renders",
+        "12_final_2560x1440_renders",
+        "explicit_inner_outer_cage",
+        "real_negative_space_windows",
+        "accepted_rail_dimensions",
+        "uv0",
+        "provisional_pbr",
+        "topology_receipt",
+        "manifold_receipt",
+        "muzzle_socket",
+        "grip_socket",
+        "collision",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Rejected after inspecting all 27 original renders. Decisive defects: FDE handguard renders nearly white/overexposed and porous like plaster rather than coated metal; final_04_bottom_mechanical is effectively black with no evaluable asset; window apertures remain blocky stepped rectangles rather than designed rounded loops; muzzle/body-cap assembly is mechanically implausible and not reference-faithful; rear receiver transition is unresolved; ADS checkpoint lacks a credible aligned sight picture. Automatic geometry receipts remain preserved, but the asset is not visually acceptable and is not authorized for Unreal import.",
+      "state_changed_at_utc": "2026-08-11T00:48:29.316200Z",
+      "identity_boundary": "AR/M4-family forward assembly; exact manufacturer, model, chambering, controls, optic, markings and accessories unresolved",
+      "stage_scope": "StageA topology-driven handguard, rail, barrel, receiver transition, body cap and project-provisional open-tine muzzle only",
+      "supersedes_only_after_acceptance": "core-rifle",
+      "latest_attempt": "Production\\Attempts\\core-rifle-method05-stagea\\attempt_20260811T004019624734Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-rifle-method05-stagea\\attempt_20260811T004019624734Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
       "id": "core-igla-launcher",
       "name": "9K38 Igla launcher and gripstock",
       "lane": "P0-cockpit-combat-vertical-slice",
@@ -304,9 +562,17 @@
       "priority": 8,
       "status": "provisional_blockout",
       "existing": [
-        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb"
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb",
+        "Production\\Attempts\\core-igla-missile-grok-mcp-refinement01\\attempt_20260811T0737000000000Z\\output\\CORE_IglaMissile_Refinement01.blend",
+        "Production\\Attempts\\core-igla-missile-grok-mcp-refinement01\\attempt_20260811T0737000000000Z\\output\\exports\\CORE_IglaMissile_Refinement01.glb",
+        "Docs\\AAA_Review\\CORE_IGLA_MISSILE_GROK_MCP_REFINEMENT01_ACCEPTANCE_FREEZE.json",
+        "Docs\\AAA_Review\\CORE_IGLA_MISSILE_REFINEMENT01_UNREAL_INTEGRATION01_RECOVERY01_TERMINAL_FREEZE.json",
+        "D:\\SG52T08_ENV01\\Content\\Skyguard\\Combat\\Weapons\\IglaMissileRefinement01Recovery01\\StaticMeshes\\SM_CORE_IglaMissile_Provisional_A.uasset"
       ],
-      "blocker": "Accepted 1.574 m by 0.072 m envelope is not a production missile model.",
+      "blocker": "Grok refinement01 is accepted only as a provisional mid-distance visual and has passed reversible Unreal staging. A D3D12 audit-map proof and later close-range hero-detail pass remain required before gameplay binding or proxy replacement.",
+      "state_reason": "Blender direct review passed at the authoritative 1.574 m body length and 0.072 m cylindrical-body diameter. Unreal Recovery01 staging preserved a 157.400 cm length, 18.200 cm fin envelope, four material slots, BodySetup, and three source-bound provisional sockets with one launch and zero retries. Existing runtime proxy remains unchanged.",
+      "latest_attempt": "Production\\Attempts\\core-igla-missile-grok-mcp-refinement01\\attempt_20260811T0737000000000Z",
+      "latest_unreal_staging_freeze": "Docs\\AAA_Review\\CORE_IGLA_MISSILE_REFINEMENT01_UNREAL_INTEGRATION01_RECOVERY01_TERMINAL_FREEZE.json",
       "required": [
         "blend",
         "glb",
@@ -324,12 +590,40 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 9,
-      "status": "provisional_blockout",
+      "status": "failed",
       "existing": [
-        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_SHAHED136_ENVELOPE.glb",
-        "Content\\Skyguard\\Meshes\\Hero\\shahed_proxy.uasset"
+        "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_SHAHED136_ENVELOPE.glb",
+        "Content\\Skyguard\\Meshes\\Hero\\shahed_proxy.uasset",
+        "Production\\Attempts\\core-shahed136-grok-mcp-redesign01\\attempt_20260811T0830000000000Z\\output\\CORE_Shahed136_ArtistGrade_Redesign01.blend",
+        "Docs\\AAA_Review\\CORE_SHAHED136_GROK_MCP_ARTIST_GRADE_REDESIGN01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Production\\Attempts\\core-shahed136-grok-mcp-redesign01-recovery01\\attempt_20260811T0845000000000Z\\output\\CORE_Shahed136_ArtistGrade_Redesign01_Recovery01.blend",
+        "Production\\Attempts\\core-shahed136-grok-mcp-redesign01-recovery01\\attempt_20260811T0845000000000Z\\output\\exports\\CORE_Shahed136_ArtistGrade_Redesign01_Recovery01.glb",
+        "Docs\\AAA_Review\\CORE_SHAHED136_GROK_MCP_ARTIST_GRADE_REDESIGN01_RECOVERY01_DIRECT_VISUAL_REVIEW.json"
       ],
-      "blocker": "Accepted 3.3 m by 3.0 m planform envelope lacks authoritative cross-section, propeller, surface construction, damage states, and PBR.",
+      "blocker": "Grok Artist-Grade Recovery01 improved the governed airframe topology but direct review rejected clay-like materials, slab-like surface transitions, primitive fins and a missing readable propeller. Its Blender lifecycle also violated the single-launch contract and the finalizer could not reconnect. Preserve the source as evidence only; Unreal import is prohibited.",
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_shahed136_refinement01_recovery02.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-shahed136"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-shahed136",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-shahed136\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
       "required": [
         "blend",
         "glb",
@@ -340,7 +634,12 @@
         "damage_states",
         "collision",
         "vfx_sockets"
-      ]
+      ],
+      "state_reason": "Artist-Grade Redesign01 Recovery01 is terminal FAILED_WITH_EVIDENCE after direct inspection of all three corrected originals. The 3.300 m x 3.000 m planform and higher-density fresh geometry are useful evidence, but the asset remains below production quality: no readable pusher propeller, clay-like materials, shallow slab-like control surfaces, primitive fin attachments and weak aerodynamic transitions. The session also replaced the supervisor-owned Blender process and left the deterministic finalizer unable to reconnect. No Unreal import or promotion.",
+      "state_changed_at_utc": "2026-08-11T09:08:00Z",
+      "latest_attempt": "Production\\Attempts\\core-shahed136-grok-mcp-redesign01-recovery01\\attempt_20260811T0845000000000Z",
+      "latest_postflight_report": "Docs\\AAA_Review\\CORE_SHAHED136_GROK_MCP_ARTIST_GRADE_REDESIGN01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
+      "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
     },
     {
       "id": "core-shahed-heavy",
@@ -372,13 +671,13 @@
       "owner": "blender",
       "quality": "validation",
       "priority": 80,
-      "status": "ready",
+      "status": "accepted",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_MIL_STD_1913_VALIDATION_COUPON.glb"
       ],
       "blocker": null,
       "worker": {
-        "script": "References\\CombatAssets\\CombatAsset_Refinement_Cycle03_Rail_Coupon_Recovery01_OfflineDesign\\source\\blender_gate7_combat_asset_refinement_cycle03_rail_coupon_recovery01_attempt01.py",
+        "script": "Scripts\\Workers\\worker_support_rail_coupon_recovery05.py",
         "arguments": [
           "--output",
           "{output_dir}"
@@ -391,7 +690,10 @@
         "6_renders",
         "dimension_receipt",
         "socket"
-      ]
+      ],
+      "state_reason": "Recovery05 accepted after direct full-resolution inspection of all eleven governed 2048x2048 renders. The near-clip correction makes detail_wet readable; no clipping, mesh gaps, intersections, broken proportions, or shading defects observed. Dimension receipt passes all authoritative bounds; GLB contains SOCKET_Rail_Origin and UCX_RailCoupon_ProfilePrism; one Blender launch, zero retries, exit code 0. Asset remains a dimensional validation coupon only, not a complete weapon component.",
+      "state_changed_at_utc": "2026-08-07T22:20:12.134287Z",
+      "latest_attempt": "Production\\Attempts\\support-rail-coupon\\attempt_20260807T221818127741Z"
     },
     {
       "id": "shared-destruction-kit",
@@ -505,18 +807,20 @@
       "owner": "fab_unreal",
       "quality": "environment",
       "priority": 23,
-      "status": "queued",
+      "status": "blocked_reference",
       "existing": [
         "Content\\Skyguard\\Meshes\\Hero\\coast_tree_proxy.uasset"
       ],
-      "blocker": "Proxy foliage exists; licensed production vegetation and wind/LOD validation do not.",
+      "blocker": "Two governed procedural-tree approaches failed direct visual review with skeletal crowns, floating/faceted foliage, artificial silhouettes, and poor bark response. Do not spend another Blender attempt on procedural substitutes. The next route is a licensed production vegetation set with provenance, wind, LOD/Nanite, PCG, and performance validation; external acquisition remains a separate account/license action.",
       "required": [
         "license_receipts",
         "nanite_or_lods",
         "wind",
         "pcg_rules",
         "performance_proof"
-      ]
+      ],
+      "state_reason": "Blocked deliberately to stop repeating a visually failed generation strategy. Existing coast_tree_proxy remains a proxy only and may not be promoted.",
+      "state_changed_at_utc": "2026-08-10T14:40:00Z"
     },
     {
       "id": "shared-industrial-props",
@@ -1219,24 +1523,1258 @@
       ]
     },
     {
+      "id": "m01-environment-hero-streetshore-proof01",
+      "name": "Mission 1 hero streetscape and shoreline production-look proof",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_proof",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\production_reset_contract.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_environment_hero_streetshore_proof01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-environment-hero-streetshore-proof01"
+        ],
+        "minimum_renders": 9,
+        "postflight": {
+          "script": "Scripts\\Workers\\adjudicate_m01_environment_hero_streetshore_proof01.py",
+          "mandatory_after_automatic_controller_pass": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry",
+        "blend",
+        "glb",
+        "nine_1920x1080_renders",
+        "texture_driven_pbr",
+        "wetness_response",
+        "geometric_ocean_and_surf",
+        "two_distinct_facade_signatures",
+        "collision",
+        "sockets",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 9 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T00:48:10.309905Z",
+      "latest_attempt": "Production\\Attempts\\m01-environment-hero-streetshore-proof01\\attempt_20260810T004808328474Z"
+    },
+    {
+      "id": "m01-environment-hero-streetshore-proof01-recovery01",
+      "name": "Mission 1 hero streetscape and shoreline production-look proof Recovery01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_proof",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_ENVIRONMENT_PRODUCTION_RESET01_HERO_STREETSHORE_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01Recovery01\\compatibility_contract.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01Recovery01\\source_diff_contract.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_environment_hero_streetshore_proof01_recovery01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-environment-hero-streetshore-proof01-recovery01"
+        ],
+        "minimum_renders": 9,
+        "postflight": {
+          "script": "Scripts\\Workers\\adjudicate_m01_environment_hero_streetshore_proof01_recovery01.py",
+          "mandatory_after_automatic_controller_pass": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry",
+        "blend",
+        "glb",
+        "nine_1920x1080_renders",
+        "texture_driven_pbr",
+        "wetness_response",
+        "geometric_ocean_and_surf",
+        "two_distinct_facade_signatures",
+        "collision",
+        "sockets",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Automatic postflight failed exposure/detail thresholds; all nine originals directly reviewed and rejected for black night/wet renders, repetitive procedural facades, toy-like trees/vehicles, absent visible ocean-surf contact, and shoreline construction artifact.",
+      "state_changed_at_utc": "2026-08-10T00:59:29.874207Z",
+      "latest_attempt": "Production\\Attempts\\m01-environment-hero-streetshore-proof01-recovery01\\attempt_20260810T005541791802Z"
+    },
+    {
+      "id": "m01-environment-hero-streetshore-proof01-recovery02",
+      "name": "Mission 1 hero streetscape and shoreline production refinement Recovery02",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_proof",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_ENVIRONMENT_PRODUCTION_RESET01_HERO_STREETSHORE_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01Recovery02\\production_refinement_contract.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_environment_hero_streetshore_proof01_recovery02.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-environment-hero-streetshore-proof01-recovery02"
+        ],
+        "minimum_renders": 9,
+        "postflight": {
+          "script": "Scripts\\Workers\\adjudicate_m01_environment_hero_streetshore_proof01_recovery02.py",
+          "mandatory_after_automatic_controller_pass": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry",
+        "blend",
+        "glb",
+        "nine_1920x1080_renders",
+        "texture_driven_pbr",
+        "readable_day_wet_night_exposure",
+        "visible_ocean_surf_contact",
+        "refined_distinct_facades",
+        "refined_vehicles",
+        "refined_vegetation",
+        "collision",
+        "sockets",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Automatic postflight failed night facade exposure. Direct review of all nine original renders rejected procedural blockout quality: repetitive facades, toy vehicles, clustered-sphere trees, spherical shoreline rocks, visibly tiled water, bright parallel shoreline rails, insufficient coastal surf/contact realism, and underexposed night facade.",
+      "state_changed_at_utc": "2026-08-10T01:14:07.825007Z",
+      "latest_attempt": "Production\\Attempts\\m01-environment-hero-streetshore-proof01-recovery02\\attempt_20260810T010924865047Z"
+    },
+    {
+      "id": "m01-coastal-corridor-correction06",
+      "name": "Mission 1 continuous coastal corridor art-direction correction",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_grounding",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_PHOTOREAL_FOUNDATION_WAVE01_ENVIRONMENT_COMPOSITION_CORRECTION05_RECOVERY02_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_ENVIRONMENT_COMPOSITION_CORRECTION05_RECOVERY02_VISUAL_FAILURE_ADDENDUM_2026-08-10.md",
+        "Production\\standing_heavy_process_authorization.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_coastal_corridor_correction06.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-corridor-correction06"
+        ],
+        "minimum_renders": 6,
+        "postflight": {
+          "script": "Scripts\\Workers\\adjudicate_m01_coastal_corridor_correction06.py",
+          "mandatory_after_automatic_controller_pass": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_continuous_geometry",
+        "world_aligned_uv0",
+        "no_repeating_ground_slabs",
+        "zero_tile_gaps",
+        "five_integrated_cross_streets",
+        "flush_beach_access",
+        "governed_local_pbr",
+        "blend",
+        "glb",
+        "six_1920x1080_renders",
+        "collision",
+        "socket",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Automatic postflight failed two fixed-camera edge-density bounds. Direct review of all six 1920x1080 originals confirmed that the continuous UV terrain and integrated roads solve the slab-gap problem, but the asset remains visually under-authored: broad empty urban parcels, planar sand/dune bands, exposed cross-street height seams, a continuous bright foam line, sparse promenade furniture, and weak review-camera composition. Preserve Attempt01; a fresh bounded Recovery01 may retain only the valid continuous-corridor topology contract while adding terrain subdivision, grounded curb closure, broken shoreline contact, and localized service/streetscape detail.",
+      "state_changed_at_utc": "2026-08-10T20:17:14.633026Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-corridor-correction06\\attempt_20260810T201523968795Z"
+    },
+    {
+      "id": "m01-coastal-corridor-correction06-recovery01",
+      "name": "Mission 1 continuous coastal corridor visual refinement Recovery01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_grounding",
+      "priority": 15,
+      "status": "accepted",
+      "existing": [
+        "Production\\Attempts\\m01-coastal-corridor-correction06\\attempt_20260810T201523968795Z\\terminal.json",
+        "Production\\Attempts\\m01-coastal-corridor-correction06\\attempt_20260810T201523968795Z\\postflight.json",
+        "Production\\Attempts\\m01-coastal-corridor-correction06\\attempt_20260810T201523968795Z\\visual_review.json",
+        "Production\\standing_heavy_process_authorization.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_coastal_corridor_correction06_recovery01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-corridor-correction06-recovery01"
+        ],
+        "minimum_renders": 6,
+        "postflight": {
+          "script": "Scripts\\Workers\\adjudicate_m01_coastal_corridor_correction06_recovery01.py",
+          "mandatory_after_automatic_controller_pass": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "continuous_corridor_topology",
+        "subdivided_sand_and_dune_relief",
+        "closed_curb_faces",
+        "broken_shore_contact",
+        "grounded_streetscape_detail",
+        "world_aligned_uv0",
+        "zero_tile_gaps",
+        "five_integrated_cross_streets",
+        "governed_local_pbr",
+        "blend",
+        "glb",
+        "six_1920x1080_renders",
+        "collision",
+        "socket",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Directly inspected all six original 1920x1080 renders. PASSED for the bounded continuous-grounding substrate scope: no repeating beach slabs or 4-unit gaps; shoreline curvature and subdivided sand/dune relief read continuously; five cross streets are grounded and curb-closed; surf contact is broken into localized patches; promenade/urban service detail provides scale; exposure and PBR texture response are readable. The broad inland parcels intentionally receive the accepted building kit and Unreal PCG. This is not final Mission 1 visual acceptance. Unreal import remains contingent on consolidation into semantic meshes, material remapping, exclusion/replacement of review water and foam guides, reversible map integration, and a fresh D3D12 mapped visual proof.",
+      "state_changed_at_utc": "2026-08-10T20:22:41.379463Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z"
+    },
+    {
+      "id": "m01-coastal-corridor-correction06-recovery01-unrealready01",
+      "name": "Mission 1 coastal corridor Recovery01 Unreal-ready semantic consolidation",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_grounding",
+      "priority": 15,
+      "status": "accepted",
+      "existing": [
+        "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\output\\M01_CoastalCorridor_Correction06_Recovery01.blend",
+        "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\terminal.json",
+        "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\postflight.json",
+        "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01\\attempt_20260810T202054858832Z\\visual_review.json",
+        "Production\\standing_heavy_process_authorization.json"
+      ],
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_coastal_corridor_correction06_recovery01_unrealready01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-corridor-correction06-recovery01-unrealready01"
+        ],
+        "minimum_renders": 6,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-coastal-corridor-correction06-recovery01-unrealready01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-corridor-correction06-recovery01-unrealready01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "accepted_source_hash_binding",
+        "four_semantic_render_meshes",
+        "one_matching_ucx_collision",
+        "origin_socket",
+        "uv0_complete",
+        "material_slot_preservation",
+        "review_ocean_excluded",
+        "blend",
+        "glb",
+        "six_1920x1080_visual_parity_renders",
+        "automatic_postflight",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Directly inspected all six original 1920x1080 renders and compared them pixel-by-pixel with the accepted Correction06 Recovery01 source renders. PASSED for Unreal-ready semantic consolidation: four semantic render meshes preserve the accepted continuous corridor, UV/material response, shoreline relief, grounded roads, streetscape detail, and broken contact patches; one matching UCX collision and one origin socket are present; Blender review ocean is excluded. Pixel parity is strong across all cameras (mean absolute RGB difference 0.040696-0.645647 of 255; maximum RMS 1.544948). This acceptance proves consolidation and visual parity only. It does not establish final Mission 1 visual quality or authorize automatic runtime promotion; reversible Unreal import, material remapping, existing-building/PCG grounding, Unreal water replacement, D3D12 mapped proof, and full-resolution in-engine review remain required.",
+      "state_changed_at_utc": "2026-08-10T20:34:27.006980Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-corridor-correction06-recovery01-unrealready01\\attempt_20260810T203315932981Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-corridor-correction06-recovery01-unrealready01\\attempt_20260810T203315932981Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-hero-coastal-frontage-cell01",
+      "name": "Mission 1 authored hero coastal frontage cell",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_cell",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Saved\\Reports\\M01_COASTAL_CORRIDOR_C06R01_AXIS_RECOVERY01_VISUAL_PROOF01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_COASTAL_CORRIDOR_C06R01_AXIS_RECOVERY01_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Production\\visual_feedback_memory.json",
+        "Docs\\AAA_Review\\M01_HERO_COASTAL_FRONTAGE_CELL01_PRODUCTION_CONTRACT.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_coastal_frontage_cell01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-coastal-frontage-cell01"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-coastal-frontage-cell01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-coastal-frontage-cell01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "three_distinct_authored_building_signatures",
+        "recessed_windows",
+        "authored_balconies_entrances_and_rooflines",
+        "grounded_streetscape",
+        "governed_local_pbr",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "three_ucx_collision_meshes",
+        "four_sockets",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2.",
+      "state_changed_at_utc": "2026-08-10T22:06:10.904294Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-coastal-frontage-cell01\\attempt_20260810T220533043493Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-coastal-frontage-cell01\\attempt_20260810T220533043493Z.json",
+      "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
+    },
+    {
+      "id": "m01-hero-prewar-mansard-building-a01",
+      "name": "Mission 1 production prewar mansard hero building A01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_building",
+      "priority": 15,
+      "status": "failed",
+      "existing": [
+        "Saved\\Reports\\M01_HERO_COASTAL_FRONTAGE_CELL01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_HERO_COASTAL_FRONTAGE_CELL01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_PRODUCTION_CONTRACT.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_mansard_building_a01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-mansard-building-a01"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-mansard-building-a01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-mansard-building-a01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "one_asset_specific_prewar_mansard_building",
+        "actual_open_facade_construction",
+        "realistic_window_to_bay_ratio",
+        "recessed_window_assemblies",
+        "authored_arched_entrance_storefront_balconies_and_mansard",
+        "governed_local_pbr",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "two_ucx_collision_meshes",
+        "four_sockets",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "FAILED_WITH_EVIDENCE: featureless dark window voids, broken facade silhouettes, shallow entrance/storefront, incomplete balconies, flat materials. No Unreal import. Pivot to a single close-up facade window-bay proof before any whole-building retry.",
+      "state_changed_at_utc": "2026-08-10T22:26:04.381328Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-mansard-building-a01\\attempt_20260810T222318465511Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-mansard-building-a01\\attempt_20260810T222318465511Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01",
+      "name": "Mission 1 production prewar close-up window bay A01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 14,
+      "status": "failed",
+      "existing": [
+        "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_PRODUCTION_CONTRACT.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "single_facade_bay"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "one_closeup_prewar_facade_window_bay",
+        "four_piece_coherent_wall_aperture",
+        "four_reveal_returns",
+        "complete_visible_frame_mullion_transom_beads_and_seals",
+        "four_glazing_panes",
+        "interior_depth_curtains_radiator_and_warm_backing",
+        "construction_led_sill_lintel_hood_keystone_and_quoins",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "two_sockets",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 11 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T22:35:35.046514Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01\\attempt_20260810T223532952166Z"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery01",
+      "name": "Mission 1 prewar window bay A01 Blender 5.2 compatibility Recovery01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 13,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY01_COMPATIBILITY_CONTRACT.json",
+        "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "single_facade_bay"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery01"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "immutable_failed_source",
+        "blender_5_2_eevee_enum_compatibility_only",
+        "fresh_recovery_namespace",
+        "same_geometry_material_camera_and_receipt_contract",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "two_sockets",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 11 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T22:40:45.419019Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery01\\attempt_20260810T224042890030Z"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery02",
+      "name": "Mission 1 prewar window bay A01 Blender 5.2 compatibility Recovery02",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 12,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_COMPATIBILITY_CONTRACT.json",
+        "Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\Toolchain\\ToolchainWave08\\M01EnvironmentProductionReset01HeroStreetshoreProof01\\local_pbr_authority_inventory.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "single_facade_bay"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery02.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery02"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery02",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery02\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "immutable_original_geometry_source",
+        "blender_5_2_eevee_enum_binding",
+        "resolved_look_at_dependency",
+        "zero_art_contract_changes",
+        "fresh_recovery_namespace",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Automatic structure passed and the aperture/frame visibility defect is resolved, but direct review rejected opaque pastel glazing, toy-thick frame members, implausible cylindrical hardware, flat interior cards, washed-out exposure, and synthetic PBR. No Unreal import.",
+      "state_changed_at_utc": "2026-08-10T22:53:11.860752Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery02\\attempt_20260810T224606934605Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery02\\attempt_20260810T224606934605Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-prewar-window-material-glazing-benchmark-a01",
+      "name": "Mission 1 prewar window material and glazing benchmark A01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_material_benchmark",
+      "priority": 12,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_PRODUCTION_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Content\\Skyguard\\Textures\\PolyHaven\\polyhaven-provenance-manifest.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "physical_glazing",
+        "mechanically_coherent_hardware",
+        "interior_parallax",
+        "exposure_calibrated"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_prewar_window_material_glazing_benchmark_a01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-prewar-window-material-glazing-benchmark-a01"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-prewar-window-material-glazing-benchmark-a01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-material-glazing-benchmark-a01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_not_cosmetic_recovery",
+        "thin_stepped_frame_and_sash",
+        "physical_8mm_glazing_ior_1_46",
+        "mechanically_coherent_hinges_and_latch",
+        "two_meter_interior_parallax",
+        "governed_local_pbr",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "eight_1920x1080_final_renders",
+        "upper_and_lower_luminance_gate",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Full-resolution review rejected the asset: the Eevee Glass BSDF renders opaque black/white pane bands, hides the modeled room and parallax, and the wet response is straight review-strip geometry. Frame scale and hardware organization improved, but no Unreal import is authorized. See Saved/Reports/M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json.",
+      "state_changed_at_utc": "2026-08-10T23:14:15.030394Z",
+      "latest_attempt": "Production\\Attempts\\m01-prewar-window-material-glazing-benchmark-a01\\attempt_20260810T231128558387Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-material-glazing-benchmark-a01\\attempt_20260810T231128558387Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-prewar-window-eevee-glazing-transmission-coupon-a01",
+      "name": "Mission 1 Blender 5.2 Eevee glazing transmission coupon A01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "diagnostic_material_coupon",
+      "priority": 12,
+      "status": "accepted",
+      "existing": [
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_PRODUCTION_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "shader_coupon",
+        "pane_local_metrics",
+        "interior_visibility",
+        "eevee_compatible_transparency"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_prewar_window_eevee_glazing_transmission_coupon_a01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-prewar-window-eevee-glazing-transmission-coupon-a01"
+        ],
+        "minimum_renders": 10,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-prewar-window-eevee-glazing-transmission-coupon-a01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-eevee-glazing-transmission-coupon-a01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "two_identical_depth_target_sets",
+        "candidate_a_principled_alpha_dithered",
+        "candidate_b_fresnel_transparent_mix_dithered",
+        "no_pure_glass_bsdf_reuse",
+        "pane_local_luminance_and_variation_gate",
+        "front_and_oblique_parallax_proof",
+        "night_interior_visibility",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "six_1920x1080_final_renders",
+        "blend",
+        "glb",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Diagnostic coupon accepted after direct inspection of all 10 original renders. Candidate B (Transparent plus Principled reflection mixed by Fresnel, IOR 1.46, reflection roughness 0.11) selected for the fresh full-window rebuild. Coupon geometry is not authorized for Unreal import.",
+      "state_changed_at_utc": "2026-08-10T23:29:54.769825Z",
+      "latest_attempt": "Production\\Attempts\\m01-prewar-window-eevee-glazing-transmission-coupon-a01\\attempt_20260810T232704200330Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-eevee-glazing-transmission-coupon-a01\\attempt_20260810T232704200330Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery03",
+      "name": "Mission 1 hero prewar window bay A01 Recovery03",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "production_candidate",
+      "priority": 13,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY03_PRODUCTION_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "candidate_b_selected",
+        "eevee_compatible_transparency",
+        "pane_local_metrics",
+        "furnished_room_parallax",
+        "refined_hardware",
+        "uncropped_installed_module"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery03.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery03"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery03",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery03\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_failed_mesh_reuse",
+        "candidate_b_transparent_principled_fresnel_mix",
+        "four_8mm_glass_panes",
+        "thin_stepped_frame_and_sash",
+        "refined_hinges_latch_fasteners_and_espagnolette",
+        "furnished_room_depth_at_least_2_4m",
+        "uncropped_installed_module_views",
+        "left_right_oblique_parallax",
+        "daylight_overcast_grazing_night_and_cockpit_review",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "eight_2048x1152_final_renders",
+        "blend",
+        "glb",
+        "four_piece_ucx_collision",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 12 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T23:41:29.785407Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery03\\attempt_20260810T234127840972Z"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery04",
+      "name": "Mission 1 hero prewar window bay A01 Recovery04",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "production_candidate",
+      "priority": 13,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY04_COMPATIBILITY_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY03_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "candidate_b_selected",
+        "eevee_compatible_transparency",
+        "pane_local_metrics",
+        "furnished_room_parallax",
+        "refined_hardware",
+        "uncropped_installed_module",
+        "blender_package_import_compatibility"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery04.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery04"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery04",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery04\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_failed_mesh_reuse",
+        "candidate_b_transparent_principled_fresnel_mix",
+        "four_8mm_glass_panes",
+        "thin_stepped_frame_and_sash",
+        "refined_hinges_latch_fasteners_and_espagnolette",
+        "furnished_room_depth_at_least_2_4m",
+        "uncropped_installed_module_views",
+        "left_right_oblique_parallax",
+        "daylight_overcast_grazing_night_and_cockpit_review",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "eight_2048x1152_final_renders",
+        "blend",
+        "glb",
+        "four_piece_ucx_collision",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 12 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T23:50:46.627282Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery04\\attempt_20260810T235041872430Z"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery05",
+      "name": "Mission 1 hero prewar window bay A01 Recovery05",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "production_candidate",
+      "priority": 13,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY05_COMPATIBILITY_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY04_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "candidate_b_selected",
+        "eevee_compatible_transparency",
+        "pane_local_metrics",
+        "furnished_room_parallax",
+        "refined_hardware",
+        "uncropped_installed_module",
+        "blender_package_import_compatibility",
+        "preserved_internal_provenance_signature"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery05.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery05"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery05",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery05\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_failed_mesh_reuse",
+        "candidate_b_transparent_principled_fresnel_mix",
+        "four_8mm_glass_panes",
+        "thin_stepped_frame_and_sash",
+        "refined_hinges_latch_fasteners_and_espagnolette",
+        "furnished_room_depth_at_least_2_4m",
+        "uncropped_installed_module_views",
+        "left_right_oblique_parallax",
+        "daylight_overcast_grazing_night_and_cockpit_review",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "eight_2048x1152_final_renders",
+        "blend",
+        "glb",
+        "four_piece_ucx_collision",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 12 PNG renders, found 0.",
+      "state_changed_at_utc": "2026-08-10T23:57:30.534195Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery05\\attempt_20260810T235725840015Z"
+    },
+    {
+      "id": "m01-prewar-window-r03-topology-signature-diagnostic-a01",
+      "name": "Mission 1 prewar window Recovery03 topology signature diagnostic A01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "diagnostic",
+      "priority": 13,
+      "status": "accepted",
+      "existing": [
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_R03_TOPOLOGY_SIGNATURE_DIAGNOSTIC_A01_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY05_ATTEMPT01_TERMINAL_FREEZE.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": false,
+      "strategy_tags": [
+        "diagnostic_only",
+        "persist_pre_assertion_state",
+        "per_object_provenance",
+        "no_production_promotion"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_prewar_window_r03_topology_signature_diagnostic_a01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-prewar-window-r03-topology-signature-diagnostic-a01"
+        ],
+        "minimum_renders": 1,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-prewar-window-r03-topology-signature-diagnostic-a01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-r03-topology-signature-diagnostic-a01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "actual_signature_set",
+        "per_object_mismatch_list",
+        "diagnostic_blend",
+        "diagnostic_glb",
+        "one_512x512_review_render",
+        "unreal_import_prohibited"
+      ],
+      "state_reason": "Diagnostic accepted only: full-resolution render inspected and receipt proves two curtain meshes inherited A_PREWAR_CASEMENT_MATERIAL_BENCHMARK while 175 meshes use the Recovery03 signature. No Unreal import or production promotion.",
+      "state_changed_at_utc": "2026-08-11T00:05:17.130572Z",
+      "latest_attempt": "Production\\Attempts\\m01-prewar-window-r03-topology-signature-diagnostic-a01\\attempt_20260811T000337019690Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-prewar-window-r03-topology-signature-diagnostic-a01\\attempt_20260811T000337019690Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
+      "id": "m01-hero-prewar-window-bay-a01-recovery06",
+      "name": "Mission 1 hero prewar window bay A01 Recovery06",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "production_candidate",
+      "priority": 13,
+      "status": "accepted",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_CORRECTION_CONTRACT.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_R03_TOPOLOGY_SIGNATURE_DIAGNOSTIC_A01_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_TERMINAL_FREEZE.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "candidate_b_selected",
+        "eevee_compatible_transparency",
+        "pane_local_metrics",
+        "furnished_room_parallax",
+        "refined_hardware",
+        "uncropped_installed_module",
+        "diagnostic_bound_curtain_retag_only"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_m01_hero_prewar_window_bay_a01_recovery06.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-hero-prewar-window-bay-a01-recovery06"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-hero-prewar-window-bay-a01-recovery06",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery06\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_failed_mesh_reuse",
+        "candidate_b_transparent_principled_fresnel_mix",
+        "two_curtains_retagged_from_diagnostic_authority",
+        "four_8mm_glass_panes",
+        "thin_stepped_frame_and_sash",
+        "refined_hinges_latch_fasteners_and_espagnolette",
+        "furnished_room_depth_at_least_2_4m",
+        "uncropped_installed_module_views",
+        "left_right_oblique_parallax",
+        "daylight_overcast_grazing_night_and_cockpit_review",
+        "one_512x512_calibration_render",
+        "three_1280x720_checkpoints",
+        "eight_2048x1152_final_renders",
+        "blend",
+        "glb",
+        "four_piece_ucx_collision",
+        "three_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Accepted after direct inspection of all 12 original-resolution renders; authorizes deterministic Unreal-ready metadata preparation and a later reversible test import, not final AAA promotion. Evidence: Saved\\Reports\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "state_changed_at_utc": "2026-08-11T00:16:41.008983Z",
+      "latest_attempt": "Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06\\attempt_20260811T001334809772Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-hero-prewar-window-bay-a01-recovery06\\attempt_20260811T001334809772Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
+    },
+    {
       "id": "unreal-m01-representative-proof",
       "name": "Mission 1 representative Unreal visual proof",
       "lane": "P0-mission01-visual-slice",
       "owner": "unreal",
       "quality": "integration",
       "priority": 16,
-      "status": "ready",
+      "status": "deferred",
       "existing": [
-        "Docs\\AAA_Review\\PHASE4_M01_RECOVERY05_UNREAL_PROOF01_OFFLINE_DESIGN_FREEZE.json"
+        "Docs\\AAA_Review\\TOOLCHAIN_WAVE08_M01_ENVIRONMENT_AUTHORING01_RECOVERY07_MAPPED_VISUAL_PROOF01_RECOVERY04_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\TOOLCHAIN_WAVE08_M01_ENVIRONMENT_AUTHORING01_RECOVERY07_MAPPED_VISUAL_PROOF01_RECOVERY04_ATTEMPT01_FAILURE_ANALYSIS.json",
+        "Docs\\AAA_Review\\TOOLCHAIN_WAVE08_M01_ENVIRONMENT_VISUAL_REMEDIATION01_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_LANDSCAPE_GROUNDING_BRIDGE01_OFFLINE_SOURCE_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_LANDSCAPE_GROUNDING_BRIDGE01_NATIVE_BUILD_SINGLE.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_SOURCE_PREPARATION_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_POST_STAGEA_BINDING.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY01_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY01_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY02_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY02_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY02_POSTFLIGHT_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_RECOVERY02_PREVENTIVE_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_RECOVERY02_POST_STAGEA_RECOVERY02_BINDING.md",
+        "Docs\\AAA_Review\\M01_LANDSCAPE_GROUNDING_BRIDGE01_SUPPLEMENTAL_PRELAUNCH_AUDIT_FREEZE_2026-08-09.json",
+        "Docs\\AAA_Review\\M01_LANDSCAPE_GROUNDING_BRIDGE01_CURRENT_ROUTE_REVALIDATION_FREEZE_2026-08-09.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY02_OFFLINE_CONTRACT_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_OFFLINE_SOURCE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_POSTFLIGHT_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_PROMPT_BINDING_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_TIMEOUT_REVALIDATION.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_TIMEOUT_REVALIDATION_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_RECOVERY03_BINDING_TEMPLATE_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEB_RECOVERY03_POST_STAGEA_RECOVERY03_BINDING.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_TERMINAL_SUPERVISOR.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_POSTFLIGHT.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_ATTEMPT01_FAILURE_ANALYSIS.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_ATTEMPT01_DIAGNOSTIC_VISUAL_REVIEW.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY03_ATTEMPT01_ARTIFACT_INVENTORY.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_OFFLINE_REDESIGN.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_OFFLINE_SOURCE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_POSTFLIGHT_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_PROMPT_BINDING_FREEZE.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_ATTEMPT01_FAILURE_ANALYSIS.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_ATTEMPT01_DIAGNOSTIC_VISUAL_REVIEW.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY04_ATTEMPT01_ARTIFACT_INVENTORY.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_OFFLINE_REDESIGN.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_PROMPT_BINDING_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_SOURCE_INVENTORY.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_READINESS.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_SINGLE_BLENDER.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_ATTEMPT01_FAILURE_ANALYSIS.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY05_CHECKPOINT01_ATTEMPT01_ARTIFACT_INVENTORY.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY06_CHECKPOINT01_OFFLINE_DESIGN_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY06_CHECKPOINT01_PROMPT_BINDING_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY06_CHECKPOINT01_SOURCE_INVENTORY.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY06_CHECKPOINT01_READINESS.json",
+        "Docs\\AAA_Review\\NEXT_PROMPT_M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY06_CHECKPOINT01_SINGLE_BLENDER.md",
+        "Production\\standing_heavy_process_authorization.json",
+        "Docs\\AAA_Review\\SKYGUARD52_STANDING_BLENDER_UNREAL_AUTHORIZATION_2026-08-09.md",
+        "Docs\\AAA_Review\\SKYGUARD52_STANDING_BLENDER_UNREAL_AUTHORIZATION_FREEZE_2026-08-09.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_POSTFLIGHT.json",
+        "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_DIRECT_VISUAL_REVIEW.md"
       ],
-      "blocker": null,
+      "blocker": "No per-run user-authorization blocker remains. Recovery10 Checkpoint01 completed one governed Blender launch and passed automatic postflight, but direct full-resolution review classified it FAILED_WITH_EVIDENCE for procedural repetition, weak PBR detail, inadequate ocean/shore contact, simplified supporting assets, and synthetic night/storm response. StageB, Unreal import, grounding, reauthoring, finalization, promotion, and another Unreal proof remain blocked until a new art-direction and PBR production reset passes automatic validation, mandatory independent postflight, and direct full-resolution visual review.",
       "required": [
         "8_captures",
         "900_frame_samples",
         "shader_stability",
         "material_restoration",
         "human_visual_review"
-      ]
+      ],
+      "state_reason": "Standing Blender/Unreal authorization freeze 1366fc227908148199776d866d3f3a94bd56919d54babf5d64be9c26633df4e1 prospectively removes per-run user approval while retaining one-heavy-process, fresh-namespace, zero-retry, immutable-evidence, postflight, visual-review, and reversible-integration safeguards. Recovery10 terminal freeze 80eddd2ebf7cb403aabcf305317cde8702ff6709cccbe517bb19c4f10aaa5cb0 preserves the automatic pass and direct visual rejection. The next executable gate is OFFLINE_M01_VISIBLE_ENVIRONMENT_ART_DIRECTION_AND_PBR_PRODUCTION_RESET, not another lighting-only recovery.",
+      "state_changed_at_utc": "2026-08-10T00:27:05Z"
     },
     {
       "id": "unreal-m01-vertical-slice",

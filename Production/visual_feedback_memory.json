@@ -1,0 +1,457 @@
+{
+  "schema": "skyguard.visual-feedback-memory.v1",
+  "updated_at_utc": "2026-08-11T00:17:50.756650Z",
+  "policy": {
+    "pivot_threshold": 2,
+    "same_source_hash_is_idempotent": true,
+    "automatic_visual_acceptance": false,
+    "cosmetic_retry_after_pivot": false
+  },
+  "reviews": [
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260810T220533043493Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_HERO_COASTAL_FRONTAGE_CELL01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 6149,
+      "source_sha256": "e4b3ba9d5c2d5893d3eab5e3d7841c5e12dff61d52932822f26412a26b7fffa2",
+      "source_schema": "skyguard.direct-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": "REJECTED_NO_UNREAL_IMPORT",
+      "failed": true,
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell"
+      ],
+      "root_cause": "The bounded asset-specific pivot was correct, but the implementation still relied on incomplete front shells, oversized glazing planes, repeated primitive trim and insufficient ground-level authorship. Mesh-count thresholds could not detect those compositional defects.",
+      "findings": [
+        {
+          "category": "architecture",
+          "finding": "The three nominal signatures remain dominated by rectangular procedural masses. The modern stepped building presents a large blank upper slab, and the intended stepped silhouette is not legible from the overall or rear-gunner-height cameras."
+        },
+        {
+          "category": "facades",
+          "finding": "Window-to-wall proportions are implausibly large and repetitive. Dark glazing and recess planes merge into nearly continuous black facade fields, while fins, bands and balcony rails read as applied strips instead of integrated construction."
+        },
+        {
+          "category": "facades",
+          "finding": "The signature closeups expose missing facade hierarchy: weak lintel and sill construction, little reveal depth, limited entrance articulation, repetitive exact grids and incomplete ground-floor composition."
+        },
+        {
+          "category": "urban_density",
+          "finding": "The streetscape remains visibly sparse and blockout-like. Repeated simple lamps, benches and bollards do not provide credible coastal-city density, utilities, signage, parked objects, drainage variation or lived-in ground-level detail."
+        },
+        {
+          "category": "surfaces",
+          "finding": "Local PBR maps are present, but the result lacks calibrated macro variation, edge wear, salt, grime, water staining, patching and material breakup needed for a hero frontage. Several surfaces read as flat dark color fields."
+        },
+        {
+          "category": "lighting",
+          "finding": "The night review is not readable: mean luminance is 0.0446 and 59.23 percent of pixels are below the dark threshold. Building form, windows, entrances and street detail disappear."
+        },
+        {
+          "category": "composition",
+          "finding": "Multiple checkpoint and final cameras frame blank facade regions rather than proving the authored features, so the render set does not demonstrate production-quality readability at the intended rear-gunner distance."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T22:11:19.025097Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260810T222318465511Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_HERO_PREWAR_MANSARD_BUILDING_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 5906,
+      "source_sha256": "491d310a1eb1e32569731c0c3d1902b39dc086073259722bd5fd666e0f3f3d1f",
+      "source_schema": "skyguard.direct-full-resolution-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": null,
+      "failed": true,
+      "strategy_tags": [
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell",
+        "whole_building_generation"
+      ],
+      "root_cause": null,
+      "findings": [
+        {
+          "category": "facades",
+          "finding": "Most primary facade openings read as featureless dark rectangular voids rather than constructed windows."
+        },
+        {
+          "category": "architecture",
+          "finding": "Facade wall segments form broken triangular, trapezoidal and discontinuous silhouettes around openings, especially in oblique, wet and night views."
+        },
+        {
+          "category": "facades",
+          "finding": "The entrance and storefront lack believable glazing, jamb, threshold, signage, display depth and interior response; the entrance reads as a flat dark panel inside a simple arch."
+        },
+        {
+          "category": "facades",
+          "finding": "Balconies are mostly thin rail grids with minimal slab, bracket, door and drainage detail, so they do not read as credible occupied architecture."
+        },
+        {
+          "category": "surfaces",
+          "finding": "Material response remains flat and synthetic at hero distance; repeated trim and patch geometry creates procedural noise instead of believable age, repair and construction logic."
+        },
+        {
+          "category": "architecture",
+          "finding": "The full building remains too rectilinear and repetitive for a hero asset, and the contextual street pieces remain sparse and blockout-like."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T22:26:34.049903Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260810T224606934605Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY02_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 6996,
+      "source_sha256": "1f1745b6383cec1243b4437ff1e48c4cfc911a8a6f04bb3afa4bdb1a1da74288",
+      "source_schema": "skyguard.direct-full-resolution-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": null,
+      "failed": true,
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "single_facade_bay",
+        "small_hero_cell"
+      ],
+      "root_cause": null,
+      "findings": [
+        {
+          "category": "unclassified",
+          "finding": "The glazing reads as opaque blue and peach panels instead of physically plausible glass with exterior reflection, transmission, thickness and partial interior visibility."
+        },
+        {
+          "category": "architecture",
+          "finding": "The outer frame, mullion and transom proportions are too thick and uniformly rounded, producing a toy-like silhouette at hero distance."
+        },
+        {
+          "category": "unclassified",
+          "finding": "Three large brass cylinders and a projecting central handle do not form a plausible hinge, latch or stay arrangement and visually intersect the assembly logic."
+        },
+        {
+          "category": "architecture",
+          "finding": "The visible interior consists mainly of flat orange, blue and gray surfaces with little depth, furniture silhouette, radiator construction, curtain volume or room parallax."
+        },
+        {
+          "category": "shoreline",
+          "finding": "Daylight and overcast frames are washed out; mean luminance reaches 0.80 and clips the white trim and wall response, hiding surface detail."
+        },
+        {
+          "category": "facades",
+          "finding": "Facade, paint, seal and metal surfaces remain clean and procedurally uniform; wet mode changes brightness more than believable moisture response."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T22:53:31.540197Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260810T231128558387Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_PREWAR_WINDOW_MATERIAL_GLAZING_BENCHMARK_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 6623,
+      "source_sha256": "a7f844fd63652b392e37b22d93eea42f6d44e524b5cbaf63cd1376f732ae3a1f",
+      "source_schema": "skyguard.direct-full-resolution-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": null,
+      "failed": true,
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "exposure_calibrated",
+        "governed_local_pbr",
+        "interior_parallax",
+        "mechanically_coherent_hardware",
+        "physical_glazing",
+        "small_hero_cell"
+      ],
+      "root_cause": null,
+      "findings": [
+        {
+          "category": "lighting",
+          "finding": "All four panes read as opaque black fields with clipped white reflection bands instead of transmissive glass."
+        },
+        {
+          "category": "unclassified",
+          "finding": "The 2.2 m room and its furnishings are effectively invisible through every front and oblique pane view, so the promised interior parallax is not demonstrated."
+        },
+        {
+          "category": "unclassified",
+          "finding": "The wet response consists of a few straight vertical dark strips that do not read as droplets, rivulets, edge accumulation or realistic moisture optics."
+        },
+        {
+          "category": "unclassified",
+          "finding": "Hardware construction is more coherent than Recovery02, but the repeated fine stamped texture, boxy leaves and uniformly clean metal remain synthetic at macro distance."
+        },
+        {
+          "category": "unclassified",
+          "finding": "The review cameras crop away most sill, lintel and room context, making the module difficult to judge as a complete installed opening despite twelve images."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T23:14:57.966731Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260810T232704200330Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_PREWAR_WINDOW_EEVEE_GLAZING_TRANSMISSION_COUPON_A01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 7292,
+      "source_sha256": "9182f62d633b43f1b47204ad0d88097cb7a2907ff2c767d1afc315be43d2d97e",
+      "source_schema": "skyguard.direct-full-resolution-visual-review.v1",
+      "classification": "PASSED_DIAGNOSTIC_COUPON_ACCEPTED_CANDIDATE_B_SELECTED",
+      "decision": null,
+      "failed": false,
+      "strategy_tags": [
+        "candidate_b_selected",
+        "eevee_compatible_transparency",
+        "interior_visibility",
+        "pane_local_metrics",
+        "shader_coupon"
+      ],
+      "root_cause": null,
+      "findings": [],
+      "ingested_at_utc": "2026-08-10T23:30:07.134507Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "attempt_20260811T001334809772Z",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 8338,
+      "source_sha256": "21a8cac53b294b73c7e889039903751e3ac83caee95bac48bb99c3ee774ffff7",
+      "source_schema": "skyguard.direct-full-resolution-visual-review.v1",
+      "classification": "PASSED_VISUAL_REVIEW_ACCEPTED_FOR_REVERSIBLE_UNREAL_IMPORT_PREPARATION",
+      "decision": null,
+      "failed": false,
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "candidate_b_selected",
+        "checkpointed_visual_review",
+        "diagnostic_bound_curtain_retag_only",
+        "governed_local_pbr",
+        "small_hero_cell"
+      ],
+      "root_cause": null,
+      "findings": [],
+      "ingested_at_utc": "2026-08-11T00:17:50.756578Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "coastal_corridor_axis_recovery01_visual_proof01_recovery01",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_COASTAL_CORRIDOR_C06R01_AXIS_RECOVERY01_VISUAL_PROOF01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 6566,
+      "source_sha256": "6a4a9633a100b529ddf6e85540dd5031d0af9cc874cb101a4f55a41851cce588",
+      "source_schema": "skyguard.m01-coastal-corridor-c06r01.axis-recovery01.visual-proof01-recovery01.direct-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": "REJECT_REPRESENTATIVE_VISUAL_ART_QUALITY",
+      "failed": true,
+      "strategy_tags": [
+        "full_corridor_proof_before_hero_cell_acceptance",
+        "lighting_only_recovery"
+      ],
+      "root_cause": "The environment lane has reached the quality ceiling of procedural primitive composition and cosmetic lighting/material retries.",
+      "findings": [
+        {
+          "category": "lighting",
+          "finding": "Rear-gunner views contain crushed, nearly black facade shadows and inconsistent ambient exposure; C01 also failed the automatic shadow bound."
+        },
+        {
+          "category": "architecture",
+          "finding": "Only a few apartment silhouettes repeat across the route, so the skyline reads as cloned blockout modules rather than a credible coastal city."
+        },
+        {
+          "category": "facades",
+          "finding": "Large blank beige and white wall slabs, shallow openings, repetitive window rhythms and minimal balcony, entrance and roof detail dominate at gameplay distance."
+        },
+        {
+          "category": "urban_density",
+          "finding": "Roads and parcels remain visibly empty, with insufficient parked vehicles, vegetation, utilities, signage, street furniture and secondary structures."
+        },
+        {
+          "category": "water",
+          "finding": "The ocean reads as flat bright cyan rather than physically convincing water with scale, depth, reflectance and wind-driven variation."
+        },
+        {
+          "category": "shoreline",
+          "finding": "The waterline is a weak bright strip with no convincing surf breakup, foam persistence, wet-sand gradient or natural shore contact."
+        },
+        {
+          "category": "landmarks",
+          "finding": "The lighthouse retains a segmented low-detail cylindrical silhouette and does not meet hero-landmark quality."
+        },
+        {
+          "category": "surfaces",
+          "finding": "Road, sidewalk, retaining wall and terrain materials remain visually simple and lack readable wear, drainage, salt, grime and macro variation."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T21:56:09.601111Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "hero_streetshore_recovery02",
+      "source_path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_ENVIRONMENT_PRODUCTION_RESET01_HERO_STREETSHORE_PROOF01_RECOVERY02_ATTEMPT01_FAILURE_ANALYSIS.json",
+      "source_bytes": 1604,
+      "source_sha256": "b508b5c9c2e2f36e92c6da4aafd7ece2056ebb44d449021111bc34bddfa75d78",
+      "source_schema": "skyguard.m01-environment-production-reset01.hero-streetshore-proof01-recovery02.failure-analysis.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": "Do not create a cosmetic Recovery03 Blender retry. Pivot the environment lane to a governed Unreal assembly using already verified local materials, engine environment systems, and approved local assets; reserve Blender for unique hero geometry.",
+      "failed": true,
+      "strategy_tags": [
+        "cosmetic_only_recovery",
+        "whole_scene_procedural_primitive_generation"
+      ],
+      "root_cause": "The proof is trying to manufacture a complete production environment from procedural Blender primitives. More bounded cosmetic edits will not close the realism gap efficiently.",
+      "findings": [
+        {
+          "category": "facades",
+          "finding": "night facade remains underexposed"
+        },
+        {
+          "category": "facades",
+          "finding": "procedural facade repetition remains dominant"
+        },
+        {
+          "category": "urban_density",
+          "finding": "vehicles remain toy-like"
+        },
+        {
+          "category": "vegetation",
+          "finding": "tree canopies remain clustered primitive spheres"
+        },
+        {
+          "category": "shoreline",
+          "finding": "shore rocks remain spherical primitives"
+        },
+        {
+          "category": "shoreline",
+          "finding": "water visibly tiles and lacks physical surf/contact behavior"
+        },
+        {
+          "category": "shoreline",
+          "finding": "bright parallel shoreline rails read as construction artifacts"
+        },
+        {
+          "category": "surfaces",
+          "finding": "materials and composition remain below production visual quality"
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T21:56:09.391303Z"
+    },
+    {
+      "lane": "m01_environment",
+      "attempt_id": "realism_stack_visual_proof02",
+      "source_path": "D:\\Skyguard52\\Saved\\Reports\\M01_ENVIRONMENT_REALISM_STACK_VISUAL_PROOF02_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "source_bytes": 4508,
+      "source_sha256": "160b6d66ced70ad50b560efc0a6d754edfc72eb8490096f723adf7a4b4625314",
+      "source_schema": "skyguard.m01-environment-realism-stack.visual-proof02.direct-visual-review.v1",
+      "classification": "FAILED_WITH_EVIDENCE",
+      "decision": "REJECT_REPRESENTATIVE_VISUAL_ART_QUALITY",
+      "failed": true,
+      "strategy_tags": [
+        "full_corridor_proof_before_hero_cell_acceptance",
+        "whole_scene_procedural_primitive_generation"
+      ],
+      "root_cause": null,
+      "findings": [
+        {
+          "category": "lighting",
+          "finding": "Shadowed building faces remain nearly black; the skylight is not supplying credible ambient fill."
+        },
+        {
+          "category": "architecture",
+          "finding": "Apartment and midrise geometry remains flat, box-derived and visibly repetitive at rear-gunner review distance."
+        },
+        {
+          "category": "facades",
+          "finding": "Windows, balconies, entrances and rooflines lack sufficient depth, variation and construction detail."
+        },
+        {
+          "category": "vegetation",
+          "finding": "Trees read as faceted geometric placeholders rather than credible coastal vegetation."
+        },
+        {
+          "category": "shoreline",
+          "finding": "Water is visually flat and the beach lacks surf, foam, wet-sand response and a natural shore transition."
+        },
+        {
+          "category": "surfaces",
+          "finding": "Terrain, road, plaster and concrete lack calibrated macro/micro roughness, weathering, drainage, salt and grime layers."
+        },
+        {
+          "category": "landmarks",
+          "finding": "The lighthouse and surrounding street furniture retain obvious primitive or blockout silhouettes."
+        }
+      ],
+      "ingested_at_utc": "2026-08-10T21:56:09.496379Z"
+    }
+  ],
+  "lanes": {
+    "m01_environment": {
+      "classification": "PIVOT_REQUIRED",
+      "review_count": 9,
+      "failed_review_count": 7,
+      "category_counts": {
+        "architecture": 7,
+        "composition": 1,
+        "facades": 10,
+        "landmarks": 2,
+        "lighting": 4,
+        "shoreline": 6,
+        "surfaces": 5,
+        "urban_density": 3,
+        "vegetation": 2,
+        "water": 1
+      },
+      "repeated_categories": [
+        "architecture",
+        "facades",
+        "landmarks",
+        "lighting",
+        "shoreline",
+        "surfaces",
+        "urban_density",
+        "vegetation"
+      ],
+      "explicit_procedural_primitive_ceiling": true,
+      "required_strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "checkpointed_visual_review",
+        "governed_local_pbr",
+        "small_hero_cell"
+      ],
+      "forbidden_strategy_tags": [
+        "cosmetic_only_recovery",
+        "full_corridor_proof_before_hero_cell_acceptance",
+        "lighting_only_recovery",
+        "same_namespace_retry",
+        "whole_scene_procedural_primitive_generation"
+      ],
+      "next_work_requirements": [
+        "At least three visibly distinct authored building silhouettes with different massing and rooflines.",
+        "Recessed openings, real balcony/entrance depth and nonrepeating facade rhythms at gameplay distance.",
+        "Replace proxy landmark silhouettes with an asset-specific hero model.",
+        "Validate readable shadow-side facades under the fixed rear-gunner cameras before final rendering.",
+        "Author a natural water-to-wet-sand-to-dry-sand transition with broken surf contact.",
+        "Use governed PBR families with calibrated macro variation, roughness, weathering, salt and grime.",
+        "Ground secondary structures, parked vehicles, utilities, signage and street furniture in the hero cell.",
+        "Use credible nonproxy coastal vegetation or explicitly defer vegetation rather than inserting primitive stand-ins."
+      ],
+      "evidence_sha256": [
+        "160b6d66ced70ad50b560efc0a6d754edfc72eb8490096f723adf7a4b4625314",
+        "1f1745b6383cec1243b4437ff1e48c4cfc911a8a6f04bb3afa4bdb1a1da74288",
+        "491d310a1eb1e32569731c0c3d1902b39dc086073259722bd5fd666e0f3f3d1f",
+        "6a4a9633a100b529ddf6e85540dd5031d0af9cc874cb101a4f55a41851cce588",
+        "a7f844fd63652b392e37b22d93eea42f6d44e524b5cbaf63cd1376f732ae3a1f",
+        "b508b5c9c2e2f36e92c6da4aafd7ece2056ebb44d449021111bc34bddfa75d78",
+        "e4b3ba9d5c2d5893d3eab5e3d7841c5e12dff61d52932822f26412a26b7fffa2"
+      ]
+    }
+  }
+}

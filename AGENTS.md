@@ -13,6 +13,17 @@
 
 - Use `D:\Skyguard52\Scripts\skyguard_production.py` for queue state,
   preflight, attempts, evidence, and acceptance.
+- The user granted standing authorization on 2026-08-09 for governed Blender
+  and Unreal utilization within this canonical project. Do not pause to request
+  a new user authorization for each Blender, UnrealEditor, UnrealEditor-Cmd,
+  ShaderCompileWorker, UnrealBuildTool, AutomationTool, compiler, renderer,
+  capture, profiling, integration, or packaging gate. Existing
+  `-AuthorizeSingle*` switches remain mechanical one-shot safety guards and may
+  be supplied autonomously after the applicable readiness checks pass.
+- Apply `D:\Skyguard52\Production\standing_heavy_process_authorization.json`.
+  A historical prompt's per-run user-authorization clause is prospectively
+  superseded by this standing authority; its hash, evidence, fresh-namespace,
+  one-launch, review, and acceptance requirements remain in force.
 - Run at most one heavy Blender, Unreal, shader compiler, compiler, build, or
   packaging process at a time.
 - Do not start a second attempt while a first attempt is active.
