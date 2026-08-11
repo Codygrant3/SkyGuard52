@@ -85,6 +85,26 @@ ASkyguardYak52Aircraft::ASkyguardYak52Aircraft()
 	CurrentPropellerRPM = FMath::Lerp(MinimumFlightRPM, MaximumFlightRPM, EnginePower);
 }
 
+void ASkyguardYak52Aircraft::BeginPlay()
+{
+	Super::BeginPlay();
+	if (RearCanopyGlass)
+	{
+		const FVector AuthoredRelative = RearCanopyGlass->GetRelativeLocation();
+		// Authored mesh is the open/stowed pose when bRearCanopyOpen starts true.
+		// Closed pose is Travel centimeters forward of the open relative location.
+		if (bRearCanopyOpen)
+		{
+			RearCanopyClosedLocation =
+				AuthoredRelative + FVector(RearCanopyTravelCentimeters, 0.f, 0.f);
+		}
+		else
+		{
+			RearCanopyClosedLocation = AuthoredRelative;
+		}
+	}
+}
+
 void ASkyguardYak52Aircraft::ConfigureVisual(
 	UStaticMeshComponent* Component,
 	const TCHAR* AssetPath)

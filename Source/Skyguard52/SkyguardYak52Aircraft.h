@@ -31,6 +31,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Aircraft")
 	void SetRearCanopyOpen(bool bOpen);
 
+	virtual void BeginPlay() override;
+
 	UFUNCTION(BlueprintPure, Category="Skyguard|Aircraft")
 	USceneComponent* GetRearGunnerMount() const { return RearGunnerMount; }
 
