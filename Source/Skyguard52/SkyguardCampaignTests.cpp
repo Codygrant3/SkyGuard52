@@ -3,6 +3,7 @@
 #include "SkyguardCampaignDefinition.h"
 #include "SkyguardCampaignSaveGame.h"
 #include "SkyguardCampaignSubsystem.h"
+#include "SkyguardGunner.h"
 #include "SkyguardMissionBriefingComponent.h"
 #include "SkyguardMissionDefinition.h"
 #include "SkyguardObjectiveRuntime.h"
@@ -240,7 +241,30 @@ bool FSkyguardCampaignProgressionAndSaveTest::RunTest(const FString& Parameters)
 
 	Save->CampaignId = Campaign->CampaignId;
 	Save->SaveVersion = USkyguardCampaignSaveGame::CurrentSaveVersion - 1;
-	TestFalse(TEXT("Unsupported save versions are rejected"), RestoredRuntime->ApplySaveGame(Save));
+	TestTrue(
+		TEXT("Legacy save versions migrate forward to current"),
+		RestoredRuntime->ApplySaveGame(Save));
+	TestTrue(TEXT("Migrated legacy save still unlocks next mission"), RestoredRuntime->CanStartMission(TEXT("M02")));
+	// ApplySaveGame migrates a working copy; assert the in-place migrator advances version too.
+	TestTrue(
+		TEXT("MigrateCampaignSave accepts supported legacy version"),
+		USkyguardCampaignSaveGame::MigrateCampaignSave(*Save));
+	TestEqual(
+		TEXT("Migrated SaveVersion becomes Current"),
+		Save->SaveVersion,
+		USkyguardCampaignSaveGame::CurrentSaveVersion);
+
+	Save->SaveVersion = USkyguardCampaignSaveGame::CurrentSaveVersion + 1;
+	TestFalse(TEXT("Future save versions are rejected"), RestoredRuntime->ApplySaveGame(Save));
+	TestFalse(
+		TEXT("MigrateCampaignSave rejects future versions"),
+		USkyguardCampaignSaveGame::MigrateCampaignSave(*Save));
+
+	Save->SaveVersion = USkyguardCampaignSaveGame::MinSupportedSaveVersion - 1;
+	TestFalse(TEXT("Pre-min save versions are rejected"), RestoredRuntime->ApplySaveGame(Save));
+	TestFalse(
+		TEXT("MigrateCampaignSave rejects pre-min versions"),
+		USkyguardCampaignSaveGame::MigrateCampaignSave(*Save));
 	return true;
 }
 
@@ -383,6 +407,127 @@ bool FSkyguardCampaignDiskPersistenceTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("Negative user index is rejected"), Target->LoadCampaignFromSlot(SlotName, -1));
 	TestTrue(TEXT("Automation slot is deleted after verification"), Target->DeleteCampaignSlot(SlotName, UserIndex));
 	TestFalse(TEXT("Deleted automation slot no longer exists"), UGameplayStatics::DoesSaveGameExist(SlotName, UserIndex));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCampaignFailAndCombatStatsTest,
+	"Skyguard52.Campaign.Sortie.FailDebriefAndCombatStatFill",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCampaignFailAndCombatStatsTest::RunTest(const FString& Parameters)
+{
+	using namespace SkyguardCampaignTests;
+
+	USkyguardCampaignDefinition* Campaign = MakeTwoMissionCampaign();
+	UGameInstance* GameInstance =
+		NewObject<UGameInstance>(GetTransientPackage());
+	USkyguardCampaignSubsystem* Runtime =
+		NewObject<USkyguardCampaignSubsystem>(GameInstance);
+
+	TestTrue(TEXT("Campaign configures"), Runtime->ConfigureCampaign(Campaign));
+	TestTrue(TEXT("Mission 1 starts"), Runtime->StartMission(TEXT("M01")));
+
+	ASkyguardGunner* Gunner =
+		NewObject<ASkyguardGunner>(GetTransientPackage());
+	Gunner->ResetSortieCombatStats();
+	Gunner->RecordRifleShot();
+	Gunner->RecordRifleShot();
+	Gunner->RecordRifleHit();
+	Gunner->RecordIglaShot();
+	Gunner->RecordIglaHit();
+
+	FSkyguardMissionResult CombatResult;
+	Runtime->FillResultCombatStats(CombatResult, Gunner, nullptr);
+	TestEqual(TEXT("Rifle and Igla shots are counted"), CombatResult.ShotsFired, 3);
+	TestEqual(TEXT("Rifle and Igla hits are counted"), CombatResult.Hits, 2);
+	TestEqual(
+		TEXT("Aircraft damage stays zero without a Yak health API"),
+		CombatResult.AircraftDamageFraction,
+		0.f);
+
+	TestTrue(
+		TEXT("Protect objective can fail the sortie"),
+		Runtime->FailObjective(TEXT("ProtectCity")));
+
+	FSkyguardMissionResult FailResult;
+	FailResult.ShotsFired = CombatResult.ShotsFired;
+	FailResult.Hits = CombatResult.Hits;
+	TestTrue(
+		TEXT("Failed sortie builds a failure debrief"),
+		Runtime->FailActiveMission(FailResult));
+
+	const FSkyguardMissionDebrief& Debrief = Runtime->GetLastDebrief();
+	TestEqual(
+		TEXT("Failure debrief is presentation-ready"),
+		Debrief.State,
+		ESkyguardMissionDebriefState::Ready);
+	TestFalse(TEXT("Failed sortie does not claim success"), Debrief.Result.bMissionSucceeded);
+	TestEqual(TEXT("Failed sortie scores zero"), Debrief.Result.FinalScore, 0);
+	TestFalse(TEXT("Failure does not persist unlock progress"), Debrief.bProgressSaved);
+	TestTrue(
+		TEXT("Failure narrative uses authored FailureDebrief"),
+		Debrief.Narrative.EqualTo(
+			FText::FromString(TEXT("Coastal defense failed."))));
+	TestFalse(
+		TEXT("Travel stays blocked after an unsaved failure"),
+		Runtime->CanTravelToNextMission());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCampaignLoadBeforeStartUnlockTest,
+	"Skyguard52.Campaign.Persistence.LoadBeforeStartUnlocksNextMission",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCampaignLoadBeforeStartUnlockTest::RunTest(const FString& Parameters)
+{
+	using namespace SkyguardCampaignTests;
+
+	const FString SlotName = FString::Printf(
+		TEXT("SkyguardLoadBeforeStart_%s"),
+		*FGuid::NewGuid().ToString(EGuidFormats::Digits));
+
+	USkyguardCampaignDefinition* Campaign = MakeTwoMissionCampaign();
+	UGameInstance* SourceGameInstance =
+		NewObject<UGameInstance>(GetTransientPackage());
+	USkyguardCampaignSubsystem* Source =
+		NewObject<USkyguardCampaignSubsystem>(SourceGameInstance);
+	TestTrue(TEXT("Source configures"), Source->ConfigureCampaign(Campaign));
+	TestTrue(TEXT("Source starts M01"), Source->StartMission(TEXT("M01")));
+	TestTrue(TEXT("Source completes objective 1"), Source->AddObjectiveProgress(TEXT("BossDefeated")));
+	TestTrue(TEXT("Source completes objective 2"), Source->AddObjectiveProgress(TEXT("BossDefeated")));
+
+	FSkyguardMissionResult Result;
+	Result.ShotsFired = 5;
+	Result.Hits = 5;
+	Result.AircraftDamageFraction = 0.f;
+	Result.CompletionTimeSeconds = 280.f;
+	TestTrue(
+		TEXT("Source finalizes and saves"),
+		Source->FinalizeActiveMission(Result, SlotName, 0));
+	TestTrue(
+		TEXT("Source reports progress saved"),
+		Source->GetLastDebrief().bProgressSaved);
+
+	UGameInstance* FreshGameInstance =
+		NewObject<UGameInstance>(GetTransientPackage());
+	USkyguardCampaignSubsystem* Fresh =
+		NewObject<USkyguardCampaignSubsystem>(FreshGameInstance);
+	TestTrue(TEXT("Fresh configures"), Fresh->ConfigureCampaign(Campaign));
+	TestFalse(
+		TEXT("Without load, M02 stays locked"),
+		Fresh->CanStartMission(TEXT("M02")));
+	TestTrue(
+		TEXT("Fresh loads the saved slot before StartMission"),
+		Fresh->LoadCampaignFromSlot(SlotName, 0));
+	TestTrue(
+		TEXT("After load, M02 unlocks for StartMission"),
+		Fresh->CanStartMission(TEXT("M02")));
+	TestTrue(
+		TEXT("Fresh can start the unlocked next mission"),
+		Fresh->StartMission(TEXT("M02")));
+	TestTrue(TEXT("Cleanup slot"), Fresh->DeleteCampaignSlot(SlotName, 0));
 	return true;
 }
 

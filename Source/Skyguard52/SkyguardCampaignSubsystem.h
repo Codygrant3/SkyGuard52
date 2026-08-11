@@ -6,6 +6,7 @@
 #include "SkyguardMissionTypes.h"
 #include "SkyguardCampaignSubsystem.generated.h"
 
+class ASkyguardGunner;
 class USkyguardCampaignDefinition;
 class USkyguardCampaignSaveGame;
 class USkyguardMissionDefinition;
@@ -50,6 +51,31 @@ public:
 		FSkyguardMissionResult& InOutResult,
 		const FString& SlotName = TEXT("Skyguard52Campaign"),
 		int32 UserIndex = 0);
+
+	/**
+	 * Ends the active mission as a failure. Builds FailureDebrief presentation,
+	 * clears the active mission, and does not persist progression unlocks.
+	 * Combat fields on InOutResult should already be filled by the caller
+	 * (see FillResultCombatStats).
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Campaign|Sortie")
+	bool FailActiveMission(
+		FSkyguardMissionResult& InOutResult,
+		const FString& SlotName = TEXT("Skyguard52Campaign"),
+		int32 UserIndex = 0);
+
+	/** Copies gunner sortie combat counters and elapsed mission time into Result. */
+	UFUNCTION(BlueprintCallable, Category = "Campaign|Sortie",
+		meta = (WorldContext = "WorldContextObject"))
+	void FillResultCombatStats(
+		FSkyguardMissionResult& InOutResult,
+		const ASkyguardGunner* Gunner,
+		const UObject* WorldContextObject) const;
+
+	UFUNCTION(BlueprintPure, Category = "Campaign|Sortie",
+		meta = (WorldContext = "WorldContextObject"))
+	float GetActiveMissionElapsedSeconds(
+		const UObject* WorldContextObject) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Campaign|Sortie")
 	bool RetrySaveLastDebrief(
@@ -150,4 +176,13 @@ private:
 		const USkyguardMissionDefinition& CompletedMission,
 		const FSkyguardMissionResult& Result,
 		const FSkyguardMissionSaveRecord* PreviousRecord);
+
+	void BuildFailureDebrief(
+		const USkyguardMissionDefinition& FailedMission,
+		const FSkyguardMissionResult& Result);
+
+	void ClearActiveMissionRuntime();
+
+	/** World time seconds when StartMission last succeeded; < 0 when inactive. */
+	float MissionStartWorldTimeSeconds = -1.f;
 };

@@ -2,9 +2,12 @@
 
 #include "SkyguardCampaignDefinition.h"
 #include "SkyguardCampaignSaveGame.h"
+#include "SkyguardGunner.h"
 #include "SkyguardMissionDefinition.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRouteRuntime.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "Misc/Paths.h"
 
@@ -21,9 +24,7 @@ bool USkyguardCampaignSubsystem::ConfigureCampaign(USkyguardCampaignDefinition* 
 		LastDebrief = FSkyguardMissionDebrief();
 	}
 	Campaign = InCampaign;
-	ActiveMission = nullptr;
-	ObjectiveRuntime = nullptr;
-	RouteRuntime = nullptr;
+	ClearActiveMissionRuntime();
 	return true;
 }
 
@@ -74,6 +75,14 @@ bool USkyguardCampaignSubsystem::StartMission(const FName MissionId)
 	ObjectiveRuntime = NewObjectiveRuntime;
 	RouteRuntime = NewRouteRuntime;
 	LastDebrief = FSkyguardMissionDebrief();
+	MissionStartWorldTimeSeconds = -1.f;
+	if (const UGameInstance* GameInstance = GetGameInstance())
+	{
+		if (const UWorld* World = GameInstance->GetWorld())
+		{
+			MissionStartWorldTimeSeconds = World->GetTimeSeconds();
+		}
+	}
 	return true;
 }
 
@@ -199,10 +208,56 @@ bool USkyguardCampaignSubsystem::CompleteActiveMission(
 		*CompletedMission,
 		InOutResult,
 		PreviousRecord.IsSet() ? &PreviousRecord.GetValue() : nullptr);
+	ClearActiveMissionRuntime();
+	return true;
+}
+
+void USkyguardCampaignSubsystem::ClearActiveMissionRuntime()
+{
 	ActiveMission = nullptr;
 	ObjectiveRuntime = nullptr;
 	RouteRuntime = nullptr;
-	return true;
+	MissionStartWorldTimeSeconds = -1.f;
+}
+
+float USkyguardCampaignSubsystem::GetActiveMissionElapsedSeconds(
+	const UObject* WorldContextObject) const
+{
+	if (MissionStartWorldTimeSeconds < 0.f)
+	{
+		return 0.f;
+	}
+	const UWorld* World = WorldContextObject
+		? WorldContextObject->GetWorld()
+		: nullptr;
+	if (!World && GetGameInstance())
+	{
+		World = GetGameInstance()->GetWorld();
+	}
+	if (!World)
+	{
+		return 0.f;
+	}
+	return FMath::Max(0.f, World->GetTimeSeconds() - MissionStartWorldTimeSeconds);
+}
+
+void USkyguardCampaignSubsystem::FillResultCombatStats(
+	FSkyguardMissionResult& InOutResult,
+	const ASkyguardGunner* Gunner,
+	const UObject* WorldContextObject) const
+{
+	if (Gunner)
+	{
+		Gunner->FillSortieCombatStats(InOutResult);
+	}
+	else
+	{
+		InOutResult.ShotsFired = 0;
+		InOutResult.Hits = 0;
+		InOutResult.AircraftDamageFraction = 0.f;
+	}
+	InOutResult.CompletionTimeSeconds =
+		GetActiveMissionElapsedSeconds(WorldContextObject);
 }
 
 void USkyguardCampaignSubsystem::BuildSuccessDebrief(
@@ -248,6 +303,22 @@ void USkyguardCampaignSubsystem::BuildSuccessDebrief(
 	}
 }
 
+void USkyguardCampaignSubsystem::BuildFailureDebrief(
+	const USkyguardMissionDefinition& FailedMission,
+	const FSkyguardMissionResult& Result)
+{
+	LastDebrief = FSkyguardMissionDebrief();
+	LastDebrief.State = ESkyguardMissionDebriefState::Ready;
+	LastDebrief.Result = Result;
+	LastDebrief.MissionDisplayName = FailedMission.DisplayName;
+	LastDebrief.Narrative = FailedMission.Presentation.FailureDebrief;
+	LastDebrief.bNewBestScore = false;
+	LastDebrief.bNewBestMedal = false;
+	LastDebrief.bProgressSaved = false;
+	LastDebrief.bNextMissionUnlocked = false;
+	LastDebrief.bCampaignComplete = false;
+}
+
 bool USkyguardCampaignSubsystem::FinalizeActiveMission(
 	FSkyguardMissionResult& InOutResult,
 	const FString& SlotName,
@@ -260,6 +331,35 @@ bool USkyguardCampaignSubsystem::FinalizeActiveMission(
 	LastDebrief.SaveSlotName = SlotName;
 	LastDebrief.bProgressSaved =
 		SaveCampaignToSlot(SlotName, UserIndex);
+	return true;
+}
+
+bool USkyguardCampaignSubsystem::FailActiveMission(
+	FSkyguardMissionResult& InOutResult,
+	const FString& SlotName,
+	const int32 UserIndex)
+{
+	if (!ActiveMission)
+	{
+		return false;
+	}
+
+	USkyguardMissionDefinition* FailedMission = ActiveMission;
+	InOutResult.MissionId = FailedMission->MissionId;
+	InOutResult.bMissionSucceeded = false;
+	InOutResult.FinalScore = 0;
+	InOutResult.MedalTier = 0;
+	if (ObjectiveRuntime)
+	{
+		InOutResult.CompletedObjectiveIds =
+			ObjectiveRuntime->GetCompletedObjectiveIds();
+	}
+
+	BuildFailureDebrief(*FailedMission, InOutResult);
+	ClearActiveMissionRuntime();
+	LastDebrief.SaveSlotName = SlotName;
+	LastDebrief.bProgressSaved = false;
+	(void)UserIndex;
 	return true;
 }
 
@@ -332,14 +432,23 @@ bool USkyguardCampaignSubsystem::ApplySaveGame(
 	const USkyguardCampaignSaveGame* SaveGame)
 {
 	if (!Campaign || !SaveGame ||
-		SaveGame->SaveVersion != USkyguardCampaignSaveGame::CurrentSaveVersion ||
 		SaveGame->CampaignId != Campaign->CampaignId)
 	{
 		return false;
 	}
 
+	// Migrate on a working copy so older slots load without mutating the caller's
+	// object, and so exact-match CurrentSaveVersion is no longer required up front.
+	USkyguardCampaignSaveGame* MigratedSave =
+		DuplicateObject(SaveGame, GetTransientPackage());
+	if (!MigratedSave ||
+		!USkyguardCampaignSaveGame::MigrateCampaignSave(*MigratedSave))
+	{
+		return false;
+	}
+
 	MissionRecords.Reset();
-	for (const TPair<FName, FSkyguardMissionSaveRecord>& Pair : SaveGame->MissionRecords)
+	for (const TPair<FName, FSkyguardMissionSaveRecord>& Pair : MigratedSave->MissionRecords)
 	{
 		if (Campaign->FindMission(Pair.Key))
 		{
@@ -359,9 +468,7 @@ bool USkyguardCampaignSubsystem::ApplySaveGame(
 			MissionRecords.Add(Pair.Key, Sanitized);
 		}
 	}
-	ActiveMission = nullptr;
-	ObjectiveRuntime = nullptr;
-	RouteRuntime = nullptr;
+	ClearActiveMissionRuntime();
 	LastDebrief = FSkyguardMissionDebrief();
 	return true;
 }

@@ -108,8 +108,11 @@ void USkyguardSortiePresentationComponent::RefreshDebrief()
 	}
 	if (Debrief.State == ESkyguardMissionDebriefState::Ready)
 	{
+		// Failed sorties intentionally skip progression save; only treat
+		// missing persistence as SaveFailure after a successful mission.
+		const bool bExpectProgressSave = Debrief.Result.bMissionSucceeded;
 		SetPresentationState(
-			Debrief.bProgressSaved
+			!bExpectProgressSave || Debrief.bProgressSaved
 				? ESkyguardSortiePresentationState::DebriefReady
 				: ESkyguardSortiePresentationState::SaveFailure);
 		return;

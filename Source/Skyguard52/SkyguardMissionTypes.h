@@ -221,6 +221,7 @@ struct FSkyguardMissionPresentation
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MultiLine = "true"))
 	FText SuccessDebrief;
 
+	/** Used by USkyguardCampaignSubsystem::FailActiveMission for LastDebrief.Narrative. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MultiLine = "true"))
 	FText FailureDebrief;
 
