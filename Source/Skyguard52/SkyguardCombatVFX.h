@@ -6,10 +6,13 @@
 class UWorld;
 class UStaticMesh;
 class UMaterialInterface;
+class USkyguardCombatVFXPoolSubsystem;
 
 /**
  * Lightweight runtime combat VFX that does not depend on empty Niagara shells.
- * Spawns short-lived scaled meshes with emissive materials for muzzle, trails, explosions.
+ * Public calls retain their original behavior while a fixed, world-lifetime
+ * component pool supplies the transitional mesh effects without combat-path
+ * package loads or actor spawning.
  */
 UCLASS()
 class SKYGUARD52_API USkyguardCombatVFX : public UObject
@@ -25,10 +28,7 @@ public:
 	static void SpawnTracer(UWorld* World, const FVector& Start, const FVector& End);
 
 private:
-	static UStaticMesh* SphereMesh();
-	static UStaticMesh* ConeMesh();
-	static UStaticMesh* CylinderMesh();
-	static UMaterialInterface* LoadMat(const TCHAR* Path);
+	static USkyguardCombatVFXPoolSubsystem* Pool(UWorld* World);
 	static void SpawnBurst(UWorld* World, const FVector& Loc, int32 Count, float Radius, float ScaleMin, float ScaleMax, UMaterialInterface* Mat, float Life, const FVector& Bias = FVector::ZeroVector);
 	static void SpawnOne(UWorld* World, UStaticMesh* Mesh, const FVector& Loc, const FVector& Scale, const FRotator& Rot, UMaterialInterface* Mat, float Life);
 };
