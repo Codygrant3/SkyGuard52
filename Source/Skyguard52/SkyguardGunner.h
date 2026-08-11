@@ -8,6 +8,7 @@ class USpringArmComponent;
 class UStaticMeshComponent;
 class UInputComponent;
 class USceneComponent;
+class USkyguardGameUserSettings;
 
 UCLASS()
 class SKYGUARD52_API ASkyguardGunner : public ACharacter
@@ -21,6 +22,17 @@ public:
 	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void PawnClientRestart() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	/** Applied look sensitivity after mapping from GameUserSettings. */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Settings")
+	float GetAppliedLookSensitivity() const { return AppliedLookSensitivity; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Settings")
+	float GetAppliedCameraShakeScale() const { return AppliedCameraShakeScale; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Settings")
+	bool IsVerticalLookInverted() const { return bInvertVerticalLookApplied; }
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard")
@@ -142,4 +154,15 @@ protected:
 	bool bIglaLockPreviouslyAcquired = false;
 	bool bAimInputRecorded = false;
 	void ApplyLocalPlayerControlState();
+	void ApplyUserSettings(const USkyguardGameUserSettings& Settings);
+	void HandleUserSettingsApplied(const USkyguardGameUserSettings& Settings);
+	void BindUserSettings();
+	void UnbindUserSettings();
+
+	/** Maps GameUserSettings mouse sensitivity (default 0.07) onto gunner look scale (baseline 1.1). */
+	static constexpr float SettingsSensitivityToLookScale = 1.1f / 0.07f;
+	float AppliedLookSensitivity = 1.1f;
+	float AppliedCameraShakeScale = 1.f;
+	bool bInvertVerticalLookApplied = false;
+	bool bUserSettingsBound = false;
 };

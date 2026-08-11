@@ -89,6 +89,13 @@ bool USkyguardCampaignSubsystem::FailObjective(const FName ObjectiveId)
 	return ObjectiveRuntime && ObjectiveRuntime->FailObjective(ObjectiveId);
 }
 
+bool USkyguardCampaignSubsystem::CompleteSurviveObjectiveIfIntact(
+	const FName ObjectiveId)
+{
+	return ObjectiveRuntime &&
+		ObjectiveRuntime->CompleteSurviveObjectiveIfIntact(ObjectiveId);
+}
+
 int32 USkyguardCampaignSubsystem::CalculateMissionScore(
 	const USkyguardMissionDefinition& Mission,
 	const FSkyguardMissionResult& Result)
@@ -109,6 +116,13 @@ int32 USkyguardCampaignSubsystem::CalculateMissionScore(
 		RewardedObjectives.Add(ObjectiveId);
 		if (const FSkyguardObjectiveDefinition* Objective = Mission.FindObjective(ObjectiveId))
 		{
+			// Protect/Survive are fail-only contracts: intact completion is required
+			// for mission success but does not grant active-play score rewards.
+			if (Objective->Type == ESkyguardMissionObjectiveType::ProtectAsset ||
+				Objective->Type == ESkyguardMissionObjectiveType::Survive)
+			{
+				continue;
+			}
 			Score += Objective->ScoreReward;
 		}
 	}

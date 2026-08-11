@@ -20,6 +20,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Mission|Objectives")
 	bool FailObjective(FName ObjectiveId);
 
+	/**
+	 * Fail-only survive/protect contract: mark complete only if still Active
+	 * (never failed). Does not invent player "progress" events.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Mission|Objectives")
+	bool CompleteSurviveObjectiveIfIntact(FName ObjectiveId);
+
 	UFUNCTION(BlueprintPure, Category = "Mission|Objectives")
 	bool AreRequiredObjectivesComplete() const;
 

@@ -3,6 +3,15 @@
 #include "GameFramework/Actor.h"
 #include "SkyguardDrone.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
+	FSkyguardDroneCityImpactSignature,
+	ASkyguardDrone*,
+	Drone);
+
+DECLARE_MULTICAST_DELEGATE_OneParam(
+	FSkyguardDroneCityImpactNative,
+	ASkyguardDrone*);
+
 UCLASS()
 class SKYGUARD52_API ASkyguardDrone : public AActor
 {
@@ -18,6 +27,23 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	bool IsHeavyTarget() const { return bHeavy; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	bool HasReachedCity() const { return bReachedCity; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	bool IsDestroyed() const { return bDead; }
+
+	/** Apply heavy/light variant after spawn (safe before or after BeginPlay). */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void ConfigureVariant(bool bInHeavy);
+
+	/** Per-actor protect-fail signal when this drone impacts the city. */
+	UPROPERTY(BlueprintAssignable, Category="Skyguard")
+	FSkyguardDroneCityImpactSignature OnCityImpacted;
+
+	/** Native fan-out for mission directors without per-actor binds. */
+	static FSkyguardDroneCityImpactNative OnAnyCityImpacted;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> Body;
@@ -45,7 +71,10 @@ public:
 
 protected:
 	bool bDead = false;
+	bool bReachedCity = false;
 	float Spin = 0.f;
 	void Die(const FVector& HitDir);
+	void ImpactCity(const FVector& ImpactDirection);
 	void SpawnDebris(const FVector& HitDir);
+	void ApplyVariantVisualsAndHealth();
 };

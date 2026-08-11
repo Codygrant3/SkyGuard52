@@ -395,11 +395,19 @@ void ASkyguardMission10IntegrationDirector::SynchronizeRuntimeState()
 	{
 		USkyguardObjectiveRuntime* Objectives = GetObjectiveRuntime();
 		if (Objectives &&
-			Objectives->GetProgress(TEXT("ClearEvacuationLanes")).State ==
-				ESkyguardMissionObjectiveState::Active)
-		{
-			NotifyObjectiveProgress(TEXT("ClearEvacuationLanes"), 1);
-		}
+                Objectives->GetProgress(TEXT("ClearEvacuationLanes")).State ==
+                ESkyguardMissionObjectiveState::Active)
+        {
+                if (CampaignRuntime &&
+                        CampaignRuntime->GetActiveMission() == ResolvedMission)
+                {
+                        CampaignRuntime->CompleteSurviveObjectiveIfIntact(TEXT("ClearEvacuationLanes"));
+                }
+                else
+                {
+                        Objectives->CompleteSurviveObjectiveIfIntact(TEXT("ClearEvacuationLanes"));
+                }
+        }
 		CompleteMissionIfReady();
 	}
 	UpdateReadiness();
@@ -584,11 +592,19 @@ void ASkyguardMission10IntegrationDirector::CompleteMissionIfReady()
 	static const FName ProtectObjective(TEXT("ProtectEvacuationHub"));
 	USkyguardObjectiveRuntime* Objectives = GetObjectiveRuntime();
 	if (Objectives &&
-		Objectives->GetProgress(ProtectObjective).State ==
-			ESkyguardMissionObjectiveState::Active)
-	{
-		NotifyObjectiveProgress(ProtectObjective, 1);
-	}
+                Objectives->GetProgress(ProtectObjective).State ==
+                ESkyguardMissionObjectiveState::Active)
+        {
+                if (CampaignRuntime &&
+                        CampaignRuntime->GetActiveMission() == ResolvedMission)
+                {
+                        CampaignRuntime->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
+                else
+                {
+                        Objectives->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
+        }
 	Objectives = GetObjectiveRuntime();
 	if (!Objectives || Objectives->HasTerminalFailure() ||
 		!Objectives->AreRequiredObjectivesComplete())

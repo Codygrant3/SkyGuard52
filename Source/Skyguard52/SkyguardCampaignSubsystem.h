@@ -34,6 +34,9 @@ public:
 	bool FailObjective(FName ObjectiveId);
 
 	UFUNCTION(BlueprintCallable, Category = "Campaign")
+	bool CompleteSurviveObjectiveIfIntact(FName ObjectiveId);
+
+	UFUNCTION(BlueprintCallable, Category = "Campaign")
 	bool CompleteActiveMission(FSkyguardMissionResult& InOutResult);
 
 	/**

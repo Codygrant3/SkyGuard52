@@ -1,5 +1,7 @@
 #pragma once
 
+class ASkyguardDrone;
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
@@ -81,6 +83,7 @@ public:
 	ASkyguardMission01IntegrationDirector();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission01|Integration")
 	bool InitializePlayableMission();
@@ -99,6 +102,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission01|Integration")
 	bool NotifyProtectedAssetFailed();
+
+	void HandleDroneCityImpact(ASkyguardDrone* Drone);
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission01|Integration")
 	void SynchronizeRuntimeState();

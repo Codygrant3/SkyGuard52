@@ -357,11 +357,19 @@ void ASkyguardMission09IntegrationDirector::CompleteMissionIfReady()
 	}
 	USkyguardObjectiveRuntime* Objectives = GetObjectiveRuntime();
 	if (Objectives &&
-		Objectives->GetProgress(TEXT("ProtectCityInfrastructure")).State ==
-		ESkyguardMissionObjectiveState::Active)
-	{
-		NotifyObjectiveProgress(TEXT("ProtectCityInfrastructure"), 1);
-	}
+                Objectives->GetProgress(TEXT("ProtectCityInfrastructure")).State ==
+                ESkyguardMissionObjectiveState::Active)
+        {
+                if (CampaignRuntime &&
+                        CampaignRuntime->GetActiveMission() == ResolvedMission)
+                {
+                        CampaignRuntime->CompleteSurviveObjectiveIfIntact(TEXT("ProtectCityInfrastructure"));
+                }
+                else
+                {
+                        Objectives->CompleteSurviveObjectiveIfIntact(TEXT("ProtectCityInfrastructure"));
+                }
+        }
 	Objectives = GetObjectiveRuntime();
 	if (!Objectives || Objectives->HasTerminalFailure() ||
 		!Objectives->AreRequiredObjectivesComplete())

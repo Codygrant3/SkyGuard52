@@ -524,7 +524,15 @@ void ASkyguardMission02IntegrationDirector::CompleteMissionIfReady()
 		if (ProtectProgress.State ==
 			ESkyguardMissionObjectiveState::Active)
 		{
-			NotifyObjectiveProgress(ProtectObjective, 1);
+			if (CampaignRuntime &&
+                                CampaignRuntime->GetActiveMission() == ResolvedMission)
+                        {
+                                CampaignRuntime->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                        }
+                        else if (Objectives)
+                        {
+                                Objectives->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                        }
 		}
 	}
 

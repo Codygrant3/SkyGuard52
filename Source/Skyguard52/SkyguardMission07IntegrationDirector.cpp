@@ -599,11 +599,19 @@ void ASkyguardMission07IntegrationDirector::CompleteMissionIfReady()
 	static const FName ProtectObjective(TEXT("ProtectRadarChain"));
 	USkyguardObjectiveRuntime* Objectives = GetObjectiveRuntime();
 	if (Objectives &&
-		Objectives->GetProgress(ProtectObjective).State ==
-			ESkyguardMissionObjectiveState::Active)
-	{
-		NotifyObjectiveProgress(ProtectObjective, 1);
-	}
+                Objectives->GetProgress(ProtectObjective).State ==
+                ESkyguardMissionObjectiveState::Active)
+        {
+                if (CampaignRuntime &&
+                        CampaignRuntime->GetActiveMission() == ResolvedMission)
+                {
+                        CampaignRuntime->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
+                else
+                {
+                        Objectives->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
+        }
 	Objectives = GetObjectiveRuntime();
 	if (!Objectives || Objectives->HasTerminalFailure() ||
 		!Objectives->AreRequiredObjectivesComplete())

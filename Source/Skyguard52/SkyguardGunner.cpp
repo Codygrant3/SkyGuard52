@@ -1,4 +1,5 @@
 #include "SkyguardGunner.h"
+#include "SkyguardGameUserSettings.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -200,6 +201,7 @@ ASkyguardGunner::ASkyguardGunner()
 void ASkyguardGunner::BeginPlay()
 {
 	Super::BeginPlay();
+	BindUserSettings();
 	for (TActorIterator<ASkyguardYak52Aircraft> It(GetWorld()); It; ++It)
 	{
 		ASkyguardYak52Aircraft* Aircraft = *It;
@@ -241,6 +243,55 @@ void ASkyguardGunner::ApplyLocalPlayerControlState()
 	}
 }
 
+void ASkyguardGunner::BindUserSettings()
+{
+	if (bUserSettingsBound)
+	{
+		return;
+	}
+	USkyguardGameUserSettings::OnSettingsApplied.AddUObject(
+		this, &ASkyguardGunner::HandleUserSettingsApplied);
+	bUserSettingsBound = true;
+	if (const USkyguardGameUserSettings* Settings =
+		USkyguardGameUserSettings::GetSkyguardGameUserSettings())
+	{
+		ApplyUserSettings(*Settings);
+	}
+}
+
+void ASkyguardGunner::UnbindUserSettings()
+{
+	if (!bUserSettingsBound)
+	{
+		return;
+	}
+	USkyguardGameUserSettings::OnSettingsApplied.RemoveAll(this);
+	bUserSettingsBound = false;
+}
+
+void ASkyguardGunner::HandleUserSettingsApplied(
+	const USkyguardGameUserSettings& Settings)
+{
+	ApplyUserSettings(Settings);
+}
+
+void ASkyguardGunner::ApplyUserSettings(const USkyguardGameUserSettings& Settings)
+{
+	AppliedLookSensitivity = FMath::Clamp(
+		Settings.GetMouseSensitivity() * SettingsSensitivityToLookScale,
+		0.05f,
+		8.f);
+	bInvertVerticalLookApplied = Settings.GetInvertVerticalLook();
+	AppliedCameraShakeScale = Settings.GetCameraShakeScale();
+}
+
+void ASkyguardGunner::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	UnbindUserSettings();
+	Super::EndPlay(EndPlayReason);
+}
+
+
 void ASkyguardGunner::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -252,8 +303,8 @@ void ASkyguardGunner::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &ASkyguardGunner::InputFireReleased);
 	PlayerInputComponent->BindAction(TEXT("SwitchWeapon"), IE_Pressed, this, &ASkyguardGunner::InputSwitchWeaponPressed);
 	PlayerInputComponent->BindAction(TEXT("LaunchIgla"), IE_Pressed, this, &ASkyguardGunner::InputLaunchIglaPressed);
-	PlayerInputComponent->BindAxis(TEXT("MouseX"), this, &ASkyguardGunner::InputLookX);
-	PlayerInputComponent->BindAxis(TEXT("MouseY"), this, &ASkyguardGunner::InputLookY);
+	// Look is bound only through Turn/LookUp. DefaultInput maps MouseX/MouseY into
+	// those axes; binding MouseX/MouseY again double-applies look.
 }
 
 void ASkyguardGunner::InputLookX(const float V)
@@ -326,15 +377,16 @@ void ASkyguardGunner::InputLaunchIglaPressed()
 void ASkyguardGunner::LookX(float V)
 {
 	if (FMath::IsNearlyZero(V)) return;
-	const float Sens = bADS ? MouseSensitivity * 0.55f : MouseSensitivity;
+	const float Sens = bADS ? AppliedLookSensitivity * 0.55f : AppliedLookSensitivity;
 	Yaw = FMath::Clamp(Yaw + V * Sens * 1.8f, -LookYawLimit, LookYawLimit);
 }
 
 void ASkyguardGunner::LookY(float V)
 {
 	if (FMath::IsNearlyZero(V)) return;
-	const float Sens = bADS ? MouseSensitivity * 0.55f : MouseSensitivity;
-	Pitch = FMath::Clamp(Pitch + V * Sens * 1.5f, LookPitchMin, LookPitchMax);
+	const float Axis = bInvertVerticalLookApplied ? -V : V;
+	const float Sens = bADS ? AppliedLookSensitivity * 0.55f : AppliedLookSensitivity;
+	Pitch = FMath::Clamp(Pitch + Axis * Sens * 1.5f, LookPitchMin, LookPitchMax);
 }
 
 void ASkyguardGunner::ADSPressed() { bADS = true; }

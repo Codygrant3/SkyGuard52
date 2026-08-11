@@ -9,6 +9,7 @@
 #include "SkyguardMissionDefinition.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardPathfinderBoss.h"
+#include "SkyguardDrone.h"
 #include "SkyguardRadioChatterComponent.h"
 #include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardYak52Aircraft.h"
@@ -82,10 +83,30 @@ ASkyguardMission01IntegrationDirector::ASkyguardMission01IntegrationDirector()
 void ASkyguardMission01IntegrationDirector::BeginPlay()
 {
 	Super::BeginPlay();
+	ASkyguardDrone::OnAnyCityImpacted.AddUObject(
+		this,
+		&ASkyguardMission01IntegrationDirector::HandleDroneCityImpact);
 	if (bAutoInitialize)
 	{
 		InitializePlayableMission();
 	}
+}
+
+void ASkyguardMission01IntegrationDirector::EndPlay(
+	const EEndPlayReason::Type EndPlayReason)
+{
+	ASkyguardDrone::OnAnyCityImpacted.RemoveAll(this);
+	Super::EndPlay(EndPlayReason);
+}
+
+void ASkyguardMission01IntegrationDirector::HandleDroneCityImpact(
+	ASkyguardDrone* Drone)
+{
+	if (!Drone || !bInitialized || bMissionCompleted)
+	{
+		return;
+	}
+	NotifyProtectedAssetFailed();
 }
 
 void ASkyguardMission01IntegrationDirector::Tick(const float DeltaSeconds)
@@ -391,12 +412,15 @@ void ASkyguardMission01IntegrationDirector::CompleteMissionIfReady()
 	USkyguardObjectiveRuntime* Objectives = GetObjectiveRuntime();
 	if (Objectives)
 	{
-		const FSkyguardObjectiveProgress ProtectProgress =
-			Objectives->GetProgress(ProtectObjective);
-		if (ProtectProgress.State != ESkyguardMissionObjectiveState::Completed)
-		{
-			NotifyObjectiveProgress(ProtectObjective, 1);
-		}
+		if (CampaignRuntime &&
+                        CampaignRuntime->GetActiveMission() == ResolvedMission)
+                {
+                        CampaignRuntime->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
+                else
+                {
+                        Objectives->CompleteSurviveObjectiveIfIntact(ProtectObjective);
+                }
 	}
 
 	Objectives = GetObjectiveRuntime();

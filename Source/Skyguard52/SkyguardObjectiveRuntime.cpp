@@ -101,3 +101,26 @@ TArray<FName> USkyguardObjectiveRuntime::GetCompletedObjectiveIds() const
 	Completed.Sort(FNameLexicalLess());
 	return Completed;
 }
+
+bool USkyguardObjectiveRuntime::CompleteSurviveObjectiveIfIntact(const FName ObjectiveId)
+{
+	FSkyguardObjectiveProgress* Progress = RuntimeProgress.Find(ObjectiveId);
+	const FSkyguardObjectiveDefinition* Definition = AuthoredDefinitions.FindByPredicate(
+		[ObjectiveId](const FSkyguardObjectiveDefinition& Candidate)
+		{
+			return Candidate.ObjectiveId == ObjectiveId;
+		});
+	if (!Progress || !Definition ||
+		Progress->State != ESkyguardMissionObjectiveState::Active)
+	{
+		return false;
+	}
+
+	// Callers (mission directors) use this only for fail-only protect/survive
+	// objectives at mission end. Type is not gated here so a mis-authored
+	// DataAsset Type cannot wedge AreRequiredObjectivesComplete; scoring still
+	// skips ProtectAsset/Survive rewards separately.
+	Progress->CurrentProgress = Definition->RequiredProgress;
+	Progress->State = ESkyguardMissionObjectiveState::Completed;
+	return true;
+}

@@ -1,4 +1,6 @@
 #include "SkyguardDrone.h"
+
+FSkyguardDroneCityImpactNative ASkyguardDrone::OnAnyCityImpacted;
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardCombatVFX.h"
 #include "SkyguardInputCombatPerformanceCapture.h"
@@ -92,10 +94,27 @@ ASkyguardDrone::ASkyguardDrone()
 void ASkyguardDrone::BeginPlay()
 {
 	Super::BeginPlay();
+	ApplyVariantVisualsAndHealth();
+}
+
+void ASkyguardDrone::ConfigureVariant(const bool bInHeavy)
+{
+	bHeavy = bInHeavy;
+	ApplyVariantVisualsAndHealth();
+}
+
+void ASkyguardDrone::ApplyVariantVisualsAndHealth()
+{
 	Health = MaxHealth = bHeavy ? 100.f : 34.f;
+	if (!Body)
+	{
+		return;
+	}
 	if (bHeavy)
 	{
-		if (UStaticMesh* Heavy = LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Skyguard/Meshes/Hero/shahed_heavy_proxy.shahed_heavy_proxy")))
+		if (UStaticMesh* Heavy = LoadObject<UStaticMesh>(
+			nullptr,
+			TEXT("/Game/Skyguard/Meshes/Hero/shahed_heavy_proxy.shahed_heavy_proxy")))
 		{
 			Body->SetStaticMesh(Heavy);
 			Body->SetRelativeScale3D(FVector(20.f, 20.f, 20.f));
@@ -105,7 +124,7 @@ void ASkyguardDrone::BeginPlay()
 
 void ASkyguardDrone::LifeSpanExpired()
 {
-	if (bDead)
+	if (bDead && !bReachedCity)
 	{
 		USkyguardInputCombatPerformanceCapture::RecordGameplayEvent(
 			this, TEXT("drone_breakup_cleanup"));
@@ -127,7 +146,7 @@ void ASkyguardDrone::Tick(float DeltaSeconds)
 	if (Wing) Wing->SetRelativeRotation(FRotator(0.f, Spin, 0.f));
 	if (FVector::DistSquared(NewLoc, TargetCityLocation) < FMath::Square(180.f))
 	{
-		Die(ToTarget);
+		ImpactCity(ToTarget);
 	}
 }
 
@@ -161,6 +180,49 @@ void ASkyguardDrone::SpawnDebris(const FVector& HitDir)
 		Exhaust->SetSimulatePhysics(true);
 		Exhaust->SetPhysicsLinearVelocity(HitDir * -400.f + FVector(0,0,200.f));
 	}
+}
+
+
+void ASkyguardDrone::ImpactCity(const FVector& ImpactDirection)
+{
+	if (bDead)
+	{
+		return;
+	}
+	bDead = true;
+	bReachedCity = true;
+
+	// City strike is a protect failure, not a player kill — no breakup debris/telemetry.
+	if (Body)
+	{
+		Body->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Body->SetVisibility(false, true);
+	}
+	if (Wing)
+	{
+		Wing->SetVisibility(false, true);
+	}
+	if (Exhaust)
+	{
+		Exhaust->SetVisibility(false, true);
+	}
+
+	USkyguardCombatVFX::SpawnExplosion(
+		GetWorld(),
+		TargetCityLocation,
+		bHeavy ? 2.0f : 1.35f);
+	USkyguardAudioDirectorComponent::TriggerWorldEvent(
+		this,
+		bHeavy
+			? ESkyguardAudioEvent::ExplosionHeavy
+			: ESkyguardAudioEvent::ExplosionSmall,
+		TargetCityLocation);
+	USkyguardInputCombatPerformanceCapture::RecordGameplayEvent(
+		this, TEXT("drone_city_impact"));
+
+	OnCityImpacted.Broadcast(this);
+	OnAnyCityImpacted.Broadcast(this);
+	SetLifeSpan(0.35f);
 }
 
 void ASkyguardDrone::Die(const FVector& HitDir)
