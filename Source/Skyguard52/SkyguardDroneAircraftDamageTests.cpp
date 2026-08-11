@@ -42,7 +42,7 @@ bool FSkyguardDroneAircraftDamageWiringTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	TestNotNull(TEXT("Yak hull collider exists"), Aircraft->HullCollider);
+	TestNotNull(TEXT("Yak hull collider exists"), Aircraft->HullCollider.Get());
 	if (Aircraft->HullCollider)
 	{
 		TestTrue(
