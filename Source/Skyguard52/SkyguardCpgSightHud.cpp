@@ -175,11 +175,21 @@ int32 USkyguardCpgSightHud::NativePaint(
 		Gunner.IsValid()
 			? Gunner->GetSelectedGunshipWeapon()
 			: ESkyguardGunshipWeapon::Cannon);
+	const FString Station = Cached.StationStatus.IsEmpty()
+		? FString(TEXT("RDY"))
+		: Cached.StationStatus;
 	const FString Range = Cached.RangeMeters < 0.f
 		? FString(TEXT("RNG ----"))
 		: FString::Printf(TEXT("RNG %.0f"), Cached.RangeMeters);
-	Text(FString::Printf(TEXT("%s  RDY"), Weapon), FVector2D(Side + 16.f, Top + 10.f), Green);
+	Text(
+		FString::Printf(TEXT("%s  %s  %s"), Weapon, *Station, *Cached.SightLine),
+		FVector2D(Side + 16.f, Top + 10.f),
+		Green);
 	Text(Range, FVector2D(Size.X - Side - 160.f, Top + 10.f), Green);
+	if (!Cached.LockLine.IsEmpty() && Cached.LockLine != TEXT("----"))
+	{
+		Text(Cached.LockLine, FVector2D(Side + 16.f, Top + 32.f), Green);
+	}
 	Text(HeadingTape, FVector2D(Center.X - 70.f, Top + 8.f), Green);
 
 	if (Cached.ThreatCount > 0)
