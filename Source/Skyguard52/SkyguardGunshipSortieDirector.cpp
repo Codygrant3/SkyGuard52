@@ -127,6 +127,7 @@ void ASkyguardGunshipSortieDirector::Tick(const float DeltaSeconds)
 	Elapsed += DeltaSeconds;
 	AdvanceBeats();
 	TickIncoming(DeltaSeconds);
+	TickShipSystems(DeltaSeconds);
 
 	if (Cargo)
 	{
@@ -564,12 +565,22 @@ void ASkyguardGunshipSortieDirector::TickIncoming(const float DeltaSeconds)
 	{
 		return;
 	}
-	const bool bRadarLive =
-		(Radar && !Radar->IsDestroyed()) ||
-		(PatrolShip && !PatrolShip->IsRadarDead());
+	const bool bShoreAda = Radar && !Radar->IsDestroyed();
+	const bool bShipAda = PatrolShip && PatrolShip->CanCoordinateAda();
+	const bool bClimaxShip =
+		Beat == ESkyguardSortieBeat::Climax ||
+		Beat == ESkyguardSortieBeat::Extraction;
+	const bool bRadarLive = bShoreAda || bShipAda;
+	// Before the ship is in play, inbound keeps the old Approach-gated cadence.
+	// Once the hull is up, the launcher is a real source: kill it (and the
+	// shore net) and the inbound stream dies instead of staying cosmetic.
+	const bool bInboundSource = !bClimaxShip
+		|| bShoreAda
+		|| (PatrolShip && PatrolShip->CanLaunchInbound());
 	IncomingCooldown -= DeltaSeconds;
 	const float Interval = bRadarLive ? 14.f : 28.f;
 	if (IncomingCooldown <= 0.f &&
+		bInboundSource &&
 		Beat != ESkyguardSortieBeat::Approach &&
 		!IsSortieOver())
 	{
@@ -596,6 +607,22 @@ void ASkyguardGunshipSortieDirector::TickIncoming(const float DeltaSeconds)
 			}
 		}
 	}
+}
+
+void ASkyguardGunshipSortieDirector::TickShipSystems(const float DeltaSeconds)
+{
+	if (!PatrolShip ||
+		(Beat != ESkyguardSortieBeat::Climax &&
+			Beat != ESkyguardSortieBeat::Extraction))
+	{
+		return;
+	}
+	if (!PatrolShip->ConsumeDeckLaunch(DeltaSeconds))
+	{
+		return;
+	}
+	const FVector Deck = PatrolShip->GetActorLocation() + FVector(0.f, 0.f, 280.f);
+	SpawnThreat(ESkyguardThreatKind::RotorScout, Deck);
 }
 
 void ASkyguardGunshipSortieDirector::ResolveWin()
@@ -654,12 +681,15 @@ void ASkyguardGunshipSortieDirector::ShowDebrief() const
 		LastMedal == 1 ? TEXT("Bronze") : TEXT("None");
 	const float CargoFrac = Cargo ? Cargo->GetIntegrityFraction() : 0.f;
 	const int32 Systems = PatrolShip ? PatrolShip->GetDestroyedSystemCount() : 0;
+	const FString ShipTape = PatrolShip
+		? PatrolShip->GetHudSystemLine()
+		: FString(TEXT("RADAR GUN LNCH ENG DECK"));
 	GEngine->AddOnScreenDebugMessage(
 		84730,
 		30.f,
 		FColor::White,
 		FString::Printf(
-			TEXT("%s — %s\nScore %d   Medal: %s\nCargo %d%%   Radar %s   Ship systems %d/5\nLoadout: 1 Anti-Armor  2 Rockets  3 Intercept  4 Balanced\n%s   Current: %s"),
+			TEXT("%s — %s\nScore %d   Medal: %s\nCargo %d%%   Radar %s\nShip %d/5  %s\nLoadout: 1 Anti-Armor  2 Rockets  3 Intercept  4 Balanced\n%s   Current: %s"),
 			Spec.Title,
 			Beat == ESkyguardSortieBeat::Succeeded ? Spec.Success : Spec.Failure,
 			LastScore,
@@ -667,6 +697,7 @@ void ASkyguardGunshipSortieDirector::ShowDebrief() const
 			FMath::RoundToInt(CargoFrac * 100.f),
 			(Radar && Radar->IsDestroyed()) ? TEXT("dead") : TEXT("alive"),
 			Systems,
+			*ShipTape,
 			Beat == ESkyguardSortieBeat::Succeeded
 				? TEXT("N / Enter  next sortie")
 				: TEXT("N / Enter  retry"),

@@ -27,3 +27,4 @@ struct FSkyguardCpgContactMark
 
 const TCHAR* SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon Weapon);
 const TCHAR* SkyguardCpgThreatLabel(ESkyguardThreatKind Kind);
+const TCHAR* SkyguardCpgShipSystemLabel(ESkyguardPatrolShipSystem System);

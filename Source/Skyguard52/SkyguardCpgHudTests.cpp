@@ -53,6 +53,14 @@ bool FSkyguardCpgHudTapesWeaponRangeThreatTest::RunTest(const FString& Parameter
 		TEXT("threat label helper"),
 		FString(SkyguardCpgThreatLabel(ESkyguardThreatKind::GroundArmor)),
 		FString(TEXT("ARM")));
+	TestEqual(
+		TEXT("ship radar label"),
+		FString(SkyguardCpgShipSystemLabel(ESkyguardPatrolShipSystem::Radar)),
+		FString(TEXT("RADAR")));
+	TestEqual(
+		TEXT("ship launcher label"),
+		FString(SkyguardCpgShipSystemLabel(ESkyguardPatrolShipSystem::Launcher)),
+		FString(TEXT("LNCH")));
 	return true;
 }
 
