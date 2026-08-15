@@ -48,7 +48,7 @@ void ASkyguardGunshipSortieDirector::StartMissionIndex(const int32 Index)
 	MissionIndex = FMath::Clamp(
 		Index, 0, SkyguardCampaignRoster::NumMissions() - 1);
 	Elapsed = 0.f;
-	IncomingCooldown = 12.f;
+	IncomingCooldown = IncomingFirstDelaySeconds;
 	IncomingWindow = 0.f;
 	bInbound = false;
 	PostSortieSeconds = 0.f;
@@ -114,6 +114,106 @@ FName ASkyguardGunshipSortieDirector::GetMissionId() const
 FString ASkyguardGunshipSortieDirector::GetMissionTitle() const
 {
 	return SkyguardCampaignRoster::Get(MissionIndex).Title;
+}
+
+int32 ASkyguardGunshipSortieDirector::BeatWaveCount(const ESkyguardSortieBeat InBeat)
+{
+	switch (InBeat)
+	{
+	case ESkyguardSortieBeat::InitialContact:
+		return ContactWaveCount;
+	case ESkyguardSortieBeat::ShoreAssault:
+		return ShoreWaveCount;
+	case ESkyguardSortieBeat::RadarNet:
+		return RadarNetWaveCount;
+	case ESkyguardSortieBeat::Choice:
+		return ChoiceWaveCount;
+	case ESkyguardSortieBeat::Extraction:
+		return ExtractWaveCount;
+	case ESkyguardSortieBeat::Approach:
+	case ESkyguardSortieBeat::Climax:
+	case ESkyguardSortieBeat::Succeeded:
+	case ESkyguardSortieBeat::Failed:
+		return 0;
+	default:
+		return 0;
+	}
+}
+
+ESkyguardThreatKind ASkyguardGunshipSortieDirector::BeatWaveKind(
+	const int32 InMissionIndex,
+	const ESkyguardSortieBeat InBeat)
+{
+	const FSkyguardCampaignMissionSpec& Spec =
+		SkyguardCampaignRoster::Get(InMissionIndex);
+	switch (InBeat)
+	{
+	case ESkyguardSortieBeat::InitialContact:
+		return Spec.ContactKind;
+	case ESkyguardSortieBeat::ShoreAssault:
+		return Spec.ShoreKind;
+	case ESkyguardSortieBeat::RadarNet:
+		return Spec.SupportKind;
+	case ESkyguardSortieBeat::Choice:
+		return Spec.ContactKind;
+	case ESkyguardSortieBeat::Extraction:
+		return Spec.ExtractKind;
+	case ESkyguardSortieBeat::Approach:
+	case ESkyguardSortieBeat::Climax:
+	case ESkyguardSortieBeat::Succeeded:
+	case ESkyguardSortieBeat::Failed:
+		return Spec.ContactKind;
+	default:
+		return Spec.ContactKind;
+	}
+}
+
+float ASkyguardGunshipSortieDirector::IncomingIntervalSeconds(const bool bRadarLive)
+{
+	return bRadarLive
+		? IncomingRadarLiveIntervalSeconds
+		: IncomingRadarDownIntervalSeconds;
+}
+
+bool ASkyguardGunshipSortieDirector::BeatAllowsInbound(const ESkyguardSortieBeat InBeat)
+{
+	switch (InBeat)
+	{
+	case ESkyguardSortieBeat::Approach:
+	case ESkyguardSortieBeat::Succeeded:
+	case ESkyguardSortieBeat::Failed:
+		return false;
+	case ESkyguardSortieBeat::InitialContact:
+	case ESkyguardSortieBeat::ShoreAssault:
+	case ESkyguardSortieBeat::RadarNet:
+	case ESkyguardSortieBeat::Choice:
+	case ESkyguardSortieBeat::Climax:
+	case ESkyguardSortieBeat::Extraction:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool ASkyguardGunshipSortieDirector::UsesRadarLiveInboundCadence(
+	const ESkyguardSortieBeat InBeat)
+{
+	switch (InBeat)
+	{
+	case ESkyguardSortieBeat::RadarNet:
+	case ESkyguardSortieBeat::Choice:
+	case ESkyguardSortieBeat::Climax:
+	case ESkyguardSortieBeat::Extraction:
+		return true;
+	case ESkyguardSortieBeat::Approach:
+	case ESkyguardSortieBeat::InitialContact:
+	case ESkyguardSortieBeat::ShoreAssault:
+	case ESkyguardSortieBeat::Succeeded:
+	case ESkyguardSortieBeat::Failed:
+		return false;
+	default:
+		return false;
+	}
 }
 
 void ASkyguardGunshipSortieDirector::Tick(const float DeltaSeconds)
@@ -203,6 +303,7 @@ void ASkyguardGunshipSortieDirector::EnterBeat(const ESkyguardSortieBeat NewBeat
 	switch (NewBeat)
 	{
 	case ESkyguardSortieBeat::RadarNet:
+		IncomingCooldown = FMath::Min(IncomingCooldown, IncomingRadarLitDelaySeconds);
 		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::RadarLit);
 		break;
 	case ESkyguardSortieBeat::Choice:
@@ -273,33 +374,18 @@ void ASkyguardGunshipSortieDirector::SpawnBeatWave()
 
 	const FSkyguardCampaignMissionSpec& Spec =
 		SkyguardCampaignRoster::Get(MissionIndex);
-	auto KindFor = [&Spec, this]() -> ESkyguardThreatKind
+	int32 Count = BeatWaveCount(Beat);
+	if (Beat == ESkyguardSortieBeat::Extraction && bExtractSpawned)
 	{
-		switch (Beat)
-		{
-		case ESkyguardSortieBeat::InitialContact:
-			return Spec.ContactKind;
-		case ESkyguardSortieBeat::ShoreAssault:
-			return Spec.ShoreKind;
-		case ESkyguardSortieBeat::RadarNet:
-			return Spec.SupportKind;
-		case ESkyguardSortieBeat::Choice:
-			return Spec.ContactKind;
-		case ESkyguardSortieBeat::Extraction:
-			return Spec.ExtractKind;
-		default:
-			return Spec.ContactKind;
-		}
-	};
-
-	const int32 Count = Beat == ESkyguardSortieBeat::Climax ? 0 : 4;
+		Count = 0;
+	}
 	for (int32 Index = 0; Index < Count; ++Index)
 	{
 		const FVector Loc = Ahead
 			+ Forward * FMath::FRandRange(-400.f, 600.f)
 			+ Right * (-1600.f + Index * 800.f)
 			+ FVector(0.f, 0.f, FMath::FRandRange(-200.f, 200.f));
-		SpawnThreat(KindFor(), Loc);
+		SpawnThreat(BeatWaveKind(MissionIndex, Beat), Loc);
 	}
 
 	if (Beat == ESkyguardSortieBeat::Climax && !bClimaxSpawned)
@@ -333,11 +419,9 @@ void ASkyguardGunshipSortieDirector::SpawnBeatWave()
 			break;
 		}
 	}
-	if (Beat == ESkyguardSortieBeat::Extraction && !bExtractSpawned)
+	if (Beat == ESkyguardSortieBeat::Extraction)
 	{
 		bExtractSpawned = true;
-		SpawnThreat(Spec.ExtractKind, Ahead + FVector(0.f, 400.f, 300.f));
-		SpawnThreat(Spec.ExtractKind, Ahead + FVector(200.f, -500.f, 260.f));
 	}
 }
 
@@ -542,10 +626,6 @@ void ASkyguardGunshipSortieDirector::SpawnThreat(
 		Threat->TargetCityLocation = Cargo->GetActorLocation();
 	}
 	Threat->FinishSpawning(Transform);
-	if (Kind == ESkyguardThreatKind::GroundArmor)
-	{
-		BindThreatToCoastalRoad(Threat);
-	}
 }
 
 void ASkyguardGunshipSortieDirector::HandleDroneImpact(ASkyguardDrone* Drone)
@@ -564,18 +644,20 @@ void ASkyguardGunshipSortieDirector::TickIncoming(const float DeltaSeconds)
 	{
 		return;
 	}
-	const bool bRadarLive =
+	const bool bEmitterLive =
 		(Radar && !Radar->IsDestroyed()) ||
 		(PatrolShip && !PatrolShip->IsRadarDead());
+	const bool bRadarLive =
+		bEmitterLive && UsesRadarLiveInboundCadence(Beat);
 	IncomingCooldown -= DeltaSeconds;
-	const float Interval = bRadarLive ? 14.f : 28.f;
+	const float Interval = IncomingIntervalSeconds(bRadarLive);
 	if (IncomingCooldown <= 0.f &&
-		Beat != ESkyguardSortieBeat::Approach &&
+		BeatAllowsInbound(Beat) &&
 		!IsSortieOver())
 	{
 		IncomingCooldown = Interval;
 		bInbound = true;
-		IncomingWindow = 2.6f;
+		IncomingWindow = IncomingWindowSeconds;
 		Gunner->NotifyMissileInbound();
 		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::Inbound);
 	}
@@ -592,7 +674,10 @@ void ASkyguardGunshipSortieDirector::TickIncoming(const float DeltaSeconds)
 			bInbound = false;
 			if (ASkyguardApacheAircraft* Apache = FindApache())
 			{
-				Apache->ApplyDamage(bRadarLive ? 22.f : 12.f);
+				Apache->ApplyDamage(
+					bRadarLive
+						? IncomingRadarLiveHitDamage
+						: IncomingRadarDownHitDamage);
 			}
 		}
 	}
