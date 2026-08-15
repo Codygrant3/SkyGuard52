@@ -713,6 +713,7 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 
 	int32 Threats = 0;
 	FString NearestKind;
+	FString ShipTape;
 	float NearestSq = TNumericLimits<float>::Max();
 	if (UWorld* World = GetWorld())
 	{
@@ -764,10 +765,11 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 				continue;
 			}
 			++Threats;
+			ShipTape = Ship->GetHudSystemLine();
 			if (DistSq < NearestSq)
 			{
 				NearestSq = DistSq;
-				NearestKind = TEXT("SHIP");
+				NearestKind = SkyguardCpgShipSystemLabel(Ship->GetPriorityLiveSystem());
 			}
 		}
 	}
@@ -785,6 +787,15 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	else if (Threats <= 0)
 	{
 		Snap.ThreatLine = FString::Printf(TEXT("CLR\nFLR  %d"), FlareCount);
+	}
+	else if (!ShipTape.IsEmpty())
+	{
+		Snap.ThreatLine = FString::Printf(
+			TEXT("%d THRT\n%s\n%s\nFLR  %d"),
+			Threats,
+			*NearestKind,
+			*ShipTape,
+			FlareCount);
 	}
 	else
 	{
@@ -870,7 +881,7 @@ void ASkyguardGunner::CollectCpgContactMarks(
 		{
 			continue;
 		}
-		AddMark(Ship, TEXT("SHIP"));
+		AddMark(Ship, SkyguardCpgShipSystemLabel(Ship->GetPriorityLiveSystem()));
 	}
 }
 

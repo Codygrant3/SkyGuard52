@@ -67,6 +67,17 @@ enum class ESkyguardClimaxKind : uint8
 	MixedSwarm
 };
 
+/** Harbor Breaker patrol-ship systems. Not a single health bar. */
+UENUM(BlueprintType)
+enum class ESkyguardPatrolShipSystem : uint8
+{
+	Radar UMETA(DisplayName = "Search Radar"),
+	Cannon UMETA(DisplayName = "Cannon"),
+	Launcher UMETA(DisplayName = "Launcher"),
+	Engines UMETA(DisplayName = "Engines"),
+	DroneDeck UMETA(DisplayName = "Drone Deck")
+};
+
 UENUM(BlueprintType)
 enum class ESkyguardPilotLine : uint8
 {
@@ -75,6 +86,9 @@ enum class ESkyguardPilotLine : uint8
 	CargoCritical,
 	ShipRadarDown,
 	ShipEnginesDown,
+	ShipLauncherDown,
+	ShipCannonDown,
+	ShipDeckDown,
 	ShipDead,
 	Inbound,
 	FlaresGood,
