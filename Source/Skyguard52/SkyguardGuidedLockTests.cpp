@@ -200,7 +200,7 @@ bool FSkyguardGuidedMissileFireRequiresLockTest::RunTest(const FString& Paramete
 	}
 	TestNotNull(
 		TEXT("CPG camera is live so the fire gate can run"),
-		Gunner->GunnerCamera);
+		Gunner->GunnerCamera.Get());
 	TestNotNull(TEXT("gunner has a world"), Gunner->GetWorld());
 
 	Armor->ConfigureThreat(ESkyguardThreatKind::GroundArmor);
