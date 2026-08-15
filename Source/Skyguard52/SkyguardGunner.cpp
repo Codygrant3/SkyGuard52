@@ -1513,7 +1513,7 @@ ESkyguardCpgSightMode ASkyguardGunner::GetCpgSightMode() const
 
 bool ASkyguardGunner::CanFireGuidedMissile() const
 {
-	if (!IglaTarget.IsValid() || !GunnerCamera || !GetWorld())
+	if (!IglaTarget.IsValid())
 	{
 		return false;
 	}
@@ -1878,7 +1878,7 @@ void ASkyguardGunner::FireIgla()
 
 void ASkyguardGunner::FireGuidedMissile()
 {
-	if (!CanFireGuidedMissile())
+	if (!CanFireGuidedMissile() || !GunnerCamera || !GetWorld())
 	{
 		return;
 	}

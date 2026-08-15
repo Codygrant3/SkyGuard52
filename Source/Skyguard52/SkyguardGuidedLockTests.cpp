@@ -6,6 +6,8 @@
 #include "SkyguardGunner.h"
 #include "SkyguardGunshipTypes.h"
 #include "SkyguardThreatTypes.h"
+#include "Camera/CameraComponent.h"
+#include "Components/SceneComponent.h"
 #include "Engine/World.h"
 #include "Misc/AutomationTest.h"
 
@@ -170,9 +172,10 @@ bool FSkyguardGuidedMissileFireRequiresLockTest::RunTest(const FString& Paramete
 		return false;
 	}
 
-	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>(
-		FVector::ZeroVector,
-		FRotator::ZeroRotator);
+	// Character SpawnActor in a bare CreateWorld can leave GunnerCamera null.
+	// NewObject with the world as outer still runs the C++ constructor, so the
+	// CPG camera exists and CanFireGuidedMissile is actually the lock gate.
+	ASkyguardGunner* Gunner = NewObject<ASkyguardGunner>(World);
 	ASkyguardDrone* Armor = World->SpawnActor<ASkyguardDrone>(
 		FVector(2000.f, 0.f, 0.f),
 		FRotator::ZeroRotator);
@@ -183,6 +186,22 @@ bool FSkyguardGuidedMissileFireRequiresLockTest::RunTest(const FString& Paramete
 		World->DestroyWorld(false);
 		return false;
 	}
+	if (!Gunner->GunnerCamera)
+	{
+		UCameraComponent* Camera = NewObject<UCameraComponent>(
+			Gunner,
+			TEXT("AutomationCpgCamera"));
+		if (USceneComponent* Root = Gunner->GetRootComponent())
+		{
+			Camera->SetupAttachment(Root);
+		}
+		Camera->RegisterComponent();
+		Gunner->GunnerCamera = Camera;
+	}
+	TestNotNull(
+		TEXT("CPG camera is live so the fire gate can run"),
+		Gunner->GunnerCamera);
+	TestNotNull(TEXT("gunner has a world"), Gunner->GetWorld());
 
 	Armor->ConfigureThreat(ESkyguardThreatKind::GroundArmor);
 	Gunner->bApacheGunnerMode = true;
