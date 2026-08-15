@@ -459,15 +459,20 @@ void ASkyguardGunner::ApplyApacheGunnerPresentation()
 	LookYawLimit = 120.f;
 	LookPitchMin = -58.f;
 	LookPitchMax = 22.f;
-	FireRate = 10.4f;
-	BaseDamage = 52.f;
-	RecoilPitch = 0.72f;
-	TraceRange = 32000.f;
+	FireRate = SkyguardApacheCpgFeel::CannonFireRate;
+	BaseDamage = SkyguardApacheCpgFeel::CannonDamage;
+	RecoilPitch = SkyguardApacheCpgFeel::CannonRecoilPitch;
+	TraceRange = SkyguardApacheCpgFeel::CannonTraceRange;
 	MinimumSafeSideFireYaw = 0.f;
-	IglaLockSeconds = 1.55f;
-	IglaDamage = 280.f;
-	IglaMaximumRange = 24000.f;
-	IglaMinimumRange = 400.f;
+	IglaLockSeconds = SkyguardApacheCpgFeel::GuidedLockSeconds;
+	IglaDamage = SkyguardApacheCpgFeel::GuidedDamage;
+	IglaMaximumLockAngleDegrees = SkyguardApacheCpgFeel::GuidedLockConeDegrees;
+	IglaMinimumRange = SkyguardApacheCpgFeel::GuidedMinRange;
+	IglaMaximumRange = SkyguardApacheCpgFeel::GuidedMaxRange;
+	RocketSalvoSeconds = SkyguardApacheCpgFeel::RocketSalvoSeconds;
+	RocketDamage = SkyguardApacheCpgFeel::RocketDamage;
+	RocketsPerSalvo = SkyguardApacheCpgFeel::RocketsPerSalvo;
+	RocketSpreadDegrees = SkyguardApacheCpgFeel::RocketSpreadDegrees;
 	ADSFov = 46.f;
 	HipFov = 82.f;
 
@@ -1215,14 +1220,14 @@ void ASkyguardGunner::ReloadSelectedWeapon()
 	switch (SelectedGunshipWeapon)
 	{
 	case ESkyguardGunshipWeapon::Rockets:
-		ReloadRemaining = 2.3f;
+		ReloadRemaining = SkyguardApacheCpgFeel::RocketReloadSeconds;
 		break;
 	case ESkyguardGunshipWeapon::GuidedMissile:
-		ReloadRemaining = 2.8f;
+		ReloadRemaining = SkyguardApacheCpgFeel::GuidedReloadSeconds;
 		break;
 	case ESkyguardGunshipWeapon::Cannon:
 	default:
-		ReloadRemaining = 1.7f;
+		ReloadRemaining = SkyguardApacheCpgFeel::CannonReloadSeconds;
 		break;
 	}
 	SkyguardPilotVoice::CallReload(this, Station);
@@ -1779,8 +1784,19 @@ void ASkyguardGunner::FireIgla()
 
 void ASkyguardGunner::FireGuidedMissile()
 {
-	if (!IglaTarget.IsValid() || !GunnerCamera) return;
+	if (!IglaTarget.IsValid() || !GunnerCamera)
+	{
+		return;
+	}
+	if (IglaLockProgress < 1.f)
+	{
+		return;
+	}
 	if (bApacheGunnerMode && GuidedAmmo <= 0)
+	{
+		return;
+	}
+	if (!GetWorld())
 	{
 		return;
 	}
@@ -1902,6 +1918,13 @@ void ASkyguardGunner::FireCannon()
 		{
 			return;
 		}
+	}
+	if (!GetWorld())
+	{
+		return;
+	}
+	if (bApacheGunnerMode)
+	{
 		--CannonMagazine;
 	}
 	// Yak rear seat keeps the pilot/canopy as a no-fire sector. Apache CPG
@@ -1983,7 +2006,7 @@ void ASkyguardGunner::FireCannon()
 
 void ASkyguardGunner::FireRockets()
 {
-	if (!GunnerCamera || RocketAmmo <= 0 || RocketCooldown > 0.f)
+	if (!GunnerCamera || !GetWorld() || bReloading || RocketAmmo <= 0 || RocketCooldown > 0.f)
 	{
 		return;
 	}
@@ -2025,7 +2048,7 @@ void ASkyguardGunner::FireRockets()
 				Impact,
 				FQuat::Identity,
 				ObjectQuery,
-				FCollisionShape::MakeSphere(420.f),
+				FCollisionShape::MakeSphere(SkyguardApacheCpgFeel::RocketSplashRadius),
 				Params);
 			for (const FOverlapResult& Overlap : Overlaps)
 			{
@@ -2108,6 +2131,10 @@ void ASkyguardGunner::Tick(float DeltaSeconds)
 	if (bFireHeld && FireCooldown <= 0.f)
 	{
 		FireShot();
-		FireCooldown = 1.f / FMath::Max(FireRate, 0.1f);
+		const float CannonInterval = 1.f / FMath::Max(FireRate, 0.1f);
+		if (FireCooldown <= 0.f)
+		{
+			FireCooldown = CannonInterval;
+		}
 	}
 }

@@ -56,15 +56,15 @@ void ASkyguardGunner::ApplyLoadout(const ESkyguardLoadout Loadout)
 		break;
 	case ESkyguardLoadout::Balanced:
 	default:
-		CannonMagazineSize = 30;
-		CannonMagazine = 30;
-		CannonReserve = 300;
-		RocketMagazineSize = 14;
-		RocketAmmo = 14;
-		RocketReserve = 24;
-		GuidedMagazineSize = 2;
-		GuidedAmmo = 2;
-		GuidedReserve = 6;
+		CannonMagazineSize = SkyguardApacheCpgFeel::CannonMagazineSize;
+		CannonMagazine = SkyguardApacheCpgFeel::CannonMagazineSize;
+		CannonReserve = SkyguardApacheCpgFeel::CannonReserve;
+		RocketMagazineSize = SkyguardApacheCpgFeel::RocketMagazineSize;
+		RocketAmmo = SkyguardApacheCpgFeel::RocketMagazineSize;
+		RocketReserve = SkyguardApacheCpgFeel::RocketReserve;
+		GuidedMagazineSize = SkyguardApacheCpgFeel::GuidedMagazineSize;
+		GuidedAmmo = SkyguardApacheCpgFeel::GuidedMagazineSize;
+		GuidedReserve = SkyguardApacheCpgFeel::GuidedReserve;
 		FlareCount = 6;
 		break;
 	}

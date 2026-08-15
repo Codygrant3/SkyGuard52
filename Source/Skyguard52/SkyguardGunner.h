@@ -258,17 +258,18 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
 	float HipFov = 85.f;
 
+	/** CPG feel; keep literals in sync with SkyguardApacheCpgFeel. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float FireRate = 9.5f;
+	float FireRate = 12.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float TraceRange = 25000.f;
+	float TraceRange = 32000.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float BaseDamage = 34.f;
+	float BaseDamage = 22.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float RecoilPitch = 0.55f;
+	float RecoilPitch = 0.92f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat|Feedback")
 	TSubclassOf<UCameraShakeBase> FireCameraShakeClass;
@@ -277,13 +278,13 @@ protected:
 	float MinimumSafeSideFireYaw = 28.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float IglaLockSeconds = 1.15f;
+	float IglaLockSeconds = 1.80f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float IglaDamage = 160.f;
+	float IglaDamage = 240.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
-	float IglaMaximumLockAngleDegrees = 7.5f;
+	float IglaMaximumLockAngleDegrees = 6.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Combat")
 	float IglaMinimumRange = 350.f;
@@ -302,16 +303,16 @@ protected:
 	ESkyguardGunshipWeapon SelectedGunshipWeapon = ESkyguardGunshipWeapon::Cannon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Apache")
-	float RocketSalvoSeconds = 1.15f;
+	float RocketSalvoSeconds = 1.65f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Apache")
-	float RocketDamage = 72.f;
+	float RocketDamage = 85.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Apache")
-	int32 RocketsPerSalvo = 6;
+	int32 RocketsPerSalvo = 5;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Apache")
-	float RocketSpreadDegrees = 3.6f;
+	float RocketSpreadDegrees = 5.4f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Apache")
 	int32 CannonMagazineSize = 30;
@@ -341,6 +342,10 @@ protected:
 	int32 GuidedReserve = 6;
 
 	friend class FSkyguardApacheReloadFillsMagazineTest;
+	friend class FSkyguardApacheCannonEmptyMagazineRefusesFireTest;
+	friend class FSkyguardApacheRocketSalvoConsumesAndCoolsTest;
+	friend class FSkyguardApacheMissileRequiresLockAndAmmoTest;
+	friend class FSkyguardApacheCannonWorseValueThanMissileTest;
 
 	bool bADS = false;
 	bool bFireHeld = false;
