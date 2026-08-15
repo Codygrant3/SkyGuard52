@@ -11,6 +11,17 @@ or aircraft work. Historical AAA evidence stays immutable. Do not reopen
 Stage 7B / hero photoreal acceptance loops unless the user explicitly
 restores that bar.
 
+## Cursor Cloud
+
+Cloud agents cannot compile Unreal or hit Play. They edit C++/config/tests
+only. Before any Cloud gameplay work, read `Docs/SKYGUARD_OWN_THING.md` and
+`Docs/SKYGUARD_APACHE_GUNSHIP_PIVOT.md`. Stay on Apache CPG: 30 mm / Hydra /
+Hellfire. Do not restore Yak rifle or player Igla.
+
+`.cursor/environment.json` is the Cloud Build install (Git LFS pull). Enable
+Builds for this environment in the Cloud Agents dashboard so new agents start
+from a verified snapshot instead of just-in-time clone.
+
 ## Canonical project
 
 - Work only in `D:\Skyguard52`.
