@@ -76,6 +76,9 @@ public:
 			Beat == ESkyguardSortieBeat::Failed;
 	}
 
+	/** Harbor Breaker shoreline column. Five hulls on the yellow coastal highway. */
+	static constexpr int32 CoastalConvoyCount = 5;
+
 	/** Authored coastal-highway polyline in front of HarborHover, toward the city. */
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
 	static TArray<FVector> GetCoastalHighwayPath();

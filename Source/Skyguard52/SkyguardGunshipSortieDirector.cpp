@@ -345,6 +345,8 @@ TArray<FVector> ASkyguardGunshipSortieDirector::GetCoastalHighwayPath()
 {
 	// World-space coastal strip between HarborHover (2500, -8000) and the city
 	// (-1800, 0). Vehicles travel north along the yellow road in the CPG view.
+	// North apex sits at (-1000, 3200) so the old 632 cm hairpin becomes a
+	// ~12 m / ~16 m turn. XY stays in the HarborHover → city corridor.
 	return {
 		FVector(2100.f, -6400.f, 92.f),
 		FVector(1400.f, -5000.f, 92.f),
@@ -354,7 +356,7 @@ TArray<FVector> ASkyguardGunshipSortieDirector::GetCoastalHighwayPath()
 		FVector(-1600.f, 200.f, 92.f),
 		FVector(-2000.f, 1500.f, 92.f),
 		FVector(-2200.f, 2800.f, 92.f),
-		FVector(-1600.f, 3000.f, 92.f),
+		FVector(-1000.f, 3200.f, 92.f),
 		FVector(-800.f, 1600.f, 92.f),
 		FVector(-200.f, 200.f, 92.f),
 		FVector(600.f, -1200.f, 92.f),
@@ -480,10 +482,11 @@ int32 ASkyguardGunshipSortieDirector::SpawnCoastalConvoy()
 	}
 
 	int32 Spawned = 0;
-	constexpr int32 ConvoyCount = 5;
-	for (int32 Index = 0; Index < ConvoyCount; ++Index)
+	for (int32 Index = 0; Index < CoastalConvoyCount; ++Index)
 	{
-		const int32 Waypoint = Index % Path.Num();
+		// Every other authored point: a readable northbound column on the
+		// yellow road, not five hulls stacked on the first five waypoints.
+		const int32 Waypoint = (Index * 2) % Path.Num();
 		const FTransform Transform(
 			FRotator::ZeroRotator,
 			Path[Waypoint]);

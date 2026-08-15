@@ -123,7 +123,6 @@ void ASkyguardDrone::ConfigureRoadConvoy(
 	const int32 StartWaypointIndex,
 	const FName VehicleSlot)
 {
-	ConfigureThreat(ESkyguardThreatKind::GroundArmor);
 	RoadWaypoints = Path;
 	bFollowRoad = RoadWaypoints.Num() >= 2;
 	bLoopRoad = true;
@@ -136,8 +135,10 @@ void ASkyguardDrone::ConfigureRoadConvoy(
 	if (!VehicleSlot.IsNone())
 	{
 		GroundVehicleSlot = VehicleSlot;
-		ApplyGroundVehiclePresentation();
 	}
+	// Follow-state first so GroundArmor presentation applies convoy pace,
+	// not the 620 cm/s off-road armor default.
+	ConfigureThreat(ESkyguardThreatKind::GroundArmor);
 	Tags.AddUnique(TEXT("Skyguard.Threat.RoadConvoy"));
 	if (bFollowRoad)
 	{
@@ -214,6 +215,7 @@ void ASkyguardDrone::ApplyThreatPresentation()
 		if (bFollowRoad || !GroundVehicleSlot.IsNone())
 		{
 			ApplyGroundVehiclePresentation();
+			ApplyRoadConvoyPace();
 		}
 		else
 		{
@@ -317,6 +319,21 @@ void ASkyguardDrone::ApplyGroundVehiclePresentation()
 	{
 		Body->SetRelativeScale3D(FVector(2.8f, 1.6f, 0.7f));
 		Body->SetRelativeRotation(FRotator::ZeroRotator);
+	}
+}
+
+void ASkyguardDrone::ApplyRoadConvoyPace()
+{
+	// Named ground-column pace. Do not reuse the 620 GroundArmor default —
+	// that reads as a sprint from the CPG seat.
+	CruiseSpeed = RoadConvoyCruiseSpeed;
+	if (GroundVehicleSlot == TEXT("Vehicle.Car"))
+	{
+		Health = MaxHealth = RoadConvoyCarHealth;
+	}
+	else
+	{
+		Health = MaxHealth = RoadConvoyTruckHealth;
 	}
 }
 

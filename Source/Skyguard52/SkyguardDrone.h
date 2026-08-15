@@ -49,6 +49,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	void ConfigureThreat(ESkyguardThreatKind Kind);
 
+	/** Harbor Breaker column pace. Slower than FastBoat (650) and air threats. */
+	static constexpr float RoadConvoyCruiseSpeed = 320.f;
+
+	/** Truck / bus hull. Survives a short 30 mm burst; rockets or a missile finish it. */
+	static constexpr float RoadConvoyTruckHealth = 220.f;
+
+	/** Softer than a truck, still shoreline armor — not a 34-hp FastAttacker. */
+	static constexpr float RoadConvoyCarHealth = 160.f;
+
 	/** Bind this threat to a looping coastal-road path. Used by the enemy convoy. */
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	void ConfigureRoadConvoy(
@@ -139,6 +148,7 @@ protected:
 	void ApplyVariantVisualsAndHealth();
 	void ApplyThreatPresentation();
 	void ApplyGroundVehiclePresentation();
+	void ApplyRoadConvoyPace();
 	void TickCruiseToCity(float DeltaSeconds);
 	void TickRoadFollow(float DeltaSeconds);
 	void DamageNearbyAircraft(
