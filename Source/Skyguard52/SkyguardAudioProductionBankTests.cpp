@@ -17,6 +17,15 @@ bool FSkyguardAudioProductionBankContractTest::RunTest(const FString& Parameters
 	const FSkyguardProductionAudioAudit Audit = Bank->EvaluateReadiness();
 	TestEqual(TEXT("Every production category has one explicit entry"),
 		Bank->Entries.Num(), USkyguardAudioProductionBank::GetRequiredCategories().Num());
+	TestEqual(TEXT("EnsureDefaultEntries exposes all categories as unbound"),
+		Bank->GetUnboundRequiredCategories().Num(),
+		USkyguardAudioProductionBank::GetRequiredCategories().Num());
+	TestTrue(TEXT("Every required entry has a clear DisplayName"),
+		Bank->Entries.ContainsByPredicate(
+			[](const FSkyguardProductionAudioEntry& Entry)
+			{
+				return Entry.DisplayName.IsEmpty();
+			}) == false);
 	TestTrue(TEXT("Missing content remains an explicit, structurally valid contract"),
 		Audit.bCategoryContractComplete);
 	TestEqual(TEXT("Every absent recording reports MISSING_SOURCE"),

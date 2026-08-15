@@ -60,7 +60,7 @@ private:
 	float MouseSensitivity = 0.07f;
 
 	UPROPERTY(Config)
-	bool bInvertVerticalLook = false;
+	bool bInvertVerticalLook = true;
 
 	UPROPERTY(Config)
 	float CameraShakeScale = 1.f;

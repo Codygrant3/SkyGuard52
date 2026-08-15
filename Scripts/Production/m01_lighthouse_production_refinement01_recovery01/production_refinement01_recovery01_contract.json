@@ -1,0 +1,59 @@
+{
+  "schema": "skyguard.m01-lighthouse-production-refinement01-recovery01.contract.v1",
+  "created_at_utc": "2026-08-12T22:07:00Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY01_BLENDER_EXECUTION",
+  "objective": "Fresh execution of the frozen production lighthouse builder with only Blender 5.2 background-compatible saved-PNG luminance sampling.",
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 3307,
+      "sha256": "3ba225ce1ad75937925d4c5a513fc9977d89cb3963cf821a665c93a083f9a716"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_OFFLINE_FREEZE.json",
+      "bytes": 3194,
+      "sha256": "8178aa171a11fb2b1055b0583b058dd0271a32f536fd1fc8204b7dbcfcadc2be"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\production_refinement01_contract.json",
+      "bytes": 5953,
+      "sha256": "d284bf5246bb56cfaf145e72883a99a70983e04e57cd18460d9e296ada8c30ac"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\build_m01_lighthouse_production_refinement01.py",
+      "bytes": 48640,
+      "sha256": "d67624c7422f75b5d092549c7eaafb1635d796c6992d61328ef5a8db1ab24b47"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01_recovery01\\build_m01_lighthouse_production_refinement01_recovery01.py",
+      "bytes": 3313,
+      "sha256": "dcd2562ef8b046f503dfc2e2a4422dd6bfa83ac44a8e848453a6f6354de1ed3d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    },
+    {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "bytes": 112975320,
+      "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"
+    }
+  ],
+  "fresh_namespaces": {
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY01\\attempt_01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY01_TERMINAL_MANIFEST.json",
+    "emergency_receipt": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY01_EMERGENCY_RECEIPT.jsonl"
+  },
+  "bounded_correction": {
+    "permitted": "Replace only the frozen builder's mean_luminance dependency through wrapper-level saved-PNG sampling.",
+    "prohibited": "No geometry, material, dimensions, camera, render-count, GLB node, collision, socket, runtime, or process-policy change."
+  },
+  "process_policy": {
+    "blender_launch_count": 1,
+    "automatic_retry_count": 0,
+    "unreal_launch_count": 0,
+    "reuse_failed_namespace": false,
+    "timeout_seconds": 1800
+  }
+}

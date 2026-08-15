@@ -40,7 +40,7 @@ bool FSkyguardGameUserSettingsValidationTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("Default master volume is full"), Settings->GetMasterVolume(), 1.f);
 	TestEqual(TEXT("Default sensitivity matches authored baseline"), Settings->GetMouseSensitivity(), 0.07f);
 	TestEqual(TEXT("Default camera shake is full"), Settings->GetCameraShakeScale(), 1.f);
-	TestFalse(TEXT("Vertical look is not inverted by default"), Settings->GetInvertVerticalLook());
+	TestTrue(TEXT("Vertical look is inverted by default"), Settings->GetInvertVerticalLook());
 	TestEqual(TEXT("Default frame limit is 120 fps"), Settings->GetFrameRateLimit(), 120.f);
 	TestEqual(TEXT("Default scalability is Epic"), Settings->GetOverallScalabilityLevel(), 3);
 	return true;

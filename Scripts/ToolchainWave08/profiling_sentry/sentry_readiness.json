@@ -1,0 +1,25 @@
+{
+  "schema": "skyguard.sentry-readiness.v1",
+  "classification": "BLOCKED_PREREQUISITES",
+  "network_calls_performed": false,
+  "secrets_persisted": false,
+  "plugin": {"installed": false, "descriptor": null, "version": null, "sha256": null},
+  "package": {"passing_clean_machine_package_available": false, "receipt": null, "sha256": null},
+  "credentials": {
+    "dsn_available_at_execution": false,
+    "storage_policy": "DSN must be supplied at execution from an approved environment or secret store and must never be committed, logged, hashed into a public artifact, or embedded in source."
+  },
+  "privacy": {
+    "crash_data_policy_approved": false,
+    "pii_scrubbing_defined": false,
+    "user_consent_defined": false
+  },
+  "required_next_gate": [
+    "Accept a packaged clean-machine Development or Shipping build with crash-free local smoke evidence.",
+    "Explicitly authorize and inventory a version-pinned Sentry Unreal plugin; no connector is presently installed.",
+    "Approve crash-data retention, PII scrubbing, attachment, and user-consent policy.",
+    "Provide the DSN only at the governed execution boundary through a secret channel.",
+    "Run a separate opt-in non-production event smoke test and confirm ingestion before release integration."
+  ]
+}
+

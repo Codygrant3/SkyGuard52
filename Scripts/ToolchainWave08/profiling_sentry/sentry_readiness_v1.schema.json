@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.sentry-readiness.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "classification", "network_calls_performed", "secrets_persisted", "plugin", "package", "credentials", "privacy", "required_next_gate"],
+  "properties": {
+    "schema": {"const": "skyguard.sentry-readiness.v1"},
+    "classification": {"enum": ["BLOCKED_PREREQUISITES", "READY_FOR_EXPLICIT_OFFLINE_PLUGIN_INSTALL_DESIGN", "FAILED_WITH_EVIDENCE"]},
+    "network_calls_performed": {"const": false},
+    "secrets_persisted": {"const": false},
+    "plugin": {"type": "object", "required": ["installed", "descriptor", "version", "sha256"]},
+    "package": {"type": "object", "required": ["passing_clean_machine_package_available", "receipt", "sha256"]},
+    "credentials": {"type": "object", "required": ["dsn_available_at_execution", "storage_policy"]},
+    "privacy": {"type": "object", "required": ["crash_data_policy_approved", "pii_scrubbing_defined", "user_consent_defined"]},
+    "required_next_gate": {"type": "array", "minItems": 1}
+  }
+}
+

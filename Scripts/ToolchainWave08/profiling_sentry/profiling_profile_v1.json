@@ -1,0 +1,46 @@
+{
+  "schema": "skyguard.profiling-profile.v1",
+  "target": "Windows Win64 packaged Development or Shipping build",
+  "minimum_resolution": "1920x1080",
+  "required_rhi": "D3D12_SM6",
+  "trace_channels": ["cpu", "gpu", "frame", "bookmark", "loadtime", "file", "assetload", "memory"],
+  "scenarios": [
+    {"id": "boot_to_briefing", "minimum_seconds": 60},
+    {"id": "rear_gunner_traversal", "minimum_seconds": 120},
+    {"id": "ads_rifle_drone_breakup", "minimum_seconds": 120},
+    {"id": "igla_lock_launch_heavy", "minimum_seconds": 120},
+    {"id": "boss_destruction", "minimum_seconds": 120},
+    {"id": "weather_transition", "minimum_seconds": 120},
+    {"id": "soak_20min", "minimum_seconds": 1200}
+  ],
+  "limits": {
+    "mean_frame_ms": 16.7,
+    "p95_frame_ms": 22.2,
+    "max_hitch_ms": 100.0,
+    "frames_over_100ms": 0,
+    "crashes": 0,
+    "timeouts": 0,
+    "automatic_retries": 0
+  },
+  "tools": {
+    "unreal_insights": {
+      "path": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealInsights.exe",
+      "bytes": 224696,
+      "version": "1.09",
+      "sha256": "1ecde931bcbb6150a85baad666ce76413e45b9d66f254ba3a6b4b833fd4ff206"
+    },
+    "nvidia_frameview": {
+      "path": "C:\\Program Files\\NVIDIA Corporation\\FrameView\\FrameView_x64.exe",
+      "bytes": 906784,
+      "version": "1.6.10929.0",
+      "sha256": "12ec8052f5aab7e6106ef44a0e8e0a8697932e00f70df1bacf43ac922f3031fb"
+    },
+    "nvidia_presentmon_backend": {
+      "path": "C:\\Program Files\\NVIDIA Corporation\\FrameView\\bin\\PresentMon_x64.exe",
+      "bytes": 1058848,
+      "sha256": "49ea0f9f6f15fd595b821bd80165106302a4d75202e966dae7a4d433abb3b68a"
+    }
+  },
+  "promotion_rule": "all_required_scenarios_pass_and_are_human_reviewed; capture_success_alone_is_not_acceptance"
+}
+

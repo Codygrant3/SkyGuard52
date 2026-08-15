@@ -1,0 +1,85 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage04.authoring01.contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE04-AUTHORING01",
+  "project": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage03",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage03.umap",
+    "bytes": 911233,
+    "sha256": "28c3462ffe39b6fe753e2ba96761aa0e54d3aa947b41c1c9be4c760202980cad",
+    "actor_count": 195
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage04",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage04.umap",
+    "destination": "/Game/M01/VisibleEnvironmentStage04",
+    "expected_actor_count": 202,
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01\\attempt_01"
+  },
+  "accepted_sources": {
+    "facade_glb": {
+      "file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\M01_CoastalFacadeBay_Production01_UE.glb",
+      "bytes": 38550940,
+      "sha256": "f4e78224b0989326add4c79d8b5b1f45e48cff25114dd22f30495cccce7aa10d"
+    },
+    "lighthouse_glb": {
+      "file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\M01_Lighthouse_Production_Refinement01_UE.glb",
+      "bytes": 38247820,
+      "sha256": "d36fb40b31334599562436b453ffbf67c06635939903b34378ea21ad313ab0b6"
+    },
+    "metadata_receipt": {
+      "file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\metadata_normalization_receipt.json",
+      "bytes": 5123,
+      "sha256": "f56001561145ffe09a9632826790b5bf52a28bdc2e60c419eab60521c5d8d4e7"
+    },
+    "scene_inventory": {
+      "file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_STAGE04_SCENE_INVENTORY01\\attempt_01\\scene_inventory.json",
+      "bytes": 302375,
+      "sha256": "2fdff7d0f6cf01b5fb017ed210a04b2ef12a78dc61c0dfc668d6656a9dc11f6c"
+    }
+  },
+  "placement": {
+    "facade": {
+      "asset_location_cm": [11020.0, 11010.0, 76.0],
+      "asset_rotation_degrees": [0.0, 0.0, 2.0],
+      "legacy_window_label_prefixes_to_hide": [
+        "M01_HSSC01R01_Window_",
+        "M01_HSSC03_RearWindow_"
+      ]
+    },
+    "lighthouse": {
+      "asset_location_cm": [22500.0, 7600.0, 66.5229151920468],
+      "asset_rotation_degrees": [0.0, 0.0, 0.0],
+      "legacy_labels_to_hide": [
+        "M01_STAGE03_Lighthouse_Hero_DETAILS",
+        "M01_STAGE03_Lighthouse_Hero_GLAZING",
+        "M01_STAGE03_Lighthouse_Hero_STRUCTURAL"
+      ]
+    },
+    "vegetation": {
+      "corridor_y_cm": [8700.0, 9800.0],
+      "tree_scale_multiplier": 2.75,
+      "shrub_scale_multiplier": 1.35,
+      "groundcover_scale_multiplier": 1.65
+    }
+  },
+  "lighting": {
+    "sun_intensity": 5.0,
+    "fill_intensity": 7.5,
+    "skylight_intensity": 9.0,
+    "exposure_bias": 1.1,
+    "film_slope": 0.78,
+    "film_toe": 0.42,
+    "film_shoulder": 0.26,
+    "film_white_clip": 0.0,
+    "film_black_clip": 0.0
+  },
+  "rules": {
+    "input_map_mutation": false,
+    "failed_asset_reuse": false,
+    "runtime_promotion": false,
+    "one_unreal_launch": true,
+    "automatic_retry": false,
+    "next_gate": "GOVERNED_D3D12_SM6_STAGE04_MAPPED_VISUAL_PROOF"
+  }
+}

@@ -9,6 +9,8 @@
 #include "SkyguardCombatVFX.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
+#include "SkyguardPatrolShipBoss.h"
+#include "SkyguardRadarNode.h"
 #include "SkyguardInputCombatPerformanceCapture.h"
 
 ASkyguardIglaMissile::ASkyguardIglaMissile()
@@ -120,7 +122,9 @@ void ASkyguardIglaMissile::Tick(const float DeltaSeconds)
 		const bool bHitIsCombatant =
 			HitActor &&
 			(HitActor->IsA(ASkyguardBossDroneBase::StaticClass()) ||
-				HitActor->IsA(ASkyguardDrone::StaticClass()));
+				HitActor->IsA(ASkyguardDrone::StaticClass()) ||
+				HitActor->IsA(ASkyguardPatrolShipBoss::StaticClass()) ||
+				HitActor->IsA(ASkyguardRadarNode::StaticClass()));
 		const bool bShouldDamageLock =
 			ShouldDamageLockedTargetOnImpact(Hit.ImpactPoint, HitActor);
 
@@ -153,6 +157,16 @@ void ASkyguardIglaMissile::Detonate(
 	else if (ASkyguardDrone* Drone = Cast<ASkyguardDrone>(Target))
 	{
 		Drone->ApplyBallisticHit(Damage, ImpactPoint, Direction);
+		bAppliedDamage = true;
+	}
+	else if (ASkyguardPatrolShipBoss* Ship = Cast<ASkyguardPatrolShipBoss>(Target))
+	{
+		Ship->ApplyHit(nullptr, Damage);
+		bAppliedDamage = true;
+	}
+	else if (ASkyguardRadarNode* Radar = Cast<ASkyguardRadarNode>(Target))
+	{
+		Radar->ApplyDamage(Damage);
 		bAppliedDamage = true;
 	}
 	if (bAppliedDamage)

@@ -1,0 +1,65 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage06-district-correction01.authoring01-contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE06-DISTRICT-CORRECTION01-AUTHORING01",
+  "purpose": "Correct the terminal Stage05 mapped visual rejection using only accepted and governed local Unreal assets in a fresh reversible map.",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage05Composition01Recovery01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage05Composition01Recovery01.umap",
+    "bytes": 955162,
+    "sha256": "925e6dfe62b84bdcc3019ce5c6e8f7a4431ec8664c4742f998148c5e101a37f9",
+    "actor_count": 217
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage06DistrictCorrection01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage06DistrictCorrection01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage06DistrictCorrection01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage06DistrictCorrection01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_AUTHORING01\\attempt_01"
+  },
+  "authorities": [
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_RECOVERY01_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 6018, "sha256": "e5b90ae4beee86434905154cc337b2d708a7e2d29b88159f903f102fdba9f286"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\GroundLightingCorrection04Recovery01\\Materials\\MI_M01_UrbanGround_Tiled.uasset", "bytes": 75597, "sha256": "66ed20fb03b2adb9be735fa50c3ce3ea511fcaeef8efe3b8b94c2ddd4a2b7684"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\GroundLightingCorrection04Recovery01\\Materials\\MI_M01_Window_Lifted.uasset", "bytes": 64857, "sha256": "68986752e1fc3bed1d8cdd75ead79622df656a70bec5c98d06ef05c1d5ce882a"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\GroundLightingCorrection04Recovery01\\Materials\\MI_M01_Glass_Lifted.uasset", "bytes": 64842, "sha256": "a33f854019b17afc317808d51bba04295bbedee8ba4b1f391ec6135dff1398d4"},
+    {"path": "D:\\UE_5.8\\Engine\\Plugins\\Experimental\\Water\\Content\\Materials\\WaterSurface\\Water_Material_Ocean.uasset", "bytes": 90080, "sha256": "ee16c08c99c9a8b2b1d24241d37455ae50ba01c877d4f9a77dc1588da2ca7ec6"},
+    {"path": "D:\\UE_5.8\\Engine\\Plugins\\Experimental\\Water\\Content\\Materials\\WaterSurface\\Water_FarMesh.uasset", "bytes": 12296, "sha256": "ccfcf0df2bd5bf9db9cc1e9b7d2394dff546e8faad78f7e999e69102aaf77d6d"}
+  ],
+  "accepted_local_assets": {
+    "urban_ground": "/Game/M01/GroundLightingCorrection04Recovery01/Materials/MI_M01_UrbanGround_Tiled",
+    "window_lifted": "/Game/M01/GroundLightingCorrection04Recovery01/Materials/MI_M01_Window_Lifted",
+    "glass_lifted": "/Game/M01/GroundLightingCorrection04Recovery01/Materials/MI_M01_Glass_Lifted",
+    "ocean_near": "/Water/Materials/WaterSurface/Water_Material_Ocean",
+    "ocean_far": "/Water/Materials/WaterSurface/Water_FarMesh"
+  },
+  "corrections": {
+    "remove_detached_facade_prefix": "M01_STAGE05R01_Facade_",
+    "remove_misgrounded_bollard_prefix": "M01_Promenade_Bollard_",
+    "city_terrain_label": "M01_HSSC02_CoastalA_TERRAIN",
+    "urban_landscape_material": true,
+    "lift_building_glazing": true,
+    "bind_matched_near_far_water": true,
+    "vegetation_duplicate_count": 28,
+    "additional_building_groups": 3,
+    "lighting": {
+      "sun_intensity": 6.5,
+      "fill_intensity": 14.0,
+      "skylight_intensity": 18.0,
+      "exposure_bias": 1.55,
+      "film_slope": 0.78,
+      "film_toe": 0.46,
+      "film_shoulder": 0.38,
+      "lower_hemisphere_color": [0.28, 0.34, 0.42, 1.0]
+    }
+  },
+  "acceptance": {
+    "removed_detached_facade_actors": 16,
+    "removed_misgrounded_bollards": 13,
+    "created_building_actors": 9,
+    "created_vegetation_actors": 28,
+    "expected_actor_count": 225,
+    "input_map_mutation": false,
+    "runtime_promotion": false,
+    "automatic_retry": false,
+    "next_gate": "M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_D3D12_MAPPED_VISUAL_PROOF01"
+  }
+}

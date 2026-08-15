@@ -1,0 +1,34 @@
+{
+  "schema": "skyguard.m01-stage04.scene-inventory01.contract.v1",
+  "contract_id": "M01-STAGE04-SCENE-INVENTORY01",
+  "mode": "READ_ONLY_UNREAL_SCENE_INVENTORY",
+  "project": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+  "map": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage03",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage03.umap",
+    "bytes": 911233,
+    "sha256": "28c3462ffe39b6fe753e2ba96761aa0e54d3aa947b41c1c9be4c760202980cad",
+    "expected_actor_count": 195
+  },
+  "output": {
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_STAGE04_SCENE_INVENTORY01\\attempt_01",
+    "receipt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_STAGE04_SCENE_INVENTORY01\\attempt_01\\scene_inventory.json",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\M01_STAGE04_SCENE_INVENTORY01_TERMINAL_MANIFEST.json"
+  },
+  "rules": {
+    "unreal_launch_count": 1,
+    "retry_count": 0,
+    "save_world": false,
+    "mutate_assets": false,
+    "null_rhi": true,
+    "required_actor_fields": [
+      "label",
+      "class",
+      "location_cm",
+      "rotation_degrees",
+      "scale",
+      "bounds",
+      "folder"
+    ]
+  }
+}

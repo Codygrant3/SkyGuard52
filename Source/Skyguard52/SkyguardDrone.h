@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SkyguardThreatTypes.h"
 #include "SkyguardDrone.generated.h"
 
 class ASkyguardYak52Aircraft;
@@ -31,8 +32,38 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	void ImpactAircraft(ASkyguardYak52Aircraft* Aircraft);
 
+	/** Ram / sweep contact with Apache or Yak. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void ImpactPlatform(AActor* Platform);
+
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	bool IsHeavyTarget() const { return bHeavy; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	bool IsMissileLockEligible() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	ESkyguardThreatKind GetThreatKind() const { return ThreatKind; }
+
+	/** Configure the live mixed-threat roster after spawn. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void ConfigureThreat(ESkyguardThreatKind Kind);
+
+	/** Bind this threat to a looping coastal-road path. Used by the enemy convoy. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void ConfigureRoadConvoy(
+		const TArray<FVector>& Path,
+		int32 StartWaypointIndex = 0,
+		FName VehicleSlot = NAME_None);
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	bool IsFollowingRoad() const
+	{
+		return bFollowRoad && RoadWaypoints.Num() >= 2;
+	}
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	int32 GetRoadWaypointIndex() const { return RoadWaypointIndex; }
 
 	UFUNCTION(BlueprintPure, Category="Skyguard")
 	bool HasReachedCity() const { return bReachedCity; }
@@ -75,6 +106,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard")
 	bool bHeavy = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard")
+	ESkyguardThreatKind ThreatKind = ESkyguardThreatKind::FastAttacker;
+
 	/** Integrity subtracted from Yak on direct swept collision (light). */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|AircraftDamage", meta=(ClampMin="0.0"))
 	float AircraftCollisionDamage = 30.f;
@@ -99,12 +133,22 @@ protected:
 	bool bDead = false;
 	bool bReachedCity = false;
 	float Spin = 0.f;
-	void Die(const FVector& HitDir, ASkyguardYak52Aircraft* AlreadyDamagedAircraft = nullptr);
+	void Die(const FVector& HitDir, AActor* AlreadyDamagedAircraft = nullptr);
 	void ImpactCity(const FVector& ImpactDirection);
 	void SpawnDebris(const FVector& HitDir);
 	void ApplyVariantVisualsAndHealth();
+	void ApplyThreatPresentation();
+	void ApplyGroundVehiclePresentation();
+	void TickCruiseToCity(float DeltaSeconds);
+	void TickRoadFollow(float DeltaSeconds);
 	void DamageNearbyAircraft(
 		float Amount,
 		float RadiusCm,
-		const ASkyguardYak52Aircraft* ExcludeAircraft = nullptr);
+		const AActor* ExcludeAircraft = nullptr);
+
+	bool bFollowRoad = false;
+	bool bLoopRoad = true;
+	int32 RoadWaypointIndex = 0;
+	TArray<FVector> RoadWaypoints;
+	FName GroundVehicleSlot;
 };

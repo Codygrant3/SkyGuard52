@@ -1,0 +1,69 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07a-hero-corridor01.authoring01-contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE07A-HERO-CORRIDOR01-AUTHORING01",
+  "purpose": "Convert the four-camera Mission 1 hero corridor from a stable Stage06 blockout into a denser, materially varied production candidate without mutating Stage06.",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage06DistrictCorrection01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage06DistrictCorrection01.umap",
+    "bytes": 970371,
+    "sha256": "cfe31e19f32b2ce4ac89475195f20c99b54cb6bb56041a34ae30054e2dce1754",
+    "expected_governed_actor_count": 225,
+    "maximum_editor_only_actor_delta": 1
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage07AHeroCorridor01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage07AHeroCorridor01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_AUTHORING01\\attempt_01"
+  },
+  "authorities": [
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 6407, "sha256": "dea6bffd34611d9a7b8afec1cc45ee93ab40a9bb67085cc919c0e973ce3dae6c"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json", "bytes": 3994, "sha256": "6f05f9dfb2a40ce08ab50fd50cf4d59c9558f18c0ee8b9c3dce31384b8e769c6"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage05Composition01Recovery01\\Materials\\MI_M01_Stage05_UrbanGround_GrassRock.uasset", "bytes": 76329, "sha256": "3eec9b76c1d4967aacd1b88a4c13fb83e57f2cc1ae09e05afc8a03a4fa41fcaa"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06_WeatheredConcrete.uasset", "bytes": 76498, "sha256": "d9dd762f0e82b9a7a849838825b474df80dd9f304e223fd042e5231dce73a1fd"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06_Asphalt.uasset", "bytes": 76211, "sha256": "6c6c3166200f9b4b7f07a526f9858f7fb68a26c06f2cce0ca4ade577b69455eb"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06_DrySand.uasset", "bytes": 76858, "sha256": "f21d6b48382353f05fdf38ee196c6599d8dd661822f6ad452fa2423632345ad0"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06_WetSand.uasset", "bytes": 76795, "sha256": "cc95613e44707f22dffa1b7bed2176217c4fdb4011e8fd6c2ff9c5950ad9cea3"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06_RoadMarking.uasset", "bytes": 65111, "sha256": "0c747aec7a93fefb2c60ee54b3bb7424ee6bf975d16b2ada958d7717b313cb85"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06R01_PlantingSoil.uasset", "bytes": 65155, "sha256": "bfa7e0840537f12a701e223e25ac20a290ff3bb23d6a06d4237a80ad3c36cea7"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage04Recovery02\\FacadeBayR02\\Materials\\M_M01_CoastalFacadeBay_R02_WarmGreyStucco.uasset", "bytes": 63410, "sha256": "c9bb3483b940daa7538b7b0486720f7ac84f63ee4d554430d1293fea61ef85c4"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage04Recovery02\\FacadeBayR02\\Materials\\M_M01_CoastalFacadeBay_R02_PaleLimestone.uasset", "bytes": 63265, "sha256": "4d44c587afe305278fc2d90fa327dfb205032a069d11f76943e0cb4efba8e785"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage04Recovery02\\FacadeBayR02\\Materials\\M_M01_CoastalFacadeBay_R02_WeatheredPlinth.uasset", "bytes": 63362, "sha256": "7108f1e5de05dcc67412f6d2c52a784c0827bf7ee99fe28aa352e6713266aecb"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage04Recovery02\\FacadeBayR02\\Materials\\M_M01_CoastalFacadeBay_R02_BlackenedSquareSteel.uasset", "bytes": 63258, "sha256": "9b06cab5a907582a9db2e2216ab62d9ddafa6486d0ca68b69c4f095891de4964"},
+    {"path": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage04Recovery02\\FacadeBayR02\\Materials\\M_M01_PrewarWindow_WarmLamp.uasset", "bytes": 50186, "sha256": "f8c1e175724497d1aec2077001f6195baa0b9d251898016a6e5a977fe378354b"}
+  ],
+  "hero_cameras": ["C01_REAR_GUNNER_PORT", "C02_FACADE_DISTRICT_OBLIQUE", "T01_CELL_ENTRY", "T02_CELL_MID"],
+  "corrections": {
+    "restore_semantic_material_actors": [
+      "M01_C06R01_Corridor_TERRAIN",
+      "M01_C06R01_Corridor_HARDSCAPE",
+      "M01_C06R01_Corridor_DETAILS",
+      "M01_HSSC02_CoastalA_TERRAIN",
+      "M01_HSSC02_CoastalA_HARDSCAPE"
+    ],
+    "preserve_hidden_rejected_contact": "M01_ACA03R01_Corridor_CONTACT",
+    "new_building_groups": 4,
+    "new_building_actors": 12,
+    "new_vegetation_actors": 48,
+    "new_street_detail_actors": 16,
+    "total_new_actors": 76,
+    "lighting": {
+      "sun_intensity": 5.2,
+      "fill_intensity": 20.0,
+      "skylight_intensity": 26.0,
+      "exposure_bias": 1.65,
+      "film_slope": 0.68,
+      "film_toe": 0.18,
+      "film_shoulder": 0.38,
+      "lower_hemisphere_color": [0.38, 0.43, 0.5, 1.0]
+    }
+  },
+  "acceptance": {
+    "input_map_mutation": false,
+    "runtime_promotion": false,
+    "automatic_retry": false,
+    "actor_delta": 76,
+    "next_gate": "M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_CHECKPOINT_VISUAL01"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "projectRoot": "D:\\Skyguard52",
+  "remoteControlBaseUrl": "http://127.0.0.1:30010",
+  "remoteTimeoutMs": 3000,
+  "mutationEnabled": false,
+  "receiptRoot": "D:\\Skyguard52\\Saved\\Reports\\Toolchain\\SkyguardUnrealMCP"
+}

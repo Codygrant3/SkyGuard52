@@ -1,0 +1,61 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07b-material-terrain-district-variety01.source-inventory.v1",
+  "generated_for": "M01-VISIBLE-ENVIRONMENT-STAGE07B-MATERIAL-TERRAIN-DISTRICT-VARIETY01-AUTHORING01",
+  "new_blender_hero_assets": false,
+  "quarantined_vegetation_reimport": false,
+  "procedural_tree_substitutes": false,
+  "sources": [
+    {
+      "id": "polyhaven-cc0-surfaces",
+      "provider": "Poly Haven",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authority": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\polyhaven-provenance-manifest.json",
+      "authority_bytes": 47802,
+      "authority_sha256": "9817fa40dca9bfec370e208921c925eeb9858a4b3a2254e8101260dca1cc2e57",
+      "use": "C06 dry/wet/dune sand, asphalt, weathered concrete, promenade pavers already imported in SG52T08_ENV01"
+    },
+    {
+      "id": "polyhaven-cc0-vegetation-staging02",
+      "provider": "Poly Haven",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "review": "PASSED_BOUNDED_VEGETATION_CANDIDATES_AWAITING_UNREAL_STAGING",
+      "review_path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
+      "review_bytes": 2501,
+      "review_sha256": "23948884b577798bce73c2403e01f4972de0b9300a36bc79c08fae4412ec687e",
+      "acceptance_path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_ACCEPTANCE_FREEZE.json",
+      "acceptance_bytes": 3611,
+      "acceptance_sha256": "d89447492c5325a9d7287398a8f82bf994d9cb45810c42387080560ef66b65bd",
+      "unreal_root": "/Game/M01/SourceBacked/VegetationStaging02",
+      "use": "Already staged Unreal meshes only. Do not reimport quarantine GLTFs. fir/pine sparse clusters only. tree_small_02 remains NOT_REVIEWED_HELD.",
+      "held_out": ["tree_small_02", "coast_tree_proxy", "procedural Blender trees"]
+    },
+    {
+      "id": "envkit02-modular-buildings",
+      "provider": "Skyguard project EnvKit02",
+      "license": "project-owned",
+      "use": "ApartmentA, MidriseB, CornerC modular assemblies already in the isolated clone"
+    },
+    {
+      "id": "facade-bay-r02",
+      "provider": "Skyguard accepted candidate m01-coastal-facade-bay-production01-recovery02",
+      "license": "project-owned",
+      "scope_limit": "bounded facade candidate; not final runtime promotion",
+      "use": "Fourth skyline silhouette as street-front infill only"
+    },
+    {
+      "id": "c06-unreal-ready-corridor",
+      "provider": "accepted m01-coastal-corridor-correction06-recovery01-unrealready01",
+      "license": "project-owned plus Poly Haven CC0 surfaces",
+      "scope_limit": "semantic consolidation; not final Mission 1 visual acceptance",
+      "use": "Terrain, hardscape, and transition material bindings"
+    },
+    {
+      "id": "glc04-lifted-glazing",
+      "provider": "Skyguard GroundLightingCorrection04Recovery01",
+      "license": "project-owned",
+      "use": "Readable window and glass instances already bound in Stage 7A"
+    }
+  ]
+}

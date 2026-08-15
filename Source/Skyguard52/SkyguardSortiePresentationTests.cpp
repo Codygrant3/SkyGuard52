@@ -1,6 +1,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardSortiePresentationComponent.h"
+#include "SkyguardSortieHudHostComponent.h"
 
 #include "SkyguardCampaignDefinition.h"
 #include "SkyguardCampaignSubsystem.h"
@@ -41,6 +42,32 @@ namespace SkyguardSortiePresentationTests
 				return Card.Pictogram == Pictogram;
 			});
 	}
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieHudHostDebriefStatesTest,
+	"Skyguard52.Presentation.Sortie.HudHostShowsPostSortieStates",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieHudHostDebriefStatesTest::RunTest(
+	const FString& Parameters)
+{
+	for (const ESkyguardSortiePresentationState State : {
+		ESkyguardSortiePresentationState::DebriefReady,
+		ESkyguardSortiePresentationState::SaveFailure,
+		ESkyguardSortiePresentationState::TravelReady,
+		ESkyguardSortiePresentationState::TravelBlocked,
+		ESkyguardSortiePresentationState::CampaignComplete})
+	{
+		TestTrue(
+			TEXT("Post-sortie state is rendered as a debrief"),
+			USkyguardSortieHudHostComponent::ShouldShowDebriefForState(State));
+	}
+	TestFalse(
+		TEXT("Active sortie is not rendered as a debrief"),
+		USkyguardSortieHudHostComponent::ShouldShowDebriefForState(
+			ESkyguardSortiePresentationState::SortieActive));
+	return true;
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(

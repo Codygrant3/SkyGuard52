@@ -4966,6 +4966,311 @@
       "minimum_meshes": 8,
       "minimum_skins": 0,
       "minimum_animations": 0
+    },
+    "m01-coastal-facade-bay-production01-recovery01": {
+      "worker_script": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\build_m01_coastal_facade_bay_production01_recovery01.py",
+      "supervisor_script": "Scripts\\invoke_m01_coastal_facade_bay_production01_recovery01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_coastal_facade_bay_production01_recovery01_postflight_binding.py",
+          "bytes": 678,
+          "sha256": "dd6dbd950f69582bf74e1091d0094dc9c494ea1a7f94a520516b1efed7b21e08"
+        },
+        {
+          "path": "Scripts\\invoke_m01_coastal_facade_bay_production01_recovery01_once.ps1",
+          "bytes": 1888,
+          "sha256": "427413d45c3c336bc58d49c9147f374b5544597713b6240f3951e0e0f77f3d7a"
+        },
+        {
+          "path": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\build_m01_coastal_facade_bay_production01_recovery01.py",
+          "bytes": 2688,
+          "sha256": "bc7ab7616f237af5830a4620cd7cddc91c0e300ceffbaf5fa9bff2fa435dc6bf"
+        },
+        {
+          "path": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\production_contract.json",
+          "bytes": 3442,
+          "sha256": "56d2c078bf7b857e8fae2d1e652486952a0ba1ecc97f0f07f42b375aeb52d577"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_OFFLINE_FREEZE.json",
+          "bytes": 2020,
+          "sha256": "96f34e2c4d08adad31d6e1802a7fa87e40a48b47a299db18d2c4e788496989fb"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+          "bytes": 2319,
+          "sha256": "e0b802b26e1aa3bce4247b942fa78cfe6d859f2f10f2090c338818ae08578afb"
+        }
+      ],
+      "blend": "M01_CoastalFacadeBay_Production01.blend",
+      "glb": "M01_CoastalFacadeBay_Production01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 2048,
+          "height": 1152
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "receipts/production_receipt.json": "skyguard.m01-coastal-facade-bay-production01.receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "checkpoint_render_count",
+          "op": "eq",
+          "value": 3
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "final_render_count",
+          "op": "eq",
+          "value": 8
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "accepted_window_instances",
+          "op": "eq",
+          "value": 1
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "failed_corner_block_geometry_reused",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "vertices",
+          "op": "ge",
+          "value": 20000
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "polygons",
+          "op": "ge",
+          "value": 20000
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "triangles",
+          "op": "ge",
+          "value": 40000
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "axis_validation.source_front_axis",
+          "op": "eq",
+          "value": "-Y"
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "axis_validation.applied_yaw_radians",
+          "op": "eq",
+          "value": 0.0
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "unreal_import_allowed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "runtime_promotion_allowed",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "render_meshes",
+          "op": "contains_all",
+          "value": [
+            "SM_M01_CoastalFacadeBay_A_StructureFrame",
+            "SM_M01_CoastalFacadeBay_A_Glass",
+            "SM_M01_CoastalFacadeBay_A_Interior",
+            "SM_M01_CoastalFacadeBay_A_BalconyDetails"
+          ]
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "collision_meshes",
+          "op": "contains_all",
+          "value": [
+            "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_00",
+            "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_01",
+            "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_02",
+            "UCX_SM_M01_CoastalFacadeBay_A_BalconyDetails_00"
+          ]
+        },
+        {
+          "file": "receipts/production_receipt.json",
+          "path": "sockets",
+          "op": "contains_all",
+          "value": [
+            "SOCKET_M01_CoastalFacadeBay_Origin",
+            "SOCKET_M01_CoastalFacadeBay_WindowCenter",
+            "SOCKET_M01_CoastalFacadeBay_Balcony",
+            "SOCKET_M01_CoastalFacadeBay_AttachLeft",
+            "SOCKET_M01_CoastalFacadeBay_AttachRight"
+          ]
+        }
+      ],
+      "quality_gate": {
+        "profile": "m01_coastal_facade_bay_production01_recovery01_v1",
+        "image_rules": [
+          {
+            "glob": "checkpoints/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.98,
+            "minimum_mean_luminance": 0.04,
+            "maximum_mean_luminance": 0.82,
+            "maximum_dark_pixel_fraction": 0.85,
+            "maximum_bright_pixel_fraction": 0.15,
+            "minimum_luminance_stddev": 0.025
+          },
+          {
+            "glob": "renders/*.png",
+            "dark_threshold": 0.02,
+            "bright_threshold": 0.98,
+            "minimum_mean_luminance": 0.025,
+            "maximum_mean_luminance": 0.85,
+            "maximum_dark_pixel_fraction": 0.9,
+            "maximum_bright_pixel_fraction": 0.18,
+            "minimum_luminance_stddev": 0.02
+          }
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_CoastalFacadeBay_A_BalconyDetails",
+        "SM_M01_CoastalFacadeBay_A_Glass",
+        "SM_M01_CoastalFacadeBay_A_Interior",
+        "SM_M01_CoastalFacadeBay_A_StructureFrame",
+        "SOCKET_M01_CoastalFacadeBay_AttachLeft",
+        "SOCKET_M01_CoastalFacadeBay_AttachRight",
+        "SOCKET_M01_CoastalFacadeBay_Balcony",
+        "SOCKET_M01_CoastalFacadeBay_Origin",
+        "SOCKET_M01_CoastalFacadeBay_WindowCenter",
+        "UCX_SM_M01_CoastalFacadeBay_A_BalconyDetails_00",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_00",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_01",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_02"
+      ],
+      "minimum_meshes": 8,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
+    "m01-coastal-facade-bay-production01-recovery02": {
+      "worker_script": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\build_m01_coastal_facade_bay_production01_recovery02.py",
+      "supervisor_script": "Scripts\\invoke_m01_coastal_facade_bay_production01_recovery02_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_m01_coastal_facade_bay_production01_recovery02_postflight_binding.py",
+          "bytes": 496,
+          "sha256": "acec922f0a9a45c9315c26ba4c22c19db3ef1935844d79e764ea17b4c36ee6c4"
+        },
+        {
+          "path": "Scripts\\invoke_m01_coastal_facade_bay_production01_recovery02_once.ps1",
+          "bytes": 1888,
+          "sha256": "c977d3fe0181cbebb4bf2f33cb9762b9c810ec6d480c1481f5ffac6a22c3b412"
+        },
+        {
+          "path": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\build_m01_coastal_facade_bay_production01_recovery02.py",
+          "bytes": 14478,
+          "sha256": "8af5670c3c4097281bca14b5641699eb50625193b24dd744784a21ceb3880792"
+        },
+        {
+          "path": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\production_contract.json",
+          "bytes": 3984,
+          "sha256": "9ff52f6306840c9ecb27036ebbbd6ffb3b270100804b11e9cb29f16c81ef9307"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY02_OFFLINE_FREEZE.json",
+          "bytes": 2676,
+          "sha256": "ee5c3fc5cff3caf868b38b530d30e0dba5c0b0e847bb73b177d578ad0f677bf6"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+          "bytes": 3734,
+          "sha256": "8375945cc2e1cbf87827a84ee1711f5a5bdb24d853d19d3d74919afc1f322df4"
+        },
+        {
+          "path": "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+          "bytes": 2319,
+          "sha256": "e0b802b26e1aa3bce4247b942fa78cfe6d859f2f10f2090c338818ae08578afb"
+        }
+      ],
+      "blend": "M01_CoastalFacadeBay_Production01.blend",
+      "glb": "M01_CoastalFacadeBay_Production01.glb",
+      "render_groups": [
+        {
+          "glob": "checkpoints/*.png",
+          "count": 3,
+          "width": 2048,
+          "height": 1152
+        },
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 2048,
+          "height": 1152
+        }
+      ],
+      "required_json": {
+        "receipts/production_receipt.json": "skyguard.m01-coastal-facade-bay-production01.receipt.v1"
+      },
+      "checks": [
+        {"file": "receipts/production_receipt.json", "path": "checkpoint_render_count", "op": "eq", "value": 3},
+        {"file": "receipts/production_receipt.json", "path": "final_render_count", "op": "eq", "value": 8},
+        {"file": "receipts/production_receipt.json", "path": "accepted_window_instances", "op": "eq", "value": 1},
+        {"file": "receipts/production_receipt.json", "path": "failed_corner_block_geometry_reused", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.failed_recovery01_facade_geometry_reused", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.accepted_window_geometry_reauthored", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.hidden_full_facade_slab", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.balcony_rail_section", "op": "eq", "value": "square_steel"},
+        {"file": "receipts/production_receipt.json", "path": "vertices", "op": "ge", "value": 20000},
+        {"file": "receipts/production_receipt.json", "path": "polygons", "op": "ge", "value": 20000},
+        {"file": "receipts/production_receipt.json", "path": "triangles", "op": "ge", "value": 40000},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.source_front_axis", "op": "eq", "value": "-Y"},
+        {"file": "receipts/production_receipt.json", "path": "axis_validation.applied_yaw_radians", "op": "eq", "value": 0.0},
+        {"file": "receipts/production_receipt.json", "path": "unreal_import_allowed", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "runtime_promotion_allowed", "op": "eq", "value": false},
+        {"file": "receipts/production_receipt.json", "path": "render_meshes", "op": "contains_all", "value": ["SM_M01_CoastalFacadeBay_A_StructureFrame", "SM_M01_CoastalFacadeBay_A_Glass", "SM_M01_CoastalFacadeBay_A_Interior", "SM_M01_CoastalFacadeBay_A_BalconyDetails"]},
+        {"file": "receipts/production_receipt.json", "path": "collision_meshes", "op": "contains_all", "value": ["UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_00", "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_01", "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_02", "UCX_SM_M01_CoastalFacadeBay_A_BalconyDetails_00"]},
+        {"file": "receipts/production_receipt.json", "path": "sockets", "op": "contains_all", "value": ["SOCKET_M01_CoastalFacadeBay_Origin", "SOCKET_M01_CoastalFacadeBay_WindowCenter", "SOCKET_M01_CoastalFacadeBay_Balcony", "SOCKET_M01_CoastalFacadeBay_AttachLeft", "SOCKET_M01_CoastalFacadeBay_AttachRight"]}
+      ],
+      "quality_gate": {
+        "profile": "m01_coastal_facade_bay_production01_recovery02_v1",
+        "image_rules": [
+          {"glob": "checkpoints/*.png", "dark_threshold": 0.02, "bright_threshold": 0.98, "minimum_mean_luminance": 0.04, "maximum_mean_luminance": 0.82, "maximum_dark_pixel_fraction": 0.85, "maximum_bright_pixel_fraction": 0.15, "minimum_luminance_stddev": 0.025},
+          {"glob": "renders/*.png", "dark_threshold": 0.02, "bright_threshold": 0.98, "minimum_mean_luminance": 0.025, "maximum_mean_luminance": 0.85, "maximum_dark_pixel_fraction": 0.9, "maximum_bright_pixel_fraction": 0.18, "minimum_luminance_stddev": 0.02}
+        ]
+      },
+      "required_glb_nodes": [
+        "SM_M01_CoastalFacadeBay_A_BalconyDetails",
+        "SM_M01_CoastalFacadeBay_A_Glass",
+        "SM_M01_CoastalFacadeBay_A_Interior",
+        "SM_M01_CoastalFacadeBay_A_StructureFrame",
+        "SOCKET_M01_CoastalFacadeBay_AttachLeft",
+        "SOCKET_M01_CoastalFacadeBay_AttachRight",
+        "SOCKET_M01_CoastalFacadeBay_Balcony",
+        "SOCKET_M01_CoastalFacadeBay_Origin",
+        "SOCKET_M01_CoastalFacadeBay_WindowCenter",
+        "UCX_SM_M01_CoastalFacadeBay_A_BalconyDetails_00",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_00",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_01",
+        "UCX_SM_M01_CoastalFacadeBay_A_StructureFrame_02"
+      ],
+      "minimum_meshes": 8,
+      "minimum_skins": 0,
+      "minimum_animations": 0
     }
   }
 }

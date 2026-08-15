@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-11T19:58:35.803485Z"
+    "updated_at_utc": "2026-08-12T23:49:24.971716Z"
   },
   "toolchain": {
     "blender": {
@@ -259,7 +259,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "awaiting_review",
+      "status": "failed",
       "existing": [
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CONTRACT.json",
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_OFFLINE_DESIGN_FREEZE.json",
@@ -317,8 +317,8 @@
         "sockets",
         "direct_full_resolution_visual_review"
       ],
-      "state_reason": "Blender output and mandatory automatic postflight passed; direct full-resolution visual review remains required before Unreal import or acceptance.",
-      "state_changed_at_utc": "2026-08-11T19:58:35.803470Z",
+      "state_reason": "Rejected from prepared visual review packet Docs/AAA_Review/PHASE2_YAK52_METHOD02_PLUS_VISUAL_REVIEW_PACKET_2026-08-11.json: constant-radius fuselage/cowling blockout, slab-like wings and empennage at hero distance, and plastic/blockout material differentiation. Mechanical envelope pass is not visual acceptance. Classification FAILED_WITH_EVIDENCE.",
+      "state_changed_at_utc": "2026-08-11T23:30:32.165874Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z",
       "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z.json",
       "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
@@ -1010,7 +1010,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 13,
-      "status": "source_candidate",
+      "status": "accepted",
       "existing": [
         "Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008"
       ],
@@ -1022,7 +1022,307 @@
         "pbr",
         "collision",
         "nanite_or_lods"
-      ]
+      ],
+      "state_reason": "PASSED_PRODUCTION_MID_DISTANCE_M01_LANDMARK_CANDIDATE; acceptance freeze SHA-256 99dc54ef8e9d9bf44d113aba190bc1810b89ca45ae889f897cbae830c5bfc88d; runtime promotion still requires Stage04 D3D12 proof.",
+      "state_changed_at_utc": "2026-08-12T22:34:15.329260Z"
+    },
+    {
+      "id": "m01-coastal-corner-block-production01",
+      "name": "Mission 1 asymmetric coastal corner block production candidate",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_building",
+      "priority": 14,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_UNREALREADY01_GROK_MCP_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE03_VISUAL_PROOF01_DIRECT_VISUAL_REVIEW.json",
+        "Scripts\\Production\\m01_coastal_corner_block_production01\\production_contract.json",
+        "Docs\\AAA_Review\\M01_COASTAL_CORNER_BLOCK_PRODUCTION01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_COASTAL_CORNER_BLOCK_PRODUCTION01_ATTEMPT01_TERMINAL_FREEZE.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "small_hero_cell",
+        "new_building_shell",
+        "accepted_window_dependency",
+        "open_facade_construction",
+        "asymmetric_roofline",
+        "governed_local_pbr",
+        "checkpointed_visual_review"
+      ],
+      "worker": {
+        "script": "Scripts\\Production\\m01_coastal_corner_block_production01\\build_m01_coastal_corner_block_production01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-corner-block-production01",
+          "--contract",
+          "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_corner_block_production01\\production_contract.json"
+        ],
+        "minimum_renders": 12,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-coastal-corner-block-production01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-corner-block-production01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_shell_without_failed_whole_building_reuse",
+        "accepted_recovery06_window_dependency",
+        "open_facade_construction",
+        "asymmetric_mansard_and_corner_pavilion",
+        "deep_entrance_and_storefronts",
+        "authored_balconies_cornices_and_rooftop_equipment",
+        "governed_local_pbr",
+        "twelve_2048x1152_final_renders",
+        "blend",
+        "glb",
+        "three_ucx_collision_meshes",
+        "five_sockets",
+        "automatic_proxy_rejection",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "FAILED_WITH_EVIDENCE. Blender 5.2 lost the transient Render Result after writing the first PNG; independent full-resolution review also rejected backward accepted-window placement, exposed-frame facade read, incoherent materials, generic repetition and unresolved attachment depth. Failed geometry and namespace are terminal; no export-only recovery or Unreal import is authorized.",
+      "state_changed_at_utc": "2026-08-12T22:49:53.761887Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-corner-block-production01\\attempt_20260812T224944682745Z"
+    },
+    {
+      "id": "m01-coastal-facade-bay-production01",
+      "name": "Mission 1 reference-driven modular coastal facade bay",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 14,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_OFFLINE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_COASTAL_CORNER_BLOCK_PRODUCTION01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_UNREALREADY01_GROK_MCP_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+        "Scripts\\Production\\m01_coastal_facade_bay_production01\\production_contract.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "small_hero_cell",
+        "accepted_window_dependency",
+        "axis_validated",
+        "open_facade_construction",
+        "checkpointed_visual_review",
+        "governed_local_pbr"
+      ],
+      "worker": {
+        "script": "Scripts\\Production\\m01_coastal_facade_bay_production01\\build_m01_coastal_facade_bay_production01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-facade-bay-production01",
+          "--contract",
+          "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01\\production_contract.json"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-coastal-facade-bay-production01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-facade-bay-production01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_failed_corner_block_reuse",
+        "accepted_recovery06_window_dependency",
+        "negative_y_front_axis_checkpoint",
+        "open_wall_construction",
+        "physically_attached_juliet_balcony",
+        "restrained_material_palette",
+        "three_preliminary_2048x1152_checkpoints",
+        "eight_final_2048x1152_renders",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "five_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Blender returned nonzero exit code 3.",
+      "state_changed_at_utc": "2026-08-12T23:04:37.104876Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-facade-bay-production01\\attempt_20260812T230433859469Z"
+    },
+    {
+      "id": "m01-coastal-facade-bay-production01-recovery01",
+      "name": "Mission 1 modular coastal facade bay measured-bound Recovery01",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 14,
+      "status": "failed",
+      "existing": [
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_OFFLINE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+        "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\production_contract.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "small_hero_cell",
+        "accepted_window_dependency",
+        "measured_dependency_bounds",
+        "axis_validated",
+        "open_facade_construction",
+        "checkpointed_visual_review",
+        "governed_local_pbr"
+      ],
+      "worker": {
+        "script": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\build_m01_coastal_facade_bay_production01_recovery01.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-facade-bay-production01-recovery01",
+          "--contract",
+          "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\production_contract.json"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-coastal-facade-bay-production01-recovery01",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-facade-bay-production01-recovery01\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "frozen_production01_worker",
+        "measured_3.60m_consolidated_frame_guard",
+        "fresh_namespace",
+        "three_preliminary_2048x1152_checkpoints",
+        "eight_final_2048x1152_renders",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "five_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "Rejected at full-resolution visual review: the accepted window remains reusable, but the surrounding module reads as a test rig due to oversized timber perimeter, arbitrary side bars, plastic-looking balcony fascia, unresolved rail joints, exposed diagonal brace ends, primitive interior lighting and insufficient architectural depth. Facade and balcony geometry may not be reused or imported.",
+      "state_changed_at_utc": "2026-08-12T23:19:29.649807Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-facade-bay-production01-recovery01\\attempt_20260812T230933763496Z"
+    },
+    {
+      "id": "m01-coastal-facade-bay-production01-recovery02",
+      "name": "Mission 1 modular coastal facade bay architecture-first Recovery02",
+      "lane": "P0-mission01-visual-slice",
+      "owner": "blender",
+      "quality": "hero_environment_module",
+      "priority": 14,
+      "status": "accepted",
+      "existing": [
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY02_OFFLINE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+        "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\production_contract.json"
+      ],
+      "blocker": null,
+      "feedback_guard_required": true,
+      "feedback_lane": "m01_environment",
+      "strategy_tags": [
+        "asset_specific",
+        "authored_geometry",
+        "architecture_first",
+        "small_hero_cell",
+        "fresh_facade_and_balcony_geometry",
+        "accepted_window_dependency",
+        "pale_masonry_hierarchy",
+        "square_steel_balcony",
+        "terminated_rails_and_brackets",
+        "open_facade_construction",
+        "checkpointed_visual_review",
+        "governed_local_pbr"
+      ],
+      "worker": {
+        "script": "Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\build_m01_coastal_facade_bay_production01_recovery02.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "m01-coastal-facade-bay-production01-recovery02",
+          "--contract",
+          "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\production_contract.json"
+        ],
+        "minimum_renders": 11,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "m01-coastal-facade-bay-production01-recovery02",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-facade-bay-production01-recovery02\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true,
+          "direct_full_resolution_review_required": true
+        }
+      },
+      "required": [
+        "fresh_geometry_without_recovery01_facade_or_balcony_reuse",
+        "accepted_recovery06_window_dependency",
+        "measured_3.60m_consolidated_frame_guard",
+        "pale_masonry_architectural_hierarchy",
+        "continuous_square_steel_balcony_rails",
+        "visible_wall_plates_and_embedded_brackets",
+        "restrained_interior_emission",
+        "fresh_namespace",
+        "three_preliminary_2048x1152_checkpoints",
+        "eight_final_2048x1152_renders",
+        "blend",
+        "glb",
+        "four_ucx_collision_meshes",
+        "five_sockets",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "All 11 original 2048x1152 renders inspected. Accepted as bounded Stage04 facade candidate; fresh masonry and square-steel balcony correct Recovery01 defects. Unreal material calibration required for dark trim. No direct runtime promotion.",
+      "state_changed_at_utc": "2026-08-12T23:49:24.971709Z",
+      "latest_attempt": "Production\\Attempts\\m01-coastal-facade-bay-production01-recovery02\\attempt_20260812T234648713102Z",
+      "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\m01-coastal-facade-bay-production01-recovery02\\attempt_20260812T234648713102Z.json",
+      "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
     },
     {
       "id": "m01-radar-post",
@@ -2902,9 +3202,20 @@
         "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_ATTEMPT01_TERMINAL_FREEZE.json",
         "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_POSTFLIGHT.json",
         "Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_DIRECT_VISUAL_REVIEW.json",
-        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_DIRECT_VISUAL_REVIEW.md"
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_KIT_REFINEMENT01_STAGEA_RECOVERY10_CHECKPOINT01_DIRECT_VISUAL_REVIEW.md",
+        "Docs\\AAA_Review\\M01_HERO_STREET_SHORE_CELL03_RECOVERY01_AUTHORING_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_STREET_SHORE_CELL03_RECOVERY01_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M01_HERO_STREET_SHORE_CELL03_RECOVERY01_VISUAL_PROOF01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_2026-08-13.md",
+        "Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_2026-08-13.md",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\PHASE1_8_COMPLETION_AUDIT_ADDENDUM_M01_VISIBLE_ENVIRONMENT_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_ATTEMPT01_2026-08-12.md",
+        "Docs\\AAA_Review\\M01_PRODUCTION_VERTICAL_SLICE_ACCEPTANCE_MATRIX_ADDENDUM_STAGE06_DISTRICT_CORRECTION01_VISUAL_PROOF01_2026-08-12.md"
       ],
-      "blocker": "No per-run user-authorization blocker remains. Recovery10 Checkpoint01 completed one governed Blender launch and passed automatic postflight, but direct full-resolution review classified it FAILED_WITH_EVIDENCE for procedural repetition, weak PBR detail, inadequate ocean/shore contact, simplified supporting assets, and synthetic night/storm response. StageB, Unreal import, grounding, reauthoring, finalization, promotion, and another Unreal proof remain blocked until a new art-direction and PBR production reset passes automatic validation, mandatory independent postflight, and direct full-resolution visual review.",
+      "blocker": "Stage06 authoring fixed detached facades, misgrounded bollards, structural grounding and runtime stability, but its one-shot D3D12 proof still failed automatic and direct full-resolution production visual review for crushed facade recesses, bright flat inland parcels, repeated apartment modules, unreadable vegetation, weak roads and urban life, and flat beach-to-water presentation. Runtime promotion remains blocked pending the Stage07 production material, architecture-variation, vegetation, shoreline and density correction.",
       "required": [
         "8_captures",
         "900_frame_samples",
@@ -2912,8 +3223,36 @@
         "material_restoration",
         "human_visual_review"
       ],
-      "state_reason": "Standing Blender/Unreal authorization freeze 1366fc227908148199776d866d3f3a94bd56919d54babf5d64be9c26633df4e1 prospectively removes per-run user approval while retaining one-heavy-process, fresh-namespace, zero-retry, immutable-evidence, postflight, visual-review, and reversible-integration safeguards. Recovery10 terminal freeze 80eddd2ebf7cb403aabcf305317cde8702ff6709cccbe517bb19c4f10aaa5cb0 preserves the automatic pass and direct visual rejection. The next executable gate is OFFLINE_M01_VISIBLE_ENVIRONMENT_ART_DIRECTION_AND_PBR_PRODUCTION_RESET, not another lighting-only recovery.",
-      "state_changed_at_utc": "2026-08-10T00:27:05Z"
+      "state_reason": "Stage06 proved a healthy D3D12 SM6 runtime at 8.335 ms mean, 8.338 ms p95 and 12.930 ms maximum across 3,600 frames with eight complete 2560x1440 captures, one Unreal launch, zero retries and an unchanged map. Production visual acceptance failed. The next executable gate is M01_VISIBLE_ENVIRONMENT_STAGE07_PRODUCTION_MATERIAL_VARIATION_VEGETATION_SHORELINE_DENSITY_CORRECTION01.",
+      "state_changed_at_utc": "2026-08-13T03:28:11.202966Z"
+    },
+    {
+      "id": "m02-harbor-double-bitt-bollard-deterministic-recovery06",
+      "name": "M02 harbor double-bitt bollard deterministic Recovery06",
+      "lane": "P1-modular-environment-library",
+      "owner": "blender",
+      "quality": "mid_distance_harbor_prop",
+      "priority": 25,
+      "status": "accepted",
+      "existing": [
+        "Docs\\AAA_Review\\M02_HARBOR_DOUBLE_BITT_BOLLARD_DETERMINISTIC_RECOVERY06_TERMINAL_FREEZE.json",
+        "Docs\\AAA_Review\\M02_HARBOR_DOUBLE_BITT_BOLLARD_DETERMINISTIC_RECOVERY06_DIRECT_VISUAL_REVIEW.json",
+        "Docs\\AAA_Review\\M02_HARBOR_DOUBLE_BITT_BOLLARD_DETERMINISTIC_RECOVERY06_ACCEPTANCE_FREEZE.json",
+        "Production\\Attempts\\m02-harbor-double-bitt-bollard-deterministic-recovery06\\attempt_20260811T1325000000000Z\\output\\M02_Harbor_DoubleBittBollard_Production01.blend",
+        "Production\\Attempts\\m02-harbor-double-bitt-bollard-deterministic-recovery06\\attempt_20260811T1325000000000Z\\output\\exports\\M02_Harbor_DoubleBittBollard_Production01.glb"
+      ],
+      "blocker": null,
+      "required": [
+        "blend",
+        "glb",
+        "socket",
+        "ucx_collision",
+        "eight_1920x1080_renders",
+        "direct_full_resolution_visual_review"
+      ],
+      "state_reason": "All eight original 1920x1080 renders were inspected directly. The paired bitts, domed heads, shared foundation, gussets and fasteners read as a grounded heavy harbor mooring fitting under the complete lighting suite. Accepted only as a provisional repeated mid-distance M02 harbor prop; fastener/plate detail and Blender material response remain below hero close-up quality. Runtime promotion is false. A fresh isolated Unreal staging import, calibrated harbor materials and later D3D12 mapped proof remain required.",
+      "state_changed_at_utc": "2026-08-12T11:55:03Z",
+      "latest_attempt": "Production\\Attempts\\m02-harbor-double-bitt-bollard-deterministic-recovery06\\attempt_20260811T1325000000000Z"
     },
     {
       "id": "unreal-m01-vertical-slice",

@@ -1,0 +1,41 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07b-material-terrain-district-variety01.namespace-plan.v1",
+  "fresh": true,
+  "failed_namespace_reuse": false,
+  "input_immutable": {
+    "map_asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01",
+    "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01.umap",
+    "bytes": 1106246,
+    "sha256": "5910dd3a94eeb43912631251cf3dc05bf266df197151587aab2c2ca5b3f61e6d",
+    "mutation_allowed": false
+  },
+  "also_immutable": [
+    {
+      "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01.umap",
+      "sha256": "c16ed0971b66a179e7c214941ed5fed75bac2b4f440ff35aa58d4cab88875eed"
+    },
+    {
+      "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage06DistrictCorrection01.umap",
+      "sha256": "cfe31e19f32b2ce4ac89475195f20c99b54cb6bb56041a34ae30054e2dce1754"
+    }
+  ],
+  "output": {
+    "map_asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01",
+    "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_AUTHORING01\\attempt_01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_AUTHORING01_TERMINAL_MANIFEST.json",
+    "emergency_receipt": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_AUTHORING01_EMERGENCY_RECEIPT.jsonl",
+    "checkpoint_dir": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_AUTHORING01\\attempt_01\\checkpoints"
+  },
+  "forbidden_reuse": [
+    "STAGE07A",
+    "HeroCorridor01Correction01",
+    "VISUAL_PROOF01_RECOVERY01",
+    "Lvl_M01_VisibleEnvironmentStage07A"
+  ],
+  "runtime_promotion": false,
+  "canonical_content_mutation": false,
+  "isolated_workspace_only": "D:\\SG52T08_ENV01"
+}

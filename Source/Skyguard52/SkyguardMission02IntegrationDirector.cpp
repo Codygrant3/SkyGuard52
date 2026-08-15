@@ -10,10 +10,12 @@
 #include "SkyguardMissionBriefingComponent.h"
 #include "SkyguardMissionDefinition.h"
 #include "SkyguardMissionDirectorCampaignHelpers.h"
+#include "SkyguardMissionDirectorPresentationHelpers.h"
 #include "SkyguardMissionMapAssemblyDirector.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRadioChatterComponent.h"
 #include "SkyguardSortiePresentationComponent.h"
+#include "SkyguardPlayerAircraft.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/SceneComponent.h"
 #include "Engine/GameInstance.h"
@@ -286,12 +288,7 @@ void ASkyguardMission02IntegrationDirector::BindRuntimeActors(
 		YakAircraft->SetEnginePower(0.82f);
 		YakAircraft->SetRearCanopyOpen(true);
 	}
-	if (YakAircraft && Gunner && YakAircraft->GetRearGunnerMount())
-	{
-		Gunner->AttachToComponent(
-			YakAircraft->GetRearGunnerMount(),
-			FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	}
+	FSkyguardPlayerAircraft::AttachGunner(Gunner, YakAircraft);
 	if (Breakwater)
 	{
 		Breakwater->OnBossPhaseChanged.AddUniqueDynamic(
@@ -550,6 +547,9 @@ void ASkyguardMission02IntegrationDirector::ConfigurePresentation()
 		RadioChatter->EnqueueLine(Line);
 	}
 	Readiness.RadioLineCount = Lines.Num();
+	SkyguardMissionDirectorPresentationHelpers::BindHudHostToPresentation(
+		this,
+		SortiePresentation);
 }
 
 void ASkyguardMission02IntegrationDirector::TryLaunchSortie()

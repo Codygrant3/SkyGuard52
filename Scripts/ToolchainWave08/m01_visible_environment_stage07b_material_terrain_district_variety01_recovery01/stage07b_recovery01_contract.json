@@ -1,0 +1,101 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07b-material-terrain-district-variety01.recovery01-authoring01-contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE07B-MATERIAL-TERRAIN-DISTRICT-VARIETY01-RECOVERY01-AUTHORING01",
+  "purpose": "Bounded Recovery01 of the failed Stage 7B authoring attempt. Recreate the same material/terrain/district corrections from immutable Stage 7A Correction01 in a fresh map. Do not capture screenshots in UnrealEditor-Cmd. Defer the eight-frame D3D12 proof to the proven UnrealEditor.exe visual-proof path.",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01.umap",
+    "bytes": 1106246,
+    "sha256": "5910dd3a94eeb43912631251cf3dc05bf266df197151587aab2c2ca5b3f61e6d",
+    "expected_governed_actor_count": 301,
+    "maximum_editor_only_actor_delta": 1
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_AUTHORING01\\attempt_01"
+  },
+  "authorities": [
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07A_PHASES1_5_TERMINAL_AUDIT_2026-08-13.json", "bytes": 3168, "sha256": "355cd5cd9c06ecf88aa90281677212ad0f6045111d8f8dfa4d8400eda9c052d4"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_CORRECTION01_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 6496, "sha256": "1c1dd80d7257dfd809cbb78ad8d0649b78880aee5ab2b98f250ffc0c12cba6d4"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_CORRECTION01_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json", "bytes": 3733, "sha256": "0c67fbce98c0517e1db563ea6666f365295a0cadcfbd34af3d072fac7fe5691e"},
+    {"path": "D:\\Skyguard52\\Docs\\Handoffs\\GROK46_AUTHORITY_INDEX.json", "bytes": 8307, "sha256": "33b0af5b098ff854481d509a772447574daac0183d6d210d1dffe9f0e83d29f2"},
+    {"path": "D:\\Skyguard52\\Docs\\Handoffs\\GROK46_NEXT_GATE_STAGE7B.md", "bytes": 8949, "sha256": "b7ef153d68b90dfbc1d6c65f2c48ad6bc8cf771d0f6646964037ef1efdafc2c1"},
+    {"path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json", "bytes": 2146, "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_DIRECT_VISUAL_REVIEW.json", "bytes": 2501, "sha256": "23948884b577798bce73c2403e01f4972de0b9300a36bc79c08fae4412ec687e"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_AUTHORING01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 5513, "sha256": "1804c3b97aaa162a3127ea28cc599c103bd9357ff71a58adbae54c4d8d08fb56"}
+  ],
+  "bindings": {
+    "landscape_actor": "M01_A01_Landscape_Production",
+    "landscape_material": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06R01_PlantingSoil",
+    "corridor_terrain_actor": "M01_C06R01_Corridor_TERRAIN",
+    "corridor_terrain_slots": {
+      "0": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_WetSand",
+      "1": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_DrySand"
+    },
+    "corridor_hardscape_actor": "M01_C06R01_Corridor_HARDSCAPE",
+    "corridor_hardscape_slots": {
+      "0": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_PromenadePavers",
+      "1": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_Asphalt"
+    },
+    "coastal_terrain_actor": "M01_HSSC02_CoastalA_TERRAIN",
+    "coastal_terrain_slots": {
+      "0": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_DuneSand"
+    },
+    "forbidden_landscape_material": "/Game/M01/VisibleEnvironmentStage07AHeroCorridor01/Materials/MI_M01_Stage07A_DistrictGround"
+  },
+  "hide_line_vegetation_prefixes": [
+    "M01_STAGE07A_Vegetation_",
+    "M01_STAGE06_Vegetation_",
+    "M01_PHV02_"
+  ],
+  "preserve_hidden_rejected_contact": "M01_ACA03R01_Corridor_CONTACT",
+  "preserve_labels": ["M01_STAGE03_Lighthouse_Hero_", "M01_STAGE04R03_LighthouseHero_"],
+  "corrections": {
+    "minimum_surface_families": 4,
+    "vegetation_cluster_count": 14,
+    "new_vegetation_actors": 55,
+    "new_building_groups": 4,
+    "new_building_actors": 12,
+    "new_facade_bay_groups": 2,
+    "new_facade_bay_actors": 8,
+    "total_new_actors": 75,
+    "minimum_skyline_silhouettes": 4,
+    "max_adjacent_same_treatment": 2,
+    "lighting": {
+      "sun_intensity": 4.4,
+      "fill_intensity": 36.0,
+      "skylight_intensity": 28.0,
+      "exposure_bias": 1.45,
+      "film_slope": 0.74,
+      "film_toe": 0.11,
+      "film_shoulder": 0.34,
+      "lower_hemisphere_color": [0.32, 0.36, 0.40, 1.0]
+    }
+  },
+  "checkpoint": {
+    "same_unreal_launch": false,
+    "reason": "Attempt01 proved UnrealEditor-Cmd cannot write HighResShot/AutomationLibrary PNGs. Recovery01 authors with NullRHI and defers capture to the proven UnrealEditor.exe D3D12 proof supervisor.",
+    "next_capture_gate": "M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_VISUAL_PROOF01"
+  },
+  "runtime": {
+    "project": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+    "editor": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "rhi": "NullRHI",
+    "feature_level": "SM6",
+    "single_unreal_launch": true,
+    "automatic_retries": 0,
+    "failed_namespace_reuse": false,
+    "supervisor_timeout_seconds": 1800
+  },
+  "acceptance": {
+    "input_map_mutation": false,
+    "runtime_promotion": false,
+    "automatic_retry": false,
+    "actor_delta": 75,
+    "do_not_overwrite_failed_stage7b_map": true,
+    "next_gate": "M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_VISUAL_PROOF01"
+  }
+}

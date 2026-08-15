@@ -1,0 +1,14 @@
+{
+  "schema": "skyguard.m01-lighthouse-source-evaluation01-recovery02.contract.v1",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_READ_ONLY_BLENDER_SOURCE_EVALUATION_RECOVERY02",
+  "attempt01_failure": {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 3338, "sha256": "0d07a6d7bbfe12f9b9179e05f00f9f7e917aabbae3f024d3eeb589982d331200"},
+  "recovery01_offline_failure": {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY01_OFFLINE_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 1769, "sha256": "2dbe3a4d7458aec2754b0cb533ad8fd7ed7457ad6234ae53635781392ca04a53"},
+  "frozen_evaluator": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01\\evaluate_m01_lighthouse_sources.py", "bytes": 13686, "sha256": "694ab5ff929ee3d1b1d41480367131f1d18ce9110a3674ab4b8804c3c8287958"},
+  "frozen_source_contract": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01\\source_evaluation_contract.json", "bytes": 3806, "sha256": "effefe23ee77c14469f5bb728fc95807029e22f0e5e7df12ccc5dbf5c72c7126"},
+  "compatibility_wrapper": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01_recovery02\\evaluate_m01_lighthouse_sources_recovery02.py", "bytes": 2431, "sha256": "28085f18613f401ab83e07fe0f20d63a197750579cab6e0041a0c3c1afd70829"},
+  "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY02\\attempt_01",
+  "terminal": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY02_TERMINAL_MANIFEST.json",
+  "expected_render_count": 8,
+  "correction_allowlist": ["Blender 5.2 Principled metallic socket lookup", "temporary in-memory review-axis normalization", "expanded PowerShell command tokenization", "immediate numeric exit-code and type capture", "supervisor-side final artifact inventory"],
+  "policies": {"read_only_sources": true, "single_blender_launch": true, "automatic_retries": 0, "failed_namespace_reuse": false, "unreal_launches": 0, "runtime_promotion": false}
+}

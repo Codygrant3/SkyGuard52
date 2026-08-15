@@ -1,6 +1,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardCombatVFX.h"
+#include "SkyguardCombatNiagaraCatalog.h"
 #include "SkyguardCombatVFXPoolSubsystem.h"
 
 #include "Engine/Engine.h"
@@ -49,6 +50,32 @@ namespace SkyguardCombatVFXTests
 		}
 		return Count;
 	}
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCombatNiagaraCatalogPathsTest,
+	"Skyguard52.Combat.VFX.NiagaraCatalog.HasNonEmptySoftPaths",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCombatNiagaraCatalogPathsTest::RunTest(
+	const FString& Parameters)
+{
+	const TArray<FSoftObjectPath> Paths = {
+		USkyguardCombatNiagaraCatalog::GetMuzzleFlashPath(),
+		USkyguardCombatNiagaraCatalog::GetGunSmokePath(),
+		USkyguardCombatNiagaraCatalog::GetHitSparksPath(),
+		USkyguardCombatNiagaraCatalog::GetDroneExplosionPath(),
+		USkyguardCombatNiagaraCatalog::GetMissileTrailPath(),
+		USkyguardCombatNiagaraCatalog::GetIglaLaunchPath()};
+	for (const FSoftObjectPath& Path : Paths)
+	{
+		TestTrue(
+			*FString::Printf(
+				TEXT("Niagara soft path is configured: %s"),
+				*Path.ToString()),
+			Path.IsValid() && !Path.ToString().IsEmpty());
+	}
+	return true;
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(

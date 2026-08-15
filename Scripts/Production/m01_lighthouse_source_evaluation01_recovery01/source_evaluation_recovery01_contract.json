@@ -1,0 +1,13 @@
+{
+  "schema": "skyguard.m01-lighthouse-source-evaluation01-recovery01.contract.v1",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_READ_ONLY_BLENDER_SOURCE_EVALUATION_RECOVERY01",
+  "failure_authority": {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 3338, "sha256": "0d07a6d7bbfe12f9b9179e05f00f9f7e917aabbae3f024d3eeb589982d331200"},
+  "frozen_evaluator": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01\\evaluate_m01_lighthouse_sources.py", "bytes": 13686, "sha256": "694ab5ff929ee3d1b1d41480367131f1d18ce9110a3674ab4b8804c3c8287958"},
+  "frozen_source_contract": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01\\source_evaluation_contract.json", "bytes": 3806, "sha256": "effefe23ee77c14469f5bb728fc95807029e22f0e5e7df12ccc5dbf5c72c7126"},
+  "compatibility_wrapper": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01_recovery01\\evaluate_m01_lighthouse_sources_recovery01.py", "bytes": 1425, "sha256": "3d3deafd5282e2a44397ec38ef912a3956474030bbfa7c0f78f64595f9b2c103"},
+  "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY01\\attempt_01",
+  "terminal": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY01_TERMINAL_MANIFEST.json",
+  "expected_render_count": 8,
+  "correction_allowlist": ["Blender 5.2 Principled metallic socket lookup", "immediate numeric exit-code and type capture", "supervisor-side final artifact inventory"],
+  "policies": {"read_only_sources": true, "single_blender_launch": true, "automatic_retries": 0, "failed_namespace_reuse": false, "unreal_launches": 0, "runtime_promotion": false}
+}

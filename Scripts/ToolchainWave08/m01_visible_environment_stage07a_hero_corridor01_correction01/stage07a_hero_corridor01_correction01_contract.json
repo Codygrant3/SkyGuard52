@@ -1,0 +1,89 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07a-hero-corridor01-correction01.authoring01-contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE07A-HERO-CORRIDOR01-CORRECTION01-AUTHORING01",
+  "purpose": "Apply the single bounded post-checkpoint correction to the immutable Stage07A map: darker district substrate, more readable accepted vegetation, limited modular skyline variation, and a bounded overcast lighting lift.",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01.umap",
+    "bytes": 1098720,
+    "sha256": "c16ed0971b66a179e7c214941ed5fed75bac2b4f440ff35aa58d4cab88875eed",
+    "expected_governed_actor_count": 301,
+    "maximum_editor_only_actor_delta": 1
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07AHeroCorridor01Correction01.umap",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_CORRECTION01_AUTHORING01\\attempt_01"
+  },
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_VISUAL_PROOF01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 3796,
+      "sha256": "e59c5c7afbcc9501fe706551c9a80ba3492943a1bfd8b8c972fc9051148f9a58"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_VISUAL_PROOF01_TERMINAL_SUPERVISOR.json",
+      "bytes": 42991,
+      "sha256": "5c8aaf9ab30acd8a29bbfeece8830912e355c8e272534a061ef23b59c910ac53"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_VISUAL_PROOF01_POSTFLIGHT.json",
+      "bytes": 252888,
+      "sha256": "399e2414b4ff6585056fc25a381cdf345b6f93740b3a3b5732c218edf443cb17"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_AUTHORING01\\attempt_01\\authoring_receipt.json",
+      "bytes": 46036,
+      "sha256": "5084c737ea45169adf00b98a8d26fdc4143a04c37d1ac8f0b308326aa31fabcf"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_AUTHORING01_TERMINAL_MANIFEST.json",
+      "bytes": 9253,
+      "sha256": "dfd863593f765e655cf701c619bc320cc5425d25efb3db2ade34f2a05330d897"
+    },
+    {
+      "path": "D:\\SG52T08_ENV01\\Content\\M01\\CoastalCorridorC06R01\\M01_CoastalCorridor_C06R01_UNREAL_READY\\Materials\\M_M01_C06R01_PlantingSoil.uasset",
+      "bytes": 65155,
+      "sha256": "bfa7e0840537f12a701e223e25ac20a290ff3bb23d6a06d4237a80ad3c36cea7"
+    }
+  ],
+  "correction": {
+    "terrain_actor": "M01_HSSC02_CoastalA_TERRAIN",
+    "terrain_slot": 0,
+    "terrain_material": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06R01_PlantingSoil",
+    "vegetation_actor_count": 48,
+    "vegetation_scale_multipliers": {
+      "fir_sapling": 1.65,
+      "pine_sapling_small": 1.65,
+      "shrub_02": 1.8,
+      "shrub_04": 1.6,
+      "grass_medium_02": 1.7
+    },
+    "vegetation_max_y_cm": 12100.0,
+    "building_group_count": 13,
+    "building_part_count": 39,
+    "building_scale_bounds": {
+      "xy_min": 0.88,
+      "xy_max": 1.12,
+      "z_min": 0.8,
+      "z_max": 1.15
+    },
+    "lighting": {
+      "sun_intensity": 5.2,
+      "fill_intensity": 48.0,
+      "skylight_intensity": 38.0,
+      "exposure_bias": 2.05,
+      "film_slope": 0.66,
+      "film_toe": 0.1,
+      "film_shoulder": 0.4,
+      "lower_hemisphere_color": [0.48, 0.52, 0.58, 1.0]
+    }
+  },
+  "acceptance": {
+    "input_map_mutation": false,
+    "actor_delta": 0,
+    "runtime_promotion": false,
+    "automatic_retry": false,
+    "next_gate": "M01_VISIBLE_ENVIRONMENT_STAGE07A_HERO_CORRIDOR01_CORRECTION01_VISUAL_PROOF01"
+  }
+}

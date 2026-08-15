@@ -1,0 +1,54 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage04-recovery03.authoring01.contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE04-AUTHORING01-RECOVERY03",
+  "immutable_failure_chain": {
+    "recovery01_terminal": {"file": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY01_TERMINAL_MANIFEST.json", "bytes": 5711, "sha256": "28b57410868ea2eb35234c7f6bbc7648dab5197f9459041ad431eddd48a2188a"},
+    "recovery01_receipt": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY01\\attempt_01\\authoring_receipt.json", "bytes": 5073, "sha256": "898c15ea63b60c678672bf8c18bf7c727736a88026e6b26081cf06f582beea90"},
+    "recovery02_source": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY02\\attempt_01\\author_m01_visible_environment_stage04_recovery02.py", "bytes": 26118, "sha256": "4010c5879d1061d6d1436255c754c82b0949cb7471b502bbb70f65d38b8ccde2"},
+    "recovery02_contract": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY02\\attempt_01\\stage04_recovery02_authoring_contract.json", "bytes": 6863, "sha256": "ec4253c842e7d97fa433d86ff183332236fb645ad7c7301bda350d8ca7d5c0dc"},
+    "recovery02_terminal": {"file": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY02_TERMINAL_MANIFEST.json", "bytes": 5458, "sha256": "fc880c0adb4ba8a1529bcc97d0c3f0d9c29f7d519d4ebc897a4327c761226a78"},
+    "recovery02_receipt": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY02\\attempt_01\\authoring_receipt.json", "bytes": 5539, "sha256": "9231f54ac2291b92f0f7eee1f001706659755b71c4490c1ff4f89e8b6a486079"}
+  },
+  "project": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+  "input": {"asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage03", "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage03.umap", "bytes": 911233, "sha256": "28c3462ffe39b6fe753e2ba96761aa0e54d3aa947b41c1c9be4c760202980cad", "actor_count": 195},
+  "output": {"asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage04Recovery03", "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage04Recovery03.umap", "destination": "/Game/M01/VisibleEnvironmentStage04Recovery03", "expected_actor_count": 230, "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_RECOVERY03\\attempt_01"},
+  "accepted_sources": {
+    "facade_glb": {"file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\M01_CoastalFacadeBay_Production01_UE.glb", "bytes": 38550940, "sha256": "f4e78224b0989326add4c79d8b5b1f45e48cff25114dd22f30495cccce7aa10d"},
+    "lighthouse_glb": {"file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\M01_Lighthouse_Production_Refinement01_UE.glb", "bytes": 38247820, "sha256": "d36fb40b31334599562436b453ffbf67c06635939903b34378ea21ad313ab0b6"},
+    "metadata_receipt": {"file": "D:\\Skyguard52\\Production\\Derived\\m01-visible-environment-stage04-accepted-glbs-normalized01\\metadata_normalization_receipt.json", "bytes": 5123, "sha256": "f56001561145ffe09a9632826790b5bf52a28bdc2e60c419eab60521c5d8d4e7"},
+    "scene_inventory": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_STAGE04_SCENE_INVENTORY01\\attempt_01\\scene_inventory.json", "bytes": 302375, "sha256": "2fdff7d0f6cf01b5fb017ed210a04b2ef12a78dc61c0dfc668d6656a9dc11f6c"},
+    "failed_stage04_terminal": {"file": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE04_AUTHORING01_TERMINAL_MANIFEST.json", "bytes": 5329, "sha256": "f56796e76c3c4d89c4ec4ce15124fb33f654e4aea11cc75c5f538c6d7152dbe8"},
+    "failed_import_probe_terminal": {"file": "D:\\Skyguard52\\Saved\\Reports\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY01_IMPORT_PROBE01_TERMINAL.json", "bytes": 409, "sha256": "056dfbee24b21f0402458d2ec3cbb56371d6e9f3b5fa78cf798d50677c9f16e2"},
+    "failed_import_probe_receipt": {"file": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY01_IMPORT_PROBE01\\attempt_01\\import_slot_probe.json", "bytes": 5645, "sha256": "518d849ca85798e1f6ff9ff2d02defce360b50f3d9b2a0daa4057d637288ed2e"}
+  },
+  "bounded_corrections": {
+    "ue58_static_mesh_compatibility": "omit unsupported post_edit_change calls",
+    "source_axis_derivation": "UE X=glTF X, UE Y=glTF Z, UE Z=glTF Y",
+    "recovery02_observation": {"mesh": "SM_M01_CoastalFacadeBay_A_BalconyDetails", "observed_extent_cm": [192.25000762939453, 51.5, 135.75001573562622]},
+    "functional_scope": "no geometry, material, placement, lighting, gameplay, evidence, or acceptance change"
+  },
+  "import_contract": {
+    "additional_rotation_degrees": [0.0, 0.0, 0.0], "extent_tolerance_cm": 3.0, "collision_only_material": "M_REVIEW_M01_CoastalFacadeBay_R02_Collision",
+    "facade_expected_extents_cm": {
+      "SM_M01_CoastalFacadeBay_A_BalconyDetails": [192.25, 51.5, 135.75],
+      "SM_M01_CoastalFacadeBay_A_Glass": [60.2, 0.4, 98.2],
+      "SM_M01_CoastalFacadeBay_A_Interior": [134.0, 125.0, 146.0],
+      "SM_M01_CoastalFacadeBay_A_StructureFrame": [309.0, 51.5, 230.25]
+    },
+    "lighthouse_expected_extents_cm": {
+      "SM_M01_Lighthouse_Details_A": [370.76, 375.38, 1133.5], "SM_M01_Lighthouse_Lantern_A": [345.5, 345.5, 417.07], "SM_M01_Lighthouse_Tower_A": [415.0, 415.0, 950.0]
+    }
+  },
+  "placement": {
+    "facade": {"column_centers_x_cm": [10711.0, 11329.0], "y_cm": 11010.0, "base_z_cm": 760.0, "floor_spacing_cm": 450.0, "floor_count": 4, "yaw_degrees": 2.0, "legacy_window_label_prefixes_to_hide": ["M01_HSSC01R01_Window_", "M01_HSSC03_RearWindow_"]},
+    "lighthouse": {"asset_location_cm": [22500.0, 7600.0, 66.5229151920468], "asset_rotation_degrees": [0.0, 0.0, 0.0], "legacy_labels_to_hide": ["M01_STAGE03_Lighthouse_Hero_DETAILS", "M01_STAGE03_Lighthouse_Hero_GLAZING", "M01_STAGE03_Lighthouse_Hero_STRUCTURAL"]},
+    "vegetation": {"tree_scale_multiplier": 2.75, "shrub_scale_multiplier": 1.35, "groundcover_scale_multiplier": 1.65}
+  },
+  "material_calibration": {
+    "M_M01_CoastalFacadeBay_R02_PaleLimestone": "/Game/M01/EnvKit02/M01_LIGHTHOUSE_A/Materials/M_ENV_Plaster_Warm_2K",
+    "M_M01_CoastalFacadeBay_R02_WeatheredPlinth": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06_WeatheredConcrete",
+    "M_M01_CoastalFacadeBay_R02_BlackenedSquareSteel": "/Game/M01/EnvKit02/M01_APARTMENT_A/Materials/M_ENV_Metal_Plate_2K"
+  },
+  "lighting": {"sun_intensity": 5.0, "fill_intensity": 7.5, "skylight_intensity": 9.0, "exposure_bias": 1.1, "film_slope": 0.78, "film_toe": 0.42, "film_shoulder": 0.26, "film_white_clip": 0.0, "film_black_clip": 0.0},
+  "rules": {"input_map_mutation": false, "failed_namespace_reuse": false, "runtime_promotion": false, "one_unreal_launch": true, "automatic_retry": false, "next_gate": "GOVERNED_D3D12_SM6_STAGE04_RECOVERY03_MAPPED_VISUAL_PROOF"}
+}

@@ -1,0 +1,114 @@
+[CmdletBinding()]
+param(
+    [switch]$AuthorizeSingleBlender,
+    [switch]$OfflineContractTest
+)
+
+$ErrorActionPreference = 'Stop'
+$ProjectRoot = 'D:\Skyguard52'
+$AuthorityPath = Join-Path $ProjectRoot 'Saved\Reports\PHASE2_REARGUNNER_CHARACTER_REFINEMENT01_EXECUTION_AUTHORITY.json'
+$ControllerPath = Join-Path $ProjectRoot 'Scripts\skyguard_production.py'
+$ManifestPath = Join-Path $ProjectRoot 'Production\production_manifest.json'
+$AssetId = 'core-reargunner-character-refinement01'
+$FutureAttemptRoot = Join-Path $ProjectRoot 'Production\Attempts\core-reargunner-character-refinement01'
+$ExpectedAuthorityHash = 'ae71dd90ee80ad823cab0c7096e171907189bedc8f2097899d251f032a1b38a8'
+
+function Get-Sha256Lower([string]$Path) {
+    $stream = [System.IO.File]::Open($Path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::Read)
+    $algorithm = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $bytes = $algorithm.ComputeHash($stream)
+        return ([System.BitConverter]::ToString($bytes)).Replace('-', '').ToLowerInvariant()
+    }
+    finally {
+        $algorithm.Dispose()
+        $stream.Dispose()
+    }
+}
+
+function Assert-FileAuthority($Record) {
+    if (-not [System.IO.File]::Exists([string]$Record.path)) {
+        throw "Missing authority: $($Record.path)"
+    }
+    $item = [System.IO.FileInfo]::new([string]$Record.path)
+    if ($item.Length -ne [int64]$Record.bytes) {
+        throw "Byte-count mismatch: $($Record.path)"
+    }
+    if ((Get-Sha256Lower ([string]$Record.path)) -ne [string]$Record.sha256) {
+        throw "SHA-256 mismatch: $($Record.path)"
+    }
+}
+
+function Get-HeavyProcesses {
+    $names = @(
+        'UnrealEditor',
+        'UnrealEditor-Cmd',
+        'ShaderCompileWorker',
+        'blender',
+        'AutomationTool',
+        'UnrealBuildTool',
+        'cl',
+        'link'
+    )
+    return @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $names -contains $_.ProcessName })
+}
+
+if ($AuthorizeSingleBlender -and $OfflineContractTest) {
+    [Console]::Error.WriteLine('Offline and authorized modes are mutually exclusive.')
+    [Environment]::Exit([int]3)
+}
+
+if (-not [System.IO.File]::Exists($AuthorityPath)) {
+    throw "Missing execution authority: $AuthorityPath"
+}
+if ((Get-Sha256Lower $AuthorityPath) -ne $ExpectedAuthorityHash) {
+    throw 'Execution-authority hash mismatch.'
+}
+$authority = Get-Content -LiteralPath $AuthorityPath -Raw | ConvertFrom-Json
+if ($authority.classification -ne 'PASSED_READY_FOR_EXPLICIT_SINGLE_REARGUNNER_CHARACTER_REFINEMENT01_BLENDER_AUTHORIZATION') {
+    throw 'Execution authority is not classified ready.'
+}
+foreach ($record in $authority.authorities) {
+    Assert-FileAuthority $record
+}
+
+$manifest = Get-Content -LiteralPath $ManifestPath -Raw | ConvertFrom-Json
+$asset = @($manifest.assets | Where-Object { $_.id -eq $AssetId })
+if ($asset.Count -ne 1) {
+    throw 'Expected exactly one full-character Refinement01 registry entry.'
+}
+if ($asset[0].worker.script -ne 'Scripts\Workers\worker_core_reargunner_character_refinement01.py') {
+    throw 'The full-character Refinement01 worker binding is incorrect.'
+}
+if ([int]$asset[0].worker.minimum_renders -ne 12) {
+    throw 'The governed render count is not twelve.'
+}
+if ($asset[0].status -ne 'ready') {
+    throw "Full-character Refinement01 registry state is $($asset[0].status), not ready."
+}
+if ([System.IO.Directory]::Exists($FutureAttemptRoot)) {
+    throw "Future attempt namespace already exists: $FutureAttemptRoot"
+}
+
+if ($OfflineContractTest) {
+    $active = Get-HeavyProcesses
+    if ($active.Count -ne 0) {
+        throw "Heavy process gate is not clear: $($active.ProcessName -join ', ')"
+    }
+    [Console]::Out.WriteLine('{"classification":"PASS_OFFLINE_CONTRACT_TEST","controller_launch_count":0,"blender_launch_count":0,"retry_count":0}')
+    [Environment]::Exit([int]0)
+}
+
+if (-not $AuthorizeSingleBlender) {
+    [Console]::Error.WriteLine('Explicit -AuthorizeSingleBlender is required.')
+    [Environment]::Exit([int]2)
+}
+
+$active = Get-HeavyProcesses
+if ($active.Count -ne 0) {
+    throw "Heavy process gate is not clear: $($active.ProcessName -join ', ')"
+}
+
+& python $ControllerPath run $AssetId
+$exitCode = [int]$LASTEXITCODE
+[Environment]::Exit($exitCode)

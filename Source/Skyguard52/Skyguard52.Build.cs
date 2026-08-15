@@ -10,7 +10,9 @@ public class Skyguard52 : ModuleRules
 			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG",
 			"Niagara", "PhysicsCore", "Landscape", "PCG", "EngineCameras"
 		});
-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "RenderCore", "RHI" });
+		PrivateDependencyModuleNames.AddRange(new string[] {
+			"Json", "RenderCore", "RHI", "Slate", "SlateCore"
+		});
 		if (Target.bBuildEditor)
 		{
 			PrivateDependencyModuleNames.AddRange(new string[] {

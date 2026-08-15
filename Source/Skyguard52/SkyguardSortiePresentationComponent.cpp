@@ -95,6 +95,27 @@ void USkyguardSortiePresentationComponent::SetSortieLaunched()
 	}
 }
 
+bool USkyguardSortiePresentationComponent::AcknowledgeBriefing()
+{
+	return MissionDefinition != nullptr &&
+		PresentationState == ESkyguardSortiePresentationState::Briefing;
+}
+
+bool USkyguardSortiePresentationComponent::LaunchSortie()
+{
+	if (!MissionDefinition)
+	{
+		return false;
+	}
+	if (PresentationState != ESkyguardSortiePresentationState::Briefing &&
+		PresentationState != ESkyguardSortiePresentationState::Unconfigured)
+	{
+		return PresentationState == ESkyguardSortiePresentationState::SortieActive;
+	}
+	SetSortieLaunched();
+	return PresentationState == ESkyguardSortiePresentationState::SortieActive;
+}
+
 void USkyguardSortiePresentationComponent::RefreshDebrief()
 {
 	if (!CampaignRuntime)

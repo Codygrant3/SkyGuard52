@@ -1,0 +1,151 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage05-composition01.authoring01.contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE05-COMPOSITION01-AUTHORING01",
+  "purpose": "Correct the Stage04 mapped visual rejection using only accepted and governed local Unreal assets in a fresh reversible map.",
+  "input": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage04Recovery03",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage04Recovery03.umap",
+    "bytes": 978545,
+    "sha256": "70b0929008acafcd4d2c943e9eba6de02d0533752081e6794494b872966a5c18",
+    "actor_count": 230
+  },
+  "output": {
+    "asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage05Composition01",
+    "file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage05Composition01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage05Composition01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage05Composition01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_AUTHORING01\\attempt_01",
+    "expected_actor_count": 217
+  },
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 6242,
+      "sha256": "1ef429e91ec3e0a654051e5c3205c2a2bf5edf5a6c54fbecc417acb2bdb500e1"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE04_RECOVERY03_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 5036,
+      "sha256": "8afab315e016a2c2daf36b29a40622e3ea32a9188dbe0dc46a3742856da63f35"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_HERO_STREET_SHORE_CELL01_SOURCE_DISCOVERY.json",
+      "bytes": 9252,
+      "sha256": "41149f23430fca49d6f5fa8e0c3ccdc36e4de9e07446b14bf3c711950d648a4d"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_ACCEPTANCE_FREEZE.json",
+      "bytes": 3611,
+      "sha256": "d89447492c5325a9d7287398a8f82bf994d9cb45810c42387080560ef66b65bd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY04_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 1994,
+      "sha256": "bff91b08bd4dc323082125936eee0f2e550b255c848a9d3ba80c85735118de02"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY02_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 2836,
+      "sha256": "227abe35df47bb5ae3f276611def4fbf26d3f6d0dfff2053d6981d77a579073e"
+    }
+  ],
+  "material": {
+    "source": "/Game/M01/VisibleEnvironmentStage03/Materials/MI_M01_Stage03_UrbanGround_GrassRock",
+    "output": "/Game/M01/VisibleEnvironmentStage05Composition01/Materials/MI_M01_Stage05_UrbanGround_GrassRock",
+    "base_color_factor": [0.3, 0.36, 0.28, 1.0],
+    "offset_scale": [0.0, 0.0, 72.0, 36.0],
+    "normal_scale": 0.82,
+    "roughness_factor": 0.94,
+    "apply_to_landscape": true,
+    "apply_to_city_terrain_actor": "M01_HSSC02_CoastalA_TERRAIN"
+  },
+  "remove_visible_actor_prefixes": [
+    "M01_ACA03R01_City_",
+    "M01_HSSC03_City_",
+    "M01_STAGE04R03_Facade_"
+  ],
+  "building_meshes": {
+    "ApartmentA": {
+      "STRUCTURAL": "/Game/M01/EnvKit02/M01_APARTMENT_A/StaticMeshes/SM_M01_ApartmentA_STRUCTURAL",
+      "GLAZING": "/Game/M01/EnvKit02/M01_APARTMENT_A/StaticMeshes/SM_M01_ApartmentA_GLAZING",
+      "DETAILS": "/Game/M01/EnvKit02/M01_APARTMENT_A/StaticMeshes/SM_M01_ApartmentA_DETAILS"
+    },
+    "MidriseB": {
+      "STRUCTURAL": "/Game/M01/EnvKit02/M01_MIDRISE_B/StaticMeshes/SM_M01_MidriseB_STRUCTURAL",
+      "GLAZING": "/Game/M01/EnvKit02/M01_MIDRISE_B/StaticMeshes/SM_M01_MidriseB_GLAZING",
+      "DETAILS": "/Game/M01/EnvKit02/M01_MIDRISE_B/StaticMeshes/SM_M01_MidriseB_DETAILS"
+    },
+    "CornerC": {
+      "STRUCTURAL": "/Game/M01/EnvKit02/M01_CORNER_RESIDENCE_C/StaticMeshes/SM_M01_CornerC_STRUCTURAL",
+      "GLAZING": "/Game/M01/EnvKit02/M01_CORNER_RESIDENCE_C/StaticMeshes/SM_M01_CornerC_GLAZING",
+      "DETAILS": "/Game/M01/EnvKit02/M01_CORNER_RESIDENCE_C/StaticMeshes/SM_M01_CornerC_DETAILS"
+    }
+  },
+  "building_placements": [
+    {"id": "B00", "family": "ApartmentA", "location_cm": [6800.0, 10450.0, 145.0], "yaw_degrees": 170.0, "uniform_scale": 0.92},
+    {"id": "B01", "family": "MidriseB", "location_cm": [13200.0, 10350.0, 145.0], "yaw_degrees": 178.0, "uniform_scale": 1.03},
+    {"id": "B02", "family": "CornerC", "location_cm": [19300.0, 10750.0, 145.0], "yaw_degrees": -170.0, "uniform_scale": 0.96},
+    {"id": "B03", "family": "CornerC", "location_cm": [7800.0, 15200.0, 145.0], "yaw_degrees": 155.0, "uniform_scale": 0.88},
+    {"id": "B04", "family": "ApartmentA", "location_cm": [13800.0, 15800.0, 145.0], "yaw_degrees": -160.0, "uniform_scale": 0.94},
+    {"id": "B05", "family": "MidriseB", "location_cm": [20500.0, 15400.0, 145.0], "yaw_degrees": -152.0, "uniform_scale": 0.9}
+  ],
+  "facade_meshes": {
+    "BalconyDetails": "/Game/M01/VisibleEnvironmentStage04Recovery03/FacadeBayR02/StaticMeshes/SM_M01_CoastalFacadeBay_A_BalconyDetails",
+    "Glass": "/Game/M01/VisibleEnvironmentStage04Recovery03/FacadeBayR02/StaticMeshes/SM_M01_CoastalFacadeBay_A_Glass",
+    "Interior": "/Game/M01/VisibleEnvironmentStage04Recovery03/FacadeBayR02/StaticMeshes/SM_M01_CoastalFacadeBay_A_Interior",
+    "StructureFrame": "/Game/M01/VisibleEnvironmentStage04Recovery03/FacadeBayR02/StaticMeshes/SM_M01_CoastalFacadeBay_A_StructureFrame"
+  },
+  "facade_placements": [
+    {"id": "F00", "location_cm": [10731.0, 11228.0, 760.0], "yaw_degrees": 2.0},
+    {"id": "F01", "location_cm": [11349.0, 11228.0, 1210.0], "yaw_degrees": 2.0},
+    {"id": "F02", "location_cm": [11967.0, 11228.0, 1660.0], "yaw_degrees": 2.0},
+    {"id": "F03", "location_cm": [10731.0, 11228.0, 2110.0], "yaw_degrees": 2.0}
+  ],
+  "vegetation": {
+    "expected_count": 28,
+    "absolute_scale_ranges": {
+      "fir_sapling": [4.4, 4.8],
+      "pine_sapling_small": [4.5, 4.9],
+      "shrub_02": [1.2, 1.5],
+      "shrub_04": [3.0, 3.8],
+      "grass_medium_02": [2.0, 2.8]
+    },
+    "visible_corridor_x_cm": [5600.0, 21800.0],
+    "visible_corridor_y_cm": [8750.0, 9800.0]
+  },
+  "props": {
+    "prefixes": [
+      "M01_Promenade_Bollard_",
+      "M01_Promenade_BicycleRack_",
+      "M01_Promenade_UtilityCabinet_",
+      "M01_Promenade_StormDrain_",
+      "M01_Promenade_LitterBin_",
+      "M01_HSSC01R01_Prop_"
+    ],
+    "minimum_count": 59,
+    "orientation_correction": "yaw-only named Rotator construction followed by bounds-grounding"
+  },
+  "lighting": {
+    "sun_intensity": 4.5,
+    "fill_intensity": 9.0,
+    "skylight_intensity": 12.0,
+    "exposure_bias": 1.35,
+    "film_slope": 0.72,
+    "film_toe": 0.25,
+    "film_shoulder": 0.35,
+    "film_white_clip": 0.0,
+    "film_black_clip": 0.0,
+    "lower_hemisphere_color": [0.2, 0.24, 0.28, 1.0]
+  },
+  "acceptance": {
+    "removed_old_city_actors": 15,
+    "removed_old_facade_actors": 32,
+    "created_building_actors": 18,
+    "created_facade_actors": 16,
+    "expected_actor_count": 217,
+    "input_map_mutation": false,
+    "runtime_promotion": false,
+    "automatic_retry": false,
+    "next_gate": "M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_POSTFLIGHT_AND_D3D12_MAPPED_PROOF"
+  }
+}

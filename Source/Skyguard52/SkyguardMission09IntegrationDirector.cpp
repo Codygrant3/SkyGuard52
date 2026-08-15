@@ -11,10 +11,12 @@
 #include "SkyguardMissionBriefingComponent.h"
 #include "SkyguardMissionDefinition.h"
 #include "SkyguardMissionDirectorCampaignHelpers.h"
+#include "SkyguardMissionDirectorPresentationHelpers.h"
 #include "SkyguardMissionMapAssemblyDirector.h"
 #include "SkyguardObjectiveRuntime.h"
 #include "SkyguardRadioChatterComponent.h"
 #include "SkyguardSortiePresentationComponent.h"
+#include "SkyguardPlayerAircraft.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/SceneComponent.h"
 #include "Engine/GameInstance.h"
@@ -165,28 +167,46 @@ bool ASkyguardMission09IntegrationDirector::InitializePlayableMission()
 			BindCampaignRuntime(bStarted ? Runtime : nullptr);
 		}
 	}
+	ConfigurePresentation();
+	bInitialized = true;
+	UpdateReadiness();
+	Briefing->SetAssetsReady(IsCorePlayableReady());
+	return IsCorePlayableReady();
+}
+
+void ASkyguardMission09IntegrationDirector::ConfigurePresentation()
+{
+	if (!ResolvedMission)
+	{
+		return;
+	}
 	Briefing->ConfigureFromMission(ResolvedMission);
 	SortiePresentation->ConfigureFromMission(ResolvedMission);
 	SortiePresentation->BindCampaignRuntime(CampaignRuntime);
 	AudioDirector->PrimeConfiguredAssets();
-	AudioDirector->SetListenerPerspective(ESkyguardListenerPerspective::RearCockpit);
+	AudioDirector->SetListenerPerspective(
+		ESkyguardListenerPerspective::RearCockpit);
 	RadioChatter->ClearQueue();
 	TArray<FSkyguardRadioLine> Lines;
-	for (int32 Index = 0; Index < ResolvedMission->Presentation.RadioChatter.Num(); ++Index)
+	for (int32 Index = 0;
+		Index < ResolvedMission->Presentation.RadioChatter.Num();
+		++Index)
 	{
 		FSkyguardRadioLine Line;
-		Line.LineId = FName(*FString::Printf(TEXT("M09_Saturation_%02d"), Index + 1));
-		Line.Speaker = FText::FromString(Index == 0 ? TEXT("City Defense") : TEXT("Pilot"));
+		Line.LineId = FName(*FString::Printf(
+			TEXT("M09_Saturation_%02d"),
+			Index + 1));
+		Line.Speaker = FText::FromString(
+			Index == 0 ? TEXT("City Defense") : TEXT("Pilot"));
 		Line.Subtitle = ResolvedMission->Presentation.RadioChatter[Index];
 		Line.Priority = 95 - Index;
 		Line.EstimatedDurationSeconds = 2.8f;
 		Lines.Add(Line);
 	}
 	RadioChatter->PrimeLines(Lines);
-	bInitialized = true;
-	UpdateReadiness();
-	Briefing->SetAssetsReady(IsCorePlayableReady());
-	return IsCorePlayableReady();
+	SkyguardMissionDirectorPresentationHelpers::BindHudHostToPresentation(
+		this,
+		SortiePresentation);
 }
 
 bool ASkyguardMission09IntegrationDirector::ConfigureMissionDefinition(
@@ -265,12 +285,7 @@ void ASkyguardMission09IntegrationDirector::BindRuntimeActors(
 		YakAircraft->SetEnginePower(0.84f);
 		YakAircraft->SetRearCanopyOpen(true);
 	}
-	if (YakAircraft && Gunner && YakAircraft->GetRearGunnerMount())
-	{
-		Gunner->AttachToComponent(
-			YakAircraft->GetRearGunnerMount(),
-			FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	}
+	FSkyguardPlayerAircraft::AttachGunner(Gunner, YakAircraft);
 	if (IronRain)
 	{
 		IronRain->OnBossPhaseChanged.AddUniqueDynamic(

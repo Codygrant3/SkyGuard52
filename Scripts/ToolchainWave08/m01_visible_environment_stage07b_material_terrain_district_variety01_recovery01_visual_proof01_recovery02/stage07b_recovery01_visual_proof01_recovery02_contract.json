@@ -1,0 +1,45 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage07b-recovery01.visual-proof01-recovery02-contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE07B-MATERIAL-TERRAIN-DISTRICT-VARIETY01-RECOVERY01-VISUAL-PROOF01-RECOVERY02",
+  "bounded_correction_of": "M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_VISUAL_PROOF01_RECOVERY01_ATTEMPT01",
+  "narrow_defect": "Capture ran before landscape/shader readiness; SceneCapture produced crushed-black LDR frames",
+  "world": {
+    "project": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+    "map_asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01",
+    "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage07BMaterialTerrainDistrictVariety01Recovery01.umap",
+    "map_bytes": 1256414,
+    "map_sha256": "531e0d45ecc43d1632ef480e2fbf0116fdfff27425e6dd28703b88a8b95b6bbe",
+    "expected_governed_actor_count": 376,
+    "landscape_material": "/Game/M01/CoastalCorridorC06R01/M01_CoastalCorridor_C06R01_UNREAL_READY/Materials/M_M01_C06R01_PlantingSoil",
+    "stage07b_vegetation_count": 55
+  },
+  "authoring_authority": {
+    "receipt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_AUTHORING01\\attempt_01\\authoring_receipt.json",
+    "receipt_bytes": 56448,
+    "receipt_sha256": "3ccf51763f15c805e26601d46c95482955b351ba559c77ac202f06fe73ffac53"
+  },
+  "failed_proof_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_VISUAL_PROOF01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 3702,
+    "sha256": "9ca89cb999e52165610554cb5e7d5d2abcb7b4231148dff7a961b168fb2923f3"
+  },
+  "capture": {"count": 8, "width": 2560, "height": 1440},
+  "runtime": {
+    "editor": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+    "editor_mode": true,
+    "game_flag": false,
+    "quoted_execcmds": true,
+    "rhi": "D3D12",
+    "stable_shader_polls": 2,
+    "warmup_seconds": 30,
+    "measurement_seconds": 30,
+    "minimum_frame_samples": 900,
+    "maximum_seconds": 900,
+    "executor_startup_timeout_seconds": 120,
+    "supervisor_timeout_seconds": 1200,
+    "attempt_relative_path": "Saved/BuildAttempts/M01_VISIBLE_ENVIRONMENT_STAGE07B_MATERIAL_TERRAIN_DISTRICT_VARIETY01_RECOVERY01_VISUAL_PROOF01_RECOVERY02/attempt_01",
+    "single_unreal_launch": true,
+    "automatic_retries": 0,
+    "world_save_allowed": false
+  }
+}

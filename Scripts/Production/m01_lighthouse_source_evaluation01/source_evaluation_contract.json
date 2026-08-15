@@ -1,0 +1,26 @@
+{
+  "schema": "skyguard.m01-lighthouse-source-evaluation01.contract.v1",
+  "created_at_utc": "2026-08-12T21:24:20.969768Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_READ_ONLY_BLENDER_SOURCE_EVALUATION",
+  "purpose": "Select the strongest existing project-owned Mission 1 lighthouse source before authorizing a fresh production landmark build.",
+  "authorities": [
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE03_VISUAL_PROOF01_ATTEMPT01_TERMINAL_FREEZE.json", "bytes": 7700, "sha256": "dafa2776854cdbe135236e396951b8b484e60d1af9ad4ea2f55b046967a168cf"},
+    {"path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_SOURCE_BACKED_ENVIRONMENT_CONTENT_INVENTORY_GATE01_FREEZE.json", "bytes": 1341, "sha256": "40b4f333bf22d9bbbd4a1e91db0d8639cfbfbb567f518e6f0bad59231b7ffbcd"},
+    {"path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json", "bytes": 2146, "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"},
+    {"path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\Source\\Mission01\\HeroPBR_v1\\Lighthouse\\T_M01_Lighthouse_BaseColor.png", "bytes": 1318895, "sha256": "f510fa7c777633b0de616bde025f8ecd809b4f38e0f3b8bba69c5ad391914bba"},
+    {"path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\Source\\Mission01\\HeroPBR_v1\\Lighthouse\\T_M01_Lighthouse_MaterialID.png", "bytes": 75139, "sha256": "5c777e36cde5ab0898f932d5a8692128f1027939278b0bff73e4292a365d7807"},
+    {"path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\Source\\Mission01\\HeroPBR_v1\\Lighthouse\\T_M01_Lighthouse_Normal.png", "bytes": 787442, "sha256": "b4a790561e7b2ff2db9a30ea12444d374352a98aa187b25cc248b1f603bd2b9f"},
+    {"path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\Source\\Mission01\\HeroPBR_v1\\Lighthouse\\T_M01_Lighthouse_ORM.png", "bytes": 499074, "sha256": "5aa2cac4e55608d785368dfd9111587b2da69b8fc56f9ac922196b0640b48454"}
+  ],
+  "sources": [
+    {"id": "grouped_topology_008", "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\HeroGroupedTopology_008\\BLD_M01_HERO_GROUPED_TOPOLOGY_008_MASTER.blend", "bytes": 2979460, "sha256": "a45905e8c21557cbaf974df6dd6d5495d071c497207c3c3b00181e1d5ad833a7"},
+    {"id": "wave1_refinement", "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\Wave1_Refinement\\M01_WAVE1_AAA_REFINEMENT_MASTER.blend", "bytes": 768696, "sha256": "d94a91c42610d9115e2a5a7e99efc3ec6576beb513af4e1dfc87b7d6304184ad"},
+    {"id": "wave1_coastal_pathfinder", "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\M01_WAVE1_COASTAL_PATHFINDER_MASTER.blend", "bytes": 384636, "sha256": "84225537320778bedb21f55388ab108eef5bcfe3ed367322613775e331982432"},
+    {"id": "visible_environment_unrealready02", "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\VisibleEnvironmentProductionReset01_UnrealReady02\\M01_VISIBLE_ENVIRONMENT_PRODUCTION_RESET01_UNREAL_READY02.blend", "bytes": 86313005, "sha256": "40212e2d61cad270d6f9dc31faed969c1de4c3fd25d592807aac8ddb4ab34169"}
+  ],
+  "evaluator": {"path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_source_evaluation01\\evaluate_m01_lighthouse_sources.py", "bytes": 13686, "sha256": "694ab5ff929ee3d1b1d41480367131f1d18ce9110a3674ab4b8804c3c8287958"},
+  "blender": {"path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe", "bytes": 112975320, "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7", "version": "5.2"},
+  "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_SOURCE_EVALUATION01\\attempt_01",
+  "expected_render_count": 8,
+  "policies": {"read_only_sources": true, "single_blender_launch": true, "automatic_retries": 0, "failed_namespace_reuse": false, "unreal_launches": 0, "runtime_promotion": false}
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "skyguard.m01-lighthouse-production-refinement01.contract.v1",
+  "created_at_utc": "2026-08-12T00:00:00Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_BLENDER_EXECUTION",
+  "asset_id": "m01-lighthouse-production-refinement01",
+  "scope": "Fresh project-authored non-branded Ukrainian coastal lighthouse landmark; selected prior source is dimensional and material reference only.",
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_SOURCE_EVALUATION01_RECOVERY03_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 1936,
+      "sha256": "583bc0df612fe038dca0c1ffad3b726e37bc59b7384855dfd587e482cdb07fd3"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Meshes\\Source\\Mission01\\VisibleEnvironmentProductionReset01_UnrealReady02\\M01_VISIBLE_ENVIRONMENT_PRODUCTION_RESET01_UNREAL_READY02.blend",
+      "bytes": 86313005,
+      "sha256": "40212e2d61cad270d6f9dc31faed969c1de4c3fd25d592807aac8ddb4ab34169"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\build_m01_lighthouse_production_refinement01.py",
+      "bytes": 48640,
+      "sha256": "d67624c7422f75b5d092549c7eaafb1635d796c6992d61328ef5a8db1ab24b47"
+    },
+    {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "bytes": 112975320,
+      "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\painted_plaster_wall\\painted_plaster_wall_diff_2k.jpg",
+      "bytes": 3132937,
+      "sha256": "6fd812ed8dd5be1873c29aeef38ce9bf1fb30a22c6d4b3a12db725e98c26a1be"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\painted_plaster_wall\\painted_plaster_wall_nor_gl_2k.jpg",
+      "bytes": 4048392,
+      "sha256": "2d601a46ed5ce2af866741c53cafa3cba472620c272e633b6484d4de16a80eb1"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\painted_plaster_wall\\painted_plaster_wall_rough_2k.jpg",
+      "bytes": 1595466,
+      "sha256": "35aad595469533cc3b7cc209cc6c7e065d660211f02c867f4492d3b371b1fee1"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\concrete_wall_006\\concrete_wall_006-diffuse-2k.jpg",
+      "bytes": 3109558,
+      "sha256": "daee26f5b5dae37e3fb2947c64f4045fd4e6d3b89884eb0d878ba6414746e8e8"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\concrete_wall_006\\concrete_wall_006-nor_gl-2k.jpg",
+      "bytes": 4939794,
+      "sha256": "22bd9c17a6dfe3441f671cba1b40e2329767c79b6472004d1633aeac368d5210"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\concrete_wall_006\\concrete_wall_006-rough-2k.jpg",
+      "bytes": 1102752,
+      "sha256": "4c463e871c50def9252c38a81e06624ff2fcd8c9ffcdd54534524efacba286ed"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\metal_plate\\metal_plate_diff_2k.jpg",
+      "bytes": 2670774,
+      "sha256": "864c9a653acd1f5034c9bbe7f955b18cc9687a81bbdfa805e7a2319939676910"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\metal_plate\\metal_plate_nor_gl_2k.jpg",
+      "bytes": 2516654,
+      "sha256": "146f8c00874a584bcc4a184643e72f160da2a7568d469198e02b26c9ff93cf43"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\metal_plate\\metal_plate_rough_2k.jpg",
+      "bytes": 3045988,
+      "sha256": "3cdc139df4ec5b304dd986278c1fb026c67c42e6623f0ee5caa7f373d51c7bef"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\green_metal_rust\\green_metal_rust-diffuse-2k.jpg",
+      "bytes": 787402,
+      "sha256": "727515554ffb6410be82d3625a2837fe46612cb186ec391f77c50bd52c4d7ab2"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\green_metal_rust\\green_metal_rust-nor_gl-2k.jpg",
+      "bytes": 357436,
+      "sha256": "45ec5d256c91ccf4a87dd4c4a90f6c58b460f3862287f014bfde432055ece239"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\green_metal_rust\\green_metal_rust-rough-2k.jpg",
+      "bytes": 690649,
+      "sha256": "0a691b35df773ab86dbbc86b787f8efaa81497780820abec0832b1e7aac309a6"
+    }
+  ],
+  "fresh_namespaces": {
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01\\attempt_01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_TERMINAL_MANIFEST.json",
+    "emergency_receipt": "D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_EMERGENCY_RECEIPT.jsonl"
+  },
+  "dimensions_m": {
+    "width_min": 7.8,
+    "width_max": 8.5,
+    "depth_min": 7.8,
+    "depth_max": 8.5,
+    "height_min": 26.8,
+    "height_max": 27.3
+  },
+  "required_outputs": {
+    "render_meshes": [
+      "SM_M01_Lighthouse_Tower_A",
+      "SM_M01_Lighthouse_Lantern_A",
+      "SM_M01_Lighthouse_Details_A"
+    ],
+    "collision_meshes": [
+      "UCX_SM_M01_Lighthouse_Tower_A_00",
+      "UCX_SM_M01_Lighthouse_Lantern_A_00"
+    ],
+    "sockets": [
+      "SOCKET_Lighthouse_Origin",
+      "SOCKET_Lighthouse_Door",
+      "SOCKET_Lighthouse_Gallery",
+      "SOCKET_Lighthouse_Lamp"
+    ],
+    "render_count": 12,
+    "render_width": 2048,
+    "render_height": 1152,
+    "minimum_vertices": 25000,
+    "minimum_triangles": 45000
+  },
+  "process_policy": {
+    "one_heavy_process": true,
+    "blender_launch_count": 1,
+    "automatic_retry_count": 0,
+    "reuse_failed_namespace": false,
+    "unreal_launch_count": 0,
+    "runtime_promotion_authorized": false
+  }
+}

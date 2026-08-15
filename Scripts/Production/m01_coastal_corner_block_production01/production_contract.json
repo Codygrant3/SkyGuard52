@@ -1,0 +1,78 @@
+{
+  "schema": "skyguard.m01-coastal-corner-block-production01.contract.v1",
+  "created_at_utc": "2026-08-12T22:50:00Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_COASTAL_CORNER_BLOCK_PRODUCTION01_BLENDER_EXECUTION",
+  "asset_id": "m01-coastal-corner-block-production01",
+  "scope": "One asymmetric Ukrainian coastal corner block for Mission 1 Stage04. New building shell and detail geometry; accepted Recovery06 window dependency only; no failed whole-building or StageA geometry reuse.",
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_corner_block_production01\\build_m01_coastal_corner_block_production01.py",
+      "bytes": 31418,
+      "sha256": "89b04df73eb326580c2629f87251c08f9aec24f7d52340fa24a04fb5f17048eb"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\build_m01_lighthouse_production_refinement01.py",
+      "bytes": 48640,
+      "sha256": "d67624c7422f75b5d092549c7eaafb1635d796c6992d61328ef5a8db1ab24b47"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06-unrealready01-grok-mcp\\attempt_20260811T013000000000Z\\output\\M01_Hero_Prewar_Window_Bay_A01_Recovery06_UnrealReady01.blend",
+      "bytes": 722737,
+      "sha256": "94dba4f97084171f823cd845b05c6552832538de3e6f87a9f73dbb0dc2c06104"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_HERO_PREWAR_WINDOW_BAY_A01_RECOVERY06_UNREALREADY01_GROK_MCP_ATTEMPT01_ACCEPTANCE_FREEZE.json",
+      "bytes": 5741,
+      "sha256": "fc406a78a464cb1a418baf479047ac04ea9e5df850f3f986ccc41c1d537be154"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE03_VISUAL_PROOF01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 8606,
+      "sha256": "3ae29f2fc135f921445d92e1d9e0a1fd3f13dc03067aaf9286bfe56d7087baa9"
+    },
+    {
+      "path": "D:\\Skyguard52\\Content\\Skyguard\\Textures\\PolyHaven\\polyhaven-provenance-manifest.json",
+      "bytes": 47802,
+      "sha256": "9817fa40dca9bfec370e208921c925eeb9858a4b3a2254e8101260dca1cc2e57"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    },
+    {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "bytes": 112975320,
+      "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"
+    }
+  ],
+  "required_outputs": {
+    "blend": 1,
+    "glb": 1,
+    "render_count": 12,
+    "render_resolution": [2048, 1152],
+    "render_meshes": 4,
+    "collision_meshes": 3,
+    "sockets": 5,
+    "accepted_window_instances_minimum": 12,
+    "uv_complete": true
+  },
+  "visual_rejection_guards": [
+    "no solid facade boxes hiding accepted window interiors",
+    "no failed whole-building or StageA geometry reuse",
+    "no repeated uniform bay rhythm",
+    "no featureless roofline",
+    "no shallow entrance or storefront",
+    "no buried glazing or interior geometry",
+    "no ungrounded foundation",
+    "no missing full-building endpoint in review cameras"
+  ],
+  "process_policy": {
+    "blender_launch_count": 1,
+    "automatic_retry_count": 0,
+    "unreal_launch_count": 0,
+    "failed_namespace_reuse": false,
+    "runtime_promotion": false,
+    "unreal_import_before_direct_review": false
+  }
+}

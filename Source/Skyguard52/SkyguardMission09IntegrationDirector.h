@@ -266,6 +266,7 @@ private:
 	int32 CalculateWaveThreatCount(int32 WaveIndex) const;
 	bool ReservePooledThreats(int32 Count);
 	void RecycleThreats(int32 Count);
+	void ConfigurePresentation();
 	void UpdateReadiness();
 	void CompleteMissionIfReady();
 	FSkyguardMission09ProtectedTargetRuntime* FindProtectedTarget(

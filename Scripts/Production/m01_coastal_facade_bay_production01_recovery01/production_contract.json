@@ -1,0 +1,74 @@
+{
+  "schema": "skyguard.m01-coastal-facade-bay-production01-recovery01.contract.v1",
+  "created_at_utc": "2026-08-12T23:05:00Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_BLENDER_EXECUTION",
+  "asset_id": "m01-coastal-facade-bay-production01-recovery01",
+  "scope": "Fresh Recovery01 execution of the frozen facade-bay worker. Only the accepted consolidated FrameFacadeHardware width guard changes from a sash estimate to the frozen GLB-measured 3.55-3.65 m range. Geometry, materials, cameras, checkpoints, collision, sockets and export logic remain in the frozen worker.",
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01_recovery01\\build_m01_coastal_facade_bay_production01_recovery01.py",
+      "bytes": 2688,
+      "sha256": "bc7ab7616f237af5830a4620cd7cddc91c0e300ceffbaf5fa9bff2fa435dc6bf"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01\\build_m01_coastal_facade_bay_production01.py",
+      "bytes": 27839,
+      "sha256": "75f6f297f967fdadf7b696a7d6b0b9d9ebb18e3aa4e4ea234fe0470427894d74"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 2278,
+      "sha256": "7c00b9367fb1fb5222a8bdc91883a40274a2337c945f8bdaf2b169beb94e0226"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+      "bytes": 2319,
+      "sha256": "e0b802b26e1aa3bce4247b942fa78cfe6d859f2f10f2090c338818ae08578afb"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06-unrealready01-grok-mcp\\attempt_20260811T013000000000Z\\output\\M01_Hero_Prewar_Window_Bay_A01_Recovery06_UnrealReady01.blend",
+      "bytes": 722737,
+      "sha256": "94dba4f97084171f823cd845b05c6552832538de3e6f87a9f73dbb0dc2c06104"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06-unrealready01-grok-mcp\\attempt_20260811T013000000000Z\\output\\M01_Hero_Prewar_Window_Bay_A01_Recovery06_UnrealReady01.glb",
+      "bytes": 18844684,
+      "sha256": "e27b61da25d93fac047c7941b7087325e6500f30790b92b66ac002dc69421805"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    },
+    {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "bytes": 112975320,
+      "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"
+    }
+  ],
+  "allowed_correction": {
+    "message": "Accepted window width changed",
+    "old_guard_m": [2.4, 3.2],
+    "new_guard_m": [3.55, 3.65],
+    "measured_value_m": 3.5999999046325684,
+    "other_behavior_changes_allowed": false
+  },
+  "required_outputs": {
+    "blend": 1,
+    "glb": 1,
+    "checkpoint_render_count": 3,
+    "final_render_count": 8,
+    "total_render_count": 11,
+    "render_resolution": [2048, 1152],
+    "render_meshes": 4,
+    "collision_meshes": 4,
+    "sockets": 5
+  },
+  "process_policy": {
+    "blender_launch_count": 1,
+    "automatic_retry_count": 0,
+    "unreal_launch_count": 0,
+    "failed_namespace_reuse": false,
+    "runtime_promotion": false
+  }
+}

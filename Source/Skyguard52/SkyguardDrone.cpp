@@ -4,6 +4,9 @@ FSkyguardDroneCityImpactNative ASkyguardDrone::OnAnyCityImpacted;
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardCombatVFX.h"
 #include "SkyguardInputCombatPerformanceCapture.h"
+#include "SkyguardRuntimeMeshCatalog.h"
+#include "SkyguardApacheAircraft.h"
+#include "SkyguardPlayerAircraft.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -34,23 +37,30 @@ ASkyguardDrone::ASkyguardDrone()
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cone(TEXT("/Engine/BasicShapes/Cone.Cone"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sphere(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebBody(TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-body.drone-body"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebWing(TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-wing.drone-wing"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebFins(TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-fins.drone-fins"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebMotor(TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-motor.drone-motor"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> HeroShahed(TEXT("/Game/Skyguard/Meshes/Hero/shahed_proxy.shahed_proxy"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> HeroHeavy(TEXT("/Game/Skyguard/Meshes/Hero/shahed_heavy_proxy.shahed_heavy_proxy"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebWing(
+		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-wing.drone-wing"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebFins(
+		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-fins.drone-fins"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebMotor(
+		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-motor.drone-motor"));
 
-	if (WebBody.Succeeded())
+	// Prefer Hero shahed_proxy; WebGame body only if Preferred + ProxyFallback fail.
+	if (UStaticMesh* ResolvedBody =
+		USkyguardRuntimeMeshCatalog::ResolveDefaultSlot(TEXT("Drone.Body")))
 	{
-		Body->SetStaticMesh(WebBody.Object);
-		Body->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
-		Body->SetRelativeRotation(FRotator(0.f, 0.f, 0.f));
-	}
-	else if (HeroShahed.Succeeded())
-	{
-		Body->SetStaticMesh(HeroShahed.Object);
-		Body->SetRelativeScale3D(FVector(18.f, 18.f, 18.f));
+		Body->SetStaticMesh(ResolvedBody);
+		const bool bWebGameBody =
+			ResolvedBody->GetPathName() ==
+			TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-body.drone-body");
+		if (bWebGameBody)
+		{
+			Body->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
+			Body->SetRelativeRotation(FRotator(0.f, 0.f, 0.f));
+		}
+		else
+		{
+			Body->SetRelativeScale3D(FVector(18.f, 18.f, 18.f));
+		}
 	}
 	else if (Cone.Succeeded())
 	{
@@ -85,24 +95,70 @@ ASkyguardDrone::ASkyguardDrone()
 	{
 		Exhaust->SetStaticMesh(Sphere.Object);
 	}
-
-	// Heavy variant visual swap is applied in BeginPlay based on bHeavy
-	if (HeroHeavy.Succeeded())
-	{
-		// cache via transient load path in BeginPlay instead
-	}
 }
 
 void ASkyguardDrone::BeginPlay()
 {
 	Super::BeginPlay();
-	ApplyVariantVisualsAndHealth();
+	ApplyThreatPresentation();
 }
 
 void ASkyguardDrone::ConfigureVariant(const bool bInHeavy)
 {
-	bHeavy = bInHeavy;
-	ApplyVariantVisualsAndHealth();
+	ConfigureThreat(
+		bInHeavy
+			? ESkyguardThreatKind::HeavyAttacker
+			: ESkyguardThreatKind::FastAttacker);
+}
+
+void ASkyguardDrone::ConfigureThreat(const ESkyguardThreatKind Kind)
+{
+	ThreatKind = Kind;
+	bHeavy = Kind != ESkyguardThreatKind::FastAttacker;
+	ApplyThreatPresentation();
+}
+
+void ASkyguardDrone::ConfigureRoadConvoy(
+	const TArray<FVector>& Path,
+	const int32 StartWaypointIndex,
+	const FName VehicleSlot)
+{
+	ConfigureThreat(ESkyguardThreatKind::GroundArmor);
+	RoadWaypoints = Path;
+	bFollowRoad = RoadWaypoints.Num() >= 2;
+	bLoopRoad = true;
+	RoadWaypointIndex = 0;
+	if (bFollowRoad)
+	{
+		RoadWaypointIndex = FMath::Clamp(
+			StartWaypointIndex, 0, RoadWaypoints.Num() - 1);
+	}
+	if (!VehicleSlot.IsNone())
+	{
+		GroundVehicleSlot = VehicleSlot;
+		ApplyGroundVehiclePresentation();
+	}
+	Tags.AddUnique(TEXT("Skyguard.Threat.RoadConvoy"));
+	if (bFollowRoad)
+	{
+		SetActorLocation(RoadWaypoints[RoadWaypointIndex], false);
+		const int32 NextIndex =
+			(RoadWaypointIndex + 1) % RoadWaypoints.Num();
+		const FVector Ahead =
+			(RoadWaypoints[NextIndex] - RoadWaypoints[RoadWaypointIndex])
+				.GetSafeNormal2D();
+		if (!Ahead.IsNearlyZero())
+		{
+			SetActorRotation(Ahead.Rotation());
+		}
+	}
+}
+
+bool ASkyguardDrone::IsMissileLockEligible() const
+{
+	return ThreatKind != ESkyguardThreatKind::FastAttacker ||
+		bHeavy ||
+		MaxHealth >= 80.f;
 }
 
 void ASkyguardDrone::ApplyVariantVisualsAndHealth()
@@ -114,13 +170,90 @@ void ASkyguardDrone::ApplyVariantVisualsAndHealth()
 	}
 	if (bHeavy)
 	{
-		if (UStaticMesh* Heavy = LoadObject<UStaticMesh>(
-			nullptr,
-			TEXT("/Game/Skyguard/Meshes/Hero/shahed_heavy_proxy.shahed_heavy_proxy")))
+		if (UStaticMesh* Heavy =
+			USkyguardRuntimeMeshCatalog::ResolveDefaultSlot(TEXT("Drone.HeavyBody")))
 		{
 			Body->SetStaticMesh(Heavy);
 			Body->SetRelativeScale3D(FVector(20.f, 20.f, 20.f));
 		}
+	}
+	else if (UStaticMesh* LightBody =
+		USkyguardRuntimeMeshCatalog::ResolveDefaultSlot(TEXT("Drone.Body")))
+	{
+		Body->SetStaticMesh(LightBody);
+		const bool bWebGameBody =
+			LightBody->GetPathName() ==
+			TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-body.drone-body");
+		Body->SetRelativeScale3D(
+			bWebGameBody ? FVector(0.9f, 0.9f, 0.9f) : FVector(18.f, 18.f, 18.f));
+	}
+}
+
+void ASkyguardDrone::ApplyThreatPresentation()
+{
+	ApplyVariantVisualsAndHealth();
+	switch (ThreatKind)
+	{
+	case ESkyguardThreatKind::RotorScout:
+		Health = MaxHealth = 140.f;
+		if (Body)
+		{
+			Body->SetRelativeScale3D(FVector(2.4f, 1.1f, 0.7f));
+		}
+		if (Wing)
+		{
+			Wing->SetRelativeScale3D(FVector(4.2f, 4.2f, 0.08f));
+			Wing->SetRelativeLocation(FVector(0.f, 0.f, 40.f));
+		}
+		CruiseSpeed = CruiseSpeed > 0.f ? CruiseSpeed : 720.f;
+		break;
+	case ESkyguardThreatKind::GroundArmor:
+		Health = MaxHealth = 220.f;
+		CruiseSpeed = CruiseSpeed > 0.f ? FMath::Min(CruiseSpeed, 720.f) : 620.f;
+		TargetCityLocation.Z = FMath::Min(TargetCityLocation.Z, 92.f);
+		if (bFollowRoad || !GroundVehicleSlot.IsNone())
+		{
+			ApplyGroundVehiclePresentation();
+		}
+		else
+		{
+			if (Body)
+			{
+				Body->SetRelativeScale3D(FVector(2.8f, 1.6f, 0.7f));
+				Body->SetRelativeRotation(FRotator::ZeroRotator);
+			}
+			if (Wing)
+			{
+				Wing->SetVisibility(false);
+			}
+			if (Exhaust)
+			{
+				Exhaust->SetRelativeLocation(FVector(40.f, 0.f, 18.f));
+				Exhaust->SetRelativeScale3D(FVector(0.35f, 0.35f, 0.55f));
+			}
+		}
+		break;
+	case ESkyguardThreatKind::FastBoat:
+		Health = MaxHealth = 90.f;
+		if (Body)
+		{
+			Body->SetRelativeScale3D(FVector(3.6f, 0.9f, 0.35f));
+			Body->SetRelativeRotation(FRotator::ZeroRotator);
+		}
+		if (Wing)
+		{
+			Wing->SetVisibility(false);
+		}
+		CruiseSpeed = CruiseSpeed > 0.f ? FMath::Min(CruiseSpeed, 780.f) : 650.f;
+		TargetCityLocation.Z = FMath::Min(TargetCityLocation.Z, 50.f);
+		break;
+	case ESkyguardThreatKind::HeavyAttacker:
+		Health = MaxHealth = 100.f;
+		break;
+	case ESkyguardThreatKind::FastAttacker:
+	default:
+		Health = MaxHealth = 34.f;
+		break;
 	}
 }
 
@@ -134,10 +267,76 @@ void ASkyguardDrone::LifeSpanExpired()
 	Super::LifeSpanExpired();
 }
 
+void ASkyguardDrone::ApplyGroundVehiclePresentation()
+{
+	if (Wing)
+	{
+		Wing->SetVisibility(false);
+	}
+	if (Exhaust)
+	{
+		Exhaust->SetVisibility(false);
+	}
+	if (!Body)
+	{
+		return;
+	}
+
+	FName Slot = GroundVehicleSlot;
+	if (Slot.IsNone())
+	{
+		Slot = TEXT("Vehicle.Truck");
+	}
+	UStaticMesh* VehicleMesh =
+		USkyguardRuntimeMeshCatalog::ResolveDefaultSlot(Slot);
+	float TargetLengthCm = 520.f;
+	if (Slot == TEXT("Vehicle.Car"))
+	{
+		TargetLengthCm = 400.f;
+	}
+	else if (Slot == TEXT("Vehicle.Bus"))
+	{
+		TargetLengthCm = 680.f;
+	}
+
+	if (VehicleMesh)
+	{
+		Body->SetStaticMesh(VehicleMesh);
+		const FBoxSphereBounds Bounds = VehicleMesh->GetBounds();
+		const float Longest =
+			FMath::Max3(Bounds.BoxExtent.X, Bounds.BoxExtent.Y, Bounds.BoxExtent.Z) *
+			2.f;
+		const float Scale = Longest > 1.f ? (TargetLengthCm / Longest) : 1.f;
+		Body->SetRelativeScale3D(FVector(Scale));
+		const bool bLongerOnY = Bounds.BoxExtent.Y > Bounds.BoxExtent.X + 1.f;
+		Body->SetRelativeRotation(
+			bLongerOnY ? FRotator(0.f, -90.f, 0.f) : FRotator::ZeroRotator);
+		Body->SetRelativeLocation(FVector::ZeroVector);
+	}
+	else
+	{
+		Body->SetRelativeScale3D(FVector(2.8f, 1.6f, 0.7f));
+		Body->SetRelativeRotation(FRotator::ZeroRotator);
+	}
+}
+
 void ASkyguardDrone::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (bDead) return;
+	if (bDead)
+	{
+		return;
+	}
+	if (IsFollowingRoad())
+	{
+		TickRoadFollow(DeltaSeconds);
+		return;
+	}
+	TickCruiseToCity(DeltaSeconds);
+}
+
+void ASkyguardDrone::TickCruiseToCity(const float DeltaSeconds)
+{
 	const FVector Loc = GetActorLocation();
 	const FVector ToTarget = (TargetCityLocation - Loc).GetSafeNormal();
 	const FVector NewLoc = Loc + ToTarget * CruiseSpeed * DeltaSeconds;
@@ -145,19 +344,69 @@ void ASkyguardDrone::Tick(float DeltaSeconds)
 	SetActorLocation(NewLoc, true, &Hit);
 	if (Hit.bBlockingHit)
 	{
-		if (ASkyguardYak52Aircraft* Yak = Cast<ASkyguardYak52Aircraft>(Hit.GetActor()))
+		if (FSkyguardPlayerAircraft::IsPlayerPlatform(Hit.GetActor()))
 		{
-			ImpactAircraft(Yak);
+			ImpactPlatform(Hit.GetActor());
 			return;
 		}
 	}
 	const FRotator Face = ToTarget.Rotation();
 	SetActorRotation(FMath::RInterpTo(GetActorRotation(), Face, DeltaSeconds, 2.5f));
 	Spin += DeltaSeconds * 40.f;
-	if (Wing) Wing->SetRelativeRotation(FRotator(0.f, Spin, 0.f));
+	if (Wing)
+	{
+		Wing->SetRelativeRotation(FRotator(0.f, Spin, 0.f));
+	}
 	if (FVector::DistSquared(GetActorLocation(), TargetCityLocation) < FMath::Square(180.f))
 	{
 		ImpactCity(ToTarget);
+	}
+}
+
+void ASkyguardDrone::TickRoadFollow(const float DeltaSeconds)
+{
+	if (RoadWaypoints.Num() < 2)
+	{
+		return;
+	}
+
+	FVector Loc = GetActorLocation();
+	int32 Safety = 0;
+	while (Safety++ < RoadWaypoints.Num())
+	{
+		const FVector Goal = RoadWaypoints[RoadWaypointIndex];
+		const FVector ToGoal = Goal - Loc;
+		if (ToGoal.Size2D() > 140.f)
+		{
+			const FVector Dir = ToGoal.GetSafeNormal();
+			const FVector Step = Dir * CruiseSpeed * DeltaSeconds;
+			if (Step.SizeSquared() >= ToGoal.SizeSquared())
+			{
+				Loc = Goal;
+			}
+			else
+			{
+				Loc = Loc + Step;
+			}
+			SetActorLocation(Loc, false);
+			const FRotator Face = FVector(Dir.X, Dir.Y, 0.f).Rotation();
+			SetActorRotation(
+				FMath::RInterpTo(GetActorRotation(), Face, DeltaSeconds, 4.5f));
+			return;
+		}
+
+		if (bLoopRoad)
+		{
+			RoadWaypointIndex = (RoadWaypointIndex + 1) % RoadWaypoints.Num();
+		}
+		else if (RoadWaypointIndex + 1 < RoadWaypoints.Num())
+		{
+			++RoadWaypointIndex;
+		}
+		else
+		{
+			return;
+		}
 	}
 }
 
@@ -238,21 +487,26 @@ void ASkyguardDrone::ImpactCity(const FVector& ImpactDirection)
 
 void ASkyguardDrone::ImpactAircraft(ASkyguardYak52Aircraft* Aircraft)
 {
-	if (bDead || !Aircraft)
+	ImpactPlatform(Aircraft);
+}
+
+void ASkyguardDrone::ImpactPlatform(AActor* Platform)
+{
+	if (bDead || !IsValid(Platform))
 	{
 		return;
 	}
 	const float Damage = bHeavy ? HeavyAircraftCollisionDamage : AircraftCollisionDamage;
-	Aircraft->ApplyDamage(Damage);
+	FSkyguardPlayerAircraft::ApplyHullDamage(Platform, Damage);
 	const FVector Away =
-		(GetActorLocation() - Aircraft->GetActorLocation()).GetSafeNormal();
-	Die(Away.IsNearlyZero() ? GetActorForwardVector() : Away, Aircraft);
+		(GetActorLocation() - Platform->GetActorLocation()).GetSafeNormal();
+	Die(Away.IsNearlyZero() ? GetActorForwardVector() : Away, Platform);
 }
 
 void ASkyguardDrone::DamageNearbyAircraft(
 	const float Amount,
 	const float RadiusCm,
-	const ASkyguardYak52Aircraft* ExcludeAircraft)
+	const AActor* ExcludeAircraft)
 {
 	if (Amount <= 0.f || RadiusCm <= 0.f)
 	{
@@ -265,23 +519,32 @@ void ASkyguardDrone::DamageNearbyAircraft(
 	}
 	const float RadiusSq = FMath::Square(RadiusCm);
 	const FVector Origin = GetActorLocation();
+
+	auto DamageIfNear = [&](AActor* Platform)
+	{
+		if (!IsValid(Platform) || Platform == ExcludeAircraft)
+		{
+			return;
+		}
+		if (FVector::DistSquared(Origin, Platform->GetActorLocation()) <= RadiusSq)
+		{
+			FSkyguardPlayerAircraft::ApplyHullDamage(Platform, Amount);
+		}
+	};
+
+	for (TActorIterator<ASkyguardApacheAircraft> It(World); It; ++It)
+	{
+		DamageIfNear(*It);
+	}
 	for (TActorIterator<ASkyguardYak52Aircraft> It(World); It; ++It)
 	{
-		ASkyguardYak52Aircraft* Yak = *It;
-		if (!IsValid(Yak) || Yak == ExcludeAircraft)
-		{
-			continue;
-		}
-		if (FVector::DistSquared(Origin, Yak->GetActorLocation()) <= RadiusSq)
-		{
-			Yak->ApplyDamage(Amount);
-		}
+		DamageIfNear(*It);
 	}
 }
 
 void ASkyguardDrone::Die(
 	const FVector& HitDir,
-	ASkyguardYak52Aircraft* AlreadyDamagedAircraft)
+	AActor* AlreadyDamagedAircraft)
 {
 	if (bDead) return;
 	bDead = true;

@@ -125,6 +125,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
 	void SetSortieLaunched();
 
+	/**
+	 * UI-safe briefing acknowledgement. Returns true while presentation is in
+	 * Briefing (widgets may dismiss overlays without launching).
+	 */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	bool AcknowledgeBriefing();
+
+	/** UI-safe launch: advances Briefing/Unconfigured → SortieActive when configured. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	bool LaunchSortie();
+
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
 	void RefreshDebrief();
 

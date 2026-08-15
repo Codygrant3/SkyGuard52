@@ -1,0 +1,46 @@
+{
+  "schema": "skyguard.m01-visible-environment-stage05-composition01-recovery01.authoring01.contract.v1",
+  "contract_id": "M01-VISIBLE-ENVIRONMENT-STAGE05-COMPOSITION01-AUTHORING01-RECOVERY01",
+  "classification": "OFFLINE_DESIGN",
+  "failure_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_AUTHORING01_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 3809,
+    "sha256": "da6c24bbf756ee5c984f566737f8f3a757a9f73ce834d86cf7d1d8011bb7f137"
+  },
+  "failed_source": {
+    "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_AUTHORING01\\attempt_01\\author_m01_visible_environment_stage05_composition01.py",
+    "bytes": 21696,
+    "sha256": "59706c1e9257c5fe426d3e8bf1b36b444667ad3f91ae186615134abd0e3e5c33"
+  },
+  "bounded_corrections": [
+    "fresh Recovery01 map, asset, label, attempt and evidence namespaces",
+    "serialize building actor Rotator as pitch/yaw/roll",
+    "serialize prop actor Rotator as pitch/yaw/roll"
+  ],
+  "prohibited_changes": [
+    "asset allowlist",
+    "building placements",
+    "facade placements",
+    "vegetation placements and scale ranges",
+    "prop allowlist",
+    "material calibration",
+    "lighting calibration",
+    "actor counts",
+    "input map",
+    "runtime promotion"
+  ],
+  "output": {
+    "map_asset": "/Game/M01/Lvl_M01_VisibleEnvironmentStage05Composition01Recovery01",
+    "map_file": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_VisibleEnvironmentStage05Composition01Recovery01.umap",
+    "asset_namespace": "/Game/M01/VisibleEnvironmentStage05Composition01Recovery01",
+    "disk_namespace": "D:\\SG52T08_ENV01\\Content\\M01\\VisibleEnvironmentStage05Composition01Recovery01",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_VISIBLE_ENVIRONMENT_STAGE05_COMPOSITION01_AUTHORING01_RECOVERY01\\attempt_01"
+  },
+  "rules": {
+    "one_unreal_launch": true,
+    "automatic_retry": false,
+    "failed_namespace_reuse": false,
+    "runtime_promotion": false,
+    "timeout_seconds": 1800
+  }
+}

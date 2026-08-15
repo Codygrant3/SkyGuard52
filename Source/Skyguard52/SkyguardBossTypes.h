@@ -27,7 +27,12 @@ enum class ESkyguardPilotCommand : uint8
 	Break,
 	OrbitLeft,
 	OrbitRight,
-	Extend
+	Extend,
+	Hold,
+	Climb,
+	Descend,
+	AttackRun,
+	FaceTarget
 };
 
 USTRUCT(BlueprintType)

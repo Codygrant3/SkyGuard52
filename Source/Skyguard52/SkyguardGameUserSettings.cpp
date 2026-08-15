@@ -45,7 +45,7 @@ void USkyguardGameUserSettings::SetToDefaults()
 	Super::SetToDefaults();
 	MasterVolume = 1.f;
 	MouseSensitivity = 0.07f;
-	bInvertVerticalLook = false;
+	bInvertVerticalLook = true;
 	CameraShakeScale = 1.f;
 	SetVSyncEnabled(false);
 	SetFrameRateLimit(120.f);

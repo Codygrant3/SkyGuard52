@@ -1,0 +1,79 @@
+"""Recovery02 capture harness for the corrected quarantined M01 assembly."""
+
+from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
+
+import unreal
+
+
+ROOT = Path(r"D:\Skyguard52")
+BASE_PATH = (
+    ROOT
+    / r"Scripts\GrokProduction"
+    / "capture_m01_accepted_module_assembly_v1_integration_gate01.py"
+)
+ATTEMPT = (
+    ROOT
+    / r"Saved\BuildAttempts\M01_ACCEPTED_MODULE_ASSEMBLY_V1_INTEGRATION_GATE01_RECOVERY02"
+    / "attempt_01"
+)
+
+spec = importlib.util.spec_from_file_location("m01_assembly_gate01_base", BASE_PATH)
+if spec is None or spec.loader is None:
+    raise RuntimeError(f"Could not load capture authority: {BASE_PATH}")
+authority = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(authority)
+
+authority.ATTEMPT = ATTEMPT
+authority.PROOF = ATTEMPT / "proof"
+authority.RECEIPT = ATTEMPT / "integration_gate_receipt.json"
+authority.CAMERAS = (
+    {
+        "id": "assembly_aerial",
+        "location": (4000.0, -17000.0, 7200.0),
+        "target": (2500.0, -5000.0, 100.0),
+        "fov": 58.0,
+    },
+    {
+        "id": "facade_coastal_front",
+        "location": (0.0, -6500.0, 700.0),
+        "target": (0.0, -3300.0, 260.0),
+        "fov": 46.0,
+    },
+    {
+        "id": "facade_coastal_reverse",
+        "location": (0.0, -300.0, 700.0),
+        "target": (0.0, -3300.0, 260.0),
+        "fov": 46.0,
+    },
+    {
+        "id": "shoreline_contact_oblique",
+        "location": (5200.0, -7800.0, 1700.0),
+        "target": (1400.0, -3400.0, 100.0),
+        "fov": 52.0,
+    },
+)
+
+authority.main()
+unreal.SystemLibrary.collect_garbage()
+
+_ticks_until_exit = 10
+_callback_handle = None
+
+
+def _delayed_exit(delta_seconds: float) -> None:
+    del delta_seconds
+    global _callback_handle
+    global _ticks_until_exit
+    _ticks_until_exit -= 1
+    if _ticks_until_exit > 0:
+        return
+    if _callback_handle is not None:
+        unreal.unregister_slate_post_tick_callback(_callback_handle)
+        _callback_handle = None
+    unreal.SystemLibrary.quit_editor()
+
+
+_callback_handle = unreal.register_slate_post_tick_callback(_delayed_exit)

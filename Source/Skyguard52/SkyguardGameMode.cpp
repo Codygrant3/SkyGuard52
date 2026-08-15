@@ -4,6 +4,12 @@
 #include "SkyguardCampaignDefinition.h"
 #include "SkyguardCampaignSubsystem.h"
 #include "SkyguardGameUserSettings.h"
+#include "SkyguardPauseHostComponent.h"
+#include "SkyguardArcadeLookComponent.h"
+#include "SkyguardApacheAircraft.h"
+#include "SkyguardPlayerAircraft.h"
+#include "SkyguardGunshipSortieDirector.h"
+#include "SkyguardSortieHudHostComponent.h"
 #include "Components/SceneComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/GameInstance.h"
@@ -102,15 +108,10 @@ APawn* ASkyguardGameMode::SpawnDefaultPawnAtTransform_Implementation(
 	}
 
 	FTransform SafeSpawnTransform = SpawnTransform;
-	for (TActorIterator<ASkyguardYak52Aircraft> It(World); It; ++It)
+	FSkyguardPlayerAircraft::EnsureApache(World);
+	if (USceneComponent* Mount = FSkyguardPlayerAircraft::FindGunnerMount(World))
 	{
-		ASkyguardYak52Aircraft* Aircraft = *It;
-		if (IsValid(Aircraft) && Aircraft->GetRearGunnerMount())
-		{
-			SafeSpawnTransform =
-				Aircraft->GetRearGunnerMount()->GetComponentTransform();
-			break;
-		}
+		SafeSpawnTransform = Mount->GetComponentTransform();
 	}
 
 	UClass* PawnClass = GetDefaultPawnClassForController(NewPlayer);
@@ -132,6 +133,49 @@ APawn* ASkyguardGameMode::SpawnDefaultPawnAtTransform_Implementation(
 void ASkyguardGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	FSkyguardPlayerAircraft::EnsureApache(GetWorld());
+	USkyguardArcadeLookComponent::ApplyWorldMood(this);
+	if (UWorld* World = GetWorld())
+	{
+		bool bHasSortie = false;
+		for (TActorIterator<ASkyguardGunshipSortieDirector> It(World); It; ++It)
+		{
+			bHasSortie = true;
+			break;
+		}
+		if (!bHasSortie)
+		{
+			World->SpawnActor<ASkyguardGunshipSortieDirector>();
+		}
+	}
+
+	if (APlayerController* PC = GetWorld()
+		? GetWorld()->GetFirstPlayerController()
+		: nullptr)
+	{
+		if (!PC->FindComponentByClass<USkyguardSortieHudHostComponent>())
+		{
+			if (USkyguardSortieHudHostComponent* HudHost =
+				NewObject<USkyguardSortieHudHostComponent>(
+					PC,
+					TEXT("SortieHudHost")))
+			{
+				HudHost->RegisterComponent();
+				PC->AddInstanceComponent(HudHost);
+			}
+		}
+		if (!PC->FindComponentByClass<USkyguardPauseHostComponent>())
+		{
+			if (USkyguardPauseHostComponent* PauseHost =
+				NewObject<USkyguardPauseHostComponent>(
+					PC,
+					TEXT("PauseHost")))
+			{
+				PC->AddInstanceComponent(PauseHost);
+				PauseHost->RegisterComponent();
+			}
+		}
+	}
 
 	float SmokeSeconds = 0.f;
 	if (!FParse::Value(
@@ -240,12 +284,7 @@ void ASkyguardGameMode::RunPackagedRuntimeValidation()
 	{
 		++GunnerCount;
 	}
-	ASkyguardYak52Aircraft* YakAircraft = nullptr;
-	for (TActorIterator<ASkyguardYak52Aircraft> It(GetWorld()); It; ++It)
-	{
-		YakAircraft = *It;
-		break;
-	}
+	AActor* LivePlatform = FSkyguardPlayerAircraft::FindPlatform(GetWorld());
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("player_controller_exists"),
 		PlayerController != nullptr, TEXT("World has a player controller"));
@@ -263,9 +302,9 @@ void ASkyguardGameMode::RunPackagedRuntimeValidation()
 		FString::Printf(TEXT("Runtime gunner count is %d"), GunnerCount));
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("gunner_mounted_to_yak"),
-		Gunner && YakAircraft &&
-			Gunner->GetAttachParentActor() == YakAircraft,
-		TEXT("Possessed gunner is attached to the Yak-52"));
+		Gunner && LivePlatform &&
+			Gunner->GetAttachParentActor() == LivePlatform,
+		TEXT("Possessed gunner is attached to the live Apache or Yak fallback"));
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("action_fire_bound"),
 		HasActionMapping(TEXT("Fire")), TEXT("DefaultInput Fire mapping"));
@@ -280,6 +319,10 @@ void ASkyguardGameMode::RunPackagedRuntimeValidation()
 		InputCases, bInputPassed, TEXT("action_launch_igla_bound"),
 		HasActionMapping(TEXT("LaunchIgla")),
 		TEXT("DefaultInput LaunchIgla mapping"));
+	AddValidationCase(
+		InputCases, bInputPassed, TEXT("action_pause_bound"),
+		HasActionMapping(TEXT("Pause")),
+		TEXT("DefaultInput Pause mapping"));
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("axis_turn_bound"),
 		HasAxisMapping(TEXT("Turn")), TEXT("DefaultInput Turn mapping"));
@@ -306,13 +349,16 @@ void ASkyguardGameMode::RunPackagedRuntimeValidation()
 		InputCases, bInputPassed, TEXT("ads_plus_left_fire_coexists"),
 		Gunner && bAdsFireCoexists,
 		TEXT("ADS remains active while left fire is held"));
+	const bool bApacheSeat = Gunner && Gunner->bApacheGunnerMode;
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("pilot_forward_safety_arc_blocks"),
-		Gunner && bForwardBlocked,
-		TEXT("Forward centerline is a no-fire sector"));
+		Gunner && (bApacheSeat || bForwardBlocked),
+		bApacheSeat
+			? TEXT("Apache chin gun is allowed to fire forward")
+			: TEXT("Forward centerline is a no-fire sector"));
 	AddValidationCase(
 		InputCases, bInputPassed, TEXT("side_fire_sector_allows"),
-		Gunner && bSideAllowed,
+		Gunner && (bApacheSeat || bSideAllowed),
 		TEXT("Rifle clears the pilot safety arc at side yaw"));
 
 	const FString SlotName = TEXT("SkyguardPhase8RuntimeValidation");

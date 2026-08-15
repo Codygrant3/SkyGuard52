@@ -1,14 +1,21 @@
 #include "SkyguardYak52Aircraft.h"
 
+#include "SkyguardRuntimeMeshCatalog.h"
 #include "Components/BoxComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
 
+DEFINE_LOG_CATEGORY_STATIC(LogSkyguardYak52Visual, Log, All);
+
 namespace
 {
 	const TCHAR* L88Root =
 		TEXT("/Game/Skyguard/Meshes/L88/yak52_l88_silhouette_blockout/StaticMeshes/");
+	const TCHAR* YakProxyPath =
+		TEXT("/Game/Skyguard/Meshes/Hero/yak52_proxy.yak52_proxy");
+	const TCHAR* YakHdProxyPath =
+		TEXT("/Game/Skyguard/Meshes/Hero/yak52_hd_proxy.yak52_hd_proxy");
 }
 
 ASkyguardYak52Aircraft::ASkyguardYak52Aircraft()
@@ -130,9 +137,51 @@ void ASkyguardYak52Aircraft::ConfigureVisual(
 	}
 
 	const FString FullPath = FString(L88Root) + AssetPath;
-	if (UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *FullPath))
+	TArray<FSoftObjectPath> Ordered;
+	Ordered.Add(FSoftObjectPath(FullPath));
+
+	// Airframe owns the full-body Hero proxy fallback when L88 is missing.
+	// Secondary parts stay empty rather than stacking N full airframes.
+	const bool bIsAirframe = Component == Airframe;
+	if (bIsAirframe)
+	{
+		Ordered.Add(FSoftObjectPath(YakProxyPath));
+		Ordered.Add(FSoftObjectPath(YakHdProxyPath));
+	}
+
+	if (UStaticMesh* Mesh = USkyguardRuntimeMeshCatalog::ResolveOrderedSoftPaths(
+			Ordered,
+			bIsAirframe ? FName(TEXT("Yak.Airframe")) : NAME_None))
 	{
 		Component->SetStaticMesh(Mesh);
+		if (bIsAirframe && Mesh->GetPathName() != FullPath)
+		{
+			static bool bLoggedProxyFallback = false;
+			if (!bLoggedProxyFallback)
+			{
+				bLoggedProxyFallback = true;
+				UE_LOG(
+					LogSkyguardYak52Visual,
+					Warning,
+					TEXT("Yak L88 airframe missing; bound Hero proxy '%s'."),
+					*Mesh->GetPathName());
+			}
+		}
+		return;
+	}
+
+	if (bIsAirframe)
+	{
+		static bool bLoggedTotalMiss = false;
+		if (!bLoggedTotalMiss)
+		{
+			bLoggedTotalMiss = true;
+			UE_LOG(
+				LogSkyguardYak52Visual,
+				Error,
+				TEXT("Yak visual bind failed: L88 '%s' and Hero yak52 proxies missing."),
+				*FullPath);
+		}
 	}
 }
 

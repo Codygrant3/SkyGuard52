@@ -1,0 +1,22 @@
+{
+  "schema":"skyguard.m01-lighthouse-production-refinement01-recovery03.contract.v1",
+  "created_at_utc":"2026-08-12T22:16:00Z",
+  "classification":"PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY03_BLENDER_EXECUTION",
+  "objective":"Execute the frozen and fixture-proven pure-PNG Recovery02 wrapper without redundantly rerunning fixtures inside production mode.",
+  "authorities":[
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY02_SUPERVISOR_ATTEMPT01_TERMINAL_FREEZE.json","bytes":2066,"sha256":"090e2bde5a3538dedc2d9e30df0c2360df3af2c24d9633a4428b42138b5b376e"},
+    {"path":"D:\\Skyguard52\\Docs\\AAA_Review\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY02_OFFLINE_FREEZE.json","bytes":2787,"sha256":"1385487dfcae9d4e5f4e3713e036dcdd580303771779cb038415ce20b402ed33"},
+    {"path":"D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01_recovery02\\build_m01_lighthouse_production_refinement01_recovery02.py","bytes":6833,"sha256":"1ddf4f2e89c720ff122415b021d1830f9f1432b725ba3f670efe30eafbe3fa34"},
+    {"path":"D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01_recovery02\\test_png_luminance_recovery02.py","bytes":1601,"sha256":"7b9dac067fd44e43de2088593112faa87dd4f512ff81adf2135b4ed88739ee04"},
+    {"path":"D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\build_m01_lighthouse_production_refinement01.py","bytes":48640,"sha256":"d67624c7422f75b5d092549c7eaafb1635d796c6992d61328ef5a8db1ab24b47"},
+    {"path":"D:\\Skyguard52\\Scripts\\Production\\m01_lighthouse_production_refinement01\\production_refinement01_contract.json","bytes":5953,"sha256":"d284bf5246bb56cfaf145e72883a99a70983e04e57cd18460d9e296ada8c30ac"},
+    {"path":"D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json","bytes":2146,"sha256":"48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"},
+    {"path":"C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe","bytes":112975320,"sha256":"e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"}
+  ],
+  "fresh_namespaces":{
+    "attempt":"D:\\Skyguard52\\Saved\\BuildAttempts\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY03\\attempt_01",
+    "terminal_manifest":"D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY03_TERMINAL_MANIFEST.json",
+    "emergency_receipt":"D:\\Skyguard52\\Saved\\Reports\\M01_LIGHTHOUSE_PRODUCTION_REFINEMENT01_RECOVERY03_EMERGENCY_RECEIPT.jsonl"
+  },
+  "process_policy":{"blender_launch_count":1,"automatic_retry_count":0,"unreal_launch_count":0,"reuse_failed_namespace":false,"timeout_seconds":1800}
+}

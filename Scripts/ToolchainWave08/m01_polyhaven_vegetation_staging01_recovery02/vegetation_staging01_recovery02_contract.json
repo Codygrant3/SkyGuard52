@@ -1,0 +1,212 @@
+{
+  "schema": "skyguard.m01-polyhaven-vegetation-staging01-recovery02.contract.v1",
+  "contract_id": "M01-POLYHAVEN-VEGETATION-STAGING01-RECOVERY02",
+  "classification": "PASSED_READY_FOR_EXPLICIT_SINGLE_UNREAL_STAGING_AUTHORIZATION",
+  "project": {
+    "path": "D:\\SG52T08_ENV01\\Skyguard52.uproject",
+    "bytes": 3703,
+    "sha256": "7043de4d029b9927301c0adfc4bbf4fc9f4e7790f02c4321138fe4da2d034e5a"
+  },
+  "editor": {
+    "path": "D:\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+    "bytes": 512952,
+    "sha256": "0fb325cf215cc800ce260a1890af3f3dc314b8cc6331061d4e7e7246489af2e0"
+  },
+  "accepted_source_authorities": [
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_ACCEPTANCE_FREEZE.json",
+      "bytes": 3611,
+      "sha256": "d89447492c5325a9d7287398a8f82bf994d9cb45810c42387080560ef66b65bd"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_BLENDER_REVIEW01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 2501,
+      "sha256": "23948884b577798bce73c2403e01f4972de0b9300a36bc79c08fae4412ec687e"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_QUARANTINE01_TECHNICAL_EVALUATION.json",
+      "bytes": 2837,
+      "sha256": "d4d17cf63c92b7f34ac6f26012bdddc9dc49bfcc704f2c237be515fa3d323b0b"
+    },
+    {
+      "path": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\quarantine_manifest.json",
+      "bytes": 28146,
+      "sha256": "0b87a78014753129a2afc3516cd3a5b506ff58e0bacd6d6fc02464f192630e30"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    }
+  ],
+  "input_map": {
+    "asset": "/Game/M01/Lvl_M01_HeroStreetShoreCell03Recovery01",
+    "path": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_HeroStreetShoreCell03Recovery01.umap",
+    "bytes": 846250,
+    "sha256": "c236e6f6b8a811b4cd2562be7598653464b8b30ff917418849e027ae174fc60b",
+    "expected_actor_count": 164
+  },
+  "fresh_outputs": {
+    "asset_root": "/Game/M01/SourceBacked/VegetationStaging01Recovery02",
+    "asset_disk_root": "D:\\SG52T08_ENV01\\Content\\M01\\SourceBacked\\VegetationStaging01Recovery02",
+    "map_asset": "/Game/M01/Lvl_M01_PolyHavenVegetationStaging01Recovery02",
+    "map_path": "D:\\SG52T08_ENV01\\Content\\M01\\Lvl_M01_PolyHavenVegetationStaging01Recovery02.umap",
+    "attempt": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY02\\attempt_01",
+    "terminal_manifest": "D:\\Skyguard52\\Saved\\Reports\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY02_TERMINAL_MANIFEST.json",
+    "emergency_receipt": "D:\\Skyguard52\\Saved\\Reports\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY02_EMERGENCY_RECEIPT.jsonl"
+  },
+  "source": {
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "quarantine_root": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01"
+  },
+  "assets": [
+    {
+      "id": "fir_sapling",
+      "gltf": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\fir_sapling\\fir_sapling_2k.gltf",
+      "gltf_bytes": 10979,
+      "gltf_sha256": "093fd4af3f76044afe36ebf572fdbe6c38bed2874b7b920ac86561e33359bd5c",
+      "expected_dimensions_cm": [
+        274.2727994918823,
+        130.0737977027893,
+        82.64130651950836
+      ],
+      "source_triangles": 433021,
+      "expected_material_slots": 2,
+      "nanite": true,
+      "placement_count": 2,
+      "density_policy": "SPARSE_REVIEW_ONLY",
+      "catalog_dimensions_cm": [
+        274.272799491882,
+        82.6413065195084,
+        130.073797702789
+      ],
+      "dimension_authority": "EXACT_GLTF_TRANSFORMED_POSITION_VERTICES"
+    },
+    {
+      "id": "pine_sapling_small",
+      "gltf": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\pine_sapling_small\\pine_sapling_small_2k.gltf",
+      "gltf_bytes": 11442,
+      "gltf_sha256": "1869e078ec82aaa9cad002ad5be76538dac77bf5efd9ad98b2a0e6c11cca7c18",
+      "expected_dimensions_cm": [
+        264.2059862613678,
+        129.89574084058404,
+        77.0349532365799
+      ],
+      "source_triangles": 398144,
+      "expected_material_slots": 2,
+      "nanite": true,
+      "placement_count": 2,
+      "density_policy": "SPARSE_REVIEW_ONLY",
+      "catalog_dimensions_cm": [
+        264.205998182297,
+        77.0349532365799,
+        129.895740840584
+      ],
+      "dimension_authority": "EXACT_GLTF_TRANSFORMED_POSITION_VERTICES"
+    },
+    {
+      "id": "shrub_02",
+      "gltf": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\shrub_02\\shrub_02_2k.gltf",
+      "gltf_bytes": 8083,
+      "gltf_sha256": "9ce5762223498bfbaf33d03ef6cf4fdaeeb449cf4745d551e012e7d622a5367e",
+      "expected_dimensions_cm": [
+        605.387771375643,
+        170.25465797087668,
+        228.5062478932092
+      ],
+      "source_triangles": 27254,
+      "expected_material_slots": 1,
+      "nanite": true,
+      "placement_count": 6,
+      "density_policy": "CONTROLLED_PLANTING_STRIP_REVIEW",
+      "catalog_dimensions_cm": [
+        534.0904712677,
+        206.070345640182,
+        207.052299380302
+      ],
+      "dimension_authority": "EXACT_GLTF_TRANSFORMED_POSITION_VERTICES"
+    },
+    {
+      "id": "shrub_04",
+      "gltf": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\shrub_04\\shrub_04_2k.gltf",
+      "gltf_bytes": 2882,
+      "gltf_sha256": "4dee67a480bdcf0f63f3144aea4de00943833e18c576086ffc4ee7b9f82017ed",
+      "expected_dimensions_cm": [
+        58.369018882513046,
+        21.919968025758862,
+        14.609728753566742
+      ],
+      "source_triangles": 27327,
+      "expected_material_slots": 1,
+      "nanite": true,
+      "placement_count": 8,
+      "density_policy": "CONTROLLED_PLANTING_STRIP_REVIEW",
+      "catalog_dimensions_cm": [
+        74.6786441653967,
+        18.6920173466206,
+        28.0669854953885
+      ],
+      "dimension_authority": "EXACT_GLTF_TRANSFORMED_POSITION_VERTICES"
+    },
+    {
+      "id": "grass_medium_02",
+      "gltf": "D:\\Skyguard52\\Saved\\SourceQuarantine\\M01_POLYHAVEN_VEGETATION_QUARANTINE01\\grass_medium_02\\grass_medium_02_2k.gltf",
+      "gltf_bytes": 8864,
+      "gltf_sha256": "6966503de862fd46d5525ac56e0e3f7ca6a45cc8989c80af97d39f1b37ef480f",
+      "expected_dimensions_cm": [
+        131.06353841722012,
+        40.53142322227359,
+        43.324655294418335
+      ],
+      "source_triangles": 7842,
+      "expected_material_slots": 1,
+      "nanite": false,
+      "placement_count": 10,
+      "density_policy": "CONTROLLED_PLANTING_STRIP_REVIEW",
+      "catalog_dimensions_cm": [
+        357.997038587928,
+        140.652704238892,
+        144.828486442566
+      ],
+      "dimension_authority": "EXACT_GLTF_TRANSFORMED_POSITION_VERTICES"
+    }
+  ],
+  "policies": {
+    "runtime_promotion": false,
+    "accepted_map_mutation": false,
+    "one_unreal_launch": true,
+    "automatic_retries": 0,
+    "reuse_failed_namespace": false,
+    "collision": "NONE",
+    "map_placement_count": 28,
+    "future_d3d12_visual_proof_required": true,
+    "future_performance_proof_required": true,
+    "tree_small_02_excluded": true
+  },
+  "compatibility_authority": {
+    "reflection_freeze": {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY01_REFLECTION_PROBE_TERMINAL_FREEZE.json",
+      "bytes": 2404,
+      "sha256": "45407419e75220df5a2ca0337418ec8487d7ef8313ada500d04f1f19a543db31"
+    },
+    "reflection_receipt": {
+      "path": "D:\\Skyguard52\\Saved\\BuildAttempts\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY01_REFLECTION_PROBE\\attempt_01\\reflection_receipt.json",
+      "bytes": 3697,
+      "sha256": "c7eb7e429aec3308a658bbe4e16550698745c2c6761262f7eaafe97f5951b5b0"
+    },
+    "corrected_property": "generate_lightmap_u_vs",
+    "rejected_property": "generate_lightmap_uvs"
+  },
+  "exact_bounds_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_EXACT_GLTF_VERTEX_BOUNDS_AUTHORITY.json",
+    "bytes": 7858,
+    "sha256": "3528b8c143d6f77f383a13787519d491fc32a5b92cc9d9e882ee0883334c67ab"
+  },
+  "recovery01_failure_authority": {
+    "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_POLYHAVEN_VEGETATION_STAGING01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+    "bytes": 8712,
+    "sha256": "fef9027bdbe914b1690572b101c225758a7da27f6250aeee62abe1fc82f0cfe7"
+  }
+}

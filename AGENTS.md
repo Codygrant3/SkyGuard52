@@ -1,5 +1,16 @@
 # Skyguard 52 Project Instructions
 
+## Current product direction
+
+As of 2026-08-14 the live goal is a **tactical arcade gunship campaign**:
+Apache CPG, AI pilot, sensors, weapons as decisions, threat
+prioritization. Not a Yak-52/Igla intercept and not BF6/COD photoreal
+parity. Read `Docs/SKYGUARD_OWN_THING.md` and
+`Docs/SKYGUARD_APACHE_GUNSHIP_PIVOT.md` before planning weapons, missions,
+or aircraft work. Historical AAA evidence stays immutable. Do not reopen
+Stage 7B / hero photoreal acceptance loops unless the user explicitly
+restores that bar.
+
 ## Canonical project
 
 - Work only in `D:\Skyguard52`.

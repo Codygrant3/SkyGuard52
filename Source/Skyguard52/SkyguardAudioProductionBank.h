@@ -58,6 +58,9 @@ struct FSkyguardProductionAudioEntry
 	ESkyguardProductionAudioCategory Category = ESkyguardProductionAudioCategory::EngineIdle;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ESkyguardAudioSourceStatus SourceStatus = ESkyguardAudioSourceStatus::MISSING_SOURCE;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -166,15 +169,28 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Audio|Production")
 	void InitializeRequiredEntries();
 
+	/**
+	 * Ensures every required category exists with empty SoftObjectPtr slots and
+	 * a clear DisplayName. Does not wipe already-authored bindings.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Audio|Production")
+	void EnsureDefaultEntries();
+
 	UFUNCTION(BlueprintPure, Category="Skyguard|Audio|Production")
 	FSkyguardProductionAudioAudit EvaluateReadiness() const;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Audio|Production")
 	bool ConfigureRoutingTopology();
 
+	/** Categories still MISSING_SOURCE with no Sound soft path bound. */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Audio|Production")
+	TArray<ESkyguardProductionAudioCategory> GetUnboundRequiredCategories() const;
+
 	const FSkyguardProductionAudioEntry* FindEntry(ESkyguardProductionAudioCategory Category) const;
 
 	static const TArray<ESkyguardProductionAudioCategory>& GetRequiredCategories();
+
+	static FText GetCategoryDisplayName(ESkyguardProductionAudioCategory Category);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Audio|Production")
 	TArray<FSkyguardProductionAudioEntry> Entries;

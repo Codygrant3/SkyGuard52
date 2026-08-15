@@ -1,7 +1,31 @@
 #include "SkyguardCombatVFX.h"
 
+#include "SkyguardCombatNiagaraCatalog.h"
 #include "SkyguardCombatVFXPoolSubsystem.h"
 #include "Engine/World.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraSystem.h"
+
+namespace
+{
+	void SpawnOptionalNiagara(
+		UWorld* World,
+		UNiagaraSystem* System,
+		const FVector& Location,
+		const FRotator& Rotation,
+		const FVector& Scale = FVector::OneVector)
+	{
+		if (World && System)
+		{
+			UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+				World,
+				System,
+				Location,
+				Rotation,
+				Scale);
+		}
+	}
+}
 
 USkyguardCombatVFXPoolSubsystem* USkyguardCombatVFX::Pool(UWorld* World)
 {
@@ -72,13 +96,13 @@ void USkyguardCombatVFX::SpawnMuzzleFlash(
 	UMaterialInterface* Hot = VFXPool->GetHotMaterial();
 	const FVector Forward = Dir.GetSafeNormal();
 	SpawnBurst(
-		World, Loc, 10, 10.f, 0.04f, 0.12f, Hot, 0.07f,
+		World, Loc, 14, 14.f, 0.05f, 0.16f, Hot, 0.09f,
 		Forward * 8.f);
 	SpawnOne(
 		World,
 		VFXPool->GetSphereMesh(),
 		Loc + Forward * 6.f,
-		FVector(0.18f),
+		FVector(0.26f),
 		FRotator::ZeroRotator,
 		Hot,
 		0.05f);
@@ -92,6 +116,11 @@ void USkyguardCombatVFX::SpawnMuzzleFlash(
 		ConeRotation,
 		Hot,
 		0.06f);
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveMuzzleFlash(),
+		Loc,
+		Dir.Rotation());
 }
 
 void USkyguardCombatVFX::SpawnGunSmoke(
@@ -114,6 +143,11 @@ void USkyguardCombatVFX::SpawnGunSmoke(
 		VFXPool->GetSmokeMaterial(),
 		0.35f,
 		FVector(0.f, 0.f, 4.f));
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveGunSmoke(),
+		Loc,
+		Dir.Rotation());
 }
 
 void USkyguardCombatVFX::SpawnHitSparks(
@@ -136,6 +170,11 @@ void USkyguardCombatVFX::SpawnHitSparks(
 		VFXPool->GetHotMaterial(),
 		0.12f,
 		Normal.GetSafeNormal() * 10.f);
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveHitSparks(),
+		Loc,
+		Normal.Rotation());
 }
 
 void USkyguardCombatVFX::SpawnExplosion(
@@ -176,6 +215,12 @@ void USkyguardCombatVFX::SpawnExplosion(
 	SpawnBurst(
 		World, Loc, 8, 50.f * ClampedScale,
 		0.2f * ClampedScale, 0.5f * ClampedScale, Flak, 0.2f);
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveDroneExplosion(),
+		Loc,
+		FRotator::ZeroRotator,
+		FVector(ClampedScale));
 }
 
 void USkyguardCombatVFX::SpawnMissileTrail(
@@ -209,6 +254,11 @@ void USkyguardCombatVFX::SpawnMissileTrail(
 			Trail,
 			0.25f + (1.f - Alpha) * 0.2f);
 	}
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveMissileTrail(),
+		End,
+		Direction.Rotation());
 }
 
 void USkyguardCombatVFX::SpawnIglaLaunch(
@@ -236,6 +286,11 @@ void USkyguardCombatVFX::SpawnIglaLaunch(
 		VFXPool->GetSmokeMaterial(),
 		0.55f,
 		FVector(0.f, 0.f, 8.f));
+	SpawnOptionalNiagara(
+		World,
+		USkyguardCombatNiagaraCatalog::ResolveIglaLaunch(),
+		Loc,
+		Dir.Rotation());
 }
 
 void USkyguardCombatVFX::SpawnTracer(
@@ -251,15 +306,15 @@ void USkyguardCombatVFX::SpawnTracer(
 
 	const FVector Midpoint = (Start + End) * 0.5f;
 	const FVector Delta = End - Start;
-	const float Length = FMath::Clamp(Delta.Size() * 0.0008f, 0.4f, 8.f);
+	const float Length = FMath::Clamp(Delta.Size() * 0.0008f, 0.6f, 10.f);
 	const FRotator Rotation =
 		Delta.Rotation() + FRotator(0.f, 0.f, 90.f);
 	SpawnOne(
 		World,
 		VFXPool->GetCylinderMesh(),
 		Midpoint,
-		FVector(0.04f, 0.04f, Length),
+		FVector(0.09f, 0.09f, Length),
 		Rotation,
 		VFXPool->GetHotMaterial(),
-		0.05f);
+		0.09f);
 }

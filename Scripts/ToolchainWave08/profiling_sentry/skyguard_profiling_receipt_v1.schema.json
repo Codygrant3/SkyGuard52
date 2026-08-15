@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skyguard.profiling-receipt.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "attempt_id", "classification", "build", "scenario", "execution", "insights", "frameview", "metrics", "artifacts", "limitations"],
+  "properties": {
+    "schema": {"const": "skyguard.profiling-receipt.v1"},
+    "attempt_id": {"type": "string", "pattern": "^attempt_[0-9]{8}T[0-9]{9}Z$"},
+    "classification": {"enum": ["PASSED_PROFILE_CAPTURE_AWAITING_REVIEW", "FAILED_WITH_EVIDENCE", "DIAGNOSTIC_ONLY"]},
+    "build": {"type": "object", "required": ["configuration", "executable", "sha256"]},
+    "scenario": {"enum": ["boot_to_briefing", "rear_gunner_traversal", "ads_rifle_drone_breakup", "igla_lock_launch_heavy", "boss_destruction", "weather_transition", "soak_20min"]},
+    "execution": {"type": "object", "required": ["duration_seconds", "resolution", "rhi", "exit_code", "timeout", "retries"]},
+    "insights": {"type": "object", "required": ["tool", "tool_sha256", "trace_channels", "trace"]},
+    "frameview": {"type": "object", "required": ["provider", "tool", "tool_sha256", "csv"]},
+    "metrics": {"type": "object", "required": ["sample_count", "mean_ms", "p95_ms", "p99_ms", "max_ms", "frames_over_50ms", "frames_over_100ms", "peak_working_set_mb", "peak_gpu_memory_mb"]},
+    "artifacts": {"type": "array", "minItems": 5},
+    "limitations": {"type": "array"}
+  }
+}
+

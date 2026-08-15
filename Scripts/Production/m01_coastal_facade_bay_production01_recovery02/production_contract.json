@@ -1,0 +1,81 @@
+{
+  "schema": "skyguard.m01-coastal-facade-bay-production01-recovery02.contract.v1",
+  "created_at_utc": "2026-08-12T23:55:00Z",
+  "classification": "PASSED_READY_FOR_STANDING_AUTHORIZED_SINGLE_M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY02_BLENDER_EXECUTION",
+  "asset_id": "m01-coastal-facade-bay-production01-recovery02",
+  "scope": "Fresh architecture-first Recovery02 facade module. Preserve the accepted Recovery06 window geometry and frozen Production01 render/export harness. Replace every rejected Recovery01 facade and balcony mesh with pale masonry hierarchy, square-steel terminated rails, embedded brackets and restrained interior emission.",
+  "authorities": [
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01_recovery02\\build_m01_coastal_facade_bay_production01_recovery02.py",
+      "bytes": 14478,
+      "sha256": "8af5670c3c4097281bca14b5641699eb50625193b24dd744784a21ceb3880792"
+    },
+    {
+      "path": "D:\\Skyguard52\\Scripts\\Production\\m01_coastal_facade_bay_production01\\build_m01_coastal_facade_bay_production01.py",
+      "bytes": 27839,
+      "sha256": "75f6f297f967fdadf7b696a7d6b0b9d9ebb18e3aa4e4ea234fe0470427894d74"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_ATTEMPT01_DIRECT_VISUAL_REVIEW.json",
+      "bytes": 3734,
+      "sha256": "8375945cc2e1cbf87827a84ee1711f5a5bdb24d853d19d3d74919afc1f322df4"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_PRODUCTION01_RECOVERY01_ATTEMPT01_TERMINAL_FREEZE.json",
+      "bytes": 2720,
+      "sha256": "caded6c1fb5f2f91330a3eb79b51d601d467f3b5064e9a6d885c73b724de0f51"
+    },
+    {
+      "path": "D:\\Skyguard52\\Docs\\AAA_Review\\M01_COASTAL_FACADE_BAY_RECOVERY01_ACCEPTED_WINDOW_BOUNDS_AUTHORITY.json",
+      "bytes": 2319,
+      "sha256": "e0b802b26e1aa3bce4247b942fa78cfe6d859f2f10f2090c338818ae08578afb"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06-unrealready01-grok-mcp\\attempt_20260811T013000000000Z\\output\\M01_Hero_Prewar_Window_Bay_A01_Recovery06_UnrealReady01.blend",
+      "bytes": 722737,
+      "sha256": "94dba4f97084171f823cd845b05c6552832538de3e6f87a9f73dbb0dc2c06104"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\Attempts\\m01-hero-prewar-window-bay-a01-recovery06-unrealready01-grok-mcp\\attempt_20260811T013000000000Z\\output\\M01_Hero_Prewar_Window_Bay_A01_Recovery06_UnrealReady01.glb",
+      "bytes": 18844684,
+      "sha256": "e27b61da25d93fac047c7941b7087325e6500f30790b92b66ac002dc69421805"
+    },
+    {
+      "path": "D:\\Skyguard52\\Production\\standing_heavy_process_authorization.json",
+      "bytes": 2146,
+      "sha256": "48277d7edd869cc2b841c3993e8f7599bec5291ddf23e9c442b33e09b870c089"
+    },
+    {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "bytes": 112975320,
+      "sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7"
+    }
+  ],
+  "design_corrections": {
+    "failed_recovery01_facade_geometry_reuse_allowed": false,
+    "accepted_window_geometry_reauthored": false,
+    "accepted_window_emission_only_adjustment_allowed": true,
+    "hidden_full_facade_slab_allowed": false,
+    "oversized_dark_perimeter_allowed": false,
+    "balcony_rail_section": "square_steel",
+    "balcony_attachment_requirement": "continuous rails terminate into visible wall plates; diagonal braces terminate inside wall plates and slab underside"
+  },
+  "required_outputs": {
+    "blend": 1,
+    "glb": 1,
+    "checkpoint_render_count": 3,
+    "final_render_count": 8,
+    "total_render_count": 11,
+    "render_resolution": [2048, 1152],
+    "render_meshes": 4,
+    "collision_meshes": 4,
+    "sockets": 5
+  },
+  "process_policy": {
+    "blender_launch_count": 1,
+    "automatic_retry_count": 0,
+    "unreal_launch_count": 0,
+    "failed_namespace_reuse": false,
+    "runtime_promotion": false
+  }
+}
