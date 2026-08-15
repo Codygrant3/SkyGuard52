@@ -125,7 +125,7 @@ bool FSkyguardCampaignRosterCpgCopyTest::RunTest(const FString& Parameters)
 	TestTrue(
 		TEXT("M01 teaches rockets or missiles"),
 		MentionsRocketsOrMissiles(M01));
-	TestFalse(TEXT("M01 is not Igla"), CopyContainsBannedTerm(M01));
+	TestFalse(TEXT("M01 is not Igla"), CopyContainsBannedTerm(*M01));
 
 	const FString Night = SkyguardCampaignRoster::Get(3).Brief;
 	TestTrue(

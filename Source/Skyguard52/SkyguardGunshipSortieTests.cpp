@@ -255,7 +255,7 @@ bool FSkyguardCoastalConvoyHighwayLoopsTest::RunTest(const FString& Parameters)
 		TestEqual(
 			FString::Printf(TEXT("point %d authored Z is road height"), Index),
 			Point.Z,
-			92.f);
+			92.0);
 	}
 
 	for (int32 Index = 0; Index < Path.Num(); ++Index)
