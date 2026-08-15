@@ -8,6 +8,7 @@
 #include "SkyguardThreatTypes.h"
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
+#include "Engine/EngineTypes.h"
 #include "Engine/World.h"
 #include "Misc/AutomationTest.h"
 
@@ -172,10 +173,16 @@ bool FSkyguardGuidedMissileFireRequiresLockTest::RunTest(const FString& Paramete
 		return false;
 	}
 
-	// Character SpawnActor in a bare CreateWorld can leave GunnerCamera null.
-	// NewObject with the world as outer still runs the C++ constructor, so the
-	// CPG camera exists and CanFireGuidedMissile is actually the lock gate.
-	ASkyguardGunner* Gunner = NewObject<ASkyguardGunner>(World);
+	// NewObject(World) does not register the actor, so GetWorld() stays null
+	// and FireGuidedMissile returns before spawn. SpawnActor puts the CPG
+	// in the world. AlwaysSpawn avoids a Character capsule blocking the pawn.
+	FActorSpawnParameters GunnerSpawn;
+	GunnerSpawn.SpawnCollisionHandlingOverride =
+		ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>(
+		FVector::ZeroVector,
+		FRotator::ZeroRotator,
+		GunnerSpawn);
 	ASkyguardDrone* Armor = World->SpawnActor<ASkyguardDrone>(
 		FVector(2000.f, 0.f, 0.f),
 		FRotator::ZeroRotator);
