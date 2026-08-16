@@ -253,6 +253,31 @@ bool ASkyguardGunshipSortieDirector::UsesRadarLiveInboundCadence(
 	}
 }
 
+bool ASkyguardGunshipSortieDirector::IsAdaCoordinatorLive(
+	const bool bShoreAda,
+	const bool bShipAda)
+{
+	return bShoreAda || bShipAda;
+}
+
+float ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+	const ESkyguardSortieBeat InBeat,
+	const bool bShoreAda,
+	const bool bShipAda)
+{
+	const bool bRadarLive =
+		IsAdaCoordinatorLive(bShoreAda, bShipAda) &&
+		UsesRadarLiveInboundCadence(InBeat);
+	return IncomingIntervalSeconds(bRadarLive);
+}
+
+float ASkyguardGunshipSortieDirector::ResolveIncomingIntervalSeconds() const
+{
+	const bool bShoreAda = Radar && !Radar->IsDestroyed();
+	const bool bShipAda = PatrolShip && PatrolShip->CanCoordinateAda();
+	return IncomingIntervalSecondsForNet(Beat, bShoreAda, bShipAda);
+}
+
 bool ASkyguardGunshipSortieDirector::HasInboundSource(
 	const ESkyguardSortieBeat InBeat,
 	const bool bShoreAda,
@@ -704,11 +729,11 @@ void ASkyguardGunshipSortieDirector::TickIncoming(const float DeltaSeconds)
 	const bool bShoreAda = Radar && !Radar->IsDestroyed();
 	const bool bShipAda = PatrolShip && PatrolShip->CanCoordinateAda();
 	const bool bShipCanLaunch = PatrolShip && PatrolShip->CanLaunchInbound();
-	const bool bCoordinatorLive = bShoreAda || bShipAda;
 	const bool bRadarLive =
-		bCoordinatorLive && UsesRadarLiveInboundCadence(Beat);
+		IsAdaCoordinatorLive(bShoreAda, bShipAda) &&
+		UsesRadarLiveInboundCadence(Beat);
 	IncomingCooldown -= DeltaSeconds;
-	const float Interval = IncomingIntervalSeconds(bRadarLive);
+	const float Interval = IncomingIntervalSecondsForNet(Beat, bShoreAda, bShipAda);
 	if (IncomingCooldown <= 0.f &&
 		HasInboundSource(Beat, bShoreAda, bShipCanLaunch) &&
 		!IsSortieOver())

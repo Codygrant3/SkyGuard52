@@ -2,6 +2,8 @@
 
 #include "SkyguardCampaignRoster.h"
 #include "SkyguardCoastalEnvironmentDirector.h"
+#include "SkyguardCpgDebrief.h"
+#include "SkyguardCpgHud.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardGunshipSortieDirector.h"
@@ -233,6 +235,18 @@ bool FSkyguardSortieInboundIntervalsStretchForFifteenMinutesTest::RunTest(
 		TEXT("contact inbound does not need the ship launcher"),
 		ASkyguardGunshipSortieDirector::HasInboundSource(
 			ESkyguardSortieBeat::InitialContact, false, false));
+	TestEqual(
+		TEXT("radar-net with a live shore net uses the live interval"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::RadarNet, true, false),
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarLiveIntervalSeconds));
+	TestEqual(
+		TEXT("radar-net with the shore net down uses the down interval"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::RadarNet, false, false),
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarDownIntervalSeconds));
 	return true;
 }
 
@@ -320,6 +334,198 @@ bool FSkyguardSortieApproachHasNoInboundTest::RunTest(const FString& Parameters)
 	TestTrue(
 		TEXT("inbound can come once approach is over"),
 		Gunner->IsMissileInbound());
+
+	World->DestroyWorld(false);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieRadarDownLengthensInboundTest,
+	"Skyguard52.Campaign.RadarDownLengthensInbound",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieRadarDownLengthensInboundTest::RunTest(
+	const FString& Parameters)
+{
+	const float Live =
+		ASkyguardGunshipSortieDirector::IncomingRadarLiveIntervalSeconds;
+	const float Down =
+		ASkyguardGunshipSortieDirector::IncomingRadarDownIntervalSeconds;
+	TestTrue(TEXT("radar-down interval is longer than radar-live"), Down > Live);
+	TestEqual(
+		TEXT("shore net up on radar-net is the live clock"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::RadarNet, true, false),
+		static_cast<double>(Live));
+	TestEqual(
+		TEXT("shore net down on radar-net is the down clock"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::RadarNet, false, false),
+		static_cast<double>(Down));
+	TestEqual(
+		TEXT("contact stays on the down clock even if a net is up"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::InitialContact, true, false),
+		static_cast<double>(Down));
+	TestEqual(
+		TEXT("climax with ship radar up uses the live clock"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::Climax, false, true),
+		static_cast<double>(Live));
+	TestEqual(
+		TEXT("climax with both coordinators down uses the down clock"),
+		ASkyguardGunshipSortieDirector::IncomingIntervalSecondsForNet(
+			ESkyguardSortieBeat::Climax, false, false),
+		static_cast<double>(Down));
+	TestTrue(
+		TEXT("approach still refuses inbound tick-fire"),
+		!ASkyguardGunshipSortieDirector::BeatAllowsInbound(
+			ESkyguardSortieBeat::Approach));
+	TestFalse(
+		TEXT("a dead coordinator is not live"),
+		ASkyguardGunshipSortieDirector::IsAdaCoordinatorLive(false, false));
+	TestTrue(
+		TEXT("shore or ship radar can coordinate"),
+		ASkyguardGunshipSortieDirector::IsAdaCoordinatorLive(true, false) &&
+			ASkyguardGunshipSortieDirector::IsAdaCoordinatorLive(false, true));
+
+	const FSkyguardCampaignMissionSpec& Harbor = SkyguardCampaignRoster::Get(1);
+	const float ExpectedBeats[7] = {120.f, 240.f, 360.f, 480.f, 600.f, 780.f, 900.f};
+	for (int32 Index = 0; Index < 7; ++Index)
+	{
+		TestTrue(
+			FString::Printf(TEXT("Harbor Breaker beat %d stays on the 15-min clock"), Index),
+			FMath::IsNearlyEqual(Harbor.BeatSeconds[Index], ExpectedBeats[Index], 2.f));
+	}
+
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardRadarDownInboundWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>();
+	TestNotNull(TEXT("director"), Director);
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Director || !Gunner)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(1);
+	TestEqual(
+		TEXT("harbor starts on approach"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::Approach);
+
+	const float ApproachHold =
+		ASkyguardGunshipSortieDirector::IncomingFirstDelaySeconds + 18.f;
+	Director->Tick(ApproachHold);
+	TestEqual(
+		TEXT("still on approach after the first-delay window"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::Approach);
+	TestFalse(TEXT("approach does not tick-fire inbound"), Gunner->IsMissileInbound());
+	TestEqual(
+		TEXT("approach resolve stays on the down clock"),
+		Director->ResolveIncomingIntervalSeconds(),
+		static_cast<double>(Down));
+
+	Director->EnterBeat(ESkyguardSortieBeat::RadarNet);
+	ASkyguardRadarNode* ShoreRadar = Director->GetRadarNode();
+	TestNotNull(TEXT("harbor radar node"), ShoreRadar);
+	if (!ShoreRadar)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+	TestFalse(TEXT("shore radar starts live"), ShoreRadar->IsDestroyed());
+	TestEqual(
+		TEXT("radar-net with a live shore node uses the live interval"),
+		Director->ResolveIncomingIntervalSeconds(),
+		static_cast<double>(Live));
+
+	Director->IncomingCooldown = 0.f;
+	Director->Tick(0.1f);
+	TestTrue(TEXT("radar-up net can inbound"), Gunner->IsMissileInbound());
+	TestTrue(
+		TEXT("radar-up fire arms the live interval"),
+		FMath::IsNearlyEqual(Director->IncomingCooldown, Live, 0.15f));
+
+	Gunner->PopFlares();
+	Director->Tick(0.1f);
+	TestFalse(TEXT("flare clears the live inbound"), Gunner->IsMissileInbound());
+
+	ShoreRadar->ApplyDamage(500.f);
+	TestTrue(TEXT("shore radar is down"), ShoreRadar->IsDestroyed());
+	TestEqual(
+		TEXT("killing the harbor radar net lengthens inbound"),
+		Director->ResolveIncomingIntervalSeconds(),
+		static_cast<double>(Down));
+
+	Director->IncomingCooldown = 0.f;
+	Director->Tick(0.1f);
+	TestTrue(TEXT("radar-down net can still inbound"), Gunner->IsMissileInbound());
+	TestTrue(
+		TEXT("radar-down fire arms the longer interval"),
+		FMath::IsNearlyEqual(Director->IncomingCooldown, Down, 0.15f));
+
+	Gunner->PopFlares();
+	Director->Tick(0.1f);
+
+	Director->EnterBeat(ESkyguardSortieBeat::Climax);
+	ASkyguardPatrolShipBoss* Ship = Director->GetPatrolShip();
+	TestNotNull(TEXT("climax patrol ship"), Ship);
+	if (!Ship)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+	TestTrue(TEXT("ship radar still coordinates ADA"), Ship->CanCoordinateAda());
+	TestTrue(TEXT("ship launcher stays live"), Ship->CanLaunchInbound());
+	TestEqual(
+		TEXT("ship radar restores the live inbound clock"),
+		Director->ResolveIncomingIntervalSeconds(),
+		static_cast<double>(Live));
+
+	Ship->ApplyHitToSystem(ESkyguardPatrolShipSystem::Radar, 500.f);
+	TestFalse(TEXT("ship radar down kills ADA coordination"), Ship->CanCoordinateAda());
+	TestTrue(TEXT("PR #7: radar down leaves the launcher live"), Ship->CanLaunchInbound());
+	TestEqual(
+		TEXT("last ADA radar down lengthens inbound again"),
+		Director->ResolveIncomingIntervalSeconds(),
+		static_cast<double>(Down));
+	TestTrue(
+		TEXT("climax still has a source while the launcher is live"),
+		ASkyguardGunshipSortieDirector::HasInboundSource(
+			ESkyguardSortieBeat::Climax, false, true));
+
+	Director->IncomingCooldown = 0.f;
+	Director->Tick(0.1f);
+	TestTrue(TEXT("ship-radar-down can still inbound from the launcher"), Gunner->IsMissileInbound());
+	TestTrue(
+		TEXT("ship-radar-down fire keeps the longer interval"),
+		FMath::IsNearlyEqual(Director->IncomingCooldown, Down, 0.15f));
+
+	const FSkyguardCpgHudSnapshot InboundSnap = Gunner->BuildCpgHudSnapshot();
+	TestFalse(
+		TEXT("inbound tape bans Igla/Yak/rifle"),
+		SkyguardCpgCopyHasBannedTerm(InboundSnap.ThreatLine));
+	TestFalse(
+		TEXT("inbound eufd bans Igla/Yak/rifle"),
+		SkyguardCpgCopyHasBannedTerm(InboundSnap.EufdLine));
+	TestFalse(
+		TEXT("inbound label bans Igla/Yak/rifle"),
+		SkyguardCpgCopyHasBannedTerm(FString(SkyguardCpgInboundLabel())));
+	TestFalse(
+		TEXT("ship tape bans Igla/Yak/rifle after radar kill"),
+		SkyguardCpgCopyHasBannedTerm(Ship->GetHudSystemLine()));
 
 	World->DestroyWorld(false);
 	return true;
