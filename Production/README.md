@@ -16,10 +16,11 @@ first:
 
 1. `core-apache-cockpit` — CPG front-seat cockpit
 2. `core-apache-cockpit-station-detail01` — CPG station detail01 with eyepoint review (additional queued method; does not supersede cockpit until accepted)
-3. `core-apache-30mm` — 30 mm chin gun
-4. `core-apache-hydra` — Hydra / rocket pods
-5. `core-apache-hellfire` — Hellfire / guided missile and launch rail
-6. `core-apache-airframe` — exterior airframe
+3. `core-apache-cockpit-station-model01` — CPG station model01 with formed bmesh geometry and eyepoint review (additional queued method; does not supersede station-detail01 until accepted)
+4. `core-apache-30mm` — 30 mm chin gun
+5. `core-apache-hydra` — Hydra / rocket pods
+6. `core-apache-hellfire` — Hellfire / guided missile and launch rail
+7. `core-apache-airframe` — exterior airframe
 
 Lane `P0-apache-cpg-hero-slice` is first in `execution_order`. Archived items
 remain in `P0-cockpit-combat-vertical-slice` as `deferred`, so `next` skips
@@ -29,10 +30,11 @@ review. No ready→accepted skip.
 
 `core-apache-cockpit` has a registered governed worker at
 `Scripts\Workers\worker_core_apache_cockpit.py` and stays `queued`.
-`core-apache-cockpit-station-detail01` is an additional queued Apache P0
-method with its own worker and output contract. Do not launch Blender, do
-not accept art, and do not invent workers for the remaining Apache P0
-weapons/airframe assets. No ready→accepted skip.
+`core-apache-cockpit-station-detail01` and
+`core-apache-cockpit-station-model01` are additional queued Apache P0
+methods with their own workers and output contracts. Do not launch
+Blender, do not accept art, and do not invent workers for the remaining
+Apache P0 weapons/airframe assets from Cloud. No ready→accepted skip.
 
 ## Standing Blender and Unreal authorization
 
@@ -68,9 +70,10 @@ python .\Scripts\skyguard_production.py set-state core-apache-cockpit ready `
 ```
 
 Do not run that `set-state` or a `production_cycle` launch until the user
-asks. `core-apache-cockpit` and `core-apache-cockpit-station-detail01` have
-registered workers and stay `queued`. The remaining Apache P0 weapon and
-airframe assets still have no worker.
+asks. `core-apache-cockpit`, `core-apache-cockpit-station-detail01`, and
+`core-apache-cockpit-station-model01` have registered workers and stay
+`queued`. The remaining Apache P0 weapon and airframe assets still have
+no worker.
 
 Archived Yak / rifle / Igla / Shahed-as-P0 lanes stay `deferred`. Historical
 cycle examples such as `core-shahed136` are evidence only and are not the

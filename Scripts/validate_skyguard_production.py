@@ -12,6 +12,7 @@ CONTROLLER = ROOT / "Scripts" / "skyguard_production.py"
 APACHE_P0_IDS = (
     "core-apache-cockpit",
     "core-apache-cockpit-station-detail01",
+    "core-apache-cockpit-station-model01",
     "core-apache-30mm",
     "core-apache-hydra",
     "core-apache-hellfire",
