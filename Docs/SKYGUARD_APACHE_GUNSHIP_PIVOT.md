@@ -74,7 +74,7 @@ Shahed-only roster, rear-seat safety arc, photoreal AAA gates.
 | 1 / 2 / 3 | Cannon / rockets / guided missile |
 | R | Reload the selected station |
 | T | Toggle thermal inside the sensor |
-| C | Pop flares (defeat inbound missiles) |
+| X | Pop flares (defeat inbound missiles) |
 | F | Launch guided missile if lock is complete |
 | W | Ascend and accelerate |
 | S | Descend and slow down |
