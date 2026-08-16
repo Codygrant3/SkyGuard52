@@ -38,7 +38,7 @@ cannot compile Unreal or hit Play; they still add or update the tests.
 
 No art or map rebuilds in phases 0–4.
 
-`gh` may be logged out. Push branches anyway.
+gh may be logged out; push branches anyway.
 
 ## Phase 0 — Land Harbor Breaker proof (15 min)
 
