@@ -58,6 +58,9 @@ public:
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	ESkyguardPilotCommand GetPilotCommand() const { return CurrentPilotCommand; }
 
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
+	int32 GetPilotConfirmationsIssued() const { return PilotConfirmationsIssued; }
+
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
 	void SetOrbitFocus(const FVector& WorldLocation);
 
@@ -238,7 +241,9 @@ private:
 	TObjectPtr<UMaterialInterface> ShapeMaterial;
 	void UpdatePilotMotion(float DeltaSeconds);
 	void UpdateDirectFlight(float DeltaSeconds);
+	void PollPilotCommandInput();
 	FRotator GetCommandAttitude() const;
+	bool IsActionJustPressed(const FName ActionName) const;
 
 	TMap<TObjectPtr<UStaticMeshComponent>, FLinearColor> PendingTint;
 	float CurrentRotorRPM = 0.f;
@@ -259,4 +264,5 @@ private:
 	float AirPitchDegrees = 0.f;
 	float AirRollDegrees = 0.f;
 	ESkyguardPilotCommand CurrentPilotCommand = ESkyguardPilotCommand::Pursuit;
+	int32 PilotConfirmationsIssued = 0;
 };

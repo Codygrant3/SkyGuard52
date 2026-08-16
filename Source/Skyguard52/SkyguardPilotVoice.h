@@ -9,6 +9,7 @@ class UObject;
 /** Diegetic-enough pilot lines. No VO bank required for the first proof. */
 namespace SkyguardPilotVoice
 {
+	FString ConfirmLineForCommand(ESkyguardPilotCommand Command);
 	void ConfirmCommand(UObject* WorldContext, ESkyguardPilotCommand Command);
 	void WarnOffAxis(UObject* WorldContext);
 	void CallLock(UObject* WorldContext);
