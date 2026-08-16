@@ -28,7 +28,7 @@ Code Reviewer merges. Workers never merge.
 Workers never touch a dirty `D:\Skyguard52`. One worktree and one branch per
 job. Branch prefixes: `cursor/*` and `grok/*`.
 
-Acquire file locks before launch. Do not start a second job on a locked path.
+File locks before launch. Do not start a second job on a locked path.
 
 Stack onto `cursor/harbor-proof-play` until Harbor Play is signed off, then
 stack onto `main`.
@@ -74,12 +74,12 @@ User Play is the extract. Fail the Play if any of these fire:
 
 Do not shrink Harbor Breaker `BeatSeconds` to make the Play shorter.
 
-## Phase 1 — Harden from Play notes
+## Phase 1 — Harden from Play notes, split by file lock
 
 Harden only what the Phase 0 Play actually called out.
 
-Split the work by file lock. One lock, one worktree, one branch. Do not
-bundle unrelated Play notes into one dirty tree.
+Split by file lock. One lock, one worktree, one branch. Do not bundle
+unrelated Play notes into one dirty tree.
 
 Still no art or map rebuilds.
 
