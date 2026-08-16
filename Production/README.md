@@ -26,9 +26,10 @@ them. Do not flip any of these Apache assets to `ready` or `accepted` without
 a real worker, one `production_cycle` run, and Human + Codex full-resolution
 review. No ready→accepted skip.
 
-Next art action: register a real worker/contract for `core-apache-cockpit`,
-then one `production_cycle` run. Human + Codex full-res review. No
-ready→accepted skip. Do not invent a `Scripts\Workers` path.
+`core-apache-cockpit` now has a registered governed worker at
+`Scripts\Workers\worker_core_apache_cockpit.py` and stays `queued`. Do not
+launch Blender, do not accept, and do not invent workers for the other four
+Apache P0 assets. No ready→accepted skip.
 
 ## Standing Blender and Unreal authorization
 
@@ -63,15 +64,16 @@ python .\Scripts\skyguard_production.py set-state core-apache-cockpit ready `
   --reason "Reference-backed worker and output contract validated."
 ```
 
-Do not run that `set-state` until a real `Scripts\Workers` file exists. The
-Apache P0 assets currently have no worker, so `run` must refuse them.
+Do not run that `set-state` or a `production_cycle` launch until the user
+asks. `core-apache-cockpit` has a registered worker and stays `queued`. The
+other four Apache P0 assets still have no worker.
 
 Archived Yak / rifle / Igla / Shahed-as-P0 lanes stay `deferred`. Historical
 cycle examples such as `core-shahed136` are evidence only and are not the
 next art action.
 
-To audit and run exactly one registered Blender worker together with its
-mandatory automatic postflight (only after a real Apache worker exists):
+To audit and run the registered cockpit worker together with its mandatory
+automatic postflight (only when the user asks for a Blender launch):
 
 ```powershell
 python .\Scripts\skyguard_production_cycle.py audit core-apache-cockpit

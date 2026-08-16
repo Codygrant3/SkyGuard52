@@ -192,7 +192,13 @@ class ProductionPipelineTests(unittest.TestCase):
         for asset in nxt[:5]:
             self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
             self.assertEqual(asset["status"], "queued")
-            self.assertFalse(asset.get("worker"))
+            if asset["id"] == "core-apache-cockpit":
+                self.assertEqual(
+                    asset["worker"]["script"],
+                    r"Scripts\Workers\worker_core_apache_cockpit.py",
+                )
+            else:
+                self.assertFalse(asset.get("worker"))
 
     def test_archived_p0_hero_assets_are_deferred_not_deleted(self) -> None:
         manifest = PIPELINE.load_manifest()
@@ -246,14 +252,48 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertTrue(manifest["policies"]["visual_review_required"])
         self.assertTrue(manifest["policies"]["unreal_import_requires_acceptance"])
 
-    def test_apache_p0_queued_without_worker_is_valid(self) -> None:
+    def test_apache_p0_cockpit_registers_real_queued_worker(self) -> None:
+        worker_path = (
+            PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_cockpit.py"
+        )
+        self.assertTrue(worker_path.is_file(), worker_path)
+        source = worker_path.read_text(encoding="utf-8")
+        self.assertIn("from skyguard_blender_worker_sdk import", source)
+        self.assertIn("run_worker", source)
+        self.assertIn("create_socket", source)
+        self.assertIn("def build_asset(", source)
+        self.assertNotIn("nuke()", source)
+        self.assertNotIn("APACHE_CPG_COCKPIT_BLOCKOUT01", source)
+        self.assertNotIn("Yak", source)
+        self.assertNotIn("Igla", source)
+        self.assertNotIn("rifle", source.lower())
+
         manifest = PIPELINE.load_manifest()
         by_id = PIPELINE.asset_index(manifest)
+        cockpit = by_id["core-apache-cockpit"]
+        self.assertEqual(cockpit["status"], "queued")
+        self.assertEqual(cockpit["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(
+            cockpit["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit.py",
+        )
+        self.assertEqual(
+            cockpit["worker"]["arguments"],
+            ["--output", "{output_dir}", "--asset-id", "core-apache-cockpit"],
+        )
+        self.assertEqual(cockpit["worker"]["minimum_renders"], 6)
+        self.assertEqual(
+            cockpit["worker"]["postflight"]["script"],
+            r"Scripts\adjudicate_ready_blender_asset_attempt_v2.py",
+        )
+        self.assertTrue(cockpit["worker"]["postflight"]["visual_review_still_required"])
+        self.assertFalse(cockpit.get("existing"))
         for asset_id in VALIDATOR.APACHE_P0_IDS:
             asset = by_id[asset_id]
             self.assertEqual(asset["status"], "queued", asset_id)
-            self.assertFalse(asset.get("worker"), asset_id)
             self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+            if asset_id != "core-apache-cockpit":
+                self.assertFalse(asset.get("worker"), asset_id)
         self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
 
     def test_apache_p0_rejects_phantom_worker_path(self) -> None:
@@ -280,7 +320,10 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
         live = PIPELINE.asset_index(PIPELINE.load_manifest())["core-apache-cockpit"]
         self.assertEqual(live["status"], "queued")
-        self.assertFalse(live.get("worker"))
+        self.assertEqual(
+            live["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit.py",
+        )
 
 
 if __name__ == "__main__":
