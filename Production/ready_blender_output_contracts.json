@@ -236,6 +236,69 @@
       "minimum_skins": 0,
       "minimum_animations": 0
     },
+    "core-apache-30mm": {
+      "worker_script": "Scripts\\Workers\\worker_core_apache_30mm.py",
+      "supervisor_script": "Scripts\\invoke_core_apache_30mm_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_apache_30mm.py",
+          "bytes": 18651,
+          "sha256": "4681db76af36756f9b36cc515126287e6901f65cd830beb2aaef6e4e09f0e192"
+        },
+        {
+          "path": "Scripts\\invoke_core_apache_30mm_once.ps1",
+          "bytes": 1903,
+          "sha256": "808b93e3c74d7b93239d507f7030fc1bf8d3e425bc2d1a9385b4f4faf4a0d3da"
+        }
+      ],
+      "blend": "core-apache-30mm.blend",
+      "glb": "core-apache-30mm.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "artifact_receipt.json": "skyguard.blender-worker-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "artifact_receipt.json",
+          "path": "asset_id",
+          "op": "eq",
+          "value": "core-apache-30mm"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "sdk_version",
+          "op": "eq",
+          "value": "1.0.0"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "validation.required_sockets",
+          "op": "contains_all",
+          "value": [
+            "SOCKET_Origin",
+            "SOCKET_Turret_Pivot",
+            "SOCKET_Muzzle",
+            "SOCKET_Ammo_Feed"
+          ]
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_Turret_Pivot",
+        "SOCKET_Muzzle",
+        "SOCKET_Ammo_Feed"
+      ],
+      "minimum_meshes": 4,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
     "core-yak52-airframe": {
       "worker_script": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01.py",
       "supervisor_script": "Scripts\\invoke_phase2_yak52_airframe_refinement01_once.ps1",
