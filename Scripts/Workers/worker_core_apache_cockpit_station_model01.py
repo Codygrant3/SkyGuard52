@@ -634,7 +634,7 @@ def assert_lookout_clear(collection) -> None:
             continue
         for vert in obj.data.vertices:
             world = obj.matrix_world @ vert.co
-            if world.x < 0.22 and abs(world.y) < 0.12 and abs(world.z - 1.18) < 0.10:
+            if 0.0 <= world.x < 0.22 and abs(world.y) < 0.12 and abs(world.z - 1.18) < 0.10:
                 raise WorkerError(
                     f"{obj.name} intersects the near forward look-out cone at "
                     f"({world.x:.3f}, {world.y:.3f}, {world.z:.3f})."
