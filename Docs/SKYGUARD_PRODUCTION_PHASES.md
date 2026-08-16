@@ -49,14 +49,14 @@ Stack: feel #5 + lock #1 + ship #7 + debrief #8 + weather + inbound.
 
 That stack is the existing Harbor Breaker thesis, not a new mission:
 
-| Stack item | Pivot pillar / existing beat |
+| Stack item | Harbor Play job |
 | --- | --- |
-| feel #5 | Readable escalation: search → detect → track → lock → fire |
-| lock #1 | Guided freedom: AI flies; player commands engagement geometry |
-| ship #7 | Bosses are systems: patrol-ship radar, cannon, launcher, engines, deck |
-| debrief #8 | Pilot is a character: calls, confirms, win/fail, loadout prompt |
-| weather | Mission weather identity already on the ten-mission roster |
-| inbound | Inbound missile warning, flares, extract pressure |
+| feel #5 | M230 / Hydra / Hellfire feel + Harbor 15-min roster clock + crawling convoy (bundle of PRs 2+3+4) |
+| lock #1 | Guided lock Search/Detect/Track/Lock fire gate + CPG HUD labels (SRCH/DET/TRK/LCK) |
+| ship #7 | Patrol-ship component boss (radar, cannon, launcher, engines, drone deck) |
+| debrief #8 | CPG debrief + loadouts 1–4 / N continue |
+| weather | Per-mission weather identity (night keeps thermal, storm keeps Hydra-for-clusters) |
+| inbound | Stretched SAM cadence with ship system gates (Approach has no inbound) |
 
 Phase 0 control and HUD changes:
 
