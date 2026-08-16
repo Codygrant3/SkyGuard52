@@ -2,6 +2,84 @@
   "schema": "skyguard.ready-blender-output-contracts.v1",
   "purpose": "Independent postflight validation for ready Blender asset lanes. This file does not authorize Blender execution or visual acceptance.",
   "contracts": {
+    "core-apache-cockpit-station-detail01": {
+      "worker_script": "Scripts\\Workers\\worker_core_apache_cockpit_station_detail01.py",
+      "supervisor_script": "Scripts\\invoke_core_apache_cockpit_station_detail01_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_apache_cockpit_station_detail01.py",
+          "bytes": 13851,
+          "sha256": "1bbb90f360ed8474e9f24577591680e7dcf7ce19aca39d2bb2140bf1a8665994"
+        },
+        {
+          "path": "Scripts\\invoke_core_apache_cockpit_station_detail01_once.ps1",
+          "bytes": 1879,
+          "sha256": "642f7b81a7bab3dfae988cd33a9aefd8a4abbc457d132c0761af3e7e413a53fd"
+        }
+      ],
+      "blend": "core-apache-cockpit-station-detail01.blend",
+      "glb": "core-apache-cockpit-station-detail01.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "artifact_receipt.json": "skyguard.blender-worker-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "artifact_receipt.json",
+          "path": "asset_id",
+          "op": "eq",
+          "value": "core-apache-cockpit-station-detail01"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "sdk_version",
+          "op": "eq",
+          "value": "1.0.0"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "validation.required_sockets",
+          "op": "contains_all",
+          "value": [
+            "SOCKET_Origin",
+            "SOCKET_CPG_Eye",
+            "SOCKET_TEDAC",
+            "SOCKET_MPD_L",
+            "SOCKET_MPD_R",
+            "SOCKET_Collective",
+            "SOCKET_Cyclic"
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "eyepoint_renders",
+          "op": "contains_all",
+          "value": [
+            "eye_forward.png",
+            "eye_down_tedac.png"
+          ]
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_CPG_Eye",
+        "SOCKET_TEDAC",
+        "SOCKET_MPD_L",
+        "SOCKET_MPD_R",
+        "SOCKET_Collective",
+        "SOCKET_Cyclic"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
     "core-yak52-airframe": {
       "worker_script": "Scripts\\Workers\\worker_core_yak52_airframe_refinement01.py",
       "supervisor_script": "Scripts\\invoke_phase2_yak52_airframe_refinement01_once.ps1",

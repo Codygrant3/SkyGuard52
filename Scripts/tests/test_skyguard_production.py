@@ -165,9 +165,10 @@ class ProductionPipelineTests(unittest.TestCase):
         )
         ids = [asset["id"] for asset in nxt]
         self.assertEqual(
-            ids[:5],
+            ids[:6],
             [
                 "core-apache-cockpit",
+                "core-apache-cockpit-station-detail01",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -189,14 +190,18 @@ class ProductionPipelineTests(unittest.TestCase):
             if asset_id.startswith(forbidden_prefixes)
         ]
         self.assertEqual(leaked, [])
-        for asset in nxt[:5]:
+        registered_workers = {
+            "core-apache-cockpit": r"Scripts\Workers\worker_core_apache_cockpit.py",
+            "core-apache-cockpit-station-detail01": (
+                r"Scripts\Workers\worker_core_apache_cockpit_station_detail01.py"
+            ),
+        }
+        for asset in nxt[:6]:
             self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
             self.assertEqual(asset["status"], "queued")
-            if asset["id"] == "core-apache-cockpit":
-                self.assertEqual(
-                    asset["worker"]["script"],
-                    r"Scripts\Workers\worker_core_apache_cockpit.py",
-                )
+            expected_worker = registered_workers.get(asset["id"])
+            if expected_worker:
+                self.assertEqual(asset["worker"]["script"], expected_worker)
             else:
                 self.assertFalse(asset.get("worker"))
 
@@ -300,9 +305,115 @@ class ProductionPipelineTests(unittest.TestCase):
             asset = by_id[asset_id]
             self.assertEqual(asset["status"], "queued", asset_id)
             self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
-            if asset_id != "core-apache-cockpit":
+            if asset_id not in {
+                "core-apache-cockpit",
+                "core-apache-cockpit-station-detail01",
+            }:
                 self.assertFalse(asset.get("worker"), asset_id)
         self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+
+    def test_apache_p0_station_detail01_registers_queued_method(self) -> None:
+        worker_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "Workers"
+            / "worker_core_apache_cockpit_station_detail01.py"
+        )
+        supervisor_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "invoke_core_apache_cockpit_station_detail01_once.ps1"
+        )
+        self.assertTrue(worker_path.is_file(), worker_path)
+        self.assertTrue(supervisor_path.is_file(), supervisor_path)
+        source = worker_path.read_text(encoding="utf-8")
+        supervisor = supervisor_path.read_text(encoding="utf-8")
+        self.assertIn("from skyguard_blender_worker_sdk import", source)
+        self.assertIn("run_station_detail_worker", source)
+        self.assertNotIn("run_worker(", source)
+        self.assertIn("create_socket", source)
+        self.assertIn("configure_scene", source)
+        self.assertIn("validate_asset", source)
+        self.assertIn("render_review_views", source)
+        self.assertIn("export_asset", source)
+        self.assertIn("bpy.ops.render.render(write_still=True)", source)
+        self.assertIn("eye_forward.png", source)
+        self.assertIn("eye_down_tedac.png", source)
+        self.assertNotIn("import numpy", source)
+        self.assertNotIn("from numpy", source)
+        self.assertNotIn("Render Result", source)
+        self.assertNotIn('empty_display_type = "CROSS"', source)
+        self.assertNotIn("Yak", source)
+        self.assertNotIn("Igla", source)
+        self.assertNotIn("rifle", source.lower())
+        self.assertNotIn("Stage 7B", source)
+        self.assertNotIn("APACHE_CPG_STATION_DETAIL01", source)
+        self.assertEqual(supervisor.count("$CyclePath run $AssetId"), 1)
+        self.assertIn("OfflineContractTest", supervisor)
+        self.assertIn("ExecuteOnce", supervisor)
+        self.assertIn("StandingAuthority", supervisor)
+        self.assertNotIn("Start-Process", supervisor)
+        self.assertNotIn("blender.exe", supervisor.lower())
+
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        asset = by_id["core-apache-cockpit-station-detail01"]
+        self.assertEqual(asset["status"], "queued")
+        self.assertNotEqual(asset["status"], "ready")
+        self.assertNotEqual(asset["status"], "accepted")
+        self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(asset["priority"], 1)
+        self.assertEqual(asset["supersedes_only_after_acceptance"], "core-apache-cockpit")
+        self.assertEqual(
+            asset["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_detail01.py",
+        )
+        self.assertEqual(
+            asset["worker"]["arguments"],
+            [
+                "--output",
+                "{output_dir}",
+                "--asset-id",
+                "core-apache-cockpit-station-detail01",
+            ],
+        )
+        self.assertEqual(asset["worker"]["minimum_renders"], 8)
+        self.assertEqual(
+            asset["worker"]["postflight"]["script"],
+            r"Scripts\adjudicate_ready_blender_asset_attempt_v2.py",
+        )
+        self.assertTrue(asset["worker"]["postflight"]["visual_review_still_required"])
+        self.assertIn("core-apache-cockpit-station-detail01", VALIDATOR.APACHE_P0_IDS)
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+
+        contracts = PIPELINE.load_json(
+            PIPELINE.PRODUCTION / "ready_blender_output_contracts.json"
+        )["contracts"]
+        contract = contracts["core-apache-cockpit-station-detail01"]
+        self.assertEqual(contract["worker_script"], asset["worker"]["script"])
+        self.assertEqual(
+            contract["supervisor_script"],
+            r"Scripts\invoke_core_apache_cockpit_station_detail01_once.ps1",
+        )
+        self.assertEqual(contract["blend"], "core-apache-cockpit-station-detail01.blend")
+        self.assertEqual(contract["glb"], "core-apache-cockpit-station-detail01.glb")
+        self.assertEqual(len(contract["render_groups"]), 1)
+        self.assertEqual(contract["render_groups"][0]["count"], 8)
+        self.assertEqual(contract["render_groups"][0]["width"], 1920)
+        self.assertEqual(contract["render_groups"][0]["height"], 1080)
+        self.assertEqual(
+            contract["required_json"]["artifact_receipt.json"],
+            "skyguard.blender-worker-receipt.v1",
+        )
+        self.assertEqual(contract["minimum_meshes"], 1)
+        for record in contract["authorities"]:
+            path = PIPELINE.ROOT / record["path"].replace("\\", "/")
+            self.assertEqual(record["bytes"], path.stat().st_size, record["path"])
+            self.assertEqual(record["sha256"], PIPELINE.sha256(path), record["path"])
+        cockpit = by_id["core-apache-cockpit"]
+        self.assertEqual(cockpit["status"], "queued")
+        self.assertNotIn("harbor-threat-kit01", by_id)
+        self.assertNotIn("core-radar-van-kit01", by_id)
 
     def test_apache_p0_rejects_phantom_worker_path(self) -> None:
         manifest = copy.deepcopy(PIPELINE.load_manifest())
