@@ -108,6 +108,7 @@ protected:
 	static float SnapRoadHeight(const UWorld* World, const FVector& Horizontal);
 	void HandleDroneImpact(ASkyguardDrone* Drone);
 	void TickIncoming(float DeltaSeconds);
+	void TickShipSystems(float DeltaSeconds);
 	void ResolveWin();
 	void ResolveFail(const TCHAR* Reason);
 	void ScoreSortie(bool bWon);

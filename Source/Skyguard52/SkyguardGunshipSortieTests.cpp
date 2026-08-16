@@ -9,6 +9,7 @@
 #include "SkyguardProtectAsset.h"
 #include "SkyguardRadarNode.h"
 #include "SkyguardThreatTypes.h"
+#include "Components/PrimitiveComponent.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Misc/AutomationTest.h"
@@ -128,7 +129,17 @@ bool FSkyguardPatrolShipStripsBySystemTest::RunTest(const FString& Parameters)
 	{
 		Ship->ApplyHit(nullptr, 80.f);
 	}
-	TestTrue(TEXT("enough hits defeat the ship"), Ship->GetDestroyedSystemCount() >= 1);
+	if (UPrimitiveComponent* Hull = Cast<UPrimitiveComponent>(
+			Ship->GetDefaultSubobjectByName(TEXT("Hull"))))
+	{
+		Ship->ApplyHit(Hull, 500.f);
+	}
+	TestEqual(
+		TEXT("hull splash is not a system kill"),
+		Ship->GetDestroyedSystemCount(),
+		0);
+	TestTrue(TEXT("radar still coordinates after hull spam"), Ship->CanCoordinateAda());
+	TestFalse(TEXT("hull spam does not defeat the ship"), Ship->IsDefeated());
 	World->DestroyWorld(false);
 	return true;
 }
