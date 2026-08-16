@@ -264,7 +264,30 @@
       "quality": "hero",
       "priority": 3,
       "status": "queued",
-      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_hydra.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-hydra"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-hydra",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-hydra\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
       "required": [
         "blend",
         "glb",
@@ -275,7 +298,7 @@
         "pivots",
         "sockets"
       ],
-      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+      "state_reason": "Queued Apache CPG P0 Hydra method; worker and contract registered; not launched; not ready; visual review still required; Unreal import forbidden until accepted."
     },
     {
       "id": "core-apache-hellfire",
