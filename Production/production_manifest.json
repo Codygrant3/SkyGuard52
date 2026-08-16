@@ -949,6 +949,57 @@
       "state_reason": "Queued Apache CPG P0 station-model15 method; inset glass panes sit in the punched bay openings so three-quarter reads as a formed plate shell with window panes, not a beam cage with draped milky sheets; TEDAC stays one housing with green emit and public crosshair visible, side MPDs inset in the same housing; keep glass overhead brow, TEDAC readability, dark formed rails, joint plates, and model14 bucket seat; worker registered; not launched; not ready; does not supersede model14 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model16",
+      "name": "AH-64 CPG station model16 with MPD emit facing the eye",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model15",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model16.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model16"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model16",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model16\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model16 method; keep model15 inset glass panes, glass overhead brow, TEDAC green emit and public crosshair, and the model14-15 bucket seat; fix GEO_MPD_L / GEO_MPD_R inset emit faces so they face the eye (alignment >= 0.55) after model15 attempt_20260816T223609855931Z failed at assert_emit_faces_eye (alignment=0.325); worker registered; not launched; not ready; does not supersede model15 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",

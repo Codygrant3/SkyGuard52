@@ -11,7 +11,7 @@ artifacts remain immutable evidence. They are not the day-to-day scheduler.
 The live art queue is Apache front-seat CPG. Yak-52 / rifle / Igla /
 Shahed-as-P0 hero loops are archived, not deleted.
 
-`python .\Scripts\skyguard_production.py next --limit 21` should surface these
+`python .\Scripts\skyguard_production.py next --limit 22` should surface these
 first:
 
 1. `core-apache-cockpit` — CPG front-seat cockpit
@@ -31,10 +31,11 @@ first:
 15. `core-apache-cockpit-station-model13` — CPG station model13 with formed greenhouse bays (additional queued method; does not supersede station-model12 until accepted)
 16. `core-apache-cockpit-station-model14` — CPG station model14 with greenhouse shell owning the silhouette (additional queued method; does not supersede station-model13 until accepted)
 17. `core-apache-cockpit-station-model15` — CPG station model15 with inset canopy panes in punched bay openings (additional queued method; does not supersede station-model14 until accepted)
-18. `core-apache-30mm` — 30 mm chin gun
-19. `core-apache-hydra` — Hydra / rocket pods
-20. `core-apache-hellfire` — Hellfire / guided missile and launch rail
-21. `core-apache-airframe` — exterior airframe
+18. `core-apache-cockpit-station-model16` — CPG station model16 with MPD emit facing the eye (additional queued method; does not supersede station-model15 until accepted)
+19. `core-apache-30mm` — 30 mm chin gun
+20. `core-apache-hydra` — Hydra / rocket pods
+21. `core-apache-hellfire` — Hellfire / guided missile and launch rail
+22. `core-apache-airframe` — exterior airframe
 
 Lane `P0-apache-cpg-hero-slice` is first in `execution_order`. Archived items
 remain in `P0-cockpit-combat-vertical-slice` as `deferred`, so `next` skips
@@ -58,8 +59,9 @@ review. No ready→accepted skip.
 `core-apache-cockpit-station-model11`,
 `core-apache-cockpit-station-model12`,
 `core-apache-cockpit-station-model13`,
-`core-apache-cockpit-station-model14`, and
-`core-apache-cockpit-station-model15` are additional queued Apache P0
+`core-apache-cockpit-station-model14`,
+`core-apache-cockpit-station-model15`, and
+`core-apache-cockpit-station-model16` are additional queued Apache P0
 methods with their own workers and output contracts. Do not launch
 Blender, do not accept art, and do not invent workers for the remaining
 Apache P0 weapons/airframe assets from Cloud. No ready→accepted skip.
@@ -86,7 +88,7 @@ Run from `D:\Skyguard52`:
 ```powershell
 python .\Scripts\skyguard_production.py audit
 python .\Scripts\skyguard_production.py preflight
-python .\Scripts\skyguard_production.py next --limit 21
+python .\Scripts\skyguard_production.py next --limit 22
 python .\Scripts\validate_skyguard_production.py
 ```
 
@@ -112,8 +114,9 @@ asks. `core-apache-cockpit`, `core-apache-cockpit-station-detail01`,
 `core-apache-cockpit-station-model11`,
 `core-apache-cockpit-station-model12`,
 `core-apache-cockpit-station-model13`,
-`core-apache-cockpit-station-model14`, and
-`core-apache-cockpit-station-model15` have registered workers and stay
+`core-apache-cockpit-station-model14`,
+`core-apache-cockpit-station-model15`, and
+`core-apache-cockpit-station-model16` have registered workers and stay
 `queued`. The remaining Apache P0 weapon and airframe assets still have
 no worker.
 
