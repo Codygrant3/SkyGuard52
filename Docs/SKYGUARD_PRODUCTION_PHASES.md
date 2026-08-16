@@ -82,7 +82,7 @@ Harden only what the Phase 0 Play actually called out.
 Split by file lock. One lock, one worktree, one branch. Do not bundle
 unrelated Play notes into one dirty tree.
 
-Still no art or map rebuilds.
+Still no art rebuilds or unique umaps.
 
 ## Phase 2 — Unfelt pillars
 
