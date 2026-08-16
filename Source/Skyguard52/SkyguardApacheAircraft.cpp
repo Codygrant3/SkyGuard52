@@ -2,6 +2,7 @@
 #include "SkyguardRuntimeMeshCatalog.h"
 
 #include "Components/BoxComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -257,6 +258,7 @@ ASkyguardApacheAircraft::ASkyguardApacheAircraft()
 	HullCollider->SetCanEverAffectNavigation(false);
 
 	CurrentIntegrity = MaxIntegrity;
+	ResetOwnShipSystems();
 	CurrentRotorRPM = FMath::Lerp(210.f, 310.f, RotorPower);
 }
 
@@ -264,6 +266,7 @@ void ASkyguardApacheAircraft::BeginPlay()
 {
 	Super::BeginPlay();
 	CurrentIntegrity = MaxIntegrity;
+	ResetOwnShipSystems();
 	HoverBaseLocation = GetActorLocation();
 	OrbitCenter = HoverBaseLocation + GetActorForwardVector() * OrbitRadius;
 	const FVector ToSelf = HoverBaseLocation - OrbitCenter;
@@ -298,7 +301,7 @@ void ASkyguardApacheAircraft::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	const float TargetRPM = FMath::Lerp(210.f, 310.f, RotorPower);
+	const float TargetRPM = FMath::Lerp(210.f, 310.f, GetEffectiveRotorPower());
 	CurrentRotorRPM = FMath::FInterpTo(CurrentRotorRPM, TargetRPM, DeltaSeconds, 6.f);
 	if (MainRotor)
 	{
@@ -357,7 +360,7 @@ void ASkyguardApacheAircraft::UpdateDirectFlight(const float DeltaSeconds)
 	{
 		ForwardSpeed = FMath::FInterpTo(ForwardSpeed, 700.f, DeltaSeconds, 0.35f);
 	}
-	ForwardSpeed = FMath::Clamp(ForwardSpeed, 0.f, 3800.f);
+	ForwardSpeed = FMath::Clamp(ForwardSpeed, 0.f, GetDamagedMaxForwardSpeed());
 	HoverBaseLocation.Z = FMath::Clamp(HoverBaseLocation.Z, 280.f, 14000.f);
 
 	const FRotator Attitude(AirPitchDegrees, AirYawDegrees, AirRollDegrees);
@@ -380,8 +383,9 @@ void ASkyguardApacheAircraft::UpdatePilotMotion(const float DeltaSeconds)
 		return;
 	}
 
-	const float Horizontal = 1700.f * DeltaSeconds;
-	const float Vertical = 720.f * DeltaSeconds;
+	const float PowerScale = GetEnginePowerScale() * GetRotorPowerScale();
+	const float Horizontal = 1700.f * DeltaSeconds * PowerScale;
+	const float Vertical = 720.f * DeltaSeconds * PowerScale;
 	FVector Forward = GetActorForwardVector();
 	Forward.Z = 0.f;
 	if (!Forward.Normalize())
@@ -530,14 +534,15 @@ FVector ASkyguardApacheAircraft::GetChinMuzzleLocation() const
 
 void ASkyguardApacheAircraft::AimChinTurret(const FRotator& WorldAim)
 {
-	if (!ChinTurret)
+	if (!ChinTurret || IsChinTurretDown())
 	{
 		return;
 	}
+	const float Slew = FMath::Max(0.2f, GetChinSlewScale());
 	const FRotator Local = (WorldAim - GetActorRotation()).GetNormalized();
 	ChinTurret->SetRelativeRotation(FRotator(
-		FMath::Clamp(Local.Pitch, -70.f, 12.f),
-		FMath::Clamp(Local.Yaw, -110.f, 110.f),
+		FMath::Clamp(Local.Pitch, -70.f * Slew, 12.f * Slew),
+		FMath::Clamp(Local.Yaw, -110.f * Slew, 110.f * Slew),
 		0.f));
 }
 
@@ -578,7 +583,7 @@ void ASkyguardApacheAircraft::FaceWorldLocation(const FVector& WorldLocation)
 
 void ASkyguardApacheAircraft::SetSensorView(const bool bInSensor)
 {
-	bSensorView = bInSensor;
+	bSensorView = bInSensor && IsSensorLive();
 }
 
 void ASkyguardApacheAircraft::BindSilhouetteMesh()
@@ -689,6 +694,215 @@ float ASkyguardApacheAircraft::GetDamageFraction() const
 		return 1.f;
 	}
 	return FMath::Clamp(1.f - (CurrentIntegrity / MaxIntegrity), 0.f, 1.f);
+}
+
+void ASkyguardApacheAircraft::ResetOwnShipSystems()
+{
+	SensorIntegrity = MaxSensorIntegrity;
+	EngineIntegrity = MaxEngineIntegrity;
+	ChinIntegrity = MaxChinIntegrity;
+	RotorIntegrity = MaxRotorIntegrity;
+	bCanopyGlassCracked = false;
+}
+
+void ASkyguardApacheAircraft::ApplyPowerLossToMotion()
+{
+	ForwardSpeed = FMath::Min(ForwardSpeed, GetDamagedMaxForwardSpeed());
+}
+
+float ASkyguardApacheAircraft::GetDamagedMaxForwardSpeed() const
+{
+	return 3800.f * GetEnginePowerScale() * GetRotorPowerScale();
+}
+
+float ASkyguardApacheAircraft::GetEffectiveRotorPower() const
+{
+	return FMath::Clamp(
+		RotorPower * GetEnginePowerScale() * GetRotorPowerScale(),
+		0.f,
+		1.f);
+}
+
+bool ASkyguardApacheAircraft::TryResolveHitSystem(
+	UPrimitiveComponent* HitComponent,
+	ESkyguardApacheSystem& OutSystem) const
+{
+	if (!HitComponent)
+	{
+		return false;
+	}
+	if (HitComponent == SensorBall || HitComponent == NightVisionTurret)
+	{
+		OutSystem = ESkyguardApacheSystem::Sensor;
+		return true;
+	}
+	if (HitComponent == Canopy || HitComponent == PilotCanopy)
+	{
+		OutSystem = ESkyguardApacheSystem::Canopy;
+		return true;
+	}
+	if (HitComponent == EngineLeft || HitComponent == EngineRight)
+	{
+		OutSystem = ESkyguardApacheSystem::Engines;
+		return true;
+	}
+	if (HitComponent == ChinHousing || HitComponent == ChinBarrel)
+	{
+		OutSystem = ESkyguardApacheSystem::ChinTurret;
+		return true;
+	}
+	if (HitComponent == MainRotor ||
+		HitComponent == MainRotorCross ||
+		HitComponent == TailRotor ||
+		HitComponent == RotorMast)
+	{
+		OutSystem = ESkyguardApacheSystem::Rotor;
+		return true;
+	}
+	return false;
+}
+
+void ASkyguardApacheAircraft::ApplySystemHit(
+	const ESkyguardApacheSystem System,
+	const float Amount)
+{
+	if (Amount <= 0.f)
+	{
+		return;
+	}
+
+	switch (System)
+	{
+	case ESkyguardApacheSystem::Sensor:
+		SensorIntegrity = FMath::Max(0.f, SensorIntegrity - Amount);
+		if (!IsSensorLive())
+		{
+			bSensorView = false;
+		}
+		break;
+	case ESkyguardApacheSystem::Canopy:
+		bCanopyGlassCracked = true;
+		break;
+	case ESkyguardApacheSystem::Engines:
+		EngineIntegrity = FMath::Max(0.f, EngineIntegrity - Amount);
+		ApplyPowerLossToMotion();
+		break;
+	case ESkyguardApacheSystem::ChinTurret:
+		ChinIntegrity = FMath::Max(0.f, ChinIntegrity - Amount);
+		break;
+	case ESkyguardApacheSystem::Rotor:
+		RotorIntegrity = FMath::Max(0.f, RotorIntegrity - Amount);
+		ApplyPowerLossToMotion();
+		break;
+	}
+}
+
+void ASkyguardApacheAircraft::ApplyHit(
+	UPrimitiveComponent* HitComponent,
+	const float Amount)
+{
+	ESkyguardApacheSystem System = ESkyguardApacheSystem::Sensor;
+	if (TryResolveHitSystem(HitComponent, System))
+	{
+		ApplySystemHit(System, Amount);
+		return;
+	}
+	ApplyDamage(Amount);
+}
+
+bool ASkyguardApacheAircraft::IsSensorLive() const
+{
+	return SensorIntegrity > 0.f;
+}
+
+bool ASkyguardApacheAircraft::IsThermalAvailable() const
+{
+	return GetSensorQuality() > ThermalQualityFloor;
+}
+
+bool ASkyguardApacheAircraft::IsSensorViewActive() const
+{
+	return bSensorView && IsSensorLive();
+}
+
+bool ASkyguardApacheAircraft::AreEnginesDown() const
+{
+	return EngineIntegrity <= 0.f;
+}
+
+bool ASkyguardApacheAircraft::IsChinTurretDown() const
+{
+	return ChinIntegrity <= 0.f;
+}
+
+bool ASkyguardApacheAircraft::IsRotorDown() const
+{
+	return RotorIntegrity <= 0.f;
+}
+
+bool ASkyguardApacheAircraft::IsSystemDown(const ESkyguardApacheSystem System) const
+{
+	switch (System)
+	{
+	case ESkyguardApacheSystem::Sensor:
+		return !IsSensorLive();
+	case ESkyguardApacheSystem::Canopy:
+		return IsCanopyGlassCracked();
+	case ESkyguardApacheSystem::Engines:
+		return AreEnginesDown();
+	case ESkyguardApacheSystem::ChinTurret:
+		return IsChinTurretDown();
+	case ESkyguardApacheSystem::Rotor:
+		return IsRotorDown();
+	}
+	return false;
+}
+
+float ASkyguardApacheAircraft::GetSensorQuality() const
+{
+	if (MaxSensorIntegrity <= KINDA_SMALL_NUMBER)
+	{
+		return 0.f;
+	}
+	return FMath::Clamp(SensorIntegrity / MaxSensorIntegrity, 0.f, 1.f);
+}
+
+float ASkyguardApacheAircraft::GetChinSlewScale() const
+{
+	if (MaxChinIntegrity <= KINDA_SMALL_NUMBER)
+	{
+		return 0.f;
+	}
+	return FMath::Clamp(ChinIntegrity / MaxChinIntegrity, 0.f, 1.f);
+}
+
+float ASkyguardApacheAircraft::GetChinFireScale() const
+{
+	return GetChinSlewScale();
+}
+
+float ASkyguardApacheAircraft::GetEnginePowerScale() const
+{
+	if (MaxEngineIntegrity <= KINDA_SMALL_NUMBER)
+	{
+		return EngineLimpScale;
+	}
+	return FMath::Lerp(
+		EngineLimpScale,
+		1.f,
+		FMath::Clamp(EngineIntegrity / MaxEngineIntegrity, 0.f, 1.f));
+}
+
+float ASkyguardApacheAircraft::GetRotorPowerScale() const
+{
+	if (MaxRotorIntegrity <= KINDA_SMALL_NUMBER)
+	{
+		return RotorLimpScale;
+	}
+	return FMath::Lerp(
+		RotorLimpScale,
+		1.f,
+		FMath::Clamp(RotorIntegrity / MaxRotorIntegrity, 0.f, 1.f));
 }
 
 FRotator ASkyguardApacheAircraft::GetCommandAttitude() const
