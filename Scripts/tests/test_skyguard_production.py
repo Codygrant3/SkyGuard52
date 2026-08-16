@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import importlib.util
 import json
 import tempfile
@@ -15,6 +16,15 @@ SPEC = importlib.util.spec_from_file_location("skyguard_production", CONTROLLER)
 assert SPEC and SPEC.loader
 PIPELINE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(PIPELINE)
+
+VALIDATOR_PATH = TEST_DIR.parent / "validate_skyguard_production.py"
+VALIDATOR_SPEC = importlib.util.spec_from_file_location(
+    "validate_skyguard_production",
+    VALIDATOR_PATH,
+)
+assert VALIDATOR_SPEC and VALIDATOR_SPEC.loader
+VALIDATOR = importlib.util.module_from_spec(VALIDATOR_SPEC)
+VALIDATOR_SPEC.loader.exec_module(VALIDATOR)
 
 
 class ProductionPipelineTests(unittest.TestCase):
@@ -235,6 +245,42 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertFalse(baseline["clean_machine_release_candidate"])
         self.assertTrue(manifest["policies"]["visual_review_required"])
         self.assertTrue(manifest["policies"]["unreal_import_requires_acceptance"])
+
+    def test_apache_p0_queued_without_worker_is_valid(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        for asset_id in VALIDATOR.APACHE_P0_IDS:
+            asset = by_id[asset_id]
+            self.assertEqual(asset["status"], "queued", asset_id)
+            self.assertFalse(asset.get("worker"), asset_id)
+            self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+
+    def test_apache_p0_rejects_phantom_worker_path(self) -> None:
+        manifest = copy.deepcopy(PIPELINE.load_manifest())
+        cockpit = PIPELINE.asset_index(manifest)["core-apache-cockpit"]
+        cockpit["worker"] = {
+            "script": r"Scripts\Workers\worker_core_apache_cockpit_does_not_exist.py",
+            "arguments": [],
+        }
+        errors = VALIDATOR.apache_p0_contract_errors(manifest)
+        self.assertTrue(
+            any("phantom worker" in error and "core-apache-cockpit" in error for error in errors),
+            errors,
+        )
+
+    def test_apache_p0_accepts_real_worker_and_ready_status(self) -> None:
+        manifest = copy.deepcopy(PIPELINE.load_manifest())
+        cockpit = PIPELINE.asset_index(manifest)["core-apache-cockpit"]
+        cockpit["status"] = "ready"
+        cockpit["worker"] = {
+            "script": r"Scripts\skyguard_production.py",
+            "arguments": [],
+        }
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+        live = PIPELINE.asset_index(PIPELINE.load_manifest())["core-apache-cockpit"]
+        self.assertEqual(live["status"], "queued")
+        self.assertFalse(live.get("worker"))
 
 
 if __name__ == "__main__":
