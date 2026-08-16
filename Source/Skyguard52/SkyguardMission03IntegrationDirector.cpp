@@ -1,5 +1,6 @@
 #include "SkyguardMission03IntegrationDirector.h"
 
+#include "SkyguardDaySortieBeatKit.h"
 #include "SkyguardDrone.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardBossWeakPointComponent.h"
@@ -139,6 +140,7 @@ void ASkyguardMission03IntegrationDirector::Tick(const float DeltaSeconds)
 	}
 	Briefing->AdvanceBriefing(DeltaSeconds);
 	TryLaunchSortie();
+	TickDayBeatKit(DeltaSeconds);
 	if (bSortieLaunched)
 	{
 		SynchronizeRuntimeState();
@@ -221,6 +223,8 @@ bool ASkyguardMission03IntegrationDirector::ConfigureMissionDefinition(
 	ConvoyDistanceCentimeters = 0.f;
 	ObservedBossWeakPointsDestroyed = 0;
 	bCameraObjectiveRecorded = false;
+	DayBeatIndex = 0;
+	DayBeatElapsed = 0.f;
 	return true;
 }
 
@@ -657,6 +661,27 @@ void ASkyguardMission03IntegrationDirector::HandlePilotCommand(
 	{
 		YakAircraft->IssuePilotCommand(Command);
 	}
+}
+
+const FSkyguardDaySortieBeatKit&
+ASkyguardMission03IntegrationDirector::GetDayBeatKit() const
+{
+	return SkyguardDaySortieBeatKit::BrokenHighway();
+}
+
+ESkyguardDaySortieBeatKind
+ASkyguardMission03IntegrationDirector::GetDayBeatKind() const
+{
+	return SkyguardDaySortieBeatKit::KindAt(GetDayBeatKit(), DayBeatIndex);
+}
+
+void ASkyguardMission03IntegrationDirector::TickDayBeatKit(
+	const float DeltaSeconds)
+{
+	DayBeatElapsed += FMath::Max(DeltaSeconds, 0.f);
+	DayBeatIndex = SkyguardDaySortieBeatKit::BeatIndexForElapsed(
+		GetMissionId(),
+		DayBeatElapsed);
 }
 
 USkyguardObjectiveRuntime*

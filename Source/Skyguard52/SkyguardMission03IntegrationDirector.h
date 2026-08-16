@@ -5,6 +5,7 @@ class ASkyguardDrone;
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
+#include "SkyguardDaySortieBeatKit.h"
 #include "SkyguardMission03IntegrationDirector.generated.h"
 
 class ASkyguardGunner;
@@ -169,6 +170,11 @@ public:
 		const USkyguardMissionDefinition* Mission,
 		TArray<FText>& OutErrors);
 
+	const FSkyguardDaySortieBeatKit& GetDayBeatKit() const;
+	ESkyguardDaySortieBeatKind GetDayBeatKind() const;
+	int32 GetDayBeatIndex() const { return DayBeatIndex; }
+	void TickDayBeatKit(float DeltaSeconds);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission03")
 	TObjectPtr<USceneComponent> Root;
 	/**
@@ -245,6 +251,8 @@ private:
 	int32 ConvoyIntegrity = 100;
 	float ConvoyDistanceCentimeters = 0.f;
 	int32 ObservedBossWeakPointsDestroyed = 0;
+	int32 DayBeatIndex = 0;
+	float DayBeatElapsed = 0.f;
 	bool bCameraObjectiveRecorded = false;
 	bool bInitialized = false;
 	bool bSortieLaunched = false;
