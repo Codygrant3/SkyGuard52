@@ -759,7 +759,7 @@ def formed_collective_head(collection, material) -> None:
         bm.verts.new((0.222, -0.328, 0.868)),
         bm.verts.new((0.188, -0.328, 0.866)),
     ]
-    thumb_face = bm.faces.new([bm.verts.new(point) for point in thumb])
+    thumb_face = bm.faces.new(thumb)
     thumb_ex = bmesh.ops.extrude_face_region(bm, geom=[thumb_face])
     bmesh.ops.translate(bm, verts=_bm_verts(thumb_ex["geom"], bmesh), vec=(0.0, 0.0, 0.016))
     object_from_bmesh("GEO_CollectiveHead", bm, collection, [material])
