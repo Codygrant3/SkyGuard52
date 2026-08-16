@@ -439,6 +439,57 @@
       "state_reason": "Queued Apache CPG P0 station-model05 method; formed greenhouse canopy frame instead of pipe kit; keep TEDAC/MPD readability; deeper bucket seat; worker registered; not launched; not ready; does not supersede model04 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model06",
+      "name": "AH-64 CPG station model06 with canopy skin enclosure and bucket seat",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model05",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model06.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model06"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model06",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model06\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model06 method; filled canopy skin between sill and rail so the greenhouse reads as an enclosure; keep TEDAC/MPD readability; bucket seat; worker registered; not launched; not ready; does not supersede model05 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",

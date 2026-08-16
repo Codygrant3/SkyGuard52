@@ -470,6 +470,84 @@
       "minimum_skins": 0,
       "minimum_animations": 0
     },
+    "core-apache-cockpit-station-model06": {
+      "worker_script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model06.py",
+      "supervisor_script": "Scripts\\invoke_core_apache_cockpit_station_model06_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_apache_cockpit_station_model06.py",
+          "bytes": 46124,
+          "sha256": "ec857be76baf87ada818f4fc63df5806d9c460730e7ef896ee1527c0c1c84c76"
+        },
+        {
+          "path": "Scripts\\invoke_core_apache_cockpit_station_model06_once.ps1",
+          "bytes": 1878,
+          "sha256": "03c901c7d7d07aad03f5e6cab52567ec1ca66721c490e87eda5ee57422978aa6"
+        }
+      ],
+      "blend": "core-apache-cockpit-station-model06.blend",
+      "glb": "core-apache-cockpit-station-model06.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "artifact_receipt.json": "skyguard.blender-worker-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "artifact_receipt.json",
+          "path": "asset_id",
+          "op": "eq",
+          "value": "core-apache-cockpit-station-model06"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "sdk_version",
+          "op": "eq",
+          "value": "1.0.0"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "validation.required_sockets",
+          "op": "contains_all",
+          "value": [
+            "SOCKET_Origin",
+            "SOCKET_CPG_Eye",
+            "SOCKET_TEDAC",
+            "SOCKET_MPD_L",
+            "SOCKET_MPD_R",
+            "SOCKET_Collective",
+            "SOCKET_Cyclic"
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "eyepoint_renders",
+          "op": "contains_all",
+          "value": [
+            "eye_forward.png",
+            "eye_down_tedac.png"
+          ]
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_CPG_Eye",
+        "SOCKET_TEDAC",
+        "SOCKET_MPD_L",
+        "SOCKET_MPD_R",
+        "SOCKET_Collective",
+        "SOCKET_Cyclic"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
     "core-apache-30mm": {
       "worker_script": "Scripts\\Workers\\worker_core_apache_30mm.py",
       "supervisor_script": "Scripts\\invoke_core_apache_30mm_once.ps1",
