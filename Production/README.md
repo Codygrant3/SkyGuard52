@@ -24,10 +24,11 @@ first:
 8. `core-apache-cockpit-station-model06` — CPG station model06 with canopy skin enclosure and bucket seat (additional queued method; does not supersede station-model05 until accepted)
 9. `core-apache-cockpit-station-model07` — CPG station model07 with overhead brow enclosure and darker bucket seat (additional queued method; does not supersede station-model06 until accepted)
 10. `core-apache-cockpit-station-model08` — CPG station model08 with glass overhead brow and deeper bucket seat (additional queued method; does not supersede station-model07 until accepted)
-11. `core-apache-30mm` — 30 mm chin gun
-12. `core-apache-hydra` — Hydra / rocket pods
-13. `core-apache-hellfire` — Hellfire / guided missile and launch rail
-14. `core-apache-airframe` — exterior airframe
+11. `core-apache-cockpit-station-model09` — CPG station model09 with glass overhead brow and readable bucket seat (additional queued method; does not supersede station-model08 until accepted)
+12. `core-apache-30mm` — 30 mm chin gun
+13. `core-apache-hydra` — Hydra / rocket pods
+14. `core-apache-hellfire` — Hellfire / guided missile and launch rail
+15. `core-apache-airframe` — exterior airframe
 
 Lane `P0-apache-cpg-hero-slice` is first in `execution_order`. Archived items
 remain in `P0-cockpit-combat-vertical-slice` as `deferred`, so `next` skips
@@ -44,8 +45,9 @@ review. No ready→accepted skip.
 `core-apache-cockpit-station-model04`,
 `core-apache-cockpit-station-model05`,
 `core-apache-cockpit-station-model06`,
-`core-apache-cockpit-station-model07`, and
-`core-apache-cockpit-station-model08` are additional queued Apache P0
+`core-apache-cockpit-station-model07`,
+`core-apache-cockpit-station-model08`, and
+`core-apache-cockpit-station-model09` are additional queued Apache P0
 methods with their own workers and output contracts. Do not launch
 Blender, do not accept art, and do not invent workers for the remaining
 Apache P0 weapons/airframe assets from Cloud. No ready→accepted skip.
@@ -91,8 +93,9 @@ asks. `core-apache-cockpit`, `core-apache-cockpit-station-detail01`,
 `core-apache-cockpit-station-model04`,
 `core-apache-cockpit-station-model05`,
 `core-apache-cockpit-station-model06`,
-`core-apache-cockpit-station-model07`, and
-`core-apache-cockpit-station-model08` have registered workers and stay
+`core-apache-cockpit-station-model07`,
+`core-apache-cockpit-station-model08`, and
+`core-apache-cockpit-station-model09` have registered workers and stay
 `queued`. The remaining Apache P0 weapon and airframe assets still have
 no worker.
 
