@@ -19,44 +19,46 @@ namespace
 	}
 }
 
-void SkyguardPilotVoice::ConfirmCommand(
-	UObject* WorldContext,
+FString SkyguardPilotVoice::ConfirmLineForCommand(
 	const ESkyguardPilotCommand Command)
 {
 	switch (Command)
 	{
 	case ESkyguardPilotCommand::OrbitLeft:
-		Say(WorldContext, TEXT("Coming left. Holding the circle."), 2.6f);
-		break;
+		return TEXT("Coming left. Holding the circle.");
 	case ESkyguardPilotCommand::OrbitRight:
-		Say(WorldContext, TEXT("Coming right. Holding the circle."), 2.6f);
-		break;
+		return TEXT("Coming right. Holding the circle.");
 	case ESkyguardPilotCommand::AttackRun:
-		Say(WorldContext, TEXT("Rolling in."), 2.2f);
-		break;
+		return TEXT("Rolling in.");
 	case ESkyguardPilotCommand::Break:
-		Say(WorldContext, TEXT("Breaking off."), 2.2f);
-		break;
+		return TEXT("Breaking off.");
 	case ESkyguardPilotCommand::Extend:
-		Say(WorldContext, TEXT("Opening the range."), 2.2f);
-		break;
+		return TEXT("Opening the range.");
 	case ESkyguardPilotCommand::Hold:
-		Say(WorldContext, TEXT("Holding station."), 2.2f);
-		break;
+		return TEXT("Holding station.");
 	case ESkyguardPilotCommand::Climb:
-		Say(WorldContext, TEXT("Popping up."), 2.2f);
-		break;
+		return TEXT("Popping up.");
 	case ESkyguardPilotCommand::Descend:
-		Say(WorldContext, TEXT("Dropping behind cover."), 2.2f);
-		break;
+		return TEXT("Dropping behind cover.");
 	case ESkyguardPilotCommand::FaceTarget:
-		Say(WorldContext, TEXT("Coming onto your target."), 2.4f);
-		break;
+		return TEXT("Coming onto your target.");
 	case ESkyguardPilotCommand::Pursuit:
 	default:
-		Say(WorldContext, TEXT("Staying in the fight."), 2.2f);
-		break;
+		return TEXT("Staying in the fight.");
 	}
+}
+
+void SkyguardPilotVoice::ConfirmCommand(
+	UObject* WorldContext,
+	const ESkyguardPilotCommand Command)
+{
+	const FString Line = ConfirmLineForCommand(Command);
+	const float Seconds =
+		(Command == ESkyguardPilotCommand::OrbitLeft ||
+			Command == ESkyguardPilotCommand::OrbitRight)
+			? 2.6f
+			: (Command == ESkyguardPilotCommand::FaceTarget ? 2.4f : 2.2f);
+	Say(WorldContext, *Line, Seconds);
 }
 
 void SkyguardPilotVoice::WarnOffAxis(UObject* WorldContext)
