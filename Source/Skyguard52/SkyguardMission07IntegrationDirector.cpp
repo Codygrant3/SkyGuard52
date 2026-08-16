@@ -3,6 +3,7 @@
 #include "SkyguardDrone.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardCampaignDefinition.h"
+#include "SkyguardCampaignRoster.h"
 #include "SkyguardCampaignSubsystem.h"
 #include "SkyguardGunner.h"
 #include "SkyguardMissionBriefingComponent.h"
@@ -135,6 +136,7 @@ void ASkyguardMission07IntegrationDirector::Tick(const float DeltaSeconds)
 	}
 	Briefing->AdvanceBriefing(DeltaSeconds);
 	TryLaunchSortie();
+	TickNightBeatKit(DeltaSeconds);
 	if (WaveState == ESkyguardMission07WaveState::BossEngaged)
 	{
 		AdvanceReinforcementTimer(DeltaSeconds);
@@ -215,6 +217,8 @@ bool ASkyguardMission07IntegrationDirector::ConfigureMissionDefinition(
 	RemainingThreatsInWave = 0;
 	ObservedBossWeakPointsDestroyed = 0;
 	ReinforcementTimeRemaining = ReinforcementDeadlineSeconds;
+	NightBeatIndex = 0;
+	NightBeatElapsed = 0.f;
 	bHostileContactConfirmed = false;
 	bMissionCompleted = false;
 	SearchTracks.Reset();
@@ -292,6 +296,7 @@ void ASkyguardMission07IntegrationDirector::BindRuntimeActors(
 	if (Gunner)
 	{
 		Gunner->ResetSortieCombatStats();
+		ApplyNightThermalContract();
 	}
 	RadarGhost = InRadarGhost;
 	ObservedBossWeakPointsDestroyed =
@@ -735,6 +740,41 @@ void ASkyguardMission07IntegrationDirector::HandlePilotCommand(
 	{
 		YakAircraft->IssuePilotCommand(Command);
 	}
+}
+
+const FSkyguardNightSortieBeatKit&
+ASkyguardMission07IntegrationDirector::GetNightBeatKit() const
+{
+	return SkyguardNightSortieBeatKit::DownedBird();
+}
+
+ESkyguardNightSortieBeatKind
+ASkyguardMission07IntegrationDirector::GetNightBeatKind() const
+{
+	return SkyguardNightSortieBeatKit::KindAt(GetNightBeatKit(), NightBeatIndex);
+}
+
+void ASkyguardMission07IntegrationDirector::TickNightBeatKit(
+	const float DeltaSeconds)
+{
+	NightBeatElapsed += FMath::Max(DeltaSeconds, 0.f);
+	NightBeatIndex = SkyguardNightSortieBeatKit::BeatIndexForElapsed(
+		GetMissionId(),
+		NightBeatElapsed);
+}
+
+void ASkyguardMission07IntegrationDirector::ApplyNightThermalContract()
+{
+	if (!Gunner)
+	{
+		return;
+	}
+	const FSkyguardCampaignMissionSpec& Spec =
+		SkyguardCampaignRoster::Get(
+			SkyguardCampaignRoster::IndexOf(GetMissionId()));
+	Gunner->ApplyWeatherPlayContracts(
+		Spec.bNightIdentity && GetNightBeatKit().bKeepThermal,
+		Spec.bStormRocketContract);
 }
 
 USkyguardObjectiveRuntime*

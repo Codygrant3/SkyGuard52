@@ -5,6 +5,7 @@ class ASkyguardDrone;
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
+#include "SkyguardNightSortieBeatKit.h"
 #include "SkyguardMission04IntegrationDirector.generated.h"
 
 class ASkyguardBlackKiteBoss;
@@ -158,6 +159,11 @@ public:
 		const USkyguardMissionDefinition* Mission,
 		TArray<FText>& OutErrors);
 
+	const FSkyguardNightSortieBeatKit& GetNightBeatKit() const;
+	ESkyguardNightSortieBeatKind GetNightBeatKind() const;
+	int32 GetNightBeatIndex() const { return NightBeatIndex; }
+	void TickNightBeatKit(float DeltaSeconds);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission04")
 	TObjectPtr<USceneComponent> Root;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission04")
@@ -234,9 +240,12 @@ private:
 	int32 RemainingThreatsInWave = 0;
 	int32 SubstationIntegrity = 100;
 	int32 ObservedBossWeakPointsDestroyed = 0;
+	int32 NightBeatIndex = 0;
+	float NightBeatElapsed = 0.f;
 	bool bInitialized = false;
 	bool bSortieLaunched = false;
 	bool bMissionCompleted = false;
+	void ApplyNightThermalContract();
 
 	bool NotifyObjectiveProgress(FName ObjectiveId, int32 Amount = 1);
 	int32 CalculateWaveThreatCount(int32 WaveIndex) const;
