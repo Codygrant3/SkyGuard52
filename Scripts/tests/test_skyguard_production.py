@@ -203,6 +203,7 @@ class ProductionPipelineTests(unittest.TestCase):
             "core-apache-cockpit-station-model02": (
                 r"Scripts\Workers\worker_core_apache_cockpit_station_model02.py"
             ),
+            "core-apache-30mm": r"Scripts\Workers\worker_core_apache_30mm.py",
         }
         for asset in nxt[:8]:
             self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
@@ -318,6 +319,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-detail01",
                 "core-apache-cockpit-station-model01",
                 "core-apache-cockpit-station-model02",
+                "core-apache-30mm",
             }:
                 self.assertFalse(asset.get("worker"), asset_id)
         self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
