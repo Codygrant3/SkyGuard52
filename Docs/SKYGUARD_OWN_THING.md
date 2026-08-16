@@ -50,6 +50,7 @@ missions, or the player aircraft.
 **Ten-mission campaign** runs on the playable coastal map via
 `ASkyguardGunshipSortieDirector`. First Contact through Fortress Dawn,
 auto-advancing after a win. Harbor Breaker is mission 2.
+Coordination plan of record: `Docs/SKYGUARD_PRODUCTION_PHASES.md`.
 
 ## How to play
 
