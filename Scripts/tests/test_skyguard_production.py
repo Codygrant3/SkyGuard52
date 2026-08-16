@@ -161,11 +161,11 @@ class ProductionPipelineTests(unittest.TestCase):
         nxt = PIPELINE.select_next_assets(
             manifest,
             set(PIPELINE.DEFAULT_NEXT_STATES.split(",")),
-            20,
+            21,
         )
         ids = [asset["id"] for asset in nxt]
         self.assertEqual(
-            ids[:20],
+            ids[:21],
             [
                 "core-apache-cockpit",
                 "core-apache-cockpit-station-detail01",
@@ -183,6 +183,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -251,10 +252,13 @@ class ProductionPipelineTests(unittest.TestCase):
             "core-apache-cockpit-station-model14": (
                 r"Scripts\Workers\worker_core_apache_cockpit_station_model14.py"
             ),
+            "core-apache-cockpit-station-model15": (
+                r"Scripts\Workers\worker_core_apache_cockpit_station_model15.py"
+            ),
             "core-apache-30mm": r"Scripts\Workers\worker_core_apache_30mm.py",
             "core-apache-hydra": r"Scripts\Workers\worker_core_apache_hydra.py",
         }
-        for asset in nxt[:20]:
+        for asset in nxt[:21]:
             self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
             self.assertEqual(asset["status"], "queued")
             expected_worker = registered_workers.get(asset["id"])
@@ -380,6 +384,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
             }:
@@ -1766,6 +1771,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2106,6 +2112,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2468,6 +2475,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2840,6 +2848,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -3230,6 +3239,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -3650,6 +3660,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -4095,6 +4106,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -4569,6 +4581,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -5010,6 +5023,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model12",
                 "core-apache-cockpit-station-model13",
                 "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -5141,6 +5155,477 @@ class ProductionPipelineTests(unittest.TestCase):
                 / "Scripts"
                 / "Workers"
                 / "worker_core_apache_cockpit_station_model12.py"
+            ).is_file()
+        )
+        self.assertTrue(
+            (PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_30mm.py").is_file()
+        )
+        self.assertTrue(
+            (PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_hydra.py").is_file()
+        )
+        self.assertNotIn("harbor-threat-kit01", by_id)
+        self.assertNotIn("core-radar-van-kit01", by_id)
+
+    def test_apache_p0_station_model15_registers_queued_inset_pane_no_draped_skin_method(self) -> None:
+        worker_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "Workers"
+            / "worker_core_apache_cockpit_station_model15.py"
+        )
+        supervisor_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "invoke_core_apache_cockpit_station_model15_once.ps1"
+        )
+        self.assertTrue(worker_path.is_file(), worker_path)
+        self.assertTrue(supervisor_path.is_file(), supervisor_path)
+        source = worker_path.read_text(encoding="utf-8")
+        supervisor = supervisor_path.read_text(encoding="utf-8")
+        self.assertIn("from skyguard_blender_worker_sdk import", source)
+        self.assertIn("create_socket", source)
+        self.assertIn("pbr_material", source)
+        self.assertIn("configure_scene", source)
+        self.assertIn("create_collection", source)
+        self.assertIn("validate_asset", source)
+        self.assertIn("render_review_views", source)
+        self.assertIn("export_asset", source)
+        self.assertIn("parse_worker_args", source)
+        self.assertIn("WorkerError", source)
+        self.assertIn("sha256", source)
+        self.assertIn("now_utc", source)
+        self.assertIn("SDK_VERSION", source)
+        self.assertIn("run_station_model_worker", source)
+        self.assertNotIn("run_worker(", source)
+        self.assertTrue("import bmesh" in source or "bmesh.from_mesh" in source)
+        self.assertIn("bmesh.ops", source)
+        self.assertIn("bmesh.ops.extrude_face_region", source)
+        self.assertIn("bmesh.ops.inset_region", source)
+        self.assertIn("bmesh.ops.solidify", source)
+        self.assertIn("bmesh.ops.bridge_loops", source)
+        self.assertIn("bmesh.ops.spin", source)
+        self.assertIn("bpy.ops.render.render(write_still=True)", source)
+        self.assertIn("eye_forward.png", source)
+        self.assertIn("eye_down_tedac.png", source)
+        self.assertIn("SOCKET_CPG_Eye", source)
+        self.assertIn("(0.42, 0.55, 0.62)", source)
+        self.assertIn("0.2 <= world.x <= 0.85", source)
+        self.assertIn("abs(world.y) < 0.20", source)
+        self.assertIn("1.05 <= world.z <= 1.35", source)
+        self.assertIn("add_explicit_hood", source)
+        self.assertIn("hood verts are missing", source)
+        self.assertIn("GEO_SeatBack", source)
+        self.assertIn("GEO_SeatHeadrest", source)
+        self.assertIn("GEO_APillar_L", source)
+        self.assertIn("GEO_APillar_R", source)
+        self.assertIn("GEO_KneePanel_L", source)
+        self.assertIn("GEO_KneePanel_R", source)
+        self.assertIn("abs(world.y) < 0.16", source)
+        self.assertIn("z <= 0.86", source)
+        self.assertIn("GEO_TEDAC has no emit faces", source)
+        self.assertIn("def assert_tedac_readable_from_eye", source)
+        self.assertIn("assert_tedac_readable_from_eye(asset_collection)", source)
+        self.assertIn("thumb_face = bm.faces.new(thumb)", source)
+        self.assertIn("(0.545, 0.0, 0.748)", source)
+        greenhouse = source.split("def build_greenhouse", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("GEO_BowFrame", greenhouse)
+        self.assertNotIn("GEO_BowFrame", source)
+        self.assertIn("GEO_Rail_L", greenhouse)
+        self.assertIn("GEO_Rail_R", greenhouse)
+        self.assertIn("GEO_Sill_L", greenhouse)
+        self.assertIn("GEO_Sill_R", greenhouse)
+        self.assertIn("GEO_AftFrame", greenhouse)
+        self.assertIn("0.38", greenhouse)
+        self.assertIn("section_along", greenhouse)
+        self.assertNotIn("pipe_along", greenhouse)
+        self.assertIn("def section_along", source)
+        self.assertIn("formed rectangular", source.lower())
+        self.assertIn("sill plate", greenhouse.lower())
+        self.assertIn("formed pillar", greenhouse.lower())
+        self.assertIn("rail cap", greenhouse.lower())
+        self.assertIn("0.052", greenhouse)
+        self.assertIn("0.062", greenhouse)
+        self.assertIn("0.038", greenhouse)
+        self.assertNotIn("0.018", greenhouse)
+        self.assertIn("GEO_CanopyBay", source)
+        self.assertIn("def loft_canopy_bay", source)
+        self.assertTrue(
+            "GEO_CanopyBay_" in source,
+            "model15 must keep loft_canopy_bay / GEO_CanopyBay so the plate fills the bays",
+        )
+        self.assertIn("punched window", source.lower())
+        self.assertIn("window opening", source.lower())
+        self.assertIn("formed bay", source.lower())
+        self.assertIn("dark formed", source.lower())
+        self.assertIn("joint plate", source.lower())
+        self.assertIn("GEO_JointPlate", greenhouse)
+        self.assertIn("|y| >= 0.38", greenhouse)
+        joint_fn = source.split("def formed_joint_plate", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("faces.new", joint_fn)
+        self.assertNotIn("section_along", joint_fn)
+        self.assertNotIn("pipe_along", joint_fn)
+        self.assertNotIn("GEO_BowFrame", joint_fn)
+        self.assertIn("0.38", joint_fn)
+        self.assertIn("def loft_canopy_pane", source)
+        self.assertIn("inset", source.lower())
+        self.assertIn("GEO_CanopyPane", greenhouse)
+        self.assertIn("loft_canopy_pane", greenhouse)
+        self.assertNotIn("loft_canopy_skin", greenhouse)
+        self.assertNotIn("GEO_CanopyGlass_L", greenhouse)
+        self.assertNotIn("GEO_CanopyGlass_R", greenhouse)
+        self.assertNotIn("GEO_CanopyGlass_Aft_L", greenhouse)
+        self.assertNotIn("GEO_CanopyGlass_Aft_R", greenhouse)
+        pane_fn = source.split("def loft_canopy_pane", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("section_along", pane_fn)
+        self.assertNotIn("pipe_along", pane_fn)
+        self.assertIn("faces.new", pane_fn)
+        self.assertIn("solidify", pane_fn)
+        self.assertIn("punched", pane_fn.lower())
+        self.assertIn("inset", pane_fn.lower())
+        self.assertNotIn("thicker tube", source.lower())
+        bay_fn = source.split("def loft_canopy_bay", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("inner_y = max(0.24", bay_fn)
+        self.assertIn("def loft_overhead_brow", source)
+        self.assertIn("GEO_OverheadBrow", source)
+        self.assertIn("GEO_ForwardBrow", source)
+        self.assertIn("1.36", source)
+        overhead_fn = source.split("def loft_overhead_brow", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("section_along", overhead_fn)
+        self.assertNotIn("pipe_along", overhead_fn)
+        self.assertIn("faces.new", overhead_fn)
+        self.assertIn("solidify", overhead_fn)
+        self.assertIn("GEO_OverheadBrow", overhead_fn)
+        self.assertIn("GEO_ForwardBrow", overhead_fn)
+        self.assertIn("-0.15", overhead_fn)
+        self.assertIn("0.55", overhead_fn)
+        self.assertIn("1.36", overhead_fn)
+        self.assertIn("glass", overhead_fn.lower())
+        self.assertIn("loft_overhead_brow", greenhouse)
+        self.assertIn("loft_overhead_brow(collection, glass)", greenhouse)
+        self.assertNotIn("loft_overhead_brow(collection, rail)", greenhouse)
+        self.assertIn("MAT_CPG_CanopyGlass", source)
+        self.assertIn("MAT_CPG_CanopyRail", source)
+        self.assertIn("(0.035, 0.038, 0.032, 1.0)", source)
+        bezel_fn = source.split("def formed_bezel", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("* 0.16", bezel_fn)
+        self.assertNotIn("* 0.10", bezel_fn)
+        self.assertNotIn("(0.12, 0.13, 0.1, 1.0)", source)
+        self.assertNotIn("(0.12, 0.13, 0.1)", source)
+        seat_fn = source.split("def build_seat", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("GEO_Seat", seat_fn)
+        self.assertIn("GEO_SeatBolster_L", seat_fn)
+        self.assertIn("GEO_SeatBolster_R", seat_fn)
+        self.assertIn("GEO_SeatBack", seat_fn)
+        self.assertIn("GEO_SeatHeadrest", seat_fn)
+        self.assertIn("dish", seat_fn)
+        self.assertIn("bucket", seat_fn.lower())
+        self.assertIn("cheeks", seat_fn.lower())
+        self.assertIn("cupped", seat_fn.lower())
+        self.assertIn("pan well", seat_fn.lower())
+        self.assertIn("0.318", seat_fn)
+        self.assertIn("1.168", seat_fn)
+        self.assertIn("1.128", seat_fn)
+        self.assertIn("0.056", seat_fn)
+        self.assertIn("0.612", seat_fn)
+        self.assertNotIn("0.228", seat_fn)
+        self.assertNotIn("1.055", seat_fn)
+        self.assertNotIn("1.018", seat_fn)
+        self.assertNotIn("(-0.205, -0.175, 0.620)", seat_fn)
+        self.assertNotIn("(-0.248, 0.155, 1.015)", seat_fn)
+        self.assertIn("(0.032, 0.026, 0.020, 1.0)", source)
+        self.assertIn("(0.014, 0.011, 0.009, 1.0)", source)
+        self.assertIn("(0.055, 0.062, 0.040, 1.0)", source)
+        self.assertNotIn("(0.18, 0.20, 0.12, 1.0)", source)
+        self.assertNotIn("(0.18, 0.20, 0.12)", source)
+        self.assertIn("(0.22, 0.28, 0.32)", source)
+        self.assertNotIn("(0.55, 0.62, 0.68)", source)
+        self.assertIn("alpha=0.22", source)
+        self.assertNotIn("alpha=0.32", source)
+        self.assertIn("dark interior", source.lower())
+        self.assertIn("MAT_CPG_SeatWell", source)
+        glass_call = [
+            line
+            for line in source.splitlines()
+            if "MAT_CPG_CanopyGlass" in line and "emit_material" in line
+        ]
+        self.assertEqual(len(glass_call), 1, glass_call)
+        self.assertIn("0.22, 0.28, 0.32", glass_call[0])
+        self.assertIn("alpha=0.22", glass_call[0])
+        roughness = float(
+            glass_call[0].split("(0.22, 0.28, 0.32)", 1)[1].split(",", 1)[1].split(",", 1)[0].strip()
+        )
+        self.assertGreater(roughness, 0.08)
+        self.assertNotIn(
+            'emit_material("MAT_CPG_CanopyGlass", (0.22, 0.28, 0.32), 0.08, 0.0, alpha=0.22)',
+            source,
+        )
+        tedac_fn = source.split("def build_tedac", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("formed_bezel", tedac_fn)
+        self.assertIn("corner_cut", tedac_fn)
+        self.assertGreater(
+            float(
+                tedac_fn.split("corner_cut=", 1)[1]
+                .split(",", 1)[0]
+                .split(")", 1)[0]
+                .strip()
+            ),
+            0.022,
+        )
+        self.assertIn("GEO_TEDAC", tedac_fn)
+        self.assertIn("0.034", tedac_fn)
+        self.assertNotIn("(0.490, 0.0, 0.715)", tedac_fn)
+        self.assertNotIn("(0.572, 0.0, 0.880)", tedac_fn)
+        self.assertNotIn("(0.578, 0.0, 0.880)", tedac_fn)
+        self.assertTrue(
+            "GEO_TEDAC_Housing" in source or "formed housing" in tedac_fn.lower(),
+            "TEDAC left/right boxes must merge into one formed housing",
+        )
+        housing_fn = source.split("def formed_tedac_housing", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("GEO_TEDAC_Housing", housing_fn)
+        self.assertIn("one unit", housing_fn.lower())
+        self.assertIn("0.548", housing_fn)
+        self.assertIn("inset", housing_fn.lower())
+        mpd_fn = source.split("def build_mpd", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("inset", mpd_fn.lower())
+        self.assertNotIn("formed_bezel", mpd_fn)
+        self.assertIn("GEO_MPD", mpd_fn)
+        self.assertNotIn("primitive_cylinder_add", source)
+        self.assertNotIn("primitive_cube_add", source)
+        self.assertNotIn("def add_box", source)
+        self.assertNotIn("import numpy", source)
+        self.assertNotIn("from numpy", source)
+        self.assertNotIn("Render Result", source)
+        self.assertNotIn('empty_display_type = "CROSS"', source)
+        self.assertNotIn("Yak", source)
+        self.assertNotIn("Igla", source)
+        self.assertNotIn("rifle", source.lower())
+        self.assertNotIn("Stage 7B", source)
+        self.assertNotIn("APACHE_CPG_STATION_DETAIL01", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL01", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL02", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL03", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL04", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL05", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL06", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL07", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL08", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL09", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL10", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL11", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL12", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL13", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL14", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL15", source)
+        emit_fn = source.split("def emit_material", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("if alpha < 1.0:", emit_fn)
+        before_gate, after_gate = emit_fn.split("if alpha < 1.0:", 1)
+        self.assertNotIn("Transmission", before_gate)
+        self.assertNotIn("BLEND", before_gate)
+        self.assertIn("Transmission Weight", after_gate)
+        self.assertIn("BLEND", after_gate)
+        self.assertEqual(supervisor.count("$CyclePath run $AssetId"), 1)
+        self.assertIn("core-apache-cockpit-station-model15", supervisor)
+        self.assertNotIn("core-apache-cockpit-station-model14", supervisor)
+        self.assertIn("OfflineContractTest", supervisor)
+        self.assertIn("ExecuteOnce", supervisor)
+        self.assertIn("StandingAuthority", supervisor)
+        self.assertNotIn("Start-Process", supervisor)
+        self.assertNotIn("blender.exe", supervisor.lower())
+
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        asset = by_id["core-apache-cockpit-station-model15"]
+        self.assertEqual(asset["status"], "queued")
+        self.assertNotEqual(asset["status"], "ready")
+        self.assertNotEqual(asset["status"], "accepted")
+        self.assertIsNone(asset.get("blocker"))
+        self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(asset["priority"], 1)
+        self.assertEqual(
+            asset["supersedes_only_after_acceptance"],
+            "core-apache-cockpit-station-model14",
+        )
+        self.assertEqual(
+            asset["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model15.py",
+        )
+        self.assertEqual(
+            asset["worker"]["arguments"],
+            [
+                "--output",
+                "{output_dir}",
+                "--asset-id",
+                "core-apache-cockpit-station-model15",
+            ],
+        )
+        self.assertEqual(asset["worker"]["minimum_renders"], 8)
+        self.assertEqual(
+            asset["worker"]["postflight"]["script"],
+            r"Scripts\adjudicate_ready_blender_asset_attempt_v2.py",
+        )
+        self.assertTrue(asset["worker"]["postflight"]["visual_review_still_required"])
+        self.assertIn("blend", asset["required"])
+        self.assertIn("glb", asset["required"])
+        self.assertIn("6_renders", asset["required"])
+        self.assertIn("cpg_eyepoint_renders", asset["required"])
+        self.assertIn("uvs", asset["required"])
+        self.assertIn("pbr", asset["required"])
+        self.assertIn("pivots", asset["required"])
+        self.assertIn("sockets", asset["required"])
+        self.assertIn("full_resolution_visual_review", asset["required"])
+        self.assertIn("core-apache-cockpit-station-model15", VALIDATOR.APACHE_P0_IDS)
+        self.assertEqual(
+            list(VALIDATOR.APACHE_P0_IDS),
+            [
+                "core-apache-cockpit",
+                "core-apache-cockpit-station-detail01",
+                "core-apache-cockpit-station-model01",
+                "core-apache-cockpit-station-model02",
+                "core-apache-cockpit-station-model03",
+                "core-apache-cockpit-station-model04",
+                "core-apache-cockpit-station-model05",
+                "core-apache-cockpit-station-model06",
+                "core-apache-cockpit-station-model07",
+                "core-apache-cockpit-station-model08",
+                "core-apache-cockpit-station-model09",
+                "core-apache-cockpit-station-model10",
+                "core-apache-cockpit-station-model11",
+                "core-apache-cockpit-station-model12",
+                "core-apache-cockpit-station-model13",
+                "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
+                "core-apache-30mm",
+                "core-apache-hydra",
+                "core-apache-hellfire",
+                "core-apache-airframe",
+            ],
+        )
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+        self.assertEqual(
+            asset["state_reason"],
+            (
+                "Queued Apache CPG P0 station-model15 method; inset glass panes "
+                "sit in the punched bay openings so three-quarter reads as a "
+                "formed plate shell with window panes, not a beam cage with "
+                "draped milky sheets; TEDAC stays one housing with green emit "
+                "and public crosshair visible, side MPDs inset in the same "
+                "housing; keep glass overhead brow, TEDAC readability, dark "
+                "formed rails, joint plates, and model14 bucket seat; worker "
+                "registered; not launched; not ready; does not supersede "
+                "model14 until accepted; visual review still required; Unreal "
+                "import forbidden until accepted."
+            ),
+        )
+
+        ids = [item["id"] for item in manifest["assets"]]
+        self.assertEqual(
+            ids.index("core-apache-cockpit-station-model15"),
+            ids.index("core-apache-cockpit-station-model14") + 1,
+        )
+
+        contracts = PIPELINE.load_json(
+            PIPELINE.PRODUCTION / "ready_blender_output_contracts.json"
+        )["contracts"]
+        contract = contracts["core-apache-cockpit-station-model15"]
+        self.assertEqual(contract["worker_script"], asset["worker"]["script"])
+        self.assertEqual(
+            contract["supervisor_script"],
+            r"Scripts\invoke_core_apache_cockpit_station_model15_once.ps1",
+        )
+        self.assertEqual(contract["blend"], "core-apache-cockpit-station-model15.blend")
+        self.assertEqual(contract["glb"], "core-apache-cockpit-station-model15.glb")
+        self.assertEqual(len(contract["render_groups"]), 1)
+        self.assertEqual(contract["render_groups"][0]["count"], 8)
+        self.assertEqual(contract["render_groups"][0]["width"], 1920)
+        self.assertEqual(contract["render_groups"][0]["height"], 1080)
+        self.assertEqual(
+            contract["required_json"]["artifact_receipt.json"],
+            "skyguard.blender-worker-receipt.v1",
+        )
+        self.assertEqual(contract["minimum_meshes"], 1)
+        check_paths = {item["path"]: item for item in contract["checks"]}
+        self.assertEqual(check_paths["asset_id"]["value"], "core-apache-cockpit-station-model15")
+        self.assertEqual(check_paths["sdk_version"]["value"], "1.0.0")
+        self.assertEqual(
+            check_paths["validation.required_sockets"]["op"],
+            "contains_all",
+        )
+        self.assertEqual(
+            check_paths["validation.required_sockets"]["value"],
+            [
+                "SOCKET_Origin",
+                "SOCKET_CPG_Eye",
+                "SOCKET_TEDAC",
+                "SOCKET_MPD_L",
+                "SOCKET_MPD_R",
+                "SOCKET_Collective",
+                "SOCKET_Cyclic",
+            ],
+        )
+        self.assertEqual(
+            check_paths["eyepoint_renders"]["op"],
+            "contains_all",
+        )
+        self.assertEqual(
+            check_paths["eyepoint_renders"]["value"],
+            ["eye_forward.png", "eye_down_tedac.png"],
+        )
+        for record in contract["authorities"]:
+            path = PIPELINE.ROOT / record["path"].replace("\\", "/")
+            self.assertEqual(record["bytes"], path.stat().st_size, record["path"])
+            self.assertEqual(record["sha256"], PIPELINE.sha256(path), record["path"])
+        self.assertEqual(by_id["core-apache-cockpit"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-detail01"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model01"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model02"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model03"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model04"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model05"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model06"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model07"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model08"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model09"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model10"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model11"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model12"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model13"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model14"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-30mm"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-hydra"]["status"], "queued")
+        self.assertEqual(
+            by_id["core-apache-cockpit-station-model14"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model14.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-cockpit-station-model13"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model13.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-cockpit-station-model12"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model12.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-30mm"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_30mm.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-hydra"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_hydra.py",
+        )
+        self.assertTrue(
+            (
+                PIPELINE.ROOT
+                / "Scripts"
+                / "Workers"
+                / "worker_core_apache_cockpit_station_model14.py"
+            ).is_file()
+        )
+        self.assertTrue(
+            (
+                PIPELINE.ROOT
+                / "Scripts"
+                / "Workers"
+                / "worker_core_apache_cockpit_station_model13.py"
             ).is_file()
         )
         self.assertTrue(
