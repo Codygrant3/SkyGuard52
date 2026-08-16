@@ -1,6 +1,8 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardGunner.h"
+#include "SkyguardGunshipTypes.h"
 #include "Misc/AutomationTest.h"
 
 namespace SkyguardCampaignRosterTests
@@ -132,11 +134,159 @@ bool FSkyguardCampaignRosterCpgCopyTest::RunTest(const FString& Parameters)
 		TEXT("night brief keeps thermal"),
 		Night.Contains(TEXT("thermal"), ESearchCase::IgnoreCase));
 
+	const FString Mist = SkyguardCampaignRoster::Get(6).Brief;
+	TestTrue(
+		TEXT("mist-night brief keeps thermal"),
+		Mist.Contains(TEXT("thermal"), ESearchCase::IgnoreCase));
+
 	const FString Storm = SkyguardCampaignRoster::Get(4).Brief;
 	TestTrue(
 		TEXT("storm brief keeps rockets for clusters"),
 		Storm.Contains(TEXT("rocket"), ESearchCase::IgnoreCase) &&
 			Storm.Contains(TEXT("cluster"), ESearchCase::IgnoreCase));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCampaignWeatherIdentitiesDistinctTest,
+	"Skyguard52.Campaign.WeatherIdentitiesDistinct",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCampaignWeatherIdentitiesDistinctTest::RunTest(const FString& Parameters)
+{
+	TSet<FName> Identities;
+	TSet<FString> Labels;
+	for (int32 Index = 0; Index < SkyguardCampaignRoster::NumMissions(); ++Index)
+	{
+		const FSkyguardCampaignMissionSpec& Spec = SkyguardCampaignRoster::Get(Index);
+		TestFalse(
+			*FString::Printf(TEXT("%s has a weather identity"), *Spec.MissionId.ToString()),
+			Spec.WeatherIdentity.IsNone());
+		TestTrue(
+			*FString::Printf(TEXT("%s has a weather label"), *Spec.MissionId.ToString()),
+			FCString::Strlen(Spec.WeatherLabel) > 0);
+		TestFalse(
+			*FString::Printf(TEXT("%s weather identity is unique"), *Spec.MissionId.ToString()),
+			Identities.Contains(Spec.WeatherIdentity));
+		Identities.Add(Spec.WeatherIdentity);
+		const FString Label(Spec.WeatherLabel);
+		TestFalse(
+			*FString::Printf(TEXT("%s weather label is unique"), *Spec.MissionId.ToString()),
+			Labels.Contains(Label));
+		Labels.Add(Label);
+
+		const bool bNightWeather =
+			Spec.Weather == ESkyguardMissionWeather::NightClear ||
+			Spec.Weather == ESkyguardMissionWeather::NightOvercast;
+		TestEqual(
+			*FString::Printf(TEXT("%s night flag matches night weather"), *Spec.MissionId.ToString()),
+			Spec.bNightIdentity,
+			bNightWeather);
+		if (Spec.bStormRocketContract)
+		{
+			TestEqual(
+				*FString::Printf(TEXT("%s storm rockets require Storm weather"), *Spec.MissionId.ToString()),
+				Spec.Weather,
+				ESkyguardMissionWeather::Storm);
+		}
+	}
+	TestEqual(TEXT("ten distinct weather identities"), Identities.Num(), 10);
+	TestEqual(TEXT("ten distinct weather labels"), Labels.Num(), 10);
+
+	const FSkyguardCampaignMissionSpec& Harbor = SkyguardCampaignRoster::Get(1);
+	TestEqual(
+		TEXT("harbor weather identity"),
+		Harbor.WeatherIdentity,
+		FName(TEXT("HarborOvercast")));
+	TestEqual(
+		TEXT("harbor stays overcast"),
+		Harbor.Weather,
+		ESkyguardMissionWeather::Overcast);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCampaignNightKeepsThermalContractTest,
+	"Skyguard52.Campaign.NightKeepsThermalContract",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCampaignNightKeepsThermalContractTest::RunTest(const FString& Parameters)
+{
+	ASkyguardGunner* Gunner = NewObject<ASkyguardGunner>();
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Gunner)
+	{
+		return false;
+	}
+
+	int32 NightCount = 0;
+	for (int32 Index = 0; Index < SkyguardCampaignRoster::NumMissions(); ++Index)
+	{
+		const FSkyguardCampaignMissionSpec& Spec = SkyguardCampaignRoster::Get(Index);
+		if (!Spec.bNightIdentity)
+		{
+			continue;
+		}
+		++NightCount;
+		Gunner->ApplyWeatherPlayContracts(true, false);
+		TestTrue(
+			*FString::Printf(TEXT("%s enables thermal"), *Spec.MissionId.ToString()),
+			Gunner->IsThermalEnabled());
+		TestTrue(
+			*FString::Printf(TEXT("%s brief keeps thermal"), *Spec.MissionId.ToString()),
+			FString(Spec.Brief).Contains(TEXT("thermal"), ESearchCase::IgnoreCase));
+	}
+	TestTrue(TEXT("at least one night mission"), NightCount >= 1);
+
+	Gunner->ApplyWeatherPlayContracts(false, false);
+	TestFalse(TEXT("day clears thermal"), Gunner->IsThermalEnabled());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCampaignStormKeepsRocketClustersContractTest,
+	"Skyguard52.Campaign.StormKeepsRocketClustersContract",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCampaignStormKeepsRocketClustersContractTest::RunTest(
+	const FString& Parameters)
+{
+	ASkyguardGunner* Gunner = NewObject<ASkyguardGunner>();
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Gunner)
+	{
+		return false;
+	}
+
+	int32 StormCount = 0;
+	for (int32 Index = 0; Index < SkyguardCampaignRoster::NumMissions(); ++Index)
+	{
+		const FSkyguardCampaignMissionSpec& Spec = SkyguardCampaignRoster::Get(Index);
+		if (!Spec.bStormRocketContract)
+		{
+			continue;
+		}
+		++StormCount;
+		TestEqual(
+			TEXT("storm weather"),
+			Spec.Weather,
+			ESkyguardMissionWeather::Storm);
+		TestTrue(
+			TEXT("storm brief keeps rockets for clusters"),
+			FString(Spec.Brief).Contains(TEXT("rocket"), ESearchCase::IgnoreCase) &&
+				FString(Spec.Brief).Contains(TEXT("cluster"), ESearchCase::IgnoreCase));
+		Gunner->ApplyWeatherPlayContracts(false, true);
+		TestEqual(
+			TEXT("storm selects Hydra rockets"),
+			Gunner->GetSelectedGunshipWeapon(),
+			ESkyguardGunshipWeapon::Rockets);
+		TestEqual(
+			TEXT("storm starts Rocket Heavy for clusters"),
+			Gunner->GetActiveLoadout(),
+			ESkyguardLoadout::RocketHeavy);
+		TestTrue(TEXT("storm brings a real rocket magazine"), Gunner->GetRocketAmmo() >= 14);
+	}
+	TestEqual(TEXT("exactly one storm rocket contract"), StormCount, 1);
 	return true;
 }
 
