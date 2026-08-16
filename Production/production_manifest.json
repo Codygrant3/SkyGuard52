@@ -796,6 +796,57 @@
       "state_reason": "Queued Apache CPG P0 station-model12 method; dark interior plus non-white glass (darker InteriorOlive consoles and darker CanopyGlass so three-quarter does not read as a beige/white kit); keep dark formed greenhouse rails, glass overhead brow, TEDAC/MPD readability, and model11 bucket seat; worker registered; not launched; not ready; does not supersede model11 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model13",
+      "name": "AH-64 CPG station model13 with formed greenhouse bays",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model12",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model13.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model13"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model13",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model13\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model13 method; formed greenhouse bays (lofted plate bay panels fill the bays between rails, sills, and A-pillars so three-quarter reads as a greenhouse shell with window openings, not a beam cage); keep glass overhead brow, TEDAC/MPD readability, dark formed rails, and model12 bucket seat; worker registered; not launched; not ready; does not supersede model12 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",
