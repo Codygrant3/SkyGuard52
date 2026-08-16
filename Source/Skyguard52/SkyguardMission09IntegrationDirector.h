@@ -5,6 +5,7 @@ class ASkyguardDrone;
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
+#include "SkyguardDaySortieBeatKit.h"
 #include "SkyguardMission09IntegrationDirector.generated.h"
 
 class ASkyguardGunner;
@@ -132,6 +133,7 @@ class SKYGUARD52_API ASkyguardMission09IntegrationDirector : public AActor
 public:
 	ASkyguardMission09IntegrationDirector();
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Mission09|Integration")
@@ -186,6 +188,11 @@ public:
 	static bool ValidateMissionContract(
 		const USkyguardMissionDefinition* Mission,
 		TArray<FText>& OutErrors);
+
+	const FSkyguardDaySortieBeatKit& GetDayBeatKit() const;
+	ESkyguardDaySortieBeatKind GetDayBeatKind() const;
+	int32 GetDayBeatIndex() const { return DayBeatIndex; }
+	void TickDayBeatKit(float DeltaSeconds);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission09")
 	TObjectPtr<USceneComponent> Root;
@@ -258,6 +265,8 @@ private:
 	int32 RemainingThreatsInWave = 0;
 	int32 ObservedDispenserMilestones = 0;
 	int32 ObservedBossMilestones = 0;
+	int32 DayBeatIndex = 0;
+	float DayBeatElapsed = 0.f;
 	bool bInitialized = false;
 	bool bMissionCompleted = false;
 

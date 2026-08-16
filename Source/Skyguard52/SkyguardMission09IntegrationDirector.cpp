@@ -1,5 +1,6 @@
 #include "SkyguardMission09IntegrationDirector.h"
 
+#include "SkyguardDaySortieBeatKit.h"
 #include "SkyguardDrone.h"
 #include "SkyguardAudioDirectorComponent.h"
 #include "SkyguardAudioTypes.h"
@@ -50,7 +51,7 @@ namespace
 
 ASkyguardMission09IntegrationDirector::ASkyguardMission09IntegrationDirector()
 {
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Mission09IntegrationRoot"));
 	SetRootComponent(Root);
 	SkylineAnchor = CreateDefaultSubobject<USceneComponent>(TEXT("ProtectedMetropolitanSkyline"));
@@ -81,6 +82,12 @@ void ASkyguardMission09IntegrationDirector::BeginPlay()
 		this,
 		&ASkyguardMission09IntegrationDirector::HandleDroneCityImpact);
 	if (bAutoInitialize) InitializePlayableMission();
+}
+
+void ASkyguardMission09IntegrationDirector::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	TickDayBeatKit(DeltaSeconds);
 }
 
 void ASkyguardMission09IntegrationDirector::EndPlay(
@@ -239,6 +246,8 @@ bool ASkyguardMission09IntegrationDirector::ConfigureMissionDefinition(
 		ProtectedTargets.Add(Runtime);
 	}
 	bMissionCompleted = false;
+	DayBeatIndex = 0;
+	DayBeatElapsed = 0.f;
 	UpdateReadiness();
 	return true;
 }
@@ -616,6 +625,27 @@ void ASkyguardMission09IntegrationDirector::HandlePilotCommand(
 	const ESkyguardPilotCommand Command)
 {
 	if (YakAircraft) YakAircraft->IssuePilotCommand(Command);
+}
+
+const FSkyguardDaySortieBeatKit&
+ASkyguardMission09IntegrationDirector::GetDayBeatKit() const
+{
+	return SkyguardDaySortieBeatKit::HunterKiller();
+}
+
+ESkyguardDaySortieBeatKind
+ASkyguardMission09IntegrationDirector::GetDayBeatKind() const
+{
+	return SkyguardDaySortieBeatKit::KindAt(GetDayBeatKit(), DayBeatIndex);
+}
+
+void ASkyguardMission09IntegrationDirector::TickDayBeatKit(
+	const float DeltaSeconds)
+{
+	DayBeatElapsed += FMath::Max(DeltaSeconds, 0.f);
+	DayBeatIndex = SkyguardDaySortieBeatKit::BeatIndexForElapsed(
+		GetMissionId(),
+		DayBeatElapsed);
 }
 
 bool ASkyguardMission09IntegrationDirector::ValidateMissionContract(
