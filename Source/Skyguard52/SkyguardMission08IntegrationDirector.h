@@ -5,6 +5,7 @@ class ASkyguardDrone;
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardBossTypes.h"
+#include "SkyguardStormRainBeatKit.h"
 #include "SkyguardMission08IntegrationDirector.generated.h"
 
 class ASkyguardGunner;
@@ -193,6 +194,9 @@ public:
 	static bool ValidateMissionContract(
 		const USkyguardMissionDefinition* Mission,
 		TArray<FText>& OutErrors);
+
+	static const FSkyguardStormRainBeatKit& GetStormRainBeatKit();
+	bool ApplyStormRainPlayContract(ASkyguardGunner* InGunner) const;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission08")
 	TObjectPtr<USceneComponent> Root;
