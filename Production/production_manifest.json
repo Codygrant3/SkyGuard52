@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-16T15:50:57.949604Z"
+    "updated_at_utc": "2026-08-16T16:20:00.000000Z"
   },
   "toolchain": {
     "blender": {
@@ -94,11 +94,34 @@
       "quality": "hero",
       "priority": 1,
       "status": "queued",
-      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "blocker": null,
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit"
+        ],
+        "minimum_renders": 6,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
       "required": [
         "blend",
         "glb",
-        "8_renders",
+        "6_renders",
         "uvs",
         "pbr",
         "collision",
@@ -107,7 +130,7 @@
         "first_person_silhouette",
         "instrument_readability"
       ],
-      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+      "state_reason": "Queued for Apache CPG P0; worker registered; not launched; not ready; visual review still required; Unreal import forbidden until accepted."
     },
     {
       "id": "core-apache-30mm",
