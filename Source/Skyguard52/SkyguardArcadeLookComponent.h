@@ -40,7 +40,8 @@ public:
 		meta=(WorldContext="WorldContextObject"))
 	static void ApplyWorldMoodForWeather(
 		UObject* WorldContextObject,
-		ESkyguardMissionWeather Weather);
+		ESkyguardMissionWeather Weather,
+		float TimeOfDayHours = 12.f);
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Arcade")
 	bool IsEnabled() const { return bEnabled; }

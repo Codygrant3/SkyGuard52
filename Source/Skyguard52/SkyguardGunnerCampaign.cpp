@@ -84,6 +84,33 @@ void ASkyguardGunner::ToggleThermal()
 	bThermalEnabled = !bThermalEnabled;
 }
 
+void ASkyguardGunner::SetThermalEnabled(const bool bEnabled)
+{
+	bThermalEnabled = bEnabled;
+}
+
+void ASkyguardGunner::ApplyWeatherPlayContracts(
+	const bool bNightIdentity,
+	const bool bStormRocketContract)
+{
+	if (bNightIdentity)
+	{
+		bThermalEnabled = true;
+		bADS = true;
+		bWasTargetingSensor = true;
+	}
+	else
+	{
+		bThermalEnabled = false;
+	}
+
+	if (bStormRocketContract)
+	{
+		ApplyLoadout(ESkyguardLoadout::RocketHeavy);
+		SelectGunshipWeapon(ESkyguardGunshipWeapon::Rockets);
+	}
+}
+
 void ASkyguardGunner::PopFlares()
 {
 	if (FlareCount <= 0)

@@ -3,6 +3,7 @@
 #include "SkyguardApacheAircraft.h"
 #include "SkyguardArcadeLookComponent.h"
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardCoastalEnvironmentDirector.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardPatrolShipBoss.h"
@@ -78,7 +79,26 @@ void ASkyguardGunshipSortieDirector::StartMissionIndex(const int32 Index)
 	}
 	const FSkyguardCampaignMissionSpec& Spec =
 		SkyguardCampaignRoster::Get(MissionIndex);
-	USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(this, Spec.Weather);
+	USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(
+		this,
+		Spec.Weather,
+		Spec.TimeOfDayHours);
+	if (UWorld* World = GetWorld())
+	{
+		for (TActorIterator<ASkyguardCoastalEnvironmentDirector> It(World); It; ++It)
+		{
+			if (IsValid(*It))
+			{
+				It->ApplyMissionWeather(Spec.Weather);
+			}
+		}
+	}
+	if (ASkyguardGunner* Gunner = FindGunner())
+	{
+		Gunner->ApplyWeatherPlayContracts(
+			Spec.bNightIdentity,
+			Spec.bStormRocketContract);
+	}
 	if (Spec.bNightIdentity)
 	{
 		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::GoThermal);
@@ -87,12 +107,13 @@ void ASkyguardGunshipSortieDirector::StartMissionIndex(const int32 Index)
 	{
 		GEngine->AddOnScreenDebugMessage(
 			84720,
-			6.f,
+			8.f,
 			FColor::White,
 			FString::Printf(
-				TEXT("%s — %s"),
+				TEXT("%s — %s\nWeather: %s"),
 				Spec.Title,
-				Spec.Brief));
+				Spec.Brief,
+				Spec.WeatherLabel));
 	}
 	SkyguardPilotVoice::ConfirmCommand(this, ESkyguardPilotCommand::Hold);
 }
@@ -114,6 +135,16 @@ FName ASkyguardGunshipSortieDirector::GetMissionId() const
 FString ASkyguardGunshipSortieDirector::GetMissionTitle() const
 {
 	return SkyguardCampaignRoster::Get(MissionIndex).Title;
+}
+
+FName ASkyguardGunshipSortieDirector::GetMissionWeatherIdentity() const
+{
+	return SkyguardCampaignRoster::Get(MissionIndex).WeatherIdentity;
+}
+
+FString ASkyguardGunshipSortieDirector::GetMissionWeatherLabel() const
+{
+	return SkyguardCampaignRoster::Get(MissionIndex).WeatherLabel;
 }
 
 void ASkyguardGunshipSortieDirector::Tick(const float DeltaSeconds)
@@ -294,11 +325,12 @@ void ASkyguardGunshipSortieDirector::SpawnBeatWave()
 	};
 
 	const int32 Count = Beat == ESkyguardSortieBeat::Climax ? 0 : 4;
+	const float LateralStep = Spec.bStormRocketContract ? 420.f : 800.f;
 	for (int32 Index = 0; Index < Count; ++Index)
 	{
 		const FVector Loc = Ahead
 			+ Forward * FMath::FRandRange(-400.f, 600.f)
-			+ Right * (-1600.f + Index * 800.f)
+			+ Right * (-1600.f + Index * LateralStep)
 			+ FVector(0.f, 0.f, FMath::FRandRange(-200.f, 200.f));
 		SpawnThreat(KindFor(), Loc);
 	}

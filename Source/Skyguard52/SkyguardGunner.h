@@ -104,6 +104,13 @@ public:
 	void ToggleThermal();
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
+	void SetThermalEnabled(bool bEnabled);
+
+	/** Night forces thermal sensor; storm selects Hydra for clusters. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
+	void ApplyWeatherPlayContracts(bool bNightIdentity, bool bStormRocketContract);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
 	void PopFlares();
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
