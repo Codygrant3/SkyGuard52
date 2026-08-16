@@ -1,10 +1,13 @@
 #include "SkyguardApacheAircraft.h"
+#include "SkyguardPilotVoice.h"
 #include "SkyguardRuntimeMeshCatalog.h"
 
 #include "Components/BoxComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
+#include "GameFramework/InputSettings.h"
+#include "GameFramework/PlayerController.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialInterface.h"
 #include "UObject/ConstructorHelpers.h"
@@ -317,6 +320,7 @@ void ASkyguardApacheAircraft::Tick(const float DeltaSeconds)
 	}
 
 	HoverSeconds += DeltaSeconds;
+	PollPilotCommandInput();
 	UpdatePilotMotion(DeltaSeconds);
 	const float Bob = FMath::Sin(HoverSeconds * 1.35f) * HoverBobCentimeters;
 	SetActorLocation(HoverBaseLocation + FVector(0.f, 0.f, Bob));
@@ -332,7 +336,12 @@ void ASkyguardApacheAircraft::SetDirectFlightInput(
 	YawInput = FMath::Clamp(Yaw, -1.f, 1.f);
 	CyclicPitchInput = FMath::Clamp(CyclicPitch, -1.f, 1.f);
 	CyclicRollInput = FMath::Clamp(CyclicRoll, -1.f, 1.f);
-	bHasDirectFlight = true;
+	// Keep W/S/A/D when pressed. Idle stick leaves engagement geometry to the pilot.
+	bHasDirectFlight =
+		!FMath::IsNearlyZero(CollectiveInput, 0.02f) ||
+		!FMath::IsNearlyZero(YawInput, 0.02f) ||
+		!FMath::IsNearlyZero(CyclicPitchInput, 0.02f) ||
+		!FMath::IsNearlyZero(CyclicRollInput, 0.02f);
 }
 
 void ASkyguardApacheAircraft::UpdateDirectFlight(const float DeltaSeconds)
@@ -548,6 +557,7 @@ void ASkyguardApacheAircraft::SetRotorPower(const float NormalizedPower)
 
 void ASkyguardApacheAircraft::IssuePilotCommand(const ESkyguardPilotCommand Command)
 {
+	const bool bChanged = Command != CurrentPilotCommand;
 	CurrentPilotCommand = Command;
 	if (Command == ESkyguardPilotCommand::OrbitLeft ||
 		Command == ESkyguardPilotCommand::OrbitRight)
@@ -559,6 +569,11 @@ void ASkyguardApacheAircraft::IssuePilotCommand(const ESkyguardPilotCommand Comm
 			OrbitAngleDegrees =
 				FMath::RadiansToDegrees(FMath::Atan2(ToSelf.Y, ToSelf.X));
 		}
+	}
+	if (bChanged)
+	{
+		SkyguardPilotVoice::ConfirmCommand(this, Command);
+		++PilotConfirmationsIssued;
 	}
 }
 
@@ -573,7 +588,56 @@ void ASkyguardApacheAircraft::SetOrbitFocus(const FVector& WorldLocation)
 void ASkyguardApacheAircraft::FaceWorldLocation(const FVector& WorldLocation)
 {
 	FaceTargetLocation = WorldLocation;
-	CurrentPilotCommand = ESkyguardPilotCommand::FaceTarget;
+	IssuePilotCommand(ESkyguardPilotCommand::FaceTarget);
+}
+
+bool ASkyguardApacheAircraft::IsActionJustPressed(const FName ActionName) const
+{
+	const UWorld* World = GetWorld();
+	if (!World)
+	{
+		return false;
+	}
+	const APlayerController* PC = World->GetFirstPlayerController();
+	const UInputSettings* Settings = GetDefault<UInputSettings>();
+	if (!PC || !Settings)
+	{
+		return false;
+	}
+	TArray<FInputActionKeyMapping> Mappings;
+	Settings->GetActionMappingByName(ActionName, Mappings);
+	for (const FInputActionKeyMapping& Mapping : Mappings)
+	{
+		if (PC->WasInputKeyJustPressed(Mapping.Key))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void ASkyguardApacheAircraft::PollPilotCommandInput()
+{
+	if (IsActionJustPressed(TEXT("PilotOrbitLeft")))
+	{
+		IssuePilotCommand(ESkyguardPilotCommand::OrbitLeft);
+	}
+	else if (IsActionJustPressed(TEXT("PilotOrbitRight")))
+	{
+		IssuePilotCommand(ESkyguardPilotCommand::OrbitRight);
+	}
+	else if (IsActionJustPressed(TEXT("PilotHold")))
+	{
+		IssuePilotCommand(ESkyguardPilotCommand::Hold);
+	}
+	else if (IsActionJustPressed(TEXT("PilotBreak")))
+	{
+		IssuePilotCommand(ESkyguardPilotCommand::Break);
+	}
+	else if (IsActionJustPressed(TEXT("PilotAttackRun")))
+	{
+		IssuePilotCommand(ESkyguardPilotCommand::AttackRun);
+	}
 }
 
 void ASkyguardApacheAircraft::SetSensorView(const bool bInSensor)
