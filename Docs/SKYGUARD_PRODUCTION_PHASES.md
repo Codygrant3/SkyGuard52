@@ -36,7 +36,8 @@ stack onto `main`.
 C++ tests are required on every gameplay or engine change. Cloud agents
 cannot compile Unreal or hit Play; they still add or update the tests.
 
-No art or map rebuilds in phases 0–4.
+No art rebuilds or unique umaps in phases 0–4. Phase 3 map work is
+`ASkyguardCampaignTheaterKit` restyle-in-place only.
 
 gh may be logged out; push branches anyway.
 
@@ -104,6 +105,10 @@ Do not restore Yak, Igla, or rifle as live player fantasy while doing this.
 Author beat kits for the existing ten-mission roster on the existing coastal
 map. No new maps.
 
+`ASkyguardCampaignTheaterKit` restyle-in-place is the map work for this
+phase (`Docs/SKYGUARD_CAMPAIGN_THEATERS.md`). One coastal playable, ten
+kits. Unique umaps stay Phase 5.
+
 Roster (already in `SkyguardCampaignRoster`): First Contact, Harbor Breaker,
 Broken Highway, Night Eyes, River Hammer, Dust Offensive, Downed Bird, Iron
 Rain, Hunter-Killer, Fortress Dawn.
@@ -121,8 +126,9 @@ production as quality.
 
 ## Phase 5 — Unique maps + VO after proof
 
-Unique maps and a VO bank stay later. They start only after Harbor Play is
-signed off and phases 0–4 have proof.
+Unique umaps and a VO bank stay later. They start only after Harbor Play is
+signed off and phases 0–4 have proof. Phase 3 restyle-in-place does not
+count as a unique umap.
 
 Phase 2C text calls (`SkyguardPilotVoice` + radio) remain the live voice
 until a VO bank is actually scheduled here.
@@ -133,6 +139,16 @@ Art RC is a human gate. Cloud cannot accept art.
 
 Apache cockpit first. Spend pixels where the CPG feels them.
 
+Live art facts. Names do not establish quality:
+
+- `core-apache-airframe` is `source_candidate` only.
+- No Apache cockpit or 30 mm / Hydra / Hellfire assets in
+  `Production/production_manifest.json`.
+- Yak / Igla still dominate failed P0.
+- `m01-lighthouse` is the one hero accept.
+- Vegetation (`shared-vegetation-kit`) is `blocked_reference`: licensed
+  set next; no more procedural trees.
+
 Yak / Igla / rifle art is archived. Do not delete the archive. Do not put it
 back in the live player fantasy.
 
@@ -140,7 +156,7 @@ back in the live player fantasy.
 
 - Yak, Igla, or rifle as live player fantasy.
 - Shrinking Harbor Breaker `BeatSeconds`.
-- New maps or art rebuilds in phases 0–4.
+- New maps, unique umaps, or art rebuilds in phases 0–4.
 - Cloud art acceptance.
 - Touching a dirty `D:\Skyguard52`.
 - Merging without the Code Reviewer.
