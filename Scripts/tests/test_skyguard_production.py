@@ -267,6 +267,14 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn("Yak", source)
         self.assertNotIn("Igla", source)
         self.assertNotIn("rifle", source.lower())
+        emit_fn = source.split("def emit_material", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("if alpha < 1.0:", emit_fn)
+        before_gate, after_gate = emit_fn.split("if alpha < 1.0:", 1)
+        self.assertNotIn("Transmission", before_gate)
+        self.assertNotIn("BLEND", before_gate)
+        self.assertIn("Transmission Weight", after_gate)
+        self.assertIn("BLEND", after_gate)
+        self.assertIn("0.85", after_gate)
 
         manifest = PIPELINE.load_manifest()
         by_id = PIPELINE.asset_index(manifest)

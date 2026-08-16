@@ -47,6 +47,7 @@ def emit_material(
         principled.inputs["Emission Color"].default_value = (*color, 1.0)
     if "Emission Strength" in principled.inputs:
         principled.inputs["Emission Strength"].default_value = emit
+    # Opaque emitters (TEDAC / MPD / EUFD) keep alpha 1.0 and no transmission.
     if alpha < 1.0:
         material.blend_method = "BLEND"
         principled.inputs["Alpha"].default_value = alpha
