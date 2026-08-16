@@ -2,6 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Input/Reply.h"
+#include "InputCoreTypes.h"
 #include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardSortiePresentationWidgets.generated.h"
 
@@ -78,6 +80,8 @@ class SKYGUARD52_API USkyguardDebriefWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
+	USkyguardDebriefWidget(const FObjectInitializer& ObjectInitializer);
+
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Presentation|Debrief")
 	void Configure(USkyguardSortiePresentationComponent* InPresentation);
 
@@ -111,8 +115,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Presentation|Debrief")
 	bool TravelNext();
 
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Presentation|Debrief")
+	bool HandleDebriefKey(FKey Key);
+
 protected:
 	virtual void NativeConstruct() override;
+	virtual FReply NativeOnKeyDown(
+		const FGeometry& InGeometry,
+		const FKeyEvent& InKeyEvent) override;
 
 	UPROPERTY(BlueprintReadOnly, Category="Skyguard|Presentation|Debrief")
 	TObjectPtr<USkyguardSortiePresentationComponent> Presentation;

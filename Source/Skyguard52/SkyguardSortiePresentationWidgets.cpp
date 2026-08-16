@@ -8,6 +8,9 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Blueprint/WidgetTree.h"
+#include "Input/Events.h"
+#include "Input/Reply.h"
+#include "InputCoreTypes.h"
 
 namespace
 {
@@ -145,6 +148,13 @@ bool USkyguardBriefingWidget::LaunchSortie()
 	return true;
 }
 
+USkyguardDebriefWidget::USkyguardDebriefWidget(
+	const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	SetIsFocusable(true);
+}
+
 void USkyguardDebriefWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -199,16 +209,23 @@ void USkyguardDebriefWidget::RefreshRuntimeLayout()
 	}
 	if (RuntimeBodyText)
 	{
-		RuntimeBodyText->SetText(FText::Format(
-			NSLOCTEXT(
-				"SkyguardPresentation",
-				"DebriefRuntimeBody",
-				"{0}\n\nFinal score: {1}\nProgress saved: {2}"),
-			GetDebriefNarrative(),
-			FText::AsNumber(GetFinalScore()),
-			IsProgressSaved()
-				? NSLOCTEXT("SkyguardPresentation", "SavedYes", "Yes")
-				: NSLOCTEXT("SkyguardPresentation", "SavedNo", "No")));
+		if (Presentation && Presentation->HasCpgDebrief())
+		{
+			RuntimeBodyText->SetText(Presentation->GetCpgDebriefCopy());
+		}
+		else
+		{
+			RuntimeBodyText->SetText(FText::Format(
+				NSLOCTEXT(
+					"SkyguardPresentation",
+					"DebriefRuntimeBody",
+					"{0}\n\nFinal score: {1}\nProgress saved: {2}"),
+				GetDebriefNarrative(),
+				FText::AsNumber(GetFinalScore()),
+				IsProgressSaved()
+					? NSLOCTEXT("SkyguardPresentation", "SavedYes", "Yes")
+					: NSLOCTEXT("SkyguardPresentation", "SavedNo", "No")));
+		}
 	}
 	if (!RuntimeContinueText || !RuntimeContinueButton)
 	{
@@ -260,6 +277,12 @@ void USkyguardDebriefWidget::HandleContinueClicked()
 	{
 		return;
 	}
+	if (Presentation->HasCpgDebrief())
+	{
+		Presentation->ContinueSortie();
+		RefreshRuntimeLayout();
+		return;
+	}
 
 	switch (Presentation->GetPresentationState())
 	{
@@ -294,7 +317,32 @@ FSkyguardMissionDebrief USkyguardDebriefWidget::GetDebrief() const
 
 FText USkyguardDebriefWidget::GetDebriefNarrative() const
 {
+	if (Presentation && Presentation->HasCpgDebrief())
+	{
+		return Presentation->GetCpgDebriefCopy();
+	}
 	return Presentation ? Presentation->GetDebrief().Narrative : FText::GetEmpty();
+}
+
+bool USkyguardDebriefWidget::HandleDebriefKey(const FKey Key)
+{
+	if (!Presentation || !Presentation->HandleDebriefKey(Key))
+	{
+		return false;
+	}
+	RefreshRuntimeLayout();
+	return true;
+}
+
+FReply USkyguardDebriefWidget::NativeOnKeyDown(
+	const FGeometry& InGeometry,
+	const FKeyEvent& InKeyEvent)
+{
+	if (HandleDebriefKey(InKeyEvent.GetKey()))
+	{
+		return FReply::Handled();
+	}
+	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);
 }
 
 int32 USkyguardDebriefWidget::GetFinalScore() const

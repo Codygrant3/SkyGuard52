@@ -52,6 +52,23 @@ public:
 	void SetPendingLoadout(ESkyguardLoadout Loadout);
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	ESkyguardLoadout GetPendingLoadout() const { return PendingLoadout; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	bool IsAwaitingContinue() const { return bAwaitingContinue; }
+
+	void ResolveSortie(bool bWon, const TCHAR* FailReason = nullptr);
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	ASkyguardProtectAsset* GetCargoAsset() const { return Cargo; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	ASkyguardRadarNode* GetRadarNode() const { return Radar; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	ASkyguardPatrolShipBoss* GetPatrolShip() const { return PatrolShip; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
 	int32 GetLastScore() const { return LastScore; }
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
@@ -113,6 +130,7 @@ protected:
 	void ResolveFail(const TCHAR* Reason);
 	void ScoreSortie(bool bWon);
 	void ShowDebrief() const;
+	void PushDebriefToPresentation();
 	void HandleDebriefInput();
 	void ApplyPendingLoadout();
 	ASkyguardApacheAircraft* FindApache() const;

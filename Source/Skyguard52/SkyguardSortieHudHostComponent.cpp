@@ -219,6 +219,7 @@ void USkyguardSortieHudHostComponent::ShowDebriefWidget()
 	if (ActiveDebriefWidget)
 	{
 		ActiveDebriefWidget->Configure(Presentation);
+		ActiveDebriefWidget->SetKeyboardFocus();
 		return;
 	}
 	UClass* WidgetClass = DebriefWidgetClass.LoadSynchronous();
@@ -233,6 +234,7 @@ void USkyguardSortieHudHostComponent::ShowDebriefWidget()
 	}
 	ActiveDebriefWidget->Configure(Presentation);
 	ActiveDebriefWidget->AddToViewport(DebriefZOrder);
+	ActiveDebriefWidget->SetKeyboardFocus();
 }
 
 void USkyguardSortieHudHostComponent::TearDownWidgets()
