@@ -778,37 +778,44 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	}
 	Snap.HeadingDegrees = FMath::Fmod(Heading + 360.f, 360.f);
 	Snap.ThreatCount = Threats;
+	Snap.FlareCount = FlareCount;
+	Snap.bMissileInbound = bMissileInbound;
+	const FString FlareTape = SkyguardCpgFlareTape(FlareCount);
 	if (bMissileInbound)
 	{
-		Snap.ThreatLine = FString::Printf(TEXT("INBOUND\nFLR  %d"), FlareCount);
+		Snap.ThreatLine = FString::Printf(
+			TEXT("%s\n%s"),
+			SkyguardCpgInboundLabel(),
+			*FlareTape);
 	}
 	else if (Threats <= 0)
 	{
-		Snap.ThreatLine = FString::Printf(TEXT("CLR\nFLR  %d"), FlareCount);
+		Snap.ThreatLine = FString::Printf(TEXT("CLR\n%s"), *FlareTape);
 	}
 	else
 	{
 		Snap.ThreatLine = FString::Printf(
-			TEXT("%d THRT\n%s\nFLR  %d"),
+			TEXT("%d THRT\n%s\n%s"),
 			Threats,
 			*NearestKind,
-			FlareCount);
+			*FlareTape);
 	}
 
 	const FString RangeShort = Snap.RangeMeters < 0.f
 		? FString(TEXT("----"))
 		: FString::Printf(TEXT("%.0fM"), Snap.RangeMeters);
 	const FString ThreatShort = bMissileInbound
-		? FString(TEXT("INB"))
+		? FString(SkyguardCpgInboundLabel())
 		: (Threats > 0
 			? FString::Printf(TEXT("%d %s"), Threats, *NearestKind)
 			: FString(TEXT("CLR")));
 	Snap.EufdLine = FString::Printf(
-		TEXT("%s  %s  %s  %s"),
+		TEXT("%s  %s  %s  %s  %s"),
 		Weapon,
 		Station,
 		*RangeShort,
-		*ThreatShort);
+		*ThreatShort,
+		*FlareTape);
 	return Snap;
 }
 
@@ -908,20 +915,30 @@ void ASkyguardGunner::UpdateCpgHud()
 	{
 		CpgMpdRightText->SetText(FText::FromString(Snap.ThreatLine));
 		CpgMpdRightText->SetTextRenderColor(
-			bMissileInbound
+			Snap.bMissileInbound
 				? FColor(255, 72, 48)
 				: FColor(80, 230, 70));
 	}
 	if (CpgEufdText)
 	{
-		float Heading = GetActorRotation().Yaw;
-		if (const ASkyguardApacheAircraft* Apache = FindAttachedApache())
+		const FString FlareTape = SkyguardCpgFlareTape(Snap.FlareCount);
+		if (Snap.bMissileInbound)
 		{
-			Heading = Apache->GetActorRotation().Yaw;
+			CpgEufdText->SetText(FText::FromString(FString::Printf(
+				TEXT("%03.0f  %s  %s"),
+				Snap.HeadingDegrees,
+				SkyguardCpgInboundLabel(),
+				*FlareTape)));
+			CpgEufdText->SetTextRenderColor(FColor(255, 72, 48));
 		}
-		Heading = FMath::Fmod(Heading + 360.f, 360.f);
-		CpgEufdText->SetText(FText::FromString(
-			FString::Printf(TEXT("%03.0f"), Heading)));
+		else
+		{
+			CpgEufdText->SetText(FText::FromString(FString::Printf(
+				TEXT("%03.0f  %s"),
+				Snap.HeadingDegrees,
+				*FlareTape)));
+			CpgEufdText->SetTextRenderColor(FColor(115, 255, 115));
+		}
 	}
 }
 

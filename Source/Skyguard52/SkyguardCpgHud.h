@@ -14,6 +14,8 @@ struct FSkyguardCpgHudSnapshot
 	float RangeMeters = -1.f;
 	int32 ThreatCount = 0;
 	float HeadingDegrees = 0.f;
+	int32 FlareCount = 0;
+	bool bMissileInbound = false;
 };
 
 struct FSkyguardCpgContactMark
@@ -27,3 +29,5 @@ struct FSkyguardCpgContactMark
 
 const TCHAR* SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon Weapon);
 const TCHAR* SkyguardCpgThreatLabel(ESkyguardThreatKind Kind);
+const TCHAR* SkyguardCpgInboundLabel();
+FString SkyguardCpgFlareTape(int32 FlareCount);

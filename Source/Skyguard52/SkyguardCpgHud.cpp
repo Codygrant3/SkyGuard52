@@ -31,3 +31,13 @@ const TCHAR* SkyguardCpgThreatLabel(const ESkyguardThreatKind Kind)
 		return TEXT("FAST");
 	}
 }
+
+const TCHAR* SkyguardCpgInboundLabel()
+{
+	return TEXT("INB");
+}
+
+FString SkyguardCpgFlareTape(const int32 FlareCount)
+{
+	return FString::Printf(TEXT("FLR  %d"), FlareCount);
+}
