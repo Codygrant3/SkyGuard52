@@ -23,20 +23,40 @@ bool FSkyguardCpgHudTapesWeaponRangeThreatTest::RunTest(const FString& Parameter
 	}
 
 	FSkyguardCpgHudSnapshot Cannon = Gunner->BuildCpgHudSnapshot();
-	TestTrue(TEXT("cannon tape names M230"), Cannon.WeaponLine.Contains(TEXT("M230")));
+	TestTrue(TEXT("cannon tape names 30 mm"), Cannon.WeaponLine.Contains(TEXT("30MM")));
 	TestTrue(TEXT("cannon tape shows ready"), Cannon.WeaponLine.Contains(TEXT("RDY")));
 	TestTrue(TEXT("empty world is clear"), Cannon.ThreatLine.Contains(TEXT("CLR")));
 	TestTrue(TEXT("no range without a camera hit"), Cannon.RangeLine.Contains(TEXT("----")));
 	TestEqual(TEXT("no contacts"), Cannon.ThreatCount, 0);
+	TestFalse(
+		TEXT("cannon tape is not a Yak/Igla/rifle label"),
+		SkyguardCpgHudHasLegacyLiveWording(Cannon.WeaponLine));
 
 	Gunner->SelectGunshipWeapon(ESkyguardGunshipWeapon::Rockets);
 	FSkyguardCpgHudSnapshot Rockets = Gunner->BuildCpgHudSnapshot();
-	TestTrue(TEXT("rocket tape names HYDRA"), Rockets.WeaponLine.Contains(TEXT("HYDRA")));
+	TestTrue(TEXT("rocket tape names rockets"), Rockets.WeaponLine.Contains(TEXT("RKT")));
+	TestFalse(
+		TEXT("rocket tape is not a Yak/Igla/rifle label"),
+		SkyguardCpgHudHasLegacyLiveWording(Rockets.WeaponLine));
 
 	Gunner->SelectGunshipWeapon(ESkyguardGunshipWeapon::GuidedMissile);
 	FSkyguardCpgHudSnapshot Missile = Gunner->BuildCpgHudSnapshot();
-	TestTrue(TEXT("missile tape names HLF"), Missile.WeaponLine.Contains(TEXT("HLF")));
-	TestTrue(TEXT("eufd carries the station"), Missile.EufdLine.Contains(TEXT("HLF")));
+	TestTrue(TEXT("missile tape names guided missiles"), Missile.WeaponLine.Contains(TEXT("MSL")));
+	TestTrue(TEXT("missile tape shows search before lock"), Missile.WeaponLine.Contains(TEXT("SRCH")));
+	TestTrue(TEXT("eufd carries the station"), Missile.EufdLine.Contains(TEXT("MSL")));
+	TestTrue(TEXT("eufd carries lock state"), Missile.EufdLine.Contains(TEXT("SRCH")));
+	TestTrue(TEXT("eufd names helmet-sight"), Missile.EufdLine.Contains(TEXT("HMD")));
+	TestEqual(
+		TEXT("open seeker is search"),
+		Missile.LockPhase,
+		ESkyguardGuidedLockPhase::Search);
+	TestEqual(
+		TEXT("default sight is helmet"),
+		Missile.SightMode,
+		ESkyguardCpgSightMode::Helmet);
+	TestFalse(
+		TEXT("missile tape is not a Yak/Igla/rifle label"),
+		SkyguardCpgHudHasLegacyLiveWording(Missile.WeaponLine + Missile.EufdLine + Missile.LockLine));
 
 	Gunner->SelectGunshipWeapon(ESkyguardGunshipWeapon::Cannon);
 	Gunner->ReloadSelectedWeapon();
@@ -48,7 +68,27 @@ bool FSkyguardCpgHudTapesWeaponRangeThreatTest::RunTest(const FString& Parameter
 	TestEqual(
 		TEXT("weapon label helper"),
 		FString(SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon::Rockets)),
-		FString(TEXT("HYDRA")));
+		FString(TEXT("RKT")));
+	TestEqual(
+		TEXT("cannon label helper"),
+		FString(SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon::Cannon)),
+		FString(TEXT("30MM")));
+	TestEqual(
+		TEXT("missile label helper"),
+		FString(SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon::GuidedMissile)),
+		FString(TEXT("MSL")));
+	TestTrue(
+		TEXT("legacy Igla wording is rejected"),
+		SkyguardCpgHudHasLegacyLiveWording(FString(TEXT("Igla"))));
+	TestTrue(
+		TEXT("legacy Yak wording is rejected"),
+		SkyguardCpgHudHasLegacyLiveWording(FString(TEXT("Yak-52"))));
+	TestTrue(
+		TEXT("legacy rifle wording is rejected"),
+		SkyguardCpgHudHasLegacyLiveWording(FString(TEXT("rear rifle"))));
+	TestFalse(
+		TEXT("live station labels are clean"),
+		SkyguardCpgHudHasLegacyLiveWording(FString(TEXT("30MM RKT MSL LCK"))));
 	TestEqual(
 		TEXT("threat label helper"),
 		FString(SkyguardCpgThreatLabel(ESkyguardThreatKind::GroundArmor)),

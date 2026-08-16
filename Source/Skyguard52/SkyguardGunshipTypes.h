@@ -49,6 +49,24 @@ enum class ESkyguardGunshipWeapon : uint8
 	GuidedMissile UMETA(DisplayName = "Guided Missile")
 };
 
+/** Readable escalation for the guided-missile station. Fire is last. */
+UENUM(BlueprintType)
+enum class ESkyguardGuidedLockPhase : uint8
+{
+	Search UMETA(DisplayName = "Search"),
+	Detect UMETA(DisplayName = "Detect"),
+	Track UMETA(DisplayName = "Track"),
+	Lock UMETA(DisplayName = "Lock")
+};
+
+/** Helmet-sight for near threats; targeting-sensor for hunting. */
+UENUM(BlueprintType)
+enum class ESkyguardCpgSightMode : uint8
+{
+	Helmet UMETA(DisplayName = "Helmet Sight"),
+	TargetingSensor UMETA(DisplayName = "Targeting Sensor")
+};
+
 UENUM(BlueprintType)
 enum class ESkyguardLoadout : uint8
 {

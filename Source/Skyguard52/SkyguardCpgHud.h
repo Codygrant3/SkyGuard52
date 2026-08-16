@@ -11,9 +11,15 @@ struct FSkyguardCpgHudSnapshot
 	FString RangeLine;
 	FString ThreatLine;
 	FString EufdLine;
+	FString LockLine;
+	FString SightLine;
+	FString StationStatus;
+	ESkyguardGuidedLockPhase LockPhase = ESkyguardGuidedLockPhase::Search;
+	ESkyguardCpgSightMode SightMode = ESkyguardCpgSightMode::Helmet;
 	float RangeMeters = -1.f;
 	int32 ThreatCount = 0;
 	float HeadingDegrees = 0.f;
+	float LockProgress = 0.f;
 };
 
 struct FSkyguardCpgContactMark
@@ -28,3 +34,6 @@ struct FSkyguardCpgContactMark
 const TCHAR* SkyguardCpgWeaponLabel(ESkyguardGunshipWeapon Weapon);
 const TCHAR* SkyguardCpgThreatLabel(ESkyguardThreatKind Kind);
 const TCHAR* SkyguardCpgShipSystemLabel(ESkyguardPatrolShipSystem System);
+const TCHAR* SkyguardCpgLockPhaseLabel(ESkyguardGuidedLockPhase Phase);
+const TCHAR* SkyguardCpgSightLabel(ESkyguardCpgSightMode Sight);
+bool SkyguardCpgHudHasLegacyLiveWording(const FString& Text);

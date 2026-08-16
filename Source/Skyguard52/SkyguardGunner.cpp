@@ -25,6 +25,7 @@
 #include "SkyguardArcadeLookComponent.h"
 #include "SkyguardCpgHud.h"
 #include "SkyguardCpgSightHud.h"
+#include "SkyguardGuidedLockRules.h"
 #include "Blueprint/UserWidget.h"
 #include "SkyguardPatrolShipBoss.h"
 #include "SkyguardPilotVoice.h"
@@ -671,11 +672,28 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	const TCHAR* Weapon = SkyguardCpgWeaponLabel(SelectedGunshipWeapon);
 	const int32 Ready = GetSelectedReadyAmmo();
 	const int32 Mag = GetSelectedMagazineSize();
-	const TCHAR* Station = bReloading
-		? TEXT("RELOAD")
-		: (Ready > 0 ? TEXT("RDY") : TEXT("EMPTY"));
+	Snap.LockPhase = GetGuidedLockPhase();
+	Snap.SightMode = GetCpgSightMode();
+	Snap.LockProgress = IglaLockProgress;
+	Snap.SightLine = SkyguardCpgSightLabel(Snap.SightMode);
+	if (bReloading)
+	{
+		Snap.StationStatus = TEXT("RELOAD");
+	}
+	else if (Ready <= 0)
+	{
+		Snap.StationStatus = TEXT("EMPTY");
+	}
+	else if (SelectedGunshipWeapon == ESkyguardGunshipWeapon::GuidedMissile)
+	{
+		Snap.StationStatus = SkyguardCpgLockPhaseLabel(Snap.LockPhase);
+	}
+	else
+	{
+		Snap.StationStatus = TEXT("RDY");
+	}
 	Snap.WeaponLine = FString::Printf(
-		TEXT("%s\n%d / %d\n%s"), Weapon, Ready, Mag, Station);
+		TEXT("%s\n%d / %d\n%s"), Weapon, Ready, Mag, *Snap.StationStatus);
 
 	float RangeCm = -1.f;
 	if (GunnerCamera && GetWorld())
@@ -700,14 +718,20 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 		Snap.RangeMeters = RangeCm * 0.01f;
 		Snap.RangeLine = FString::Printf(TEXT("RNG  %.0f M"), Snap.RangeMeters);
 	}
-	if (IglaLockProgress > 0.05f)
+	if (SelectedGunshipWeapon == ESkyguardGunshipWeapon::GuidedMissile)
 	{
-		Snap.RangeLine += FString::Printf(
-			TEXT("\nLCK  %d"),
-			FMath::RoundToInt(IglaLockProgress * 100.f));
+		Snap.LockLine = SkyguardCpgLockPhaseLabel(Snap.LockPhase);
+		if (Snap.LockPhase != ESkyguardGuidedLockPhase::Search)
+		{
+			Snap.LockLine += FString::Printf(
+				TEXT("  %d"),
+				FMath::RoundToInt(IglaLockProgress * 100.f));
+		}
+		Snap.RangeLine += FString::Printf(TEXT("\n%s"), *Snap.LockLine);
 	}
 	else
 	{
+		Snap.LockLine = TEXT("----");
 		Snap.RangeLine += TEXT("\nLCK  --");
 	}
 
@@ -815,9 +839,10 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 			? FString::Printf(TEXT("%d %s"), Threats, *NearestKind)
 			: FString(TEXT("CLR")));
 	Snap.EufdLine = FString::Printf(
-		TEXT("%s  %s  %s  %s"),
+		TEXT("%s  %s  %s  %s  %s"),
 		Weapon,
-		Station,
+		*Snap.StationStatus,
+		*Snap.SightLine,
 		*RangeShort,
 		*ThreatShort);
 	return Snap;
@@ -863,8 +888,13 @@ void ASkyguardGunner::CollectCpgContactMarks(
 		Mark.Label = bThermalEnabled
 			? FString::Printf(TEXT("HEAT %s"), *Label)
 			: Label;
-		Mark.bLocked = Actor == Locked && IglaLockProgress >= 1.f;
-		Mark.bSeeking = Actor == Locked && IglaLockProgress > 0.05f && !Mark.bLocked;
+		const ESkyguardGuidedLockPhase Phase = GetGuidedLockPhase();
+		Mark.bLocked =
+			Actor == Locked && Phase == ESkyguardGuidedLockPhase::Lock;
+		Mark.bSeeking =
+			Actor == Locked &&
+			(Phase == ESkyguardGuidedLockPhase::Detect ||
+				Phase == ESkyguardGuidedLockPhase::Track);
 		Mark.LockAlpha = Actor == Locked ? IglaLockProgress : 0.f;
 		OutMarks.Add(Mark);
 	};
@@ -908,12 +938,13 @@ void ASkyguardGunner::UpdateCpgHud()
 			? FString(TEXT("----"))
 			: FString::Printf(TEXT("%.0f"), Snap.RangeMeters);
 		CpgTedacText->SetText(FText::FromString(FString::Printf(
-			TEXT("%03d  %03d  %03d\nRNG %s  %s"),
+			TEXT("%03d  %03d  %03d\nRNG %s  %s  %s"),
 			Left,
 			Center,
 			Right,
 			*Range,
-			Weapon)));
+			Weapon,
+			*Snap.StationStatus)));
 	}
 	if (CpgMpdLeftText)
 	{
@@ -1125,7 +1156,14 @@ void ASkyguardGunner::InputSelectWeapon3()
 
 void ASkyguardGunner::SelectGunshipWeapon(const ESkyguardGunshipWeapon Weapon)
 {
+	const ESkyguardGunshipWeapon Previous = SelectedGunshipWeapon;
 	SelectedGunshipWeapon = Weapon;
+	if (bApacheGunnerMode &&
+		Previous == ESkyguardGunshipWeapon::GuidedMissile &&
+		Weapon != ESkyguardGunshipWeapon::GuidedMissile)
+	{
+		ResetGuidedLock();
+	}
 	if (bApacheGunnerMode)
 	{
 		bIglaMode = Weapon == ESkyguardGunshipWeapon::GuidedMissile;
@@ -1325,13 +1363,12 @@ void ASkyguardGunner::SwitchWeaponPressed()
 	if (FrontSight) FrontSight->SetVisibility(false);
 	if (RearSight) RearSight->SetVisibility(false);
 	if (RifleReceiver) RifleReceiver->SetVisibility(false);
-	IglaLockProgress = 0.f;
-	IglaTarget = nullptr;
+	ResetGuidedLock();
 }
 
 void ASkyguardGunner::LaunchIglaPressed()
 {
-	if (IglaLockProgress >= 1.f && IglaTarget.IsValid())
+	if (CanFireGuidedMissile())
 	{
 		FireGuidedMissile();
 	}
@@ -1480,16 +1517,78 @@ void ASkyguardGunner::UpdateADSVisuals(float DeltaSeconds)
 	RifleMesh->SetRelativeRotation(FMath::RInterpTo(RifleMesh->GetRelativeRotation(), TargetRot, DeltaSeconds, 14.f));
 }
 
+ESkyguardGuidedLockPhase ASkyguardGunner::GetGuidedLockPhase() const
+{
+	return FSkyguardGuidedLockRules::PhaseFromProgress(
+		IglaLockProgress,
+		IglaTarget.IsValid());
+}
+
+ESkyguardCpgSightMode ASkyguardGunner::GetCpgSightMode() const
+{
+	return (bApacheGunnerMode && bADS)
+		? ESkyguardCpgSightMode::TargetingSensor
+		: ESkyguardCpgSightMode::Helmet;
+}
+
+bool ASkyguardGunner::CanFireGuidedMissile() const
+{
+	if (!IglaTarget.IsValid())
+	{
+		return false;
+	}
+	if (!FSkyguardGuidedLockRules::CanFire(GetGuidedLockPhase()))
+	{
+		return false;
+	}
+	if (bApacheGunnerMode && GuidedAmmo <= 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool ASkyguardGunner::IsGuidedSeekerLive() const
+{
+	if (bApacheGunnerMode)
+	{
+		return SelectedGunshipWeapon == ESkyguardGunshipWeapon::GuidedMissile;
+	}
+	return bIglaMode;
+}
+
+void ASkyguardGunner::ResetGuidedLock()
+{
+	IglaLockProgress = 0.f;
+	IglaTarget = nullptr;
+	bIglaLockPreviouslyAcquired = false;
+	IglaAcquireCooldownRemaining = 0.f;
+}
+
+float ASkyguardGunner::GetActiveLockSeconds() const
+{
+	if (bApacheGunnerMode)
+	{
+		return FSkyguardGuidedLockRules::LockSeconds(GetCpgSightMode());
+	}
+	return IglaLockSeconds;
+}
+
+float ASkyguardGunner::GetActiveLockAngleDegrees() const
+{
+	if (bApacheGunnerMode)
+	{
+		return FSkyguardGuidedLockRules::AcquireDegrees(GetCpgSightMode());
+	}
+	return IglaMaximumLockAngleDegrees;
+}
+
 void ASkyguardGunner::UpdateIglaLock(float DeltaSeconds)
 {
 	const bool bWasAcquired = IglaLockProgress >= 1.f && IglaTarget.IsValid();
-	const bool bSeekerLive = bApacheGunnerMode || bIglaMode;
-	if (!bSeekerLive || !GunnerCamera)
+	if (!IsGuidedSeekerLive() || !GunnerCamera)
 	{
-		IglaLockProgress = 0.f;
-		IglaTarget = nullptr;
-		bIglaLockPreviouslyAcquired = false;
-		IglaAcquireCooldownRemaining = 0.f;
+		ResetGuidedLock();
 		return;
 	}
 
@@ -1524,7 +1623,7 @@ void ASkyguardGunner::UpdateIglaLock(float DeltaSeconds)
 				Candidate->GetActorLocation());
 		}
 		IglaLockProgress = FMath::Clamp(
-			IglaLockProgress + DeltaSeconds / FMath::Max(IglaLockSeconds, 0.1f),
+			IglaLockProgress + DeltaSeconds / FMath::Max(GetActiveLockSeconds(), 0.1f),
 			0.f,
 			1.f);
 	}
@@ -1637,7 +1736,7 @@ bool ASkyguardGunner::IsIglaLockCandidateValid(const AActor* Candidate) const
 	const FVector Origin = GunnerCamera->GetComponentLocation();
 	const FVector Forward = GunnerCamera->GetForwardVector();
 	const float MinimumDot =
-		FMath::Cos(FMath::DegreesToRadians(IglaMaximumLockAngleDegrees));
+		FMath::Cos(FMath::DegreesToRadians(GetActiveLockAngleDegrees()));
 	float UnusedScore = 0.f;
 	return ScoreIglaLockCandidate(
 		Candidate,
@@ -1657,7 +1756,7 @@ AActor* ASkyguardGunner::AcquireIglaTarget() const
 	const FVector Origin = GunnerCamera->GetComponentLocation();
 	const FVector Forward = GunnerCamera->GetForwardVector();
 	const float MinimumDot =
-		FMath::Cos(FMath::DegreesToRadians(IglaMaximumLockAngleDegrees));
+		FMath::Cos(FMath::DegreesToRadians(GetActiveLockAngleDegrees()));
 	AActor* BestTarget = nullptr;
 	float BestScore = TNumericLimits<float>::Max();
 
@@ -1799,19 +1898,7 @@ void ASkyguardGunner::FireIgla()
 
 void ASkyguardGunner::FireGuidedMissile()
 {
-	if (!IglaTarget.IsValid() || !GunnerCamera)
-	{
-		return;
-	}
-	if (IglaLockProgress < 1.f)
-	{
-		return;
-	}
-	if (bApacheGunnerMode && GuidedAmmo <= 0)
-	{
-		return;
-	}
-	if (!GetWorld())
+	if (!CanFireGuidedMissile() || !GunnerCamera || !GetWorld())
 	{
 		return;
 	}
@@ -1864,9 +1951,7 @@ void ASkyguardGunner::FireGuidedMissile()
 			ESkyguardAudioEvent::IglaLaunch,
 			Muzzle);
 	}
-	IglaLockProgress = 0.f;
-	IglaTarget = nullptr;
-	bIglaLockPreviouslyAcquired = false;
+	ResetGuidedLock();
 }
 
 
@@ -1905,17 +1990,16 @@ void ASkyguardGunner::FireShot()
 			FireGuidedMissile();
 			return;
 		case ESkyguardGunshipWeapon::Cannon:
-		default:
 			FireCannon();
 			return;
 		}
+		checkNoEntry();
+		FireCannon();
+		return;
 	}
 	if (bIglaMode)
 	{
-		if (IglaLockProgress >= 1.f && IglaTarget.IsValid())
-		{
-			FireGuidedMissile();
-		}
+		FireGuidedMissile();
 		return;
 	}
 	FireCannon();
