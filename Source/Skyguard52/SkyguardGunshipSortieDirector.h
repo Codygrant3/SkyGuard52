@@ -107,6 +107,8 @@ public:
 	 * the ship only answers CanCoordinateAda / CanLaunchInbound.
 	 * Old clock: first delay 12s, radar-live 14s, radar-down 28s — a
 	 * missile every 14s across 13 combat minutes.
+	 * Kill the shore search radar or the last ADA-coordinating ship
+	 * radar and IncomingIntervalSecondsForNet returns the down gap.
 	 */
 	static constexpr float IncomingFirstDelaySeconds = 12.f;
 	static constexpr float IncomingRadarLiveIntervalSeconds = 40.f;
@@ -126,12 +128,18 @@ public:
 	static int32 BeatWaveCount(ESkyguardSortieBeat InBeat);
 	static ESkyguardThreatKind BeatWaveKind(int32 InMissionIndex, ESkyguardSortieBeat InBeat);
 	static float IncomingIntervalSeconds(bool bRadarLive);
+	static bool IsAdaCoordinatorLive(bool bShoreAda, bool bShipAda);
+	static float IncomingIntervalSecondsForNet(
+		ESkyguardSortieBeat InBeat,
+		bool bShoreAda,
+		bool bShipAda);
 	static bool BeatAllowsInbound(ESkyguardSortieBeat InBeat);
 	static bool UsesRadarLiveInboundCadence(ESkyguardSortieBeat InBeat);
 	static bool HasInboundSource(
 		ESkyguardSortieBeat InBeat,
 		bool bShoreAda,
 		bool bShipCanLaunch);
+	float ResolveIncomingIntervalSeconds() const;
 
 	/** Authored coastal-highway polyline in front of HarborHover, toward the city. */
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
@@ -152,6 +160,7 @@ public:
 	friend class FSkyguardSortieApproachHasNoInboundTest;
 	friend class FSkyguardSortieExtractUsesExtractKindTest;
 	friend class FSkyguardSortieBeatWaveSkipsRoadConvoyTest;
+	friend class FSkyguardSortieRadarDownLengthensInboundTest;
 
 protected:
 	void AdvanceBeats();
