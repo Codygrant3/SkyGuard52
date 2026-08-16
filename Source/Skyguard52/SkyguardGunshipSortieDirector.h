@@ -87,6 +87,12 @@ public:
 	FString GetMissionTitle() const;
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	FName GetMissionWeatherIdentity() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	FString GetMissionWeatherLabel() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
 	bool IsSortieOver() const
 	{
 		return Beat == ESkyguardSortieBeat::Succeeded ||

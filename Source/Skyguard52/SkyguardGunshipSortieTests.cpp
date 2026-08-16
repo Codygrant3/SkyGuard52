@@ -1,10 +1,12 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardCoastalEnvironmentDirector.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardGunshipSortieDirector.h"
 #include "SkyguardGunshipTypes.h"
+#include "SkyguardMissionTypes.h"
 #include "SkyguardPatrolShipBoss.h"
 #include "SkyguardProtectAsset.h"
 #include "SkyguardRadarNode.h"
@@ -13,6 +15,77 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Misc/AutomationTest.h"
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieDirectorAppliesWeatherPlayTest,
+	"Skyguard52.Campaign.SortieAppliesWeatherPlay",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieDirectorAppliesWeatherPlayTest::RunTest(const FString& Parameters)
+{
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardWeatherPlayWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>();
+	ASkyguardCoastalEnvironmentDirector* Coast =
+		World->SpawnActor<ASkyguardCoastalEnvironmentDirector>();
+	TestNotNull(TEXT("director"), Director);
+	TestNotNull(TEXT("gunner"), Gunner);
+	TestNotNull(TEXT("coast"), Coast);
+	if (!Director || !Gunner || !Coast)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(3);
+	TestEqual(
+		TEXT("night weather identity"),
+		Director->GetMissionWeatherIdentity(),
+		FName(TEXT("BlackoutNight")));
+	TestTrue(TEXT("night enables thermal"), Gunner->IsThermalEnabled());
+	TestEqual(
+		TEXT("night drives coastal wind"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::NightClear);
+
+	Director->StartMissionIndex(4);
+	TestEqual(
+		TEXT("storm weather identity"),
+		Director->GetMissionWeatherIdentity(),
+		FName(TEXT("SevereSquall")));
+	TestEqual(
+		TEXT("storm selects rockets"),
+		Gunner->GetSelectedGunshipWeapon(),
+		ESkyguardGunshipWeapon::Rockets);
+	TestEqual(
+		TEXT("storm coastal weather"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::Storm);
+	TestTrue(TEXT("storm wind is hard"), Coast->WindStrength >= 0.85f);
+
+	Director->StartMissionIndex(1);
+	TestEqual(
+		TEXT("harbor weather label"),
+		Director->GetMissionWeatherLabel(),
+		FString(TEXT("Harbor overcast")));
+	TestEqual(
+		TEXT("harbor coastal weather"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::Overcast);
+	TestFalse(TEXT("harbor is not night thermal"), Gunner->IsThermalEnabled());
+
+	World->DestroyWorld(false);
+	return true;
+}
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 	FSkyguardCampaignRosterHasTenMissionsTest,

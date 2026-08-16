@@ -840,7 +840,7 @@ void ASkyguardGunner::CollectCpgContactMarks(
 		: GetActorForwardVector();
 	AActor* Locked = IglaTarget.Get();
 
-	auto AddMark = [&](AActor* Actor, const TCHAR* Label)
+	auto AddMark = [&](AActor* Actor, const FString& Label)
 	{
 		if (!IsValid(Actor))
 		{
@@ -848,17 +848,21 @@ void ASkyguardGunner::CollectCpgContactMarks(
 		}
 		const FVector Offset = Actor->GetActorLocation() - Origin;
 		const float DistSq = Offset.SizeSquared();
-		if (DistSq < 1.f || DistSq > FMath::Square(28000.f))
+		const float MaxRangeCm = bThermalEnabled ? 34000.f : 28000.f;
+		if (DistSq < 1.f || DistSq > FMath::Square(MaxRangeCm))
 		{
 			return;
 		}
-		if (FVector::DotProduct(Forward, Offset.GetSafeNormal()) < 0.08f)
+		const float MinDot = bThermalEnabled ? -0.02f : 0.08f;
+		if (FVector::DotProduct(Forward, Offset.GetSafeNormal()) < MinDot)
 		{
 			return;
 		}
 		FSkyguardCpgContactMark Mark;
 		Mark.WorldLocation = Actor->GetActorLocation();
-		Mark.Label = Label;
+		Mark.Label = bThermalEnabled
+			? FString::Printf(TEXT("HEAT %s"), *Label)
+			: Label;
 		Mark.bLocked = Actor == Locked && IglaLockProgress >= 1.f;
 		Mark.bSeeking = Actor == Locked && IglaLockProgress > 0.05f && !Mark.bLocked;
 		Mark.LockAlpha = Actor == Locked ? IglaLockProgress : 0.f;

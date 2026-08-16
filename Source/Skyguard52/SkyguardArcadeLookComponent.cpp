@@ -124,7 +124,8 @@ void USkyguardArcadeLookComponent::ApplyWorldMood(UObject* WorldContextObject)
 
 void USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(
 	UObject* WorldContextObject,
-	const ESkyguardMissionWeather Weather)
+	const ESkyguardMissionWeather Weather,
+	const float TimeOfDayHours)
 {
 	UWorld* World = WorldContextObject
 		? WorldContextObject->GetWorld()
@@ -189,7 +190,9 @@ void USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(
 		Bloom = 0.45f;
 		Vignette = 0.52f;
 		Exposure = -1.15f;
-		FogDensity = 0.038f;
+		FogDensity = Weather == ESkyguardMissionWeather::NightOvercast
+			? 0.046f
+			: 0.038f;
 		FogColor = FLinearColor(0.04f, 0.06f, 0.14f);
 		SunColor = FLinearColor(0.35f, 0.42f, 0.7f);
 		SunScale = 0.12f;
@@ -223,6 +226,37 @@ void USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(
 	case ESkyguardMissionWeather::Overcast:
 	default:
 		break;
+	}
+
+	// Same weather enum still reads differently by clock — dawn / noon / dusk.
+	const float Hours = FMath::Fmod(FMath::Max(0.f, TimeOfDayHours), 24.f);
+	float SunPitch = -45.f;
+	if (Hours < 7.f)
+	{
+		Exposure += 0.2f;
+		Saturation = FMath::Clamp(Saturation + 0.06f, 0.4f, 1.4f);
+		SunColor = FLinearColor(1.f, 0.72f, 0.48f);
+		SunScale = FMath::Max(SunScale, 0.32f);
+		SunPitch = -12.f - Hours;
+	}
+	else if (Hours >= 17.f && Hours < 20.f)
+	{
+		Exposure -= 0.18f;
+		Saturation = FMath::Clamp(Saturation + 0.1f, 0.4f, 1.45f);
+		Bloom = FMath::Max(Bloom, 0.85f);
+		SunColor = FLinearColor(1.f, 0.48f, 0.28f);
+		SunScale = FMath::Clamp(SunScale * 0.75f, 0.14f, 0.45f);
+		SunPitch = -8.f - (Hours - 17.f) * 4.f;
+	}
+	else if (Hours >= 20.f || Hours < 5.f)
+	{
+		Exposure = FMath::Min(Exposure, -1.05f);
+		SunScale = FMath::Min(SunScale, 0.14f);
+		SunPitch = -75.f;
+	}
+	else
+	{
+		SunPitch = -35.f - FMath::Abs(Hours - 13.f) * 1.5f;
 	}
 
 	if (Volume)
@@ -274,6 +308,7 @@ void USkyguardArcadeLookComponent::ApplyWorldMoodForWeather(
 		{
 			continue;
 		}
+		Sun->SetActorRotation(FRotator(SunPitch, 210.f, 0.f));
 		if (UDirectionalLightComponent* Light = Sun->GetComponent())
 		{
 			Light->SetIntensity(FMath::Clamp(6.f * SunScale / 0.35f, 0.6f, 8.f));
