@@ -20,10 +20,11 @@ first:
 4. `core-apache-cockpit-station-model02` — CPG station model02 with clear greenhouse and explicit TEDAC hood (additional queued method; does not supersede station-model01 until accepted)
 5. `core-apache-cockpit-station-model03` — CPG station model03 with formed seat, canopy frame, and knobs (additional queued method; does not supersede station-model02 until accepted)
 6. `core-apache-cockpit-station-model04` — CPG station model04 restoring TEDAC/MPD readability from the eye (additional queued method; does not supersede station-model03 until accepted)
-7. `core-apache-30mm` — 30 mm chin gun
-8. `core-apache-hydra` — Hydra / rocket pods
-9. `core-apache-hellfire` — Hellfire / guided missile and launch rail
-10. `core-apache-airframe` — exterior airframe
+7. `core-apache-cockpit-station-model05` — CPG station model05 with formed greenhouse canopy and bucket seat (additional queued method; does not supersede station-model04 until accepted)
+8. `core-apache-30mm` — 30 mm chin gun
+9. `core-apache-hydra` — Hydra / rocket pods
+10. `core-apache-hellfire` — Hellfire / guided missile and launch rail
+11. `core-apache-airframe` — exterior airframe
 
 Lane `P0-apache-cpg-hero-slice` is first in `execution_order`. Archived items
 remain in `P0-cockpit-combat-vertical-slice` as `deferred`, so `next` skips
@@ -36,8 +37,9 @@ review. No ready→accepted skip.
 `core-apache-cockpit-station-detail01`,
 `core-apache-cockpit-station-model01`,
 `core-apache-cockpit-station-model02`,
-`core-apache-cockpit-station-model03`, and
-`core-apache-cockpit-station-model04` are additional queued Apache P0
+`core-apache-cockpit-station-model03`,
+`core-apache-cockpit-station-model04`, and
+`core-apache-cockpit-station-model05` are additional queued Apache P0
 methods with their own workers and output contracts. Do not launch
 Blender, do not accept art, and do not invent workers for the remaining
 Apache P0 weapons/airframe assets from Cloud. No ready→accepted skip.
@@ -79,8 +81,9 @@ Do not run that `set-state` or a `production_cycle` launch until the user
 asks. `core-apache-cockpit`, `core-apache-cockpit-station-detail01`,
 `core-apache-cockpit-station-model01`,
 `core-apache-cockpit-station-model02`,
-`core-apache-cockpit-station-model03`, and
-`core-apache-cockpit-station-model04` have registered workers and stay
+`core-apache-cockpit-station-model03`,
+`core-apache-cockpit-station-model04`, and
+`core-apache-cockpit-station-model05` have registered workers and stay
 `queued`. The remaining Apache P0 weapon and airframe assets still have
 no worker.
 
