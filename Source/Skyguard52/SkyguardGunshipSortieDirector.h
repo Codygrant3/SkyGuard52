@@ -102,6 +102,37 @@ public:
 	/** Harbor Breaker shoreline column. Five hulls on the yellow coastal highway. */
 	static constexpr int32 CoastalConvoyCount = 5;
 
+	/**
+	 * One inbound clock for Harbor Breaker. The director owns the timer;
+	 * the ship only answers CanCoordinateAda / CanLaunchInbound.
+	 * Old clock: first delay 12s, radar-live 14s, radar-down 28s — a
+	 * missile every 14s across 13 combat minutes.
+	 */
+	static constexpr float IncomingFirstDelaySeconds = 12.f;
+	static constexpr float IncomingRadarLiveIntervalSeconds = 40.f;
+	static constexpr float IncomingRadarDownIntervalSeconds = 80.f;
+	static constexpr float IncomingRadarLitDelaySeconds = 3.f;
+	static constexpr float IncomingWindowSeconds = 2.6f;
+	static constexpr float IncomingRadarLiveHitDamage = 22.f;
+	static constexpr float IncomingRadarDownHitDamage = 12.f;
+
+	/** Beat-wave sizes. Early beats stay light; extract is a spike, not a 4-pack. */
+	static constexpr int32 ContactWaveCount = 2;
+	static constexpr int32 ShoreWaveCount = 4;
+	static constexpr int32 RadarNetWaveCount = 4;
+	static constexpr int32 ChoiceWaveCount = 3;
+	static constexpr int32 ExtractWaveCount = 5;
+
+	static int32 BeatWaveCount(ESkyguardSortieBeat InBeat);
+	static ESkyguardThreatKind BeatWaveKind(int32 InMissionIndex, ESkyguardSortieBeat InBeat);
+	static float IncomingIntervalSeconds(bool bRadarLive);
+	static bool BeatAllowsInbound(ESkyguardSortieBeat InBeat);
+	static bool UsesRadarLiveInboundCadence(ESkyguardSortieBeat InBeat);
+	static bool HasInboundSource(
+		ESkyguardSortieBeat InBeat,
+		bool bShoreAda,
+		bool bShipCanLaunch);
+
 	/** Authored coastal-highway polyline in front of HarborHover, toward the city. */
 	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
 	static TArray<FVector> GetCoastalHighwayPath();
@@ -117,6 +148,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Skyguard|Campaign")
 	int32 StartingMissionIndex = 0;
+
+	friend class FSkyguardSortieApproachHasNoInboundTest;
+	friend class FSkyguardSortieExtractUsesExtractKindTest;
+	friend class FSkyguardSortieBeatWaveSkipsRoadConvoyTest;
 
 protected:
 	void AdvanceBeats();
@@ -145,7 +180,7 @@ protected:
 	int32 MissionIndex = 0;
 	ESkyguardSortieBeat Beat = ESkyguardSortieBeat::Approach;
 	float Elapsed = 0.f;
-	float IncomingCooldown = 12.f;
+	float IncomingCooldown = IncomingFirstDelaySeconds;
 	float IncomingWindow = 0.f;
 	float PostSortieSeconds = 0.f;
 	bool bInbound = false;
