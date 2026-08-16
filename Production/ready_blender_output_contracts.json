@@ -158,6 +158,84 @@
       "minimum_skins": 0,
       "minimum_animations": 0
     },
+    "core-apache-cockpit-station-model02": {
+      "worker_script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model02.py",
+      "supervisor_script": "Scripts\\invoke_core_apache_cockpit_station_model02_once.ps1",
+      "authorities": [
+        {
+          "path": "Scripts\\Workers\\worker_core_apache_cockpit_station_model02.py",
+          "bytes": 31156,
+          "sha256": "4e73ae7561c186d372dbd346e24d18e5fa93b30eac0ada24b933f5e6468f5b55"
+        },
+        {
+          "path": "Scripts\\invoke_core_apache_cockpit_station_model02_once.ps1",
+          "bytes": 1878,
+          "sha256": "47002d6d8907c78330c4a1a5a62a27b3b67d2e5595bbad62522bcb7c448d911a"
+        }
+      ],
+      "blend": "core-apache-cockpit-station-model02.blend",
+      "glb": "core-apache-cockpit-station-model02.glb",
+      "render_groups": [
+        {
+          "glob": "renders/*.png",
+          "count": 8,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "required_json": {
+        "artifact_receipt.json": "skyguard.blender-worker-receipt.v1"
+      },
+      "checks": [
+        {
+          "file": "artifact_receipt.json",
+          "path": "asset_id",
+          "op": "eq",
+          "value": "core-apache-cockpit-station-model02"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "sdk_version",
+          "op": "eq",
+          "value": "1.0.0"
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "validation.required_sockets",
+          "op": "contains_all",
+          "value": [
+            "SOCKET_Origin",
+            "SOCKET_CPG_Eye",
+            "SOCKET_TEDAC",
+            "SOCKET_MPD_L",
+            "SOCKET_MPD_R",
+            "SOCKET_Collective",
+            "SOCKET_Cyclic"
+          ]
+        },
+        {
+          "file": "artifact_receipt.json",
+          "path": "eyepoint_renders",
+          "op": "contains_all",
+          "value": [
+            "eye_forward.png",
+            "eye_down_tedac.png"
+          ]
+        }
+      ],
+      "required_glb_nodes": [
+        "SOCKET_Origin",
+        "SOCKET_CPG_Eye",
+        "SOCKET_TEDAC",
+        "SOCKET_MPD_L",
+        "SOCKET_MPD_R",
+        "SOCKET_Collective",
+        "SOCKET_Cyclic"
+      ],
+      "minimum_meshes": 1,
+      "minimum_skins": 0,
+      "minimum_animations": 0
+    },
     "core-apache-hydra": {
       "worker_script": "Scripts\\Workers\\worker_core_apache_hydra.py",
       "supervisor_script": "Scripts\\invoke_core_apache_hydra_once.ps1",
