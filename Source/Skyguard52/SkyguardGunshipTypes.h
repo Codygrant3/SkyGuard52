@@ -58,6 +58,28 @@ enum class ESkyguardLoadout : uint8
 	Intercept UMETA(DisplayName = "Intercept")
 };
 
+/** Playstyle kit. Keys 1-4 map here. Not a +3% damage slider. */
+struct FSkyguardLoadoutSpec
+{
+	ESkyguardLoadout Loadout = ESkyguardLoadout::Balanced;
+	ESkyguardGunshipWeapon StartingStation = ESkyguardGunshipWeapon::Cannon;
+	int32 CannonMagazineSize = SkyguardApacheCpgFeel::CannonMagazineSize;
+	int32 CannonReserve = SkyguardApacheCpgFeel::CannonReserve;
+	int32 RocketMagazineSize = SkyguardApacheCpgFeel::RocketMagazineSize;
+	int32 RocketReserve = SkyguardApacheCpgFeel::RocketReserve;
+	int32 GuidedMagazineSize = SkyguardApacheCpgFeel::GuidedMagazineSize;
+	int32 GuidedReserve = SkyguardApacheCpgFeel::GuidedReserve;
+	int32 FlareCount = 6;
+	float HullIntegrity = 140.f;
+	const TCHAR* PlaystyleLine =
+		TEXT("30 mm station, mixed cannon, rockets, missiles");
+};
+
+FSkyguardLoadoutSpec SkyguardResolveLoadout(ESkyguardLoadout Loadout);
+ESkyguardLoadout SkyguardLoadoutFromSlot(int32 Slot);
+int32 SkyguardLoadoutSlot(ESkyguardLoadout Loadout);
+const TCHAR* SkyguardLoadoutDisplayName(ESkyguardLoadout Loadout);
+
 UENUM(BlueprintType)
 enum class ESkyguardClimaxKind : uint8
 {

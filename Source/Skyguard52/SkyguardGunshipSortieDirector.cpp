@@ -3,9 +3,11 @@
 #include "SkyguardApacheAircraft.h"
 #include "SkyguardArcadeLookComponent.h"
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardCpgDebrief.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardPatrolShipBoss.h"
+#include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardPilotVoice.h"
 #include "SkyguardPlayerAircraft.h"
 #include "SkyguardProtectAsset.h"
@@ -633,6 +635,7 @@ void ASkyguardGunshipSortieDirector::ResolveWin()
 	SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::Win);
 	SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::LoadoutPrompt);
 	ShowDebrief();
+	PushDebriefToPresentation();
 }
 
 void ASkyguardGunshipSortieDirector::ResolveFail(const TCHAR* Reason)
@@ -643,6 +646,7 @@ void ASkyguardGunshipSortieDirector::ResolveFail(const TCHAR* Reason)
 	SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::Fail);
 	SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::LoadoutPrompt);
 	ShowDebrief();
+	PushDebriefToPresentation();
 	if (GEngine && Reason)
 	{
 		GEngine->AddOnScreenDebugMessage(84723, 6.f, FColor::Red, Reason);
@@ -673,40 +677,48 @@ void ASkyguardGunshipSortieDirector::ShowDebrief() const
 	{
 		return;
 	}
-	const FSkyguardCampaignMissionSpec& Spec =
-		SkyguardCampaignRoster::Get(MissionIndex);
-	const TCHAR* Medal =
-		LastMedal >= 3 ? TEXT("Gold") :
-		LastMedal == 2 ? TEXT("Silver") :
-		LastMedal == 1 ? TEXT("Bronze") : TEXT("None");
-	const float CargoFrac = Cargo ? Cargo->GetIntegrityFraction() : 0.f;
-	const int32 Systems = PatrolShip ? PatrolShip->GetDestroyedSystemCount() : 0;
-	const FString ShipTape = PatrolShip
-		? PatrolShip->GetHudSystemLine()
-		: FString(TEXT("RADAR GUN LNCH ENG DECK"));
+	const FSkyguardCpgDebriefSnapshot Snap =
+		SkyguardCaptureCpgDebrief(this, FindGunner(), PatrolShip);
 	GEngine->AddOnScreenDebugMessage(
 		84730,
 		30.f,
 		FColor::White,
-		FString::Printf(
-			TEXT("%s — %s\nScore %d   Medal: %s\nCargo %d%%   Radar %s\nShip %d/5  %s\nLoadout: 1 Anti-Armor  2 Rockets  3 Intercept  4 Balanced\n%s   Current: %s"),
-			Spec.Title,
-			Beat == ESkyguardSortieBeat::Succeeded ? Spec.Success : Spec.Failure,
-			LastScore,
-			Medal,
-			FMath::RoundToInt(CargoFrac * 100.f),
-			(Radar && Radar->IsDestroyed()) ? TEXT("dead") : TEXT("alive"),
-			Systems,
-			*ShipTape,
-			Beat == ESkyguardSortieBeat::Succeeded
-				? TEXT("N / Enter  next sortie")
-				: TEXT("N / Enter  retry"),
-			SkyguardCampaignRoster::LoadoutLabel(PendingLoadout)));
+		SkyguardBuildCpgDebriefCopy(Snap));
+}
+
+void ASkyguardGunshipSortieDirector::PushDebriefToPresentation()
+{
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		if (USkyguardSortiePresentationComponent* Presentation =
+			It->FindComponentByClass<USkyguardSortiePresentationComponent>())
+		{
+			Presentation->CaptureCpgDebrief(this, FindGunner(), PatrolShip);
+		}
+	}
+}
+
+void ASkyguardGunshipSortieDirector::ResolveSortie(
+	const bool bWon,
+	const TCHAR* FailReason)
+{
+	if (bWon)
+	{
+		ResolveWin();
+		return;
+	}
+	ResolveFail(FailReason ? FailReason : TEXT("Sortie failed."));
 }
 
 void ASkyguardGunshipSortieDirector::SetPendingLoadout(const ESkyguardLoadout Loadout)
 {
 	PendingLoadout = Loadout;
+	ApplyPendingLoadout();
 	ShowDebrief();
 }
 
