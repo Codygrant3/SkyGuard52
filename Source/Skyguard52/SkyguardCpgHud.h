@@ -20,6 +20,8 @@ struct FSkyguardCpgHudSnapshot
 	int32 ThreatCount = 0;
 	float HeadingDegrees = 0.f;
 	float LockProgress = 0.f;
+	int32 FlareCount = 0;
+	bool bMissileInbound = false;
 };
 
 struct FSkyguardCpgContactMark
@@ -36,4 +38,6 @@ const TCHAR* SkyguardCpgThreatLabel(ESkyguardThreatKind Kind);
 const TCHAR* SkyguardCpgShipSystemLabel(ESkyguardPatrolShipSystem System);
 const TCHAR* SkyguardCpgLockPhaseLabel(ESkyguardGuidedLockPhase Phase);
 const TCHAR* SkyguardCpgSightLabel(ESkyguardCpgSightMode Sight);
+const TCHAR* SkyguardCpgInboundLabel();
+FString SkyguardCpgFlareTape(int32 FlareCount);
 bool SkyguardCpgHudHasLegacyLiveWording(const FString& Text);
