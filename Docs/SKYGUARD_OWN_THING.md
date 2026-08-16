@@ -55,5 +55,5 @@ auto-advancing after a win. Harbor Breaker is mission 2.
 
 Editor: open `Lvl_M01_CoastalIntercept_Playable_v1` and press Play.  
 W climb and speed up, S descend and slow down, A/D pivot, arrows point the nose.  
-Mouse look, RMB sensor, T thermal, Space fire, 1/2/3 stations, R reload, C flares.  
+Mouse look, RMB sensor, T thermal, Space fire, 1/2/3 stations, R reload, X flares.  
 After a sortie: 1–4 pick loadout, N or Enter continues.

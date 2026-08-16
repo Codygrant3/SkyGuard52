@@ -2,9 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "InputCoreTypes.h"
+#include "SkyguardCpgDebrief.h"
+#include "SkyguardGunshipTypes.h"
 #include "SkyguardMissionTypes.h"
 #include "SkyguardSortiePresentationComponent.generated.h"
 
+class ASkyguardGunner;
+class ASkyguardGunshipSortieDirector;
+class ASkyguardPatrolShipBoss;
 class USkyguardCampaignSubsystem;
 class USkyguardMissionDefinition;
 
@@ -140,6 +146,41 @@ public:
 	void RefreshDebrief();
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	void BindGunshipDirector(ASkyguardGunshipSortieDirector* Director);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	void CaptureCpgDebrief(
+		ASkyguardGunshipSortieDirector* Director,
+		ASkyguardGunner* Gunner,
+		ASkyguardPatrolShipBoss* Ship);
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Sortie Presentation")
+	bool HasCpgDebrief() const { return CpgDebrief.bValid; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Sortie Presentation")
+	FText GetCpgDebriefCopy() const;
+
+	const FSkyguardCpgDebriefSnapshot& GetCpgDebrief() const
+	{
+		return CpgDebrief;
+	}
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	bool SelectLoadoutSlot(int32 Slot);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	bool HandleDebriefKey(FKey Key);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
+	bool ContinueSortie();
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Sortie Presentation")
+	ESkyguardLoadout GetSelectedLoadout() const
+	{
+		return CpgDebrief.SelectedLoadout;
+	}
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Sortie Presentation")
 	bool RetryProgressSave(
 		const FString& SlotName = TEXT("Skyguard52Campaign"),
 		int32 UserIndex = 0);
@@ -218,6 +259,14 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Skyguard|Sortie Presentation")
 	FSkyguardMissionDebrief Debrief;
+
+	UPROPERTY(Transient)
+	TObjectPtr<ASkyguardGunshipSortieDirector> GunshipDirector;
+
+	UPROPERTY(Transient)
+	TObjectPtr<ASkyguardGunner> BoundGunner;
+
+	FSkyguardCpgDebriefSnapshot CpgDebrief;
 
 	void BuildBriefingCards();
 	void BuildRadioRows();

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SkyguardMissionTypes.h"
 #include "SkyguardCoastalEnvironmentDirector.generated.h"
 
 class UHierarchicalInstancedStaticMeshComponent;
@@ -53,6 +54,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Environment")
 	void ApplyQuality(ESkyguardEnvironmentQuality NewQuality);
+
+	/** Drive existing wind from campaign weather — not a second weather engine. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Environment")
+	void ApplyMissionWeather(ESkyguardMissionWeather Weather);
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Environment")
+	ESkyguardMissionWeather GetAppliedWeather() const { return AppliedWeather; }
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Environment")
 	bool IsVegetationOutsideRouteCorridor() const;
@@ -113,6 +121,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Environment")
 	FSkyguardEnvironmentReadiness Readiness;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Environment|Weather")
+	ESkyguardMissionWeather AppliedWeather = ESkyguardMissionWeather::Clear;
 
 private:
 	float GetQualityMultiplier() const;

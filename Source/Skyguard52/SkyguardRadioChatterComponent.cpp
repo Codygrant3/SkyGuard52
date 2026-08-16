@@ -112,6 +112,10 @@ void USkyguardRadioChatterComponent::AdvanceRadioState(const float DeltaSeconds)
 void USkyguardRadioChatterComponent::ClearQueue()
 {
 	Queue.Reset();
+	bPlaying = false;
+	RemainingSeconds = 0.f;
+	GapRemainingSeconds = 0.f;
+	CurrentLine = FSkyguardRadioLine();
 }
 
 void USkyguardRadioChatterComponent::StartNextLine()

@@ -1,5 +1,6 @@
 #include "SkyguardCoastalEnvironmentDirector.h"
 #include "SkyguardEnvironmentVFXPoolComponent.h"
+#include "SkyguardMissionTypes.h"
 #include "Components/HierarchicalInstancedStaticMeshComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/WindDirectionalSourceComponent.h"
@@ -159,6 +160,45 @@ void ASkyguardCoastalEnvironmentDirector::ApplyQuality(
 {
 	Quality = NewQuality;
 	RebuildDeterministicVegetation();
+}
+
+void ASkyguardCoastalEnvironmentDirector::ApplyMissionWeather(
+	const ESkyguardMissionWeather Weather)
+{
+	AppliedWeather = Weather;
+	switch (Weather)
+	{
+	case ESkyguardMissionWeather::Storm:
+		WindStrength = 0.92f;
+		WindSpeed = 1.f;
+		break;
+	case ESkyguardMissionWeather::Rain:
+		WindStrength = 0.62f;
+		WindSpeed = 0.78f;
+		break;
+	case ESkyguardMissionWeather::Overcast:
+		WindStrength = 0.42f;
+		WindSpeed = 0.58f;
+		break;
+	case ESkyguardMissionWeather::NightClear:
+		WindStrength = 0.22f;
+		WindSpeed = 0.28f;
+		break;
+	case ESkyguardMissionWeather::NightOvercast:
+		WindStrength = 0.38f;
+		WindSpeed = 0.48f;
+		break;
+	case ESkyguardMissionWeather::Clear:
+	default:
+		WindStrength = 0.28f;
+		WindSpeed = 0.4f;
+		break;
+	}
+	if (WindSource)
+	{
+		WindSource->SetStrength(WindStrength);
+		WindSource->SetSpeed(WindSpeed);
+	}
 }
 
 bool ASkyguardCoastalEnvironmentDirector::IsVegetationOutsideRouteCorridor() const
