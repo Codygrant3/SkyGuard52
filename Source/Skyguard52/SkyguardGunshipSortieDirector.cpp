@@ -3,6 +3,7 @@
 #include "SkyguardApacheAircraft.h"
 #include "SkyguardArcadeLookComponent.h"
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardCampaignTheaterKit.h"
 #include "SkyguardCoastalEnvironmentDirector.h"
 #include "SkyguardCpgDebrief.h"
 #include "SkyguardDrone.h"
@@ -95,6 +96,9 @@ void ASkyguardGunshipSortieDirector::StartMissionIndex(const int32 Index)
 			}
 		}
 	}
+	ASkyguardCampaignTheaterKit::ApplyTheaterKitToWorld(
+		this,
+		Spec.WeatherIdentity);
 	if (ASkyguardGunner* Gunner = FindGunner())
 	{
 		Gunner->ApplyWeatherPlayContracts(
