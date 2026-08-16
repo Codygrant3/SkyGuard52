@@ -16,6 +16,7 @@
 #include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardTempestBoss.h"
 #include "SkyguardPlayerAircraft.h"
+#include "SkyguardStormRainBeatKit.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/SceneComponent.h"
 #include "Engine/GameInstance.h"
@@ -278,6 +279,7 @@ void ASkyguardMission05IntegrationDirector::BindRuntimeActors(
 	if (Gunner)
 	{
 		Gunner->ResetSortieCombatStats();
+		ApplyStormRainPlayContract(Gunner);
 	}
 	Tempest = InTempest;
 	ObservedBossWeakPointsDestroyed =
@@ -722,6 +724,20 @@ void ASkyguardMission05IntegrationDirector::HandlePilotCommand(
 	{
 		YakAircraft->IssuePilotCommand(Command);
 	}
+}
+
+const FSkyguardStormRainBeatKit&
+ASkyguardMission05IntegrationDirector::GetStormRainBeatKit()
+{
+	return SkyguardStormRainBeatKits::RiverHammer();
+}
+
+bool ASkyguardMission05IntegrationDirector::ApplyStormRainPlayContract(
+	ASkyguardGunner* InGunner) const
+{
+	return SkyguardStormRainBeatKits::ApplyHydraForClusters(
+		InGunner,
+		GetStormRainBeatKit());
 }
 
 USkyguardObjectiveRuntime*

@@ -15,6 +15,7 @@
 #include "SkyguardRadioChatterComponent.h"
 #include "SkyguardSortiePresentationComponent.h"
 #include "SkyguardPlayerAircraft.h"
+#include "SkyguardStormRainBeatKit.h"
 #include "SkyguardYak52Aircraft.h"
 #include "Components/SceneComponent.h"
 #include "Engine/GameInstance.h"
@@ -296,6 +297,7 @@ void ASkyguardMission08IntegrationDirector::BindRuntimeActors(
 	if (Gunner)
 	{
 		Gunner->ResetSortieCombatStats();
+		ApplyStormRainPlayContract(Gunner);
 	}
 	LifelineHunter = InLifelineHunter;
 	ObservedBossWeakPointsDestroyed =
@@ -755,6 +757,20 @@ void ASkyguardMission08IntegrationDirector::HandlePilotCommand(
 	{
 		YakAircraft->IssuePilotCommand(Command);
 	}
+}
+
+const FSkyguardStormRainBeatKit&
+ASkyguardMission08IntegrationDirector::GetStormRainBeatKit()
+{
+	return SkyguardStormRainBeatKits::IronRain();
+}
+
+bool ASkyguardMission08IntegrationDirector::ApplyStormRainPlayContract(
+	ASkyguardGunner* InGunner) const
+{
+	return SkyguardStormRainBeatKits::ApplyHydraForClusters(
+		InGunner,
+		GetStormRainBeatKit());
 }
 
 USkyguardObjectiveRuntime*
