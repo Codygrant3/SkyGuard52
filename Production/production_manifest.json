@@ -6,7 +6,7 @@
     "engine": "Unreal Engine 5.8",
     "dcc": "Blender 5.2",
     "target": "Windows Win64",
-    "updated_at_utc": "2026-08-12T23:49:24.971716Z"
+    "updated_at_utc": "2026-08-16T15:50:57.949604Z"
   },
   "toolchain": {
     "blender": {
@@ -75,6 +75,7 @@
     "clean_machine_release_candidate": false
   },
   "execution_order": [
+    "P0-apache-cpg-hero-slice",
     "P0-cockpit-combat-vertical-slice",
     "P0-mission01-visual-slice",
     "P1-shared-world-library",
@@ -86,13 +87,123 @@
   ],
   "assets": [
     {
+      "id": "core-apache-cockpit",
+      "name": "Apache CPG front-seat cockpit",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets",
+        "first_person_silhouette",
+        "instrument_readability"
+      ],
+      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
+      "id": "core-apache-30mm",
+      "name": "Apache 30 mm chin gun",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "first_person_hero",
+      "priority": 2,
+      "status": "queued",
+      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets",
+        "muzzle_socket"
+      ],
+      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
+      "id": "core-apache-hydra",
+      "name": "Apache Hydra / rocket pods",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 3,
+      "status": "queued",
+      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets"
+      ],
+      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
+      "id": "core-apache-hellfire",
+      "name": "Apache Hellfire / guided missile and launch rail",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 4,
+      "status": "queued",
+      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path.",
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets",
+        "launch_socket",
+        "lock_socket"
+      ],
+      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
+      "id": "core-apache-airframe",
+      "name": "Apache exterior airframe",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 5,
+      "status": "queued",
+      "blocker": "No registered Apache CPG worker or output contract exists yet. Do not invent a Scripts/Workers path. Exterior silhouette sources are not runtime art until reviewed and accepted.",
+      "required": [
+        "blend",
+        "glb",
+        "8_renders",
+        "uvs",
+        "pbr",
+        "collision",
+        "pivots",
+        "sockets"
+      ],
+      "state_reason": "Queued for Apache CPG P0; not ready; visual review still required; Unreal import forbidden until accepted. Not runtime art until reviewed."
+    },
+    {
       "id": "core-yak52-airframe",
       "name": "Yak-52 exterior airframe",
       "lane": "P0-cockpit-combat-vertical-slice",
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend",
         "Content\\Skyguard\\Meshes\\Source\\L88\\YAK52_L88_MASTER_BLOCKOUT.blend"
@@ -131,8 +242,8 @@
         "pivots",
         "sockets"
       ],
-      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 11 PNG renders, found 0.",
-      "state_changed_at_utc": "2026-08-10T01:23:58.734653Z",
+      "state_reason": "Expected exactly one .blend, found 0.; Expected exactly one .glb, found 0.; Expected at least 11 PNG renders, found 0. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe\\attempt_20260810T012355939434Z"
     },
     {
@@ -142,7 +253,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Uplift_003_R3\\BLD_M01_YAK_UPLIFT_003_R3_MASTER.blend"
       ],
@@ -180,8 +291,8 @@
         "pivots",
         "sockets"
       ],
-      "state_reason": "Automatic structure passed, but all 11 original renders fail AAA visual acceptance: blockout cylindrical fuselage/cowling, slab wings and tail, toy gear/propeller, canopy intersections, obstructed rear-gunner sightline, and invalid wing-root/gear detail framing. No Unreal import or promotion.",
-      "state_changed_at_utc": "2026-08-10T01:40:58.344869Z",
+      "state_reason": "Automatic structure passed, but all 11 original renders fail AAA visual acceptance: blockout cylindrical fuselage/cowling, slab wings and tail, toy gear/propeller, canopy intersections, obstructed rear-gunner sightline, and invalid wing-root/gear detail framing. No Unreal import or promotion. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe-recovery01\\attempt_20260810T013539411987Z"
     },
     {
@@ -191,7 +302,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_REFINEMENT01_RECOVERY01_ATTEMPT01_FAILURE_ANALYSIS.json",
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_CONTRACT.json",
@@ -246,8 +357,8 @@
         "sockets",
         "direct_full_resolution_visual_review"
       ],
-      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2.",
-      "state_changed_at_utc": "2026-08-11T19:40:02.189715Z",
+      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z",
       "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02\\attempt_20260811T193939687938Z.json",
       "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
@@ -259,7 +370,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 1,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_CONTRACT.json",
         "Docs\\AAA_Review\\PHASE2_YAK52_AIRFRAME_ARTIST_GRADE_METHOD02_PLUS_OFFLINE_DESIGN_FREEZE.json",
@@ -317,8 +428,8 @@
         "sockets",
         "direct_full_resolution_visual_review"
       ],
-      "state_reason": "Rejected from prepared visual review packet Docs/AAA_Review/PHASE2_YAK52_METHOD02_PLUS_VISUAL_REVIEW_PACKET_2026-08-11.json: constant-radius fuselage/cowling blockout, slab-like wings and empennage at hero distance, and plastic/blockout material differentiation. Mechanical envelope pass is not visual acceptance. Classification FAILED_WITH_EVIDENCE.",
-      "state_changed_at_utc": "2026-08-11T23:30:32.165874Z",
+      "state_reason": "Rejected from prepared visual review packet Docs/AAA_Review/PHASE2_YAK52_METHOD02_PLUS_VISUAL_REVIEW_PACKET_2026-08-11.json: constant-radius fuselage/cowling blockout, slab-like wings and empennage at hero distance, and plastic/blockout material differentiation. Mechanical envelope pass is not visual acceptance. Classification FAILED_WITH_EVIDENCE. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z",
       "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-yak52-airframe-artist-grade-method02-plus\\attempt_20260811T195805477693Z.json",
       "automatic_postflight_classification": "PASSED_AUTOMATIC_AWAITING_FULL_RESOLUTION_VISUAL_REVIEW"
@@ -330,7 +441,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 2,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Source\\Mission01\\Yak52_Production_002\\BLD_M01_YAK_PROD_002_MASTER.blend"
       ],
@@ -356,8 +467,8 @@
         "pivots",
         "sockets"
       ],
-      "state_reason": "Final bounded attempt remains below the production-candidate visual bar. It is structurally valid and export-ready, but instrument faces still read as blank discs from governed review angles, upholstery and panel forms remain visibly primitive at cockpit distance, and the gunner composition is not a convincing Yak-52 interior. Refinement budget exhausted; preserve all three attempts and stop this asset lane without retry.",
-      "state_changed_at_utc": "2026-08-06T14:37:12.449689Z",
+      "state_reason": "Final bounded attempt remains below the production-candidate visual bar. It is structurally valid and export-ready, but instrument faces still read as blank discs from governed review angles, upholstery and panel forms remain visibly primitive at cockpit distance, and the gunner composition is not a convincing Yak-52 interior. Refinement budget exhausted; preserve all three attempts and stop this asset lane without retry. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-yak52-cockpit\\attempt_20260806T143613845680Z"
     },
     {
@@ -367,7 +478,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 3,
-      "status": "queued",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Hero\\gunner_station_proxy.uasset"
       ],
@@ -380,7 +491,9 @@
         "skin_weights",
         "uniform_pbr",
         "cockpit_pose"
-      ]
+      ],
+      "state_reason": "Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z"
     },
     {
       "id": "core-rear-gunner",
@@ -389,7 +502,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 4,
-      "status": "queued",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\WebGame\\skyguard-occupant"
       ],
@@ -403,7 +516,9 @@
         "uniform_pbr",
         "rifle_pose",
         "igla_pose"
-      ]
+      ],
+      "state_reason": "Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z"
     },
     {
       "id": "core-hand-forearm",
@@ -412,7 +527,7 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 5,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb",
         "Content\\Skyguard\\Meshes\\Hero\\glove_hand_proxy.uasset",
@@ -439,8 +554,8 @@
         "rifle_grip",
         "igla_grip"
       ],
-      "state_reason": "Final bounded attempt improves material readability and establishes a curled grip pose, but the geometry still reads as a segmented mannequin rather than anatomically credible leather-gloved hands at first-person distance. Refinement budget exhausted; preserve all attempts and stop this lane without retry.",
-      "state_changed_at_utc": "2026-08-06T14:41:52.543940Z",
+      "state_reason": "Final bounded attempt improves material readability and establishes a curled grip pose, but the geometry still reads as a segmented mannequin rather than anatomically credible leather-gloved hands at first-person distance. Refinement budget exhausted; preserve all attempts and stop this lane without retry. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-hand-forearm\\attempt_20260806T144106414958Z"
     },
     {
@@ -450,7 +565,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 4,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\WebGame\\skyguard-occupant"
       ],
@@ -494,8 +609,8 @@
         "cockpit_datum_receipt",
         "full_resolution_visual_review"
       ],
-      "state_reason": "Grok MCP Refinement01 is terminal FAILED_WITH_EVIDENCE. Although it created a 31-bone rig, actions, sockets, a governed blend, and six checkpoints, visible geometry remained a capsule-limb mannequin with featureless head, absent hands, segmented joints, and nondistinct weapon-support poses. The deterministic finalizer rejected HAND_Finger_* placeholder meshes and direct review independently rejected the asset.",
-      "state_changed_at_utc": "2026-08-11T08:21:35.5611418Z",
+      "state_reason": "Grok MCP Refinement01 is terminal FAILED_WITH_EVIDENCE. Although it created a 31-bone rig, actions, sockets, a governed blend, and six checkpoints, visible geometry remained a capsule-limb mannequin with featureless head, absent hands, segmented joints, and nondistinct weapon-support poses. The deterministic finalizer rejected HAND_Finger_* placeholder meshes and direct review independently rejected the asset. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-reargunner-character-grok-mcp-refinement01\\attempt_20260811T0805000000000Z",
       "latest_visual_review": "Docs\\AAA_Review\\CORE_REARGUNNER_CHARACTER_GROK_MCP_REFINEMENT01_DIRECT_VISUAL_REVIEW.json",
       "latest_terminal_freeze": "Docs\\AAA_Review\\CORE_REARGUNNER_CHARACTER_GROK_MCP_REFINEMENT01_ATTEMPT01_TERMINAL_FREEZE.json",
@@ -509,7 +624,7 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 5,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_REAR_GUNNER_HAND_FOREARM_MANNEQUIN.glb"
       ],
@@ -551,10 +666,10 @@
         "igla_support_pose",
         "full_resolution_visual_review"
       ],
-      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2.",
+      "state_reason": "Mandatory automatic postflight rejected the attempt: FAILED_WITH_EVIDENCE; exit code 2. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
       "reference_classification": "PROJECT_PROVISIONAL_NOT_A_MEASURED_PERCENTILE",
       "supersedes_only_after_acceptance": "core-hand-forearm",
-      "state_changed_at_utc": "2026-08-11T00:55:47.225681Z",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-reargunner-hand-forearm-refinement01\\attempt_20260811T005526186562Z",
       "latest_postflight_report": "Saved\\Reports\\ReadyBlenderPostflight\\core-reargunner-hand-forearm-refinement01\\attempt_20260811T005526186562Z.json",
       "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
@@ -566,7 +681,7 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 6,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_AR_M4_FAMILY_RIFLE_BLOCKOUT.glb",
         "Content\\Skyguard\\Meshes\\Hero\\rifle_ads_proxy.uasset",
@@ -594,8 +709,8 @@
         "grip_sockets",
         "collision"
       ],
-      "state_reason": "Full-resolution inspection of all eight final renders rejected the artist-grade candidate. The corrected fore-end is assembled and the technical package is complete, but the visible art remains below first-person AAA quality: primitive receiver slabs; block-shaped pistol grip and skeleton stock; toy-like magazine silhouette with unexplained protruding strips; visibly procedural rail repetition; mechanically implausible oversized iron-sight construction; sparse microdetail and material response; and an aligned but visually non-credible ADS picture. The exact blocker is modeling skill/method: this scripted local hard-surface construction cannot produce the required artist-authored hero-weapon finish. Reference coverage was sufficient for the permitted generic identity, and the bake/export pipeline completed successfully. No further procedural correction is authorized and no Unreal import is permitted.",
-      "state_changed_at_utc": "2026-08-06T16:30:58.001803Z",
+      "state_reason": "Full-resolution inspection of all eight final renders rejected the artist-grade candidate. The corrected fore-end is assembled and the technical package is complete, but the visible art remains below first-person AAA quality: primitive receiver slabs; block-shaped pistol grip and skeleton stock; toy-like magazine silhouette with unexplained protruding strips; visibly procedural rail repetition; mechanically implausible oversized iron-sight construction; sparse microdetail and material response; and an aligned but visually non-credible ADS picture. The exact blocker is modeling skill/method: this scripted local hard-surface construction cannot produce the required artist-authored hero-weapon finish. Reference coverage was sufficient for the permitted generic identity, and the bake/export pipeline completed successfully. No further procedural correction is authorized and no Unreal import is permitted. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-rifle\\attempt_20260806T162447179134Z",
       "artist_grade_method": {
         "version": 1,
@@ -613,7 +728,7 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 6,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Production\\Attempts\\support-rail-coupon\\attempt_20260807T221818127741Z\\output\\dimension_receipt.json",
         "Docs\\AAA_Review\\GATE7_RAIL_COUPON_RECOVERY05_ACCEPTANCE_ADDENDUM_2026-08-07.md",
@@ -660,8 +775,8 @@
         "collision",
         "full_resolution_visual_review"
       ],
-      "state_reason": "Rejected after inspecting all 27 original renders. Decisive defects: FDE handguard renders nearly white/overexposed and porous like plaster rather than coated metal; final_04_bottom_mechanical is effectively black with no evaluable asset; window apertures remain blocky stepped rectangles rather than designed rounded loops; muzzle/body-cap assembly is mechanically implausible and not reference-faithful; rear receiver transition is unresolved; ADS checkpoint lacks a credible aligned sight picture. Automatic geometry receipts remain preserved, but the asset is not visually acceptable and is not authorized for Unreal import.",
-      "state_changed_at_utc": "2026-08-11T00:48:29.316200Z",
+      "state_reason": "Rejected after inspecting all 27 original renders. Decisive defects: FDE handguard renders nearly white/overexposed and porous like plaster rather than coated metal; final_04_bottom_mechanical is effectively black with no evaluable asset; window apertures remain blocky stepped rectangles rather than designed rounded loops; muzzle/body-cap assembly is mechanically implausible and not reference-faithful; rear receiver transition is unresolved; ADS checkpoint lacks a credible aligned sight picture. Automatic geometry receipts remain preserved, but the asset is not visually acceptable and is not authorized for Unreal import. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "identity_boundary": "AR/M4-family forward assembly; exact manufacturer, model, chambering, controls, optic, markings and accessories unresolved",
       "stage_scope": "StageA topology-driven handguard, rail, barrel, receiver transition, body cap and project-provisional open-tine muzzle only",
       "supersedes_only_after_acceptance": "core-rifle",
@@ -676,7 +791,7 @@
       "owner": "blender",
       "quality": "first_person_hero",
       "priority": 7,
-      "status": "queued",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Hero\\igla_proxy.uasset"
       ],
@@ -690,7 +805,9 @@
         "missile_socket",
         "grip_sockets",
         "collision"
-      ]
+      ],
+      "state_reason": "Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z"
     },
     {
       "id": "core-igla-missile",
@@ -699,7 +816,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 8,
-      "status": "provisional_blockout",
+      "status": "deferred",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\PROVISIONAL_9K38_MISSILE_ENVELOPE.glb",
         "Production\\Attempts\\core-igla-missile-grok-mcp-refinement01\\attempt_20260811T0737000000000Z\\output\\CORE_IglaMissile_Refinement01.blend",
@@ -709,7 +826,7 @@
         "D:\\SG52T08_ENV01\\Content\\Skyguard\\Combat\\Weapons\\IglaMissileRefinement01Recovery01\\StaticMeshes\\SM_CORE_IglaMissile_Provisional_A.uasset"
       ],
       "blocker": "Grok refinement01 is accepted only as a provisional mid-distance visual and has passed reversible Unreal staging. A D3D12 audit-map proof and later close-range hero-detail pass remain required before gameplay binding or proxy replacement.",
-      "state_reason": "Blender direct review passed at the authoritative 1.574 m body length and 0.072 m cylindrical-body diameter. Unreal Recovery01 staging preserved a 157.400 cm length, 18.200 cm fin envelope, four material slots, BodySetup, and three source-bound provisional sockets with one launch and zero retries. Existing runtime proxy remains unchanged.",
+      "state_reason": "Blender direct review passed at the authoritative 1.574 m body length and 0.072 m cylindrical-body diameter. Unreal Recovery01 staging preserved a 157.400 cm length, 18.200 cm fin envelope, four material slots, BodySetup, and three source-bound provisional sockets with one launch and zero retries. Existing runtime proxy remains unchanged. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
       "latest_attempt": "Production\\Attempts\\core-igla-missile-grok-mcp-refinement01\\attempt_20260811T0737000000000Z",
       "latest_unreal_staging_freeze": "Docs\\AAA_Review\\CORE_IGLA_MISSILE_REFINEMENT01_UNREAL_INTEGRATION01_RECOVERY01_TERMINAL_FREEZE.json",
       "required": [
@@ -720,7 +837,8 @@
         "pbr",
         "exhaust_socket",
         "collision"
-      ]
+      ],
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z"
     },
     {
       "id": "core-shahed136",
@@ -729,7 +847,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 9,
-      "status": "failed",
+      "status": "deferred",
       "existing": [
         "Blender\\GATE7_COMBAT_BLOCKOUT_CYCLE02_RECOVERY03_ATTEMPT01\\exports\\PROVISIONAL_SHAHED136_ENVELOPE.glb",
         "Content\\Skyguard\\Meshes\\Hero\\shahed_proxy.uasset",
@@ -774,8 +892,8 @@
         "collision",
         "vfx_sockets"
       ],
-      "state_reason": "Artist-Grade Redesign01 Recovery01 is terminal FAILED_WITH_EVIDENCE after direct inspection of all three corrected originals. The 3.300 m x 3.000 m planform and higher-density fresh geometry are useful evidence, but the asset remains below production quality: no readable pusher propeller, clay-like materials, shallow slab-like control surfaces, primitive fin attachments and weak aerodynamic transitions. The session also replaced the supervisor-owned Blender process and left the deterministic finalizer unable to reconnect. No Unreal import or promotion.",
-      "state_changed_at_utc": "2026-08-11T09:08:00Z",
+      "state_reason": "Artist-Grade Redesign01 Recovery01 is terminal FAILED_WITH_EVIDENCE after direct inspection of all three corrected originals. The 3.300 m x 3.000 m planform and higher-density fresh geometry are useful evidence, but the asset remains below production quality: no readable pusher propeller, clay-like materials, shallow slab-like control surfaces, primitive fin attachments and weak aerodynamic transitions. The session also replaced the supervisor-owned Blender process and left the deterministic finalizer unable to reconnect. No Unreal import or promotion. Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z",
       "latest_attempt": "Production\\Attempts\\core-shahed136-grok-mcp-redesign01-recovery01\\attempt_20260811T0845000000000Z",
       "latest_postflight_report": "Docs\\AAA_Review\\CORE_SHAHED136_GROK_MCP_ARTIST_GRADE_REDESIGN01_RECOVERY01_DIRECT_VISUAL_REVIEW.json",
       "automatic_postflight_classification": "FAILED_WITH_EVIDENCE"
@@ -787,7 +905,7 @@
       "owner": "blender",
       "quality": "hero",
       "priority": 10,
-      "status": "queued",
+      "status": "deferred",
       "existing": [
         "Content\\Skyguard\\Meshes\\Hero\\shahed_heavy_proxy.uasset"
       ],
@@ -801,7 +919,9 @@
         "damage_states",
         "collision",
         "weakpoint_sockets"
-      ]
+      ],
+      "state_reason": "Deferred because the live fantasy is Apache CPG (2026-08-16) and Stage 7B / Yak-Igla hero loops are archived.",
+      "state_changed_at_utc": "2026-08-16T15:50:57.949604Z"
     },
     {
       "id": "support-rail-coupon",

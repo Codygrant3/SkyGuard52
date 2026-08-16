@@ -24,6 +24,11 @@ def main() -> int:
     errors = controller.validate_manifest(manifest)
 
     required_assets = {
+        "core-apache-cockpit",
+        "core-apache-30mm",
+        "core-apache-hydra",
+        "core-apache-hellfire",
+        "core-apache-airframe",
         "core-yak52-airframe",
         "core-yak52-cockpit",
         "core-pilot",
@@ -50,12 +55,57 @@ def main() -> int:
     if missing:
         errors.append(f"Required production assets are missing: {missing}")
 
+    execution_order = manifest.get("execution_order") or []
+    if not execution_order or execution_order[0] != "P0-apache-cpg-hero-slice":
+        errors.append("execution_order must start with P0-apache-cpg-hero-slice.")
+
+    by_id = {asset["id"]: asset for asset in manifest["assets"]}
+    apache_ids = [
+        "core-apache-cockpit",
+        "core-apache-30mm",
+        "core-apache-hydra",
+        "core-apache-hellfire",
+        "core-apache-airframe",
+    ]
+    for asset_id in apache_ids:
+        asset = by_id.get(asset_id)
+        if asset is None:
+            continue
+        if asset.get("lane") != "P0-apache-cpg-hero-slice":
+            errors.append(f"{asset_id} must live in P0-apache-cpg-hero-slice.")
+        if asset.get("status") not in {"queued", "source_candidate"}:
+            errors.append(f"{asset_id} must remain queued or source_candidate until a real worker exists.")
+        if asset.get("worker"):
+            errors.append(f"{asset_id} must not register a phantom worker.")
+
+    deferred_archive = [
+        "core-yak52-airframe",
+        "core-yak52-cockpit",
+        "core-pilot",
+        "core-rear-gunner",
+        "core-hand-forearm",
+        "core-rifle",
+        "core-igla-launcher",
+        "core-igla-missile",
+        "core-shahed136",
+    ]
+    for asset_id in deferred_archive:
+        asset = by_id.get(asset_id)
+        if asset is None:
+            continue
+        if asset.get("status") != "deferred":
+            errors.append(f"{asset_id} must remain deferred in the archived Yak/Igla P0 lane.")
+
     if manifest["policies"].get("automatic_retries") != 0:
         errors.append("Automatic retries must remain zero.")
     if not manifest["policies"].get("one_heavy_process"):
         errors.append("One-heavy-process policy is not enabled.")
     if not manifest["policies"].get("circular_hashes_forbidden"):
         errors.append("Circular-hash prohibition is not enabled.")
+    if not manifest["policies"].get("visual_review_required"):
+        errors.append("Visual review must remain required.")
+    if not manifest["policies"].get("unreal_import_requires_acceptance"):
+        errors.append("Unreal import must still require acceptance.")
 
     accepted = [asset["id"] for asset in manifest["assets"] if asset["status"] == "accepted"]
     payload = {
