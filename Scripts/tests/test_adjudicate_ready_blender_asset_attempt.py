@@ -89,11 +89,11 @@ class ReadyBlenderPostflightTests(unittest.TestCase):
         )
         return attempt, contract
 
-    def test_current_shahed_failed_lane_preserves_recovery02_contract(self) -> None:
+    def test_current_shahed_deferred_lane_preserves_recovery02_contract(self) -> None:
         contract = subject.load_json(subject.CONTRACT_PATH)["contracts"]["core-shahed136"]
         manifest = subject.load_json(subject.MANIFEST_PATH)
         asset = next(item for item in manifest["assets"] if item["id"] == "core-shahed136")
-        self.assertEqual(asset["status"], "failed")
+        self.assertEqual(asset["status"], "deferred")
         self.assertEqual(
             contract["worker_script"],
             r"Scripts\Workers\worker_core_shahed136_refinement01_recovery02.py",

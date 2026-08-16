@@ -114,6 +114,37 @@ def asset_index(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {asset["id"]: asset for asset in manifest["assets"]}
 
 
+DEFAULT_NEXT_STATES = (
+    "ready,provisional_blockout,source_candidate,queued,blocked_reference"
+)
+
+
+def select_next_assets(
+    manifest: dict[str, Any],
+    states: set[str],
+    limit: int,
+) -> list[dict[str, Any]]:
+    """Return the next executable assets.
+
+    Deferred, failed, accepted, running, and awaiting_review are skipped unless
+    the caller includes those states. Execution-order lanes are applied first so
+    the live Apache CPG P0 slice outranks later mission kits even when a later
+    lane still has a low numeric priority.
+    """
+    order = {
+        lane: index for index, lane in enumerate(manifest.get("execution_order", []))
+    }
+    fallback = len(order)
+    return sorted(
+        (asset for asset in manifest["assets"] if asset["status"] in states),
+        key=lambda item: (
+            order.get(item.get("lane"), fallback),
+            item["priority"],
+            item["id"],
+        ),
+    )[:limit]
+
+
 def visual_feedback_guard_errors(
     asset: dict[str, Any],
     memory_path: Path = VISUAL_FEEDBACK_MEMORY_PATH,
@@ -420,10 +451,7 @@ def command_next(args: argparse.Namespace) -> int:
     if errors:
         raise PipelineError("; ".join(errors))
     states = set(args.states.split(","))
-    assets = sorted(
-        (asset for asset in manifest["assets"] if asset["status"] in states),
-        key=lambda item: (item["priority"], item["id"]),
-    )[: args.limit]
+    assets = select_next_assets(manifest, states, args.limit)
     print(
         json.dumps(
             [
@@ -675,7 +703,7 @@ def build_parser() -> argparse.ArgumentParser:
     next_parser.add_argument("--limit", type=int, default=10)
     next_parser.add_argument(
         "--states",
-        default="ready,provisional_blockout,source_candidate,queued,blocked_reference",
+        default=DEFAULT_NEXT_STATES,
     )
     next_parser.set_defaults(func=command_next)
 

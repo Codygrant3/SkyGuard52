@@ -13,10 +13,10 @@ class ProductionCycleTests(unittest.TestCase):
         self.assertEqual(payload["status"], "ACTIVE")
         self.assertFalse(payload["execution_policy"]["per_run_user_authorization_required"])
 
-    def test_failed_shahed_lane_preserves_v2_postflight_and_quality_contract(self) -> None:
+    def test_deferred_shahed_lane_preserves_v2_postflight_and_quality_contract(self) -> None:
         manifest = subject.controller.load_manifest()
         asset = subject.controller.asset_index(manifest)["core-shahed136"]
-        self.assertEqual(asset["status"], "failed")
+        self.assertEqual(asset["status"], "deferred")
         self.assertEqual(
             asset["worker"]["postflight"]["script"],
             r"Scripts\adjudicate_ready_blender_asset_attempt_v2.py",
@@ -44,19 +44,20 @@ class ProductionCycleTests(unittest.TestCase):
             self.assertNotIn(attempt, report.parents)
             self.assertTrue(str(report).endswith("attempt_fixture.json"))
 
-    def test_audit_does_not_create_attempt(self) -> None:
+    def test_deferred_reargunner_audit_is_refused_and_creates_no_attempt(self) -> None:
         manifest = subject.controller.load_manifest()
         asset_id = "core-reargunner-character-refinement01"
         asset = subject.controller.asset_index(manifest)[asset_id]
-        self.assertEqual(asset["status"], "ready")
+        self.assertEqual(asset["status"], "deferred")
         attempt_parent = subject.controller.ATTEMPTS_ROOT / asset_id
         before = (
             sorted(path.name for path in attempt_parent.iterdir() if path.is_dir())
             if attempt_parent.exists()
             else []
         )
-        result = subject.audit_asset(asset_id)
-        self.assertTrue(result["pass"])
+        with self.assertRaises(subject.CycleError) as raised:
+            subject.audit_asset(asset_id)
+        self.assertIn("not ready", str(raised.exception))
         after = (
             sorted(path.name for path in attempt_parent.iterdir() if path.is_dir())
             if attempt_parent.exists()

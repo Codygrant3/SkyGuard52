@@ -6,6 +6,30 @@ and Blender 5.2 build.
 Historical `Docs\AAA_Review`, `Saved\Reports`, and `Saved\BuildAttempts`
 artifacts remain immutable evidence. They are not the day-to-day scheduler.
 
+## Live P0 — Apache CPG hero slice (2026-08-16)
+
+The live art queue is Apache front-seat CPG. Yak-52 / rifle / Igla /
+Shahed-as-P0 hero loops are archived, not deleted.
+
+`python .\Scripts\skyguard_production.py next --limit 15` should surface these
+first:
+
+1. `core-apache-cockpit` — CPG front-seat cockpit
+2. `core-apache-30mm` — 30 mm chin gun
+3. `core-apache-hydra` — Hydra / rocket pods
+4. `core-apache-hellfire` — Hellfire / guided missile and launch rail
+5. `core-apache-airframe` — exterior airframe
+
+Lane `P0-apache-cpg-hero-slice` is first in `execution_order`. Archived items
+remain in `P0-cockpit-combat-vertical-slice` as `deferred`, so `next` skips
+them. Do not flip any of these Apache assets to `ready` or `accepted` without
+a real worker, one `production_cycle` run, and Human + Codex full-resolution
+review. No ready→accepted skip.
+
+Next art action: register a real worker/contract for `core-apache-cockpit`,
+then one `production_cycle` run. Human + Codex full-res review. No
+ready→accepted skip. Do not invent a `Scripts\Workers` path.
+
 ## Standing Blender and Unreal authorization
 
 The user's standing authorization is recorded in
@@ -32,19 +56,26 @@ python .\Scripts\skyguard_production.py next --limit 15
 python .\Scripts\validate_skyguard_production.py
 ```
 
-To move an asset after its references and worker are ready:
+To move an Apache P0 asset after a real worker and contract are registered:
 
 ```powershell
-python .\Scripts\skyguard_production.py set-state core-hand-forearm ready `
+python .\Scripts\skyguard_production.py set-state core-apache-cockpit ready `
   --reason "Reference-backed worker and output contract validated."
 ```
 
+Do not run that `set-state` until a real `Scripts\Workers` file exists. The
+Apache P0 assets currently have no worker, so `run` must refuse them.
+
+Archived Yak / rifle / Igla / Shahed-as-P0 lanes stay `deferred`. Historical
+cycle examples such as `core-shahed136` are evidence only and are not the
+next art action.
+
 To audit and run exactly one registered Blender worker together with its
-mandatory automatic postflight:
+mandatory automatic postflight (only after a real Apache worker exists):
 
 ```powershell
-python .\Scripts\skyguard_production_cycle.py audit core-shahed136
-python .\Scripts\skyguard_production_cycle.py run core-shahed136
+python .\Scripts\skyguard_production_cycle.py audit core-apache-cockpit
+python .\Scripts\skyguard_production_cycle.py run core-apache-cockpit
 ```
 
 This cycle command is the preferred production entry point. It leaves a passing

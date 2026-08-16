@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import importlib.util
 import json
 import tempfile
@@ -15,6 +16,15 @@ SPEC = importlib.util.spec_from_file_location("skyguard_production", CONTROLLER)
 assert SPEC and SPEC.loader
 PIPELINE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(PIPELINE)
+
+VALIDATOR_PATH = TEST_DIR.parent / "validate_skyguard_production.py"
+VALIDATOR_SPEC = importlib.util.spec_from_file_location(
+    "validate_skyguard_production",
+    VALIDATOR_PATH,
+)
+assert VALIDATOR_SPEC and VALIDATOR_SPEC.loader
+VALIDATOR = importlib.util.module_from_spec(VALIDATOR_SPEC)
+VALIDATOR_SPEC.loader.exec_module(VALIDATOR)
 
 
 class ProductionPipelineTests(unittest.TestCase):
@@ -130,6 +140,147 @@ class ProductionPipelineTests(unittest.TestCase):
                 PIPELINE.visual_feedback_guard_errors(accepted, memory_path),
                 [],
             )
+
+    def test_canonical_execution_order_starts_with_apache_cpg_p0(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        self.assertEqual(
+            manifest["execution_order"][0],
+            "P0-apache-cpg-hero-slice",
+        )
+        self.assertLess(
+            manifest["execution_order"].index("P0-apache-cpg-hero-slice"),
+            manifest["execution_order"].index("P0-cockpit-combat-vertical-slice"),
+        )
+        self.assertLess(
+            manifest["execution_order"].index("P0-apache-cpg-hero-slice"),
+            manifest["execution_order"].index("P0-mission01-visual-slice"),
+        )
+
+    def test_next_surfaces_apache_p0_and_skips_deferred_yak_lane(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        nxt = PIPELINE.select_next_assets(
+            manifest,
+            set(PIPELINE.DEFAULT_NEXT_STATES.split(",")),
+            15,
+        )
+        ids = [asset["id"] for asset in nxt]
+        self.assertEqual(
+            ids[:5],
+            [
+                "core-apache-cockpit",
+                "core-apache-30mm",
+                "core-apache-hydra",
+                "core-apache-hellfire",
+                "core-apache-airframe",
+            ],
+        )
+        forbidden_prefixes = (
+            "core-yak52-",
+            "core-pilot",
+            "core-rear",
+            "core-hand-forearm",
+            "core-rifle",
+            "core-igla-",
+            "core-shahed",
+        )
+        leaked = [
+            asset_id
+            for asset_id in ids
+            if asset_id.startswith(forbidden_prefixes)
+        ]
+        self.assertEqual(leaked, [])
+        for asset in nxt[:5]:
+            self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
+            self.assertEqual(asset["status"], "queued")
+            self.assertFalse(asset.get("worker"))
+
+    def test_archived_p0_hero_assets_are_deferred_not_deleted(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        deferred = [
+            "core-yak52-airframe",
+            "core-yak52-airframe-recovery01",
+            "core-yak52-airframe-artist-grade-method02",
+            "core-yak52-airframe-artist-grade-method02-plus",
+            "core-yak52-cockpit",
+            "core-pilot",
+            "core-rear-gunner",
+            "core-hand-forearm",
+            "core-reargunner-character-refinement01",
+            "core-reargunner-hand-forearm-refinement01",
+            "core-rifle",
+            "core-rifle-method05-stagea",
+            "core-igla-launcher",
+            "core-igla-missile",
+            "core-shahed136",
+            "core-shahed-heavy",
+        ]
+        note = (
+            "Deferred because the live fantasy is Apache CPG (2026-08-16) "
+            "and Stage 7B / Yak-Igla hero loops are archived."
+        )
+        for asset_id in deferred:
+            asset = by_id[asset_id]
+            self.assertEqual(asset["status"], "deferred", asset_id)
+            self.assertIn(note, asset.get("state_reason", ""), asset_id)
+            self.assertEqual(asset["lane"], "P0-cockpit-combat-vertical-slice")
+
+    def test_accepted_and_vegetation_assets_were_not_flipped(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        accepted = [
+            "support-rail-coupon",
+            "m01-lighthouse",
+            "m01-coastal-facade-bay-production01-recovery02",
+            "m01-coastal-corridor-correction06-recovery01",
+            "m01-coastal-corridor-correction06-recovery01-unrealready01",
+            "m01-prewar-window-eevee-glazing-transmission-coupon-a01",
+        ]
+        for asset_id in accepted:
+            self.assertEqual(by_id[asset_id]["status"], "accepted", asset_id)
+        self.assertEqual(by_id["shared-vegetation-kit"]["status"], "blocked_reference")
+        baseline = manifest["baseline"]
+        self.assertEqual(baseline["production_hero_assets_accepted"], 0)
+        self.assertEqual(baseline["production_campaign_maps_accepted"], 0)
+        self.assertFalse(baseline["clean_machine_release_candidate"])
+        self.assertTrue(manifest["policies"]["visual_review_required"])
+        self.assertTrue(manifest["policies"]["unreal_import_requires_acceptance"])
+
+    def test_apache_p0_queued_without_worker_is_valid(self) -> None:
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        for asset_id in VALIDATOR.APACHE_P0_IDS:
+            asset = by_id[asset_id]
+            self.assertEqual(asset["status"], "queued", asset_id)
+            self.assertFalse(asset.get("worker"), asset_id)
+            self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+
+    def test_apache_p0_rejects_phantom_worker_path(self) -> None:
+        manifest = copy.deepcopy(PIPELINE.load_manifest())
+        cockpit = PIPELINE.asset_index(manifest)["core-apache-cockpit"]
+        cockpit["worker"] = {
+            "script": r"Scripts\Workers\worker_core_apache_cockpit_does_not_exist.py",
+            "arguments": [],
+        }
+        errors = VALIDATOR.apache_p0_contract_errors(manifest)
+        self.assertTrue(
+            any("phantom worker" in error and "core-apache-cockpit" in error for error in errors),
+            errors,
+        )
+
+    def test_apache_p0_accepts_real_worker_and_ready_status(self) -> None:
+        manifest = copy.deepcopy(PIPELINE.load_manifest())
+        cockpit = PIPELINE.asset_index(manifest)["core-apache-cockpit"]
+        cockpit["status"] = "ready"
+        cockpit["worker"] = {
+            "script": r"Scripts\skyguard_production.py",
+            "arguments": [],
+        }
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+        live = PIPELINE.asset_index(PIPELINE.load_manifest())["core-apache-cockpit"]
+        self.assertEqual(live["status"], "queued")
+        self.assertFalse(live.get("worker"))
 
 
 if __name__ == "__main__":
