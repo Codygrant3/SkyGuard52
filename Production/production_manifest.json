@@ -1102,6 +1102,57 @@
       "state_reason": "Queued Apache CPG P0 station-model18 method; built from DCS AH-64D Fig 43-45 and TM-1-1520-238-10 reference plates, not a plate-knob pass; one formed forward panel with one square TDU plus LHG/RHG, inset MPDs, EUFD strip, fire panel, BRU, and armament strip; framed windshield panes and thin wall-deck consoles; keep glass overhead brow, look-out fail band, dash z<=0.86, TEDAC green emit and public crosshair, MPD emit-face fix, and the model14-17 bucket seat; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model17 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model19",
+      "name": "AH-64 CPG station model19 built from plates plus the model18 visual fail",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model18",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model19.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model19"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model19",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model19\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model19 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8, and the model18 visual fail, not a plate-knob pass; glass may occupy the forward look-out band while frames stay out; GEO_Windshield fills the look-out from the CPG eye; side panes match bay window z; one formed forward panel with inset TDU and MPD wells, square TDU plus LHG/RHG kept; keep glass overhead brow, dash z<=0.86, TEDAC green emit and public crosshair, MPD emit-face fix, and the model14-18 bucket seat; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model18 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",
