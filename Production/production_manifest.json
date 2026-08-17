@@ -1357,6 +1357,57 @@
       "state_reason": "Queued Apache CPG P0 station-model23 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model22 visual fail, not a plate-knob pass; not another named mesh on the same cage; greenhouse hull owns three-quarter as a closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched window openings, rails/sills/A-pillars/side-bows are thin trim (0.018 x 0.012 or smaller) on that hull; eye_forward looks through raked windshield / sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a grey rectangular well; GEO_TEDAC is well-only (emit well + crosshair + LHG/RHG + bezel buttons), no formed_bezel body cube; GEO_Dash is one continuous formed forward panel, MPD_L/R are recessed emit wells of that one face; destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model22 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model24",
+      "name": "AH-64 CPG station model24 built from plates plus the model23 cycle fail",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model23",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model24.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model24"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model24",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model24\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model24 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model23 cycle fail, not a plate-knob pass on the greenhouse; keep model23 architecture: greenhouse hull owns three-quarter as a closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched window openings, rails/sills/A-pillars/side-bows are thin trim (0.018 x 0.012 or smaller) on that hull; eye_forward looks through raked windshield / sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a grey rectangular well; GEO_TEDAC is well-only (emit well + crosshair + LHG/RHG + bezel buttons), no formed_bezel body cube; after object_from_bmesh, GEO_TEDAC calls orient_emit_faces_to_eye then assert_emit_faces_eye (alignment >= 0.55) and assert_hood_geometry, same order as build_mpd, so finish_mesh bevel / recalc_face_normals cannot leave emit winding at 0.325; GEO_Dash is one continuous formed forward panel, MPD_L/R are recessed emit wells of that one face; destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model23 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",
