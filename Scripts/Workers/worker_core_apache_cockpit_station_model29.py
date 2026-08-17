@@ -17,8 +17,9 @@ TEDAC and dash occupy the lower third, not a dark rectangular
 well, not a housing well, and not an opaque pane wall. model28
 visual fail: opaque side blocks boxed the eyepoint so four-station
 glass plus a sky Background never read as look-out. Open the
-forward cabin — no inner shell wall in the eyepoint frame — and
-put glass in that frustum. Delete GEO_WindshieldFrame / shell
+forward cabin by flaring the inner shell wall with cabin_inner_y
+so that closed loop stays out of the eyepoint frustum, and put
+glass in that frustum. Delete GEO_WindshieldFrame / shell
 end-cap / brow faces that form a rectangular tunnel. Canopy glass
 must read as glass, not a dark grey wall. One continuous formed
 forward panel from dash_formed_front / dash_well_cavities, not
@@ -1660,28 +1661,68 @@ def shell_window_opening(x_value, y_sign: float):
     )
 
 
+def shell_inner_offset_rings(outer_rings, y_sign: float):
+    """Explicit inner loop of the 6-point section. Not a solidify C-slab.
+
+    Offset each outer ring toward its YZ centroid so loft_canopy_shell
+    can loft an inner/outer pair and bridge. Clamp |y| >= max(0.24,
+    cabin_inner_y(x)) so the inner wall stays out of the eyepoint
+    frustum. Crown stays |y| >= 0.24. Same closed loop: sill-in,
+    belly-in, belly, rail-out, crown-out, crown, back to sill-in.
+    """
+    thickness = 0.016
+    inner_rings = []
+    for ring in outer_rings:
+        x_value = ring[0][0]
+        floor_y = max(0.24, cabin_inner_y(x_value))
+        centroid_y = sum(point[1] for point in ring) / float(len(ring))
+        centroid_z = sum(point[2] for point in ring) / float(len(ring))
+        inner = []
+        for point in ring:
+            _x, y_value, z_value = point
+            delta_y = y_value - centroid_y
+            delta_z = z_value - centroid_z
+            length = math.hypot(delta_y, delta_z)
+            if length < 1e-6:
+                new_y, new_z = y_value, z_value
+            else:
+                new_y = y_value - thickness * delta_y / length
+                new_z = z_value - thickness * delta_z / length
+            sign = y_value if y_value != 0.0 else y_sign
+            if abs(new_y) < floor_y:
+                new_y = math.copysign(floor_y, sign)
+            if abs(new_y) < 0.24:
+                new_y = math.copysign(0.24, new_y if new_y != 0.0 else sign)
+            inner.append((x_value, new_y, new_z))
+        inner_rings.append(tuple(inner))
+    return tuple(inner_rings)
+
+
 def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> None:
     """Closed hull that owns the three-quarter silhouette.
 
-    Closed outer volume: sill-in, belly, rail-out, crown, back to
-    sill-in.     Discrete punched window bays on the outer skin hold
-    inset GEO_CanopyPane_* via shell_window_opening. Each outer window
+    Closed loop: sill-in, belly, rail-out, crown, back to
+    sill-in. Keep the inner wall so the 6-point section stays a
+    closed loop. cabin_inner_y flares that wall out of the eyepoint
+    frustum — that is the open-look-out move, not deleting the wall.
+    Discrete punched window bays on the outer skin hold inset
+    GEO_CanopyPane_* via shell_window_opening. Each outer window
     is a bay hole, not one giant punch. Not a pane kit
     of floating canopy sheets and shell slabs. model28 visual fail:
     a 6-point tube + solidify + one giant window_punch left hollow
     C-shaped slabs and an inner wall that boxed the eyepoint.
     Replace that construction. Do not solidify a thin ring into a
-    C-slab. Skip the inner wall in the forward cabin (x > -0.08)
-    so eye_forward sees world/sky through raked glass. Punch only
-    the discrete side-pane bays. crown_y = inner_y so the hull
-    stays |y| >= 0.24, outboard of the look-out. Glass
-    (GEO_Windshield / GEO_OverheadBrow / GEO_ForwardBrow /
-    GEO_CanopyPane_*) occupies the band. Do not put GEO_CanopyShell
-    verts in lookout_band_hit or lookout_near_eye_hit. Rails, sills,
-    and A-pillars stay thin trim on this hull. Not another fill
-    plate on the same section_along cage. Not a draped canopy skin.
-    Not model17 plate knobs. Raked GEO_Windshield is the forward
-    pane of that hull.
+    C-slab. Loft an explicit inner/outer pair from
+    canopy_shell_station_rings / shell_inner_offset_rings and
+    bridge_loops the station edges. Punch only the discrete
+    side-pane bays. crown_y = inner_y so the hull stays |y| >= 0.24,
+    outboard of the look-out. Glass (GEO_Windshield /
+    GEO_OverheadBrow / GEO_ForwardBrow / GEO_CanopyPane_*) occupies
+    the band. Do not put GEO_CanopyShell verts in lookout_band_hit
+    or lookout_near_eye_hit. Rails, sills, and A-pillars stay thin
+    trim on this hull. Not another fill plate on the same
+    section_along cage. Not a draped canopy skin. Not model17 plate
+    knobs. Raked GEO_Windshield is the forward pane of that hull.
     """
     bmesh = bmesh_module()
     bm = bmesh.new()
@@ -1689,45 +1730,75 @@ def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> Non
     inner_y = max(0.24, lookout_half)
     crown_y = inner_y
     _ = (inner_y, crown_y)
-    columns = []
-    for ring in canopy_shell_station_rings(xs, y_sign):
-        columns.append([bm.verts.new(point) for point in ring])
-    ring_len = len(columns[0])
-    inner_row = ring_len - 1
+    outer_rings = canopy_shell_station_rings(xs, y_sign)
+    inner_rings = shell_inner_offset_rings(outer_rings, y_sign)
+    outer_cols = []
+    inner_cols = []
+    for ring in outer_rings:
+        outer_cols.append([bm.verts.new(point) for point in ring])
+    for ring in inner_rings:
+        inner_cols.append([bm.verts.new(point) for point in ring])
+    ring_len = len(outer_cols[0])
     bays = shell_window_bays()
-    # cabin_inner_y flares the live rings; do not box the eyepoint.
-    for col in range(len(columns) - 1):
-        mid_x = 0.5 * (xs[col] + xs[col + 1])
+
+    def _skip_bay_face(row: int, mid_x: float, corners) -> bool:
         opening = shell_window_opening(mid_x, y_sign)
         win_ys = [abs(point[1]) for point in opening]
         win_zs = [point[2] for point in opening]
         y_lo, y_hi = min(win_ys), max(win_ys)
         z_lo, z_hi = min(win_zs), max(win_zs)
         in_bay = any(start <= mid_x <= end for start, end in bays)
+        mid_y = abs(0.25 * sum(vert.co.y for vert in corners))
+        mid_z = 0.25 * sum(vert.co.z for vert in corners)
+        return (
+            in_bay
+            and row in (2, 3)
+            and y_lo - 0.01 <= mid_y <= y_hi + 0.01
+            and z_lo - 0.01 <= mid_z <= z_hi + 0.01
+        )
+
+    def _loft_closed_loop(columns) -> None:
+        for col in range(len(columns) - 1):
+            mid_x = 0.5 * (xs[col] + xs[col + 1])
+            for row in range(ring_len):
+                nxt = (row + 1) % ring_len
+                corners = (
+                    columns[col][row],
+                    columns[col + 1][row],
+                    columns[col + 1][nxt],
+                    columns[col][nxt],
+                )
+                if _skip_bay_face(row, mid_x, corners):
+                    continue
+                bm.faces.new(corners)
+
+    _loft_closed_loop(outer_cols)
+    _loft_closed_loop(inner_cols)
+
+    def _ring_edge(verts, row: int):
+        nxt = (row + 1) % ring_len
+        edge = bm.edges.get((verts[row], verts[nxt]))
+        if edge is None:
+            edge = bm.edges.new((verts[row], verts[nxt]))
+        return edge
+
+    for col, (outer, inner) in enumerate(zip(outer_cols, inner_cols)):
+        x_value = xs[col]
+        in_bay = any(start <= x_value <= end for start, end in bays)
         for row in range(ring_len):
-            nxt = (row + 1) % ring_len
-            corners = (
-                columns[col][row],
-                columns[col + 1][row],
-                columns[col + 1][nxt],
-                columns[col][nxt],
+            if in_bay and row in (2, 3):
+                continue
+            result = bmesh.ops.bridge_loops(
+                bm,
+                edges=[_ring_edge(outer, row), _ring_edge(inner, row)],
             )
-            mid_y = abs(0.25 * sum(vert.co.y for vert in corners))
-            mid_z = 0.25 * sum(vert.co.z for vert in corners)
-            if row == inner_row and mid_x > -0.08:
-                continue
-            if (
-                in_bay
-                and row in (2, 3)
-                and y_lo - 0.01 <= mid_y <= y_hi + 0.01
-                and z_lo - 0.01 <= mid_z <= z_hi + 0.01
-            ):
-                continue
-            bm.faces.new(corners)
+            if not result.get("faces"):
+                nxt = (row + 1) % ring_len
+                bm.faces.new((outer[row], outer[nxt], inner[nxt], inner[row]))
     # Aft end cap only. Forward end-cap faces formed the rectangular well
     # around the look-out; delete those faces so eye_forward looks through
     # glass to sky.
-    ring = columns[0]
+    ring = outer_cols[0]
     bm.faces.new(tuple(ring))
     object_from_bmesh(name, bm, collection, [material])
 
@@ -1778,15 +1849,32 @@ def windshield_frame_plates():
     )
 
 
+def windshield_mid_station():
+    """Mid rake station so the pane reads as a surface, not a thin V.
+
+    Between the near column (x=0.22-0.30) and the first look-out
+    station (x=0.55). Not a copy of either trapezoid. Glass may
+    occupy the look-out band; structure may not.
+    """
+    return (
+        (0.46, -0.198, 1.052),
+        (0.46, 0.198, 1.052),
+        (0.40, 0.168, 1.322),
+        (0.40, -0.168, 1.322),
+    )
+
+
 def windshield_pane_grid():
-    """Near look-out column plus the four raked stations.
+    """Near look-out column, mid station, plus the four raked stations.
 
     model28 visual fail: the four stations lived at x=0.55-0.86,
     behind opaque side walls, so the cameras never saw glass. A
     near column at the look-out band start puts glass in the
-    eyepoint frustum. Stations stay the assert-path YZ trapezoids.
-    loft_forward_windshield emits these verts. Not a near/far
-    blend that reuses the sill-to-brow parameter for rake.
+    eyepoint frustum. A mid station at x=0.40-0.46 makes the rake
+    read as a surface instead of a thin 4-point sheet. Stations
+    stay the assert-path YZ trapezoids. loft_forward_windshield
+    emits these verts. Not a near/far blend that reuses the
+    sill-to-brow parameter for rake.
     """
     near = (
         (0.30, -0.198, 1.052),
@@ -1794,7 +1882,26 @@ def windshield_pane_grid():
         (0.22, 0.168, 1.322),
         (0.22, -0.168, 1.322),
     )
-    return (near,) + windshield_lookout_stations()
+    return (near, windshield_mid_station()) + windshield_lookout_stations()
+
+
+def windshield_inset_offset() -> float:
+    """Shallow +X inset. Enough to read as a surface, not a tunnel."""
+    return 0.012
+
+
+def windshield_inset_grid():
+    """Shallow second surface inset toward +X. Not a closed box.
+
+    Same YZ as windshield_pane_grid, translated +X. loft_forward_windshield
+    lofts this as a second sheet and does not connect the perimeters,
+    so it does not form a tunnel.
+    """
+    offset = windshield_inset_offset()
+    return tuple(
+        tuple((point[0] + offset, point[1], point[2]) for point in column)
+        for column in windshield_pane_grid()
+    )
 
 
 def loft_forward_windshield(collection, glass, rail) -> None:
@@ -1804,30 +1911,38 @@ def loft_forward_windshield(collection, glass, rail) -> None:
     world/sky. GEO_Windshield is the forward pane of that hull, not a
     separate rectangular box. Stations are raked YZ trapezoids, not
     four copies of one rectangle. The pane fills the look-out from
-    the near column through x 0.55-0.86, |y| <= 0.20, z 1.05-1.36.
+    the near column plus a mid station through x 0.55-0.86,
+    |y| <= 0.20, z 1.05-1.36. A shallow second surface from
+    windshield_inset_grid sits toward +X and does not form a tunnel.
     Do not emit GEO_WindshieldFrame; those faces formed the
     rectangular tunnel around the look-out. Not a grey rectangular
     well. model28 visual fail: opaque side blocks boxed the
     eyepoint so four-station glass never read as look-out.
     loft_forward_windshield emits windshield_pane_grid() so the
-    live verts include the near column and the four stations.
-    Not a grey rectangular well, not an opaque grey slab / opaque pane wall.
-    Do not solidify.
+    live verts include the near column, the mid station, and the
+    four stations. Not a grey rectangular well, not an opaque grey
+    slab / opaque pane wall. Do not solidify the pane into a
+    closed box.
     """
     glass_bm = bmesh_module().new()
-    columns = []
-    for row in windshield_pane_grid():
-        columns.append([glass_bm.verts.new(point) for point in row])
-    for col in range(len(columns) - 1):
-        for row in range(len(columns[0]) - 1):
-            glass_bm.faces.new(
-                (
-                    columns[col][row],
-                    columns[col + 1][row],
-                    columns[col + 1][row + 1],
-                    columns[col][row + 1],
+
+    def _loft_pane_sheet(grid) -> None:
+        columns = []
+        for row in grid:
+            columns.append([glass_bm.verts.new(point) for point in row])
+        for col in range(len(columns) - 1):
+            for row in range(len(columns[0]) - 1):
+                glass_bm.faces.new(
+                    (
+                        columns[col][row],
+                        columns[col + 1][row],
+                        columns[col + 1][row + 1],
+                        columns[col][row + 1],
+                    )
                 )
-            )
+
+    _loft_pane_sheet(windshield_pane_grid())
+    _loft_pane_sheet(windshield_inset_grid())
     object_from_bmesh("GEO_Windshield", glass_bm, collection, [glass])
 
 

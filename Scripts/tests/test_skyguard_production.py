@@ -14688,6 +14688,9 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("housing-grid", source.lower())
         self.assertIn("outer window", source.lower())
         self.assertIn("def windshield_pane_grid", source)
+        self.assertIn("def windshield_mid_station", source)
+        self.assertIn("def windshield_inset_grid", source)
+        self.assertIn("def windshield_inset_offset", source)
         self.assertIn("def dash_formed_front", source)
         self.assertIn("def dash_well_cavities", source)
         self.assertNotIn("def dash_well_loops", source)
@@ -14695,17 +14698,25 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("def cabin_inner_y", source)
         self.assertIn("def shell_window_bays", source)
         self.assertIn("def shell_window_opening", source)
+        self.assertIn("def shell_inner_offset_rings", source)
         pane_grid = MODEL29_WORKER.windshield_pane_grid()
         stations = MODEL29_WORKER.windshield_lookout_stations()
-        self.assertEqual(len(pane_grid), 5)
+        mid_station = MODEL29_WORKER.windshield_mid_station()
+        self.assertEqual(len(pane_grid), 6)
         self.assertEqual(len(pane_grid[0]), 4)
-        self.assertEqual(pane_grid[1:], stations)
+        self.assertEqual(len(mid_station), 4)
+        self.assertEqual(pane_grid[1], mid_station)
+        self.assertEqual(pane_grid[2:], stations)
         self.assertLess(min(point[0] for point in pane_grid[0]), 0.32)
+        mid_xs = [point[0] for point in mid_station]
+        self.assertGreaterEqual(min(mid_xs), 0.40)
+        self.assertLessEqual(max(mid_xs), 0.48)
         pane_fn = source.split("def windshield_pane_grid", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("windshield_lookout_stations()", pane_fn)
+        self.assertIn("windshield_mid_station()", pane_fn)
         self.assertNotIn("stations[-1]", pane_fn)
         live_verts = [point for column in pane_grid for point in column]
-        self.assertEqual(len(live_verts), 20)
+        self.assertEqual(len(live_verts), 24)
         xs = [point[0] for point in live_verts]
         in_band = 0
         near_eye = 0
@@ -14738,6 +14749,33 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertGreaterEqual(high_z, 2)
         self.assertGreaterEqual(left_y, 2)
         self.assertGreaterEqual(right_y, 2)
+        inset_grid = MODEL29_WORKER.windshield_inset_grid()
+        inset_offset = MODEL29_WORKER.windshield_inset_offset()
+        self.assertEqual(len(inset_grid), 6)
+        self.assertGreater(inset_offset, 0.0)
+        self.assertLess(inset_offset, 0.04)
+        inset_verts = [point for column in inset_grid for point in column]
+        self.assertEqual(len(inset_verts), 24)
+        for column, inset_column in zip(pane_grid, inset_grid):
+            self.assertEqual(len(inset_column), 4)
+            for point, inset_point in zip(column, inset_column):
+                self.assertAlmostEqual(inset_point[0], point[0] + inset_offset)
+                self.assertEqual(inset_point[1], point[1])
+                self.assertEqual(inset_point[2], point[2])
+                self.assertTrue(
+                    MODEL29_WORKER.lookout_point_allowed("GEO_Windshield", *inset_point),
+                    inset_point,
+                )
+                self.assertFalse(
+                    MODEL29_WORKER.lookout_near_eye_hit(*inset_point),
+                    inset_point,
+                )
+        for point in mid_station:
+            self.assertTrue(
+                MODEL29_WORKER.lookout_point_allowed("GEO_Windshield", *point),
+                point,
+            )
+            self.assertFalse(MODEL29_WORKER.lookout_near_eye_hit(*point), point)
         render_fn = source.split("def render_eyepoint_views", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("ensure_eyepoint_sky(scene)", render_fn)
         self.assertNotIn("if row == 3 and window_punch", source)
@@ -14865,6 +14903,10 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("not a grey rectangular well", windshield_fn.lower())
         self.assertIn("forward pane of that hull", windshield_fn.lower())
         self.assertIn("windshield_pane_grid()", windshield_fn)
+        self.assertIn("windshield_inset_grid()", windshield_fn)
+        self.assertIn("mid station", windshield_fn.lower())
+        self.assertIn("does not form a tunnel", windshield_fn.lower())
+        self.assertIn("closed box", windshield_fn.lower())
         self.assertNotIn("for ring in windshield_lookout_stations()", windshield_fn)
         self.assertIn("opaque side blocks", windshield_fn.lower())
         self.assertIn("world/sky", windshield_fn.lower())
@@ -14962,16 +15004,24 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn("crown_y = 0.02", shell_body)
         self.assertIn("SHELL_STATION_XS", greenhouse)
         self.assertIn("canopy_shell_station_rings", shell_body)
+        self.assertIn("shell_inner_offset_rings", shell_body)
+        self.assertIn("closed loop", shell_body.lower())
+        self.assertIn("bmesh.ops.bridge_loops", shell_body)
+        self.assertNotIn("if row == inner_row and mid_x > -0.08", source)
+        self.assertNotIn("Skip the inner wall", source)
         self.assertGreaterEqual(len(MODEL29_WORKER.SHELL_STATION_XS), 7)
         for y_sign in (-1.0, 1.0):
             rings = MODEL29_WORKER.canopy_shell_station_rings(
                 MODEL29_WORKER.SHELL_STATION_XS,
                 y_sign,
             )
+            inner_rings = MODEL29_WORKER.shell_inner_offset_rings(rings, y_sign)
             self.assertEqual(len(rings), len(MODEL29_WORKER.SHELL_STATION_XS))
-            for ring in rings:
+            self.assertEqual(len(inner_rings), len(rings))
+            for ring, inner_ring in zip(rings, inner_rings):
                 self.assertEqual(len(ring), 6)
-                for point in ring:
+                self.assertEqual(len(inner_ring), 6)
+                for point in list(ring) + list(inner_ring):
                     self.assertFalse(
                         MODEL29_WORKER.lookout_band_hit(*point),
                         point,
@@ -14981,6 +15031,11 @@ class ProductionPipelineTests(unittest.TestCase):
                         point,
                     )
                     self.assertGreaterEqual(abs(point[1]), 0.24, point)
+                    self.assertGreaterEqual(
+                        abs(point[1]),
+                        MODEL29_WORKER.cabin_inner_y(point[0]) - 1e-6,
+                        point,
+                    )
         self.assertGreaterEqual(MODEL29_WORKER.cabin_inner_y(0.0), 0.42)
         self.assertEqual(MODEL29_WORKER.cabin_inner_y(0.56), 0.24)
         self.assertEqual(len(MODEL29_WORKER.shell_window_bays()), 2)
@@ -15373,13 +15428,17 @@ class ProductionPipelineTests(unittest.TestCase):
                 "the same 60-mesh cage; stop emitting the cage: do not create "
                 "GEO_CanopyBay_L/R or GEO_JointPlate_*; rails/sills/A-pillars/"
                 "side-bows are one thin trim pair (GEO_Rail_L/R) that cannot "
-                "silhouette three-quarter; GEO_CanopyShell_L/R is the closed "
-                "outer volume (sill-in, belly, rail-out, crown, back to "
-                "sill-in) with punched discrete window bays, inset "
+                "silhouette three-quarter; GEO_CanopyShell_L/R is a closed "
+                "6-point loop (sill-in, belly-in, belly, rail-out, crown-out, "
+                "crown, back to sill-in) with the inner wall kept and flared "
+                "by cabin_inner_y, lofted as an explicit inner/outer pair "
+                "and bridged, with punched discrete window bays, inset "
                 "GEO_CanopyPane_* sit in those holes, raked GEO_Windshield "
-                "fills the look-out from a near column through the four "
-                "stations — not a 6-point tube solidified into C-slabs and "
-                "not a pane kit of floating canopy sheets; mesh count must "
+                "fills the look-out from a near column plus a mid station "
+                "and a shallow +X inset sheet through the four stations — "
+                "not a 6-point tube solidified into C-slabs, not an opened "
+                "ribbon, and not a pane kit of floating canopy sheets; mesh "
+                "count must "
                 "drop, fail if this method still emits 60 meshes of the same "
                 "family; eye_forward looks through raked windshield / "
                 "world/sky in the upper two-thirds, TEDAC/dash occupy the "
