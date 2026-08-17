@@ -92,6 +92,17 @@ assert MODEL24_SPEC and MODEL24_SPEC.loader
 MODEL24_WORKER = importlib.util.module_from_spec(MODEL24_SPEC)
 MODEL24_SPEC.loader.exec_module(MODEL24_WORKER)
 
+MODEL25_WORKER_PATH = (
+    TEST_DIR.parent / "Workers" / "worker_core_apache_cockpit_station_model25.py"
+)
+MODEL25_SPEC = importlib.util.spec_from_file_location(
+    "worker_core_apache_cockpit_station_model25",
+    MODEL25_WORKER_PATH,
+)
+assert MODEL25_SPEC and MODEL25_SPEC.loader
+MODEL25_WORKER = importlib.util.module_from_spec(MODEL25_SPEC)
+MODEL25_SPEC.loader.exec_module(MODEL25_WORKER)
+
 
 class ProductionPipelineTests(unittest.TestCase):
     def test_sha256_and_atomic_json(self) -> None:
@@ -227,11 +238,11 @@ class ProductionPipelineTests(unittest.TestCase):
         nxt = PIPELINE.select_next_assets(
             manifest,
             set(PIPELINE.DEFAULT_NEXT_STATES.split(",")),
-            30,
+            31,
         )
         ids = [asset["id"] for asset in nxt]
         self.assertEqual(
-            ids[:30],
+            ids[:31],
             [
                 "core-apache-cockpit",
                 "core-apache-cockpit-station-detail01",
@@ -259,6 +270,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -357,10 +369,13 @@ class ProductionPipelineTests(unittest.TestCase):
             "core-apache-cockpit-station-model24": (
                 r"Scripts\Workers\worker_core_apache_cockpit_station_model24.py"
             ),
+            "core-apache-cockpit-station-model25": (
+                r"Scripts\Workers\worker_core_apache_cockpit_station_model25.py"
+            ),
             "core-apache-30mm": r"Scripts\Workers\worker_core_apache_30mm.py",
             "core-apache-hydra": r"Scripts\Workers\worker_core_apache_hydra.py",
         }
-        for asset in nxt[:30]:
+        for asset in nxt[:31]:
             self.assertEqual(asset["lane"], "P0-apache-cpg-hero-slice")
             self.assertEqual(asset["status"], "queued")
             expected_worker = registered_workers.get(asset["id"])
@@ -496,6 +511,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
             }:
@@ -1892,6 +1908,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2242,6 +2259,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2614,6 +2632,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -2996,6 +3015,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -3396,6 +3416,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -3826,6 +3847,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -4281,6 +4303,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -4765,6 +4788,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -5216,6 +5240,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -5695,6 +5720,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -6183,6 +6209,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -6685,6 +6712,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -7127,6 +7155,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -7680,6 +7709,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -8283,6 +8313,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -8928,6 +8959,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -9603,6 +9635,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -10306,6 +10339,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -11041,6 +11075,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model22",
                 "core-apache-cockpit-station-model23",
                 "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
                 "core-apache-30mm",
                 "core-apache-hydra",
                 "core-apache-hellfire",
@@ -11162,6 +11197,8 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertEqual(by_id["core-apache-cockpit-station-model21"]["status"], "queued")
         self.assertEqual(by_id["core-apache-cockpit-station-model22"]["status"], "queued")
         self.assertEqual(by_id["core-apache-cockpit-station-model23"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model24"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model25"]["status"], "queued")
         self.assertEqual(by_id["core-apache-30mm"]["status"], "queued")
         self.assertEqual(by_id["core-apache-hydra"]["status"], "queued")
         self.assertEqual(
@@ -11257,6 +11294,22 @@ class ProductionPipelineTests(unittest.TestCase):
             ).is_file()
         )
         self.assertTrue(
+            (
+                PIPELINE.ROOT
+                / "Scripts"
+                / "Workers"
+                / "worker_core_apache_cockpit_station_model24.py"
+            ).is_file()
+        )
+        self.assertTrue(
+            (
+                PIPELINE.ROOT
+                / "Scripts"
+                / "Workers"
+                / "worker_core_apache_cockpit_station_model25.py"
+            ).is_file()
+        )
+        self.assertTrue(
             (PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_30mm.py").is_file()
         )
         self.assertTrue(
@@ -11265,6 +11318,699 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn("harbor-threat-kit01", by_id)
         self.assertNotIn("core-radar-van-kit01", by_id)
 
+    def test_apache_p0_station_model25_registers_queued_hull_dash_well_method(self) -> None:
+        worker_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "Workers"
+            / "worker_core_apache_cockpit_station_model25.py"
+        )
+        supervisor_path = (
+            PIPELINE.ROOT
+            / "Scripts"
+            / "invoke_core_apache_cockpit_station_model25_once.ps1"
+        )
+        self.assertTrue(worker_path.is_file(), worker_path)
+        self.assertTrue(supervisor_path.is_file(), supervisor_path)
+        source = worker_path.read_text(encoding="utf-8")
+        supervisor = supervisor_path.read_text(encoding="utf-8")
+        self.assertIn("from skyguard_blender_worker_sdk import", source)
+        self.assertIn("create_socket", source)
+        self.assertIn("pbr_material", source)
+        self.assertIn("configure_scene", source)
+        self.assertIn("create_collection", source)
+        self.assertIn("validate_asset", source)
+        self.assertIn("render_review_views", source)
+        self.assertIn("export_asset", source)
+        self.assertIn("parse_worker_args", source)
+        self.assertIn("WorkerError", source)
+        self.assertIn("sha256", source)
+        self.assertIn("now_utc", source)
+        self.assertIn("SDK_VERSION", source)
+        self.assertIn("run_station_model_worker", source)
+        self.assertNotIn("run_worker(", source)
+        self.assertTrue("import bmesh" in source or "bmesh.from_mesh" in source)
+        self.assertIn("bmesh.ops", source)
+        self.assertIn("bmesh.ops.extrude_face_region", source)
+        self.assertIn("bmesh.ops.inset_region", source)
+        self.assertIn("bmesh.ops.solidify", source)
+        self.assertIn("bmesh.ops.bridge_loops", source)
+        self.assertIn("bmesh.ops.spin", source)
+        self.assertIn("bpy.ops.render.render(write_still=True)", source)
+        self.assertIn("eye_forward.png", source)
+        self.assertIn("eye_down_tedac.png", source)
+        self.assertIn("(2.0, 0.0, 1.24)", source)
+        self.assertNotIn("(2.0, 0.0, 1.02)", source)
+        self.assertIn("upper two-thirds", source.lower())
+        self.assertIn("housing well", source.lower())
+        self.assertIn("grey rectangular well", source.lower())
+        self.assertIn("not a dark grey wall", source.lower())
+        self.assertIn("SOCKET_CPG_Eye", source)
+        self.assertIn("(0.42, 0.55, 0.62)", source)
+        self.assertIn("0.2 <= x <= 0.85", source)
+        self.assertIn("abs(y) < 0.20", source)
+        self.assertIn("1.05 <= z <= 1.35", source)
+        lookout_fn = source.split("def assert_lookout_clear", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("LOOKOUT_GLASS_ALLOWED", source)
+        self.assertIn("LOOKOUT_STRUCTURE_FORBIDDEN", source)
+        self.assertIn("GEO_Windshield", lookout_fn)
+        self.assertIn("GEO_CanopyPane_", lookout_fn)
+        self.assertIn("GEO_OverheadBrow", lookout_fn)
+        self.assertIn("GEO_ForwardBrow", lookout_fn)
+        self.assertIn("_is_lookout_glass", source)
+        self.assertIn("lookout_point_allowed", lookout_fn)
+        self.assertIn("GEO_WindshieldFrame", lookout_fn)
+        self.assertIn("GEO_Wiper", lookout_fn)
+        self.assertIn("GEO_Rail_", lookout_fn)
+        self.assertIn("GEO_Sill_", lookout_fn)
+        self.assertIn("GEO_APillar_", lookout_fn)
+        self.assertIn("GEO_TEDAC", lookout_fn)
+        self.assertIn("lookout_near_eye_hit", lookout_fn)
+        self.assertIn("0.0 <= x < 0.22", source)
+        self.assertIn("abs(y) < 0.12", source)
+        self.assertIn("abs(z - 1.18) < 0.10", source)
+        self.assertIn("canopy glass only", lookout_fn.lower())
+        self.assertTrue(MODEL25_WORKER._is_lookout_glass("GEO_Windshield"))
+        self.assertTrue(MODEL25_WORKER._is_lookout_glass("GEO_CanopyPane_L"))
+        self.assertTrue(MODEL25_WORKER._is_lookout_glass("GEO_OverheadBrow"))
+        self.assertTrue(MODEL25_WORKER._is_lookout_glass("GEO_ForwardBrow"))
+        for structure_name in (
+            "GEO_Rail_L",
+            "GEO_Sill_R",
+            "GEO_APillar_L",
+            "GEO_SideBow_R",
+            "GEO_JointPlate_01",
+            "GEO_CanopyBay_L",
+            "GEO_CanopyShell_L",
+            "GEO_WindshieldFrame",
+            "GEO_Wiper",
+            "GEO_DashShelf",
+            "GEO_TEDAC",
+        ):
+            self.assertTrue(MODEL25_WORKER._is_lookout_structure(structure_name), structure_name)
+            self.assertFalse(MODEL25_WORKER._is_lookout_glass(structure_name), structure_name)
+            self.assertFalse(
+                MODEL25_WORKER.lookout_point_allowed(structure_name, 0.60, 0.0, 1.20),
+                structure_name,
+            )
+        self.assertTrue(
+            MODEL25_WORKER.lookout_point_allowed("GEO_Windshield", 0.60, 0.0, 1.20)
+        )
+        self.assertTrue(
+            MODEL25_WORKER.lookout_point_allowed("GEO_CanopyPane_R", 0.40, 0.10, 1.18)
+        )
+        self.assertFalse(
+            MODEL25_WORKER.lookout_point_allowed("GEO_Windshield", 0.10, 0.0, 1.18)
+        )
+        self.assertFalse(
+            MODEL25_WORKER.lookout_point_allowed("GEO_CanopyPane_L", 0.10, 0.0, 1.18)
+        )
+        stations = MODEL25_WORKER.windshield_lookout_stations()
+        self.assertEqual(len(stations), 4)
+        self.assertNotEqual(stations[0], stations[1])
+        self.assertNotEqual(stations[1], stations[2])
+        self.assertNotEqual(stations[2], stations[3])
+        yz_shapes = [tuple((point[1], point[2]) for point in ring) for ring in stations]
+        self.assertEqual(len(set(yz_shapes)), 4)
+        all_xs = []
+        all_ys = []
+        all_zs = []
+        for ring in stations:
+            self.assertEqual(len(ring), 4)
+            xs = [point[0] for point in ring]
+            ys = [point[1] for point in ring]
+            zs = [point[2] for point in ring]
+            all_xs.extend(xs)
+            all_ys.extend(ys)
+            all_zs.extend(zs)
+            self.assertGreater(len(set(round(value, 5) for value in xs)), 1)
+            sill_half = abs(ring[0][1])
+            brow_half = abs(ring[3][1])
+            self.assertGreater(sill_half, brow_half)
+            self.assertNotEqual(ring[0][0], ring[3][0])
+            self.assertLessEqual(min(ys), -0.16)
+            self.assertGreaterEqual(max(ys), 0.16)
+            for point in ring:
+                self.assertTrue(
+                    MODEL25_WORKER.lookout_point_allowed("GEO_Windshield", *point),
+                    point,
+                )
+                if MODEL25_WORKER.lookout_band_hit(*point):
+                    self.assertFalse(
+                        MODEL25_WORKER.lookout_point_allowed(
+                            "GEO_WindshieldFrame", *point
+                        ),
+                        point,
+                    )
+        self.assertLessEqual(min(all_xs), 0.56)
+        self.assertGreaterEqual(max(all_xs), 0.84)
+        self.assertLessEqual(min(all_zs), 1.08)
+        self.assertGreaterEqual(max(all_zs), 1.32)
+        for plate in MODEL25_WORKER.windshield_frame_plates():
+            x0, x1, y0, y1, z0, z1 = plate
+            for corner in (
+                (x0, y0, z0),
+                (x1, y0, z0),
+                (x1, y1, z0),
+                (x0, y1, z0),
+                (x0, y0, z1),
+                (x1, y0, z1),
+                (x1, y1, z1),
+                (x0, y1, z1),
+            ):
+                self.assertFalse(MODEL25_WORKER.lookout_band_hit(*corner), corner)
+        windshield_fn = source.split("def loft_forward_windshield", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("0.55", windshield_fn)
+        self.assertIn("0.86", windshield_fn)
+        self.assertNotIn("0.858", windshield_fn)
+        self.assertNotIn("0.872", windshield_fn)
+        self.assertNotIn("0.886", windshield_fn)
+        self.assertIn("look through", windshield_fn.lower())
+        self.assertIn("not a grey rectangular well", windshield_fn.lower())
+        self.assertIn("forward pane of that hull", windshield_fn.lower())
+        self.assertIn("windshield_lookout_stations()", windshield_fn)
+        self.assertNotIn('object_from_bmesh("GEO_WindshieldFrame"', windshield_fn)
+        self.assertIn("rectangular tunnel", windshield_fn.lower())
+        fill_fn = source.split("def assert_windshield_fills_lookout", 1)[1].split(
+            "\ndef ", 1
+        )[0]
+        self.assertIn("low_z", fill_fn)
+        self.assertIn("high_z", fill_fn)
+        self.assertIn("left_y", fill_fn)
+        self.assertIn("right_y", fill_fn)
+        self.assertIn("span z 1.05-1.36", fill_fn)
+        self.assertIn("def assert_windshield_fills_lookout", source)
+        self.assertIn("assert_windshield_fills_lookout(asset_collection)", source)
+        self.assertIn("add_explicit_hood", source)
+        self.assertIn("hood verts are missing", source)
+        self.assertIn("GEO_SeatBack", source)
+        self.assertIn("GEO_KneePanel_L", source)
+        self.assertIn("GEO_KneePanel_R", source)
+        self.assertIn("abs(world.y) < 0.16", source)
+        self.assertIn("z <= 0.86", source)
+        self.assertIn("def assert_tedac_readable_from_eye", source)
+        self.assertIn("assert_tedac_readable_from_eye(asset_collection)", source)
+        tedac_assert_fn = source.split("def assert_tedac_readable_from_eye", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("abs(world.y) < 0.20", tedac_assert_fn)
+        self.assertIn("world.z > 0.86", tedac_assert_fn)
+        self.assertIn("GEO_Dash covers the look-out", tedac_assert_fn)
+        self.assertIn("GEO_Dash has no emit faces", tedac_assert_fn)
+        self.assertIn("def clamp_geo_dash_lookout_after_bevel", source)
+        self.assertIn("thumb_face = bm.faces.new(thumb)", source)
+        self.assertIn("(0.545, 0.0, 0.748)", source)
+        self.assertIn("orient_emit_faces_to_eye", source)
+        self.assertEqual(MODEL25_WORKER.TEDAC, (0.50, 0.0, 0.88))
+        self.assertEqual(MODEL25_WORKER.EYE, (0.0, 0.0, 1.18))
+        self.assertEqual(MODEL25_WORKER.MPD_L[0], MODEL25_WORKER.TEDAC[0])
+        self.assertEqual(MODEL25_WORKER.MPD_R[0], MODEL25_WORKER.TEDAC[0])
+        self.assertNotEqual(MODEL25_WORKER.MPD_L, (0.482, -0.205, 0.885))
+        self.assertNotEqual(MODEL25_WORKER.MPD_R, (0.482, 0.205, 0.885))
+        self.assertIn("GEO_Dash", source)
+        self.assertIn("Left Hand Grip", source)
+        self.assertIn("Right Hand Grip", source)
+        self.assertNotIn("loft_canopy_skin", source)
+        self.assertNotIn("ORT", source)
+        self.assertNotIn("binocular", source.lower())
+        self.assertIn("Fig 43", source)
+        self.assertIn("Fig 45", source)
+        self.assertIn("TM-1-1520-238-10", source)
+        self.assertIn("reference plate", source.lower())
+        greenhouse = source.split("def build_greenhouse", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("GEO_BowFrame", greenhouse)
+        self.assertNotIn("GEO_BowFrame", source)
+        self.assertIn("GEO_Rail_L", greenhouse)
+        self.assertIn("GEO_Rail_R", greenhouse)
+        self.assertNotIn("GEO_Sill_L", greenhouse)
+        self.assertNotIn("GEO_Sill_R", greenhouse)
+        self.assertNotIn("GEO_APillar_L", greenhouse)
+        self.assertNotIn("GEO_APillar_R", greenhouse)
+        self.assertNotIn("GEO_SideBow_L", greenhouse)
+        self.assertNotIn("GEO_SideBow_R", greenhouse)
+        self.assertNotIn("GEO_CanopyBay", greenhouse)
+        self.assertNotIn("GEO_JointPlate", greenhouse)
+        self.assertNotIn("loft_canopy_bay(", greenhouse)
+        self.assertNotIn("formed_joint_plate(", greenhouse)
+        self.assertIn("GEO_AftFrame", greenhouse)
+        self.assertIn("0.38", greenhouse)
+        self.assertIn("section_along", greenhouse)
+        self.assertNotIn("pipe_along", greenhouse)
+        self.assertIn("def section_along", source)
+        self.assertIn("0.018", greenhouse)
+        self.assertIn("0.012", greenhouse)
+        self.assertNotIn("0.052", greenhouse)
+        self.assertNotIn("0.062", greenhouse)
+        self.assertNotIn("0.038", greenhouse)
+        self.assertIn("GEO_CanopyPane", greenhouse)
+        self.assertIn("loft_canopy_pane", greenhouse)
+        self.assertIn("loft_canopy_shell", greenhouse)
+        self.assertIn("loft_canopy_shell(collection, plate", greenhouse)
+        self.assertIn("GEO_CanopyShell_L", greenhouse)
+        self.assertIn("GEO_CanopyShell_R", greenhouse)
+        self.assertNotIn("def loft_canopy_fill", source)
+        self.assertNotIn("loft_canopy_fill(collection", source)
+        self.assertNotIn("GEO_CanopyPlate", source)
+        shell_body = source.split("def loft_canopy_shell", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("punched", shell_body.lower())
+        self.assertIn("silhouette", shell_body.lower())
+        self.assertIn("closed hull", shell_body.lower())
+        self.assertIn("sill-in", shell_body)
+        self.assertIn("belly", shell_body)
+        self.assertIn("rail-out", shell_body)
+        self.assertIn("crown", shell_body)
+        self.assertIn("aft end cap only", shell_body.lower())
+        self.assertIn("rectangular well", shell_body.lower())
+        self.assertIn("inner_y = max(0.24", shell_body)
+        self.assertIn("thin trim", greenhouse.lower())
+        self.assertIn("chunky cage", greenhouse.lower())
+        self.assertIn("hull owns", greenhouse.lower())
+        self.assertNotIn("loft_canopy_skin", greenhouse)
+        self.assertNotIn("loft_canopy_skin", source)
+        self.assertIn("windshield", source.lower())
+        self.assertIn("GEO_Windshield", source)
+        self.assertIn("GEO_Wiper", source)
+        self.assertIn("punched window", source.lower())
+        self.assertNotIn("thick black", source.lower())
+        self.assertIn("closed hull", source.lower())
+        self.assertIn("def loft_overhead_brow", source)
+        self.assertIn("GEO_OverheadBrow", source)
+        self.assertIn("GEO_ForwardBrow", source)
+        self.assertIn("1.36", source)
+        overhead_fn = source.split("def loft_overhead_brow", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("section_along", overhead_fn)
+        self.assertNotIn("pipe_along", overhead_fn)
+        self.assertIn("faces.new", overhead_fn)
+        self.assertIn("solidify", overhead_fn)
+        self.assertIn("glass", overhead_fn.lower())
+        self.assertIn("loft_overhead_brow(collection, glass)", greenhouse)
+        self.assertNotIn("loft_overhead_brow(collection, rail)", greenhouse)
+        pane_fn = source.split("def loft_canopy_pane", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("section_along", pane_fn)
+        self.assertNotIn("pipe_along", pane_fn)
+        self.assertIn("faces.new", pane_fn)
+        self.assertIn("solidify", pane_fn)
+        self.assertIn("inset", pane_fn.lower())
+        self.assertIn("BAY_SKIRT_FRAC", pane_fn)
+        self.assertIn("BAY_HEADER_FRAC", pane_fn)
+        self.assertNotIn("skirt_frac = 0.48", pane_fn)
+        self.assertNotIn("header_frac = 0.42", pane_fn)
+        self.assertIn("inner_y = max(0.24", source)
+        seat_fn = source.split("def build_seat", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("GEO_Seat", seat_fn)
+        self.assertIn("GEO_SeatBolster_L", seat_fn)
+        self.assertIn("GEO_SeatBolster_R", seat_fn)
+        self.assertIn("GEO_SeatBack", seat_fn)
+        self.assertIn("GEO_SeatHeadrest", seat_fn)
+        self.assertIn("0.318", seat_fn)
+        self.assertIn("1.168", seat_fn)
+        self.assertIn("1.128", seat_fn)
+        self.assertIn("0.056", seat_fn)
+        self.assertIn("0.612", seat_fn)
+        self.assertNotIn("0.228", seat_fn)
+        self.assertNotIn("1.055", seat_fn)
+        self.assertNotIn("1.018", seat_fn)
+        tedac_fn = source.split("def build_tedac", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("GEO_TEDAC", tedac_fn)
+        self.assertIn("one square tdu", tedac_fn.lower())
+        self.assertIn("Left Hand Grip", tedac_fn)
+        self.assertIn("Right Hand Grip", tedac_fn)
+        self.assertIn("TAD", tedac_fn)
+        self.assertIn("FCR", tedac_fn)
+        self.assertIn("PNV", tedac_fn)
+        self.assertIn("G/S", tedac_fn)
+        self.assertIn("DAY-NT-OFF", tedac_fn)
+        self.assertIn("LEV", tedac_fn)
+        self.assertIn("GAIN", tedac_fn)
+        self.assertIn("SYM", tedac_fn)
+        self.assertIn("BRT", tedac_fn)
+        self.assertIn("CON", tedac_fn)
+        self.assertNotIn("(0.490, 0.0, 0.715)", tedac_fn)
+        self.assertNotIn("(0.572, 0.0, 0.880)", tedac_fn)
+        self.assertNotIn("(0.578, 0.0, 0.880)", tedac_fn)
+        self.assertNotIn("three stacked boxes", tedac_fn.lower())
+        self.assertIn("not three stacked boxes", source.lower())
+        self.assertNotIn("width=0.188", tedac_fn)
+        self.assertNotIn("depth=0.070", tedac_fn)
+        self.assertNotIn("hood=0.038", tedac_fn)
+        self.assertNotIn("formed_bezel", tedac_fn)
+        self.assertNotIn("emit_well(", tedac_fn)
+        self.assertIn("add_screen_markings", tedac_fn)
+        self.assertIn("add_explicit_hood", tedac_fn)
+        self.assertNotIn("width=0.118", tedac_fn)
+        self.assertNotIn("depth=0.018", tedac_fn)
+        self.assertIn("width=0.096", tedac_fn)
+        self.assertIn("well_depth=0.008", tedac_fn)
+        self.assertIn("hood=0.006", tedac_fn)
+        after_tedac_obj = tedac_fn.split('object_from_bmesh("GEO_TEDAC"', 1)[1]
+        self.assertIn("orient_emit_faces_to_eye(obj, 1, 0.0)", after_tedac_obj)
+        self.assertIn("assert_emit_faces_eye(obj, 1, 0.0)", after_tedac_obj)
+        self.assertIn("assert_hood_geometry", after_tedac_obj)
+        self.assertLess(
+            after_tedac_obj.find("orient_emit_faces_to_eye(obj, 1, 0.0)"),
+            after_tedac_obj.find("assert_emit_faces_eye(obj, 1, 0.0)"),
+        )
+        self.assertLess(
+            after_tedac_obj.find("assert_emit_faces_eye(obj, 1, 0.0)"),
+            after_tedac_obj.find("assert_hood_geometry"),
+        )
+        self.assertIn("hardware on the inset dash", tedac_fn.lower())
+        self.assertIn("not a housing well", tedac_fn.lower())
+        self.assertIn("lower third", tedac_fn.lower())
+        self.assertIn("no standalone emit rectangle", tedac_fn.lower())
+        self.assertIn("GEO_FirePanel", source)
+        self.assertIn("GEO_Armament", source)
+        self.assertIn("GEO_BRU", source)
+        self.assertIn("formed forward panel", source.lower())
+        self.assertNotIn('object_from_bmesh("GEO_MPD_L"', source)
+        self.assertNotIn('object_from_bmesh("GEO_MPD_R"', source)
+        self.assertNotIn('build_mpd("GEO_MPD_L"', source)
+        self.assertNotIn('build_mpd("GEO_MPD_R"', source)
+        housing_fn = source.split("def formed_tedac_housing", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("continuous", housing_fn.lower())
+        self.assertIn("inset well", housing_fn.lower())
+        self.assertIn("holes in that one face", housing_fn.lower())
+        self.assertNotIn("_formed_plate", housing_fn)
+        self.assertIn("0.205", housing_fn)
+        self.assertIn("GEO_Dash", housing_fn)
+        self.assertIn("0.848", housing_fn)
+        self.assertIn("0.858", housing_fn)
+        self.assertIn("model21 fail", housing_fn.lower())
+        self.assertIn('object_from_bmesh("GEO_Dash"', housing_fn)
+        after_dash = housing_fn.split('object_from_bmesh("GEO_Dash"', 1)[1]
+        self.assertIn("0.858", after_dash)
+        self.assertIn("clamp_geo_dash_lookout_after_bevel", after_dash)
+        self.assertIn("orient_emit_faces_to_eye", after_dash)
+        self.assertIn("assert_emit_faces_eye", after_dash)
+        self.assertNotIn("0.860", housing_fn)
+        self.assertIn("(0.720, 0.752, 0.784, 0.816, 0.840, 0.848)", housing_fn)
+        self.assertIn("min(z_value, 0.848)", housing_fn)
+        self.assertNotIn("0.542", housing_fn)
+        self.assertNotIn("0.952", housing_fn)
+        self.assertNotIn("0.918", housing_fn)
+        self.assertNotIn("GEO_TEDAC_Housing", housing_fn)
+        self.assertIn("inset_region", housing_fn)
+        emit_assert_fn = source.split("def assert_emit_faces_eye", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("0.55", emit_assert_fn)
+        self.assertIn("alignment", emit_assert_fn)
+        console_fn = source.split("def build_console", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("thin wall", console_fn.lower())
+        self.assertIn("wall deck", console_fn.lower())
+        self.assertIn("MAT_CPG_CanopyGlass", source)
+        self.assertIn("MAT_CPG_CanopyRail", source)
+        self.assertIn("(0.035, 0.038, 0.032, 1.0)", source)
+        self.assertIn("(0.032, 0.026, 0.020, 1.0)", source)
+        self.assertIn("(0.014, 0.011, 0.009, 1.0)", source)
+        self.assertIn("(0.055, 0.062, 0.040, 1.0)", source)
+        self.assertNotIn("(0.18, 0.20, 0.12, 1.0)", source)
+        self.assertIn("(0.58, 0.70, 0.80)", source)
+        self.assertIn("alpha=0.08", source)
+        self.assertNotIn("alpha=0.22", source)
+        self.assertNotIn("(0.22, 0.28, 0.32)", source)
+        self.assertIn("dark interior", source.lower())
+        self.assertNotIn("primitive_cylinder_add", source)
+        self.assertNotIn("primitive_cube_add", source)
+        self.assertNotIn("def add_box", source)
+        self.assertNotIn("import numpy", source)
+        self.assertNotIn("from numpy", source)
+        self.assertNotIn("Render Result", source)
+        self.assertNotIn('empty_display_type = "CROSS"', source)
+        self.assertNotIn("Yak", source)
+        self.assertNotIn("Igla", source)
+        self.assertNotIn("rifle", source.lower())
+        self.assertNotIn("Stage 7B", source)
+        self.assertNotIn("APACHE_CPG_STATION_DETAIL01", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL01", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL02", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL03", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL04", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL05", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL06", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL07", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL08", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL09", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL10", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL11", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL12", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL13", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL14", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL15", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL16", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL17", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL18", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL19", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL20", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL21", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL22", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL23", source)
+        self.assertNotIn("APACHE_CPG_STATION_MODEL24", source)
+        self.assertIn("assert_not_sixty_mesh_kit", source)
+        self.assertIn("still emits 60 meshes", source)
+        emit_fn = source.split("def emit_material", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("if alpha < 1.0:", emit_fn)
+        before_gate, after_gate = emit_fn.split("if alpha < 1.0:", 1)
+        self.assertNotIn("Transmission", before_gate)
+        self.assertNotIn("BLEND", before_gate)
+        self.assertIn("Transmission Weight", after_gate)
+        self.assertIn("BLEND", after_gate)
+        self.assertEqual(supervisor.count("$CyclePath run $AssetId"), 1)
+        self.assertIn("core-apache-cockpit-station-model25", supervisor)
+        self.assertNotIn("core-apache-cockpit-station-model24", supervisor)
+        self.assertIn("OfflineContractTest", supervisor)
+        self.assertIn("ExecuteOnce", supervisor)
+        self.assertIn("StandingAuthority", supervisor)
+        self.assertNotIn("Start-Process", supervisor)
+        self.assertNotIn("blender.exe", supervisor.lower())
+
+        manifest = PIPELINE.load_manifest()
+        by_id = PIPELINE.asset_index(manifest)
+        asset = by_id["core-apache-cockpit-station-model25"]
+        self.assertEqual(asset["status"], "queued")
+        self.assertNotEqual(asset["status"], "ready")
+        self.assertNotEqual(asset["status"], "accepted")
+        self.assertIsNone(asset.get("blocker"))
+        self.assertEqual(asset["lane"], VALIDATOR.APACHE_P0_LANE)
+        self.assertEqual(asset["priority"], 1)
+        self.assertEqual(
+            asset["supersedes_only_after_acceptance"],
+            "core-apache-cockpit-station-model24",
+        )
+        self.assertEqual(
+            asset["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model25.py",
+        )
+        self.assertEqual(
+            asset["worker"]["arguments"],
+            [
+                "--output",
+                "{output_dir}",
+                "--asset-id",
+                "core-apache-cockpit-station-model25",
+            ],
+        )
+        self.assertEqual(asset["worker"]["minimum_renders"], 8)
+        self.assertEqual(
+            asset["worker"]["postflight"]["script"],
+            r"Scripts\adjudicate_ready_blender_asset_attempt_v2.py",
+        )
+        self.assertTrue(asset["worker"]["postflight"]["visual_review_still_required"])
+        self.assertIn("blend", asset["required"])
+        self.assertIn("glb", asset["required"])
+        self.assertIn("6_renders", asset["required"])
+        self.assertIn("cpg_eyepoint_renders", asset["required"])
+        self.assertIn("uvs", asset["required"])
+        self.assertIn("pbr", asset["required"])
+        self.assertIn("pivots", asset["required"])
+        self.assertIn("sockets", asset["required"])
+        self.assertIn("full_resolution_visual_review", asset["required"])
+        self.assertIn("core-apache-cockpit-station-model25", VALIDATOR.APACHE_P0_IDS)
+        self.assertEqual(
+            list(VALIDATOR.APACHE_P0_IDS),
+            [
+                "core-apache-cockpit",
+                "core-apache-cockpit-station-detail01",
+                "core-apache-cockpit-station-model01",
+                "core-apache-cockpit-station-model02",
+                "core-apache-cockpit-station-model03",
+                "core-apache-cockpit-station-model04",
+                "core-apache-cockpit-station-model05",
+                "core-apache-cockpit-station-model06",
+                "core-apache-cockpit-station-model07",
+                "core-apache-cockpit-station-model08",
+                "core-apache-cockpit-station-model09",
+                "core-apache-cockpit-station-model10",
+                "core-apache-cockpit-station-model11",
+                "core-apache-cockpit-station-model12",
+                "core-apache-cockpit-station-model13",
+                "core-apache-cockpit-station-model14",
+                "core-apache-cockpit-station-model15",
+                "core-apache-cockpit-station-model16",
+                "core-apache-cockpit-station-model17",
+                "core-apache-cockpit-station-model18",
+                "core-apache-cockpit-station-model19",
+                "core-apache-cockpit-station-model20",
+                "core-apache-cockpit-station-model21",
+                "core-apache-cockpit-station-model22",
+                "core-apache-cockpit-station-model23",
+                "core-apache-cockpit-station-model24",
+                "core-apache-cockpit-station-model25",
+                "core-apache-30mm",
+                "core-apache-hydra",
+                "core-apache-hellfire",
+                "core-apache-airframe",
+            ],
+        )
+        self.assertEqual(VALIDATOR.apache_p0_contract_errors(manifest), [])
+        self.assertEqual(
+            asset["state_reason"],
+            (
+                "Queued Apache CPG P0 station-model25 method; built from the "
+                "Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 "
+                "Fig 2-8 / 2-14, and the model24 visual fail, not a plate-knob "
+                "pass; not another named mesh on the same 60-mesh cage; stop "
+                "emitting the cage: do not create GEO_CanopyBay_L/R or "
+                "GEO_JointPlate_*; rails/sills/A-pillars/side-bows are one thin "
+                "trim pair (GEO_Rail_L/R) that cannot silhouette three-quarter; "
+                "GEO_CanopyShell_L/R is the closed outer volume with punched "
+                "windows, inset GEO_CanopyPane_* sit in those holes, raked "
+                "GEO_Windshield is the forward pane of that hull; mesh count "
+                "must drop, fail if this method still emits 60 meshes of the "
+                "same family; eye_forward looks through raked windshield / sky "
+                "in the upper two-thirds, TEDAC/dash occupy the lower third, "
+                "not a grey rectangular well — delete GEO_WindshieldFrame / "
+                "shell end-cap / brow faces that form a rectangular tunnel, do "
+                "not just retune the camera or the glass color; GEO_Dash is one "
+                "continuous formed forward panel, TDU and both MPD wells are "
+                "holes in that one face (inset + emit material), do not emit "
+                "GEO_MPD_L / GEO_MPD_R as separate objects; GEO_TEDAC is grips "
+                "+ Fig 45 buttons + crosshair only, sitting on the dash well, "
+                "no standalone emit rectangle in front of the panel; after "
+                "object_from_bmesh, every emit face calls "
+                "orient_emit_faces_to_eye then assert_emit_faces_eye "
+                "(alignment >= 0.55), including GEO_TEDAC and GEO_Dash, so "
+                "finish_mesh bevel cannot leave emit winding at 0.325; "
+                "destacked TDU numbers stay a ceiling; GEO_Dash look-out "
+                "assert and post-bevel clamp stay; raked windshield stations "
+                "stay different YZ trapezoids; glass may occupy the look-out, "
+                "structure may not; do not restore loft_canopy_skin, thicken "
+                "section_along members, or use pipe_along in the greenhouse; "
+                "worker registered; not launched; not ready; does not "
+                "supersede model24 until accepted; visual review still "
+                "required; Unreal import forbidden until accepted."
+            ),
+        )
+
+        ids = [item["id"] for item in manifest["assets"]]
+        self.assertEqual(
+            ids.index("core-apache-cockpit-station-model25"),
+            ids.index("core-apache-cockpit-station-model24") + 1,
+        )
+
+        contracts = PIPELINE.load_json(
+            PIPELINE.PRODUCTION / "ready_blender_output_contracts.json"
+        )["contracts"]
+        contract = contracts["core-apache-cockpit-station-model25"]
+        self.assertEqual(contract["worker_script"], asset["worker"]["script"])
+        self.assertEqual(
+            contract["supervisor_script"],
+            r"Scripts\invoke_core_apache_cockpit_station_model25_once.ps1",
+        )
+        self.assertEqual(contract["blend"], "core-apache-cockpit-station-model25.blend")
+        self.assertEqual(contract["glb"], "core-apache-cockpit-station-model25.glb")
+        self.assertEqual(len(contract["render_groups"]), 1)
+        self.assertEqual(contract["render_groups"][0]["count"], 8)
+        self.assertEqual(contract["render_groups"][0]["width"], 1920)
+        self.assertEqual(contract["render_groups"][0]["height"], 1080)
+        self.assertEqual(
+            contract["required_json"]["artifact_receipt.json"],
+            "skyguard.blender-worker-receipt.v1",
+        )
+        self.assertEqual(contract["minimum_meshes"], 1)
+        check_paths = {item["path"]: item for item in contract["checks"]}
+        self.assertEqual(check_paths["asset_id"]["value"], "core-apache-cockpit-station-model25")
+        self.assertEqual(check_paths["sdk_version"]["value"], "1.0.0")
+        self.assertEqual(
+            check_paths["validation.required_sockets"]["op"],
+            "contains_all",
+        )
+        self.assertEqual(
+            check_paths["validation.required_sockets"]["value"],
+            [
+                "SOCKET_Origin",
+                "SOCKET_CPG_Eye",
+                "SOCKET_TEDAC",
+                "SOCKET_MPD_L",
+                "SOCKET_MPD_R",
+                "SOCKET_Collective",
+                "SOCKET_Cyclic",
+            ],
+        )
+        self.assertEqual(
+            check_paths["eyepoint_renders"]["op"],
+            "contains_all",
+        )
+        self.assertEqual(
+            check_paths["eyepoint_renders"]["value"],
+            ["eye_forward.png", "eye_down_tedac.png"],
+        )
+        for record in contract["authorities"]:
+            path = PIPELINE.ROOT / record["path"].replace("\\", "/")
+            self.assertEqual(record["bytes"], path.stat().st_size, record["path"])
+            self.assertEqual(record["sha256"], PIPELINE.sha256(path), record["path"])
+        self.assertEqual(by_id["core-apache-cockpit"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-detail01"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model01"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model02"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model03"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model04"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model05"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model06"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model07"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model08"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model09"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model10"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model11"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model12"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model13"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model14"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model15"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model16"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model17"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model18"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model19"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model20"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model21"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model22"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model23"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-cockpit-station-model24"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-30mm"]["status"], "queued")
+        self.assertEqual(by_id["core-apache-hydra"]["status"], "queued")
+        self.assertEqual(
+            by_id["core-apache-cockpit-station-model24"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_cockpit_station_model24.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-30mm"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_30mm.py",
+        )
+        self.assertEqual(
+            by_id["core-apache-hydra"]["worker"]["script"],
+            r"Scripts\Workers\worker_core_apache_hydra.py",
+        )
+        self.assertTrue(
+            (
+                PIPELINE.ROOT
+                / "Scripts"
+                / "Workers"
+                / "worker_core_apache_cockpit_station_model24.py"
+            ).is_file()
+        )
+        self.assertTrue(
+            (PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_30mm.py").is_file()
+        )
+        self.assertTrue(
+            (PIPELINE.ROOT / "Scripts" / "Workers" / "worker_core_apache_hydra.py").is_file()
+        )
+        self.assertNotIn("harbor-threat-kit01", by_id)
+        self.assertNotIn("core-radar-van-kit01", by_id)
 
     def test_apache_p0_rejects_phantom_worker_path(self) -> None:
         manifest = copy.deepcopy(PIPELINE.load_manifest())
