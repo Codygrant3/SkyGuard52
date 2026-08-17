@@ -29,6 +29,7 @@ APACHE_P0_IDS = (
     "core-apache-cockpit-station-model15",
     "core-apache-cockpit-station-model16",
     "core-apache-cockpit-station-model17",
+    "core-apache-cockpit-station-model18",
     "core-apache-30mm",
     "core-apache-hydra",
     "core-apache-hellfire",
