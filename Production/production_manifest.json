@@ -691,7 +691,7 @@
         "sockets",
         "full_resolution_visual_review"
       ],
-      "state_reason": "Queued Apache CPG P0 station-model10 method; formed plate greenhouse (sill plates, formed A-pillars, rail caps — not tube sticks); keep glass overhead brow, TEDAC/MPD readability, and model09 bucket seat; worker registered; not launched; not ready; does not supersede model09 until accepted; visual review still required; Unreal import forbidden until accepted."
+      "state_reason": "Queued Apache CPG P0 station-model10 method; formed plate greenhouse (sill plates, formed A-pillars, rail caps \u2014 not tube sticks); keep glass overhead brow, TEDAC/MPD readability, and model09 bucket seat; worker registered; not launched; not ready; does not supersede model09 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
       "id": "core-apache-cockpit-station-model11",
@@ -742,7 +742,7 @@
         "sockets",
         "full_resolution_visual_review"
       ],
-      "state_reason": "Queued Apache CPG P0 station-model11 method; dark formed greenhouse (dark canopy-rail value plus formed joint plates at rail/sill and rail/A-pillar — not a white kit, not tubes); keep glass overhead brow, TEDAC/MPD readability, and model10 bucket seat; worker registered; not launched; not ready; does not supersede model10 until accepted; visual review still required; Unreal import forbidden until accepted."
+      "state_reason": "Queued Apache CPG P0 station-model11 method; dark formed greenhouse (dark canopy-rail value plus formed joint plates at rail/sill and rail/A-pillar \u2014 not a white kit, not tubes); keep glass overhead brow, TEDAC/MPD readability, and model10 bucket seat; worker registered; not launched; not ready; does not supersede model10 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
       "id": "core-apache-cockpit-station-model12",
@@ -1610,6 +1610,57 @@
         "full_resolution_visual_review"
       ],
       "state_reason": "Queued Apache CPG P0 station-model28 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model27 visual fail, not a plate-knob pass; keep model27 assert-path: not another named mesh on the same 60-mesh cage; stop emitting the cage: do not create GEO_CanopyBay_L/R or GEO_JointPlate_*; rails/sills/A-pillars/side-bows are one thin trim pair (GEO_Rail_L/R) that cannot silhouette three-quarter; GEO_CanopyShell_L/R is the closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched outer window openings, inset GEO_CanopyPane_* sit in those holes, raked GEO_Windshield is one pane filling the look-out \u2014 not a 3-sided tunnel and not a pane kit of floating canopy sheets and shell slabs; mesh count must drop, fail if this method still emits 60 meshes of the same family; eye_forward looks through raked windshield / world/sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a dark rectangular well \u2014 drive the world Background shader to sky so the still shows sky through glass, do not just retune transmission or world.color; GEO_Dash is one continuous formed forward panel from dash_panel_outline / dash_well_loops, TDU and both MPD wells are recessed holes in that one face (inset + emit material), not a housing-grid frame in front of two flat cyan screens, do not emit GEO_MPD_L / GEO_MPD_R as separate objects; GEO_TEDAC is grips + Fig 45 buttons + hood only, sitting on the dash well, no standalone emit rectangle in front of the panel; do not call orient_emit_faces_to_eye / assert_emit_faces_eye on GEO_TEDAC; after object_from_bmesh + finish_mesh bevel, GEO_Dash emit faces at index 1 (TDU) and index 2 (MPD) are tagged so they survive the model25 miss and then call orient_emit_faces_to_eye then assert_emit_faces_eye (alignment >= 0.55); destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; panel top <= 0.848; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; shell crown stays |y|>=0.24; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model27 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
+      "id": "core-apache-cockpit-station-model29",
+      "name": "AH-64 CPG station model29 built from plates plus the model28 visual fail",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model28",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model29.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model29"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model29",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model29\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model29 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model28 visual fail, not a plate-knob pass; keep model28 assert-path: not another named mesh on the same 60-mesh cage; stop emitting the cage: do not create GEO_CanopyBay_L/R or GEO_JointPlate_*; rails/sills/A-pillars/side-bows are one thin trim pair (GEO_Rail_L/R) that cannot silhouette three-quarter; GEO_CanopyShell_L/R is the closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched discrete window bays, inset GEO_CanopyPane_* sit in those holes, raked GEO_Windshield fills the look-out from a near column through the four stations \u2014 not a 6-point tube solidified into C-slabs and not a pane kit of floating canopy sheets; mesh count must drop, fail if this method still emits 60 meshes of the same family; eye_forward looks through raked windshield / world/sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a grey rectangular well \u2014 open the forward cabin so opaque side blocks do not box the eyepoint, do not just retune transmission or world.color; GEO_Dash is one continuous formed forward panel from dash_formed_front / dash_well_cavities, TDU and both MPD wells are recessed cavities in that one mesh (inset + emit material), not dash_panel_outline sibling faces in front of two flat cyan screens, do not emit GEO_MPD_L / GEO_MPD_R as separate objects; GEO_TEDAC is grips + Fig 45 buttons + hood only, sitting on the dash well, no standalone emit rectangle in front of the panel; do not call orient_emit_faces_to_eye / assert_emit_faces_eye on GEO_TEDAC; after object_from_bmesh + finish_mesh bevel, GEO_Dash emit faces at index 1 (TDU) and index 2 (MPD) are tagged so they survive the model25 miss and then call orient_emit_faces_to_eye then assert_emit_faces_eye (alignment >= 0.55); destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; panel top <= 0.848; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; shell crown stays |y|>=0.24; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model28 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
       "id": "core-apache-30mm",
