@@ -18,11 +18,13 @@ glass, not a dark grey wall. One continuous formed forward panel
 with TDU and both MPD wells as holes in that one face. GEO_TEDAC
 is grips + Fig 45 buttons + crosshair only, sitting on the dash
 well, no standalone emit rectangle in front of the panel. After
-object_from_bmesh, every emit face calls orient_emit_faces_to_eye
-then assert_emit_faces_eye, including GEO_TEDAC and GEO_Dash, so
-finish_mesh bevel / recalc_face_normals cannot leave emit winding
-at alignment 0.325. Square TDU plus LHG/RHG stay as hardware on
-the dash. TEDAC is not three stacked boxes. Destacked TDU numbers
+object_from_bmesh, every emit face on GEO_Dash calls
+orient_emit_faces_to_eye then assert_emit_faces_eye (TDU index 1,
+MPD index 2), so finish_mesh bevel / recalc_face_normals cannot
+leave emit winding at alignment 0.325. GEO_TEDAC has no emit
+faces; do not orient or assert index 1 on it. Square TDU plus
+LHG/RHG stay as hardware on the dash. TEDAC is not three stacked boxes.
+Destacked TDU numbers
 are a ceiling: go smaller than width 0.118 / depth 0.018 /
 hood 0.010. Raked windshield stations stay different YZ
 trapezoids. Glass may occupy the forward look-out band; frames may
@@ -615,8 +617,6 @@ def assert_emit_faces_eye(obj, emit_index: int, toe: float) -> None:
                 f"(alignment={alignment:.3f})."
             )
     if not found:
-        if obj.name == "GEO_TEDAC":
-            return
         raise WorkerError(f"{obj.name} has no emit-material faces.")
 
 
@@ -1028,13 +1028,13 @@ def _tdu_bezel_button(bm, center, width: float, height: float, depth: float) -> 
 def build_tedac(collection, dark, emit, grip, mark) -> None:
     """One square TDU from DCS Fig 44-45, hardware on the inset dash.
 
-    GEO_TEDAC is grips + Fig 45 buttons + crosshair only, sitting on
+    GEO_TEDAC is grips + Fig 45 buttons + hood only, sitting on
     the dash well. No standalone emit rectangle in front of the panel.
-    TDU emit lives as a hole in GEO_Dash. Left Hand Grip +
-    Right Hand Grip + Fig 45 bezel (TAD/FCR/PNV/G/S, DAY-NT-OFF,
-    LEV/GAIN, SYM/BRT/CON, AZ, four action buttons). Public shapes
-    only. Not a 0.188 cube sitting in front of the panel. No cube
-    body extrusion that reads as a standalone housing.
+    TDU emit and screen markings live as holes / hardware on GEO_Dash.
+    Left Hand Grip + Right Hand Grip + Fig 45 bezel (TAD/FCR/PNV/G/S,
+    DAY-NT-OFF, LEV/GAIN, SYM/BRT/CON, AZ, four action buttons).
+    Public shapes only. Not a 0.188 cube sitting in front of the
+    panel. No cube body extrusion that reads as a standalone housing.
     Shallow destacked well so eye_forward is glass in the upper
     two-thirds, TEDAC/dash in the lower third, not a housing well.
     Destacked TDU numbers are a ceiling: go smaller than 0.118 / 0.018
@@ -1042,7 +1042,6 @@ def build_tedac(collection, dark, emit, grip, mark) -> None:
     """
     bmesh = bmesh_module()
     bm = bmesh.new()
-    add_screen_markings(bm, TEDAC, (0.096, 0.090), 0.008, 0.0, 3)
     add_explicit_hood(bm, TEDAC, 0.096, 0.090, (0.072, 0.068), 0.0, hood=0.006, body_index=0)
     # Fig 45 top video buttons: TAD, FCR, PNV, G/S. On the dash bezel, not a cube lid.
     for y_value, _label in (
@@ -1082,8 +1081,6 @@ def build_tedac(collection, dark, emit, grip, mark) -> None:
     spin_bulb(bm, left_grip[-1], (0.15, -0.35, -0.9), 0.017, 0.030, material_index=2)
     spin_bulb(bm, right_grip[-1], (0.15, 0.35, -0.9), 0.017, 0.030, material_index=2)
     obj = object_from_bmesh("GEO_TEDAC", bm, collection, [dark, emit, grip, mark])
-    orient_emit_faces_to_eye(obj, 1, 0.0)
-    assert_emit_faces_eye(obj, 1, 0.0)
     assert_hood_geometry(obj, TEDAC, 0.0)
 
 
@@ -1998,7 +1995,7 @@ def assert_windshield_fills_lookout(collection) -> None:
 
 
 def assert_tedac_readable_from_eye(collection) -> None:
-    """GEO_TEDAC keeps emit faces; dash shelf cannot cover TEDAC from the eye."""
+    """GEO_Dash keeps TDU emit faces; dash shelf cannot cover TEDAC from the eye."""
     tedac = None
     dash = None
     for obj in collection.all_objects:

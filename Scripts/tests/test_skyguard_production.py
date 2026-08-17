@@ -11653,7 +11653,7 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn("hood=0.038", tedac_fn)
         self.assertNotIn("formed_bezel", tedac_fn)
         self.assertNotIn("emit_well(", tedac_fn)
-        self.assertIn("add_screen_markings", tedac_fn)
+        self.assertNotIn("add_screen_markings", tedac_fn)
         self.assertIn("add_explicit_hood", tedac_fn)
         self.assertNotIn("width=0.118", tedac_fn)
         self.assertNotIn("depth=0.018", tedac_fn)
@@ -11661,17 +11661,9 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("well_depth=0.008", tedac_fn)
         self.assertIn("hood=0.006", tedac_fn)
         after_tedac_obj = tedac_fn.split('object_from_bmesh("GEO_TEDAC"', 1)[1]
-        self.assertIn("orient_emit_faces_to_eye(obj, 1, 0.0)", after_tedac_obj)
-        self.assertIn("assert_emit_faces_eye(obj, 1, 0.0)", after_tedac_obj)
+        self.assertNotIn("orient_emit_faces_to_eye", after_tedac_obj)
+        self.assertNotIn("assert_emit_faces_eye", after_tedac_obj)
         self.assertIn("assert_hood_geometry", after_tedac_obj)
-        self.assertLess(
-            after_tedac_obj.find("orient_emit_faces_to_eye(obj, 1, 0.0)"),
-            after_tedac_obj.find("assert_emit_faces_eye(obj, 1, 0.0)"),
-        )
-        self.assertLess(
-            after_tedac_obj.find("assert_emit_faces_eye(obj, 1, 0.0)"),
-            after_tedac_obj.find("assert_hood_geometry"),
-        )
         self.assertIn("hardware on the inset dash", tedac_fn.lower())
         self.assertIn("not a housing well", tedac_fn.lower())
         self.assertIn("lower third", tedac_fn.lower())
@@ -11684,6 +11676,8 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn('object_from_bmesh("GEO_MPD_R"', source)
         self.assertNotIn('build_mpd("GEO_MPD_L"', source)
         self.assertNotIn('build_mpd("GEO_MPD_R"', source)
+        asset_fn = source.split("def build_asset", 1)[1].split("\ndef ", 1)[0]
+        self.assertNotIn("build_mpd(", asset_fn)
         housing_fn = source.split("def formed_tedac_housing", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("continuous", housing_fn.lower())
         self.assertIn("inset well", housing_fn.lower())
@@ -11695,11 +11689,22 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("0.858", housing_fn)
         self.assertIn("model21 fail", housing_fn.lower())
         self.assertIn('object_from_bmesh("GEO_Dash"', housing_fn)
+        self.assertIn("add_screen_markings", housing_fn)
         after_dash = housing_fn.split('object_from_bmesh("GEO_Dash"', 1)[1]
         self.assertIn("0.858", after_dash)
         self.assertIn("clamp_geo_dash_lookout_after_bevel", after_dash)
-        self.assertIn("orient_emit_faces_to_eye", after_dash)
-        self.assertIn("assert_emit_faces_eye", after_dash)
+        self.assertIn("orient_emit_faces_to_eye(obj, 1, 0.0)", after_dash)
+        self.assertIn("assert_emit_faces_eye(obj, 1, 0.0)", after_dash)
+        self.assertIn("orient_emit_faces_to_eye(obj, 2, 0.0)", after_dash)
+        self.assertIn("assert_emit_faces_eye(obj, 2, 0.0)", after_dash)
+        self.assertLess(
+            after_dash.find("orient_emit_faces_to_eye(obj, 1, 0.0)"),
+            after_dash.find("assert_emit_faces_eye(obj, 1, 0.0)"),
+        )
+        self.assertLess(
+            after_dash.find("orient_emit_faces_to_eye(obj, 2, 0.0)"),
+            after_dash.find("assert_emit_faces_eye(obj, 2, 0.0)"),
+        )
         self.assertNotIn("0.860", housing_fn)
         self.assertIn("(0.720, 0.752, 0.784, 0.816, 0.840, 0.848)", housing_fn)
         self.assertIn("min(z_value, 0.848)", housing_fn)
