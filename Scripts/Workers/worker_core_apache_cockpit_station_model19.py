@@ -7,14 +7,13 @@ TM-1-1520-238-10 Fig 2-8, and the model18 visual fail, not a
 plate-knob pass. Glass may occupy the forward look-out band; frames
 may not. GEO_Windshield fills the look-out from the CPG eye. Side
 panes match bay window z. One formed forward panel with inset TDU
-    and MPD wells. TEDAC is not three stacked boxes. Square TDU plus
-    LHG/RHG stay. Keep model18 layout
-sockets, glass overhead brow, dash z<=0.86, TEDAC green emit, MPD
-emit-face fix, and the model14-18 bucket seat. Dark interior, dark
-rail, olive, and non-white glass stay. Do not restore a draped
-canopy skin. Do not thicken section_along members. No tube sweep in
-the greenhouse. Real bmesh only. Public layout only. Outputs go
-only to --output.
+and MPD wells. TEDAC is not three stacked boxes. Square TDU plus
+LHG/RHG stay. Keep model18 layout sockets, glass overhead brow,
+dash z<=0.86, TEDAC green emit, MPD emit-face fix, and the
+model14-18 bucket seat. Dark interior, dark rail, olive, and
+non-white glass stay. Do not restore a draped canopy skin. Do not
+thicken section_along members. No tube sweep in the greenhouse.
+Real bmesh only. Public layout only. Outputs go only to --output.
 """
 
 from pathlib import Path
@@ -1427,6 +1426,34 @@ def loft_canopy_fill(collection, material, name: str, y_sign: float, xs) -> None
     object_from_bmesh(name, bm, collection, [material])
 
 
+def windshield_lookout_stations():
+    """4-point rings through the look-out. Not a 2-vertex ribbon or x>0.85 slab."""
+    half_y = 0.198
+    z_bottom = 1.052
+    z_top = 1.348
+    stations = []
+    for x_value in (0.55, 0.65, 0.75, 0.86):
+        stations.append(
+            (
+                (x_value, -half_y, z_bottom),
+                (x_value, half_y, z_bottom),
+                (x_value, half_y, z_top),
+                (x_value, -half_y, z_top),
+            )
+        )
+    return stations
+
+
+def windshield_frame_plates():
+    """Thick black frame only on the edges, out of the structure-forbidden band."""
+    return (
+        (0.54, 0.87, -0.248, -0.200, 1.018, 1.370),
+        (0.54, 0.87, 0.200, 0.248, 1.018, 1.370),
+        (0.54, 0.87, -0.248, 0.248, 1.018, 1.048),
+        (0.54, 0.87, -0.248, 0.248, 1.362, 1.390),
+    )
+
+
 def loft_forward_windshield(collection, glass, rail) -> None:
     """Formed pane through the look-out. Glass may occupy the band; frames may not.
 
@@ -1437,38 +1464,25 @@ def loft_forward_windshield(collection, glass, rail) -> None:
     """
     bmesh = bmesh_module()
     glass_bm = bmesh.new()
-    # Raked formed pane: near-bottom at x=0.55, far-top at x=0.86.
-    stations = (
-        (0.55, 1.05),
-        (0.65, 1.15),
-        (0.75, 1.26),
-        (0.86, 1.36),
-    )
     columns = []
-    for x_value, z_value in stations:
-        ring = [
-            (x_value, -0.198, z_value),
-            (x_value, 0.198, z_value),
-        ]
+    for ring in windshield_lookout_stations():
         columns.append([glass_bm.verts.new(point) for point in ring])
     for col in range(len(columns) - 1):
-        glass_bm.faces.new(
-            (
-                columns[col][0],
-                columns[col + 1][0],
-                columns[col + 1][1],
-                columns[col][1],
+        for row in range(len(columns[0]) - 1):
+            glass_bm.faces.new(
+                (
+                    columns[col][row],
+                    columns[col + 1][row],
+                    columns[col + 1][row + 1],
+                    columns[col][row + 1],
+                )
             )
-        )
     bmesh.ops.solidify(glass_bm, geom=list(glass_bm.faces), thickness=0.008)
     object_from_bmesh("GEO_Windshield", glass_bm, collection, [glass])
 
-    # Thick black frame only on the edges, out of the structure-forbidden band.
     frame = bmesh.new()
-    _formed_plate(frame, 0.54, 0.87, -0.248, -0.200, 1.040, 1.370)
-    _formed_plate(frame, 0.54, 0.87, 0.200, 0.248, 1.040, 1.370)
-    _formed_plate(frame, 0.54, 0.62, -0.248, 0.248, 1.020, 1.050)
-    _formed_plate(frame, 0.78, 0.87, -0.248, 0.248, 1.360, 1.390)
+    for plate in windshield_frame_plates():
+        _formed_plate(frame, *plate)
     object_from_bmesh("GEO_WindshieldFrame", frame, collection, [rail])
 
 
@@ -1496,9 +1510,9 @@ def build_wiper(collection, rail) -> None:
 def loft_overhead_brow(collection, material) -> None:
     """Lofted overhead glass sheet and short forward brow connecting rail-L to rail-R.
 
-    Uses the canopy glass material so eye_forward stays an open look-out.
-    Crown stays at z >= 1.36 so the look-out box
-    (0.2 <= x <= 0.85, |y| < 0.20, 1.05 <= z <= 1.35) stays empty.
+    Uses the canopy glass material so eye_forward looks through framed glass.
+    Crown stays at z >= 1.36. Canopy glass may occupy the look-out band;
+    this brow stays a glass sheet, not a frame.
     Sides meet the rails outboard (|y| >= 0.20). Enclosure sheet, not sticks.
     """
     bmesh = bmesh_module()
@@ -1837,6 +1851,35 @@ def _is_lookout_glass(name: str) -> bool:
     return name.startswith(LOOKOUT_GLASS_PREFIX)
 
 
+def _is_lookout_structure(name: str) -> bool:
+    """Rails, sills, frames, wiper, dash, and TEDAC housing stay forbidden."""
+    for token in LOOKOUT_STRUCTURE_FORBIDDEN:
+        if name == token or name.startswith(token):
+            return True
+    return False
+
+
+def lookout_near_eye_hit(x: float, y: float, z: float) -> bool:
+    return 0.0 <= x < 0.22 and abs(y) < 0.12 and abs(z - 1.18) < 0.10
+
+
+def lookout_band_hit(x: float, y: float, z: float) -> bool:
+    return 0.2 <= x <= 0.85 and abs(y) < 0.20 and 1.05 <= z <= 1.35
+
+
+def lookout_point_allowed(name: str, x: float, y: float, z: float) -> bool:
+    """Glass may occupy the look-out band. Structure may not. Near-eye is empty."""
+    if lookout_near_eye_hit(x, y, z):
+        return False
+    if lookout_band_hit(x, y, z):
+        if _is_lookout_glass(name):
+            return True
+        if _is_lookout_structure(name):
+            return False
+        return False
+    return True
+
+
 def assert_lookout_clear(collection) -> None:
     """Near-eye cone stays empty for all meshes. Look-out band allows canopy glass only.
 
@@ -1851,13 +1894,13 @@ def assert_lookout_clear(collection) -> None:
             continue
         for vert in obj.data.vertices:
             world = obj.matrix_world @ vert.co
-            if 0.0 <= world.x < 0.22 and abs(world.y) < 0.12 and abs(world.z - 1.18) < 0.10:
+            if lookout_near_eye_hit(world.x, world.y, world.z):
                 raise WorkerError(
                     f"{obj.name} intersects the near forward look-out cone at "
                     f"({world.x:.3f}, {world.y:.3f}, {world.z:.3f})."
                 )
-            if 0.2 <= world.x <= 0.85 and abs(world.y) < 0.20 and 1.05 <= world.z <= 1.35:
-                if _is_lookout_glass(obj.name):
+            if lookout_band_hit(world.x, world.y, world.z):
+                if lookout_point_allowed(obj.name, world.x, world.y, world.z):
                     continue
                 raise WorkerError(
                     f"{obj.name} intersects the forward look-out band at "
@@ -1876,11 +1919,23 @@ def assert_windshield_fills_lookout(collection) -> None:
         raise WorkerError("GEO_Windshield is missing.")
     xs = []
     in_band = 0
+    low_z = 0
+    high_z = 0
+    left_y = 0
+    right_y = 0
     for vert in windshield.data.vertices:
         world = windshield.matrix_world @ vert.co
         xs.append(world.x)
-        if 0.2 <= world.x <= 0.85 and abs(world.y) < 0.20 and 1.05 <= world.z <= 1.35:
+        if lookout_band_hit(world.x, world.y, world.z):
             in_band += 1
+            if world.z <= 1.08:
+                low_z += 1
+            if world.z >= 1.32:
+                high_z += 1
+            if world.y <= -0.16:
+                left_y += 1
+            if world.y >= 0.16:
+                right_y += 1
     if min(xs) > 0.56:
         raise WorkerError(
             f"GEO_Windshield does not start in the look-out (min x={min(xs):.3f})."
@@ -1889,9 +1944,17 @@ def assert_windshield_fills_lookout(collection) -> None:
         raise WorkerError(
             f"GEO_Windshield does not reach the far look-out (max x={max(xs):.3f})."
         )
-    if in_band < 4:
+    if in_band < 8:
         raise WorkerError(
             "GEO_Windshield does not occupy the forward look-out band."
+        )
+    if low_z < 2 or high_z < 2:
+        raise WorkerError(
+            "GEO_Windshield does not span z 1.05-1.36 in the look-out."
+        )
+    if left_y < 2 or right_y < 2:
+        raise WorkerError(
+            "GEO_Windshield does not span |y| <= 0.20 in the look-out."
         )
 
 

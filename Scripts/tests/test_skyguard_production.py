@@ -26,6 +26,17 @@ assert VALIDATOR_SPEC and VALIDATOR_SPEC.loader
 VALIDATOR = importlib.util.module_from_spec(VALIDATOR_SPEC)
 VALIDATOR_SPEC.loader.exec_module(VALIDATOR)
 
+MODEL19_WORKER_PATH = (
+    TEST_DIR.parent / "Workers" / "worker_core_apache_cockpit_station_model19.py"
+)
+MODEL19_SPEC = importlib.util.spec_from_file_location(
+    "worker_core_apache_cockpit_station_model19",
+    MODEL19_WORKER_PATH,
+)
+assert MODEL19_SPEC and MODEL19_SPEC.loader
+MODEL19_WORKER = importlib.util.module_from_spec(MODEL19_SPEC)
+MODEL19_SPEC.loader.exec_module(MODEL19_WORKER)
+
 
 class ProductionPipelineTests(unittest.TestCase):
     def test_sha256_and_atomic_json(self) -> None:
@@ -7146,9 +7157,9 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("eye_down_tedac.png", source)
         self.assertIn("SOCKET_CPG_Eye", source)
         self.assertIn("(0.42, 0.55, 0.62)", source)
-        self.assertIn("0.2 <= world.x <= 0.85", source)
-        self.assertIn("abs(world.y) < 0.20", source)
-        self.assertIn("1.05 <= world.z <= 1.35", source)
+        self.assertIn("0.2 <= x <= 0.85", source)
+        self.assertIn("abs(y) < 0.20", source)
+        self.assertIn("1.05 <= z <= 1.35", source)
         lookout_fn = source.split("def assert_lookout_clear", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("LOOKOUT_GLASS_ALLOWED", source)
         self.assertIn("LOOKOUT_STRUCTURE_FORBIDDEN", source)
@@ -7156,15 +7167,91 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("GEO_CanopyPane_", lookout_fn)
         self.assertIn("GEO_OverheadBrow", lookout_fn)
         self.assertIn("GEO_ForwardBrow", lookout_fn)
-        self.assertIn("_is_lookout_glass", lookout_fn)
+        self.assertIn("_is_lookout_glass", source)
+        self.assertIn("lookout_point_allowed", lookout_fn)
         self.assertIn("GEO_WindshieldFrame", lookout_fn)
         self.assertIn("GEO_Wiper", lookout_fn)
         self.assertIn("GEO_Rail_", lookout_fn)
         self.assertIn("GEO_Sill_", lookout_fn)
         self.assertIn("GEO_APillar_", lookout_fn)
         self.assertIn("GEO_TEDAC", lookout_fn)
-        self.assertIn("0.0 <= world.x < 0.22", lookout_fn)
+        self.assertIn("lookout_near_eye_hit", lookout_fn)
+        self.assertIn("0.0 <= x < 0.22", source)
+        self.assertIn("abs(y) < 0.12", source)
+        self.assertIn("abs(z - 1.18) < 0.10", source)
         self.assertIn("canopy glass only", lookout_fn.lower())
+        self.assertTrue(MODEL19_WORKER._is_lookout_glass("GEO_Windshield"))
+        self.assertTrue(MODEL19_WORKER._is_lookout_glass("GEO_CanopyPane_L"))
+        self.assertTrue(MODEL19_WORKER._is_lookout_glass("GEO_OverheadBrow"))
+        self.assertTrue(MODEL19_WORKER._is_lookout_glass("GEO_ForwardBrow"))
+        for structure_name in (
+            "GEO_Rail_L",
+            "GEO_Sill_R",
+            "GEO_APillar_L",
+            "GEO_SideBow_R",
+            "GEO_JointPlate_01",
+            "GEO_CanopyBay_L",
+            "GEO_WindshieldFrame",
+            "GEO_Wiper",
+            "GEO_DashShelf",
+            "GEO_TEDAC",
+        ):
+            self.assertTrue(MODEL19_WORKER._is_lookout_structure(structure_name), structure_name)
+            self.assertFalse(MODEL19_WORKER._is_lookout_glass(structure_name), structure_name)
+            self.assertFalse(
+                MODEL19_WORKER.lookout_point_allowed(structure_name, 0.60, 0.0, 1.20),
+                structure_name,
+            )
+        self.assertTrue(
+            MODEL19_WORKER.lookout_point_allowed("GEO_Windshield", 0.60, 0.0, 1.20)
+        )
+        self.assertTrue(
+            MODEL19_WORKER.lookout_point_allowed("GEO_CanopyPane_R", 0.40, 0.10, 1.18)
+        )
+        self.assertFalse(
+            MODEL19_WORKER.lookout_point_allowed("GEO_Windshield", 0.10, 0.0, 1.18)
+        )
+        self.assertFalse(
+            MODEL19_WORKER.lookout_point_allowed("GEO_CanopyPane_L", 0.10, 0.0, 1.18)
+        )
+        stations = MODEL19_WORKER.windshield_lookout_stations()
+        self.assertEqual(len(stations), 4)
+        for ring in stations:
+            self.assertEqual(len(ring), 4)
+            xs = [point[0] for point in ring]
+            ys = [point[1] for point in ring]
+            zs = [point[2] for point in ring]
+            self.assertGreaterEqual(min(xs), 0.55)
+            self.assertLessEqual(max(xs), 0.86)
+            self.assertLessEqual(min(ys), -0.16)
+            self.assertGreaterEqual(max(ys), 0.16)
+            self.assertLessEqual(min(zs), 1.08)
+            self.assertGreaterEqual(max(zs), 1.32)
+            for point in ring:
+                self.assertTrue(
+                    MODEL19_WORKER.lookout_point_allowed("GEO_Windshield", *point),
+                    point,
+                )
+                if MODEL19_WORKER.lookout_band_hit(*point):
+                    self.assertFalse(
+                        MODEL19_WORKER.lookout_point_allowed(
+                            "GEO_WindshieldFrame", *point
+                        ),
+                        point,
+                    )
+        for plate in MODEL19_WORKER.windshield_frame_plates():
+            x0, x1, y0, y1, z0, z1 = plate
+            for corner in (
+                (x0, y0, z0),
+                (x1, y0, z0),
+                (x1, y1, z0),
+                (x0, y1, z0),
+                (x0, y0, z1),
+                (x1, y0, z1),
+                (x1, y1, z1),
+                (x0, y1, z1),
+            ):
+                self.assertFalse(MODEL19_WORKER.lookout_band_hit(*corner), corner)
         windshield_fn = source.split("def loft_forward_windshield", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("0.55", windshield_fn)
         self.assertIn("0.86", windshield_fn)
@@ -7172,6 +7259,16 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertNotIn("0.872", windshield_fn)
         self.assertNotIn("0.886", windshield_fn)
         self.assertIn("look through", windshield_fn.lower())
+        self.assertIn("windshield_lookout_stations()", windshield_fn)
+        self.assertIn("windshield_frame_plates()", windshield_fn)
+        fill_fn = source.split("def assert_windshield_fills_lookout", 1)[1].split(
+            "\ndef ", 1
+        )[0]
+        self.assertIn("low_z", fill_fn)
+        self.assertIn("high_z", fill_fn)
+        self.assertIn("left_y", fill_fn)
+        self.assertIn("right_y", fill_fn)
+        self.assertIn("span z 1.05-1.36", fill_fn)
         self.assertIn("def assert_windshield_fills_lookout", source)
         self.assertIn("assert_windshield_fills_lookout(asset_collection)", source)
         self.assertIn("add_explicit_hood", source)
