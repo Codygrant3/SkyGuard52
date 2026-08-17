@@ -13768,14 +13768,47 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("def dash_panel_outline", source)
         self.assertIn("def shell_window_opening", source)
         pane_grid = MODEL28_WORKER.windshield_pane_grid()
-        self.assertGreaterEqual(len(pane_grid), 4)
-        self.assertGreaterEqual(len(pane_grid[0]), 4)
-        for row in pane_grid:
-            for point in row:
-                self.assertTrue(
-                    MODEL28_WORKER.lookout_point_allowed("GEO_Windshield", *point),
-                    point,
-                )
+        stations = MODEL28_WORKER.windshield_lookout_stations()
+        self.assertEqual(len(pane_grid), 4)
+        self.assertEqual(len(pane_grid[0]), 4)
+        self.assertEqual(pane_grid, stations)
+        pane_fn = source.split("def windshield_pane_grid", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("windshield_lookout_stations()", pane_fn)
+        self.assertNotIn("stations[-1]", pane_fn)
+        live_verts = [point for column in pane_grid for point in column]
+        self.assertEqual(len(live_verts), 16)
+        xs = [point[0] for point in live_verts]
+        in_band = 0
+        near_eye = 0
+        low_z = 0
+        high_z = 0
+        left_y = 0
+        right_y = 0
+        for point in live_verts:
+            self.assertTrue(
+                MODEL28_WORKER.lookout_point_allowed("GEO_Windshield", *point),
+                point,
+            )
+            if MODEL28_WORKER.lookout_near_eye_hit(*point):
+                near_eye += 1
+            if MODEL28_WORKER.lookout_band_hit(*point):
+                in_band += 1
+                if point[2] <= 1.08:
+                    low_z += 1
+                if point[2] >= 1.32:
+                    high_z += 1
+                if point[1] <= -0.16:
+                    left_y += 1
+                if point[1] >= 0.16:
+                    right_y += 1
+        self.assertLessEqual(min(xs), 0.56)
+        self.assertGreaterEqual(max(xs), 0.84)
+        self.assertGreaterEqual(in_band, 8)
+        self.assertEqual(near_eye, 0)
+        self.assertGreaterEqual(low_z, 2)
+        self.assertGreaterEqual(high_z, 2)
+        self.assertGreaterEqual(left_y, 2)
+        self.assertGreaterEqual(right_y, 2)
         render_fn = source.split("def render_eyepoint_views", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("ensure_eyepoint_sky(scene)", render_fn)
         self.assertNotIn("if row == 3 and window_punch", source)

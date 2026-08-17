@@ -1732,50 +1732,15 @@ def windshield_frame_plates():
 
 
 def windshield_pane_grid():
-    """Single raked pane filling the look-out opening.
+    """All four look-out stations as columns.
 
-    Not a 3-sided tunnel of perimeter walls. Each (u,v) sample sits
-    on the raked trapezoid so eye_forward looks through glass to
-    world/sky. Stations stay the assert-path YZ trapezoids.
+    loft_forward_windshield emits these 16 verts. Not a near/far
+    blend that reuses the sill-to-brow parameter for rake: that
+    ribbon missed the near brow at x=0.55 and the far sill at
+    x=0.86, so assert_windshield_fills_lookout dies on the live
+    verts. Stations stay the model27 assert-path YZ trapezoids.
     """
-    stations = windshield_lookout_stations()
-    near = stations[0]
-    far = stations[-1]
-
-    def _trap(ring, u, v):
-        sill = (
-            ring[0][0] + (ring[1][0] - ring[0][0]) * u,
-            ring[0][1] + (ring[1][1] - ring[0][1]) * u,
-            ring[0][2] + (ring[1][2] - ring[0][2]) * u,
-        )
-        brow = (
-            ring[3][0] + (ring[2][0] - ring[3][0]) * u,
-            ring[3][1] + (ring[2][1] - ring[3][1]) * u,
-            ring[3][2] + (ring[2][2] - ring[3][2]) * u,
-        )
-        return (
-            sill[0] + (brow[0] - sill[0]) * v,
-            sill[1] + (brow[1] - sill[1]) * v,
-            sill[2] + (brow[2] - sill[2]) * v,
-        )
-
-    rows = []
-    for iv in range(4):
-        v = iv / 3.0
-        row = []
-        for iu in range(4):
-            u = iu / 3.0
-            p0 = _trap(near, u, v)
-            p1 = _trap(far, u, v)
-            row.append(
-                (
-                    p0[0] + (p1[0] - p0[0]) * v,
-                    p0[1] + (p1[1] - p0[1]) * v,
-                    p0[2] + (p1[2] - p0[2]) * v,
-                )
-            )
-        rows.append(tuple(row))
-    return tuple(rows)
+    return windshield_lookout_stations()
 
 
 def loft_forward_windshield(collection, glass, rail) -> None:
@@ -1789,9 +1754,10 @@ def loft_forward_windshield(collection, glass, rail) -> None:
     faces formed the rectangular tunnel around the look-out. Not a
     grey rectangular well. model27 visual fail: a 3-sided tunnel of
     perimeter walls left the eye looking into an enclosed dark volume
-    with no world/sky. Fill the opening as one raked pane via
-    windshield_pane_grid(). Not a grey rectangular well, not an
-    opaque grey slab / opaque pane wall. Do not solidify.
+    with no world/sky. loft_forward_windshield emits the four
+    windshield_lookout_stations() columns from windshield_pane_grid()
+    so the live verts fill x 0.55-0.86. Not a grey rectangular well,
+    not an opaque grey slab / opaque pane wall. Do not solidify.
     """
     glass_bm = bmesh_module().new()
     columns = []
