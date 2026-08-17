@@ -2270,8 +2270,8 @@
       "authorities": [
         {
           "path": "Scripts\\Workers\\worker_core_apache_cockpit_station_model29.py",
-          "bytes": 90351,
-          "sha256": "7d5135def18d930cbc4878e292760ab2acc00afc0f6f931158617380d2459a35"
+          "bytes": 90481,
+          "sha256": "4ec93e5c139f958cde865df46ec7350a73ccebe908787f8d7e8a56db81ad8c80"
         },
         {
           "path": "Scripts\\invoke_core_apache_cockpit_station_model29_once.ps1",

@@ -15291,7 +15291,7 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertEqual(asset["priority"], 1)
         self.assertEqual(
             asset["supersedes_only_after_acceptance"],
-            "core-apache-cockpit-station-model27",
+            "core-apache-cockpit-station-model28",
         )
         self.assertEqual(
             asset["worker"]["script"],
@@ -15354,7 +15354,7 @@ class ProductionPipelineTests(unittest.TestCase):
                 "core-apache-cockpit-station-model25",
                 "core-apache-cockpit-station-model26",
                 "core-apache-cockpit-station-model27",
-                "core-apache-cockpit-station-model29",
+                "core-apache-cockpit-station-model28",
                 "core-apache-cockpit-station-model29",
                 "core-apache-30mm",
                 "core-apache-hydra",

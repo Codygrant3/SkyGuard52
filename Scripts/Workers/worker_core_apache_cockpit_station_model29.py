@@ -1664,8 +1664,9 @@ def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> Non
     """Closed hull that owns the three-quarter silhouette.
 
     Closed outer volume: sill-in, belly, rail-out, crown, back to
-    sill-in. Discrete punched window bays on the outer skin hold
-    inset GEO_CanopyPane_* via shell_window_opening. Not a pane kit
+    sill-in.     Discrete punched window bays on the outer skin hold
+    inset GEO_CanopyPane_* via shell_window_opening. Each outer window
+    is a bay hole, not one giant punch. Not a pane kit
     of floating canopy sheets and shell slabs. model28 visual fail:
     a 6-point tube + solidify + one giant window_punch left hollow
     C-shaped slabs and an inner wall that boxed the eyepoint.
@@ -1694,6 +1695,7 @@ def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> Non
     ring_len = len(columns[0])
     inner_row = ring_len - 1
     bays = shell_window_bays()
+    # cabin_inner_y flares the live rings; do not box the eyepoint.
     for col in range(len(columns) - 1):
         mid_x = 0.5 * (xs[col] + xs[col + 1])
         opening = shell_window_opening(mid_x, y_sign)
@@ -1809,8 +1811,8 @@ def loft_forward_windshield(collection, glass, rail) -> None:
     eyepoint so four-station glass never read as look-out.
     loft_forward_windshield emits windshield_pane_grid() so the
     live verts include the near column and the four stations.
-    Not a grey rectangular well, not an opaque grey slab / opaque
-    pane wall. Do not solidify.
+    Not a grey rectangular well, not an opaque grey slab / opaque pane wall.
+    Do not solidify.
     """
     glass_bm = bmesh_module().new()
     columns = []
