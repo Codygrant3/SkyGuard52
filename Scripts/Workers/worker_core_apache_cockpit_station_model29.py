@@ -1920,9 +1920,8 @@ def loft_forward_windshield(collection, glass, rail) -> None:
     eyepoint so four-station glass never read as look-out.
     loft_forward_windshield emits windshield_pane_grid() so the
     live verts include the near column, the mid station, and the
-    four stations. Not a grey rectangular well, not an opaque grey
-    slab / opaque pane wall. Do not solidify the pane into a
-    closed box.
+    four stations. Not a grey rectangular well, not an opaque grey slab / opaque pane wall.
+    Do not solidify the pane into a closed box.
     """
     glass_bm = bmesh_module().new()
 
