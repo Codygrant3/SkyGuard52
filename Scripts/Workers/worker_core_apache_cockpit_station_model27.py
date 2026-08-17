@@ -1895,20 +1895,8 @@ def build_greenhouse(collection, rail, glass, plate) -> None:
     # Hull owns the silhouette. Inset glass panes sit in punched openings
     # only — do not drape a milky sheet. Do not emit bay or joint-plate
     # cage members.
-    loft_canopy_shell(
-        collection,
-        plate,
-        "GEO_CanopyShell_L",
-        -1.0,
-        (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76),
-    )
-    loft_canopy_shell(
-        collection,
-        plate,
-        "GEO_CanopyShell_R",
-        1.0,
-        (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76),
-    )
+    loft_canopy_shell(collection, plate, "GEO_CanopyShell_L", -1.0, (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76))
+    loft_canopy_shell(collection, plate, "GEO_CanopyShell_R", 1.0, (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76))
     loft_canopy_pane(
         collection,
         glass,
