@@ -1561,6 +1561,57 @@
       "state_reason": "Queued Apache CPG P0 station-model27 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model26 visual fail, not a plate-knob pass; keep model26 assert-path: not another named mesh on the same 60-mesh cage; stop emitting the cage: do not create GEO_CanopyBay_L/R or GEO_JointPlate_*; rails/sills/A-pillars/side-bows are one thin trim pair (GEO_Rail_L/R) that cannot silhouette three-quarter; GEO_CanopyShell_L/R is the closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched windows, inset GEO_CanopyPane_* sit in those holes, raked GEO_Windshield is the forward pane of that hull \u2014 not a pane kit of floating canopy sheets and shell slabs; mesh count must drop, fail if this method still emits 60 meshes of the same family; eye_forward looks through raked windshield / sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a grey rectangular well and not an opaque pane wall \u2014 delete or punch the opaque grey slab that fills the glass, do not just retune the camera or the glass color; GEO_Dash is one continuous formed forward panel, TDU and both MPD wells are recessed holes in that one face (inset + emit material), not a grey bezel rectangle sitting in front of two flat cyan screens, do not emit GEO_MPD_L / GEO_MPD_R as separate objects; GEO_TEDAC is grips + Fig 45 buttons + hood only, sitting on the dash well, no standalone emit rectangle in front of the panel; do not call orient_emit_faces_to_eye / assert_emit_faces_eye on GEO_TEDAC; after object_from_bmesh + finish_mesh bevel, GEO_Dash emit faces at index 1 (TDU) and index 2 (MPD) are tagged so they survive the model25 miss (housing-grid face centers at y=\u00b10.05) and then call orient_emit_faces_to_eye then assert_emit_faces_eye (alignment >= 0.55); destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; housing grid top <= 0.848; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model26 until accepted; visual review still required; Unreal import forbidden until accepted."
     },
     {
+      "id": "core-apache-cockpit-station-model28",
+      "name": "AH-64 CPG station model28 built from plates plus the model27 visual fail",
+      "lane": "P0-apache-cpg-hero-slice",
+      "owner": "blender",
+      "quality": "hero",
+      "priority": 1,
+      "status": "queued",
+      "blocker": null,
+      "supersedes_only_after_acceptance": "core-apache-cockpit-station-model27",
+      "existing": [
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\apache_cpg_station_detail01.blend",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\build_cpg_station_detail.py",
+        "Blender\\APACHE_CPG_STATION_DETAIL01\\exports\\apache_cpg_station_detail01.glb"
+      ],
+      "worker": {
+        "script": "Scripts\\Workers\\worker_core_apache_cockpit_station_model28.py",
+        "arguments": [
+          "--output",
+          "{output_dir}",
+          "--asset-id",
+          "core-apache-cockpit-station-model28"
+        ],
+        "minimum_renders": 8,
+        "postflight": {
+          "script": "Scripts\\adjudicate_ready_blender_asset_attempt_v2.py",
+          "arguments": [
+            "--asset-id",
+            "core-apache-cockpit-station-model28",
+            "--attempt-dir",
+            "{attempt_dir}",
+            "--report",
+            "Saved\\Reports\\ReadyBlenderPostflight\\core-apache-cockpit-station-model28\\{attempt_id}.json"
+          ],
+          "mandatory_after_automatic_controller_pass": true,
+          "visual_review_still_required": true
+        }
+      },
+      "required": [
+        "blend",
+        "glb",
+        "6_renders",
+        "cpg_eyepoint_renders",
+        "uvs",
+        "pbr",
+        "pivots",
+        "sockets",
+        "full_resolution_visual_review"
+      ],
+      "state_reason": "Queued Apache CPG P0 station-model28 method; built from the Dutch MoD AH-64D CPG plate, DCS Fig 43-45, TM-1-1520-238-10 Fig 2-8 / 2-14, and the model27 visual fail, not a plate-knob pass; keep model27 assert-path: not another named mesh on the same 60-mesh cage; stop emitting the cage: do not create GEO_CanopyBay_L/R or GEO_JointPlate_*; rails/sills/A-pillars/side-bows are one thin trim pair (GEO_Rail_L/R) that cannot silhouette three-quarter; GEO_CanopyShell_L/R is the closed outer volume (sill-in, belly, rail-out, crown, back to sill-in) with punched outer window openings, inset GEO_CanopyPane_* sit in those holes, raked GEO_Windshield is one pane filling the look-out \u2014 not a 3-sided tunnel and not a pane kit of floating canopy sheets and shell slabs; mesh count must drop, fail if this method still emits 60 meshes of the same family; eye_forward looks through raked windshield / world/sky in the upper two-thirds, TEDAC/dash occupy the lower third, not a dark rectangular well \u2014 drive the world Background shader to sky so the still shows sky through glass, do not just retune transmission or world.color; GEO_Dash is one continuous formed forward panel from dash_panel_outline / dash_well_loops, TDU and both MPD wells are recessed holes in that one face (inset + emit material), not a housing-grid frame in front of two flat cyan screens, do not emit GEO_MPD_L / GEO_MPD_R as separate objects; GEO_TEDAC is grips + Fig 45 buttons + hood only, sitting on the dash well, no standalone emit rectangle in front of the panel; do not call orient_emit_faces_to_eye / assert_emit_faces_eye on GEO_TEDAC; after object_from_bmesh + finish_mesh bevel, GEO_Dash emit faces at index 1 (TDU) and index 2 (MPD) are tagged so they survive the model25 miss and then call orient_emit_faces_to_eye then assert_emit_faces_eye (alignment >= 0.55); destacked TDU numbers stay a ceiling; GEO_Dash look-out assert and post-bevel clamp stay; panel top <= 0.848; raked windshield stations stay different YZ trapezoids; glass may occupy the look-out, structure may not; shell crown stays |y|>=0.24; do not restore loft_canopy_skin, thicken section_along members, or use pipe_along in the greenhouse; worker registered; not launched; not ready; does not supersede model27 until accepted; visual review still required; Unreal import forbidden until accepted."
+    },
+    {
       "id": "core-apache-30mm",
       "name": "Apache 30 mm chin gun",
       "lane": "P0-apache-cpg-hero-slice",
