@@ -1521,42 +1521,52 @@ def loft_canopy_bay(collection, material, name: str, y_sign: float, xs) -> None:
     object_from_bmesh(name, bm, collection, [material])
 
 
-def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> None:
-    """Closed hull that owns the three-quarter silhouette.
+SHELL_STATION_XS = (
+    -0.28,
+    -0.20,
+    -0.10,
+    0.00,
+    0.08,
+    0.18,
+    0.28,
+    0.38,
+    0.48,
+    0.56,
+    0.64,
+    0.70,
+    0.76,
+)
 
-    Closed outer volume: sill-in, belly, rail-out, crown, back to
-    sill-in. Punched window openings hold inset GEO_CanopyPane_*.
-    Not a pane kit of floating canopy sheets and shell slabs.
-    crown_y sits near centerline so L/R hulls own the crown
-    silhouette; inset panes sit in the punched side holes only.
-    Rails, sills, and A-pillars stay thin trim on this hull. Not
-    another fill plate on the same section_along cage. Not a draped
-    canopy skin. Not model17 plate knobs. Raked GEO_Windshield is the
-    forward pane of that hull.
+
+def _lerp_shell_poly(samples, x_value):
+    if x_value <= samples[0][0]:
+        return samples[0][1], samples[0][2]
+    if x_value >= samples[-1][0]:
+        return samples[-1][1], samples[-1][2]
+    for left, right in zip(samples, samples[1:]):
+        if left[0] <= x_value <= right[0]:
+            span = right[0] - left[0]
+            blend = 0.0 if span == 0 else (x_value - left[0]) / span
+            return (
+                left[1] + (right[1] - left[1]) * blend,
+                left[2] + (right[2] - left[2]) * blend,
+            )
+    return samples[-1][1], samples[-1][2]
+
+
+def canopy_shell_station_rings(xs, y_sign: float):
+    """Live GEO_CanopyShell stations. Crown stays outboard of the look-out.
+
+    Closed 4-point hull: sill-in, belly, rail-out, crown, back to
+    sill-in. crown_y = inner_y so |y| >= 0.24. GEO_CanopyShell is
+    LOOKOUT_STRUCTURE_FORBIDDEN; assert_lookout_clear walks verts.
+    A crown at |y|=0.02 (model27 first pass) put 7 look-out-band
+    hits and 1 near-eye hit. Glass occupies the band. The hull owns
+    three-quarter outboard of that opening, not by crossing it.
     """
-    bmesh = bmesh_module()
-    bm = bmesh.new()
     lookout_half = 0.20
     inner_y = max(0.24, lookout_half)
-    crown_y = 0.02
-    shell_depth = 0.022
-    window_punch = (-0.12, 0.70)
-
-    def _lerp_poly(samples, x_value):
-        if x_value <= samples[0][0]:
-            return samples[0][1], samples[0][2]
-        if x_value >= samples[-1][0]:
-            return samples[-1][1], samples[-1][2]
-        for left, right in zip(samples, samples[1:]):
-            if left[0] <= x_value <= right[0]:
-                span = right[0] - left[0]
-                blend = 0.0 if span == 0 else (x_value - left[0]) / span
-                return (
-                    left[1] + (right[1] - left[1]) * blend,
-                    left[2] + (right[2] - left[2]) * blend,
-                )
-        return samples[-1][1], samples[-1][2]
-
+    crown_y = inner_y
     sill_samples = (
         (-0.22, 0.418, 0.955),
         (0.04, 0.420, 0.952),
@@ -1573,27 +1583,52 @@ def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> Non
         (0.60, 0.420, 1.14),
         (0.76, 0.416, 1.07),
     )
-
-    columns = []
+    rings = []
     for x_value in xs:
-        sill_y, sill_z = _lerp_poly(sill_samples, x_value)
-        rail_y, rail_z = _lerp_poly(rail_samples, x_value)
+        _sill_y, sill_z = _lerp_shell_poly(sill_samples, x_value)
+        rail_y, rail_z = _lerp_shell_poly(rail_samples, x_value)
         mid_z = 0.5 * (sill_z + rail_z)
-        y_outer = max(sill_y, rail_y) + 0.028
+        y_outer = max(_sill_y, rail_y) + 0.028
         y_belly = y_outer + 0.022
         crown_z = max(rail_z + 0.012, 1.08)
-        # Closed 4-point hull: sill-in, belly, rail-out, crown, then
-        # back to sill-in. crown_y is near centerline so the hull owns
-        # three-quarter, not a pane kit of floating canopy sheets.
-        # Punch the inboard wall for window openings.
-        columns.append(
-            [
-                bm.verts.new((x_value, y_sign * inner_y, sill_z)),
-                bm.verts.new((x_value, y_sign * y_belly, mid_z)),
-                bm.verts.new((x_value, y_sign * y_outer, rail_z)),
-                bm.verts.new((x_value, y_sign * crown_y, crown_z)),
-            ]
+        rings.append(
+            (
+                (x_value, y_sign * inner_y, sill_z),
+                (x_value, y_sign * y_belly, mid_z),
+                (x_value, y_sign * y_outer, rail_z),
+                (x_value, y_sign * crown_y, crown_z),
+            )
         )
+    return tuple(rings)
+
+
+def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> None:
+    """Closed hull that owns the three-quarter silhouette.
+
+    Closed outer volume: sill-in, belly, rail-out, crown, back to
+    sill-in. Punched window openings hold inset GEO_CanopyPane_*.
+    Not a pane kit of floating canopy sheets and shell slabs.
+    crown_y = inner_y so the hull stays |y| >= 0.24, outboard of
+    the look-out. Glass (GEO_Windshield / GEO_OverheadBrow /
+    GEO_ForwardBrow / GEO_CanopyPane_*) occupies the band. Do not
+    put GEO_CanopyShell verts in lookout_band_hit or
+    lookout_near_eye_hit. Rails, sills, and A-pillars stay thin
+    trim on this hull. Not another fill plate on the same
+    section_along cage. Not a draped canopy skin. Not model17
+    plate knobs. Raked GEO_Windshield is the forward pane of that
+    hull.
+    """
+    bmesh = bmesh_module()
+    bm = bmesh.new()
+    lookout_half = 0.20
+    inner_y = max(0.24, lookout_half)
+    crown_y = inner_y
+    shell_depth = 0.022
+    window_punch = (-0.12, 0.70)
+
+    columns = []
+    for ring in canopy_shell_station_rings(xs, y_sign):
+        columns.append([bm.verts.new(point) for point in ring])
     for col in range(len(columns) - 1):
         mid_x = 0.5 * (xs[col] + xs[col + 1])
         for row in range(4):
@@ -1895,8 +1930,8 @@ def build_greenhouse(collection, rail, glass, plate) -> None:
     # Hull owns the silhouette. Inset glass panes sit in punched openings
     # only — do not drape a milky sheet. Do not emit bay or joint-plate
     # cage members.
-    loft_canopy_shell(collection, plate, "GEO_CanopyShell_L", -1.0, (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76))
-    loft_canopy_shell(collection, plate, "GEO_CanopyShell_R", 1.0, (-0.28, -0.20, -0.10, 0.00, 0.08, 0.18, 0.28, 0.38, 0.48, 0.56, 0.64, 0.70, 0.76))
+    loft_canopy_shell(collection, plate, "GEO_CanopyShell_L", -1.0, SHELL_STATION_XS)
+    loft_canopy_shell(collection, plate, "GEO_CanopyShell_R", 1.0, SHELL_STATION_XS)
     loft_canopy_pane(
         collection,
         glass,

@@ -13118,6 +13118,29 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertIn("not a pane kit", shell_body.lower())
         self.assertIn("floating canopy sheets", shell_body.lower())
         self.assertIn("crown_y", shell_body)
+        self.assertIn("crown_y = inner_y", shell_body)
+        self.assertNotIn("crown_y = 0.02", shell_body)
+        self.assertIn("SHELL_STATION_XS", greenhouse)
+        self.assertIn("canopy_shell_station_rings", shell_body)
+        self.assertGreaterEqual(len(MODEL27_WORKER.SHELL_STATION_XS), 7)
+        for y_sign in (-1.0, 1.0):
+            rings = MODEL27_WORKER.canopy_shell_station_rings(
+                MODEL27_WORKER.SHELL_STATION_XS,
+                y_sign,
+            )
+            self.assertEqual(len(rings), len(MODEL27_WORKER.SHELL_STATION_XS))
+            for ring in rings:
+                self.assertEqual(len(ring), 4)
+                for point in ring:
+                    self.assertFalse(
+                        MODEL27_WORKER.lookout_band_hit(*point),
+                        point,
+                    )
+                    self.assertFalse(
+                        MODEL27_WORKER.lookout_near_eye_hit(*point),
+                        point,
+                    )
+                    self.assertGreaterEqual(abs(point[1]), 0.24, point)
         self.assertIn("sill-in", shell_body)
         self.assertIn("belly", shell_body)
         self.assertIn("rail-out", shell_body)
