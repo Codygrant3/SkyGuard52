@@ -1626,9 +1626,9 @@ def loft_canopy_shell(collection, material, name: str, y_sign: float, xs) -> Non
     """Closed hull that owns the three-quarter silhouette.
 
     Closed outer volume: sill-in, belly, rail-out, crown, back to
-    sill-in. Punched outer window openings hold inset GEO_CanopyPane_*
-    via shell_window_opening. Not a pane kit of floating canopy
-    sheets and shell slabs. model27 visual fail: skipping the inner
+    sill-in. Punched window openings on the outer skin hold inset GEO_CanopyPane_*
+    via shell_window_opening. Not a pane kit of floating canopy sheets
+    and shell slabs. model27 visual fail: skipping the inner
     face (row == 3) left a slab, not a closed hull. Keep the inner
     wall; punch the outer window. crown_y = inner_y so the hull
     stays |y| >= 0.24, outboard of the look-out. Glass
