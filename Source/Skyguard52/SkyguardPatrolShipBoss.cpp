@@ -7,7 +7,19 @@
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
-#include "UObject/ConstructorHelpers.h"
+#include "UObject/SoftObjectPath.h"
+
+namespace SkyguardPatrolShipBossPrivate
+{
+	void BindMeshIfEmpty(UStaticMeshComponent* Component, UStaticMesh* Mesh)
+	{
+		if (!Component || Component->GetStaticMesh() || !Mesh)
+		{
+			return;
+		}
+		Component->SetStaticMesh(Mesh);
+	}
+}
 
 ASkyguardPatrolShipBoss::ASkyguardPatrolShipBoss()
 {
@@ -16,58 +28,87 @@ ASkyguardPatrolShipBoss::ASkyguardPatrolShipBoss()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(
-		TEXT("/Engine/BasicShapes/Cube.Cube"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cylinder(
-		TEXT("/Engine/BasicShapes/Cylinder.Cylinder"));
-	UStaticMesh* CubeMesh = Cube.Succeeded() ? Cube.Object : nullptr;
-	UStaticMesh* CylMesh = Cylinder.Succeeded() ? Cylinder.Object : nullptr;
-
-	Hull = MakePart(TEXT("Hull"), CubeMesh);
+	Hull = MakePart(TEXT("Hull"));
 	Hull->SetRelativeScale3D(FVector(22.f, 6.4f, 3.6f));
 	Hull->SetRelativeLocation(FVector(0.f, 0.f, 180.f));
 
-	Superstructure = MakePart(TEXT("Superstructure"), CubeMesh);
+	Superstructure = MakePart(TEXT("Superstructure"));
 	Superstructure->SetRelativeScale3D(FVector(6.f, 4.2f, 3.2f));
 	Superstructure->SetRelativeLocation(FVector(-280.f, 0.f, 420.f));
 
-	SearchRadar = MakePart(TEXT("SearchRadar"), CylMesh);
+	SearchRadar = MakePart(TEXT("SearchRadar"));
 	SearchRadar->SetRelativeScale3D(FVector(2.4f, 2.4f, 0.18f));
 	SearchRadar->SetRelativeLocation(FVector(-280.f, 0.f, 620.f));
 
-	MissileBank = MakePart(TEXT("MissileBank"), CubeMesh);
+	MissileBank = MakePart(TEXT("MissileBank"));
 	MissileBank->SetRelativeScale3D(FVector(3.2f, 2.2f, 1.1f));
 	MissileBank->SetRelativeLocation(FVector(220.f, 0.f, 320.f));
 
-	Ciws = MakePart(TEXT("CIWS"), CylMesh);
+	Ciws = MakePart(TEXT("CIWS"));
 	Ciws->SetRelativeScale3D(FVector(0.8f, 0.8f, 1.4f));
 	Ciws->SetRelativeLocation(FVector(620.f, 0.f, 340.f));
 
-	Engines = MakePart(TEXT("Engines"), CubeMesh);
+	Engines = MakePart(TEXT("Engines"));
 	Engines->SetRelativeScale3D(FVector(3.4f, 5.4f, 2.2f));
 	Engines->SetRelativeLocation(FVector(-820.f, 0.f, 200.f));
 
-	DroneDeck = MakePart(TEXT("DroneDeck"), CubeMesh);
+	DroneDeck = MakePart(TEXT("DroneDeck"));
 	DroneDeck->SetRelativeScale3D(FVector(5.5f, 5.8f, 0.35f));
 	DroneDeck->SetRelativeLocation(FVector(80.f, 0.f, 370.f));
 
 	Tags.AddUnique(TEXT("Skyguard.PatrolShip"));
 }
 
-UStaticMeshComponent* ASkyguardPatrolShipBoss::MakePart(
-	const TCHAR* Name,
-	UStaticMesh* Mesh)
+UStaticMeshComponent* ASkyguardPatrolShipBoss::MakePart(const TCHAR* Name)
 {
 	UStaticMeshComponent* Part =
 		CreateDefaultSubobject<UStaticMeshComponent>(Name);
 	Part->SetupAttachment(Root);
 	Part->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	Part->SetCollisionResponseToAllChannels(ECR_Block);
-	if (Mesh)
-	{
-		Part->SetStaticMesh(Mesh);
-	}
 	return Part;
+}
+
+void ASkyguardPatrolShipBoss::BeginPlay()
+{
+	Super::BeginPlay();
+	BindPresentation();
+}
+
+FSkyguardMeshBindSlot ASkyguardPatrolShipBoss::MakeHullBindSlot()
+{
+	FSkyguardMeshBindSlot Slot;
+	Slot.SlotId = TEXT("PatrolShip.Hull");
+	Slot.ProxyFallback = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+		TEXT("/Engine/BasicShapes/Cube.Cube")));
+	Slot.Notes = TEXT(
+		"Preferred empty. ProxyFallback=engine Cube. No Harbor kit ship Preferred fill.");
+	return Slot;
+}
+
+void ASkyguardPatrolShipBoss::BindPresentation()
+{
+	using namespace SkyguardPatrolShipBossPrivate;
+
+	if (UStaticMesh* HullMesh =
+		USkyguardRuntimeMeshCatalog::ResolveSlot(MakeHullBindSlot()))
+	{
+		BindMeshIfEmpty(Hull, HullMesh);
+		BindMeshIfEmpty(Superstructure, HullMesh);
+		BindMeshIfEmpty(MissileBank, HullMesh);
+		BindMeshIfEmpty(Engines, HullMesh);
+		BindMeshIfEmpty(DroneDeck, HullMesh);
+	}
+
+	FSkyguardMeshBindSlot CylinderSlot;
+	CylinderSlot.ProxyFallback = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+		TEXT("/Engine/BasicShapes/Cylinder.Cylinder")));
+	if (UStaticMesh* CylinderMesh =
+		USkyguardRuntimeMeshCatalog::ResolveSlot(CylinderSlot))
+	{
+		BindMeshIfEmpty(SearchRadar, CylinderMesh);
+		BindMeshIfEmpty(Ciws, CylinderMesh);
+	}
 }
 
 void ASkyguardPatrolShipBoss::Tick(const float DeltaSeconds)
