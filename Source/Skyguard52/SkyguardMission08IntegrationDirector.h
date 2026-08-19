@@ -197,6 +197,8 @@ public:
 
 	static const FSkyguardStormRainBeatKit& GetStormRainBeatKit();
 	bool ApplyStormRainPlayContract(ASkyguardGunner* InGunner) const;
+	ESkyguardStormRainBeatKind GetStormRainBeatKind() const;
+	void TickStormRainBeatKit(float ElapsedSeconds);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Mission08")
 	TObjectPtr<USceneComponent> Root;
@@ -282,6 +284,8 @@ private:
 	int32 RemainingThreatsInWave = 0;
 	int32 ObservedBossWeakPointsDestroyed = 0;
 	int32 RejectedWeaponReleases = 0;
+	int32 StormRainBeatIndex = 0;
+	float StormRainBeatElapsed = 0.f;
 	float RescueAnimationSeconds = 0.f;
 	bool bInitialized = false;
 	bool bSortieLaunched = false;
