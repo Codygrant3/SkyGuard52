@@ -157,6 +157,57 @@ bool FSkyguardCpgHudCountsForwardThreatTest::RunTest(const FString& Parameters)
 		}
 	}
 	TestTrue(TEXT("armor mark is labeled ARM"), bFoundArmor);
+	FSkyguardCpgContactMark ArmorMark;
+	for (const FSkyguardCpgContactMark& Mark : Marks)
+	{
+		if (Mark.Label == TEXT("ARM"))
+		{
+			ArmorMark = Mark;
+			break;
+		}
+	}
+	TestTrue(TEXT("armor mark carries BoundsRadius"), ArmorMark.BoundsRadius > 0.f);
+
+	const FSkyguardCpgHudSnapshot Projected = Gunner->BuildCpgHudSnapshot();
+	TestTrue(
+		TEXT("snapshot projects the forward armor onto the sight"),
+		Projected.SightMarks.Num() >= 1);
+	bool bProjectedArmor = false;
+	for (const FSkyguardCpgProjectedSightMark& Sight : Projected.SightMarks)
+	{
+		if (Sight.Label != TEXT("ARM"))
+		{
+			continue;
+		}
+		bProjectedArmor = true;
+		TestTrue(TEXT("snapshot armor is in front of the CPG eye"), Sight.Project.bInFront);
+		TestTrue(
+			TEXT("forward armor sits near glass center"),
+			FMath::Abs(Sight.Project.Ndc.X) < 0.45f &&
+				FMath::Abs(Sight.Project.Ndc.Y) < 0.45f);
+		FSkyguardCpgSightEyeProject Recheck;
+		TestTrue(
+			TEXT("snapshot reuses the eye-projection helper"),
+			SkyguardCpgProjectWorldToEye(
+				ArmorMark.WorldLocation,
+				ArmorMark.BoundsRadius,
+				Projected.EyeLocation,
+				Projected.EyeRotation,
+				SkyguardCpgHorizontalFovToVertical(
+					Projected.EyeFovDegrees,
+					Projected.EyeAspectRatio),
+				Projected.EyeAspectRatio,
+				Recheck));
+		TestEqual(
+			TEXT("snapshot Ndc X matches the helper"),
+			Sight.Project.Ndc.X,
+			Recheck.Ndc.X);
+		TestEqual(
+			TEXT("snapshot Ndc Y matches the helper"),
+			Sight.Project.Ndc.Y,
+			Recheck.Ndc.Y);
+	}
+	TestTrue(TEXT("snapshot includes an ARM sight mark"), bProjectedArmor);
 
 	World->DestroyWorld(false);
 	return true;
@@ -236,6 +287,216 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	TestFalse(
 		TEXT("after-flare tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(After));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCpgSightProjectsBoundsRadiusToGlassTest,
+	"Skyguard52.Apache.CpgSight.ProjectsBoundsRadiusToGlass",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCpgSightProjectsBoundsRadiusToGlassTest::RunTest(const FString& Parameters)
+{
+	const FVector EyeLocation = FVector::ZeroVector;
+	const FRotator EyeRotation = FRotator::ZeroRotator;
+	const float Fov = 90.f;
+	const float Aspect = 1.f;
+	const FVector2D AbsMin(100.f, 50.f);
+	const FVector2D AbsMax(2020.f, 1130.f);
+	const FVector2D LocalSize(1920.f, 1080.f);
+
+	FSkyguardCpgSightEyeProject Ahead;
+	TestTrue(
+		TEXT("a point on the eye axis is in front"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(1000.f, 0.f, 0.f),
+			100.f,
+			EyeLocation,
+			EyeRotation,
+			Fov,
+			Aspect,
+			Ahead));
+	TestTrue(TEXT("ahead mark is in front"), Ahead.bInFront);
+	TestEqual(TEXT("ahead Ndc X is glass center"), Ahead.Ndc.X, 0.f);
+	TestEqual(TEXT("ahead Ndc Y is glass center"), Ahead.Ndc.Y, 0.f);
+	TestEqual(TEXT("BoundsRadius 100 at 1000cm and 90fov is 0.1 Ndc"), Ahead.RadiusNdc, 0.1f);
+
+	FSkyguardCpgSightEyeProject Right;
+	TestTrue(
+		TEXT("a point to the right of the eye projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(1000.f, 200.f, 0.f),
+			50.f,
+			EyeLocation,
+			EyeRotation,
+			Fov,
+			Aspect,
+			Right));
+	TestTrue(TEXT("right mark is in front"), Right.bInFront);
+	TestEqual(TEXT("right mark Ndc X is +0.2"), Right.Ndc.X, 0.2f);
+	TestEqual(TEXT("right mark Ndc Y stays centered"), Right.Ndc.Y, 0.f);
+	TestTrue(TEXT("smaller BoundsRadius is a smaller glass mark"), Right.RadiusNdc < Ahead.RadiusNdc);
+
+	FSkyguardCpgSightEyeProject Up;
+	TestTrue(
+		TEXT("a point above the eye projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(1000.f, 0.f, 200.f),
+			50.f,
+			EyeLocation,
+			EyeRotation,
+			Fov,
+			Aspect,
+			Up));
+	TestEqual(TEXT("up mark Ndc Y is +0.2"), Up.Ndc.Y, 0.2f);
+
+	FSkyguardCpgSightEyeProject Behind;
+	TestFalse(
+		TEXT("a point behind the eye is rejected"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(-400.f, 0.f, 0.f),
+			80.f,
+			EyeLocation,
+			EyeRotation,
+			Fov,
+			Aspect,
+			Behind));
+	TestFalse(TEXT("behind mark is not in front"), Behind.bInFront);
+
+	const FVector2D CenterAbs = SkyguardCpgEyeNdcToAbsolute(Ahead.Ndc, AbsMin, AbsMax);
+	TestEqual(TEXT("center Ndc maps to glass absolute center X"), CenterAbs.X, 1060.f);
+	TestEqual(TEXT("center Ndc maps to glass absolute center Y"), CenterAbs.Y, 590.f);
+
+	const FVector2D CenterLocal = SkyguardCpgAbsoluteToLocal(
+		CenterAbs,
+		AbsMin,
+		LocalSize,
+		AbsMax);
+	TestEqual(TEXT("AbsoluteToLocal puts the mark on glass center X"), CenterLocal.X, 960.f);
+	TestEqual(TEXT("AbsoluteToLocal puts the mark on glass center Y"), CenterLocal.Y, 540.f);
+
+	const float AbsRadius = SkyguardCpgEyeRadiusToAbsolute(Ahead.RadiusNdc, AbsMin, AbsMax);
+	TestEqual(TEXT("0.1 Ndc radius is 108 absolute px on 1080 glass"), AbsRadius, 108.f);
+	const FVector2D EdgeLocal = SkyguardCpgAbsoluteToLocal(
+		CenterAbs + FVector2D(AbsRadius, 0.f),
+		AbsMin,
+		LocalSize,
+		AbsMax);
+	TestEqual(
+		TEXT("AbsoluteToLocal preserves BoundsRadius size on the glass"),
+		FVector2D::Distance(CenterLocal, EdgeLocal),
+		108.f);
+
+	ASkyguardGunner* Gunner = NewObject<ASkyguardGunner>();
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Gunner)
+	{
+		return false;
+	}
+	const FSkyguardCpgHudSnapshot Snap = Gunner->BuildCpgHudSnapshot();
+	TestEqual(
+		TEXT("snapshot eye FOV matches the CPG getter"),
+		Snap.EyeFovDegrees,
+		Gunner->GetCpgEyeFovDegrees());
+	TestEqual(
+		TEXT("snapshot eye aspect matches the CPG getter"),
+		Snap.EyeAspectRatio,
+		Gunner->GetCpgEyeAspectRatio());
+	TestTrue(TEXT("CPG eye FOV is a real sight FOV"), Snap.EyeFovDegrees > 1.f);
+	TestTrue(TEXT("CPG eye aspect is positive"), Snap.EyeAspectRatio > 0.05f);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCpgSightConvertsHorizontalFovAtWideAspectTest,
+	"Skyguard52.Apache.CpgSight.ConvertsHorizontalFovAtWideAspect",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCpgSightConvertsHorizontalFovAtWideAspectTest::RunTest(
+	const FString& Parameters)
+{
+	const FVector EyeLocation = FVector::ZeroVector;
+	const FRotator EyeRotation = FRotator::ZeroRotator;
+	const float HorizontalFov = 90.f;
+	const float Aspect = 16.f / 9.f;
+	const float Depth = 1000.f;
+	const float BoundsRadius = 100.f;
+	const float VerticalFov = SkyguardCpgHorizontalFovToVertical(HorizontalFov, Aspect);
+	TestTrue(
+		TEXT("16:9 HFOV 90 converts to a narrower vertical FOV"),
+		VerticalFov > 1.f && VerticalFov < HorizontalFov);
+
+	const float TanHalfH = FMath::Tan(FMath::DegreesToRadians(HorizontalFov * 0.5f));
+	const float TanHalfV = FMath::Tan(FMath::DegreesToRadians(VerticalFov * 0.5f));
+	TestTrue(
+		TEXT("vertical half-angle is tan(H/2)/aspect"),
+		FMath::IsNearlyEqual(TanHalfV, TanHalfH / Aspect, 1.e-4f));
+
+	FSkyguardCpgSightEyeProject Ahead;
+	TestTrue(
+		TEXT("axis point still projects at 16:9"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, 0.f, 0.f),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			Ahead));
+	TestTrue(
+		TEXT("+X projects to NDC (0,0) at 16:9"),
+		FMath::IsNearlyEqual(Ahead.Ndc.X, 0.f) && FMath::IsNearlyEqual(Ahead.Ndc.Y, 0.f));
+
+	FSkyguardCpgSightEyeProject HorizontalEdge;
+	TestTrue(
+		TEXT("horizontal FOV-edge point projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, Depth * TanHalfH, 0.f),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			HorizontalEdge));
+	TestTrue(
+		TEXT("HFOV edge lands at NDC X = +1 after H to V conversion"),
+		FMath::IsNearlyEqual(HorizontalEdge.Ndc.X, 1.f, 1.e-4f));
+
+	FSkyguardCpgSightEyeProject WrongConvention;
+	SkyguardCpgProjectWorldToEye(
+		FVector(Depth, Depth * TanHalfH, 0.f),
+		BoundsRadius,
+		EyeLocation,
+		EyeRotation,
+		HorizontalFov,
+		Aspect,
+		WrongConvention);
+	TestTrue(
+		TEXT("raw camera HFOV treated as vertical misses the HFOV edge"),
+		!FMath::IsNearlyEqual(WrongConvention.Ndc.X, 1.f, 1.e-3f));
+
+	FSkyguardCpgSightEyeProject VerticalEdge;
+	TestTrue(
+		TEXT("vertical FOV-edge point projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, 0.f, Depth * TanHalfV),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			VerticalEdge));
+	TestTrue(
+		TEXT("derived VFOV edge lands at NDC Y = +1"),
+		FMath::IsNearlyEqual(VerticalEdge.Ndc.Y, 1.f, 1.e-4f));
+
+	const float ExpectedRadiusNdc = BoundsRadius / (Depth * TanHalfV);
+	TestTrue(
+		TEXT("RadiusNdc uses the vertical half-angle, not raw HFOV"),
+		FMath::IsNearlyEqual(Ahead.RadiusNdc, ExpectedRadiusNdc, 1.e-4f));
+	TestTrue(
+		TEXT("RadiusNdc is not the raw-horizontal 90-deg scale"),
+		!FMath::IsNearlyEqual(Ahead.RadiusNdc, BoundsRadius / (Depth * TanHalfH), 1.e-3f));
 	return true;
 }
 

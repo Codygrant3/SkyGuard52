@@ -2,8 +2,6 @@
 
 #include "SkyguardCpgHud.h"
 #include "SkyguardGunner.h"
-#include "Engine/World.h"
-#include "GameFramework/PlayerController.h"
 #include "Rendering/DrawElements.h"
 #include "Rendering/SlateLayoutTransform.h"
 #include "Styling/CoreStyle.h"
@@ -17,9 +15,11 @@ void USkyguardCpgSightHud::NativeTick(const FGeometry& MyGeometry, const float I
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	ASkyguardGunner* Live = Gunner.Get();
-	Marks.Reset();
 	if (!Live)
 	{
+		Cached = FSkyguardCpgHudSnapshot();
+		HeadingTape.Reset();
+		bSight = false;
 		return;
 	}
 	Cached = Live->BuildCpgHudSnapshot();
@@ -30,41 +30,6 @@ void USkyguardCpgSightHud::NativeTick(const FGeometry& MyGeometry, const float I
 		(Center + 357) % 360,
 		Center,
 		(Center + 3) % 360);
-
-	APlayerController* PC = Cast<APlayerController>(Live->GetController());
-	if (!PC && Live->GetWorld())
-	{
-		PC = Live->GetWorld()->GetFirstPlayerController();
-	}
-	if (!PC)
-	{
-		return;
-	}
-
-	TArray<FSkyguardCpgContactMark> WorldMarks;
-	Live->CollectCpgContactMarks(WorldMarks);
-	for (const FSkyguardCpgContactMark& WorldMark : WorldMarks)
-	{
-		FVector2D Screen;
-		if (!PC->ProjectWorldLocationToScreen(WorldMark.WorldLocation, Screen, true))
-		{
-			continue;
-		}
-		FScreenMark Mark;
-		Mark.Screen = Screen;
-		Mark.Label = WorldMark.Label;
-		Mark.bLocked = WorldMark.bLocked;
-		Mark.bSeeking = WorldMark.bSeeking;
-		const float Dist = FVector::Dist(
-			Live->GetActorLocation(),
-			WorldMark.WorldLocation);
-		Mark.Size = FMath::Clamp(22000.f / FMath::Max(Dist, 400.f) * 36.f, 18.f, 72.f);
-		if (WorldMark.bSeeking)
-		{
-			Mark.Size *= FMath::Lerp(1.35f, 0.85f, WorldMark.LockAlpha);
-		}
-		Marks.Add(Mark);
-	}
 }
 
 int32 USkyguardCpgSightHud::NativePaint(
@@ -200,11 +165,46 @@ int32 USkyguardCpgSightHud::NativePaint(
 			Green);
 	}
 
-	for (const FScreenMark& Mark : Marks)
+	const FVector2D AbsMin = AllottedGeometry.LocalToAbsolute(FVector2D::ZeroVector);
+	const FVector2D AbsMax = AllottedGeometry.LocalToAbsolute(Size);
+	for (const FSkyguardCpgContactMark& WorldMark : Cached.ContactMarks)
 	{
-		const FLinearColor Color = Mark.bLocked ? Lock : (Mark.bSeeking ? Seek : Green);
-		const float Half = Mark.Size * 0.5f;
-		const FVector2D P = Mark.Screen;
+		FSkyguardCpgSightEyeProject Projected;
+		if (!SkyguardCpgProjectWorldToEye(
+				WorldMark.WorldLocation,
+				WorldMark.BoundsRadius,
+				Cached.EyeLocation,
+				Cached.EyeRotation,
+				SkyguardCpgHorizontalFovToVertical(
+					Cached.EyeFovDegrees,
+					Cached.EyeAspectRatio),
+				Cached.EyeAspectRatio,
+				Projected) ||
+			!Projected.bInFront)
+		{
+			continue;
+		}
+		const FVector2D Absolute = SkyguardCpgEyeNdcToAbsolute(
+			Projected.Ndc,
+			AbsMin,
+			AbsMax);
+		const FVector2D P = AllottedGeometry.AbsoluteToLocal(Absolute);
+		const float AbsRadius = SkyguardCpgEyeRadiusToAbsolute(
+			Projected.RadiusNdc,
+			AbsMin,
+			AbsMax);
+		const FVector2D Edge = AllottedGeometry.AbsoluteToLocal(
+			Absolute + FVector2D(AbsRadius, 0.f));
+		float MarkSize = FVector2D::Distance(P, Edge) * 2.f;
+		MarkSize = FMath::Clamp(MarkSize, 18.f, 72.f);
+		if (WorldMark.bSeeking)
+		{
+			MarkSize *= FMath::Lerp(1.35f, 0.85f, WorldMark.LockAlpha);
+		}
+		const FLinearColor Color = WorldMark.bLocked
+			? Lock
+			: (WorldMark.bSeeking ? Seek : Green);
+		const float Half = MarkSize * 0.5f;
 		if (P.X < Side || P.X > Size.X - Side || P.Y < Top || P.Y > Size.Y - Bottom)
 		{
 			continue;
@@ -214,7 +214,7 @@ int32 USkyguardCpgSightHud::NativePaint(
 		const FVector2D TR(P.X + Half, P.Y - Half);
 		const FVector2D BL(P.X - Half, P.Y + Half);
 		const FVector2D BR(P.X + Half, P.Y + Half);
-		if (Mark.bLocked)
+		if (WorldMark.bLocked)
 		{
 			Line(TL, TR, Color, 2.f);
 			Line(TR, BR, Color, 2.f);
@@ -233,9 +233,9 @@ int32 USkyguardCpgSightHud::NativePaint(
 			Line(BR, FVector2D(BR.X - Corner, BR.Y), Color, 1.5f);
 			Line(BR, FVector2D(BR.X, BR.Y - Corner), Color, 1.5f);
 		}
-		if (!Mark.Label.IsEmpty())
+		if (!WorldMark.Label.IsEmpty())
 		{
-			Text(Mark.Label, FVector2D(P.X + Half + 4.f, P.Y - 8.f), Color);
+			Text(WorldMark.Label, FVector2D(P.X + Half + 4.f, P.Y - 8.f), Color);
 		}
 	}
 

@@ -145,6 +145,12 @@ public:
 
 	FSkyguardCpgHudSnapshot BuildCpgHudSnapshot() const;
 
+	FVector GetCpgEyeLocation() const;
+	FRotator GetCpgEyeRotation() const;
+	/** Unreal camera horizontal FOV (`UCameraComponent::FieldOfView`). */
+	float GetCpgEyeFovDegrees() const;
+	float GetCpgEyeAspectRatio() const;
+
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	bool IsCpgSightActive() const { return bApacheGunnerMode && bADS; }
 

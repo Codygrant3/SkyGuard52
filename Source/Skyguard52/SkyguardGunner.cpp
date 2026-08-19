@@ -666,6 +666,31 @@ ASkyguardApacheAircraft* ASkyguardGunner::FindAttachedApache() const
 	return Cast<ASkyguardApacheAircraft>(GetOwner());
 }
 
+FVector ASkyguardGunner::GetCpgEyeLocation() const
+{
+	return GunnerCamera ? GunnerCamera->GetComponentLocation() : GetActorLocation();
+}
+
+FRotator ASkyguardGunner::GetCpgEyeRotation() const
+{
+	return GunnerCamera ? GunnerCamera->GetComponentRotation() : GetActorRotation();
+}
+
+float ASkyguardGunner::GetCpgEyeFovDegrees() const
+{
+	// UCameraComponent::FieldOfView is horizontal. Convert before ProjectWorldToEye.
+	return GunnerCamera ? GunnerCamera->FieldOfView : HipFov;
+}
+
+float ASkyguardGunner::GetCpgEyeAspectRatio() const
+{
+	if (GunnerCamera && GunnerCamera->AspectRatio > 0.05f)
+	{
+		return GunnerCamera->AspectRatio;
+	}
+	return 16.f / 9.f;
+}
+
 FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 {
 	FSkyguardCpgHudSnapshot Snap;
@@ -852,6 +877,32 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 		*RangeShort,
 		*ThreatShort,
 		*FlareTape);
+	Snap.EyeLocation = GetCpgEyeLocation();
+	Snap.EyeRotation = GetCpgEyeRotation();
+	Snap.EyeFovDegrees = GetCpgEyeFovDegrees();
+	Snap.EyeAspectRatio = GetCpgEyeAspectRatio();
+	CollectCpgContactMarks(Snap.ContactMarks);
+	for (const FSkyguardCpgContactMark& Mark : Snap.ContactMarks)
+	{
+		FSkyguardCpgProjectedSightMark Sight;
+		if (!SkyguardCpgProjectWorldToEye(
+				Mark.WorldLocation,
+				Mark.BoundsRadius,
+				Snap.EyeLocation,
+				Snap.EyeRotation,
+				SkyguardCpgHorizontalFovToVertical(
+					Snap.EyeFovDegrees,
+					Snap.EyeAspectRatio),
+				Snap.EyeAspectRatio,
+				Sight.Project))
+		{
+			continue;
+		}
+		Sight.Label = Mark.Label;
+		Sight.bLocked = Mark.bLocked;
+		Sight.bSeeking = Mark.bSeeking;
+		Snap.SightMarks.Add(Sight);
+	}
 	return Snap;
 }
 
@@ -892,6 +943,12 @@ void ASkyguardGunner::CollectCpgContactMarks(
 		}
 		FSkyguardCpgContactMark Mark;
 		Mark.WorldLocation = Actor->GetActorLocation();
+		float Radius = Actor->GetSimpleCollisionRadius();
+		if (const USceneComponent* Root = Actor->GetRootComponent())
+		{
+			Radius = FMath::Max(Radius, Root->Bounds.SphereRadius);
+		}
+		Mark.BoundsRadius = FMath::Max(Radius, 48.f);
 		Mark.Label = bThermalEnabled
 			? FString::Printf(TEXT("HEAT %s"), *Label)
 			: Label;
