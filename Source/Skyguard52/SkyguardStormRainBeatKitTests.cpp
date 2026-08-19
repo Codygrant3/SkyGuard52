@@ -222,6 +222,87 @@ bool FSkyguardStormRainBannedCopyAndHarborClockTest::RunTest(
 			*FString::Printf(TEXT("Harbor BeatSeconds[%d] untouched"), Index),
 			FMath::IsNearlyEqual(Harbor.BeatSeconds[Index], ExpectedBeats[Index], 2.f));
 	}
+	TestEqual(
+		TEXT("Harbor proof clock stays at index 0 before 120s"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M02_HarborShield"), 30.f),
+		0);
+	TestEqual(
+		TEXT("Harbor first beat stays 120s"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M02_HarborShield"), 120.f),
+		1);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardStormRainBeatKitDirectorsDriveDistinctClocksTest,
+	"Skyguard52.Campaign.StormRain.DirectorsDriveDistinctClocks",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardStormRainBeatKitDirectorsDriveDistinctClocksTest::RunTest(
+	const FString& Parameters)
+{
+	TestEqual(
+		TEXT("index 0 before first M05 beat"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M05_StormFront"), 24.f),
+		0);
+	TestEqual(
+		TEXT("index 0 before first M08 beat"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M08_RescueCover"), 19.f),
+		0);
+	TestEqual(
+		TEXT("M05 first beat at 25s"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M05_StormFront"), 25.f),
+		1);
+	TestEqual(
+		TEXT("M08 first beat at 20s"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M08_RescueCover"), 20.f),
+		1);
+	TestTrue(
+		TEXT("M05 vs M08 clocks differ at the same elapsed time"),
+		SkyguardStormRainBeatKits::BeatIndexForElapsed(
+			TEXT("M05_StormFront"), 22.f) !=
+			SkyguardStormRainBeatKits::BeatIndexForElapsed(
+				TEXT("M08_RescueCover"), 22.f));
+
+	ASkyguardMission05IntegrationDirector* M05 =
+		NewObject<ASkyguardMission05IntegrationDirector>();
+	ASkyguardMission08IntegrationDirector* M08 =
+		NewObject<ASkyguardMission08IntegrationDirector>();
+	TestNotNull(TEXT("M05 director"), M05);
+	TestNotNull(TEXT("M08 director"), M08);
+	if (!M05 || !M08)
+	{
+		return false;
+	}
+
+	TestEqual(
+		TEXT("M05 starts Approach"),
+		M05->GetStormRainBeatKind(),
+		ESkyguardStormRainBeatKind::Approach);
+	TestEqual(
+		TEXT("M08 starts Approach"),
+		M08->GetStormRainBeatKind(),
+		ESkyguardStormRainBeatKind::Approach);
+
+	M05->TickStormRainBeatKit(30.f);
+	M08->TickStormRainBeatKit(30.f);
+	TestEqual(
+		TEXT("M05 clock enters waterway boats"),
+		M05->GetStormRainBeatKind(),
+		ESkyguardStormRainBeatKind::WaterwayBoats);
+	TestEqual(
+		TEXT("M08 clock enters gun line"),
+		M08->GetStormRainBeatKind(),
+		ESkyguardStormRainBeatKind::GunLine);
+	TestTrue(
+		TEXT("M05 sequence != M08 sequence after the same elapsed time"),
+		M05->GetStormRainBeatKind() != M08->GetStormRainBeatKind());
 	return true;
 }
 

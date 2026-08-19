@@ -137,6 +137,7 @@ void ASkyguardMission05IntegrationDirector::Tick(const float DeltaSeconds)
 	}
 	Briefing->AdvanceBriefing(DeltaSeconds);
 	TryLaunchSortie();
+	TickStormRainBeatKit(DeltaSeconds);
 	if (StormRuntime.bLightningActive)
 	{
 		AdvanceLightningWindow(DeltaSeconds);
@@ -217,6 +218,8 @@ bool ASkyguardMission05IntegrationDirector::ConfigureMissionDefinition(
 	ObservedBossWeakPointsDestroyed = 0;
 	ObservedDischargeBoomsDestroyed = 0;
 	StormRuntime = FSkyguardStormRuntime();
+	StormRainBeatIndex = 0;
+	StormRainBeatElapsed = 0.f;
 	ProtectedTargets.Reset();
 	for (const ESkyguardMission05ProtectedTarget Target : {
 		ESkyguardMission05ProtectedTarget::OffshorePlatform,
@@ -738,6 +741,25 @@ bool ASkyguardMission05IntegrationDirector::ApplyStormRainPlayContract(
 	return SkyguardStormRainBeatKits::ApplyHydraForClusters(
 		InGunner,
 		GetStormRainBeatKit());
+}
+
+ESkyguardStormRainBeatKind
+ASkyguardMission05IntegrationDirector::GetStormRainBeatKind() const
+{
+	const int32 Safe = FMath::Clamp(
+		StormRainBeatIndex,
+		0,
+		FSkyguardStormRainBeatKit::BeatCount - 1);
+	return GetStormRainBeatKit().Kinds[Safe];
+}
+
+void ASkyguardMission05IntegrationDirector::TickStormRainBeatKit(
+	const float ElapsedSeconds)
+{
+	StormRainBeatElapsed += FMath::Max(ElapsedSeconds, 0.f);
+	StormRainBeatIndex = SkyguardStormRainBeatKits::BeatIndexForElapsed(
+		GetMissionId(),
+		StormRainBeatElapsed);
 }
 
 USkyguardObjectiveRuntime*

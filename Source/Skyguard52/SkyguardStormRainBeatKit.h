@@ -53,4 +53,5 @@ namespace SkyguardStormRainBeatKits
 	bool ApplyHydraForClusters(
 		ASkyguardGunner* Gunner,
 		const FSkyguardStormRainBeatKit& Kit);
+	int32 BeatIndexForElapsed(FName MissionId, float ElapsedSeconds);
 }

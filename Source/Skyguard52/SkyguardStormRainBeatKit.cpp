@@ -1,5 +1,6 @@
 #include "SkyguardStormRainBeatKit.h"
 
+#include "SkyguardCampaignRoster.h"
 #include "SkyguardGunner.h"
 
 namespace
@@ -153,4 +154,21 @@ bool SkyguardStormRainBeatKits::ApplyHydraForClusters(
 	return Gunner->GetSelectedGunshipWeapon() ==
 			ESkyguardGunshipWeapon::Rockets &&
 		Gunner->GetActiveLoadout() == ESkyguardLoadout::RocketHeavy;
+}
+
+int32 SkyguardStormRainBeatKits::BeatIndexForElapsed(
+	const FName MissionId,
+	const float ElapsedSeconds)
+{
+	const FSkyguardCampaignMissionSpec& Spec =
+		SkyguardCampaignRoster::Get(SkyguardCampaignRoster::IndexOf(MissionId));
+	int32 Index = 0;
+	for (int32 Beat = 0; Beat < 6; ++Beat)
+	{
+		if (ElapsedSeconds >= Spec.BeatSeconds[Beat])
+		{
+			Index = Beat + 1;
+		}
+	}
+	return FMath::Clamp(Index, 0, 6);
 }
