@@ -806,7 +806,11 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	Snap.ThreatCount = Threats;
 	Snap.FlareCount = FlareCount;
 	Snap.bMissileInbound = bMissileInbound;
-	const FString FlareTape = SkyguardCpgFlareTape(FlareCount);
+	Snap.bFlareConfirm = bFlarePopConfirm;
+	Snap.FlareConfirm = Snap.bFlareConfirm
+		? FString(SkyguardCpgFlareConfirm())
+		: FString();
+	const FString FlareTape = SkyguardCpgFlareTape(FlareCount, Snap.bFlareConfirm);
 	if (bMissileInbound)
 	{
 		Snap.ThreatLine = FString::Printf(
@@ -967,7 +971,9 @@ void ASkyguardGunner::UpdateCpgHud()
 	}
 	if (CpgEufdText)
 	{
-		const FString FlareTape = SkyguardCpgFlareTape(Snap.FlareCount);
+		const FString FlareTape = SkyguardCpgFlareTape(
+			Snap.FlareCount,
+			Snap.bFlareConfirm);
 		if (Snap.bMissileInbound)
 		{
 			CpgEufdText->SetText(FText::FromString(FString::Printf(

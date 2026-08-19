@@ -77,7 +77,19 @@ const TCHAR* SkyguardCpgInboundLabel()
 	return TEXT("INB");
 }
 
-FString SkyguardCpgFlareTape(const int32 FlareCount)
+const TCHAR* SkyguardCpgFlareConfirm()
 {
+	return TEXT("OK");
+}
+
+FString SkyguardCpgFlareTape(const int32 FlareCount, const bool bPopConfirm)
+{
+	if (bPopConfirm)
+	{
+		return FString::Printf(
+			TEXT("FLR  %d  %s"),
+			FlareCount,
+			SkyguardCpgFlareConfirm());
+	}
 	return FString::Printf(TEXT("FLR  %d"), FlareCount);
 }

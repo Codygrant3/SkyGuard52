@@ -170,7 +170,8 @@ namespace SkyguardCpgHudTests
 			Snap.WeaponLine + TEXT(" ") +
 			Snap.RangeLine + TEXT(" ") +
 			Snap.ThreatLine + TEXT(" ") +
-			Snap.EufdLine;
+			Snap.EufdLine + TEXT(" ") +
+			Snap.FlareConfirm;
 		const FString Lower = Tape.ToLower();
 		return Lower.Contains(TEXT("igla")) ||
 			Lower.Contains(TEXT("yak")) ||
@@ -200,13 +201,29 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 		TEXT("flare tape is a number"),
 		SkyguardCpgFlareTape(6),
 		FString(TEXT("FLR  6")));
+	TestEqual(
+		TEXT("pop confirm is short CPG"),
+		FString(SkyguardCpgFlareConfirm()),
+		FString(TEXT("OK")));
+	TestEqual(
+		TEXT("pop tape keeps remaining count and confirm"),
+		SkyguardCpgFlareTape(5, true),
+		FString(TEXT("FLR  5  OK")));
+	TestFalse(
+		TEXT("confirm copy is not Yak/Igla/rifle"),
+		SkyguardCpgHudHasLegacyLiveWording(FString(SkyguardCpgFlareConfirm())));
 
 	const FSkyguardCpgHudSnapshot Clear = Gunner->BuildCpgHudSnapshot();
 	TestEqual(TEXT("default flare count"), Clear.FlareCount, Gunner->GetFlareCount());
 	TestEqual(TEXT("six flares on tape"), Clear.FlareCount, 6);
 	TestFalse(TEXT("no inbound at rest"), Clear.bMissileInbound);
+	TestFalse(TEXT("getter has no pop confirm at rest"), Gunner->HasFlarePopConfirm());
+	TestFalse(TEXT("no pop confirm at rest"), Clear.bFlareConfirm);
+	TestTrue(TEXT("rest confirm field is empty"), Clear.FlareConfirm.IsEmpty());
 	TestTrue(TEXT("threat tape includes flare count"), Clear.ThreatLine.Contains(TEXT("FLR  6")));
 	TestTrue(TEXT("eufd tape includes flare count"), Clear.EufdLine.Contains(TEXT("FLR  6")));
+	TestFalse(TEXT("rest threat tape has no confirm"), Clear.ThreatLine.Contains(SkyguardCpgFlareConfirm()));
+	TestFalse(TEXT("rest eufd has no confirm"), Clear.EufdLine.Contains(SkyguardCpgFlareConfirm()));
 	TestFalse(TEXT("inbound warning absent when clear"), Clear.ThreatLine.Contains(TEXT("INB")));
 	TestFalse(TEXT("eufd inbound absent when clear"), Clear.EufdLine.Contains(TEXT("INB")));
 	TestFalse(
@@ -216,6 +233,8 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	Gunner->NotifyMissileInbound();
 	const FSkyguardCpgHudSnapshot Inbound = Gunner->BuildCpgHudSnapshot();
 	TestTrue(TEXT("inbound live on snapshot"), Inbound.bMissileInbound);
+	TestFalse(TEXT("getter stays false until PopFlares"), Gunner->HasFlarePopConfirm());
+	TestFalse(TEXT("inbound does not invent a pop confirm"), Inbound.bFlareConfirm);
 	TestTrue(TEXT("threat tape warns inbound"), Inbound.ThreatLine.Contains(TEXT("INB")));
 	TestTrue(TEXT("eufd tape warns inbound"), Inbound.EufdLine.Contains(TEXT("INB")));
 	TestTrue(TEXT("inbound tape still shows flares"), Inbound.ThreatLine.Contains(TEXT("FLR  6")));
@@ -225,17 +244,54 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 		SkyguardCpgHudTests::TapeContainsBannedTerm(Inbound));
 
 	Gunner->PopFlares();
+	const FSkyguardCpgHudSnapshot Popped = Gunner->BuildCpgHudSnapshot();
+	TestEqual(TEXT("remaining count decrements on pop"), Popped.FlareCount, 5);
+	TestEqual(TEXT("getter matches remaining count"), Gunner->GetFlareCount(), 5);
+	TestTrue(TEXT("getter reports pop confirm"), Gunner->HasFlarePopConfirm());
+	TestTrue(TEXT("pop confirm is live on snapshot"), Popped.bFlareConfirm);
+	TestEqual(
+		TEXT("snapshot confirm text"),
+		Popped.FlareConfirm,
+		FString(SkyguardCpgFlareConfirm()));
+	TestTrue(TEXT("tape shows remaining flares"), Popped.ThreatLine.Contains(TEXT("FLR  5")));
+	TestTrue(TEXT("tape shows pop confirm"), Popped.ThreatLine.Contains(SkyguardCpgFlareConfirm()));
+	TestTrue(TEXT("eufd shows remaining flares"), Popped.EufdLine.Contains(TEXT("FLR  5")));
+	TestTrue(TEXT("eufd shows pop confirm"), Popped.EufdLine.Contains(SkyguardCpgFlareConfirm()));
+	TestFalse(
+		TEXT("pop tape has no banned terms"),
+		SkyguardCpgHudTests::TapeContainsBannedTerm(Popped));
+
 	TestTrue(TEXT("flare kills the inbound"), Gunner->TryDefeatInboundWithFlares());
 	const FSkyguardCpgHudSnapshot After = Gunner->BuildCpgHudSnapshot();
 	TestFalse(TEXT("inbound cleared"), After.bMissileInbound);
 	TestEqual(TEXT("one flare spent"), After.FlareCount, 5);
-	TestTrue(TEXT("tape shows remaining flares"), After.ThreatLine.Contains(TEXT("FLR  5")));
-	TestTrue(TEXT("eufd shows remaining flares"), After.EufdLine.Contains(TEXT("FLR  5")));
+	TestTrue(TEXT("confirm stays after inbound dies"), After.bFlareConfirm);
+	TestEqual(
+		TEXT("after-defeat confirm text"),
+		After.FlareConfirm,
+		FString(SkyguardCpgFlareConfirm()));
+	TestTrue(TEXT("tape still shows remaining flares"), After.ThreatLine.Contains(TEXT("FLR  5")));
+	TestTrue(TEXT("tape still shows pop confirm"), After.ThreatLine.Contains(SkyguardCpgFlareConfirm()));
+	TestTrue(TEXT("eufd still shows remaining flares"), After.EufdLine.Contains(TEXT("FLR  5")));
+	TestTrue(TEXT("eufd still shows pop confirm"), After.EufdLine.Contains(SkyguardCpgFlareConfirm()));
 	TestFalse(TEXT("inbound warning gone from threat tape"), After.ThreatLine.Contains(TEXT("INB")));
 	TestFalse(TEXT("inbound warning gone from eufd"), After.EufdLine.Contains(TEXT("INB")));
 	TestFalse(
 		TEXT("after-flare tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(After));
+
+	Gunner->PopFlares();
+	const FSkyguardCpgHudSnapshot Second = Gunner->BuildCpgHudSnapshot();
+	TestEqual(TEXT("second pop decrements again"), Second.FlareCount, 4);
+	TestEqual(TEXT("getter tracks second remaining count"), Gunner->GetFlareCount(), 4);
+	TestTrue(TEXT("second pop still confirms"), Second.bFlareConfirm);
+	TestTrue(TEXT("second tape shows remaining"), Second.ThreatLine.Contains(TEXT("FLR  4")));
+	TestTrue(TEXT("second tape shows confirm"), Second.ThreatLine.Contains(SkyguardCpgFlareConfirm()));
+	TestTrue(TEXT("second eufd shows remaining"), Second.EufdLine.Contains(TEXT("FLR  4")));
+	TestTrue(TEXT("second eufd shows confirm"), Second.EufdLine.Contains(SkyguardCpgFlareConfirm()));
+	TestFalse(
+		TEXT("second pop tape has no banned terms"),
+		SkyguardCpgHudTests::TapeContainsBannedTerm(Second));
 	return true;
 }
 
