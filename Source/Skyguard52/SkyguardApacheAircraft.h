@@ -134,6 +134,14 @@ public:
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
 	bool IsSystemDown(ESkyguardApacheSystem System) const;
 
+	/**
+	 * First still-live own-ship system in stable CPG priority:
+	 * Sensor, ChinTurret, Engines, Rotor, Canopy.
+	 * All-down returns Canopy (last remaining). Not a hull-bar query.
+	 */
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	ESkyguardApacheSystem FindNearestLiveSystem() const;
+
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
 	float GetSensorQuality() const;
 

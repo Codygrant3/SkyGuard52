@@ -922,6 +922,25 @@ bool ASkyguardApacheAircraft::IsSystemDown(const ESkyguardApacheSystem System) c
 	return false;
 }
 
+ESkyguardApacheSystem ASkyguardApacheAircraft::FindNearestLiveSystem() const
+{
+	const ESkyguardApacheSystem Priority[] = {
+		ESkyguardApacheSystem::Sensor,
+		ESkyguardApacheSystem::ChinTurret,
+		ESkyguardApacheSystem::Engines,
+		ESkyguardApacheSystem::Rotor,
+		ESkyguardApacheSystem::Canopy
+	};
+	for (const ESkyguardApacheSystem System : Priority)
+	{
+		if (!IsSystemDown(System))
+		{
+			return System;
+		}
+	}
+	return ESkyguardApacheSystem::Canopy;
+}
+
 float ASkyguardApacheAircraft::GetSensorQuality() const
 {
 	if (MaxSensorIntegrity <= KINDA_SMALL_NUMBER)
