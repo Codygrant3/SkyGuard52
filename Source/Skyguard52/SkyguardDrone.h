@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SkyguardRuntimeMeshCatalog.h"
 #include "SkyguardThreatTypes.h"
 #include "SkyguardDrone.generated.h"
 
@@ -24,6 +25,19 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void BeginPlay() override;
 	virtual void LifeSpanExpired() override;
+
+	/** Empty Preferred; engine-primitive ProxyFallback. Not a catalog Preferred fill. */
+	static FSkyguardMeshBindSlot MakeHullBindSlot();
+
+	/**
+	 * Bind hull (and wing/exhaust) from ProxyFallback engine primitives.
+	 * Preferred stays empty. Not invoked from the CDO constructor.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Skyguard")
+	void BindHull();
+
+	UFUNCTION(BlueprintPure, Category="Skyguard")
+	UStaticMeshComponent* GetHull() const { return Body; }
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard")
 	void ApplyBallisticHit(float Damage, FVector HitLocation, FVector HitDirection);
