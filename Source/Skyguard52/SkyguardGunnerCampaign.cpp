@@ -27,6 +27,7 @@ void ASkyguardGunner::ApplyLoadout(const ESkyguardLoadout Loadout)
 	GuidedAmmo = Spec.GuidedMagazineSize;
 	GuidedReserve = Spec.GuidedReserve;
 	FlareCount = Spec.FlareCount;
+	bFlarePopConfirm = false;
 	SelectGunshipWeapon(Spec.StartingStation);
 
 	if (ASkyguardApacheAircraft* Apache = FindAttachedApache())
@@ -75,6 +76,7 @@ void ASkyguardGunner::PopFlares()
 		return;
 	}
 	--FlareCount;
+	bFlarePopConfirm = true;
 	if (bMissileInbound)
 	{
 		bFlarePoppedThisInbound = true;
@@ -96,6 +98,7 @@ void ASkyguardGunner::NotifyMissileInbound()
 {
 	bMissileInbound = true;
 	bFlarePoppedThisInbound = false;
+	bFlarePopConfirm = false;
 }
 
 bool ASkyguardGunner::TryDefeatInboundWithFlares()

@@ -126,6 +126,9 @@ public:
 	int32 GetFlareCount() const { return FlareCount; }
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
+	bool HasFlarePopConfirm() const { return bFlarePopConfirm; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	bool IsMissileInbound() const { return bMissileInbound; }
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
@@ -467,6 +470,7 @@ protected:
 	bool bThermalEnabled = false;
 	bool bMissileInbound = false;
 	bool bFlarePoppedThisInbound = false;
+	bool bFlarePopConfirm = false;
 	int32 FlareCount = 6;
 	ESkyguardLoadout ActiveLoadout = ESkyguardLoadout::Balanced;
 	float PilotCollectiveAxis = 0.f;
