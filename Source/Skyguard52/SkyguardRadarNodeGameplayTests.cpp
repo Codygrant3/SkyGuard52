@@ -12,8 +12,7 @@
  * Health idle value is MaxHealth (constructor and ResetNode). Capture/hack
  * getters are not public on main, so they are not asserted here.
  *
- * Presentation, ProxyFallback, and Preferred catalog bindings belong to
- * SkyguardRadarNodeTests.cpp and are intentionally not covered.
+ * Presentation, mesh bind, and catalog Preferred cases are out of scope.
  */
 
 namespace SkyguardRadarNodeGameplayTests
