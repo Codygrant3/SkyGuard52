@@ -28,18 +28,8 @@ protected:
 		bool bParentEnabled) const override;
 
 private:
-	struct FScreenMark
-	{
-		FVector2D Screen = FVector2D::ZeroVector;
-		FString Label;
-		float Size = 28.f;
-		bool bLocked = false;
-		bool bSeeking = false;
-	};
-
 	TWeakObjectPtr<ASkyguardGunner> Gunner;
 	FSkyguardCpgHudSnapshot Cached;
-	TArray<FScreenMark> Marks;
 	FString HeadingTape;
 	bool bSight = false;
 };
