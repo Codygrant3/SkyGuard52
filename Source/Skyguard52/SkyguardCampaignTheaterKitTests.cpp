@@ -30,6 +30,23 @@ namespace SkyguardCampaignTheaterKitTests
 		}
 		return nullptr;
 	}
+
+	int32 CountKits(UWorld* World)
+	{
+		int32 Count = 0;
+		if (!World)
+		{
+			return 0;
+		}
+		for (TActorIterator<ASkyguardCampaignTheaterKit> It(World); It; ++It)
+		{
+			if (IsValid(*It))
+			{
+				++Count;
+			}
+		}
+		return Count;
+	}
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
@@ -240,15 +257,7 @@ bool FSkyguardSortieDirectorAppliesTheaterKitTest::RunTest(const FString& Parame
 	TestTrue(
 		TEXT("harbor swaps the named landmark on the same map"),
 		Kit->GetNamedLandmark() != FirstLandmark);
-	int32 KitActors = 0;
-	for (TActorIterator<ASkyguardCampaignTheaterKit> It(World); It; ++It)
-	{
-		if (IsValid(*It))
-		{
-			++KitActors;
-		}
-	}
-	TestEqual(TEXT("still one playable-map kit actor"), KitActors, 1);
+	TestEqual(TEXT("still one playable-map kit actor"), CountKits(World), 1);
 
 	World->DestroyWorld(false);
 	return true;
@@ -308,6 +317,158 @@ bool FSkyguardTheaterKitCopyBansYakIglaRifleTest::RunTest(const FString& Paramet
 				CopyHasBannedTerm(Field));
 		}
 	}
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardTheaterKitEveryWeatherIdentityHitsApplyToWorldTest,
+	"Skyguard52.Campaign.TheaterKitEveryWeatherIdentityHitsApplyToWorld",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardTheaterKitEveryWeatherIdentityHitsApplyToWorldTest::RunTest(
+	const FString& Parameters)
+{
+	using namespace SkyguardCampaignTheaterKitTests;
+
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardTheaterEveryIdentityWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	const int32 MissionCount = SkyguardCampaignRoster::NumMissions();
+	TestEqual(TEXT("ten roster weather identities"), MissionCount, 10);
+	TestEqual(
+		TEXT("ten theater kits"),
+		SkyguardCampaignTheaterKit::NumKits(),
+		MissionCount);
+
+	TSet<FName> AppliedIdentities;
+	for (int32 Index = 0; Index < MissionCount; ++Index)
+	{
+		const FSkyguardCampaignMissionSpec& Mission =
+			SkyguardCampaignRoster::Get(Index);
+		const FString Label = Mission.MissionId.ToString();
+		const FSkyguardTheaterKitSpec& Resolved =
+			SkyguardCampaignTheaterKit::Resolve(Mission.WeatherIdentity);
+		TestFalse(
+			*FString::Printf(TEXT("%s roster weather identity is set"), *Label),
+			Mission.WeatherIdentity.IsNone());
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s resolves to its own weather identity"),
+				*Label),
+			Resolved.WeatherIdentity,
+			Mission.WeatherIdentity);
+		TestFalse(
+			*FString::Printf(TEXT("%s resolve yields a kit id"), *Label),
+			Resolved.KitId.IsNone());
+
+		ASkyguardCampaignTheaterKit::ApplyTheaterKitToWorld(
+			World,
+			Mission.WeatherIdentity);
+		ASkyguardCampaignTheaterKit* Kit = FindKit(World);
+		TestNotNull(
+			*FString::Printf(
+				TEXT("%s ApplyTheaterKitToWorld finds or spawns a kit"),
+				*Label),
+			Kit);
+		if (!Kit)
+		{
+			World->DestroyWorld(false);
+			return false;
+		}
+
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s ApplyTheaterKitToWorld applies %s"),
+				*Label,
+				*Mission.WeatherIdentity.ToString()),
+			Kit->GetAppliedWeatherIdentity(),
+			Mission.WeatherIdentity);
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s applied kit id matches resolve"),
+				*Label),
+			Kit->GetAppliedKitId(),
+			Resolved.KitId);
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s applied landmark matches resolve"),
+				*Label),
+			Kit->GetNamedLandmark(),
+			Resolved.NamedLandmark);
+		TestTrue(
+			*FString::Printf(TEXT("%s restyles roads in place"), *Label),
+			Kit->GetRoadInstanceCount() > 0);
+		TestTrue(
+			*FString::Printf(TEXT("%s restyles buildings in place"), *Label),
+			Kit->GetBuildingInstanceCount() > 0);
+		TestTrue(
+			*FString::Printf(TEXT("%s restyles lamps in place"), *Label),
+			Kit->GetLampInstanceCount() > 0);
+		TestTrue(
+			*FString::Printf(TEXT("%s restyles silhouettes in place"), *Label),
+			Kit->GetSilhouetteInstanceCount() > 0);
+		AppliedIdentities.Add(Kit->GetAppliedWeatherIdentity());
+	}
+
+	TestEqual(
+		TEXT("every roster weather identity was applied"),
+		AppliedIdentities.Num(),
+		MissionCount);
+	TestEqual(
+		TEXT("ApplyTheaterKitToWorld keeps one playable-map kit actor"),
+		CountKits(World),
+		1);
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	TestNotNull(TEXT("director"), Director);
+	if (!Director)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+	Director->bAutoStart = false;
+	for (int32 Index = 0; Index < MissionCount; ++Index)
+	{
+		const FSkyguardCampaignMissionSpec& Mission =
+			SkyguardCampaignRoster::Get(Index);
+		Director->StartMissionIndex(Index);
+		ASkyguardCampaignTheaterKit* Kit = FindKit(World);
+		TestNotNull(
+			*FString::Printf(
+				TEXT("%s director path still has a theater kit"),
+				*Mission.MissionId.ToString()),
+			Kit);
+		if (!Kit)
+		{
+			World->DestroyWorld(false);
+			return false;
+		}
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s StartMissionIndex reaches ApplyTheaterKitToWorld for %s"),
+				*Mission.MissionId.ToString(),
+				*Mission.WeatherIdentity.ToString()),
+			Kit->GetAppliedWeatherIdentity(),
+			Mission.WeatherIdentity);
+		TestEqual(
+			*FString::Printf(
+				TEXT("%s director weather identity matches roster"),
+				*Mission.MissionId.ToString()),
+			Director->GetMissionWeatherIdentity(),
+			Mission.WeatherIdentity);
+	}
+	TestEqual(
+		TEXT("director path still one playable-map kit actor"),
+		CountKits(World),
+		1);
+
+	World->DestroyWorld(false);
 	return true;
 }
 
