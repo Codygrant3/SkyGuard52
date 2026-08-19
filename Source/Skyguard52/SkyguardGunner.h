@@ -147,6 +147,7 @@ public:
 
 	FVector GetCpgEyeLocation() const;
 	FRotator GetCpgEyeRotation() const;
+	/** Unreal camera horizontal FOV (`UCameraComponent::FieldOfView`). */
 	float GetCpgEyeFovDegrees() const;
 	float GetCpgEyeAspectRatio() const;
 

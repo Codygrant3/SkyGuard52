@@ -175,7 +175,9 @@ int32 USkyguardCpgSightHud::NativePaint(
 				WorldMark.BoundsRadius,
 				Cached.EyeLocation,
 				Cached.EyeRotation,
-				Cached.EyeFovDegrees,
+				SkyguardCpgHorizontalFovToVertical(
+					Cached.EyeFovDegrees,
+					Cached.EyeAspectRatio),
 				Cached.EyeAspectRatio,
 				Projected) ||
 			!Projected.bInFront)

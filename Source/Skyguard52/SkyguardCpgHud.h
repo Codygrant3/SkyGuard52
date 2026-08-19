@@ -50,6 +50,7 @@ struct FSkyguardCpgHudSnapshot
 	bool bMissileInbound = false;
 	FVector EyeLocation = FVector::ZeroVector;
 	FRotator EyeRotation = FRotator::ZeroRotator;
+	/** Unreal camera horizontal FOV. Convert with SkyguardCpgHorizontalFovToVertical. */
 	float EyeFovDegrees = 85.f;
 	float EyeAspectRatio = 16.f / 9.f;
 	TArray<FSkyguardCpgContactMark> ContactMarks;
@@ -65,6 +66,18 @@ const TCHAR* SkyguardCpgInboundLabel();
 FString SkyguardCpgFlareTape(int32 FlareCount);
 bool SkyguardCpgHudHasLegacyLiveWording(const FString& Text);
 
+/** Camera FieldOfView is horizontal. ProjectWorldToEye takes vertical FOV. */
+inline float SkyguardCpgHorizontalFovToVertical(
+	const float HorizontalFovDegrees,
+	const float AspectRatio)
+{
+	const float HFov = FMath::Clamp(HorizontalFovDegrees, 1.f, 179.f);
+	const float Aspect = FMath::Max(AspectRatio, 0.05f);
+	return FMath::RadiansToDegrees(
+		2.f * FMath::Atan(
+			FMath::Tan(FMath::DegreesToRadians(HFov * 0.5f)) / Aspect));
+}
+
 inline bool SkyguardCpgProjectWorldToEye(
 	const FVector& WorldLocation,
 	const float BoundsRadius,
@@ -74,6 +87,7 @@ inline bool SkyguardCpgProjectWorldToEye(
 	const float AspectRatio,
 	FSkyguardCpgSightEyeProject& OutProject)
 {
+	// VerticalFovDegrees is NOT UCameraComponent::FieldOfView (that is horizontal).
 	OutProject = FSkyguardCpgSightEyeProject();
 	const float Fov = FMath::Clamp(VerticalFovDegrees, 1.f, 179.f);
 	const float Aspect = FMath::Max(AspectRatio, 0.05f);

@@ -678,6 +678,7 @@ FRotator ASkyguardGunner::GetCpgEyeRotation() const
 
 float ASkyguardGunner::GetCpgEyeFovDegrees() const
 {
+	// UCameraComponent::FieldOfView is horizontal. Convert before ProjectWorldToEye.
 	return GunnerCamera ? GunnerCamera->FieldOfView : HipFov;
 }
 
@@ -889,7 +890,9 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 				Mark.BoundsRadius,
 				Snap.EyeLocation,
 				Snap.EyeRotation,
-				Snap.EyeFovDegrees,
+				SkyguardCpgHorizontalFovToVertical(
+					Snap.EyeFovDegrees,
+					Snap.EyeAspectRatio),
 				Snap.EyeAspectRatio,
 				Sight.Project))
 		{

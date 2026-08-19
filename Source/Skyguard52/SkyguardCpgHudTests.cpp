@@ -193,7 +193,9 @@ bool FSkyguardCpgHudCountsForwardThreatTest::RunTest(const FString& Parameters)
 				ArmorMark.BoundsRadius,
 				Projected.EyeLocation,
 				Projected.EyeRotation,
-				Projected.EyeFovDegrees,
+				SkyguardCpgHorizontalFovToVertical(
+					Projected.EyeFovDegrees,
+					Projected.EyeAspectRatio),
 				Projected.EyeAspectRatio,
 				Recheck));
 		TestEqual(
@@ -402,6 +404,99 @@ bool FSkyguardCpgSightProjectsBoundsRadiusToGlassTest::RunTest(const FString& Pa
 		Gunner->GetCpgEyeAspectRatio());
 	TestTrue(TEXT("CPG eye FOV is a real sight FOV"), Snap.EyeFovDegrees > 1.f);
 	TestTrue(TEXT("CPG eye aspect is positive"), Snap.EyeAspectRatio > 0.05f);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCpgSightConvertsHorizontalFovAtWideAspectTest,
+	"Skyguard52.Apache.CpgSight.ConvertsHorizontalFovAtWideAspect",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCpgSightConvertsHorizontalFovAtWideAspectTest::RunTest(
+	const FString& Parameters)
+{
+	const FVector EyeLocation = FVector::ZeroVector;
+	const FRotator EyeRotation = FRotator::ZeroRotator;
+	const float HorizontalFov = 90.f;
+	const float Aspect = 16.f / 9.f;
+	const float Depth = 1000.f;
+	const float BoundsRadius = 100.f;
+	const float VerticalFov = SkyguardCpgHorizontalFovToVertical(HorizontalFov, Aspect);
+	TestTrue(
+		TEXT("16:9 HFOV 90 converts to a narrower vertical FOV"),
+		VerticalFov > 1.f && VerticalFov < HorizontalFov);
+
+	const float TanHalfH = FMath::Tan(FMath::DegreesToRadians(HorizontalFov * 0.5f));
+	const float TanHalfV = FMath::Tan(FMath::DegreesToRadians(VerticalFov * 0.5f));
+	TestTrue(
+		TEXT("vertical half-angle is tan(H/2)/aspect"),
+		FMath::IsNearlyEqual(TanHalfV, TanHalfH / Aspect, 1.e-4f));
+
+	FSkyguardCpgSightEyeProject Ahead;
+	TestTrue(
+		TEXT("axis point still projects at 16:9"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, 0.f, 0.f),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			Ahead));
+	TestTrue(
+		TEXT("+X projects to NDC (0,0) at 16:9"),
+		FMath::IsNearlyEqual(Ahead.Ndc.X, 0.f) && FMath::IsNearlyEqual(Ahead.Ndc.Y, 0.f));
+
+	FSkyguardCpgSightEyeProject HorizontalEdge;
+	TestTrue(
+		TEXT("horizontal FOV-edge point projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, Depth * TanHalfH, 0.f),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			HorizontalEdge));
+	TestTrue(
+		TEXT("HFOV edge lands at NDC X = +1 after H to V conversion"),
+		FMath::IsNearlyEqual(HorizontalEdge.Ndc.X, 1.f, 1.e-4f));
+
+	FSkyguardCpgSightEyeProject WrongConvention;
+	SkyguardCpgProjectWorldToEye(
+		FVector(Depth, Depth * TanHalfH, 0.f),
+		BoundsRadius,
+		EyeLocation,
+		EyeRotation,
+		HorizontalFov,
+		Aspect,
+		WrongConvention);
+	TestTrue(
+		TEXT("raw camera HFOV treated as vertical misses the HFOV edge"),
+		!FMath::IsNearlyEqual(WrongConvention.Ndc.X, 1.f, 1.e-3f));
+
+	FSkyguardCpgSightEyeProject VerticalEdge;
+	TestTrue(
+		TEXT("vertical FOV-edge point projects"),
+		SkyguardCpgProjectWorldToEye(
+			FVector(Depth, 0.f, Depth * TanHalfV),
+			BoundsRadius,
+			EyeLocation,
+			EyeRotation,
+			VerticalFov,
+			Aspect,
+			VerticalEdge));
+	TestTrue(
+		TEXT("derived VFOV edge lands at NDC Y = +1"),
+		FMath::IsNearlyEqual(VerticalEdge.Ndc.Y, 1.f, 1.e-4f));
+
+	const float ExpectedRadiusNdc = BoundsRadius / (Depth * TanHalfV);
+	TestTrue(
+		TEXT("RadiusNdc uses the vertical half-angle, not raw HFOV"),
+		FMath::IsNearlyEqual(Ahead.RadiusNdc, ExpectedRadiusNdc, 1.e-4f));
+	TestTrue(
+		TEXT("RadiusNdc is not the raw-horizontal 90-deg scale"),
+		!FMath::IsNearlyEqual(Ahead.RadiusNdc, BoundsRadius / (Depth * TanHalfH), 1.e-3f));
 	return true;
 }
 
