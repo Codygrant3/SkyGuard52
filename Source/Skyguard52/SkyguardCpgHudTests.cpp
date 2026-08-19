@@ -1,12 +1,19 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardCpgHud.h"
+#include "SkyguardApacheAircraft.h"
+#include "SkyguardBossTypes.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardGunshipTypes.h"
+#include "SkyguardPilotVoice.h"
 #include "SkyguardThreatTypes.h"
 #include "Engine/World.h"
+#include "GameFramework/InputSettings.h"
+#include "InputCoreTypes.h"
 #include "Misc/AutomationTest.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 	FSkyguardCpgHudTapesWeaponRangeThreatTest,
@@ -170,7 +177,8 @@ namespace SkyguardCpgHudTests
 			Snap.WeaponLine + TEXT(" ") +
 			Snap.RangeLine + TEXT(" ") +
 			Snap.ThreatLine + TEXT(" ") +
-			Snap.EufdLine;
+			Snap.EufdLine + TEXT(" ") +
+			Snap.PilotConfirmLine;
 		const FString Lower = Tape.ToLower();
 		return Lower.Contains(TEXT("igla")) ||
 			Lower.Contains(TEXT("yak")) ||
@@ -236,6 +244,181 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	TestFalse(
 		TEXT("after-flare tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(After));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCpgHudReadsPilotConfirmGetterTest,
+	"Skyguard52.Apache.CpgHudReadsPilotConfirmGetter",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCpgHudReadsPilotConfirmGetterTest::RunTest(const FString& Parameters)
+{
+	const FString IniPath = FPaths::ProjectConfigDir() / TEXT("DefaultInput.ini");
+	FString IniText;
+	TestTrue(
+		TEXT("DefaultInput.ini is readable"),
+		FFileHelper::LoadFileToString(IniText, *IniPath));
+	TestTrue(
+		TEXT("PopFlares stays Key=X"),
+		IniText.Contains(TEXT("ActionName=\"PopFlares\"")) &&
+			IniText.Contains(TEXT("Key=X")));
+	TestTrue(
+		TEXT("no new HUD confirm action binding"),
+		!IniText.Contains(TEXT("PilotConfirm")) &&
+			!IniText.Contains(TEXT("CpgConfirm")));
+
+	const UInputSettings* Settings = GetDefault<UInputSettings>();
+	TestNotNull(TEXT("UInputSettings"), Settings);
+	if (Settings)
+	{
+		TArray<FInputActionKeyMapping> FlareMaps;
+		Settings->GetActionMappingByName(TEXT("PopFlares"), FlareMaps);
+		bool bHasX = false;
+		for (const FInputActionKeyMapping& Mapping : FlareMaps)
+		{
+			bHasX |= Mapping.Key == EKeys::X;
+		}
+		TestTrue(TEXT("runtime PopFlares includes Key X"), bHasX);
+	}
+
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game,
+		false,
+		TEXT("SkyguardCpgHudPilotConfirmWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardApacheAircraft* Apache =
+		World->SpawnActor<ASkyguardApacheAircraft>(
+			FVector(0.f, 0.f, 800.f),
+			FRotator::ZeroRotator);
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>(
+		FVector::ZeroVector,
+		FRotator::ZeroRotator);
+	TestNotNull(TEXT("apache"), Apache);
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Apache || !Gunner)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+	Apache->DispatchBeginPlay();
+
+	TestEqual(
+		TEXT("no confirm until a command changes"),
+		Apache->GetPilotConfirmationsIssued(),
+		0);
+	TestTrue(
+		TEXT("HUD confirm is empty before a change"),
+		SkyguardCpgPilotConfirmLine(Apache).IsEmpty());
+
+	FSkyguardCpgHudSnapshot Rest = Gunner->BuildCpgHudSnapshot();
+	SkyguardCpgHudApplyPilotConfirm(Rest, World);
+	TestTrue(TEXT("host snapshot is empty before a change"), Rest.PilotConfirmLine.IsEmpty());
+	TestEqual(TEXT("host copies zero confirm count"), Rest.PilotConfirmationsIssued, 0);
+
+	const int32 ConfirmsBefore = Apache->GetPilotConfirmationsIssued();
+	Apache->IssuePilotCommand(ESkyguardPilotCommand::OrbitLeft);
+	TestEqual(
+		TEXT("IssuePilotCommand confirms once"),
+		Apache->GetPilotConfirmationsIssued(),
+		ConfirmsBefore + 1);
+
+	const FString ExpectedLeft =
+		SkyguardPilotVoice::ConfirmLineForCommand(ESkyguardPilotCommand::OrbitLeft);
+	const FString FirstRead = SkyguardCpgPilotConfirmLine(Apache);
+	TestEqual(
+		TEXT("HUD reads last confirm from Apache getters"),
+		FirstRead,
+		ExpectedLeft);
+	TestTrue(TEXT("orbit-left confirm is visible"), FirstRead.Contains(TEXT("Coming left")));
+
+	FSkyguardCpgHudSnapshot AfterChange = Gunner->BuildCpgHudSnapshot();
+	SkyguardCpgHudApplyPilotConfirm(AfterChange, World);
+	TestEqual(
+		TEXT("host snapshot shows the confirm line"),
+		AfterChange.PilotConfirmLine,
+		ExpectedLeft);
+	TestEqual(
+		TEXT("host snapshot copies confirm count"),
+		AfterChange.PilotConfirmationsIssued,
+		Apache->GetPilotConfirmationsIssued());
+	TestFalse(
+		TEXT("confirm tape has no banned terms"),
+		SkyguardCpgHudTests::TapeContainsBannedTerm(AfterChange));
+	TestFalse(
+		TEXT("confirm string is not Yak/Igla/rifle"),
+		SkyguardCpgHudHasLegacyLiveWording(AfterChange.PilotConfirmLine));
+
+	const int32 AfterFirstChange = Apache->GetPilotConfirmationsIssued();
+	for (int32 Tick = 0; Tick < 5; ++Tick)
+	{
+		FSkyguardCpgHudSnapshot TickSnap = Gunner->BuildCpgHudSnapshot();
+		SkyguardCpgHudApplyPilotConfirm(TickSnap, World);
+		TestEqual(
+			TEXT("HUD re-read does not change the confirm line"),
+			TickSnap.PilotConfirmLine,
+			ExpectedLeft);
+		TestEqual(
+			TEXT("HUD re-read does not increment Apache confirms"),
+			Apache->GetPilotConfirmationsIssued(),
+			AfterFirstChange);
+		TestEqual(
+			TEXT("host tick copy stays at the last confirm count"),
+			TickSnap.PilotConfirmationsIssued,
+			AfterFirstChange);
+	}
+
+	Apache->IssuePilotCommand(ESkyguardPilotCommand::OrbitLeft);
+	TestEqual(
+		TEXT("repeat command does not re-confirm"),
+		Apache->GetPilotConfirmationsIssued(),
+		AfterFirstChange);
+	TestEqual(
+		TEXT("repeat command keeps the last HUD confirm"),
+		SkyguardCpgPilotConfirmLine(Apache),
+		ExpectedLeft);
+
+	Apache->IssuePilotCommand(ESkyguardPilotCommand::Hold);
+	const FString ExpectedHold =
+		SkyguardPilotVoice::ConfirmLineForCommand(ESkyguardPilotCommand::Hold);
+	FSkyguardCpgHudSnapshot AfterHold = Gunner->BuildCpgHudSnapshot();
+	SkyguardCpgHudApplyPilotConfirm(AfterHold, World);
+	TestEqual(
+		TEXT("new command updates the HUD confirm"),
+		AfterHold.PilotConfirmLine,
+		ExpectedHold);
+	TestEqual(
+		TEXT("hold confirm increments once"),
+		Apache->GetPilotConfirmationsIssued(),
+		AfterFirstChange + 1);
+	TestTrue(TEXT("hold confirm is visible"), AfterHold.PilotConfirmLine.Contains(TEXT("Holding")));
+
+	SkyguardCpgHudApplyPilotConfirm(AfterHold, Apache);
+	TestEqual(
+		TEXT("apply is idempotent"),
+		AfterHold.PilotConfirmLine,
+		ExpectedHold);
+
+	FSkyguardCpgHudSnapshot NullApache;
+	SkyguardCpgHudApplyPilotConfirm(
+		NullApache,
+		static_cast<const ASkyguardApacheAircraft*>(nullptr));
+	TestTrue(TEXT("null Apache yields an empty confirm"), NullApache.PilotConfirmLine.IsEmpty());
+	TestEqual(TEXT("null Apache yields a zero confirm count"), NullApache.PilotConfirmationsIssued, 0);
+
+	FSkyguardCpgHudSnapshot NullWorld;
+	SkyguardCpgHudApplyPilotConfirm(
+		NullWorld,
+		static_cast<const UWorld*>(nullptr));
+	TestTrue(TEXT("null world yields an empty confirm"), NullWorld.PilotConfirmLine.IsEmpty());
+	TestEqual(TEXT("null world yields a zero confirm count"), NullWorld.PilotConfirmationsIssued, 0);
+
+	World->DestroyWorld(false);
 	return true;
 }
 
