@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SkyguardGunshipTypes.h"
+#include "SkyguardRuntimeMeshCatalog.h"
 #include "SkyguardPatrolShipBoss.generated.h"
 
 class UPrimitiveComponent;
@@ -17,7 +18,21 @@ class SKYGUARD52_API ASkyguardPatrolShipBoss : public AActor
 
 public:
 	ASkyguardPatrolShipBoss();
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
+
+	/** Empty Preferred; engine-primitive ProxyFallback. Not a catalog Preferred fill. */
+	static FSkyguardMeshBindSlot MakeHullBindSlot();
+
+	/**
+	 * Bind hull (and other parts) from ProxyFallback or engine primitives.
+	 * Preferred stays empty. Not invoked from the CDO constructor.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Campaign")
+	void BindPresentation();
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	UStaticMeshComponent* GetHull() const { return Hull; }
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Campaign")
 	void ApplyHit(UPrimitiveComponent* HitComponent, float Damage);
@@ -128,7 +143,7 @@ protected:
 	float DeckLaunchCooldown = DeckLaunchIntervalSeconds;
 	FName LastDestroyedSystem = NAME_None;
 
-	UStaticMeshComponent* MakePart(const TCHAR* Name, UStaticMesh* Mesh);
+	UStaticMeshComponent* MakePart(const TCHAR* Name);
 	void KillPart(UStaticMeshComponent* Part, float& Health, FName Id);
 	float& HealthFor(ESkyguardPatrolShipSystem System);
 	float HealthFor(ESkyguardPatrolShipSystem System) const;
