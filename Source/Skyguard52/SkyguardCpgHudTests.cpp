@@ -1,8 +1,10 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
+#include "SkyguardCampaignRoster.h"
 #include "SkyguardCpgHud.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
+#include "SkyguardGunshipSortieDirector.h"
 #include "SkyguardGunshipTypes.h"
 #include "SkyguardThreatTypes.h"
 #include "Engine/World.h"
@@ -143,6 +145,12 @@ bool FSkyguardCpgHudCountsForwardThreatTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("threat tape names armor"), Snap.ThreatLine.Contains(TEXT("ARM")));
 	TestTrue(TEXT("threat tape still includes flare count"), Snap.ThreatLine.Contains(TEXT("FLR")));
 	TestFalse(TEXT("no inbound warning without a live inbound"), Snap.ThreatLine.Contains(TEXT("INB")));
+	TestFalse(
+		TEXT("overlay hides inbound without a live inbound"),
+		SkyguardCpgHudOverlayThreatTape(Snap).Contains(TEXT("INB")));
+	TestTrue(
+		TEXT("overlay still names the contact count"),
+		SkyguardCpgHudOverlayThreatTape(Snap).Contains(TEXT("THRT")));
 
 	TArray<FSkyguardCpgContactMark> Marks;
 	Gunner->CollectCpgContactMarks(Marks);
@@ -201,6 +209,23 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 		SkyguardCpgFlareTape(6),
 		FString(TEXT("FLR  6")));
 
+	FSkyguardCpgHudSnapshot Applied;
+	Applied.FlareCount = 6;
+	Applied.EufdLine = TEXT("30MM  RDY  HMD");
+	SkyguardCpgHudApplyInboundTape(Applied);
+	TestFalse(TEXT("apply is a no-op when inbound is down"), Applied.bMissileInbound);
+	TestFalse(
+		TEXT("apply does not invent inbound tape"),
+		Applied.ThreatLine.Contains(TEXT("INB")));
+	Applied.bMissileInbound = true;
+	SkyguardCpgHudApplyInboundTape(Applied);
+	TestTrue(TEXT("apply writes inbound on the threat tape"), Applied.ThreatLine.Contains(TEXT("INB")));
+	TestTrue(TEXT("apply keeps flares on the threat tape"), Applied.ThreatLine.Contains(TEXT("FLR  6")));
+	TestTrue(TEXT("apply writes inbound on the eufd tape"), Applied.EufdLine.Contains(TEXT("INB")));
+	TestFalse(
+		TEXT("applied inbound tape bans Igla/Yak/rifle"),
+		SkyguardCpgHudHasLegacyLiveWording(Applied.ThreatLine + Applied.EufdLine));
+
 	const FSkyguardCpgHudSnapshot Clear = Gunner->BuildCpgHudSnapshot();
 	TestEqual(TEXT("default flare count"), Clear.FlareCount, Gunner->GetFlareCount());
 	TestEqual(TEXT("six flares on tape"), Clear.FlareCount, 6);
@@ -210,6 +235,9 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("inbound warning absent when clear"), Clear.ThreatLine.Contains(TEXT("INB")));
 	TestFalse(TEXT("eufd inbound absent when clear"), Clear.EufdLine.Contains(TEXT("INB")));
 	TestFalse(
+		TEXT("overlay tape hides inbound when clear"),
+		SkyguardCpgHudOverlayThreatTape(Clear).Contains(TEXT("INB")));
+	TestFalse(
 		TEXT("clear tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(Clear));
 
@@ -218,11 +246,21 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("inbound live on snapshot"), Inbound.bMissileInbound);
 	TestTrue(TEXT("threat tape warns inbound"), Inbound.ThreatLine.Contains(TEXT("INB")));
 	TestTrue(TEXT("eufd tape warns inbound"), Inbound.EufdLine.Contains(TEXT("INB")));
+	TestTrue(
+		TEXT("overlay tape warns inbound when live"),
+		SkyguardCpgHudOverlayThreatTape(Inbound).Contains(TEXT("INB")));
+	TestEqual(
+		TEXT("overlay inbound tape is the CPG warning"),
+		SkyguardCpgHudOverlayThreatTape(Inbound),
+		FString(SkyguardCpgInboundLabel()));
 	TestTrue(TEXT("inbound tape still shows flares"), Inbound.ThreatLine.Contains(TEXT("FLR  6")));
 	TestTrue(TEXT("inbound eufd still shows flares"), Inbound.EufdLine.Contains(TEXT("FLR  6")));
 	TestFalse(
 		TEXT("inbound tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(Inbound));
+	TestFalse(
+		TEXT("overlay inbound tape has no banned terms"),
+		SkyguardCpgHudHasLegacyLiveWording(SkyguardCpgHudOverlayThreatTape(Inbound)));
 
 	Gunner->PopFlares();
 	TestTrue(TEXT("flare kills the inbound"), Gunner->TryDefeatInboundWithFlares());
@@ -234,8 +272,108 @@ bool FSkyguardCpgHudTapesFlareAndInboundTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("inbound warning gone from threat tape"), After.ThreatLine.Contains(TEXT("INB")));
 	TestFalse(TEXT("inbound warning gone from eufd"), After.EufdLine.Contains(TEXT("INB")));
 	TestFalse(
+		TEXT("overlay inbound hidden after flare"),
+		SkyguardCpgHudOverlayThreatTape(After).Contains(TEXT("INB")));
+	TestFalse(
 		TEXT("after-flare tape has no banned terms"),
 		SkyguardCpgHudTests::TapeContainsBannedTerm(After));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardCpgHudShowsHarborInboundWarningTest,
+	"Skyguard52.Apache.CpgHudShowsHarborInboundWarning",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardCpgHudShowsHarborInboundWarningTest::RunTest(const FString& Parameters)
+{
+	TestEqual(
+		TEXT("HUD slice does not retune radar-live inbound"),
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarLiveIntervalSeconds),
+		40.0);
+	TestEqual(
+		TEXT("HUD slice does not retune radar-down inbound"),
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarDownIntervalSeconds),
+		80.0);
+	TestEqual(
+		TEXT("HUD slice does not retune contact wave"),
+		ASkyguardGunshipSortieDirector::ContactWaveCount,
+		2);
+	TestEqual(
+		TEXT("HUD slice does not retune shore wave"),
+		ASkyguardGunshipSortieDirector::ShoreWaveCount,
+		4);
+
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game,
+		false,
+		TEXT("SkyguardCpgHudHarborInboundWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>();
+	TestNotNull(TEXT("director"), Director);
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Director || !Gunner)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(1);
+
+	const FSkyguardCpgHudSnapshot Approach = Gunner->BuildCpgHudSnapshot();
+	TestFalse(TEXT("approach inbound is not live"), Approach.bMissileInbound);
+	TestFalse(
+		TEXT("approach threat tape hides inbound"),
+		Approach.ThreatLine.Contains(TEXT("INB")));
+	TestFalse(
+		TEXT("approach eufd hides inbound"),
+		Approach.EufdLine.Contains(TEXT("INB")));
+	TestFalse(
+		TEXT("approach overlay hides inbound"),
+		SkyguardCpgHudOverlayThreatTape(Approach).Contains(TEXT("INB")));
+
+	Director->Tick(SkyguardCampaignRoster::Get(1).BeatSeconds[0] - 0.2f);
+	TestEqual(
+		TEXT("first inbound window stays on approach"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::Approach);
+	TestFalse(
+		TEXT("approach tick does not fire inbound"),
+		Gunner->IsMissileInbound());
+
+	Director->Tick(0.3f);
+	TestEqual(
+		TEXT("harbor contact is the first inbound beat"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::InitialContact);
+	TestTrue(TEXT("harbor contact inbound is live"), Gunner->IsMissileInbound());
+
+	const FSkyguardCpgHudSnapshot Inbound = Gunner->BuildCpgHudSnapshot();
+	TestTrue(TEXT("snapshot sees director inbound"), Inbound.bMissileInbound);
+	TestTrue(TEXT("threat tape shows harbor inbound"), Inbound.ThreatLine.Contains(TEXT("INB")));
+	TestTrue(TEXT("eufd tape shows harbor inbound"), Inbound.EufdLine.Contains(TEXT("INB")));
+	TestEqual(
+		TEXT("overlay tape is the inbound warning"),
+		SkyguardCpgHudOverlayThreatTape(Inbound),
+		FString(SkyguardCpgInboundLabel()));
+	TestFalse(
+		TEXT("harbor inbound tape bans Igla/Yak/rifle"),
+		SkyguardCpgHudTests::TapeContainsBannedTerm(Inbound));
+	TestFalse(
+		TEXT("harbor inbound overlay bans Igla/Yak/rifle"),
+		SkyguardCpgHudHasLegacyLiveWording(SkyguardCpgHudOverlayThreatTape(Inbound)));
+
+	World->DestroyWorld(false);
 	return true;
 }
 

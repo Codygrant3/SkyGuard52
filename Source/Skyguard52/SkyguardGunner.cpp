@@ -807,14 +807,7 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	Snap.FlareCount = FlareCount;
 	Snap.bMissileInbound = bMissileInbound;
 	const FString FlareTape = SkyguardCpgFlareTape(FlareCount);
-	if (bMissileInbound)
-	{
-		Snap.ThreatLine = FString::Printf(
-			TEXT("%s\n%s"),
-			SkyguardCpgInboundLabel(),
-			*FlareTape);
-	}
-	else if (Threats <= 0)
+	if (Threats <= 0)
 	{
 		Snap.ThreatLine = FString::Printf(TEXT("CLR\n%s"), *FlareTape);
 	}
@@ -839,8 +832,9 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 	const FString RangeShort = Snap.RangeMeters < 0.f
 		? FString(TEXT("----"))
 		: FString::Printf(TEXT("%.0fM"), Snap.RangeMeters);
-	const FString ThreatShort = bMissileInbound
-		? FString(SkyguardCpgInboundLabel())
+	const FString OverlayThreat = SkyguardCpgHudOverlayThreatTape(Snap);
+	const FString ThreatShort = Snap.bMissileInbound
+		? OverlayThreat
 		: (Threats > 0
 			? FString::Printf(TEXT("%d %s"), Threats, *NearestKind)
 			: FString(TEXT("CLR")));
@@ -852,6 +846,7 @@ FSkyguardCpgHudSnapshot ASkyguardGunner::BuildCpgHudSnapshot() const
 		*RangeShort,
 		*ThreatShort,
 		*FlareTape);
+	SkyguardCpgHudApplyInboundTape(Snap);
 	return Snap;
 }
 
@@ -973,7 +968,7 @@ void ASkyguardGunner::UpdateCpgHud()
 			CpgEufdText->SetText(FText::FromString(FString::Printf(
 				TEXT("%03.0f  %s  %s"),
 				Snap.HeadingDegrees,
-				SkyguardCpgInboundLabel(),
+				*SkyguardCpgHudOverlayThreatTape(Snap),
 				*FlareTape)));
 			CpgEufdText->SetTextRenderColor(FColor(255, 72, 48));
 		}

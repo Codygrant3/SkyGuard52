@@ -40,4 +40,6 @@ const TCHAR* SkyguardCpgLockPhaseLabel(ESkyguardGuidedLockPhase Phase);
 const TCHAR* SkyguardCpgSightLabel(ESkyguardCpgSightMode Sight);
 const TCHAR* SkyguardCpgInboundLabel();
 FString SkyguardCpgFlareTape(int32 FlareCount);
+FString SkyguardCpgHudOverlayThreatTape(const FSkyguardCpgHudSnapshot& Snap);
+void SkyguardCpgHudApplyInboundTape(FSkyguardCpgHudSnapshot& Snap);
 bool SkyguardCpgHudHasLegacyLiveWording(const FString& Text);

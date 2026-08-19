@@ -192,12 +192,16 @@ int32 USkyguardCpgSightHud::NativePaint(
 	}
 	Text(HeadingTape, FVector2D(Center.X - 70.f, Top + 8.f), Green);
 
-	if (Cached.ThreatCount > 0)
+	const FString OverlayThreat = SkyguardCpgHudOverlayThreatTape(Cached);
+	if (!OverlayThreat.IsEmpty())
 	{
+		const FLinearColor ThreatColor = Cached.bMissileInbound
+			? FLinearColor(1.f, 0.28f, 0.19f, 0.95f)
+			: Green;
 		Text(
-			FString::Printf(TEXT("%d THRT"), Cached.ThreatCount),
+			OverlayThreat,
 			FVector2D(Size.X - Side - 160.f, Size.Y - Bottom - 28.f),
-			Green);
+			ThreatColor);
 	}
 
 	for (const FScreenMark& Mark : Marks)
