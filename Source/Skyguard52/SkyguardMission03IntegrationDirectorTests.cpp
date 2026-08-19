@@ -105,10 +105,9 @@ bool FSkyguardMission03DirectorMissionIdAndNullRuntimeTest::RunTest(
 		TEXT("Unconfigured convoy route alpha is zero"),
 		Director->GetConvoyRouteAlpha(),
 		0.f);
-	TestEqual(
+	TestTrue(
 		TEXT("Unconfigured convoy world location is origin"),
-		Director->GetConvoyWorldLocation(),
-		FVector::ZeroVector);
+		Director->GetConvoyWorldLocation().Equals(FVector::ZeroVector));
 	TestFalse(
 		TEXT("AdvanceConvoyByDistance is fail-closed before configure"),
 		Director->AdvanceConvoyByDistance(1000000.f));
@@ -173,10 +172,9 @@ bool FSkyguardMission03DirectorConfiguredConvoyRouteAndDamageTest::RunTest(
 		TEXT("Configured convoy alpha starts at zero"),
 		RouteDirector->GetConvoyRouteAlpha(),
 		0.f);
-	TestEqual(
+	TestTrue(
 		TEXT("Configured convoy location stays origin without a bound spline"),
-		RouteDirector->GetConvoyWorldLocation(),
-		FVector::ZeroVector);
+		RouteDirector->GetConvoyWorldLocation().Equals(FVector::ZeroVector));
 	// AdvanceConvoyByDistance requires ConvoyRouteState==Advancing and a bound
 	// FlightRouteSpline (GetConvoyRouteLength). BindRuntimeActors(nullptr,...)
 	// leaves route length 0, so the public API stays fail-closed. TunnelReached
@@ -206,10 +204,9 @@ bool FSkyguardMission03DirectorConfiguredConvoyRouteAndDamageTest::RunTest(
 		TEXT("Spline-less advance leaves route alpha at zero"),
 		RouteDirector->GetConvoyRouteAlpha(),
 		0.f);
-	TestEqual(
+	TestTrue(
 		TEXT("Spline-less advance leaves world location at origin"),
-		RouteDirector->GetConvoyWorldLocation(),
-		FVector::ZeroVector);
+		RouteDirector->GetConvoyWorldLocation().Equals(FVector::ZeroVector));
 
 	TestTrue(
 		TEXT("Damage director configures from loaded mission"),
