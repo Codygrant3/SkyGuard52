@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SkyguardRuntimeMeshCatalog.h"
 #include "SkyguardProtectAsset.generated.h"
 
 class UBoxComponent;
@@ -15,6 +16,18 @@ class SKYGUARD52_API ASkyguardProtectAsset : public AActor
 
 public:
 	ASkyguardProtectAsset();
+
+	virtual void BeginPlay() override;
+
+	/** Empty Preferred; engine-primitive ProxyFallback. Not a catalog Preferred fill. */
+	static FSkyguardMeshBindSlot MakeCargoHullBindSlot();
+
+	/** Resolve ProxyFallback onto Hull. Safe with no authored mesh. Not for the CDO constructor. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Campaign")
+	void BindCargoHull();
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Campaign")
+	UStaticMeshComponent* GetHull() const { return Hull; }
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Campaign")
 	void ApplyDamage(float Amount);
