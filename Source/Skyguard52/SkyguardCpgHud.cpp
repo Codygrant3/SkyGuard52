@@ -81,3 +81,32 @@ FString SkyguardCpgFlareTape(const int32 FlareCount)
 {
 	return FString::Printf(TEXT("FLR  %d"), FlareCount);
 }
+
+FString SkyguardCpgHudOverlayThreatTape(const FSkyguardCpgHudSnapshot& Snap)
+{
+	if (Snap.bMissileInbound)
+	{
+		return FString(SkyguardCpgInboundLabel());
+	}
+	if (Snap.ThreatCount > 0)
+	{
+		return FString::Printf(TEXT("%d THRT"), Snap.ThreatCount);
+	}
+	return FString();
+}
+
+void SkyguardCpgHudApplyInboundTape(FSkyguardCpgHudSnapshot& Snap)
+{
+	if (!Snap.bMissileInbound)
+	{
+		return;
+	}
+	const FString FlareTape = SkyguardCpgFlareTape(Snap.FlareCount);
+	const TCHAR* Inbound = SkyguardCpgInboundLabel();
+	Snap.ThreatLine = FString::Printf(TEXT("%s\n%s"), Inbound, *FlareTape);
+	const FString ThreatShort = SkyguardCpgHudOverlayThreatTape(Snap);
+	if (!Snap.EufdLine.Contains(ThreatShort))
+	{
+		Snap.EufdLine += FString::Printf(TEXT("  %s"), *ThreatShort);
+	}
+}
