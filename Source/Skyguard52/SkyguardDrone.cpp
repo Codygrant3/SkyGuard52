@@ -12,6 +12,19 @@ FSkyguardDroneCityImpactNative ASkyguardDrone::OnAnyCityImpacted;
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "UObject/SoftObjectPath.h"
+
+namespace SkyguardDroneMeshBindPrivate
+{
+	void BindMeshIfEmpty(UStaticMeshComponent* Component, UStaticMesh* Mesh)
+	{
+		if (!Component || Component->GetStaticMesh() || !Mesh)
+		{
+			return;
+		}
+		Component->SetStaticMesh(Mesh);
+	}
+}
 
 ASkyguardDrone::ASkyguardDrone()
 {
@@ -33,73 +46,52 @@ ASkyguardDrone::ASkyguardDrone()
 	Exhaust->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Exhaust->SetRelativeLocation(FVector(-80.f, 0.f, 0.f));
 	Exhaust->SetRelativeScale3D(FVector(0.25f, 0.25f, 0.25f));
+}
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cone(TEXT("/Engine/BasicShapes/Cone.Cone"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sphere(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebWing(
-		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-wing.drone-wing"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebFins(
-		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-fins.drone-fins"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> WebMotor(
-		TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-motor.drone-motor"));
+FSkyguardMeshBindSlot ASkyguardDrone::MakeHullBindSlot()
+{
+	FSkyguardMeshBindSlot Slot;
+	Slot.SlotId = TEXT("Drone.Hull");
+	Slot.ProxyFallback = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+		TEXT("/Engine/BasicShapes/Cube.Cube")));
+	Slot.Notes = TEXT(
+		"Preferred empty. ProxyFallback=engine Cube. No catalog Preferred fill.");
+	return Slot;
+}
 
-	// Prefer Hero shahed_proxy; WebGame body only if Preferred + ProxyFallback fail.
-	if (UStaticMesh* ResolvedBody =
-		USkyguardRuntimeMeshCatalog::ResolveDefaultSlot(TEXT("Drone.Body")))
+void ASkyguardDrone::BindHull()
+{
+	using namespace SkyguardDroneMeshBindPrivate;
+
+	if (UStaticMesh* HullMesh =
+		USkyguardRuntimeMeshCatalog::ResolveSlot(MakeHullBindSlot()))
 	{
-		Body->SetStaticMesh(ResolvedBody);
-		const bool bWebGameBody =
-			ResolvedBody->GetPathName() ==
-			TEXT("/Game/Skyguard/Meshes/WebGame/skyguard-drone/StaticMeshes/drone-body.drone-body");
-		if (bWebGameBody)
-		{
-			Body->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
-			Body->SetRelativeRotation(FRotator(0.f, 0.f, 0.f));
-		}
-		else
-		{
-			Body->SetRelativeScale3D(FVector(18.f, 18.f, 18.f));
-		}
-	}
-	else if (Cone.Succeeded())
-	{
-		Body->SetStaticMesh(Cone.Object);
-		Body->SetRelativeScale3D(FVector(1.2f, 1.2f, 3.2f));
-		Body->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+		BindMeshIfEmpty(Body, HullMesh);
 	}
 
-	if (WebWing.Succeeded())
+	FSkyguardMeshBindSlot CubeSlot;
+	CubeSlot.ProxyFallback = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+		TEXT("/Engine/BasicShapes/Cube.Cube")));
+	if (UStaticMesh* CubeMesh =
+		USkyguardRuntimeMeshCatalog::ResolveSlot(CubeSlot))
 	{
-		Wing->SetStaticMesh(WebWing.Object);
-		Wing->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
-	}
-	else if (Cube.Succeeded())
-	{
-		Wing->SetStaticMesh(Cube.Object);
-		Wing->SetRelativeScale3D(FVector(2.8f, 0.15f, 0.08f));
+		BindMeshIfEmpty(Wing, CubeMesh);
 	}
 
-	if (WebMotor.Succeeded())
+	FSkyguardMeshBindSlot SphereSlot;
+	SphereSlot.ProxyFallback = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+		TEXT("/Engine/BasicShapes/Sphere.Sphere")));
+	if (UStaticMesh* SphereMesh =
+		USkyguardRuntimeMeshCatalog::ResolveSlot(SphereSlot))
 	{
-		Exhaust->SetStaticMesh(WebMotor.Object);
-		Exhaust->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
-		Exhaust->SetRelativeLocation(FVector(-60.f, 0.f, 0.f));
-	}
-	else if (WebFins.Succeeded())
-	{
-		Exhaust->SetStaticMesh(WebFins.Object);
-		Exhaust->SetRelativeScale3D(FVector(0.9f, 0.9f, 0.9f));
-	}
-	else if (Sphere.Succeeded())
-	{
-		Exhaust->SetStaticMesh(Sphere.Object);
+		BindMeshIfEmpty(Exhaust, SphereMesh);
 	}
 }
 
 void ASkyguardDrone::BeginPlay()
 {
 	Super::BeginPlay();
+	BindHull();
 	ApplyThreatPresentation();
 }
 
