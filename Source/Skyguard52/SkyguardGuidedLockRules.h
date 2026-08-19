@@ -28,6 +28,19 @@ struct SKYGUARD52_API FSkyguardGuidedLockRules
 		float AngleDegrees,
 		ESkyguardCpgSightMode Sight);
 
+	/**
+	 * One Hellfire step the CPG and tests call.
+	 * In-cone dwell acquires and then holds lock. PopFlares (Key=X,
+	 * already shipped) dumps the solution immediately.
+	 */
+	static ESkyguardGuidedLockPhase StepLock(
+		float& Progress,
+		bool& bHasCandidate,
+		float DeltaSeconds,
+		ESkyguardCpgSightMode Sight,
+		float AngleDegrees,
+		bool bFlarePopped);
+
 	static const TCHAR* PhaseLabel(ESkyguardGuidedLockPhase Phase);
 	static const TCHAR* SightLabel(ESkyguardCpgSightMode Sight);
 };

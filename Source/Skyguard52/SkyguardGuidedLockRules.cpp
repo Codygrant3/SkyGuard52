@@ -59,6 +59,32 @@ bool FSkyguardGuidedLockRules::IsInsideAcquireCone(
 	return AngleDegrees <= AcquireDegrees(Sight);
 }
 
+ESkyguardGuidedLockPhase FSkyguardGuidedLockRules::StepLock(
+	float& Progress,
+	bool& bHasCandidate,
+	const float DeltaSeconds,
+	const ESkyguardCpgSightMode Sight,
+	const float AngleDegrees,
+	const bool bFlarePopped)
+{
+	if (bFlarePopped)
+	{
+		Progress = 0.f;
+		bHasCandidate = false;
+		return PhaseFromProgress(Progress, bHasCandidate);
+	}
+
+	if (bHasCandidate && IsInsideAcquireCone(AngleDegrees, Sight))
+	{
+		Progress = FMath::Clamp(
+			Progress + DeltaSeconds / FMath::Max(LockSeconds(Sight), 0.1f),
+			0.f,
+			1.f);
+	}
+
+	return PhaseFromProgress(Progress, bHasCandidate);
+}
+
 const TCHAR* FSkyguardGuidedLockRules::PhaseLabel(
 	const ESkyguardGuidedLockPhase Phase)
 {

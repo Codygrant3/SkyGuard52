@@ -281,4 +281,182 @@ bool FSkyguardGuidedMissileFireRequiresLockTest::RunTest(const FString& Paramete
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardGuidedMissileAcquireLockTest,
+	"Skyguard52.Apache.GuidedMissile.AcquireLock",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardGuidedMissileAcquireLockTest::RunTest(const FString& Parameters)
+{
+	float EarlyProgress = 0.f;
+	bool bEarlyCandidate = true;
+	const ESkyguardGuidedLockPhase Early = FSkyguardGuidedLockRules::StepLock(
+		EarlyProgress,
+		bEarlyCandidate,
+		0.25f,
+		ESkyguardCpgSightMode::Helmet,
+		0.f,
+		false);
+	TestEqual(TEXT("quarter-second helmet dwell is detect"), Early, ESkyguardGuidedLockPhase::Detect);
+	TestFalse(
+		TEXT("partial helmet dwell cannot fire"),
+		FSkyguardGuidedLockRules::CanFire(Early));
+	TestTrue(TEXT("candidate stays while acquiring"), bEarlyCandidate);
+
+	float HelmetProgress = 0.f;
+	bool bHelmetCandidate = true;
+	const ESkyguardGuidedLockPhase HelmetLock = FSkyguardGuidedLockRules::StepLock(
+		HelmetProgress,
+		bHelmetCandidate,
+		FSkyguardGuidedLockRules::HelmetLockSeconds,
+		ESkyguardCpgSightMode::Helmet,
+		0.f,
+		false);
+	TestEqual(TEXT("helmet clock reaches lock"), HelmetLock, ESkyguardGuidedLockPhase::Lock);
+	TestEqual(TEXT("helmet progress is complete"), HelmetProgress, 1.f);
+	TestTrue(
+		TEXT("completed helmet lock can fire"),
+		FSkyguardGuidedLockRules::CanFire(HelmetLock));
+
+	float HelmetAtSensorClock = 0.f;
+	bool bHelmetAtSensor = true;
+	const ESkyguardGuidedLockPhase SensorAtHelmetDone = FSkyguardGuidedLockRules::StepLock(
+		HelmetAtSensorClock,
+		bHelmetAtSensor,
+		FSkyguardGuidedLockRules::SensorLockSeconds,
+		ESkyguardCpgSightMode::Helmet,
+		0.f,
+		false);
+	TestEqual(
+		TEXT("helmet is still tracking at the sensor lock clock"),
+		SensorAtHelmetDone,
+		ESkyguardGuidedLockPhase::Track);
+
+	float SensorProgress = 0.f;
+	bool bSensorCandidate = true;
+	const ESkyguardGuidedLockPhase SensorLock = FSkyguardGuidedLockRules::StepLock(
+		SensorProgress,
+		bSensorCandidate,
+		FSkyguardGuidedLockRules::SensorLockSeconds,
+		ESkyguardCpgSightMode::TargetingSensor,
+		0.f,
+		false);
+	TestEqual(TEXT("sensor clock acquires lock"), SensorLock, ESkyguardGuidedLockPhase::Lock);
+	TestTrue(
+		TEXT("completed sensor lock can fire"),
+		FSkyguardGuidedLockRules::CanFire(SensorLock));
+
+	float WideProgress = 0.f;
+	bool bWideCandidate = true;
+	const ESkyguardGuidedLockPhase OutsideSensor = FSkyguardGuidedLockRules::StepLock(
+		WideProgress,
+		bWideCandidate,
+		FSkyguardGuidedLockRules::SensorLockSeconds,
+		ESkyguardCpgSightMode::TargetingSensor,
+		8.f,
+		false);
+	TestEqual(
+		TEXT("8 deg does not acquire on the targeting-sensor"),
+		OutsideSensor,
+		ESkyguardGuidedLockPhase::Detect);
+	TestEqual(TEXT("out-of-cone progress stays at zero"), WideProgress, 0.f);
+	TestFalse(
+		TEXT("out-of-cone cannot fire"),
+		FSkyguardGuidedLockRules::CanFire(OutsideSensor));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardGuidedMissileHoldLockTest,
+	"Skyguard52.Apache.GuidedMissile.HoldLock",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardGuidedMissileHoldLockTest::RunTest(const FString& Parameters)
+{
+	float Progress = 0.f;
+	bool bHasCandidate = true;
+	const ESkyguardGuidedLockPhase Acquired = FSkyguardGuidedLockRules::StepLock(
+		Progress,
+		bHasCandidate,
+		FSkyguardGuidedLockRules::HelmetLockSeconds,
+		ESkyguardCpgSightMode::Helmet,
+		4.f,
+		false);
+	TestEqual(TEXT("hold starts from a completed lock"), Acquired, ESkyguardGuidedLockPhase::Lock);
+
+	const ESkyguardGuidedLockPhase Held = FSkyguardGuidedLockRules::StepLock(
+		Progress,
+		bHasCandidate,
+		2.f,
+		ESkyguardCpgSightMode::Helmet,
+		4.f,
+		false);
+	TestEqual(TEXT("in-cone dwell holds lock"), Held, ESkyguardGuidedLockPhase::Lock);
+	TestEqual(TEXT("held progress stays complete"), Progress, 1.f);
+	TestTrue(TEXT("held lock still has a candidate"), bHasCandidate);
+	TestTrue(
+		TEXT("held lock can still fire"),
+		FSkyguardGuidedLockRules::CanFire(Held));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardGuidedMissileLockBreaksOnFlareTest,
+	"Skyguard52.Apache.GuidedMissile.LockBreaksOnFlare",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardGuidedMissileLockBreaksOnFlareTest::RunTest(const FString& Parameters)
+{
+	float Progress = 0.f;
+	bool bHasCandidate = true;
+	const ESkyguardGuidedLockPhase Locked = FSkyguardGuidedLockRules::StepLock(
+		Progress,
+		bHasCandidate,
+		FSkyguardGuidedLockRules::SensorLockSeconds,
+		ESkyguardCpgSightMode::TargetingSensor,
+		0.f,
+		false);
+	TestEqual(TEXT("pre-flare solution is lock"), Locked, ESkyguardGuidedLockPhase::Lock);
+	TestTrue(
+		TEXT("pre-flare lock can fire"),
+		FSkyguardGuidedLockRules::CanFire(Locked));
+
+	const ESkyguardGuidedLockPhase Broken = FSkyguardGuidedLockRules::StepLock(
+		Progress,
+		bHasCandidate,
+		0.f,
+		ESkyguardCpgSightMode::TargetingSensor,
+		0.f,
+		true);
+	TestEqual(TEXT("PopFlares dumps lock to search"), Broken, ESkyguardGuidedLockPhase::Search);
+	TestEqual(TEXT("flare zeros progress"), Progress, 0.f);
+	TestFalse(TEXT("flare drops the candidate"), bHasCandidate);
+	TestFalse(
+		TEXT("broken lock cannot fire"),
+		FSkyguardGuidedLockRules::CanFire(Broken));
+	TestEqual(
+		TEXT("flare dump stays on CPG search tape"),
+		FString(FSkyguardGuidedLockRules::PhaseLabel(Broken)),
+		FString(TEXT("SRCH")));
+	TestFalse(
+		TEXT("flare dump tape is not Yak/Igla/rifle"),
+		SkyguardCpgHudHasLegacyLiveWording(
+			FString(FSkyguardGuidedLockRules::PhaseLabel(Broken)) +
+			FString(FSkyguardGuidedLockRules::SightLabel(
+				ESkyguardCpgSightMode::TargetingSensor))));
+
+	Progress = 0.5f;
+	bHasCandidate = true;
+	const ESkyguardGuidedLockPhase TrackBroken = FSkyguardGuidedLockRules::StepLock(
+		Progress,
+		bHasCandidate,
+		0.16f,
+		ESkyguardCpgSightMode::Helmet,
+		0.f,
+		true);
+	TestEqual(TEXT("flare also dumps a track solution"), TrackBroken, ESkyguardGuidedLockPhase::Search);
+	TestFalse(TEXT("track flare cannot fire"), FSkyguardGuidedLockRules::CanFire(TrackBroken));
+	return true;
+}
+
 #endif
