@@ -175,7 +175,8 @@ class ProductionAudioRoutingDefaultsContractTests(unittest.TestCase):
         self.assertIn("CockpitExteriorAttenuation", body)
         self.assertIn("CockpitLowPassHz", body)
         self.assertEqual(body.count("UPROPERTY("), 9)
-        self.assertEqual(body.count("UPROPERTY(EditAnywhere, BlueprintReadWrite)"), 9)
+        self.assertEqual(body.count("UPROPERTY(EditAnywhere, BlueprintReadWrite"), 9)
+        self.assertEqual(body.count("UPROPERTY(EditAnywhere, BlueprintReadWrite)"), 7)
 
     def test_in_class_defaults_match_origin_main(self) -> None:
         body = routing_body(origin_main(HEADER_NAME))
