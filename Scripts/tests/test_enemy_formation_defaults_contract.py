@@ -112,7 +112,11 @@ class EnemyFormationDefaultsContractTests(unittest.TestCase):
         self.assertEqual(positions, sorted(positions), PUBLIC_FIELDS)
         for field in PUBLIC_FIELDS:
             self.assertIn(field, body)
-        self.assertEqual(body.count("UPROPERTY(EditAnywhere, BlueprintReadOnly)"), 4)
+        self.assertEqual(body.count("UPROPERTY("), 4)
+        self.assertEqual(
+            body.count("\tUPROPERTY(EditAnywhere, BlueprintReadOnly)\n"),
+            2,
+        )
         self.assertIn(
             'UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (ClampMin = "1", ClampMax = "32"))',
             body,
