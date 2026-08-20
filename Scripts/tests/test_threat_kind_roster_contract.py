@@ -91,7 +91,11 @@ def threat_kind_display_names(header: str) -> list[tuple[str, str]]:
 
 
 def mission_spec_kind_defaults(header: str) -> dict[str, str]:
-    block = between(header, "struct FSkyguardCampaignMissionSpec", "};")
+    block = between(
+        header,
+        "struct FSkyguardCampaignMissionSpec",
+        "ESkyguardClimaxKind Climax",
+    )
     return dict(
         re.findall(
             r"ESkyguardThreatKind\s+(\w+)\s*=\s*ESkyguardThreatKind::(\w+);",
@@ -125,11 +129,13 @@ class ThreatKindRosterContractTests(unittest.TestCase):
         self.assertIn("FastBoat", enumerators)
 
     def test_header_comment_keeps_shahed_as_one_option(self) -> None:
-        normalized = re.sub(r"\s+", " ", text(THREAT_TYPES))
+        header = text(THREAT_TYPES)
         self.assertIn(
-            "Shahed-style fast attackers are one option, not the whole campaign",
-            normalized,
+            "Shahed-style fast attackers are one option, not the",
+            header,
         )
+        self.assertIn("whole campaign", header)
+        self.assertIn("Live threat roster", header)
 
     def test_mission_spec_kind_defaults(self) -> None:
         header = text(ROSTER_HEADER)
