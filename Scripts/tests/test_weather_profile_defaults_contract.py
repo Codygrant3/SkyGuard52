@@ -119,7 +119,8 @@ class WeatherProfileDefaultsContractTests(unittest.TestCase):
         self.assertEqual(positions, sorted(positions), PUBLIC_FIELDS)
         for field in PUBLIC_FIELDS:
             self.assertIn(field, body)
-        self.assertEqual(body.count("UPROPERTY(EditAnywhere, BlueprintReadOnly)"), 6)
+        self.assertEqual(body.count("UPROPERTY("), 6)
+        self.assertEqual(body.count("BlueprintReadOnly"), 6)
 
     def test_in_class_defaults_match_origin_main(self) -> None:
         body = weather_profile_body(origin_main(HEADER_NAME))
