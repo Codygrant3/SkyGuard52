@@ -115,10 +115,16 @@ class BriefingCardDefaultsContractTests(unittest.TestCase):
         self.assertEqual(positions, sorted(positions), PUBLIC_FIELDS)
         for field in PUBLIC_FIELDS:
             self.assertIn(field, body)
+        self.assertEqual(body.count("UPROPERTY("), 5)
         self.assertEqual(
             body.count("UPROPERTY(VisibleAnywhere, BlueprintReadOnly)"),
-            5,
+            4,
         )
+        self.assertIn(
+            'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta=(MultiLine="true"))',
+            body,
+        )
+        self.assertEqual(body.count('meta=(MultiLine="true")'), 1)
 
     def test_in_class_defaults_match_origin_main(self) -> None:
         body = briefing_card_body(origin_main(HEADER_NAME))
