@@ -117,6 +117,12 @@ class SearchlightTrackRuntimeDefaultsContractTests(unittest.TestCase):
         self.assertIn("USTRUCT(BlueprintType)", header)
         self.assertIn("GENERATED_BODY()", searchlight_body(header))
 
+    def test_missing_struct_fails_closed(self) -> None:
+        with self.assertRaises(AssertionError) as raised:
+            searchlight_body("struct FSkyguardUnrelated {\n};\n")
+        self.assertIn(STRUCT_NAME, str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+
     def test_public_fields_match_origin_main_in_order(self) -> None:
         body = searchlight_body(origin_main_header())
         positions = [body.index(field) for field in PUBLIC_FIELDS]
