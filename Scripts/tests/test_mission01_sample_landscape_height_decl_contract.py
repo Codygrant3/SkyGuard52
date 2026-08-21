@@ -2482,7 +2482,8 @@ class Mission01SampleLandscapeHeightDeclContractTests(unittest.TestCase):
         self.assertTrue(SAMPLE_LANDSCAPE_HEIGHT.startswith("static FSkyguardLandscapeHeightSample "))
         self.assertIn("SampleLandscapeHeight", SAMPLE_LANDSCAPE_HEIGHT)
         self.assertIn(
-            "SampleLandscapeHeight(const FVector& WorldPoint)",
+            "SampleLandscapeHeight(ALandscapeProxy* Landscape, "
+            "const FVector& WorldLocation)",
             SAMPLE_LANDSCAPE_HEIGHT,
         )
         self.assertTrue(
