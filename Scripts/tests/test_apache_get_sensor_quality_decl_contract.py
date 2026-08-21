@@ -996,7 +996,7 @@ class ApacheGetSensorQualityDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tbool\n"
+            "\tfloat\n"
             "\tGetSensorQuality() const;\n"
             "private:\n"
             "};\n"
