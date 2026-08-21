@@ -677,8 +677,11 @@ class CanTravelToNextMissionDeclContractTests(unittest.TestCase):
             "ESkyguardMissionDebriefState::Acknowledged",
             section,
         )
-        self.assertNotIn("LastDebrief.bProgressSaved", section)
-        self.assertNotIn("LastDebrief.bNextMissionUnlocked", section)
+        self.assertNotIn("LastDebrief.bProgressSaved", CAN_TRAVEL_TO_NEXT_MISSION)
+        self.assertNotIn(
+            "LastDebrief.bNextMissionUnlocked",
+            CAN_TRAVEL_TO_NEXT_MISSION,
+        )
         self.assertNotIn(
             "GetNextMissionMapPackageName().IsEmpty()",
             CAN_TRAVEL_TO_NEXT_MISSION,
