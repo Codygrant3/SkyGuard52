@@ -1391,7 +1391,7 @@ class Mission04GetSubstationIntegrityDeclContractTests(unittest.TestCase):
         self.assertNotIn("BlueprintPure", GET_SUBSTATION_INTEGRITY)
         self.assertNotIn("Category", GET_SUBSTATION_INTEGRITY)
         self.assertNotIn("BlueprintCallable", UFUNCTION_SUBSTATION)
-        self.assertIn("Skyguard|Mission04|Waves", UFUNCTION_SUBSTATION)
+        self.assertIn("Skyguard|Mission04|Substation", UFUNCTION_SUBSTATION)
         self.assertNotIn("Mission01", UFUNCTION_SUBSTATION)
         self.assertNotIn("Mission03", UFUNCTION_SUBSTATION)
         self.assertIn("BlueprintPure", UFUNCTION_SUBSTATION)
