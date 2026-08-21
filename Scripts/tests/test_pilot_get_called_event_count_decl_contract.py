@@ -371,7 +371,7 @@ class PilotGetCalledEventCountDeclContractTests(unittest.TestCase):
             "\tvoid GetCalledEventCount();\n"
             "\tint32 GetCalledEventCount(ESkyguardPilotLine Line);\n"
             "\tint GetCalledEventCount();\n"
-            "\tuint32 GetCalledEventCount();\n"
+            "\tint64 GetCalledEventCount();\n"
             "\tFString GetCalledEventCount();\n"
             "\tint32 GetLastCalledLine();\n"
             "\tint32 GetLastCalledText();\n"
