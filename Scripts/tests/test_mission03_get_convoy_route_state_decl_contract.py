@@ -1948,11 +1948,12 @@ class Mission03GetConvoyRouteStateDeclContractTests(unittest.TestCase):
         self.assertNotIn("return INDEX_NONE", section)
         self.assertNotIn("NAME_None", section)
 
-    def test_contract_does_not_lock_get_current_wave_index_cpp_body(self) -> None:
+    def test_contract_does_not_lock_get_convoy_route_state_cpp_body(self) -> None:
         locked_only = f"{GET_CONVOY_ROUTE_STATE}\n"
         self.assertNotIn("{", GET_CONVOY_ROUTE_STATE)
         self.assertNotIn("}", GET_CONVOY_ROUTE_STATE)
         self.assertNotIn("return ", GET_CONVOY_ROUTE_STATE)
+        self.assertNotIn("return ConvoyRouteState", GET_CONVOY_ROUTE_STATE)
         self.assertNotIn(
             "ASkyguardMission03IntegrationDirector::GetConvoyRouteState",
             GET_CONVOY_ROUTE_STATE,
