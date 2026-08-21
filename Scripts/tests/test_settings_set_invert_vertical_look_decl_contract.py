@@ -212,14 +212,14 @@ UNLOCKED_NEIGHBORS = (
     "static FSkyguardUserSettingsApplied OnSettingsApplied;",
 )
 GETTER_NOT_LOCKED = (
-    "static USkyguardGameUserSettings* GetSkyguardGameUserSettings();"
+    "static USkyguardGameUserSettings* GetSkyguardGameUserSettings();",
 )
 APPLY_AND_SAVE_NOT_LOCKED = (
-    "void ApplyAndSaveSettings(bool bCheckForCommandLineOverrides = true);"
+    "void ApplyAndSaveSettings(bool bCheckForCommandLineOverrides = true);",
 )
 SET_MASTER_VOLUME_NOT_LOCKED = ("void SetMasterVolume(float Value);",)
 GET_MASTER_VOLUME_NOT_LOCKED = (
-    "float GetMasterVolume() const { return MasterVolume; }"
+    "float GetMasterVolume() const { return MasterVolume; }",
 )
 MOUSE_NOT_LOCKED = (
     "void SetMouseSensitivity(float Value);",
