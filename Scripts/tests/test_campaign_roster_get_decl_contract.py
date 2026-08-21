@@ -559,12 +559,15 @@ class CampaignRosterGetDeclContractTests(unittest.TestCase):
         for token in LEFTOVER_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, GET_DECL)
-            self.assertNotIn(token, body)
+            if token != "ESkyguardLoadout":
+                self.assertNotIn(token, body)
         self.assertNotIn("bInvertLook", GET_DECL)
         self.assertNotIn("ApplySettings", GET_DECL)
         self.assertNotIn("ESkyguardApacheSystem", locked_only)
         self.assertNotIn("ESkyguardGunshipWeaponStation", locked_only)
         self.assertNotIn("ESkyguardPilotCommand", locked_only)
+        self.assertNotIn("ESkyguardLoadout", GET_DECL)
+        self.assertNotIn("ESkyguardLoadout", locked_only)
 
     def test_contract_does_not_relock_neighbor_helpers(self) -> None:
         locked_only = f"{GET_DECL}\n"
