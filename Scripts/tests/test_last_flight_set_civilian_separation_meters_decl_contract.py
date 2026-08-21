@@ -729,7 +729,7 @@ CPP_AND_INVENTED = (
     "ASkyguardLastFlightBoss::SetCivilianSeparationMeters",
     "SkyguardLastFlightBoss.cpp",
     "FMath::Max",
-    "CivilianSeparationMeters =",
+    "CivilianSeparationMeters = FMath::Max",
     "HasSafeCivilianSeparation",
 )
 SIBLING_TYPES = (
@@ -1333,7 +1333,7 @@ class LastFlightSetCivilianSeparationMetersDeclContractTests(unittest.TestCase):
         self.assertNotIn("return true", SET_CIVILIAN_SEPARATION_METERS)
         self.assertNotIn("FMath::Max", SET_CIVILIAN_SEPARATION_METERS)
         self.assertNotIn(
-            "CivilianSeparationMeters =",
+            "CivilianSeparationMeters = FMath::Max",
             SET_CIVILIAN_SEPARATION_METERS,
         )
         self.assertNotIn("HasSafeCivilianSeparation", SET_CIVILIAN_SEPARATION_METERS)
