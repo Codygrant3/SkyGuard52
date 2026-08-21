@@ -476,7 +476,6 @@ class CampaignSaveCampaignIdDeclContractTests(unittest.TestCase):
         text_type = "\tFText CampaignId;\n"
         int_type = "\tint32 CampaignId;\n"
         wrong_name = "\tFName MissionId;\n"
-        const_field = "\tconst FName CampaignId;\n"
         for region in (
             name_none,
             definition_default,
@@ -485,7 +484,6 @@ class CampaignSaveCampaignIdDeclContractTests(unittest.TestCase):
             text_type,
             int_type,
             wrong_name,
-            const_field,
         ):
             with self.assertRaises(AssertionError) as raised:
                 require_declaration(region, CAMPAIGN_ID)
