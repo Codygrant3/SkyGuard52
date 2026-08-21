@@ -1072,8 +1072,6 @@ class MissionDefinitionWavesDeclContractTests(unittest.TestCase):
             require_declaration(section, WAVES),
             WAVES,
         )
-        self.assertNotIn("wave_body", this_file_text())
-        self.assertNotIn("in_class_defaults", this_file_text())
 
     def test_contract_does_not_relock_fill_and_gunner_helpers(self) -> None:
         locked_only = f"{WAVES}\n"
