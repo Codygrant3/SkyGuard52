@@ -1920,7 +1920,7 @@ class RoadHunterDebrisRightWingFieldDeclContractTests(unittest.TestCase):
             f"\t{TARGETING_CAMERA_FIELD}\n"
             f"\t{LEFT_ACTUATOR_FIELD}\n"
             f"\t{RIGHT_ACTUATOR_FIELD}\n"
-            f"\t{DEBRIS_RIGHT_WING_FIELD}\n"
+            f"\t{ROAD_HUNTER_ENGINE_FIELD}\n"
             f"\t{DEBRIS_LEFT_WING_FIELD}\n"
             f"\t{ROAD_HUNTER_DEBRIS_ENGINE_FIELD}\n"
             f"\t{PORT_LATCH_FIELD}\n"
@@ -2381,7 +2381,7 @@ class RoadHunterDebrisRightWingFieldDeclContractTests(unittest.TestCase):
             f"\t{TARGETING_CAMERA_FIELD}\n",
             f"\t{LEFT_ACTUATOR_FIELD}\n",
             f"\t{RIGHT_ACTUATOR_FIELD}\n",
-            f"\t{DEBRIS_RIGHT_WING_FIELD}\n",
+            f"\t{ROAD_HUNTER_ENGINE_FIELD}\n",
             f"\t{DEBRIS_LEFT_WING_FIELD}\n",
             f"\t{ROAD_HUNTER_DEBRIS_ENGINE_FIELD}\n",
             f"\t{leftover_arm_emergency_finish()}\n",
