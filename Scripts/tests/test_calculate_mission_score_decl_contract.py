@@ -296,7 +296,7 @@ INVENTED_SCORE = (
     "CompletionScore",
     "PerfectAccuracyBonus",
     "NoDamageBonus",
-    "ScoreRules",
+    "Mission.ScoreRules",
     "FMath::Max",
     "KINDA_SMALL_NUMBER",
     "Result.bMissionSucceeded",
@@ -333,7 +333,7 @@ CPP_AND_INVENTED = (
     "CompletionScore",
     "PerfectAccuracyBonus",
     "NoDamageBonus",
-    "ScoreRules",
+    "Mission.ScoreRules",
     "FMath::Max",
     "KINDA_SMALL_NUMBER",
     "USkyguardCampaignSubsystem::CalculateMissionScore",
@@ -781,12 +781,12 @@ class CalculateMissionScoreDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
         self.assertNotIn("return 0", CALCULATE_MISSION_SCORE)
         self.assertNotIn("CompletionScore", CALCULATE_MISSION_SCORE)
-        self.assertNotIn("ScoreRules", CALCULATE_MISSION_SCORE)
+        self.assertNotIn("Mission.ScoreRules", CALCULATE_MISSION_SCORE)
         self.assertNotIn("FMath::Max", CALCULATE_MISSION_SCORE)
         section = public_section(origin_main_header())
         self.assertNotIn("return 0", section)
         self.assertNotIn("CompletionScore", section)
-        self.assertNotIn("ScoreRules", section)
+        self.assertNotIn("Mission.ScoreRules", section)
         self.assertNotIn("FMath::Max", section)
 
     def test_declaration_does_not_invent_medal_tier(self) -> None:
@@ -821,7 +821,7 @@ class CalculateMissionScoreDeclContractTests(unittest.TestCase):
         self.assertNotIn("SkyguardCampaignSubsystem.cpp", CALCULATE_MISSION_SCORE)
         self.assertNotIn("SkyguardCampaignSubsystem.cpp", locked_only)
         self.assertNotIn("CompletionScore", CALCULATE_MISSION_SCORE)
-        self.assertNotIn("ScoreRules", CALCULATE_MISSION_SCORE)
+        self.assertNotIn("Mission.ScoreRules", CALCULATE_MISSION_SCORE)
         self.assertNotIn("FMath::Max", CALCULATE_MISSION_SCORE)
         self.assertNotIn("FindObjective", CALCULATE_MISSION_SCORE)
 
