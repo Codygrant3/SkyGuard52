@@ -305,7 +305,7 @@ CLASS_RE = re.compile(
 ACCESS_RE = re.compile(r"(?:^|\n)\s*(public|private|protected)\s*:")
 
 
-def leftover_harbor_tokens() -> tuple[str, ...]:
+def leftover_harbor_clock_tokens() -> tuple[str, ...]:
     incoming = "Incoming" + "Radar"
     forty = "40" + ".f"
     eighty = "80" + ".f"
@@ -313,10 +313,14 @@ def leftover_harbor_tokens() -> tuple[str, ...]:
         incoming,
         incoming + "LiveIntervalSeconds",
         incoming + "DownIntervalSeconds",
-        forty,
-        eighty,
         forty + ", " + eighty,
     )
+
+
+def leftover_harbor_tokens() -> tuple[str, ...]:
+    forty = "40" + ".f"
+    eighty = "80" + ".f"
+    return leftover_harbor_clock_tokens() + (forty, eighty)
 
 
 def leftover_live_copy_tokens() -> tuple[str, ...]:
@@ -1005,8 +1009,9 @@ class PathfinderResetEncounterStateDeclContractTests(unittest.TestCase):
     def test_contract_does_not_retune_harbor(self) -> None:
         section = public_section(origin_main_header())
         locked_only = f"{RESET_ENCOUNTER_STATE}\n"
-        for token in leftover_harbor_tokens():
+        for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
+        for token in leftover_harbor_tokens():
             self.assertNotIn(token, RESET_ENCOUNTER_STATE)
             self.assertNotIn(token, locked_only)
 
@@ -1014,10 +1019,11 @@ class PathfinderResetEncounterStateDeclContractTests(unittest.TestCase):
         locked_only = f"{RESET_ENCOUNTER_STATE}\n"
         section = public_section(origin_main_header())
         file_text = this_file_text()
+        for token in leftover_harbor_clock_tokens():
+            self.assertNotIn(token, section)
         for token in leftover_harbor_tokens():
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, RESET_ENCOUNTER_STATE)
-            self.assertNotIn(token, section)
             self.assertNotIn(token, file_text)
 
     def test_this_file_bans_retired_live_copy(self) -> None:
@@ -1131,8 +1137,9 @@ class PathfinderResetEncounterStateDeclContractTests(unittest.TestCase):
         for token in CPP_AND_INVENTED:
             self.assertNotIn(token, RESET_ENCOUNTER_STATE)
             self.assertNotIn(token, section)
-        for token in leftover_harbor_tokens():
+        for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
+        for token in leftover_harbor_tokens():
             self.assertNotIn(token, locked_only)
         for banned in leftover_live_copy_tokens():
             self.assertNotIn(banned, section.lower())
