@@ -1845,7 +1845,7 @@ class Mission01IsAuthoredEnvironmentReadyDeclContractTests(unittest.TestCase):
         for token in SIBLING_DIRECTOR_FIELDS_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, IS_AUTHORED_ENVIRONMENT_READY)
-        self.assertIn("IsPointAllowedForPCG", IS_AUTHORED_ENVIRONMENT_READY)
+        self.assertIn("IsAuthoredEnvironmentReady", IS_AUTHORED_ENVIRONMENT_READY)
         self.assertTrue(IS_AUTHORED_ENVIRONMENT_READY.startswith("bool "))
 
     def test_contract_does_not_relock_sibling_environment_methods(self) -> None:
