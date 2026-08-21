@@ -607,46 +607,44 @@ class CampaignDefinitionDisplayNameDeclContractTests(unittest.TestCase):
             "private:\n"
             "};\n"
         )
-        wrap_semi = (
-            "public:\n"
-            "\tFText DisplayName\n"
-            "\t;\n"
-            "private:\n"
-            "};\n"
-        )
-        wrap_both = (
+        wrap_tabs = (
             "public:\n"
             "\tFText\n"
-            "\tDisplayName\n"
-            "\t;\n"
+            "\t\tDisplayName;\n"
+            "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tFText    DisplayName   ;\n"
+            "\tFText    DisplayName;\n"
+            "};\n"
+        )
+        wrap_leading = (
+            "public:\n"
+            "    FText DisplayName;\n"
             "};\n"
         )
         header_wrap_type = (
             f"class SKYGUARD52_API {CLASS_NAME} "
             f": public UPrimaryDataAsset\n{{\n{wrap_type}"
         )
-        header_wrap_semi = (
+        header_wrap_tabs = (
             f"class SKYGUARD52_API {CLASS_NAME} "
-            f": public UPrimaryDataAsset\n{{\n{wrap_semi}"
-        )
-        header_wrap_both = (
-            f"class SKYGUARD52_API {CLASS_NAME} "
-            f": public UPrimaryDataAsset\n{{\n{wrap_both}"
+            f": public UPrimaryDataAsset\n{{\n{wrap_tabs}"
         )
         header_wrap_spaces = (
             f"class SKYGUARD52_API {CLASS_NAME} "
             f": public UPrimaryDataAsset\n{{\n{wrap_spaces}"
         )
+        header_wrap_leading = (
+            f"class SKYGUARD52_API {CLASS_NAME} "
+            f": public UPrimaryDataAsset\n{{\n{wrap_leading}"
+        )
         for header in (
             header_wrap_type,
-            header_wrap_semi,
-            header_wrap_both,
+            header_wrap_tabs,
             header_wrap_spaces,
+            header_wrap_leading,
         ):
             section = public_section(header)
             self.assertTrue(
