@@ -194,7 +194,11 @@ NAMESPACE_RE = re.compile(rf"namespace\s+{re.escape(NAMESPACE_NAME)}\b")
 
 
 def collapsed(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
+    compact = re.sub(r"\s+", " ", text).strip()
+    compact = re.sub(r"\s*\(\s*", "(", compact)
+    compact = re.sub(r"\s*\)\s*", ")", compact)
+    compact = re.sub(r"\s*,\s*", ",", compact)
+    return compact
 
 
 def origin_main_header() -> str:
@@ -318,17 +322,30 @@ class PilotLineTextForEventDeclContractTests(unittest.TestCase):
         self.assertNotIn("return ", LINE_TEXT_FOR_EVENT)
 
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
-        split = (
+        wrap_type = (
+            "{\n"
+            "\tFString\n"
+            "\tLineTextForEvent(ESkyguardPilotLine Line);\n"
+            "}\n"
+        )
+        wrap_args = (
             "{\n"
             "\tFString LineTextForEvent(\n"
             "\t\tESkyguardPilotLine Line);\n"
             "}\n"
         )
-        self.assertTrue(has_declaration(split, LINE_TEXT_FOR_EVENT), split)
+        self.assertTrue(has_declaration(wrap_type, LINE_TEXT_FOR_EVENT), wrap_type)
+        self.assertTrue(has_declaration(wrap_args, LINE_TEXT_FOR_EVENT), wrap_args)
         self.assertEqual(
-            require_declaration(split, LINE_TEXT_FOR_EVENT),
+            require_declaration(wrap_type, LINE_TEXT_FOR_EVENT),
             LINE_TEXT_FOR_EVENT,
         )
+        self.assertEqual(
+            require_declaration(wrap_args, LINE_TEXT_FOR_EVENT),
+            LINE_TEXT_FOR_EVENT,
+        )
+        self.assertEqual(declaration_count(wrap_type, LINE_TEXT_FOR_EVENT), 1)
+        self.assertEqual(declaration_count(wrap_args, LINE_TEXT_FOR_EVENT), 1)
         one_line = f"{{\n\t{LINE_TEXT_FOR_EVENT}\n}}\n"
         self.assertTrue(has_declaration(one_line, LINE_TEXT_FOR_EVENT))
         body = namespace_body(origin_main_header())
