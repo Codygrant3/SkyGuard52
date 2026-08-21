@@ -3294,7 +3294,7 @@ class LifelineHunterDebrisPrimarySensorFieldDeclContractTests(unittest.TestCase)
         )
         self.assertEqual(
             HEADER_PATH,
-            "Source/Skyguard52/SkyguardRunwayBreakerBoss.h",
+            "Source/Skyguard52/SkyguardLifelineHunterBoss.h",
         )
 
     def test_contract_does_not_open_leftover_encounter_controller_header(
@@ -3484,7 +3484,7 @@ class LifelineHunterDebrisPrimarySensorFieldDeclContractTests(unittest.TestCase)
         self.assertNotIn("ASkyguardRadarNode", section)
         self.assertNotIn("ASkyguardBlackKiteBoss", section)
         self.assertNotIn("ASkyguardIronRainBoss", section)
-        self.assertNotIn("ASkyguardLifelineHunterBoss", section)
+        self.assertNotIn("ASkyguardRunwayBreakerBoss", section)
         self.assertNotIn("ASkyguardPathfinderBoss", section)
         self.assertNotIn("ASkyguardTempestBoss", section)
         self.assertNotIn("ASkyguardLastFlightBoss", section)
