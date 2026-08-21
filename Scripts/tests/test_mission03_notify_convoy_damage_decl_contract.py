@@ -1871,7 +1871,7 @@ class Mission03NotifyConvoyDamageDeclContractTests(unittest.TestCase):
         )
         self.assertIn(UFUNCTION_CONVOY, section)
 
-    def test_environment_category_does_not_satisfy_waves(self) -> None:
+    def test_environment_category_does_not_satisfy_convoy(self) -> None:
         self.assertNotIn("Environment", UFUNCTION_CONVOY)
         self.assertNotIn("Briefing", UFUNCTION_CONVOY)
         self.assertNotIn("Integration", UFUNCTION_CONVOY)
