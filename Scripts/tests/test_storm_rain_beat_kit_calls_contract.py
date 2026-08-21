@@ -248,7 +248,7 @@ class StormRainBeatKitCallsContractTests(unittest.TestCase):
         self.assertEqual(declaration, LOCKED_CALLS)
         self.assertNotIn("TEXT(", declaration)
         self.assertNotIn('"', declaration)
-        self.assertTrue(declaration.endswith("= {}"))
+        self.assertTrue(declaration.endswith("= {};"))
         self.assertNotIn("RiverHammer", declaration)
         self.assertNotIn("IronRain", declaration)
 
