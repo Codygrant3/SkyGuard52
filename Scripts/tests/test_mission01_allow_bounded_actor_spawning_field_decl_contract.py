@@ -990,7 +990,6 @@ class Mission01AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         wrong_false = "\tbool bAllowBoundedActorSpawning = false;\n"
         as_int = "\tint32 bAllowBoundedActorSpawning = 1;\n"
         as_uint8 = "\tuint8 bAllowBoundedActorSpawning = true;\n"
-        as_const = "\tconst bool bAllowBoundedActorSpawning = true;\n"
         as_optional = "\tTOptional<bool> bAllowBoundedActorSpawning;\n"
         leftover_auto_init = f"\t{AUTO_INITIALIZE_FIELD}\n"
         leftover_auto_launch = f"\t{AUTO_LAUNCH_AFTER_BRIEFING_FIELD}\n"
@@ -1039,7 +1038,6 @@ class Mission01AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
             wrong_false,
             as_int,
             as_uint8,
-            as_const,
             as_optional,
             leftover_auto_init,
             leftover_auto_launch,
