@@ -1056,7 +1056,7 @@ def require_declaration(region: str, declaration: str) -> str:
     return declaration
 
 
-class BossDroneApplyWeaponHitDeclContractTests(unittest.TestCase):
+class BossDroneNotifyWeakPointDestroyedDeclContractTests(unittest.TestCase):
     def test_boss_drone_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
