@@ -1690,7 +1690,7 @@ class LastFlightCommandCoreFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("return INDEX_NONE", section)
         self.assertNotIn("NAME_None", section)
 
-    def test_contract_does_not_lock_port_engine_cpp_body(
+    def test_contract_does_not_lock_command_core_cpp_body(
         self,
     ) -> None:
         locked_only = f"{COMMAND_CORE_FIELD}\n"
