@@ -1477,7 +1477,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 class IronRainDispenserCenterFieldDeclContractTests(unittest.TestCase):
-    def test_tempest_class_exists(self) -> None:
+    def test_iron_rain_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
         self.assertIsNotNone(CLASS_RE.search(header), header)
