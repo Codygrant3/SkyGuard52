@@ -1590,7 +1590,7 @@ class BlackKitePortNavigationVaneFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tTObjectPtr<UStaticMeshComponent>\n"
+            "\tTObjectPtr<USkyguardBossWeakPointComponent>\n"
             "\tPortNavigationVane;\n"
             "private:\n"
             "};\n"
@@ -1604,13 +1604,13 @@ class BlackKitePortNavigationVaneFieldDeclContractTests(unittest.TestCase):
         )
         wrap_tab = (
             "public:\n"
-            "\tTObjectPtr<UStaticMeshComponent>\t"
+            "\tTObjectPtr<USkyguardBossWeakPointComponent>\t"
             "PortNavigationVane;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-            "\tTObjectPtr<UStaticMeshComponent>\n"
+            "\tTObjectPtr<USkyguardBossWeakPointComponent>\n"
             "\t\tPortNavigationVane;\n"
             "};\n"
         )
