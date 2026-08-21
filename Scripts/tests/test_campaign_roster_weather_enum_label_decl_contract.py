@@ -121,7 +121,7 @@ GET_NOT_LOCKED = ("const FSkyguardCampaignMissionSpec& Get(int32 Index);",)
 INDEX_OF_NOT_LOCKED = ("int32 IndexOf(FName MissionId);",)
 ID_AT_NOT_LOCKED = ("FName IdAt(int32 Index);",)
 LOADOUT_LABEL_NOT_LOCKED = (
-    "const TCHAR* LoadoutLabel(ESkyguardLoadout Loadout);",
+    "const TCHAR* LoadoutLabel(ESkyguardLoadout Loadout);"
 )
 # Leftover mission-weather enum contract #96d2 owns the
 # ESkyguardMissionWeather body. Parse the namespace, not
