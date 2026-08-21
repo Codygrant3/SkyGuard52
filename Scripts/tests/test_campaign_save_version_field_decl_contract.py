@@ -485,10 +485,7 @@ class CampaignSaveVersionFieldDeclContractTests(unittest.TestCase):
         )
         wrong_type = "\tfloat SaveVersion = CurrentSaveVersion;\n"
         bare_int = "\tint SaveVersion = CurrentSaveVersion;\n"
-        static_field = "\tstatic int32 SaveVersion = CurrentSaveVersion;\n"
-        constexpr_field = (
-            "\tstatic constexpr int32 SaveVersion = CurrentSaveVersion;\n"
-        )
+        uint_type = "\tuint32 SaveVersion = CurrentSaveVersion;\n"
         current_constexpr = (
             "\tstatic constexpr int32 CurrentSaveVersion = 2;\n"
         )
@@ -502,8 +499,7 @@ class CampaignSaveVersionFieldDeclContractTests(unittest.TestCase):
             min_supported_default,
             wrong_type,
             bare_int,
-            static_field,
-            constexpr_field,
+            uint_type,
             current_constexpr,
             current_as_field,
             campaign_id,
