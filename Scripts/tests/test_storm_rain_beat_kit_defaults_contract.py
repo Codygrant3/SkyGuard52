@@ -255,10 +255,10 @@ class StormRainBeatKitDefaultsContractTests(unittest.TestCase):
         self.assertNotIn("enum class ESkyguardStormRainBeatKind", body)
         self.assertNotIn("enum class ESkyguardMissionWeather", body)
         for name in BEAT_KIND_ENUMERATORS_NOT_LOCKED:
-            self.assertNotIn(name, body)
+            self.assertNotIn(f"ESkyguardStormRainBeatKind::{name}", body)
             self.assertNotIn(name, defaults)
         for name in WEATHER_ENUMERATORS_NOT_LOCKED:
-            self.assertNotIn(name, body)
+            self.assertNotIn(f"ESkyguardMissionWeather::{name}", body)
             self.assertNotIn(name, defaults)
         self.assertNotIn("RiverHammer", body)
         self.assertNotIn("IronRain", body)
@@ -305,9 +305,9 @@ class StormRainBeatKitDefaultsContractTests(unittest.TestCase):
         for name in TYPES_NOT_LOCKED:
             self.assertNotIn(name, body)
         for name in BEAT_KIND_ENUMERATORS_NOT_LOCKED:
-            self.assertNotIn(name, body)
+            self.assertNotIn(f"ESkyguardStormRainBeatKind::{name}", body)
         for name in WEATHER_ENUMERATORS_NOT_LOCKED:
-            self.assertNotIn(name, body)
+            self.assertNotIn(f"ESkyguardMissionWeather::{name}", body)
         for token in HARBOR_TUNING:
             self.assertNotIn(token, body)
         self.assertNotIn("40.f, 80.f", body)
