@@ -494,9 +494,9 @@ class FindMissionDeclContractTests(unittest.TestCase):
             "\tUSkyguardMissionDefinition* FindMission("
             "FString MissionId) const;\n"
         )
-        const_ptr = (
-            "\tconst USkyguardMissionDefinition* FindMission("
-            "FName MissionId) const;\n"
+        const_name = (
+            "\tUSkyguardMissionDefinition* FindMission("
+            "const FName MissionId) const;\n"
         )
         for region in (
             missing_arg,
@@ -504,7 +504,7 @@ class FindMissionDeclContractTests(unittest.TestCase):
             wrong_return,
             bool_return,
             wrong_arg,
-            const_ptr,
+            const_name,
         ):
             with self.assertRaises(AssertionError) as raised:
                 require_declaration(region, FIND_MISSION)
