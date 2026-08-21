@@ -1363,7 +1363,7 @@ class Mission03GetCurrentWaveIndexDeclContractTests(unittest.TestCase):
         self.assertNotIn("UFUNCTION", GET_CURRENT_WAVE_INDEX)
         self.assertNotIn("BlueprintPure", GET_CURRENT_WAVE_INDEX)
         self.assertNotIn("Category", GET_CURRENT_WAVE_INDEX)
-        self.assertNotIn("BlueprintPure", UFUNCTION_WAVES)
+        self.assertNotIn("BlueprintCallable", UFUNCTION_WAVES)
         self.assertIn("Skyguard|Mission03|Waves", UFUNCTION_WAVES)
         self.assertIn("BlueprintPure", UFUNCTION_WAVES)
         self.assertNotIn("Environment", UFUNCTION_WAVES)
