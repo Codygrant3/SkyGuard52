@@ -1953,7 +1953,7 @@ class Mission03ConfigureMissionDefinitionDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, CONFIGURE_MISSION_DEFINITION)
         self.assertIn(
-            "Scripts/tests/test_mission01_environment_readiness"
+            "Scripts/tests/test_mission03_environment_readiness"
             "_defaults_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -2341,12 +2341,12 @@ class Mission03ConfigureMissionDefinitionDeclContractTests(unittest.TestCase):
             )
             self.assertNotEqual(CONFIGURE_MISSION_DEFINITION, leftover)
         self.assertIn(
-            "Scripts/tests/test_mission01_briefing"
+            "Scripts/tests/test_mission03_briefing"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission01_audio_director"
+            "Scripts/tests/test_mission03_audio_director"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -2355,12 +2355,12 @@ class Mission03ConfigureMissionDefinitionDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission01_auto_initialize"
+            "Scripts/tests/test_mission03_auto_initialize"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission01_campaign_save_user_index"
+            "Scripts/tests/test_mission03_campaign_save_user_index"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
