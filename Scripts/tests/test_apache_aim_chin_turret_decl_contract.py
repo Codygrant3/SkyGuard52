@@ -384,14 +384,19 @@ CLASS_RE = re.compile(
 ACCESS_RE = re.compile(r"(?:^|\n)\s*(public|private|protected)\s*:")
 
 
-def leftover_harbor_tokens() -> tuple[str, ...]:
+def leftover_harbor_clock_tokens() -> tuple[str, ...]:
     incoming = "Incoming" + "Radar"
-    forty = "40" + ".f"
-    eighty = "80" + ".f"
     return (
         incoming,
         incoming + "LiveIntervalSeconds",
         incoming + "DownIntervalSeconds",
+    )
+
+
+def leftover_harbor_tokens() -> tuple[str, ...]:
+    forty = "40" + ".f"
+    eighty = "80" + ".f"
+    return leftover_harbor_clock_tokens() + (
         forty,
         eighty,
         forty + ", " + eighty,
@@ -1100,20 +1105,30 @@ class ApacheAimChinTurretDeclContractTests(unittest.TestCase):
     def test_contract_does_not_retune_harbor(self) -> None:
         section = public_section(origin_main_header())
         locked_only = f"{AIM_CHIN_TURRET}\n"
-        for token in leftover_harbor_tokens():
+        file_text = this_file_text()
+        # Harbor clock field names stay off this class public
+        # section. Literal Harbor interval retune tokens fail
+        # closed in this file and the locked declaration
+        # only: public MaxIntegrity is not a Harbor clock.
+        for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
             self.assertNotIn(token, AIM_CHIN_TURRET)
             self.assertNotIn(token, locked_only)
+        for token in leftover_harbor_tokens():
+            self.assertNotIn(token, AIM_CHIN_TURRET)
+            self.assertNotIn(token, locked_only)
+            self.assertNotIn(token, file_text)
 
     def test_harbor_40_80_tokens_fail_closed_if_present(self) -> None:
         locked_only = f"{AIM_CHIN_TURRET}\n"
-        section = public_section(origin_main_header())
         file_text = this_file_text()
         for token in leftover_harbor_tokens():
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, AIM_CHIN_TURRET)
-            self.assertNotIn(token, section)
             self.assertNotIn(token, file_text)
+        for token in leftover_harbor_clock_tokens():
+            section = public_section(origin_main_header())
+            self.assertNotIn(token, section)
 
     def test_this_file_bans_retired_live_copy(self) -> None:
         file_text = this_file_text().lower()
@@ -1245,8 +1260,10 @@ class ApacheAimChinTurretDeclContractTests(unittest.TestCase):
         for token in CPP_AND_INVENTED:
             self.assertNotIn(token, AIM_CHIN_TURRET)
             self.assertNotIn(token, section)
-        for token in leftover_harbor_tokens():
+        for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
+            self.assertNotIn(token, locked_only)
+        for token in leftover_harbor_tokens():
             self.assertNotIn(token, locked_only)
         for banned in leftover_live_copy_tokens():
             self.assertNotIn(banned, section.lower())
