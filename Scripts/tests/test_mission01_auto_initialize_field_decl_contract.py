@@ -977,7 +977,7 @@ class Mission01AutoInitializeFieldDeclContractTests(unittest.TestCase):
         assigned_false = "\tbool bAutoInitialize = false;\n"
         as_int = "\tint32 bAutoInitialize = 1;\n"
         as_uint = "\tuint8 bAutoInitialize = true;\n"
-        const_bool = "\tconst bool bAutoInitialize = true;\n"
+        as_optional = "\tTOptional<bool> bAutoInitialize;\n"
         renamed = "\tbool AutoInitialize = true;\n"
         short_name = "\tbool bAutoInit = true;\n"
         leftover_root = f"\t{ROOT_FIELD}\n"
@@ -1027,7 +1027,7 @@ class Mission01AutoInitializeFieldDeclContractTests(unittest.TestCase):
             assigned_false,
             as_int,
             as_uint,
-            const_bool,
+            as_optional,
             renamed,
             short_name,
             leftover_root,
