@@ -262,9 +262,10 @@ class StormRainBeatKitKindsContractTests(unittest.TestCase):
         self.assertNotIn("Weather", declaration)
         self.assertNotIn("bHydraForClusters", declaration)
         self.assertNotIn("= 7", declaration)
-        self.assertNotIn("Storm", declaration)
         self.assertNotIn("true", declaration)
         self.assertNotIn("static constexpr", declaration)
+        # StormRain is the live kit type prefix; do not treat that
+        # substring as the Weather=Storm default lock.
 
     def test_contract_does_not_lock_unlocked_members(self) -> None:
         declaration = kinds_declaration(kit_body(origin_main_header()))
