@@ -1,4 +1,4 @@
 {
   "name": "Skyguard52 gameplay (Apache CPG)",
-  "install": "git lfs install --local && git lfs pull"
+  "install": "git lfs install --local --skip-repo && git lfs pull && npm --prefix Tools/SkyguardUnrealMCP ci"
 }
