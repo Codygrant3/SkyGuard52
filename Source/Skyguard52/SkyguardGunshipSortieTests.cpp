@@ -1,17 +1,91 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "SkyguardCampaignRoster.h"
+#include "SkyguardCoastalEnvironmentDirector.h"
 #include "SkyguardDrone.h"
 #include "SkyguardGunner.h"
 #include "SkyguardGunshipSortieDirector.h"
 #include "SkyguardGunshipTypes.h"
+#include "SkyguardMissionTypes.h"
 #include "SkyguardPatrolShipBoss.h"
 #include "SkyguardProtectAsset.h"
 #include "SkyguardRadarNode.h"
 #include "SkyguardThreatTypes.h"
+#include "Components/PrimitiveComponent.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Misc/AutomationTest.h"
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieDirectorAppliesWeatherPlayTest,
+	"Skyguard52.Campaign.SortieAppliesWeatherPlay",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieDirectorAppliesWeatherPlayTest::RunTest(const FString& Parameters)
+{
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardWeatherPlayWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>();
+	ASkyguardCoastalEnvironmentDirector* Coast =
+		World->SpawnActor<ASkyguardCoastalEnvironmentDirector>();
+	TestNotNull(TEXT("director"), Director);
+	TestNotNull(TEXT("gunner"), Gunner);
+	TestNotNull(TEXT("coast"), Coast);
+	if (!Director || !Gunner || !Coast)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(3);
+	TestEqual(
+		TEXT("night weather identity"),
+		Director->GetMissionWeatherIdentity(),
+		FName(TEXT("BlackoutNight")));
+	TestTrue(TEXT("night enables thermal"), Gunner->IsThermalEnabled());
+	TestEqual(
+		TEXT("night drives coastal wind"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::NightClear);
+
+	Director->StartMissionIndex(4);
+	TestEqual(
+		TEXT("storm weather identity"),
+		Director->GetMissionWeatherIdentity(),
+		FName(TEXT("SevereSquall")));
+	TestEqual(
+		TEXT("storm selects rockets"),
+		Gunner->GetSelectedGunshipWeapon(),
+		ESkyguardGunshipWeapon::Rockets);
+	TestEqual(
+		TEXT("storm coastal weather"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::Storm);
+	TestTrue(TEXT("storm wind is hard"), Coast->WindStrength >= 0.85f);
+
+	Director->StartMissionIndex(1);
+	TestEqual(
+		TEXT("harbor weather label"),
+		Director->GetMissionWeatherLabel(),
+		FString(TEXT("Harbor overcast")));
+	TestEqual(
+		TEXT("harbor coastal weather"),
+		Coast->GetAppliedWeather(),
+		ESkyguardMissionWeather::Overcast);
+	TestFalse(TEXT("harbor is not night thermal"), Gunner->IsThermalEnabled());
+
+	World->DestroyWorld(false);
+	return true;
+}
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 	FSkyguardCampaignRosterHasTenMissionsTest,
@@ -103,6 +177,284 @@ bool FSkyguardFlaresDefeatInboundTest::RunTest(const FString& Parameters)
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieInboundIntervalsStretchForFifteenMinutesTest,
+	"Skyguard52.Campaign.InboundIntervalsStretchForFifteenMinutes",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieInboundIntervalsStretchForFifteenMinutesTest::RunTest(
+	const FString& Parameters)
+{
+	const float Live =
+		ASkyguardGunshipSortieDirector::IncomingIntervalSeconds(true);
+	const float Down =
+		ASkyguardGunshipSortieDirector::IncomingIntervalSeconds(false);
+	TestEqual(
+		TEXT("radar-live uses the named live interval"),
+		Live,
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarLiveIntervalSeconds));
+	TestEqual(
+		TEXT("radar-down uses the named down interval"),
+		Down,
+		static_cast<double>(
+			ASkyguardGunshipSortieDirector::IncomingRadarDownIntervalSeconds));
+	TestTrue(TEXT("radar-live interval is faster than radar-down"), Live < Down);
+	TestTrue(
+		TEXT("radar-live is stretched past the old 14s SAM clock"),
+		Live > 14.0);
+	TestTrue(
+		TEXT("radar-down is stretched past the old 28s gap"),
+		Down > 28.0);
+	TestTrue(
+		TEXT("approach still refuses inbound tick-fire"),
+		!ASkyguardGunshipSortieDirector::BeatAllowsInbound(
+			ESkyguardSortieBeat::Approach));
+	TestTrue(
+		TEXT("radar-net uses the live cadence once the net is up"),
+		ASkyguardGunshipSortieDirector::UsesRadarLiveInboundCadence(
+			ESkyguardSortieBeat::RadarNet));
+	TestTrue(
+		TEXT("contact stays on the earned-gap cadence"),
+		!ASkyguardGunshipSortieDirector::UsesRadarLiveInboundCadence(
+			ESkyguardSortieBeat::InitialContact));
+	TestTrue(
+		TEXT("climax still has a source if the launcher is live"),
+		ASkyguardGunshipSortieDirector::HasInboundSource(
+			ESkyguardSortieBeat::Climax, false, true));
+	TestTrue(
+		TEXT("climax still has a source if shore ADA is live"),
+		ASkyguardGunshipSortieDirector::HasInboundSource(
+			ESkyguardSortieBeat::Climax, true, false));
+	TestFalse(
+		TEXT("climax inbound dies when launcher and shore net are both dead"),
+		ASkyguardGunshipSortieDirector::HasInboundSource(
+			ESkyguardSortieBeat::Climax, false, false));
+	TestTrue(
+		TEXT("contact inbound does not need the ship launcher"),
+		ASkyguardGunshipSortieDirector::HasInboundSource(
+			ESkyguardSortieBeat::InitialContact, false, false));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieBeatWaveCountsEscalateTest,
+	"Skyguard52.Campaign.BeatWaveCountsEscalate",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieBeatWaveCountsEscalateTest::RunTest(const FString& Parameters)
+{
+	const int32 Contact = ASkyguardGunshipSortieDirector::BeatWaveCount(
+		ESkyguardSortieBeat::InitialContact);
+	const int32 Shore = ASkyguardGunshipSortieDirector::BeatWaveCount(
+		ESkyguardSortieBeat::ShoreAssault);
+	const int32 Radar = ASkyguardGunshipSortieDirector::BeatWaveCount(
+		ESkyguardSortieBeat::RadarNet);
+	const int32 Choice = ASkyguardGunshipSortieDirector::BeatWaveCount(
+		ESkyguardSortieBeat::Choice);
+	const int32 Extract = ASkyguardGunshipSortieDirector::BeatWaveCount(
+		ESkyguardSortieBeat::Extraction);
+	TestEqual(
+		TEXT("approach has no beat pack"),
+		ASkyguardGunshipSortieDirector::BeatWaveCount(ESkyguardSortieBeat::Approach),
+		0);
+	TestEqual(
+		TEXT("climax pack stays on ClimaxKind, not a numbered wave"),
+		ASkyguardGunshipSortieDirector::BeatWaveCount(ESkyguardSortieBeat::Climax),
+		0);
+	TestTrue(TEXT("contact wave count is lighter than shore"), Contact < Shore);
+	TestTrue(TEXT("contact wave count is lighter than radar"), Contact < Radar);
+	TestTrue(TEXT("choice is denser than contact"), Choice > Contact);
+	TestTrue(TEXT("extract is a spike over contact"), Extract > Contact);
+	TestTrue(TEXT("extract is not another identical 4-pack"), Extract != 4);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieApproachHasNoInboundTest,
+	"Skyguard52.Campaign.ApproachHasNoInbound",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieApproachHasNoInboundTest::RunTest(const FString& Parameters)
+{
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardApproachInboundWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	ASkyguardGunner* Gunner = World->SpawnActor<ASkyguardGunner>();
+	TestNotNull(TEXT("director"), Director);
+	TestNotNull(TEXT("gunner"), Gunner);
+	if (!Director || !Gunner)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(1);
+	TestEqual(
+		TEXT("harbor starts on approach"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::Approach);
+
+	const float ApproachHold =
+		ASkyguardGunshipSortieDirector::IncomingFirstDelaySeconds + 18.f;
+	Director->Tick(ApproachHold);
+	TestEqual(
+		TEXT("still on approach after the first-delay window"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::Approach);
+	TestFalse(TEXT("approach does not tick-fire inbound"), Gunner->IsMissileInbound());
+
+	Director->EnterBeat(ESkyguardSortieBeat::InitialContact);
+	Director->Tick(0.1f);
+	TestEqual(
+		TEXT("contact is the first inbound beat"),
+		Director->GetBeat(),
+		ESkyguardSortieBeat::InitialContact);
+	TestTrue(
+		TEXT("inbound can come once approach is over"),
+		Gunner->IsMissileInbound());
+
+	World->DestroyWorld(false);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieExtractUsesExtractKindTest,
+	"Skyguard52.Campaign.ExtractUsesExtractKind",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieExtractUsesExtractKindTest::RunTest(const FString& Parameters)
+{
+	const FSkyguardCampaignMissionSpec& Harbor = SkyguardCampaignRoster::Get(1);
+	TestEqual(
+		TEXT("Harbor Breaker extract kind stays rotor"),
+		Harbor.ExtractKind,
+		ESkyguardThreatKind::RotorScout);
+	TestEqual(
+		TEXT("Harbor Breaker climax stays the patrol ship"),
+		Harbor.Climax,
+		ESkyguardClimaxKind::PatrolShip);
+	TestEqual(
+		TEXT("extract wave uses roster ExtractKind, not a new climax"),
+		ASkyguardGunshipSortieDirector::BeatWaveKind(
+			1, ESkyguardSortieBeat::Extraction),
+		Harbor.ExtractKind);
+
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardExtractKindWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	TestNotNull(TEXT("director"), Director);
+	if (!Director)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(1);
+	Director->EnterBeat(ESkyguardSortieBeat::Extraction);
+
+	int32 Rotors = 0;
+	int32 Ships = 0;
+	for (TActorIterator<ASkyguardDrone> It(World); It; ++It)
+	{
+		const ASkyguardDrone* Threat = *It;
+		if (Threat && !Threat->IsDestroyed() &&
+			Threat->GetThreatKind() == ESkyguardThreatKind::RotorScout)
+		{
+			++Rotors;
+		}
+	}
+	for (TActorIterator<ASkyguardPatrolShipBoss> It(World); It; ++It)
+	{
+		if (IsValid(*It))
+		{
+			++Ships;
+		}
+	}
+
+	TestEqual(
+		TEXT("extract spawns the named rotor spike"),
+		Rotors,
+		ASkyguardGunshipSortieDirector::ExtractWaveCount);
+	TestEqual(TEXT("extract is not a second patrol-ship climax"), Ships, 0);
+
+	World->DestroyWorld(false);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FSkyguardSortieBeatWaveSkipsRoadConvoyTest,
+	"Skyguard52.Campaign.BeatWaveSkipsRoadConvoy",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FSkyguardSortieBeatWaveSkipsRoadConvoyTest::RunTest(const FString& Parameters)
+{
+	UWorld* World = UWorld::CreateWorld(
+		EWorldType::Game, false, TEXT("SkyguardBeatWaveConvoyWorld"));
+	TestNotNull(TEXT("world"), World);
+	if (!World)
+	{
+		return false;
+	}
+
+	ASkyguardGunshipSortieDirector* Director =
+		World->SpawnActor<ASkyguardGunshipSortieDirector>();
+	TestNotNull(TEXT("director"), Director);
+	if (!Director)
+	{
+		World->DestroyWorld(false);
+		return false;
+	}
+
+	Director->bAutoStart = false;
+	Director->StartMissionIndex(1);
+	TestEqual(
+		TEXT("mission start owns the road column"),
+		Director->CountLiveRoadConvoy(),
+		ASkyguardGunshipSortieDirector::CoastalConvoyCount);
+
+	Director->EnterBeat(ESkyguardSortieBeat::ShoreAssault);
+	TestEqual(
+		TEXT("shore wave does not add road-convoy hulls"),
+		Director->CountLiveRoadConvoy(),
+		ASkyguardGunshipSortieDirector::CoastalConvoyCount);
+
+	int32 LooseArmor = 0;
+	for (TActorIterator<ASkyguardDrone> It(World); It; ++It)
+	{
+		const ASkyguardDrone* Threat = *It;
+		if (Threat && !Threat->IsDestroyed() &&
+			Threat->GetThreatKind() == ESkyguardThreatKind::GroundArmor &&
+			!Threat->IsFollowingRoad())
+		{
+			++LooseArmor;
+		}
+	}
+	TestEqual(
+		TEXT("shore armor is a beat pack, not the highway column"),
+		LooseArmor,
+		ASkyguardGunshipSortieDirector::ShoreWaveCount);
+
+	World->DestroyWorld(false);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 	FSkyguardPatrolShipStripsBySystemTest,
 	"Skyguard52.Campaign.PatrolShipStripsBySystem",
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
@@ -128,7 +480,17 @@ bool FSkyguardPatrolShipStripsBySystemTest::RunTest(const FString& Parameters)
 	{
 		Ship->ApplyHit(nullptr, 80.f);
 	}
-	TestTrue(TEXT("enough hits defeat the ship"), Ship->GetDestroyedSystemCount() >= 1);
+	if (UPrimitiveComponent* Hull = Cast<UPrimitiveComponent>(
+			Ship->GetDefaultSubobjectByName(TEXT("Hull"))))
+	{
+		Ship->ApplyHit(Hull, 500.f);
+	}
+	TestEqual(
+		TEXT("hull splash is not a system kill"),
+		Ship->GetDestroyedSystemCount(),
+		0);
+	TestTrue(TEXT("radar still coordinates after hull spam"), Ship->CanCoordinateAda());
+	TestFalse(TEXT("hull spam does not defeat the ship"), Ship->IsDefeated());
 	World->DestroyWorld(false);
 	return true;
 }

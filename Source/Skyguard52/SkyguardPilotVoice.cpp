@@ -98,6 +98,15 @@ void SkyguardPilotVoice::CallEvent(
 	case ESkyguardPilotLine::ShipEnginesDown:
 		Say(WorldContext, TEXT("Engines killed. She's dead in the water."), 2.8f);
 		break;
+	case ESkyguardPilotLine::ShipLauncherDown:
+		Say(WorldContext, TEXT("Launcher cold. No more inbound from that hull."), 2.8f);
+		break;
+	case ESkyguardPilotLine::ShipCannonDown:
+		Say(WorldContext, TEXT("Their cannon is scrap. Close if you want."), 2.6f);
+		break;
+	case ESkyguardPilotLine::ShipDeckDown:
+		Say(WorldContext, TEXT("Drone deck is burning. No more rotors off that ship."), 2.8f);
+		break;
 	case ESkyguardPilotLine::ShipDead:
 		Say(WorldContext, TEXT("Patrol ship is a hulk. Nice work."), 2.8f);
 		break;
@@ -124,6 +133,8 @@ void SkyguardPilotVoice::CallEvent(
 		break;
 	case ESkyguardPilotLine::LoadoutPrompt:
 		Say(WorldContext, TEXT("Pick a loadout. One armor, two rockets, three intercept, four balanced."), 4.0f);
+		break;
+	default:
 		break;
 	}
 }

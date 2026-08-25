@@ -104,6 +104,13 @@ public:
 	void ToggleThermal();
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
+	void SetThermalEnabled(bool bEnabled);
+
+	/** Night forces thermal sensor; storm selects Hydra for clusters. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
+	void ApplyWeatherPlayContracts(bool bNightIdentity, bool bStormRocketContract);
+
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
 	void PopFlares();
 
 	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache")
@@ -123,6 +130,15 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	float GetLockProgress() const { return IglaLockProgress; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
+	ESkyguardGuidedLockPhase GetGuidedLockPhase() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
+	ESkyguardCpgSightMode GetCpgSightMode() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
+	bool CanFireGuidedMissile() const;
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	bool IsApacheGunnerMode() const { return bApacheGunnerMode; }
@@ -346,6 +362,8 @@ protected:
 	friend class FSkyguardApacheRocketSalvoConsumesAndCoolsTest;
 	friend class FSkyguardApacheMissileRequiresLockAndAmmoTest;
 	friend class FSkyguardApacheCannonWorseValueThanMissileTest;
+	friend class FSkyguardGuidedMissileFireRequiresLockTest;
+	friend class FSkyguardGuidedMissileHelmetAndSensorDifferTest;
 
 	bool bADS = false;
 	bool bFireHeld = false;
@@ -422,6 +440,10 @@ protected:
 	ASkyguardApacheAircraft* FindAttachedApache() const;
 	AActor* AcquireIglaTarget() const;
 	bool IsIglaLockCandidateValid(const AActor* Candidate) const;
+	bool IsGuidedSeekerLive() const;
+	void ResetGuidedLock();
+	float GetActiveLockSeconds() const;
+	float GetActiveLockAngleDegrees() const;
 	bool ScoreIglaLockCandidate(
 		const AActor* Candidate,
 		const FVector& Origin,

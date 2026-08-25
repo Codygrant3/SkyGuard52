@@ -1,6 +1,9 @@
 #include "SkyguardPatrolShipBoss.h"
 
+#include "Misc/NumericLimits.h"
+#include "SkyguardCpgHud.h"
 #include "SkyguardCombatVFX.h"
+#include "SkyguardPilotVoice.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -8,6 +11,8 @@
 
 ASkyguardPatrolShipBoss::ASkyguardPatrolShipBoss()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 
@@ -65,6 +70,17 @@ UStaticMeshComponent* ASkyguardPatrolShipBoss::MakePart(
 	return Part;
 }
 
+void ASkyguardPatrolShipBoss::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	const float Speed = GetUnderwaySpeed();
+	if (Speed <= KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+	AddActorWorldOffset(GetActorForwardVector() * Speed * DeltaSeconds, false);
+}
+
 void ASkyguardPatrolShipBoss::ApplyHit(
 	UPrimitiveComponent* HitComponent,
 	const float Damage)
@@ -73,32 +89,72 @@ void ASkyguardPatrolShipBoss::ApplyHit(
 	{
 		return;
 	}
-	auto Hurt = [this, HitComponent, Damage](
-		UStaticMeshComponent* Part, float& Health, const FName Id)
-	{
-		if (HitComponent == Part || (!HitComponent && Part == Hull))
-		{
-			Health -= Damage;
-			if (Health <= 0.f)
-			{
-				KillPart(Part, Health, Id);
-			}
-			return true;
-		}
-		return false;
+
+	const ESkyguardPatrolShipSystem Systems[] = {
+		ESkyguardPatrolShipSystem::Radar,
+		ESkyguardPatrolShipSystem::Launcher,
+		ESkyguardPatrolShipSystem::Cannon,
+		ESkyguardPatrolShipSystem::Engines,
+		ESkyguardPatrolShipSystem::DroneDeck
 	};
+	for (const ESkyguardPatrolShipSystem System : Systems)
+	{
+		UPrimitiveComponent* Part = GetSystemComponent(System);
+		if (HitComponent == Part)
+		{
+			ApplyHitToSystem(System, Damage);
+			return;
+		}
+	}
 
-	if (Hurt(SearchRadar, SearchRadarHealth, TEXT("SearchRadar"))) return;
-	if (Hurt(MissileBank, MissileHealth, TEXT("MissileBank"))) return;
-	if (Hurt(Ciws, CiwsHealth, TEXT("CIWS"))) return;
-	if (Hurt(Engines, EngineHealth, TEXT("Engines"))) return;
-	if (Hurt(DroneDeck, DeckHealth, TEXT("DroneDeck"))) return;
+	// Hull / superstructure / nullptr is a splash on the hull, not a
+	// system kill. A single ApplyDamage to "the ship" cannot prove the boss.
+}
 
-	// Hull splash feeds the closest remaining system.
-	if (MissileHealth > 0.f) { MissileHealth -= Damage * 0.35f; }
-	else if (EngineHealth > 0.f) { EngineHealth -= Damage * 0.35f; }
-	if (MissileHealth <= 0.f) KillPart(MissileBank, MissileHealth, TEXT("MissileBank"));
-	if (EngineHealth <= 0.f) KillPart(Engines, EngineHealth, TEXT("Engines"));
+void ASkyguardPatrolShipBoss::ApplyHitToSystem(
+	const ESkyguardPatrolShipSystem System,
+	const float Damage)
+{
+	if (Damage <= 0.f || IsDefeated() || IsSystemDead(System))
+	{
+		return;
+	}
+	float& Health = HealthFor(System);
+	Health -= Damage;
+	if (Health <= 0.f)
+	{
+		KillPart(
+			Cast<UStaticMeshComponent>(GetSystemComponent(System)),
+			Health,
+			FName(SkyguardCpgShipSystemLabel(System)));
+		AnnounceSystemKill(System);
+	}
+}
+
+float ASkyguardPatrolShipBoss::GetUnderwaySpeed() const
+{
+	return AreEnginesDead() ? 0.f : UnderwayCruiseSpeed;
+}
+
+float ASkyguardPatrolShipBoss::GetCannonThreatDamage() const
+{
+	return CanFireCannon() ? CannonThreatDamage : 0.f;
+}
+
+bool ASkyguardPatrolShipBoss::ConsumeDeckLaunch(const float DeltaSeconds)
+{
+	if (!CanLaunchDrones())
+	{
+		DeckLaunchCooldown = DeckLaunchIntervalSeconds;
+		return false;
+	}
+	DeckLaunchCooldown -= DeltaSeconds;
+	if (DeckLaunchCooldown > 0.f)
+	{
+		return false;
+	}
+	DeckLaunchCooldown = DeckLaunchIntervalSeconds;
+	return true;
 }
 
 void ASkyguardPatrolShipBoss::KillPart(
@@ -119,6 +175,10 @@ void ASkyguardPatrolShipBoss::KillPart(
 		USkyguardCombatVFX::SpawnExplosion(
 			GetWorld(), Part->GetComponentLocation(), 1.15f);
 	}
+	if (IsDefeated())
+	{
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipDead);
+	}
 }
 
 bool ASkyguardPatrolShipBoss::IsDefeated() const
@@ -126,13 +186,184 @@ bool ASkyguardPatrolShipBoss::IsDefeated() const
 	return GetDestroyedSystemCount() >= 4;
 }
 
+bool ASkyguardPatrolShipBoss::IsSystemDead(const ESkyguardPatrolShipSystem System) const
+{
+	return HealthFor(System) <= 0.f;
+}
+
 int32 ASkyguardPatrolShipBoss::GetDestroyedSystemCount() const
 {
 	int32 Count = 0;
-	Count += SearchRadarHealth <= 0.f ? 1 : 0;
-	Count += MissileHealth <= 0.f ? 1 : 0;
-	Count += CiwsHealth <= 0.f ? 1 : 0;
-	Count += EngineHealth <= 0.f ? 1 : 0;
-	Count += DeckHealth <= 0.f ? 1 : 0;
+	Count += IsSystemDead(ESkyguardPatrolShipSystem::Radar) ? 1 : 0;
+	Count += IsSystemDead(ESkyguardPatrolShipSystem::Cannon) ? 1 : 0;
+	Count += IsSystemDead(ESkyguardPatrolShipSystem::Launcher) ? 1 : 0;
+	Count += IsSystemDead(ESkyguardPatrolShipSystem::Engines) ? 1 : 0;
+	Count += IsSystemDead(ESkyguardPatrolShipSystem::DroneDeck) ? 1 : 0;
 	return Count;
+}
+
+FString ASkyguardPatrolShipBoss::GetHudSystemLine() const
+{
+	const ESkyguardPatrolShipSystem Systems[] = {
+		ESkyguardPatrolShipSystem::Radar,
+		ESkyguardPatrolShipSystem::Cannon,
+		ESkyguardPatrolShipSystem::Launcher,
+		ESkyguardPatrolShipSystem::Engines,
+		ESkyguardPatrolShipSystem::DroneDeck
+	};
+	FString Line;
+	for (int32 Index = 0; Index < UE_ARRAY_COUNT(Systems); ++Index)
+	{
+		if (Index > 0)
+		{
+			Line += TEXT(" ");
+		}
+		const TCHAR* Label = SkyguardCpgShipSystemLabel(Systems[Index]);
+		if (IsSystemDead(Systems[Index]))
+		{
+			Line += FString::Printf(TEXT("X%s"), Label);
+		}
+		else
+		{
+			Line += Label;
+		}
+	}
+	return Line;
+}
+
+ESkyguardPatrolShipSystem ASkyguardPatrolShipBoss::GetPriorityLiveSystem() const
+{
+	const ESkyguardPatrolShipSystem Systems[] = {
+		ESkyguardPatrolShipSystem::Radar,
+		ESkyguardPatrolShipSystem::Cannon,
+		ESkyguardPatrolShipSystem::Launcher,
+		ESkyguardPatrolShipSystem::Engines,
+		ESkyguardPatrolShipSystem::DroneDeck
+	};
+	for (const ESkyguardPatrolShipSystem System : Systems)
+	{
+		if (!IsSystemDead(System))
+		{
+			return System;
+		}
+	}
+	return ESkyguardPatrolShipSystem::Radar;
+}
+
+UPrimitiveComponent* ASkyguardPatrolShipBoss::GetSystemComponent(
+	const ESkyguardPatrolShipSystem System) const
+{
+	switch (System)
+	{
+	case ESkyguardPatrolShipSystem::Radar:
+		return SearchRadar;
+	case ESkyguardPatrolShipSystem::Cannon:
+		return Ciws;
+	case ESkyguardPatrolShipSystem::Launcher:
+		return MissileBank;
+	case ESkyguardPatrolShipSystem::Engines:
+		return Engines;
+	case ESkyguardPatrolShipSystem::DroneDeck:
+		return DroneDeck;
+	default:
+		return nullptr;
+	}
+}
+
+UPrimitiveComponent* ASkyguardPatrolShipBoss::FindNearestLiveSystem(
+	const FVector& WorldLocation) const
+{
+	UPrimitiveComponent* Best = nullptr;
+	float BestDistSq = TNumericLimits<float>::Max();
+	const ESkyguardPatrolShipSystem Systems[] = {
+		ESkyguardPatrolShipSystem::Radar,
+		ESkyguardPatrolShipSystem::Cannon,
+		ESkyguardPatrolShipSystem::Launcher,
+		ESkyguardPatrolShipSystem::Engines,
+		ESkyguardPatrolShipSystem::DroneDeck
+	};
+	for (const ESkyguardPatrolShipSystem System : Systems)
+	{
+		if (IsSystemDead(System))
+		{
+			continue;
+		}
+		UPrimitiveComponent* Part = GetSystemComponent(System);
+		if (!Part)
+		{
+			continue;
+		}
+		const float DistSq =
+			FVector::DistSquared(WorldLocation, Part->GetComponentLocation());
+		if (DistSq < BestDistSq)
+		{
+			BestDistSq = DistSq;
+			Best = Part;
+		}
+	}
+	return Best;
+}
+
+float& ASkyguardPatrolShipBoss::HealthFor(const ESkyguardPatrolShipSystem System)
+{
+	switch (System)
+	{
+	case ESkyguardPatrolShipSystem::Radar:
+		return SearchRadarHealth;
+	case ESkyguardPatrolShipSystem::Cannon:
+		return CiwsHealth;
+	case ESkyguardPatrolShipSystem::Launcher:
+		return MissileHealth;
+	case ESkyguardPatrolShipSystem::Engines:
+		return EngineHealth;
+	case ESkyguardPatrolShipSystem::DroneDeck:
+		return DeckHealth;
+	default:
+		checkNoEntry();
+		return SearchRadarHealth;
+	}
+}
+
+float ASkyguardPatrolShipBoss::HealthFor(const ESkyguardPatrolShipSystem System) const
+{
+	switch (System)
+	{
+	case ESkyguardPatrolShipSystem::Radar:
+		return SearchRadarHealth;
+	case ESkyguardPatrolShipSystem::Cannon:
+		return CiwsHealth;
+	case ESkyguardPatrolShipSystem::Launcher:
+		return MissileHealth;
+	case ESkyguardPatrolShipSystem::Engines:
+		return EngineHealth;
+	case ESkyguardPatrolShipSystem::DroneDeck:
+		return DeckHealth;
+	default:
+		return 0.f;
+	}
+}
+
+void ASkyguardPatrolShipBoss::AnnounceSystemKill(
+	const ESkyguardPatrolShipSystem System)
+{
+	switch (System)
+	{
+	case ESkyguardPatrolShipSystem::Radar:
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipRadarDown);
+		break;
+	case ESkyguardPatrolShipSystem::Cannon:
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipCannonDown);
+		break;
+	case ESkyguardPatrolShipSystem::Launcher:
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipLauncherDown);
+		break;
+	case ESkyguardPatrolShipSystem::Engines:
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipEnginesDown);
+		break;
+	case ESkyguardPatrolShipSystem::DroneDeck:
+		SkyguardPilotVoice::CallEvent(this, ESkyguardPilotLine::ShipDeckDown);
+		break;
+	default:
+		break;
+	}
 }

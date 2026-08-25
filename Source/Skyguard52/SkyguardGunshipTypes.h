@@ -49,6 +49,24 @@ enum class ESkyguardGunshipWeapon : uint8
 	GuidedMissile UMETA(DisplayName = "Guided Missile")
 };
 
+/** Readable escalation for the guided-missile station. Fire is last. */
+UENUM(BlueprintType)
+enum class ESkyguardGuidedLockPhase : uint8
+{
+	Search UMETA(DisplayName = "Search"),
+	Detect UMETA(DisplayName = "Detect"),
+	Track UMETA(DisplayName = "Track"),
+	Lock UMETA(DisplayName = "Lock")
+};
+
+/** Helmet-sight for near threats; targeting-sensor for hunting. */
+UENUM(BlueprintType)
+enum class ESkyguardCpgSightMode : uint8
+{
+	Helmet UMETA(DisplayName = "Helmet Sight"),
+	TargetingSensor UMETA(DisplayName = "Targeting Sensor")
+};
+
 UENUM(BlueprintType)
 enum class ESkyguardLoadout : uint8
 {
@@ -57,6 +75,28 @@ enum class ESkyguardLoadout : uint8
 	RocketHeavy UMETA(DisplayName = "Rocket Heavy"),
 	Intercept UMETA(DisplayName = "Intercept")
 };
+
+/** Playstyle kit. Keys 1-4 map here. Not a +3% damage slider. */
+struct FSkyguardLoadoutSpec
+{
+	ESkyguardLoadout Loadout = ESkyguardLoadout::Balanced;
+	ESkyguardGunshipWeapon StartingStation = ESkyguardGunshipWeapon::Cannon;
+	int32 CannonMagazineSize = SkyguardApacheCpgFeel::CannonMagazineSize;
+	int32 CannonReserve = SkyguardApacheCpgFeel::CannonReserve;
+	int32 RocketMagazineSize = SkyguardApacheCpgFeel::RocketMagazineSize;
+	int32 RocketReserve = SkyguardApacheCpgFeel::RocketReserve;
+	int32 GuidedMagazineSize = SkyguardApacheCpgFeel::GuidedMagazineSize;
+	int32 GuidedReserve = SkyguardApacheCpgFeel::GuidedReserve;
+	int32 FlareCount = 6;
+	float HullIntegrity = 140.f;
+	const TCHAR* PlaystyleLine =
+		TEXT("30 mm station, mixed cannon, rockets, missiles");
+};
+
+FSkyguardLoadoutSpec SkyguardResolveLoadout(ESkyguardLoadout Loadout);
+ESkyguardLoadout SkyguardLoadoutFromSlot(int32 Slot);
+int32 SkyguardLoadoutSlot(ESkyguardLoadout Loadout);
+const TCHAR* SkyguardLoadoutDisplayName(ESkyguardLoadout Loadout);
 
 UENUM(BlueprintType)
 enum class ESkyguardClimaxKind : uint8
@@ -67,6 +107,17 @@ enum class ESkyguardClimaxKind : uint8
 	MixedSwarm
 };
 
+/** Harbor Breaker patrol-ship systems. Not a single health bar. */
+UENUM(BlueprintType)
+enum class ESkyguardPatrolShipSystem : uint8
+{
+	Radar UMETA(DisplayName = "Search Radar"),
+	Cannon UMETA(DisplayName = "Cannon"),
+	Launcher UMETA(DisplayName = "Launcher"),
+	Engines UMETA(DisplayName = "Engines"),
+	DroneDeck UMETA(DisplayName = "Drone Deck")
+};
+
 UENUM(BlueprintType)
 enum class ESkyguardPilotLine : uint8
 {
@@ -75,6 +126,9 @@ enum class ESkyguardPilotLine : uint8
 	CargoCritical,
 	ShipRadarDown,
 	ShipEnginesDown,
+	ShipLauncherDown,
+	ShipCannonDown,
+	ShipDeckDown,
 	ShipDead,
 	Inbound,
 	FlaresGood,

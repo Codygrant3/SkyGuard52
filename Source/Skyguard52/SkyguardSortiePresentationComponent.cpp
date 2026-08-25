@@ -1,6 +1,8 @@
 #include "SkyguardSortiePresentationComponent.h"
 
 #include "SkyguardCampaignSubsystem.h"
+#include "SkyguardGunner.h"
+#include "SkyguardGunshipSortieDirector.h"
 #include "SkyguardMissionDefinition.h"
 
 namespace
@@ -60,6 +62,7 @@ bool USkyguardSortiePresentationComponent::ConfigureFromMission(
 	RadioRows.Reset();
 	HowToFlyRows.Reset();
 	Debrief = FSkyguardMissionDebrief();
+	CpgDebrief = FSkyguardCpgDebriefSnapshot();
 	if (!Mission || Mission->MissionId.IsNone() ||
 		Mission->DisplayName.IsEmpty() ||
 		Mission->Presentation.Briefing.IsEmpty())
@@ -91,6 +94,7 @@ void USkyguardSortiePresentationComponent::SetSortieLaunched()
 		(PresentationState == ESkyguardSortiePresentationState::Briefing ||
 		 PresentationState == ESkyguardSortiePresentationState::Unconfigured))
 	{
+		CpgDebrief.bValid = false;
 		SetPresentationState(ESkyguardSortiePresentationState::SortieActive);
 	}
 }
@@ -182,6 +186,109 @@ bool USkyguardSortiePresentationComponent::RequestNextMissionTravel(
 {
 	return CampaignRuntime &&
 		CampaignRuntime->TravelToNextMission(WorldContextObject);
+}
+
+void USkyguardSortiePresentationComponent::BindGunshipDirector(
+	ASkyguardGunshipSortieDirector* Director)
+{
+	GunshipDirector = Director;
+}
+
+void USkyguardSortiePresentationComponent::CaptureCpgDebrief(
+	ASkyguardGunshipSortieDirector* Director,
+	ASkyguardGunner* Gunner,
+	ASkyguardPatrolShipBoss* Ship)
+{
+	if (Director)
+	{
+		GunshipDirector = Director;
+	}
+	if (Gunner)
+	{
+		BoundGunner = Gunner;
+	}
+	CpgDebrief = SkyguardCaptureCpgDebrief(
+		GunshipDirector.Get(),
+		Gunner ? Gunner : BoundGunner.Get(),
+		Ship);
+	SetPresentationState(ESkyguardSortiePresentationState::DebriefReady);
+}
+
+FText USkyguardSortiePresentationComponent::GetCpgDebriefCopy() const
+{
+	if (!CpgDebrief.bValid)
+	{
+		return FText::GetEmpty();
+	}
+	return FText::FromString(SkyguardBuildCpgDebriefCopy(CpgDebrief));
+}
+
+bool USkyguardSortiePresentationComponent::SelectLoadoutSlot(const int32 Slot)
+{
+	if (Slot < 1 || Slot > 4)
+	{
+		return false;
+	}
+	const ESkyguardLoadout Loadout = SkyguardLoadoutFromSlot(Slot);
+	CpgDebrief.SelectedLoadout = Loadout;
+	CpgDebrief.bValid = true;
+	if (GunshipDirector)
+	{
+		GunshipDirector->SetPendingLoadout(Loadout);
+	}
+	if (ASkyguardGunner* Gunner = BoundGunner.Get())
+	{
+		Gunner->ApplyLoadout(Loadout);
+		CpgDebrief.CannonReady = Gunner->GetCannonMagazine();
+		CpgDebrief.RocketReady = Gunner->GetRocketAmmo();
+		CpgDebrief.GuidedReady = Gunner->GetGuidedAmmo();
+	}
+	return true;
+}
+
+bool USkyguardSortiePresentationComponent::HandleDebriefKey(const FKey Key)
+{
+	if (Key == EKeys::One)
+	{
+		return SelectLoadoutSlot(1);
+	}
+	if (Key == EKeys::Two)
+	{
+		return SelectLoadoutSlot(2);
+	}
+	if (Key == EKeys::Three)
+	{
+		return SelectLoadoutSlot(3);
+	}
+	if (Key == EKeys::Four)
+	{
+		return SelectLoadoutSlot(4);
+	}
+	if (Key == EKeys::N || Key == EKeys::Enter || Key == EKeys::Virtual_Accept)
+	{
+		return ContinueSortie();
+	}
+	return false;
+}
+
+bool USkyguardSortiePresentationComponent::ContinueSortie()
+{
+	if (GunshipDirector)
+	{
+		if (!GunshipDirector->IsAwaitingContinue())
+		{
+			return false;
+		}
+		GunshipDirector->ConfirmContinue();
+		const bool bAdvanced = !GunshipDirector->IsAwaitingContinue();
+		if (bAdvanced)
+		{
+			CpgDebrief.bValid = false;
+			SetPresentationState(ESkyguardSortiePresentationState::TravelReady);
+		}
+		return bAdvanced;
+	}
+	return AcknowledgeDebrief();
 }
 
 void USkyguardSortiePresentationComponent::BuildBriefingCards()
