@@ -1401,7 +1401,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 class Mission05SynchronizeRuntimeStateDeclContractTests(unittest.TestCase):
-    def test_mission04_class_exists(self) -> None:
+    def test_mission05_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
         self.assertIsNotNone(CLASS_RE.search(header), header)
@@ -2662,7 +2662,7 @@ class Mission05SynchronizeRuntimeStateDeclContractTests(unittest.TestCase):
         self.assertNotIn("ASkyguardBlackKiteBoss", SYNCHRONIZE_RUNTIME_STATE)
         self.assertNotIn("ASkyguardIronRainBoss", section)
         self.assertNotIn("ASkyguardRadarGhostBoss", section)
-        self.assertNotIn("ASkyguardTempestBoss", section)
+        self.assertNotIn("ASkyguardTempestBoss", SYNCHRONIZE_RUNTIME_STATE)
         self.assertNotIn("ASkyguardLastFlightBoss", section)
         self.assertNotIn("ASkyguardPatrolShip", section)
         self.assertNotIn("MinHeightFromOriginCm", section)
