@@ -1676,7 +1676,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 class Mission07InitializePlayableMissionDeclContractTests(unittest.TestCase):
-    def test_mission06_class_exists(self) -> None:
+    def test_mission07_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
         self.assertIsNotNone(CLASS_RE.search(header), header)
