@@ -1994,31 +1994,31 @@ class Mission06TryJamActivePayloadDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tbool\n"
-            "\tStartNextWave();\n"
+            "\tTryJamActivePayload();\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tbool   StartNextWave();\n"
+            "\tbool   TryJamActivePayload();\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tbool\t"
-            "StartNextWave();\n"
+            "TryJamActivePayload();\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
             "\tbool\n"
-            "\t\tStartNextWave();\n"
+            "\t\tTryJamActivePayload();\n"
             "};\n"
         )
         wrap_name = (
             "public:\n"
-            "\tbool StartNextWave(\n"
+            "\tbool TryJamActivePayload(\n"
             "\t\t);\n"
             "};\n"
         )
@@ -3155,7 +3155,7 @@ class Mission06TryJamActivePayloadDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
         inline = (
             "public:\n"
-            "\tbool StartNextWave()\n"
+            "\tbool TryJamActivePayload()\n"
             "\t{\n"
             "\t\treturn false;\n"
             "\t}\n"
@@ -3163,7 +3163,7 @@ class Mission06TryJamActivePayloadDeclContractTests(unittest.TestCase):
         )
         origin_inline = (
             "public:\n"
-            "\tbool StartNextWave()\n"
+            "\tbool TryJamActivePayload()\n"
             "\t{\n"
             "\t\treturn true;\n"
             "\t}\n"
@@ -3171,7 +3171,7 @@ class Mission06TryJamActivePayloadDeclContractTests(unittest.TestCase):
         )
         one_line_inline = (
             "public:\n"
-            "\tbool StartNextWave() { return false; }\n"
+            "\tbool TryJamActivePayload() { return false; }\n"
             "};\n"
         )
         for wrap in (inline, origin_inline, one_line_inline):
@@ -3329,7 +3329,7 @@ class Mission06TryJamActivePayloadDeclContractTests(unittest.TestCase):
         )
         self.assertNotIn("Targets", UFUNCTION_PAYLOAD)
 
-    def test_contract_does_not_relock_leftover_waves_window(self) -> None:
+    def test_contract_does_not_relock_leftover_payload_window(self) -> None:
         locked_only = f"{TRY_JAM_ACTIVE_PAYLOAD}\n"
         for token in LEFTOVER_PAYLOAD_WINDOW_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
