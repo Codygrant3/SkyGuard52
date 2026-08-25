@@ -161,8 +161,9 @@ void ASkyguardIglaMissile::Detonate(
 	}
 	else if (ASkyguardPatrolShipBoss* Ship = Cast<ASkyguardPatrolShipBoss>(Target))
 	{
-		Ship->ApplyHit(nullptr, Damage);
-		bAppliedDamage = true;
+		UPrimitiveComponent* System = Ship->FindNearestLiveSystem(ImpactPoint);
+		Ship->ApplyHit(System, Damage);
+		bAppliedDamage = System != nullptr;
 	}
 	else if (ASkyguardRadarNode* Radar = Cast<ASkyguardRadarNode>(Target))
 	{

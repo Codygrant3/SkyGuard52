@@ -31,3 +31,22 @@ const TCHAR* SkyguardCpgThreatLabel(const ESkyguardThreatKind Kind)
 		return TEXT("FAST");
 	}
 }
+
+const TCHAR* SkyguardCpgShipSystemLabel(const ESkyguardPatrolShipSystem System)
+{
+	switch (System)
+	{
+	case ESkyguardPatrolShipSystem::Radar:
+		return TEXT("RADAR");
+	case ESkyguardPatrolShipSystem::Cannon:
+		return TEXT("GUN");
+	case ESkyguardPatrolShipSystem::Launcher:
+		return TEXT("LNCH");
+	case ESkyguardPatrolShipSystem::Engines:
+		return TEXT("ENG");
+	case ESkyguardPatrolShipSystem::DroneDeck:
+		return TEXT("DECK");
+	default:
+		return TEXT("SHIP");
+	}
+}
