@@ -6,8 +6,20 @@
 #include "SkyguardApacheAircraft.generated.h"
 
 class UBoxComponent;
+class UPrimitiveComponent;
 class USceneComponent;
 class UStaticMeshComponent;
+
+/** Own-ship systems that change Play. Not a second hull bar. */
+UENUM(BlueprintType)
+enum class ESkyguardApacheSystem : uint8
+{
+	Sensor UMETA(DisplayName = "TADS"),
+	Canopy UMETA(DisplayName = "Canopy"),
+	Engines UMETA(DisplayName = "Engines"),
+	ChinTurret UMETA(DisplayName = "Chin turret"),
+	Rotor UMETA(DisplayName = "Main rotor")
+};
 
 /**
  * Arcade AH-64-style gunship. Public HowStuffWorks layout only:
@@ -86,6 +98,53 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
 	float GetDamageFraction() const;
+
+	/** Named-system hit. Does not move the hull integrity bar. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache|Damage")
+	void ApplySystemHit(ESkyguardApacheSystem System, float Amount);
+
+	/** Patrol-ship style part routing. Unknown / hull parts stay hull-only. */
+	UFUNCTION(BlueprintCallable, Category="Skyguard|Apache|Damage")
+	void ApplyHit(UPrimitiveComponent* HitComponent, float Amount);
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsSensorLive() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsThermalAvailable() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsSensorViewActive() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsCanopyGlassCracked() const { return bCanopyGlassCracked; }
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool AreEnginesDown() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsChinTurretDown() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsRotorDown() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	bool IsSystemDown(ESkyguardApacheSystem System) const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	float GetSensorQuality() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	float GetChinSlewScale() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	float GetChinFireScale() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	float GetEnginePowerScale() const;
+
+	UFUNCTION(BlueprintPure, Category="Skyguard|Apache|Damage")
+	float GetRotorPowerScale() const;
 
 	UFUNCTION(BlueprintPure, Category="Skyguard|Apache")
 	float GetRotorRPM() const { return CurrentRotorRPM; }
@@ -239,6 +298,13 @@ private:
 	void UpdatePilotMotion(float DeltaSeconds);
 	void UpdateDirectFlight(float DeltaSeconds);
 	FRotator GetCommandAttitude() const;
+	void ResetOwnShipSystems();
+	void ApplyPowerLossToMotion();
+	float GetDamagedMaxForwardSpeed() const;
+	float GetEffectiveRotorPower() const;
+	bool TryResolveHitSystem(
+		UPrimitiveComponent* HitComponent,
+		ESkyguardApacheSystem& OutSystem) const;
 
 	TMap<TObjectPtr<UStaticMeshComponent>, FLinearColor> PendingTint;
 	float CurrentRotorRPM = 0.f;
@@ -259,4 +325,18 @@ private:
 	float AirPitchDegrees = 0.f;
 	float AirRollDegrees = 0.f;
 	ESkyguardPilotCommand CurrentPilotCommand = ESkyguardPilotCommand::Pursuit;
+
+	static constexpr float MaxSensorIntegrity = 50.f;
+	static constexpr float MaxEngineIntegrity = 80.f;
+	static constexpr float MaxChinIntegrity = 60.f;
+	static constexpr float MaxRotorIntegrity = 70.f;
+	static constexpr float ThermalQualityFloor = 0.35f;
+	static constexpr float EngineLimpScale = 0.32f;
+	static constexpr float RotorLimpScale = 0.40f;
+
+	float SensorIntegrity = MaxSensorIntegrity;
+	float EngineIntegrity = MaxEngineIntegrity;
+	float ChinIntegrity = MaxChinIntegrity;
+	float RotorIntegrity = MaxRotorIntegrity;
+	bool bCanopyGlassCracked = false;
 };
