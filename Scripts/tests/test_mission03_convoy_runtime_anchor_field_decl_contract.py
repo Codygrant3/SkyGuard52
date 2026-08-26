@@ -1893,7 +1893,7 @@ LEFTOVER_MISSION10_ROUTE_PHASE_ENUM_NOT_LOCKED = (
 LEFTOVER_MISSION10_PROTECTED_GROUP_ENUM_NOT_LOCKED = (
     "test_mission10_protected_group_enum_contract.py",
     "cursor/mission10-protected-group-enum-contract-6f9d",
-    "Convoy",
+    "ESkyguardMission10ProtectedGroup::Convoy",
     "FerryTerminal",
     "EvacuationShip",
 )
