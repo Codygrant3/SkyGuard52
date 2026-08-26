@@ -3439,27 +3439,27 @@ class Mission07RadarGhostSpawnLocationFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tFVector\n"
-            "\tRunwayBreakerSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
+            "\tRadarGhostSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
             "\tFVector   "
-            "RunwayBreakerSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
+            "RadarGhostSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tFVector\t"
-            "RunwayBreakerSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
+            "RadarGhostSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
             "\tFVector\n"
-            "\t\tRunwayBreakerSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
+            "\t\tRadarGhostSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
             "};\n"
         )
         wrap_name = (
@@ -4902,7 +4902,7 @@ class Mission07RadarGhostSpawnLocationFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tFVector\n"
-            "\tRunwayBreakerSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
+            "\tRadarGhostSpawnLocation = FVector(73000.f, 32000.f, 7200.f);\n"
             "};\n"
         )
         wrap_uproperty = (
@@ -5942,7 +5942,7 @@ class Mission07RadarGhostSpawnLocationFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission07_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission07IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
@@ -5952,10 +5952,12 @@ class Mission07RadarGhostSpawnLocationFieldDeclContractTests(unittest.TestCase):
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("RadarGhostSpawnLocation", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
             "_decl_contract.py",
