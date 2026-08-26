@@ -2022,15 +2022,17 @@ LEFTOVER_MISSION10_ROUTE_PHASE_ENUM_NOT_LOCKED = (
 LEFTOVER_MISSION10_PROTECTED_GROUP_ENUM_NOT_LOCKED = (
     "test_mission10_protected_group_enum_contract.py",
     "cursor/mission10-protected-group-enum-contract-6f9d",
-    "Convoy",
+    "HighwayConvoy",
     "FerryTerminal",
     "EvacuationShip",
+    "ESkyguardMission10ProtectedGroup",
 )
 LEFTOVER_MISSION10_PROTECTED_RUNTIME_NOT_LOCKED = (
     "test_mission10_protected_runtime_defaults_contract.py",
     "cursor/mission10-protected-runtime-defaults-7898",
-    "Integrity = 100",
+    "int32 Integrity = 100",
     "bDestroyed = false",
+    "FSkyguardMission10ProtectedRuntime",
 )
 LEFTOVER_MISSION10_SIBLING_METHODS_NOT_LOCKED = (
     CONFIGURE_MISSION_DEFINITION,
