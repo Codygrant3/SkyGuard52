@@ -3986,14 +3986,14 @@ class Mission09NotifyProtectedTargetDamageDeclContractTests(unittest.TestCase):
     def test_leftover_bind_runtime_actors_is_not_the_required_decl(
         self,
     ) -> None:
-        self.assertNotEqual(BIND_RUNTIME_ACTORS, "BindCampaignRuntime")
+        self.assertNotEqual(BIND_RUNTIME_ACTORS, "NotifyProtectedTargetDamage")
         self.assertNotIn(BIND_RUNTIME_ACTORS, REQUIRED_DECL)
         self.assertTrue(
-            REQUIRED_DECL.startswith("bool BindCampaignRuntime("),
+            REQUIRED_DECL.startswith("bool NotifyProtectedTargetDamage("),
             REQUIRED_DECL,
         )
-        self.assertIn("USkyguardCampaignSubsystem*", REQUIRED_DECL)
-        self.assertNotIn("USkyguardCampaignSubsystem*", BIND_RUNTIME_ACTORS)
+        self.assertIn("ESkyguardMission09ProtectedTarget Target", REQUIRED_DECL)
+        self.assertNotIn("USkyguardCampaignSubsystem*", REQUIRED_DECL)
         self.assertNotIn("void BindRuntimeActors", REQUIRED_DECL)
 
     def test_contract_does_not_relock_leftover_configure_drafts(self) -> None:
@@ -4093,7 +4093,9 @@ class Mission09NotifyProtectedTargetDamageDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
         inline = (
             "public:\n"
-            "\tbool BindCampaignRuntime(USkyguardCampaignSubsystem* InCampaignRuntime)\n"
+            "\tbool NotifyProtectedTargetDamage("
+            "ESkyguardMission09ProtectedTarget Target, "
+            "int32 Damage)\n"
             "\t{\n"
             "\t\treturn false;\n"
             "\t}\n"
@@ -4101,7 +4103,9 @@ class Mission09NotifyProtectedTargetDamageDeclContractTests(unittest.TestCase):
         )
         origin_inline = (
             "public:\n"
-            "\tbool BindCampaignRuntime(USkyguardCampaignSubsystem* InCampaignRuntime)\n"
+            "\tbool NotifyProtectedTargetDamage("
+            "ESkyguardMission09ProtectedTarget Target, "
+            "int32 Damage)\n"
             "\t{\n"
             "\t\treturn true;\n"
             "\t}\n"
@@ -4109,7 +4113,9 @@ class Mission09NotifyProtectedTargetDamageDeclContractTests(unittest.TestCase):
         )
         one_line_inline = (
             "public:\n"
-            "\tbool BindCampaignRuntime(USkyguardCampaignSubsystem* InCampaignRuntime) { return false; }\n"
+            "\tbool NotifyProtectedTargetDamage("
+            "ESkyguardMission09ProtectedTarget Target, "
+            "int32 Damage) { return false; }\n"
             "};\n"
         )
         for wrap in (inline, origin_inline, one_line_inline):
