@@ -4955,7 +4955,7 @@ class Mission07SearchTrackCountFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("MinimumCivilianSeparationMeters", section)
         # Leftover LastFlight MinimumCivilianSeparationMeters
         # and LifelineHunter 450.f are Harbor-adjacent, not Harbor 40/80.
-        # This Mission06 ProtectedTargetCount default 0 is not Harbor 40/80.
+        # This Mission07 SearchTrackCount default 0 is not Harbor 40/80.
 
     def test_harbor_adjacent_fields_are_not_harbor_40_80(self) -> None:
         locked_only = f"{LOCKED_DECL}\n"
