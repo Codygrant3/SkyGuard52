@@ -3055,15 +3055,15 @@ class Mission10GetSurvivingProtectedGroupCountDeclContractTests(unittest.TestCas
         )
         wrap_name = (
             "public:\n"
-            "\tint32 GetRemainingThreatsInWave(\n"
+            "\tint32 GetSurvivingProtectedGroupCount(\n"
             "\t\t) const;\n"
             "};\n"
         )
         wrap_origin_body = (
             "public:\n"
-            "\tint32 GetRemainingThreatsInWave() const\n"
+            "\tint32 GetSurvivingProtectedGroupCount() const\n"
             "\t{\n"
-            "\t\treturn RemainingThreatsInWave;\n"
+            "\t\treturn 0;\n"
             "\t}\n"
             "};\n"
         )
@@ -3951,7 +3951,7 @@ class Mission10GetSurvivingProtectedGroupCountDeclContractTests(unittest.TestCas
         self.assertNotIn(dirty, section)
         self.assertNotIn(dirty_fwd, LOCKED_DECL)
 
-    def test_contract_is_get_remaining_threats_in_wave_declaration_only(
+    def test_contract_is_get_surviving_protected_group_count_declaration_only(
         self,
     ) -> None:
         header = origin_main_header()
@@ -4349,17 +4349,17 @@ class Mission10GetSurvivingProtectedGroupCountDeclContractTests(unittest.TestCas
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
         inline = (
             "public:\n"
-            "\tint32 GetRemainingThreatsInWave() const\n"
+            "\tint32 GetSurvivingProtectedGroupCount() const\n"
             "\t{\n"
-            "\t\treturn RemainingThreatsInWave;\n"
+            "\t\treturn 0;\n"
             "\t}\n"
             "};\n"
         )
         origin_inline = (
             "public:\n"
-            "\tint32 GetRemainingThreatsInWave() const\n"
+            "\tint32 GetSurvivingProtectedGroupCount() const\n"
             "\t{\n"
-            "\t\treturn RemainingThreatsInWave;\n"
+            "\t\treturn 0;\n"
             "\t}\n"
             "};\n"
         )
@@ -4618,14 +4618,14 @@ class Mission10GetSurvivingProtectedGroupCountDeclContractTests(unittest.TestCas
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission10_get_remaining_threats_in_wave"
-            "_decl_contract.py"
+            "Scripts/tests/test_mission10_get_surviving_protected_group"
+            "_count_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission10_get_remaining_threats_in_wave"
-                "_decl_contract.py"
+                "test_mission10_get_surviving_protected_group"
+                "_count_decl_contract.py"
             )
         )
         self.assertIn(
@@ -4635,6 +4635,21 @@ class Mission10GetSurvivingProtectedGroupCountDeclContractTests(unittest.TestCas
         )
         self.assertIn(
             "Scripts/tests/test_mission09_get_remaining_threats_in_wave"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission10_get_remaining_threats_in_wave"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission10_get_protected_group"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission09_get_surviving_target_count"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
