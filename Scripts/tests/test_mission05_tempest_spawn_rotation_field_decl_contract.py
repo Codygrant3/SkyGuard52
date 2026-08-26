@@ -3485,7 +3485,7 @@ class Mission05TempestSpawnRotationFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("BlackKiteSpawnLocation", LOCKED_DECL)
         self.assertNotIn("LastFlightSpawnLocation", LOCKED_DECL)
         self.assertNotIn("BreakwaterSpawnLocation", LOCKED_DECL)
-        self.assertNotIn("TempestSpawnRotation", LOCKED_DECL)
+        self.assertNotIn("TempestSpawnLocation", LOCKED_DECL)
         self.assertNotIn("ASkyguardMission01IntegrationDirector", LOCKED_DECL)
         self.assertNotIn("ASkyguardMission02IntegrationDirector", LOCKED_DECL)
         self.assertNotIn("ConfigureMissionDefinition", LOCKED_DECL)
@@ -3599,7 +3599,7 @@ class Mission05TempestSpawnRotationFieldDeclContractTests(unittest.TestCase):
             "public:\n"
             "\tUPROPERTY(EditAnywhere, BlueprintReadWrite, "
             'Category="Skyguard|Mission05")\n'
-            "\tFVector TempestSpawnLocation =\n"
+            "\tFRotator TempestSpawnRotation =\n"
             "\t\tFRotator(0.f, 195.f, 0.f);\n"
             "};\n"
         )
@@ -4294,7 +4294,7 @@ class Mission05TempestSpawnRotationFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("TempestSpawnLocation", locked_only)
+        self.assertIn("TempestSpawnRotation", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
@@ -5002,9 +5002,8 @@ class Mission05TempestSpawnRotationFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("return ", LOCKED_DECL)
         self.assertNotIn("return false", LOCKED_DECL)
         self.assertNotIn("return true", LOCKED_DECL)
-        self.assertIn("70000.f", LOCKED_DECL)
-        self.assertIn("24000.f", LOCKED_DECL)
-        self.assertIn("7600.f", LOCKED_DECL)
+        self.assertIn("0.f", LOCKED_DECL)
+        self.assertIn("195.f", LOCKED_DECL)
         self.assertNotIn("= false", LOCKED_DECL)
         self.assertNotIn("nullptr", LOCKED_DECL)
 
