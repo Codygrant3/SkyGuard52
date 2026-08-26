@@ -4936,7 +4936,6 @@ class Mission06RunwayBreakerReadyFieldDeclContractTests(unittest.TestCase):
             LEFTOVER_RADAR_NODE_NOT_LOCKED,
             LEFTOVER_FILL_AND_GUNNER_NOT_LOCKED,
             WRONG_HARBOR_HEADERS_NOT_SCANNED,
-            leftover_short_roster_values(),
             leftover_live_copy_method_names(),
             HARBOR_ADJACENT_NOT_LOCKED,
             leftover_harbor_clock_tokens(),
@@ -4986,6 +4985,12 @@ class Mission06RunwayBreakerReadyFieldDeclContractTests(unittest.TestCase):
             for token in group:
                 self.assertNotIn(token, locked_only)
                 self.assertNotIn(token, LOCKED_DECL)
+        # leftover roster values stay unlocked. "Break" is a
+        # substring of bRunwayBreakerReady, so equality
+        # only — do not treat the field name as leftover roster.
+        for token in leftover_short_roster_values():
+            self.assertNotEqual(token, LOCKED_DECL)
+            self.assertNotEqual(token, "bRunwayBreakerReady")
         for token in SIBLING_TYPES:
             self.assertNotIn(token, LOCKED_DECL)
         for token in leftover_readiness_tokens():
