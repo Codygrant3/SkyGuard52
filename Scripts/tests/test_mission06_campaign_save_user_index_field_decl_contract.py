@@ -6685,9 +6685,14 @@ class Mission06CampaignSaveUserIndexFieldDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission06_auto_initialize_field"
             "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission05_campaign_save_user_index"
+            "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
 
