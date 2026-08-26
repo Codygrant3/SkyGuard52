@@ -2844,7 +2844,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 class Mission05CampaignSaveUserIndexFieldDeclContractTests(unittest.TestCase):
-    def test_mission04_class_exists(self) -> None:
+    def test_mission05_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
         self.assertIsNotNone(CLASS_RE.search(header), header)
