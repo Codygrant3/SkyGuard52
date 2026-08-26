@@ -5769,13 +5769,21 @@ class Mission06ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Mission04", UPROPERTY_MISSION06)
 
     def test_leftover_mission06_get_readiness_does_not_satisfy(self) -> None:
+        leftover_method = (
+            "\tconst FSkyguardMission06IntegrationReadiness& "
+            "GetReadiness() const;\n"
+        )
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(leftover_method, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission06IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission06|Integration")\n'
+            'Category="Skyguard|Mission05|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5790,6 +5798,7 @@ class Mission06ReadinessFieldDeclContractTests(unittest.TestCase):
         )
         for token in LEFTOVER_MISSION06_GET_REMAINING_THREATS_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
+        self.assertNotIn("GetReadiness", LOCKED_DECL)
         self.assertNotIn("Mission05", UPROPERTY_MISSION06)
 
     def test_locked_files_were_not_the_edit_surface(self) -> None:
@@ -5811,13 +5820,17 @@ class Mission06ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertEqual(result.stdout.strip(), "")
 
     def test_leftover_mission06_initialize_does_not_satisfy(self) -> None:
+        leftover_method = f"\t{INITIALIZE_PLAYABLE_MISSION}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(leftover_method, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission06IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission06|Integration")\n'
+            'Category="Skyguard|Mission05|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5832,6 +5845,7 @@ class Mission06ReadinessFieldDeclContractTests(unittest.TestCase):
         )
         for token in LEFTOVER_MISSION06_INITIALIZE_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
+        self.assertNotIn("InitializePlayableMission", LOCKED_DECL)
         self.assertNotIn("Mission05", UPROPERTY_MISSION06)
 
     def test_contract_does_not_relock_leftover_mission07_wave_state_enum(
@@ -6719,12 +6733,16 @@ class Mission06ReadinessFieldDeclContractTests(unittest.TestCase):
                 header,
             )
         )
-        self.assertIn("struct FSkyguardStormRuntime", header)
+        self.assertNotIn("struct FSkyguardStormRuntime", header)
+        self.assertIn("struct FSkyguardAirfieldTargetRuntime", header)
+        self.assertIn("struct FSkyguardPayloadWindowRuntime", header)
         section = public_section(header)
         self.assertTrue(has_declaration(section, LOCKED_DECL), section)
         self.assertNotIn("FSkyguardStormRuntime", LOCKED_DECL)
         self.assertNotIn("Turbulence", LOCKED_DECL)
         self.assertNotIn("bLightningActive", LOCKED_DECL)
+        self.assertNotIn("FSkyguardAirfieldTargetRuntime", LOCKED_DECL)
+        self.assertNotIn("FSkyguardPayloadWindowRuntime", LOCKED_DECL)
         self.assertIn(
             "Scripts/tests/test_storm_runtime_defaults"
             "_contract.py",
