@@ -3656,7 +3656,7 @@ class Mission07ReinforcementDeadlineSecondsFieldDeclContractTests(unittest.TestC
         )
         wrap_indent = (
             "public:\n"
-            "\tint32\n"
+            "\tfloat\n"
             "\t\tReinforcementDeadlineSeconds = 45.f;\n"
             "};\n"
         )
@@ -6175,9 +6175,10 @@ class Mission07ReinforcementDeadlineSecondsFieldDeclContractTests(unittest.TestC
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("ReinforcementDeadlineSeconds", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
@@ -6695,9 +6696,14 @@ class Mission07ReinforcementDeadlineSecondsFieldDeclContractTests(unittest.TestC
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission07_maximum_protected_target"
             "_integrity_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertNotIn(
+            "Scripts/tests/test_mission07_reinforcement_deadline"
+            "_seconds_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
