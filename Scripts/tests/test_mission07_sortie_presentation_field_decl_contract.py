@@ -2901,7 +2901,7 @@ class Mission07SortiePresentationFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION07, section)
         self.assertIn("VisibleAnywhere", section)
         self.assertIn("BlueprintReadOnly", section)
-        self.assertIn('Category="Skyguard|Mission06"', section)
+        self.assertIn('Category="Skyguard|Mission07"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
@@ -5102,15 +5102,40 @@ class Mission07SortiePresentationFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission06_sortie_presentation_field"
+            "Scripts/tests/test_mission07_sortie_presentation_field"
             "_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission06_sortie_presentation_field"
+                "test_mission07_sortie_presentation_field"
                 "_decl_contract.py"
             )
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission06_sortie_presentation_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_root_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_briefing_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_audio_director_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_radio_chatter_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
         )
         self.assertIn(
             "Scripts/tests/test_mission05_audio_director_field"
@@ -6427,6 +6452,11 @@ class Mission07SortiePresentationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission07_sortie_presentation_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission06_sortie_presentation_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
@@ -6513,6 +6543,11 @@ class Mission07SortiePresentationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission07_sortie_presentation_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission06_sortie_presentation_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
