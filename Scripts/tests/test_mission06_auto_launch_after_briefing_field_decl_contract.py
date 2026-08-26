@@ -1236,7 +1236,7 @@ LOCKED_SCRIPTS = (
 ) + leftover_live_copy_boss_scripts()
 SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Root;",
-    "Briefing",
+    "Briefing;",
     "SearchlightPort",
     "SearchlightStarboard",
     "AudioDirector",
@@ -3217,7 +3217,7 @@ class Mission06AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         )
         self.assertTrue(LOCKED_DECL.endswith(";"), LOCKED_DECL)
         self.assertIn("bAutoLaunchAfterBriefing", LOCKED_DECL)
-                self.assertNotIn("TSoftObjectPtr<", LOCKED_DECL)
+        self.assertNotIn("TSoftObjectPtr<", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission10ProtectedRuntime", LOCKED_DECL)
         self.assertNotIn("ESkyguardMission10ProtectedGroup", LOCKED_DECL)
         self.assertNotIn("GetProtectedGroup", LOCKED_DECL)
