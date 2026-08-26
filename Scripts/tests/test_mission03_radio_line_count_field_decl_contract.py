@@ -6831,8 +6831,8 @@ class Mission03RadioLineCountFieldDeclContractTests(unittest.TestCase):
             "\tint32 RadioLineCount = 0;\n"
             "};\n"
         )
-        leftover_m03 = (
-            "struct FSkyguardMission03IntegrationReadiness\n"
+        leftover_m02 = (
+            "struct FSkyguardMission02IntegrationReadiness\n"
             "{\n"
             "public:\n"
             "\tint32 RadioLineCount = 0;\n"
@@ -6882,7 +6882,7 @@ class Mission03RadioLineCountFieldDeclContractTests(unittest.TestCase):
             self.assertIn("RadioLineCount", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
             self.assertFalse(has_declaration(region, LOCKED_DECL))
-        for leftover_struct in (leftover_m01, leftover_m03, leftover_m10):
+        for leftover_struct in (leftover_m01, leftover_m02, leftover_m10):
             with self.assertRaises(AssertionError) as raised:
                 public_section(leftover_struct)
             self.assertIn(CLASS_NAME, str(raised.exception))
