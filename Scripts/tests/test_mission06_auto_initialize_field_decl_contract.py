@@ -2292,8 +2292,8 @@ HARBOR_ADJACENT_CIVILIAN_SEPARATION = (
     "550.f",
 )
 INVENTED_UPROPERTY = (
-    "EditAnywhere",
-    "BlueprintReadWrite",
+    "VisibleAnywhere",
+    "BlueprintReadOnly",
     "VisibleDefaultsOnly",
     "EditDefaultsOnly",
     "SaveGame",
@@ -3475,8 +3475,7 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
 
     def test_declaration_accepts_origin_main_default_forms(self) -> None:
         wraps = (
-            "TObjectPtr<USkyguardRadioChatterComponent> "
-            "RadioChatter = nullptr;",
+            "bool bAutoInitialize = true;",
             "bool bReady = false;",
             "bool bReady = true;",
             "int32 Count = 0;",
@@ -3486,11 +3485,11 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
             "FVector TempestSpawnLocation = FVector(70000.f, 24000.f, 7600.f);",
             "FRotator TempestSpawnRotation = FRotator(0.f, 195.f, 0.f);",
         )
-        audio_default = wraps[0]
+        auto_default = wraps[0]
         header = (
             f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n{\npublic:\n"
-            f"\t{audio_default}\n"
+            f"\t{auto_default}\n"
             "};\n"
         )
         section = public_section(header)
@@ -3499,10 +3498,9 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
             require_declaration(section, LOCKED_DECL),
             LOCKED_DECL,
         )
-        self.assertNotIn("=", LOCKED_DECL)
+        self.assertIn("= true", LOCKED_DECL)
         self.assertNotIn("nullptr", LOCKED_DECL)
         self.assertNotIn("false", LOCKED_DECL)
-        self.assertNotIn("true", LOCKED_DECL)
         self.assertNotIn("Skyguard52Campaign", LOCKED_DECL)
         self.assertNotIn("FVector", LOCKED_DECL)
         self.assertNotIn("FRotator", LOCKED_DECL)
@@ -4118,7 +4116,7 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("RadioChatter", locked_only)
+        self.assertIn("bAutoInitialize", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("Root;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
@@ -4126,7 +4124,7 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("CampaignDefinition", locked_only)
         self.assertNotIn("MissionDefinition", locked_only)
         self.assertNotIn("Readiness;", locked_only)
-        self.assertNotIn("bAutoInitialize", locked_only)
+        self.assertNotIn("RadioChatter", locked_only)
         self.assertNotIn("bAllowBoundedActorSpawning", locked_only)
         self.assertNotIn("bAutoLaunchAfterBriefing", locked_only)
         self.assertNotIn("PathfinderSpawnLocation", locked_only)
@@ -4777,7 +4775,7 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, LOCKED_DECL)
 
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
-        assigned = "\tTObjectPtr<USceneComponent> Root = nullptr;\n"
+        assigned = "\tbool bAutoInitialize = false;\n"
         with self.assertRaises(AssertionError) as raised:
             require_declaration(assigned, LOCKED_DECL)
         self.assertIn("bAutoInitialize", str(raised.exception))
@@ -4790,8 +4788,8 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
         )
         wrap_split = (
             "public:\n"
-            "\tTObjectPtr<USkyguardRadioChatterComponent>\n"
-            "\tRadioChatter;\n"
+            "\tbool\n"
+            "\tbAutoInitialize = true;\n"
             "};\n"
         )
         wrap_uproperty = (
@@ -4823,7 +4821,8 @@ class Mission06AutoInitializeFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("return ", LOCKED_DECL)
         self.assertNotIn("return false", LOCKED_DECL)
         self.assertNotIn("return true", LOCKED_DECL)
-        self.assertNotIn("=", LOCKED_DECL)
+        self.assertIn("= true", LOCKED_DECL)
+        self.assertNotIn("= false", LOCKED_DECL)
 
 
     def test_leftover_mission04_initialize_does_not_satisfy(self) -> None:
