@@ -4565,7 +4565,7 @@ class Mission05GunnerReadyFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("bMapAssemblyReady", locked_only)
+        self.assertIn("bGunnerReady", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
