@@ -3350,12 +3350,12 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
             LEFTOVER_MISSION04_INITIALIZE_NOT_LOCKED,
             LEFTOVER_MISSION05_INITIALIZE_NOT_LOCKED,
             LEFTOVER_MISSION06_INITIALIZE_NOT_LOCKED,
-            LEFTOVER_MISSION03_START_HOIST_WINDOW_NOT_LOCKED,
-            LEFTOVER_MISSION04_START_HOIST_WINDOW_NOT_LOCKED,
-            LEFTOVER_MISSION05_START_HOIST_WINDOW_NOT_LOCKED,
-            LEFTOVER_MISSION06_START_HOIST_WINDOW_NOT_LOCKED,
+            LEFTOVER_MISSION03_START_NEXT_WAVE_NOT_LOCKED,
+            LEFTOVER_MISSION04_START_NEXT_WAVE_NOT_LOCKED,
+            LEFTOVER_MISSION05_START_NEXT_WAVE_NOT_LOCKED,
+            LEFTOVER_MISSION06_START_NEXT_WAVE_NOT_LOCKED,
             LEFTOVER_MISSION07_INITIALIZE_NOT_LOCKED,
-            LEFTOVER_MISSION07_START_HOIST_WINDOW_NOT_LOCKED,
+            LEFTOVER_MISSION07_START_NEXT_WAVE_NOT_LOCKED,
             LEFTOVER_MISSION08_WAVE_STATE_ENUM_NOT_LOCKED,
             LEFTOVER_MISSION08_PROTECTED_TARGET_NOT_LOCKED,
             LEFTOVER_HOIST_WINDOW_NOT_LOCKED,
@@ -4134,7 +4134,7 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
         self,
     ) -> None:
         locked_only = f"{START_HOIST_WINDOW}\n"
-        for token in LEFTOVER_MISSION03_START_HOIST_WINDOW_NOT_LOCKED:
+        for token in LEFTOVER_MISSION03_START_NEXT_WAVE_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, START_HOIST_WINDOW)
         self.assertIn(
@@ -4148,7 +4148,7 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
         self,
     ) -> None:
         locked_only = f"{START_HOIST_WINDOW}\n"
-        for token in LEFTOVER_MISSION04_START_HOIST_WINDOW_NOT_LOCKED:
+        for token in LEFTOVER_MISSION04_START_NEXT_WAVE_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, START_HOIST_WINDOW)
         self.assertIn(
@@ -4162,7 +4162,7 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
         self,
     ) -> None:
         locked_only = f"{START_HOIST_WINDOW}\n"
-        for token in LEFTOVER_MISSION05_START_HOIST_WINDOW_NOT_LOCKED:
+        for token in LEFTOVER_MISSION05_START_NEXT_WAVE_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, START_HOIST_WINDOW)
         self.assertIn(
@@ -4176,7 +4176,7 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
         self,
     ) -> None:
         locked_only = f"{START_HOIST_WINDOW}\n"
-        for token in LEFTOVER_MISSION06_START_HOIST_WINDOW_NOT_LOCKED:
+        for token in LEFTOVER_MISSION06_START_NEXT_WAVE_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, START_HOIST_WINDOW)
         self.assertIn(
@@ -4205,7 +4205,7 @@ class Mission08StartHoistWindowDeclContractTests(unittest.TestCase):
         self,
     ) -> None:
         locked_only = f"{START_HOIST_WINDOW}\n"
-        for token in LEFTOVER_MISSION07_START_HOIST_WINDOW_NOT_LOCKED:
+        for token in LEFTOVER_MISSION07_START_NEXT_WAVE_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, START_HOIST_WINDOW)
         self.assertIn(
