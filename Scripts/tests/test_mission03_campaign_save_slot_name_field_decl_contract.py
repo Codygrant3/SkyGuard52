@@ -4585,14 +4585,14 @@ class Mission03CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
         for token in LEFTOVER_MISSION01_INITIALIZE_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
 
-    def test_leftover_mission03_initialize_does_not_satisfy(self) -> None:
+    def test_leftover_mission02_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission03|Integration")\n'
+            'Category="Skyguard|Mission02|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5384,14 +5384,14 @@ class Mission03CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
         for token in LEFTOVER_MISSION01_GET_REMAINING_THREATS_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
 
-    def test_leftover_mission03_get_readiness_does_not_satisfy(self) -> None:
+    def test_leftover_mission02_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission03|Integration")\n'
+            'Category="Skyguard|Mission02|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
