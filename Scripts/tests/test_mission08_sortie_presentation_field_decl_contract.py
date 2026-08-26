@@ -6088,13 +6088,15 @@ class Mission08SortiePresentationFieldDeclContractTests(unittest.TestCase):
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission08|Integration")\n'
             "\tconst FSkyguardMission08IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("SortiePresentation", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
@@ -6105,7 +6107,7 @@ class Mission08SortiePresentationFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Mission07", UPROPERTY_MISSION08)
         leftover_m08_type = (
             "\tconst FSkyguardMission08IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const;\n"
+            "GetReadiness() const;\n"
         )
         with self.assertRaises(AssertionError) as raised:
             require_declaration(leftover_m08_type, LOCKED_DECL)
@@ -6528,6 +6530,11 @@ class Mission08SortiePresentationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission08_sortie_presentation_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission07_sortie_presentation_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
@@ -6619,6 +6626,11 @@ class Mission08SortiePresentationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission08_sortie_presentation_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission07_sortie_presentation_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
