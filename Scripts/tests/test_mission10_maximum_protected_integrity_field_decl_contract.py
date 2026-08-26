@@ -4442,22 +4442,22 @@ class Mission10MaximumProtectedIntegrityFieldDeclContractTests(unittest.TestCase
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission01_maximum_protected_integrity"
+            "Scripts/tests/test_mission01_campaign_save_user_index"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_get_maximum_protected_integrity"
+            "Scripts/tests/test_get_campaign_save_user_index"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_set_maximum_protected_integrity"
+            "Scripts/tests/test_set_campaign_save_user_index"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_maximum_protected_integrity"
+            "Scripts/tests/test_campaign_save_user_index"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
