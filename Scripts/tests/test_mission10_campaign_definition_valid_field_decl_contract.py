@@ -3498,7 +3498,7 @@ class Mission10CampaignDefinitionValidFieldDeclContractTests(unittest.TestCase):
         )
         self.assertIn(UPROPERTY_MISSION10, section)
         self.assertNotIn(UPROPERTY_MISSION10_CLAMP, section)
-        self.assertIn('ClampMin="1"', section)
+        self.assertNotIn('ClampMin="1"', section)
 
     def test_environment_category_does_not_satisfy_integration(self) -> None:
         self.assertNotIn("Environment", UPROPERTY_MISSION10)
