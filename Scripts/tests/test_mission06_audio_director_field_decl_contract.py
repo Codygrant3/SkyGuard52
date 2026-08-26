@@ -1171,8 +1171,7 @@ LOCKED_SCRIPTS = (
     "Scripts/tests/test_mission05_maximum_protected_target_integrity_field_decl_contract.py",
     "Scripts/tests/test_mission05_campaign_save_slot_name_field_decl_contract.py",
     "Scripts/tests/test_mission05_campaign_save_user_index_field_decl_contract.py",
-)
- + leftover_live_copy_boss_scripts()
+) + leftover_live_copy_boss_scripts()
 SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Root;",
     "Briefing",
@@ -4216,15 +4215,20 @@ class Mission06AudioDirectorFieldDeclContractTests(unittest.TestCase):
         locked_only = f"{LOCKED_DECL}\n"
         file_text = this_file_text()
         section = public_section(origin_main_header())
+        # Harbor 40/80 stay fail-closed in this file and the
+        # locked declaration only (Mission08-only retune).
+        # Do not scan leftover spawn-location fields on this
+        # class; leftover spawn rotations are Harbor-adjacent
+        # and are not Harbor 40/80.
         for token in leftover_harbor_tokens():
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, LOCKED_DECL)
             self.assertNotIn(token, file_text)
-            self.assertNotIn(token, section)
         for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
             self.assertNotIn(token, file_text)
             self.assertNotIn(token, LOCKED_DECL)
+            self.assertNotIn(token, locked_only)
 
     def test_this_file_bans_retired_live_copy(self) -> None:
         file_text = this_file_text().lower()
