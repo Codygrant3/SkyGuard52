@@ -2788,7 +2788,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
         self.assertNotIn("FSkyguardMission08ProtectedTargetRuntime", GET_POOL_RUNTIME)
         self.assertNotIn("FSkyguardMission09ProtectedTargetRuntime", GET_POOL_RUNTIME)
         self.assertNotIn("FSkyguardMission08IntegrationReadiness", GET_POOL_RUNTIME)
-        self.assertNotIn("FSkyguardMission09PoolRuntime", GET_POOL_RUNTIME)
+        self.assertNotIn("FSkyguardMission09IntegrationReadiness", GET_POOL_RUNTIME)
         self.assertNotIn("FSkyguardMission09PoolBudget", GET_POOL_RUNTIME)
         self.assertNotIn("ASkyguardMission08IntegrationDirector", GET_POOL_RUNTIME)
         self.assertNotIn("BindCampaignRuntime", GET_POOL_RUNTIME)
@@ -3812,20 +3812,20 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             LEFTOVER_MISSION07_START_NEXT_WAVE_NOT_LOCKED,
             LEFTOVER_MISSION07_INITIALIZE_NOT_LOCKED,
             LEFTOVER_MISSION07_NOTIFY_THREAT_DESTROYED_NOT_LOCKED,
-            LEFTOVER_MISSION01_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION03_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION04_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION05_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION06_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION07_GET_POOL_RUNTIME_NOT_LOCKED,
-            LEFTOVER_MISSION08_GET_POOL_RUNTIME_NOT_LOCKED,
+            LEFTOVER_MISSION01_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION03_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION04_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION05_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION06_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION07_GET_READINESS_NOT_LOCKED,
+            LEFTOVER_MISSION08_GET_READINESS_NOT_LOCKED,
             LEFTOVER_MISSION09_WAVE_STATE_ENUM_NOT_LOCKED,
             LEFTOVER_MISSION09_PROTECTED_TARGET_NOT_LOCKED,
             LEFTOVER_MISSION09_POOL_RUNTIME_NOT_LOCKED,
             LEFTOVER_MISSION09_POOL_BUDGET_NOT_LOCKED,
             LEFTOVER_MISSION09_SIBLING_METHODS_NOT_LOCKED,
             LEFTOVER_MISSION08_IS_CORE_PLAYABLE_READY_NOT_LOCKED,
-            LEFTOVER_ENVIRONMENT_GET_POOL_RUNTIME_NOT_LOCKED,
+            LEFTOVER_ENVIRONMENT_GET_READINESS_NOT_LOCKED,
             LEFTOVER_MISSION07_IS_CORE_PLAYABLE_READY_NOT_LOCKED,
             LEFTOVER_MISSION08_WAVE_STATE_ENUM_NOT_LOCKED,
             LEFTOVER_MISSION08_PROTECTED_TARGET_NOT_LOCKED,
@@ -4427,7 +4427,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             public_section(leftover_coastal)
         self.assertIn(CLASS_NAME, str(raised.exception))
         locked_only = f"{GET_POOL_RUNTIME}\n"
-        for token in LEFTOVER_ENVIRONMENT_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_ENVIRONMENT_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, GET_POOL_RUNTIME)
         self.assertNotIn("IsCorePlayableReady", GET_POOL_RUNTIME)
@@ -4661,7 +4661,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION01_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION01_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
 
     def test_leftover_mission03_get_readiness_does_not_satisfy(self) -> None:
@@ -4684,7 +4684,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION03_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION03_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
 
     def test_leftover_mission04_get_readiness_does_not_satisfy(self) -> None:
@@ -4707,7 +4707,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION04_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION04_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
 
     def test_leftover_mission05_get_readiness_does_not_satisfy(self) -> None:
@@ -4730,7 +4730,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION05_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION05_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
         self.assertNotIn("Mission05", UFUNCTION_PERFORMANCE)
 
@@ -4754,7 +4754,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION06_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION06_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
         self.assertNotIn("Mission06", UFUNCTION_PERFORMANCE)
 
@@ -5035,7 +5035,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION07_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION07_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
         self.assertNotIn("Mission07", UFUNCTION_PERFORMANCE)
         leftover_m07_type = (
@@ -5174,7 +5174,7 @@ class Mission09GetPoolRuntimeDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        for token in LEFTOVER_MISSION08_GET_POOL_RUNTIME_NOT_LOCKED:
+        for token in LEFTOVER_MISSION08_GET_READINESS_NOT_LOCKED:
             self.assertNotIn(token, GET_POOL_RUNTIME)
         self.assertNotIn("Mission08", UFUNCTION_PERFORMANCE)
         leftover_m08_type = (
