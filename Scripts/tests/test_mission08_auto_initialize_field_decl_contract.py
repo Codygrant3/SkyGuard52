@@ -6117,10 +6117,13 @@ class Mission08AutoInitializeFieldDeclContractTests(unittest.TestCase):
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("bAutoInitialize", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertIn(CLASS_NAME, str(raised.exception))
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
