@@ -560,8 +560,7 @@ ROAD_HUNTER_SPAWN_ROTATION_FIELD = (
     "FRotator(0.f, 210.f, 0.f);"
 )
 BREAKWATER_SPAWN_ROTATION_FIELD = (
-    "FRotator BreakwaterSpawnRotation = "
-    "FRotator(0.f, 180.f, 0.f);"
+    "FRotator BreakwaterSpawnRotation;"
 )
 SYNCHRONIZE_RUNTIME_STATE = "void SynchronizeRuntimeState();"
 IS_CORE_PLAYABLE_READY = "bool IsCorePlayableReady() const;"
