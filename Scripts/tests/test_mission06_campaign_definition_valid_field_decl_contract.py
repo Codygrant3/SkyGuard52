@@ -1325,7 +1325,7 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Readiness;",
     "bAutoInitialize",
     "bAllowBoundedActorSpawning",
-    "CampaignDefinition",
+    "CampaignDefinition;",
     "ConvoyRuntimeAnchor",
     "HighwayConvoyAnchor",
     "BusAAnchor",
@@ -3697,7 +3697,7 @@ class Mission06MissionDefinitionValidFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Readiness;", LOCKED_DECL)
         self.assertNotIn("bAutoInitialize", LOCKED_DECL)
         self.assertNotIn("bAllowBoundedActorSpawning", LOCKED_DECL)
-        self.assertNotIn("CampaignDefinition", LOCKED_DECL)
+        self.assertNotIn("CampaignDefinition;", LOCKED_DECL)
         self.assertNotIn("PathfinderSpawnLocation", LOCKED_DECL)
         self.assertNotIn("GetAircraft", LOCKED_DECL)
         self.assertNotIn("BindRuntimeActors", LOCKED_DECL)
@@ -4588,7 +4588,7 @@ class Mission06MissionDefinitionValidFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Readiness;", locked_only)
         self.assertNotIn("bAutoInitialize", locked_only)
         self.assertNotIn("bAllowBoundedActorSpawning", locked_only)
-        self.assertNotIn("CampaignDefinition", locked_only)
+        self.assertNotIn("CampaignDefinition;", locked_only)
         self.assertNotIn("PathfinderSpawnLocation", locked_only)
         self.assertNotIn("GetAircraft", locked_only)
         self.assertNotIn("BindRuntimeActors", locked_only)
@@ -5472,13 +5472,13 @@ class Mission06MissionDefinitionValidFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission06_mission_definition"
+            "Scripts/tests/test_mission06_campaign_definition"
             "_valid_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission06_mission_definition"
+                "test_mission06_campaign_definition"
                 "_valid_field_decl_contract.py"
             )
         )
