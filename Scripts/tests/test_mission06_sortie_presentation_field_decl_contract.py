@@ -3364,28 +3364,28 @@ class Mission06SortiePresentationFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tTObjectPtr<USkyguardAudioDirectorComponent>\n"
-            "\tAudioDirector;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\tSortiePresentation;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tTObjectPtr<USkyguardAudioDirectorComponent>   "
-            "AudioDirector;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>   "
+            "SortiePresentation;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-            "\tTObjectPtr<USkyguardAudioDirectorComponent>\t"
-            "AudioDirector;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\t"
+            "SortiePresentation;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-            "\tTObjectPtr<USkyguardAudioDirectorComponent>\n"
-            "\t\tAudioDirector;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\t\tSortiePresentation;\n"
             "};\n"
         )
         wrap_name = (
@@ -3507,8 +3507,8 @@ class Mission06SortiePresentationFieldDeclContractTests(unittest.TestCase):
 
     def test_declaration_accepts_origin_main_default_forms(self) -> None:
         wraps = (
-            "TObjectPtr<USkyguardAudioDirectorComponent> "
-            "AudioDirector = nullptr;",
+            "TObjectPtr<USkyguardSortiePresentationComponent> "
+            "SortiePresentation = nullptr;",
             "bool bReady = false;",
             "bool bReady = true;",
             "int32 Count = 0;",
@@ -4150,11 +4150,11 @@ class Mission06SortiePresentationFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("AudioDirector", locked_only)
+        self.assertIn("SortiePresentation", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("Root;", locked_only)
         self.assertNotIn("RadioChatter", locked_only)
-        self.assertNotIn("SortiePresentation", locked_only)
+        self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("CampaignDefinition", locked_only)
         self.assertNotIn("MissionDefinition", locked_only)
         self.assertNotIn("Readiness;", locked_only)
@@ -4822,8 +4822,8 @@ class Mission06SortiePresentationFieldDeclContractTests(unittest.TestCase):
         )
         wrap_split = (
             "public:\n"
-            "\tTObjectPtr<USkyguardAudioDirectorComponent>\n"
-            "\tAudioDirector;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\tSortiePresentation;\n"
             "};\n"
         )
         wrap_uproperty = (
