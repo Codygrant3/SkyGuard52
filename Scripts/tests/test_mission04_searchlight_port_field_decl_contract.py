@@ -3080,7 +3080,7 @@ class Mission04SearchlightPortFieldDeclContractTests(unittest.TestCase):
             self.assertIn("SearchlightPort", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
 
-    def test_root_declaration_matches_origin_main(self) -> None:
+    def test_searchlight_port_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
@@ -3097,7 +3097,9 @@ class Mission04SearchlightPortFieldDeclContractTests(unittest.TestCase):
         )
         self.assertTrue(LOCKED_DECL.endswith(";"), LOCKED_DECL)
         self.assertIn("SearchlightPort", LOCKED_DECL)
-        self.assertIn("USceneComponent", LOCKED_DECL)
+        self.assertIn("USpotLightComponent", LOCKED_DECL)
+        self.assertNotIn("USceneComponent", LOCKED_DECL)
+        self.assertNotIn("SearchlightStarboard", LOCKED_DECL)
         self.assertIn("TObjectPtr<", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission10ProtectedRuntime", LOCKED_DECL)
         self.assertNotIn("ESkyguardMission10ProtectedGroup", LOCKED_DECL)
