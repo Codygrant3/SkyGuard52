@@ -2963,7 +2963,7 @@ class Mission08AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION08, section)
         self.assertIn("EditAnywhere", section)
         self.assertIn("BlueprintReadWrite", section)
-        self.assertIn('Category="Skyguard|Mission07"', section)
+        self.assertIn('Category="Skyguard|Mission08"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
@@ -3491,7 +3491,7 @@ class Mission08AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         wrap_ufunction_category = (
             "public:\n"
             "\tUPROPERTY(EditAnywhere, BlueprintReadWrite,\n"
-            '\t\tCategory="Skyguard|Mission07")\n'
+            '\t\tCategory="Skyguard|Mission08")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -3500,7 +3500,7 @@ class Mission08AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
             "\tUPROPERTY(\n"
             "\t\tEditAnywhere,\n"
             "\t\tBlueprintReadWrite,\n"
-            '\t\tCategory="Skyguard|Mission07")\n'
+            '\t\tCategory="Skyguard|Mission08")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -6613,6 +6613,11 @@ class Mission08AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission08_auto_launch_after_briefing_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission07_auto_launch_after_briefing_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
@@ -6709,6 +6714,11 @@ class Mission08AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
+            "Scripts/tests/test_mission08_auto_launch_after_briefing_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
             "Scripts/tests/test_mission07_auto_launch_after_briefing_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
