@@ -4750,12 +4750,12 @@ class Mission05BriefingFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission05_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission05|Integration")\n'
+            'Category="Skyguard|Mission04|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5400,12 +5400,12 @@ class Mission05BriefingFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission05_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission05|Integration")\n'
+            'Category="Skyguard|Mission04|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
