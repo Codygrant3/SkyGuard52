@@ -4576,7 +4576,9 @@ class Mission10AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         self.assertNotIn("return ", LOCKED_DECL)
         self.assertNotIn("return false", LOCKED_DECL)
         self.assertNotIn("return true", LOCKED_DECL)
-        self.assertNotIn("=", LOCKED_DECL)
+        self.assertIn("= true", LOCKED_DECL)
+        self.assertNotIn("= false", LOCKED_DECL)
+        self.assertNotIn("nullptr", LOCKED_DECL)
 
 
     def test_leftover_mission04_initialize_does_not_satisfy(self) -> None:
