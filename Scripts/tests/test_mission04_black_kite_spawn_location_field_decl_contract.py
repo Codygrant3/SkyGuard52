@@ -3129,7 +3129,7 @@ class Mission04BlackKiteSpawnLocationFieldDeclContractTests(unittest.TestCase):
         leftover_remaining = f"\t{GET_READINESS}\n"
         leftover_search_runtime = f"\t{GET_SEARCHLIGHT_RUNTIME}\n"
         leftover_integrity = f"\t{GET_SUBSTATION_INTEGRITY}\n"
-        leftover_kite_loc = f"\t{BLACK_KITE_SPAWN_LOCATION}\n"
+        leftover_kite_loc = f"\t{BLACK_KITE_SPAWN_LOCATION_TYPE_ONLY}\n"
         leftover_kite_rot = f"\t{BLACK_KITE_SPAWN_ROTATION}\n"
         leftover_anchor = f"\t{CONVOY_RUNTIME_ANCHOR}\n"
         leftover_road_loc = f"\t{ROAD_HUNTER_SPAWN_LOCATION}\n"
@@ -3300,7 +3300,7 @@ class Mission04BlackKiteSpawnLocationFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION04, section)
         self.assertNotIn(" const", LOCKED_DECL)
         self.assertNotIn("Group", LOCKED_DECL)
-        self.assertNotIn("(", LOCKED_DECL)
+        self.assertIn("FVector(", LOCKED_DECL)
         self.assertNotIn("TArray<", LOCKED_DECL)
         self.assertIn("0", LOCKED_DECL)
         self.assertNotIn("bAllowBoundedActorSpawning", LOCKED_DECL)
