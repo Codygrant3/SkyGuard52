@@ -1343,7 +1343,7 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "bEvacuationPresentationReady",
     "bProtectedGroupsReady",
     "bBriefingReady",
-    "bAudioReady",
+    "bObjectivesReady",
     "bSortiePresentationReady",
     "bCampaignRuntimeStarted",
     "ObjectiveCount",
