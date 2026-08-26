@@ -5195,13 +5195,13 @@ class Mission02WaveCountFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission02_briefing_ready"
+            "Scripts/tests/test_mission02_wave_count"
             "_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission02_briefing_ready"
+                "test_mission02_wave_count"
                 "_field_decl_contract.py"
             )
         )
