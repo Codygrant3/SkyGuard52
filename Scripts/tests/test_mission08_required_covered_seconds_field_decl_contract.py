@@ -4505,7 +4505,8 @@ class Mission08RequiredCoveredSecondsFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("CampaignSaveUserIndex", locked_only)
+        self.assertIn("RequiredCoveredSeconds", locked_only)
+        self.assertNotIn("CampaignSaveUserIndex", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("Root;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
@@ -6386,7 +6387,10 @@ class Mission08RequiredCoveredSecondsFieldDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn("Hoist", UPROPERTY_MISSION08)
+        self.assertIn("Hoist", UPROPERTY_MISSION08)
+        self.assertNotIn("StartHoistWindow", LOCKED_DECL)
+        self.assertNotIn("AdvanceHoistWindow", LOCKED_DECL)
+        self.assertNotIn("GetHoistRuntime", LOCKED_DECL)
         self.assertNotIn("UFUNCTION", ADVANCE_HOIST_WINDOW)
 
     def test_contract_does_not_relock_leftover_storm_rain_beat_methods(
@@ -7175,7 +7179,7 @@ class Mission08RequiredCoveredSecondsFieldDeclContractTests(unittest.TestCase):
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission08_campaign_save_user_index"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
