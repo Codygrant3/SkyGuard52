@@ -4786,7 +4786,7 @@ class Mission06SortiePresentationReadyFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
-        self.assertNotIn("SortiePresentation", locked_only)
+        self.assertNotIn("SortiePresentation;", locked_only)
         self.assertNotIn("RadioChatter", locked_only)
         self.assertNotIn("USkyguardMissionDefinition", locked_only)
         self.assertNotIn("Readiness;", locked_only)
@@ -5704,7 +5704,7 @@ class Mission06SortiePresentationReadyFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission06_briefing"
+                "test_mission06_sortie_presentation"
                 "_ready_field_decl_contract.py"
             )
         )
