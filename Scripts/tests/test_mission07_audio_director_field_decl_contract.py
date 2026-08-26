@@ -2836,7 +2836,7 @@ class Mission07AudioDirectorFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION07, section)
         self.assertIn("VisibleAnywhere", section)
         self.assertIn("BlueprintReadOnly", section)
-        self.assertIn('Category="Skyguard|Mission06"', section)
+        self.assertIn('Category="Skyguard|Mission07"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
