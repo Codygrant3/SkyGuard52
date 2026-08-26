@@ -3108,7 +3108,7 @@ class Mission02RadioChatterFieldDeclContractTests(unittest.TestCase):
             self.assertIn("RadioChatter", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
 
-    def test_briefing_declaration_matches_origin_main(self) -> None:
+    def test_radio_chatter_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
@@ -3274,39 +3274,39 @@ class Mission02RadioChatterFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>\n"
+            "\tRadioChatter;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>   "
-            "Briefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>   "
+            "RadioChatter;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\t"
-            "Briefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>\t"
+            "RadioChatter;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\t\tBriefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>\n"
+            "\t\tRadioChatter;\n"
             "};\n"
         )
         wrap_name = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent> Briefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent> RadioChatter;\n"
             "};\n"
         )
         wrap_origin_body = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>\n"
+            "\tRadioChatter;\n"
             "};\n"
         )
         wrap_ufunction = (
@@ -4668,8 +4668,8 @@ class Mission02RadioChatterFieldDeclContractTests(unittest.TestCase):
         )
         origin_inline = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardRadioChatterComponent>\n"
+            "\tRadioChatter;\n"
             "};\n"
         )
         one_line_inline = (
