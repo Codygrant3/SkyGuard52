@@ -1845,7 +1845,7 @@ def require_declaration(region: str, declaration: str) -> str:
     return declaration
 
 
-class Mission07GetClassifiedFalseTrackCountDeclContractTests(unittest.TestCase):
+class Mission07GetSurvivingTargetCountDeclContractTests(unittest.TestCase):
     def test_mission07_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
