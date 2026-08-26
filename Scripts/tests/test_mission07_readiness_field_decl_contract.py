@@ -2997,7 +2997,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 class Mission07ReadinessFieldDeclContractTests(unittest.TestCase):
-    def test_mission06_class_exists(self) -> None:
+    def test_mission07_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
         self.assertIsNotNone(CLASS_RE.search(header), header)
@@ -6128,20 +6128,22 @@ class Mission07ReadinessFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission07_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission07IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission07|Integration")\n'
             "\tconst FSkyguardMission07IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
             "_decl_contract.py",
@@ -6149,6 +6151,7 @@ class Mission07ReadinessFieldDeclContractTests(unittest.TestCase):
         )
         for token in LEFTOVER_MISSION07_GET_REMAINING_THREATS_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
+        self.assertNotIn("GetReadiness", LOCKED_DECL)
         self.assertNotIn("Mission06", UPROPERTY_MISSION07)
         leftover_m07_type = (
             "\tconst FSkyguardMission07IntegrationReadiness& "
@@ -6798,13 +6801,23 @@ class Mission07ReadinessFieldDeclContractTests(unittest.TestCase):
             )
         )
         self.assertNotIn("struct FSkyguardStormRuntime", header)
-        self.assertIn("struct FSkyguardAirfieldTargetRuntime", header)
-        self.assertIn("struct FSkyguardPayloadWindowRuntime", header)
+        self.assertNotIn("struct FSkyguardAirfieldTargetRuntime", header)
+        self.assertNotIn("struct FSkyguardPayloadWindowRuntime", header)
+        self.assertIn("struct FSkyguardSearchTrackRuntime", header)
+        self.assertIn(
+            "struct FSkyguardMission07ProtectedTargetRuntime",
+            header,
+        )
         section = public_section(header)
         self.assertTrue(has_declaration(section, LOCKED_DECL), section)
         self.assertNotIn("FSkyguardStormRuntime", LOCKED_DECL)
         self.assertNotIn("Turbulence", LOCKED_DECL)
         self.assertNotIn("bLightningActive", LOCKED_DECL)
+        self.assertNotIn("FSkyguardSearchTrackRuntime", LOCKED_DECL)
+        self.assertNotIn(
+            "FSkyguardMission07ProtectedTargetRuntime",
+            LOCKED_DECL,
+        )
         self.assertNotIn("FSkyguardAirfieldTargetRuntime", LOCKED_DECL)
         self.assertNotIn("FSkyguardPayloadWindowRuntime", LOCKED_DECL)
         self.assertIn(
