@@ -797,6 +797,7 @@ LOCKED_SCRIPTS = (
     "Scripts/tests/test_mission05_notify_threat_destroyed_decl_contract.py",
     "Scripts/tests/test_mission05_handle_drone_city_impact_decl_contract.py",
     "Scripts/tests/test_mission05_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission05_notify_protected_asset_failed_decl_contract.py",
     "Scripts/tests/test_mission05_is_core_playable_ready_decl_contract.py",
     "Scripts/tests/test_mission05_get_readiness_decl_contract.py",
     "Scripts/tests/test_mission05_get_objective_runtime_decl_contract.py",
@@ -2559,7 +2560,7 @@ class Mission09SynchronizeRuntimeStateDeclContractTests(unittest.TestCase):
             1,
         )
         self.assertTrue(
-            REQUIRED_DECL.startswith("bool "),
+            REQUIRED_DECL.startswith("void "),
             REQUIRED_DECL,
         )
         self.assertTrue(
