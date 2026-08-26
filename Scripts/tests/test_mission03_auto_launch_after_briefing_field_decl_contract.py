@@ -4582,14 +4582,14 @@ class Mission03AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         for token in LEFTOVER_MISSION01_INITIALIZE_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
 
-    def test_leftover_mission03_initialize_does_not_satisfy(self) -> None:
+    def test_leftover_mission02_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission03|Integration")\n'
+            'Category="Skyguard|Mission02|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -4597,6 +4597,11 @@ class Mission03AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
             public_section(leftover)
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertIn(
+            "Scripts/tests/test_mission02_auto_launch_after_briefing"
+            "_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
         self.assertIn(
             "Scripts/tests/test_mission03_initialize_playable_mission"
             "_decl_contract.py",
@@ -5422,14 +5427,14 @@ class Mission03AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         for token in LEFTOVER_MISSION01_GET_REMAINING_THREATS_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
 
-    def test_leftover_mission03_get_readiness_does_not_satisfy(self) -> None:
+    def test_leftover_mission02_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission03|Integration")\n'
+            'Category="Skyguard|Mission02|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5439,6 +5444,16 @@ class Mission03AutoLaunchAfterBriefingFieldDeclContractTests(unittest.TestCase):
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
             "Scripts/tests/test_mission03_get_readiness"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission02_auto_launch_after_briefing"
+            "_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission03_briefing_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
