@@ -4702,7 +4702,7 @@ class Mission02StartNextWaveDeclContractTests(unittest.TestCase):
             GET_STORM_RAIN_BEAT_KIND,
             TICK_STORM_RAIN_BEAT_KIT,
             CONFIGURE_MISSION_DEFINITION,
-            START_NEXT_WAVE,
+            INITIALIZE_PLAYABLE_MISSION,
             NOTIFY_THREAT_DESTROYED,
         ):
             region = f"\t{leftover}\n"
@@ -4822,7 +4822,7 @@ class Mission02StartNextWaveDeclContractTests(unittest.TestCase):
         for leftover in (
             CONFIGURE_MISSION_DEFINITION,
             BIND_CAMPAIGN_RUNTIME,
-            START_NEXT_WAVE,
+            INITIALIZE_PLAYABLE_MISSION,
             NOTIFY_THREAT_DESTROYED,
             NOTIFY_PROTECTED_TARGET_DAMAGE,
             NOTIFY_PROTECTED_ASSET_FAILED,
