@@ -4733,19 +4733,30 @@ class Mission03CampaignSaveUserIndexFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission03_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
             'Category="Skyguard|Mission03|Integration")\n'
-            f"\t{LOCKED_DECL}\n"
+            f"\t{INITIALIZE_PLAYABLE_MISSION}\n"
             "};\n"
         )
         with self.assertRaises(AssertionError) as raised:
             public_section(leftover)
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        region = f"\t{INITIALIZE_PLAYABLE_MISSION}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(region, LOCKED_DECL)
+        self.assertIn("CampaignSaveUserIndex", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        leftover_integration = (
+            "UFUNCTION(BlueprintCallable, "
+            'Category="Skyguard|Mission03|Integration")'
+        )
+        self.assertNotEqual(leftover_integration, UPROPERTY_MISSION03)
+        self.assertNotIn(leftover_integration, UPROPERTY_MISSION03)
         self.assertIn(
             "Scripts/tests/test_mission03_initialize_playable_mission"
             "_decl_contract.py",
@@ -5479,19 +5490,30 @@ class Mission03CampaignSaveUserIndexFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission03_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission03|Integration")\n'
-            f"\t{LOCKED_DECL}\n"
+            f"\t{GET_READINESS}\n"
             "};\n"
         )
         with self.assertRaises(AssertionError) as raised:
             public_section(leftover)
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        region = f"\t{GET_READINESS}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(region, LOCKED_DECL)
+        self.assertIn("CampaignSaveUserIndex", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        leftover_integration = (
+            "UFUNCTION(BlueprintPure, "
+            'Category="Skyguard|Mission03|Integration")'
+        )
+        self.assertNotEqual(leftover_integration, UPROPERTY_MISSION03)
+        self.assertNotIn(leftover_integration, UPROPERTY_MISSION03)
         self.assertIn(
             "Scripts/tests/test_mission03_get_readiness"
             "_decl_contract.py",
