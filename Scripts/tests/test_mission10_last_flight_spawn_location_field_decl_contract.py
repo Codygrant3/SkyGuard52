@@ -2638,7 +2638,7 @@ class Mission10LastFlightSpawnLocationFieldDeclContractTests(unittest.TestCase):
             has_declaration(section, LOCKED_DECL)
         )
 
-    def test_missing_auto_launch_after_briefing_declaration_fails_closed(self) -> None:
+    def test_missing_last_flight_spawn_location_declaration_fails_closed(self) -> None:
         neighbors_only = (
             "\tASkyguardMission09IntegrationDirector();\n"
             f"\t{GET_PROTECTED_GROUP}\n"
@@ -3015,7 +3015,7 @@ class Mission10LastFlightSpawnLocationFieldDeclContractTests(unittest.TestCase):
             self.assertIn("LastFlightSpawnLocation", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
 
-    def test_auto_launch_after_briefing_declaration_matches_origin_main(self) -> None:
+    def test_last_flight_spawn_location_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
