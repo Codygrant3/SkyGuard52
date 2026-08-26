@@ -3318,27 +3318,27 @@ class Mission06CampaignDefinitionFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tTSoftObjectPtr<USkyguardCampaignDefinition>\n"
-            "\tAudioDirector;\n"
+            "\tCampaignDefinition;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
             "\tTSoftObjectPtr<USkyguardCampaignDefinition>   "
-            "AudioDirector;\n"
+            "CampaignDefinition;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tTSoftObjectPtr<USkyguardCampaignDefinition>\t"
-            "AudioDirector;\n"
+            "CampaignDefinition;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
             "\tTSoftObjectPtr<USkyguardCampaignDefinition>\n"
-            "\t\tAudioDirector;\n"
+            "\t\tCampaignDefinition;\n"
             "};\n"
         )
         wrap_name = (
@@ -3461,7 +3461,7 @@ class Mission06CampaignDefinitionFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_default_forms(self) -> None:
         wraps = (
             "TSoftObjectPtr<USkyguardCampaignDefinition> "
-            "AudioDirector = nullptr;",
+            "CampaignDefinition = nullptr;",
             "bool bReady = false;",
             "bool bReady = true;",
             "int32 Count = 0;",
@@ -4776,7 +4776,7 @@ class Mission06CampaignDefinitionFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tTSoftObjectPtr<USkyguardCampaignDefinition>\n"
-            "\tAudioDirector;\n"
+            "\tCampaignDefinition;\n"
             "};\n"
         )
         wrap_uproperty = (
