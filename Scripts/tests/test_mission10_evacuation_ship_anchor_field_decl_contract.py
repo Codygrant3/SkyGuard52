@@ -2641,8 +2641,9 @@ class Mission10EvacuationShipAnchorFieldDeclContractTests(unittest.TestCase):
             f"\t{HIGHWAY_CONVOY_ANCHOR_FIELD}\n"
             f"\t{BUS_A_ANCHOR_FIELD}\n"
             f"\t{BUS_B_ANCHOR_FIELD}\n"
+            f"\t{AMBULANCE_A_ANCHOR_FIELD}\n"
+            f"\t{AMBULANCE_B_ANCHOR_FIELD}\n"
             f"\t{FERRY_TERMINAL_ANCHOR_FIELD}\n"
-            f"\t{EVACUATION_SHIP_ANCHOR_FIELD}\n"
             f"\t{BRIEFING_FIELD}\n"
             f"\t{AUDIO_DIRECTOR_FIELD}\n"
             f"\t{RADIO_CHATTER_FIELD}\n"
@@ -2753,8 +2754,9 @@ class Mission10EvacuationShipAnchorFieldDeclContractTests(unittest.TestCase):
             f"\t{HIGHWAY_CONVOY_ANCHOR_FIELD}\n"
             f"\t{BUS_A_ANCHOR_FIELD}\n"
             f"\t{BUS_B_ANCHOR_FIELD}\n"
+            f"\t{AMBULANCE_A_ANCHOR_FIELD}\n"
+            f"\t{AMBULANCE_B_ANCHOR_FIELD}\n"
             f"\t{FERRY_TERMINAL_ANCHOR_FIELD}\n"
-            f"\t{EVACUATION_SHIP_ANCHOR_FIELD}\n"
             f"\t{BRIEFING_FIELD}\n"
             f"\t{AUDIO_DIRECTOR_FIELD}\n"
             f"\t{RADIO_CHATTER_FIELD}\n"
@@ -4240,9 +4242,9 @@ class Mission10EvacuationShipAnchorFieldDeclContractTests(unittest.TestCase):
             HIGHWAY_CONVOY_ANCHOR_FIELD,
             BUS_A_ANCHOR_FIELD,
             BUS_B_ANCHOR_FIELD,
+            AMBULANCE_A_ANCHOR_FIELD,
             AMBULANCE_B_ANCHOR_FIELD,
             FERRY_TERMINAL_ANCHOR_FIELD,
-            EVACUATION_SHIP_ANCHOR_FIELD,
             BRIEFING_FIELD,
             AUDIO_DIRECTOR_FIELD,
             RADIO_CHATTER_FIELD,
