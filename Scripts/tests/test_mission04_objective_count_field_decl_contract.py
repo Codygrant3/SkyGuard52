@@ -5321,7 +5321,7 @@ class Mission04ObjectiveCountFieldDeclContractTests(unittest.TestCase):
         )
         self.assertIn(
             "Scripts/tests/test_mission03_readiness_field"
-            "_field_decl_contract.py",
+            "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
