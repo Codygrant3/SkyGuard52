@@ -3320,27 +3320,27 @@ class Mission08HoistCableAnchorFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tTObjectPtr<USceneComponent>\n"
-            "\tRoot;\n"
+            "\tHoistCableAnchor;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
             "\tTObjectPtr<USceneComponent>   "
-            "Root;\n"
+            "HoistCableAnchor;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tTObjectPtr<USceneComponent>\t"
-            "Root;\n"
+            "HoistCableAnchor;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
             "\tTObjectPtr<USceneComponent>\n"
-            "\t\tRoot;\n"
+            "\t\tHoistCableAnchor;\n"
             "};\n"
         )
         wrap_name = (
@@ -4064,7 +4064,7 @@ class Mission08HoistCableAnchorFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("Root;", locked_only)
+        self.assertIn("HoistCableAnchor;", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("RadioChatter", locked_only)
@@ -4714,7 +4714,7 @@ class Mission08HoistCableAnchorFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, LOCKED_DECL)
 
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
-        assigned = "\tTObjectPtr<USceneComponent> Root = nullptr;\n"
+        assigned = "\tTObjectPtr<USceneComponent> HoistCableAnchor = nullptr;\n"
         with self.assertRaises(AssertionError) as raised:
             require_declaration(assigned, LOCKED_DECL)
         self.assertIn("HoistCableAnchor", str(raised.exception))
@@ -4728,7 +4728,7 @@ class Mission08HoistCableAnchorFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tTObjectPtr<USceneComponent>\n"
-            "\tRoot;\n"
+            "\tHoistCableAnchor;\n"
             "};\n"
         )
         wrap_uproperty = (
@@ -6541,14 +6541,17 @@ class Mission08HoistCableAnchorFieldDeclContractTests(unittest.TestCase):
             " = FVector(0.f, 0.f, 0.f);",
             " = FRotator(0.f, 0.f, 0.f);",
         )
-        stem = "TObjectPtr<USceneComponent> Root"
+        stem = "TObjectPtr<USceneComponent> HoistCableAnchor"
         for suffix in defaults:
             region = f"public:\n\t{stem}{suffix}\n"
             self.assertTrue(
                 has_declaration(region, LOCKED_DECL),
                 region,
             )
-        self.assertEqual(LOCKED_DECL, "TObjectPtr<USceneComponent> Root;")
+        self.assertEqual(
+            LOCKED_DECL,
+            "TObjectPtr<USceneComponent> HoistCableAnchor;",
+        )
         self.assertNotIn(" = false", LOCKED_DECL)
         self.assertNotIn(" = true", LOCKED_DECL)
         self.assertNotIn(" = 0;", LOCKED_DECL)
