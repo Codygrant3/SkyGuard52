@@ -4207,7 +4207,7 @@ class Mission07SearchTrackCountFieldDeclContractTests(unittest.TestCase):
         wrap_indent = (
             "public:\n"
             "\tint32\n"
-            "\t\tProtectedTargetCount = 0;\n"
+            "\t\tSearchTrackCount = 0;\n"
             "};\n"
         )
         wrap_name = (
@@ -4978,7 +4978,7 @@ class Mission07SearchTrackCountFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("ProtectedTargetCount", locked_only)
+        self.assertIn("SearchTrackCount", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
