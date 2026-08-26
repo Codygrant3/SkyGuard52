@@ -1529,8 +1529,9 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "bBriefingReady",
     "bAudioReady",
     "bSortiePresentationReady",
-    "ObjectiveCount",
+    "bCampaignRuntimeStarted",
     "WaveCount",
+    "ProtectedTargetCount",
     "ProtectedGroupCount",
 )
 SIBLING_INTEGRATION_METHODS_NOT_LOCKED = (
@@ -5868,14 +5869,14 @@ class Mission06ObjectiveCountFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission06_campaign_runtime"
-            "_started_field_decl_contract.py"
+            "Scripts/tests/test_mission06_objective_count"
+            "_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission06_campaign_runtime"
-                "_started_field_decl_contract.py"
+                "test_mission06_objective_count"
+                "_field_decl_contract.py"
             )
         )
         self.assertIn(
