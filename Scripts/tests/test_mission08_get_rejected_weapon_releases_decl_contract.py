@@ -2131,7 +2131,7 @@ class Mission08GetRejectedWeaponReleasesDeclContractTests(unittest.TestCase):
         self.assertNotIn("BlueprintCallable", LOCKED_DECL)
         self.assertNotIn("Category", LOCKED_DECL)
         self.assertNotIn("BlueprintCallable", UFUNCTION_SAFETY)
-        self.assertIn("Skyguard|Mission08|Waves", UFUNCTION_SAFETY)
+        self.assertIn("Skyguard|Mission08|Safety", UFUNCTION_SAFETY)
         self.assertNotIn("Mission01", UFUNCTION_SAFETY)
         self.assertNotIn("Mission03", UFUNCTION_SAFETY)
         self.assertNotIn("Mission04", UFUNCTION_SAFETY)
