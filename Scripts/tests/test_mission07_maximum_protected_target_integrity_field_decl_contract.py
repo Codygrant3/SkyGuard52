@@ -6115,20 +6115,21 @@ class Mission07MaximumProtectedTargetIntegrityFieldDeclContractTests(unittest.Te
 
     def test_leftover_mission07_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission07IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission07|Integration")\n'
-            "\tconst FSkyguardMission07IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            f"\t{GET_READINESS}\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("MaximumProtectedTargetIntegrity", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
             "_decl_contract.py",
