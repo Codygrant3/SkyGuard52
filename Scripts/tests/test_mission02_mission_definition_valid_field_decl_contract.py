@@ -17,8 +17,16 @@ CLASS_NAME = "FSkyguardMission02IntegrationReadiness"
 # FIELD (declaration-only; VisibleAnywhere /
 # BlueprintReadOnly bool default false,
 # one-line / split-line UPROPERTY wraps) on
-# FSkyguardMission10IntegrationReadiness. It is
-# NOT leftover Mission10 MissionDefinition
+# FSkyguardMission02IntegrationReadiness. It is
+# NOT leftover Mission10 bMissionDefinitionValid
+# FIELD #810 / branch cursor/mission10-
+# mission-definition-valid-field-decl-contract-c332,
+# NOT leftover Mission02 MissionDefinition
+# UPROPERTY #851 / branch cursor/mission02-
+# mission-definition-field-decl-contract-c332,
+# NOT leftover Mission02 GetReadiness #837 /
+# branch cursor/mission02-get-readiness-decl-
+# contract-c332, NOT leftover Mission10 MissionDefinition
 # UPROPERTY #799 / branch cursor/mission10-
 # mission-definition-field-decl-contract-c332,
 # NOT leftover Mission01 MissionDefinition #578 /
