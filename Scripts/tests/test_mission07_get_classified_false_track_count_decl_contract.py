@@ -3433,7 +3433,7 @@ class Mission07GetClassifiedFalseTrackCountDeclContractTests(unittest.TestCase):
             NOTIFY_PROTECTED_TARGET_DAMAGE,
             ADVANCE_REINFORCEMENT_TIMER,
             GET_SEARCH_SECTOR,
-            GET_CLASSIFIED_FALSE_TRACK_COUNT,
+            GET_WAVE_STATE,
             IS_HOSTILE_CONTACT_CONFIRMED,
             GET_PROTECTED_TARGET,
             GET_REINFORCEMENT_TIME_REMAINING,
