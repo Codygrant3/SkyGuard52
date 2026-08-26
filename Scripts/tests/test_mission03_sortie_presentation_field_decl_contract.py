@@ -3303,39 +3303,39 @@ class Mission03SortiePresentationFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\tSortiePresentation;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>   "
-            "Briefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>   "
+            "SortiePresentation;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\t"
-            "Briefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\t"
+            "SortiePresentation;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\t\tBriefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\t\tSortiePresentation;\n"
             "};\n"
         )
         wrap_name = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent> Briefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent> SortiePresentation;\n"
             "};\n"
         )
         wrap_origin_body = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\tSortiePresentation;\n"
             "};\n"
         )
         wrap_ufunction = (
@@ -4727,8 +4727,8 @@ class Mission03SortiePresentationFieldDeclContractTests(unittest.TestCase):
         )
         origin_inline = (
             "public:\n"
-            "\tTObjectPtr<USkyguardMissionBriefingComponent>\n"
-            "\tBriefing;\n"
+            "\tTObjectPtr<USkyguardSortiePresentationComponent>\n"
+            "\tSortiePresentation;\n"
             "};\n"
         )
         one_line_inline = (
