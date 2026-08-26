@@ -4609,7 +4609,7 @@ class Mission02AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         self,
     ) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission10IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
