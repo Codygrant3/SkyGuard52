@@ -4165,6 +4165,14 @@ class Mission06BriefingFieldDeclContractTests(unittest.TestCase):
                 "MinimumCivilianSeparationMeters = 550.f",
             )
 
+    def harbor_interval_present(self, region: str, token: str) -> bool:
+        # Harbor 40.f / 80.f are Mission08-only interval retunes.
+        # Leftover Mission06 RunwayBreaker spawn uses 180.f; that is
+        # not a Harbor 80.f retune. Require a non-digit before the
+        # interval token so 180.f / 78000.f stay leftover-safe.
+        pattern = re.compile(r"(?<![\d])" + re.escape(token))
+        return pattern.search(region) is not None
+
     def test_harbor_40_80_tokens_fail_closed_if_present(self) -> None:
         locked_only = f"{LOCKED_DECL}\n"
         file_text = this_file_text()
@@ -4173,7 +4181,10 @@ class Mission06BriefingFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, LOCKED_DECL)
             self.assertNotIn(token, file_text)
-            self.assertNotIn(token, section)
+            self.assertFalse(
+                self.harbor_interval_present(section, token),
+                token,
+            )
         for token in leftover_harbor_clock_tokens():
             self.assertNotIn(token, section)
             self.assertNotIn(token, file_text)
