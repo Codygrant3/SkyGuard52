@@ -4072,27 +4072,27 @@ class Mission06AudioReadyFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tbool\n"
-            "\tbBriefingReady = false;\n"
+            "\tbAudioReady = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
             "\tbool   "
-            "bBriefingReady = false;\n"
+            "bAudioReady = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tbool\t"
-            "bBriefingReady = false;\n"
+            "bAudioReady = false;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
             "\tbool\n"
-            "\t\tbBriefingReady = false;\n"
+            "\t\tbAudioReady = false;\n"
             "};\n"
         )
         wrap_name = (
@@ -4147,7 +4147,7 @@ class Mission06AudioReadyFieldDeclContractTests(unittest.TestCase):
         wrap_true_default = (
             "public:\n"
             f"\t{UPROPERTY_MISSION10}\n"
-            "\tbool bBriefingReady = true;\n"
+            "\tbool bAudioReady = true;\n"
             "};\n"
         )
         header_wrap_type = (
@@ -5496,7 +5496,7 @@ class Mission06AudioReadyFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tbool\n"
-            "\tbBriefingReady = false;\n"
+            "\tbAudioReady = false;\n"
             "};\n"
         )
         wrap_uproperty = (
