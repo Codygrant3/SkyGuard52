@@ -2541,11 +2541,14 @@ def has_declaration(region: str, declaration: str) -> bool:
     stem = declaration_stem(declaration)
     if not stem:
         return False
-    # Accept `;`, an inline `{` body, or a declaration-only
-    # default (`= false` / `= true` / `= 0` / `= 100` /
-    # `= 0.f` / TEXT("Skyguard52Campaign") / FVector(...) /
-    # FRotator(...)) without locking that body.
-    pattern = re.compile(re.escape(stem) + r"\s*(?:=[^;{]+)?[;{]")
+    # Accept `;`, an inline `{` body, or listed declaration-only
+    # defaults without locking `= nullptr` or a different body.
+    pattern = re.compile(
+        re.escape(stem)
+        + r"\s*(?:=\s*(?:false|true|0\.f|0|100|"
+        r"TEXT\(\s*\"Skyguard52Campaign\"\s*\)|"
+        r"FVector\s*\([^;{]*\)|FRotator\s*\([^;{]*\)))?\s*[;{]"
+    )
     return pattern.search(compact_region) is not None
 
 
@@ -2559,7 +2562,12 @@ def declaration_count(region: str, declaration: str) -> int:
     stem = declaration_stem(declaration)
     if not stem:
         return 0
-    pattern = re.compile(re.escape(stem) + r"\s*(?:=[^;{]+)?[;{]")
+    pattern = re.compile(
+        re.escape(stem)
+        + r"\s*(?:=\s*(?:false|true|0\.f|0|100|"
+        r"TEXT\(\s*\"Skyguard52Campaign\"\s*\)|"
+        r"FVector\s*\([^;{]*\)|FRotator\s*\([^;{]*\)))?\s*[;{]"
+    )
     return len(pattern.findall(compact_region))
 
 
@@ -4703,12 +4711,12 @@ class Mission05RootFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission05_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission05|Integration")\n'
+            'Category="Skyguard|Mission04|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5312,12 +5320,12 @@ class Mission05RootFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission05_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission05|Integration")\n'
+            'Category="Skyguard|Mission04|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
