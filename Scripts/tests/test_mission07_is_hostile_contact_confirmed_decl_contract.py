@@ -3613,8 +3613,8 @@ class Mission07IsHostileContactConfirmedDeclContractTests(unittest.TestCase):
         )
         one_line_inline = (
             "public:\n"
-            "\tESkyguardSearchSector IsHostileContactConfirmed() const "
-            "{ return SearchSector; }\n"
+            "\tbool IsHostileContactConfirmed() const "
+            "{ return bHostileContactConfirmed; }\n"
             "};\n"
         )
         for wrap in (inline, origin_inline, one_line_inline):
