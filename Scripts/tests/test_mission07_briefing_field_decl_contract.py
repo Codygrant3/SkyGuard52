@@ -5755,13 +5755,13 @@ class Mission07BriefingFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission07_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission07IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission06IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission07|Integration")\n'
-            "\tconst FSkyguardMission07IntegrationReadiness& "
+            'Category="Skyguard|Mission06|Integration")\n'
+            "\tconst FSkyguardMission06IntegrationReadiness& "
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
