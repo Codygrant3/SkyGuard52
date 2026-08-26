@@ -5889,7 +5889,7 @@ class Mission07AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
 
     def test_leftover_mission07_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission07IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
@@ -5899,10 +5899,12 @@ class Mission07AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("bAllowBoundedActorSpawning", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
             "_decl_contract.py",
