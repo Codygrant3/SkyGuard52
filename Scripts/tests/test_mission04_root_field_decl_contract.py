@@ -4662,12 +4662,12 @@ class Mission04RootFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission04_initialize_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintCallable, "
-            'Category="Skyguard|Mission04|Integration")\n'
+            'Category="Skyguard|Mission03|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -5266,12 +5266,12 @@ class Mission04RootFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission04_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission04IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission03IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission04|Integration")\n'
+            'Category="Skyguard|Mission03|Integration")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
