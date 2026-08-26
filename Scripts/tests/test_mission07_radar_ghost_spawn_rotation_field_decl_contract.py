@@ -3015,7 +3015,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION07, section)
         self.assertIn("EditAnywhere", section)
         self.assertIn("BlueprintReadWrite", section)
-        self.assertIn('Category="Skyguard|Mission06"', section)
+        self.assertIn('Category="Skyguard|Mission07"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
@@ -3503,7 +3503,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tFRotator\n"
-            "\tRunwayBreakerSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
+            "\tRadarGhostSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
             "private:\n"
             "};\n"
         )
@@ -3523,7 +3523,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
         wrap_indent = (
             "public:\n"
             "\tFRotator\n"
-            "\t\tRunwayBreakerSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
+            "\t\tRadarGhostSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
             "};\n"
         )
         wrap_name = (
@@ -3923,7 +3923,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, LOCKED_DECL)
         self.assertIn("RadarGhostSpawnRotation", LOCKED_DECL)
-        self.assertTrue(LOCKED_DECL.startswith("FRotator RunwayBreakerSpawnRotation"))
+        self.assertTrue(LOCKED_DECL.startswith("FRotator RadarGhostSpawnRotation"))
 
     def test_contract_does_not_relock_sibling_integration_methods(self) -> None:
         locked_only = f"{LOCKED_DECL}\n"
@@ -4609,8 +4609,8 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
             for token in group:
                 self.assertNotIn(token, locked_only)
                 self.assertNotIn(token, LOCKED_DECL)
-        # leftover roster values stay unlocked. "Break" is a
-        # substring of RunwayBreakerSpawnRotation, so equality
+        # leftover roster values stay unlocked. "Break" is not a
+        # substring of RadarGhostSpawnRotation, so equality
         # only — do not treat the field name as leftover roster.
         for token in leftover_short_roster_values():
             self.assertNotEqual(token, LOCKED_DECL)
@@ -4633,7 +4633,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("INDEX_NONE", section)
         self.assertNotIn("return ", LOCKED_DECL)
         self.assertNotIn("{", LOCKED_DECL)
-        self.assertTrue(LOCKED_DECL.startswith("FRotator RunwayBreakerSpawnRotation"))
+        self.assertTrue(LOCKED_DECL.startswith("FRotator RadarGhostSpawnRotation"))
         self.assertIn("RadarGhostSpawnRotation", LOCKED_DECL)
         self.assertTrue(LOCKED_DECL.endswith(";"))
         self.assertNotIn("GetProtectedGroup", LOCKED_DECL)
@@ -5006,7 +5006,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tFRotator\n"
-            "\tRunwayBreakerSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
+            "\tRadarGhostSpawnRotation = FRotator(0.f, 205.f, 0.f);\n"
             "};\n"
         )
         wrap_uproperty = (
@@ -5269,12 +5269,12 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission06_radar_ghost_spawn_rotation_field_decl_contract.py"
+            "Scripts/tests/test_mission07_radar_ghost_spawn_rotation_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission06_radar_ghost_spawn_rotation_field_decl_contract.py"
+                "test_mission07_radar_ghost_spawn_rotation_field_decl_contract.py"
             )
         )
         self.assertIn(
@@ -6657,7 +6657,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
-            "Scripts/tests/test_mission06_radar_ghost_spawn_rotation_field_decl_contract.py",
+            "Scripts/tests/test_mission07_radar_ghost_spawn_rotation_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
 
@@ -6742,7 +6742,7 @@ class Mission07RadarGhostSpawnRotationFieldDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertNotIn(
-            "Scripts/tests/test_mission06_radar_ghost_spawn_rotation_field_decl_contract.py",
+            "Scripts/tests/test_mission07_radar_ghost_spawn_rotation_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
 
