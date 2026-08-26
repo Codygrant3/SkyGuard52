@@ -1107,6 +1107,20 @@ LOCKED_SCRIPTS = (
     "Scripts/tests/test_mission02_maximum_fuel_terminal_integrity_field_decl_contract.py",
     "Scripts/tests/test_mission02_readiness_field_decl_contract.py",
 ) + leftover_live_copy_boss_scripts()
+GET_MISSION02_READINESS = (
+    "const FSkyguardMission02IntegrationReadiness& "
+    "GetReadiness() const"
+)
+READINESS_MISSION02_FIELD = (
+    "FSkyguardMission02IntegrationReadiness Readiness;"
+)
+BREAKWATER_SPAWN_LOCATION = (
+    "FVector BreakwaterSpawnLocation ="
+)
+BREAKWATER_SPAWN_ROTATION = "FRotator BreakwaterSpawnRotation"
+MAXIMUM_FUEL_TERMINAL_INTEGRITY = (
+    "int32 MaximumFuelTerminalIntegrity"
+)
 SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Root",
     "Briefing;",
@@ -1934,20 +1948,6 @@ LEFTOVER_MISSION10_PROTECTED_RUNTIME_NOT_LOCKED = (
     "bDestroyed = false",
 )
 
-GET_MISSION02_READINESS = (
-    "const FSkyguardMission02IntegrationReadiness& "
-    "GetReadiness() const"
-)
-READINESS_MISSION02_FIELD = (
-    "FSkyguardMission02IntegrationReadiness Readiness;"
-)
-BREAKWATER_SPAWN_LOCATION = (
-    "FVector BreakwaterSpawnLocation ="
-)
-BREAKWATER_SPAWN_ROTATION = "FRotator BreakwaterSpawnRotation"
-MAXIMUM_FUEL_TERMINAL_INTEGRITY = (
-    "int32 MaximumFuelTerminalIntegrity"
-)
 LEFTOVER_MISSION02_MISSION_DEFINITION_FIELD_NOT_LOCKED = (
     "test_mission02_mission_definition_field_decl_contract.py",
     "cursor/mission02-mission-definition-field-decl-contract-c332",
