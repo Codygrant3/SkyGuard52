@@ -2886,7 +2886,7 @@ class Mission08AudioDirectorFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION08, section)
         self.assertIn("VisibleAnywhere", section)
         self.assertIn("BlueprintReadOnly", section)
-        self.assertIn('Category="Skyguard|Mission07"', section)
+        self.assertIn('Category="Skyguard|Mission08"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
@@ -5987,13 +5987,15 @@ class Mission08AudioDirectorFieldDeclContractTests(unittest.TestCase):
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission08|Integration")\n'
             "\tconst FSkyguardMission08IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("AudioDirector", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
@@ -6004,7 +6006,7 @@ class Mission08AudioDirectorFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Mission07", UPROPERTY_MISSION08)
         leftover_m08_type = (
             "\tconst FSkyguardMission08IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const;\n"
+            "GetReadiness() const;\n"
         )
         with self.assertRaises(AssertionError) as raised:
             require_declaration(leftover_m08_type, LOCKED_DECL)
