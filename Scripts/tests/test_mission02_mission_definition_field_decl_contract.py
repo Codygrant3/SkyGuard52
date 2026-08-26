@@ -2754,7 +2754,7 @@ class Mission02MissionDefinitionFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION02, section)
         self.assertIn("EditAnywhere", section)
         self.assertIn("BlueprintReadWrite", section)
-        self.assertIn('Category="Skyguard|Mission10"', section)
+        self.assertIn('Category="Skyguard|Mission02"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
