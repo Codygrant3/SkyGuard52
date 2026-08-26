@@ -1129,7 +1129,7 @@ LEFTOVER_MISSION04_WAVE_STATE_ENUM_NOT_LOCKED = (
     "WaveActive",
     "BossEngaged",
     "Completed",
-    "Failed",
+    "ESkyguardMission04WaveState::Failed",
     "test_mission04_wave_state_enum_contract.py",
 )
 LEFTOVER_SEARCHLIGHT_RUNTIME_NOT_LOCKED = (
