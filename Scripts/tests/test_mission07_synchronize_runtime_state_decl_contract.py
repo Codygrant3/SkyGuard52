@@ -2885,7 +2885,7 @@ class Mission07SynchronizeRuntimeStateDeclContractTests(unittest.TestCase):
         self.assertNotIn("ConfigureMissionDefinition", locked_only)
         self.assertNotIn("NotifyObjectiveProgress", locked_only)
         self.assertNotIn("NotifyProtectedAssetFailed", locked_only)
-        self.assertNotIn("SynchronizeRuntimeState", locked_only)
+        self.assertNotIn("InitializePlayableMission", locked_only)
         self.assertNotIn("IsCorePlayableReady", locked_only)
         self.assertNotIn("GetReadiness", locked_only)
         self.assertNotIn("GetObjectiveRuntime", locked_only)
