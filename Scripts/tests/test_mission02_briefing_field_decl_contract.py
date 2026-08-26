@@ -2763,7 +2763,7 @@ class Mission02BriefingFieldDeclContractTests(unittest.TestCase):
         self.assertIn("VisibleAnywhere", section)
         self.assertIn("BlueprintReadOnly", section)
         self.assertIn(
-            'Category="Skyguard|Mission10"',
+            'Category="Skyguard|Mission02"',
             section,
         )
         self.assertTrue(
