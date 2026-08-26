@@ -217,7 +217,7 @@ HANDLE_DRONE_CITY_IMPACT = (
     "void HandleDroneCityImpact(ASkyguardDrone* Drone);"
 )
 NOTIFY_THREAT_DESTROYED = (
-    "bool AdvanceReinforcementTimer(float DeltaSeconds);"
+    "bool NotifyThreatDestroyed(int32 Amount = 1);"
 )
 ADVANCE_CONVOY_BY_DISTANCE = (
     "bool AdvanceConvoyByDistance(float DistanceCentimeters);"
