@@ -2395,7 +2395,7 @@ SIBLING_TYPES = (
     "ASkyguardPatrolShip",
     "FSkyguardSearchlightTrackRuntime",
     "ASkyguardMission01IntegrationDirector",
-    "ASkyguardMission02IntegrationDirector",
+    "ASkyguardMission10IntegrationDirector",
     "ASkyguardMission03IntegrationDirector",
     "ASkyguardMission04IntegrationDirector",
     "ASkyguardMission05IntegrationDirector",
@@ -2766,7 +2766,7 @@ def require_declaration(region: str, declaration: str) -> str:
     return declaration
 
 
-class Mission10MaximumFuelTerminalIntegrityFieldDeclContractTests(unittest.TestCase):
+class Mission02MaximumFuelTerminalIntegrityFieldDeclContractTests(unittest.TestCase):
     def test_mission02_class_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
@@ -4452,7 +4452,7 @@ class Mission10MaximumFuelTerminalIntegrityFieldDeclContractTests(unittest.TestC
         self.assertNotIn("ESkyguardMission10RoutePhase", LOCKED_DECL)
         self.assertIn(UPROPERTY_MISSION02, section)
 
-    def test_sibling_director_fields_do_not_satisfy_maximum_protected_integrity(
+    def test_sibling_director_fields_do_not_satisfy_maximum_fuel_terminal_integrity(
         self,
     ) -> None:
         for leftover in (
@@ -4758,7 +4758,7 @@ class Mission10MaximumFuelTerminalIntegrityFieldDeclContractTests(unittest.TestC
         self,
     ) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission02IntegrationDirector "
+            "class SKYGUARD52_API ASkyguardMission10IntegrationDirector "
             ": public AActor\n"
             "{\n"
             "public:\n"
