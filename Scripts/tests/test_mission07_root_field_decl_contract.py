@@ -5661,13 +5661,15 @@ class Mission07RootFieldDeclContractTests(unittest.TestCase):
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission07|Integration")\n'
             "\tconst FSkyguardMission07IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("Root", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission07_get_readiness"
             "_decl_contract.py",
@@ -5678,7 +5680,7 @@ class Mission07RootFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Mission06", UPROPERTY_MISSION07)
         leftover_m07_type = (
             "\tconst FSkyguardMission07IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const;\n"
+            "GetReadiness() const;\n"
         )
         with self.assertRaises(AssertionError) as raised:
             require_declaration(leftover_m07_type, LOCKED_DECL)
