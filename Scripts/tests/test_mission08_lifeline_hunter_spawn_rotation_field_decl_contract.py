@@ -6310,13 +6310,15 @@ class Mission08LifelineHunterSpawnRotationFieldDeclContractTests(unittest.TestCa
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission08|Integration")\n'
             "\tconst FSkyguardMission08IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("LifelineHunterSpawnRotation", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
@@ -6324,7 +6326,7 @@ class Mission08LifelineHunterSpawnRotationFieldDeclContractTests(unittest.TestCa
         )
         for token in LEFTOVER_MISSION08_GET_REMAINING_THREATS_NOT_LOCKED:
             self.assertNotIn(token, LOCKED_DECL)
-        self.assertNotIn("Mission07", UPROPERTY_MISSION08)
+        self.assertNotIn("Integration", UPROPERTY_MISSION08)
         leftover_m08_type = (
             "\tconst FSkyguardMission08IntegrationReadiness& "
             "GetRemainingThreatsInWave() const;\n"
