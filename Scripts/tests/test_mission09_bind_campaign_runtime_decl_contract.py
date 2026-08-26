@@ -3884,6 +3884,130 @@ class Mission09BindCampaignRuntimeDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, REQUIRED_DECL)
 
+    def test_leftover_bind_runtime_actors_does_not_satisfy(self) -> None:
+        leftover = leftover_bind_runtime_actors()
+        region = f"\t{leftover}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(region, REQUIRED_DECL)
+        self.assertIn("BindCampaignRuntime", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(region, REQUIRED_DECL))
+        self.assertNotEqual(leftover, REQUIRED_DECL)
+        self.assertNotIn(BIND_RUNTIME_ACTORS, REQUIRED_DECL)
+        self.assertIn(BIND_RUNTIME_ACTORS, leftover)
+        self.assertNotIn("InCampaignRuntime", leftover)
+        locked_only = f"{REQUIRED_DECL}\n"
+        self.assertNotIn(BIND_RUNTIME_ACTORS, locked_only)
+        self.assertNotIn(leftover, locked_only)
+        self.assertNotIn(leftover, REQUIRED_DECL)
+
+    def test_leftover_bind_runtime_actors_is_not_the_required_decl(
+        self,
+    ) -> None:
+        self.assertNotEqual(BIND_RUNTIME_ACTORS, "BindCampaignRuntime")
+        self.assertNotIn(BIND_RUNTIME_ACTORS, REQUIRED_DECL)
+        self.assertTrue(
+            REQUIRED_DECL.startswith("bool BindCampaignRuntime("),
+            REQUIRED_DECL,
+        )
+        self.assertIn("USkyguardCampaignSubsystem*", REQUIRED_DECL)
+        self.assertNotIn("USkyguardCampaignSubsystem*", BIND_RUNTIME_ACTORS)
+        self.assertNotIn("void BindRuntimeActors", REQUIRED_DECL)
+
+    def test_contract_does_not_relock_leftover_configure_drafts(self) -> None:
+        locked_only = f"{REQUIRED_DECL}\n"
+        self.assertNotIn("ConfigureMissionDefinition", REQUIRED_DECL)
+        self.assertNotIn("ConfigureMissionDefinition", locked_only)
+        self.assertIn(
+            "Scripts/tests/test_mission08_configure_mission_definition"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_configure_mission_definition"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission06_configure_mission_definition"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission05_configure_mission_definition"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission09_configure_mission_definition"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+
+    def test_contract_does_not_relock_leftover_get_mission_id_drafts(
+        self,
+    ) -> None:
+        locked_only = f"{REQUIRED_DECL}\n"
+        self.assertNotIn("GetMissionId", REQUIRED_DECL)
+        self.assertNotIn("GetMissionId", locked_only)
+        self.assertIn(
+            "Scripts/tests/test_mission08_get_mission_id"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_get_mission_id"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission06_get_mission_id"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission05_get_mission_id"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission09_get_mission_id"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+
+    def test_contract_does_not_relock_leftover_validate_mission_drafts(
+        self,
+    ) -> None:
+        locked_only = f"{REQUIRED_DECL}\n"
+        self.assertNotIn("ValidateMissionContract", REQUIRED_DECL)
+        self.assertNotIn("ValidateMissionContract", locked_only)
+        self.assertIn(
+            "Scripts/tests/test_mission08_validate_mission_contract"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission07_validate_mission_contract"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission06_validate_mission_contract"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission05_validate_mission_contract"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission09_validate_mission_contract"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+
     def test_declaration_accepts_inline_body_without_locking_it(self) -> None:
         inline = (
             "public:\n"
