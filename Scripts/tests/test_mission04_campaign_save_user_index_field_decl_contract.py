@@ -2954,7 +2954,7 @@ class Mission04CampaignSaveUserIndexFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Category", LOCKED_DECL)
         self.assertNotIn("BlueprintCallable", UPROPERTY_MISSION04)
         self.assertNotIn("BlueprintPure", UPROPERTY_MISSION04)
-        self.assertIn("Skyguard|Mission03", UPROPERTY_MISSION04)
+        self.assertIn("Skyguard|Mission04", UPROPERTY_MISSION04)
         self.assertNotIn("Skyguard|Mission10|Protection", UPROPERTY_MISSION04)
         self.assertNotIn("Integration", UPROPERTY_MISSION04)
         self.assertNotIn("Mission01", UPROPERTY_MISSION04)
