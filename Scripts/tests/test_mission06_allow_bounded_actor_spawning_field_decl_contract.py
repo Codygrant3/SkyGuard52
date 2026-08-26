@@ -4128,7 +4128,7 @@ class Mission06AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("MissionDefinition", locked_only)
+        self.assertIn("bAllowBoundedActorSpawning", locked_only)
         self.assertNotIn("Briefing", locked_only)
         self.assertNotIn("Root;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
@@ -4137,7 +4137,7 @@ class Mission06AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         self.assertNotIn("RadioChatter", locked_only)
         self.assertNotIn("Readiness;", locked_only)
         self.assertNotIn("bAutoInitialize", locked_only)
-        self.assertNotIn("bAllowBoundedActorSpawning", locked_only)
+        self.assertNotIn("MissionDefinition", locked_only)
         self.assertNotIn("bAutoLaunchAfterBriefing", locked_only)
         self.assertNotIn("PathfinderSpawnLocation", locked_only)
         self.assertNotIn("GetAircraft", locked_only)
