@@ -4166,10 +4166,11 @@ class Mission06BriefingFieldDeclContractTests(unittest.TestCase):
             )
 
     def harbor_interval_present(self, region: str, token: str) -> bool:
-        # Harbor 40.f / 80.f are Mission08-only interval retunes.
-        # Leftover Mission06 RunwayBreaker spawn uses 180.f; that is
-        # not a Harbor 80.f retune. Require a non-digit before the
-        # interval token so 180.f / 78000.f stay leftover-safe.
+        # Harbor forty / eighty float intervals are Mission08-only.
+        # Leftover Mission06 RunwayBreaker spawn yaw is one-eight-zero
+        # float; that is not a Harbor interval retune. Require a
+        # non-digit before the interval token so leftover spawn
+        # floats stay unlocked.
         pattern = re.compile(r"(?<![\d])" + re.escape(token))
         return pattern.search(region) is not None
 
