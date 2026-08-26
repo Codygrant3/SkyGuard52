@@ -4344,7 +4344,7 @@ class Mission07SearchTrackCountFieldDeclContractTests(unittest.TestCase):
             "\t\tVisibleAnywhere,\n"
             "\t\tBlueprintReadOnly)\n"
             "\tint32\n"
-            "\tProtectedTargetCount = 1;\n"
+            "\tSearchTrackCount = 1;\n"
             "};\n",
         ):
             section = public_section(header)
