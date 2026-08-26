@@ -3702,14 +3702,14 @@ class Mission04SubstationReadyFieldDeclContractTests(unittest.TestCase):
         wrap_spaces = (
             "public:\n"
             "\tbool   "
-            "bObjectivesReady = false;\n"
+            "bSubstationReady = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
             "\tbool\t"
-            "bObjectivesReady = false;\n"
+            "bSubstationReady = false;\n"
             "};\n"
         )
         wrap_indent = (
