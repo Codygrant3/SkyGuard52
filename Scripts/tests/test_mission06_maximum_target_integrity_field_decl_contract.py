@@ -6434,6 +6434,14 @@ class Mission06MaximumTargetIntegrityFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, LOCKED_DECL)
         for token in LEFTOVER_MISSION10_PROTECTED_RUNTIME_NOT_LOCKED:
+            # leftover Mission10 runtime "Integrity = 100" is a
+            # substring of MaximumTargetIntegrity = 100, so
+            # equality only — do not treat this field as leftover
+            # Mission10 protected-runtime-defaults #7898.
+            if token == "Integrity = 100":
+                self.assertNotEqual(token, LOCKED_DECL)
+                self.assertNotEqual(token, locked_only)
+                continue
             self.assertNotIn(token, locked_only)
             self.assertNotIn(token, LOCKED_DECL)
         self.assertIn(
