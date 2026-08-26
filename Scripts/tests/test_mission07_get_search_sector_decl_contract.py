@@ -3609,8 +3609,8 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         )
         one_line_inline = (
             "public:\n"
-            "\tconst FSkyguardMission07IntegrationReadiness& "
-            "GetReadiness() const { return Readiness; }\n"
+            "\tESkyguardSearchSector GetSearchSector() const "
+            "{ return SearchSector; }\n"
             "};\n"
         )
         for wrap in (inline, origin_inline, one_line_inline):
@@ -3894,27 +3894,27 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission06_get_search_sector"
+            "Scripts/tests/test_mission06_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission05_get_search_sector"
+            "Scripts/tests/test_mission05_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission01_get_search_sector"
+            "Scripts/tests/test_mission01_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission03_get_search_sector"
+            "Scripts/tests/test_mission03_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
         self.assertIn(
-            "Scripts/tests/test_mission04_get_search_sector"
+            "Scripts/tests/test_mission04_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -4001,7 +4001,7 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
-            "Scripts/tests/test_mission01_get_search_sector"
+            "Scripts/tests/test_mission01_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -4024,7 +4024,7 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
-            "Scripts/tests/test_mission03_get_search_sector"
+            "Scripts/tests/test_mission03_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -4047,7 +4047,7 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
-            "Scripts/tests/test_mission04_get_search_sector"
+            "Scripts/tests/test_mission04_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -4070,7 +4070,7 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
-            "Scripts/tests/test_mission05_get_search_sector"
+            "Scripts/tests/test_mission05_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -4094,7 +4094,7 @@ class Mission07GetSearchSectorDeclContractTests(unittest.TestCase):
         self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
-            "Scripts/tests/test_mission06_get_search_sector"
+            "Scripts/tests/test_mission06_get_readiness"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
