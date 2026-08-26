@@ -3036,7 +3036,7 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("Category", LOCKED_DECL)
         self.assertNotIn("BlueprintCallable", UPROPERTY_MISSION05)
         self.assertNotIn("BlueprintPure", UPROPERTY_MISSION05)
-        self.assertIn("Skyguard|Mission04", UPROPERTY_MISSION05)
+        self.assertIn("Skyguard|Mission05", UPROPERTY_MISSION05)
         self.assertNotIn("Skyguard|Mission04|Protection", UPROPERTY_MISSION05)
         self.assertNotIn("Integration", UPROPERTY_MISSION05)
         self.assertNotIn("Mission01", UPROPERTY_MISSION05)
@@ -3442,7 +3442,7 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("FSkyguardMission08ProtectedTargetRuntime", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission09ProtectedTargetRuntime", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission01IntegrationReadiness", LOCKED_DECL)
-        self.assertNotIn("FSkyguardMission05IntegrationReadiness", LOCKED_DECL)
+        self.assertNotIn("FSkyguardMission04IntegrationReadiness", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission08IntegrationReadiness", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission09IntegrationReadiness", LOCKED_DECL)
         self.assertNotIn("FSkyguardMission09PoolRuntime", LOCKED_DECL)
@@ -4328,7 +4328,7 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("ASkyguardBlackKiteBoss", LOCKED_DECL)
         self.assertNotIn("ASkyguardIronRainBoss", LOCKED_DECL)
         self.assertNotIn("ASkyguardRadarGhostBoss", LOCKED_DECL)
-        self.assertNotIn("ASkyguardTempestBoss", section)
+        self.assertNotIn("ASkyguardTempestBoss", LOCKED_DECL)
         self.assertNotIn("ASkyguardLastFlightBoss", LOCKED_DECL)
         self.assertNotIn("ASkyguardPatrolShip", section)
         self.assertNotIn("MinHeightFromOriginCm", section)
@@ -4964,20 +4964,20 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, LOCKED_DECL)
 
     def test_leftover_mission05_initialize_does_not_satisfy(self) -> None:
-        leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
-            ": public AActor\n"
-            "{\n"
-            "public:\n"
+        region = f"\t{INITIALIZE_PLAYABLE_MISSION}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(region, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        leftover_method = (
             "\tUFUNCTION(BlueprintCallable, "
             'Category="Skyguard|Mission05|Integration")\n'
-            f"\t{LOCKED_DECL}\n"
-            "};\n"
+            f"\t{INITIALIZE_PLAYABLE_MISSION}\n"
         )
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
-        self.assertIn("missing", str(raised.exception).lower())
+            require_declaration(leftover_method, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
+        self.assertFalse(has_declaration(leftover_method, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission05_initialize_playable_mission"
             "_decl_contract.py",
@@ -5225,7 +5225,7 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertIn(
+        self.assertNotIn(
             "Scripts/tests/test_mission05_readiness_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
@@ -5705,20 +5705,22 @@ class Mission05ReadinessFieldDeclContractTests(unittest.TestCase):
             self.assertNotIn(token, LOCKED_DECL)
 
     def test_leftover_mission05_get_readiness_does_not_satisfy(self) -> None:
-        leftover = (
-            "class SKYGUARD52_API ASkyguardMission05IntegrationDirector "
-            ": public AActor\n"
-            "{\n"
-            "public:\n"
-            "\tUFUNCTION(BlueprintPure, "
-            'Category="Skyguard|Mission05|Integration")\n'
-            f"\t{LOCKED_DECL}\n"
-            "};\n"
+        leftover_method = f"\t{GET_READINESS}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(leftover_method, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        leftover_inline = (
+            "\tconst FSkyguardMission05IntegrationReadiness& "
+            "GetReadiness() const\n"
+            "\t{\n"
+            "\t\treturn Readiness;\n"
+            "\t}\n"
         )
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
-        self.assertIn("missing", str(raised.exception).lower())
+            require_declaration(leftover_inline, LOCKED_DECL)
+        self.assertIn("Readiness", str(raised.exception))
+        self.assertFalse(has_declaration(leftover_inline, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission05_get_readiness"
             "_decl_contract.py",
