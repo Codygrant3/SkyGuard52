@@ -4536,19 +4536,19 @@ def public_section(header: str) -> str:
                 f"origin/main:{HEADER_PATH}"
             )
         section = rest[:close]
-        leaked = (
-            "struct FSkyguardBriefingRadioRow",
-            "struct FSkyguardHowToFlyRow",
-            "class USkyguardSortiePresentationComponent",
-            "enum class ESkyguardBriefingPictogram",
-            "USkyguardSortiePresentationComponent",
-            "GetBriefingCards",
-            "GetRadioRows",
-            "GetHowToFlyRows",
-            "GetBriefingText",
-            "AcknowledgeBriefing",
-            "LaunchSortie",
-        )
+    leaked = (
+        "struct FSkyguardBriefingRadioRow",
+        "struct FSkyguardHowToFlyRow",
+        "class USkyguardSortiePresentationComponent",
+        "enum class ESkyguardBriefingPictogram",
+        "USkyguardSortiePresentationComponent",
+        "GetBriefingCards",
+        "GetRadioRows",
+        "GetHowToFlyRows",
+        "GetBriefingText",
+        "AcknowledgeBriefing",
+        "LaunchSortie",
+    )
     haystack = body + "\n" + section
     for token in leaked:
         if token in haystack:
@@ -9091,7 +9091,7 @@ class BriefingCardTitleFieldDeclContractTests(unittest.TestCase):
         self.assertEqual(STRUCT_NAME, CLASS_NAME)
         self.assertEqual(
             CLASS_NAME,
-            "FSkyguardMission01EnvironmentAuthoringResult",
+            "FSkyguardBriefingCard",
         )
         section = public_section(header)
         self.assertNotIn(
@@ -9589,7 +9589,7 @@ class BriefingCardTitleFieldDeclContractTests(unittest.TestCase):
         self.assertEqual(STRUCT_NAME, CLASS_NAME)
         self.assertEqual(
             CLASS_NAME,
-            "FSkyguardMission01EnvironmentAuthoringResult",
+            "FSkyguardBriefingCard",
         )
 
 
@@ -9912,7 +9912,7 @@ class BriefingCardTitleFieldDeclContractTests(unittest.TestCase):
         header = origin_main_header()
         match = CLASS_RE.search(header)
         self.assertIsNotNone(match, header)
-        self.assertIn("FSkyguardMission01EnvironmentAuthoringResult", match.group(0))
+        self.assertIn("FSkyguardBriefingCard", match.group(0))
         self.assertNotIn("FSkyguardLandscapeVisibleAudit", match.group(0))
         self.assertNotIn("ObjectiveAnchor", match.group(0))
         self.assertNotIn("LandmarkAnchor", match.group(0))
