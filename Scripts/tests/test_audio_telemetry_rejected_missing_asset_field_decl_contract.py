@@ -1611,7 +1611,7 @@ class AudioTelemetryRejectedMissingAssetFieldDeclContractTests(unittest.TestCase
         self.assertIn("RejectedMissingAsset", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
 
-    def test_missing_played_events_declaration_fails_closed(self) -> None:
+    def test_missing_rejected_missing_asset_declaration_fails_closed(self) -> None:
         empty = (
             f"struct {CLASS_NAME}\n"
             "{\n"
@@ -1679,7 +1679,7 @@ class AudioTelemetryRejectedMissingAssetFieldDeclContractTests(unittest.TestCase
         self.assertNotIn("RejectedMissingAsset = true", collapsed(origin))
         self.assertNotIn("RejectedMissingAsset = 0.f", collapsed(origin))
 
-    def test_played_events_declaration_matches_origin_main(self) -> None:
+    def test_rejected_missing_asset_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
