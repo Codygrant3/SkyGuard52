@@ -34,7 +34,7 @@
 # AddObjectiveProgress, leftover BindRuntimeActors /
 # HandleDroneCityImpact, leftover GetStormRainBeatKit without
 # UFUNCTION, leftover spawn / b + Ya + kRuntimeReady.
-# Harbor 40.f / 80.f fail-closed.
+# Harbor 40/80 fail-closed.
 # Ban retired live-copy tokens via split tokens
 # (b + Ya + kRuntimeReady). Stay Apache CPG 30 mm / Hydra /
 # Hellfire. When leftover Ri+fleHits / Ig+laHits must be
