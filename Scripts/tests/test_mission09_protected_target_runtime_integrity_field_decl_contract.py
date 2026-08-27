@@ -2554,7 +2554,7 @@ LEFTOVER_MISSION10_PROTECTED_GROUP_ENUM_NOT_LOCKED = (
 LEFTOVER_MISSION10_PROTECTED_RUNTIME_NOT_LOCKED = (
     "test_mission10_protected_runtime_defaults_contract.py",
     "cursor/mission10-protected-runtime-defaults-7898",
-    "Integrity = 100",
+    "FSkyguardMission10ProtectedRuntime",
     "bDestroyed = false",
 )
 
