@@ -6732,11 +6732,17 @@ class Mission09ReadinessFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("struct FSkyguardAirfieldTargetRuntime", header)
         self.assertNotIn("struct FSkyguardPayloadWindowRuntime", header)
         self.assertNotIn("struct FSkyguardSearchTrackRuntime", header)
-        self.assertIn("struct FSkyguardHoistWindowRuntime", header)
-        self.assertIn(
+        self.assertNotIn("struct FSkyguardHoistWindowRuntime", header)
+        self.assertNotIn(
             "struct FSkyguardMission08ProtectedTargetRuntime",
             header,
         )
+        self.assertIn(
+            "struct FSkyguardMission09ProtectedTargetRuntime",
+            header,
+        )
+        self.assertIn("struct FSkyguardMission09PoolBudget", header)
+        self.assertIn("struct FSkyguardMission09PoolRuntime", header)
         self.assertIn(
             "struct FSkyguardMission09IntegrationReadiness",
             header,
