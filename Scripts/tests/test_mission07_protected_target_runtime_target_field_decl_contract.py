@@ -6173,13 +6173,13 @@ class Mission07ProtectedTargetRuntimeTargetFieldDeclContractTests(unittest.TestC
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission08_protected_target_runtime"
+            "Scripts/tests/test_mission07_protected_target_runtime"
             "_target_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission08_protected_target_runtime"
+                "test_mission07_protected_target_runtime"
                 "_target_field_decl_contract.py"
             )
         )
