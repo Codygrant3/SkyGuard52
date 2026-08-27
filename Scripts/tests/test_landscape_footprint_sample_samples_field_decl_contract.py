@@ -5792,7 +5792,7 @@ class LandscapeFootprintSampleSamplesFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("ValidSampleCount", locked_only)
+        self.assertIn("Samples", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
