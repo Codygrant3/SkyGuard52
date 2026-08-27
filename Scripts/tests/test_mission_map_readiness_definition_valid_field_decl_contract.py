@@ -4568,28 +4568,28 @@ class MissionMapReadinessDefinitionValidFieldDeclContractTests(unittest.TestCase
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-			"\tESkyguardMission05ProtectedTarget\n"
-            "\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+			"\tbool\n"
+            "\tbDefinitionValid = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-			"\tESkyguardMission05ProtectedTarget   "
-            "Target = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+			"\tbool   "
+            "bDefinitionValid = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-			"\tESkyguardMission05ProtectedTarget\t"
-            "Target = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+			"\tbool\t"
+            "bDefinitionValid = false;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-			"\tESkyguardMission05ProtectedTarget\n"
-            "\t\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+			"\tbool\n"
+            "\t\tbDefinitionValid = false;\n"
             "};\n"
         )
         wrap_name = (
@@ -4644,7 +4644,7 @@ class MissionMapReadinessDefinitionValidFieldDeclContractTests(unittest.TestCase
         wrap_true_default = (
             "public:\n"
             f"\t{UPROPERTY_MISSION10}\n"
-            "\tESkyguardMission05ProtectedTarget Target = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+            "\tbool bDefinitionValid = false;\n"
             "};\n"
         )
         header_wrap_type = (
@@ -6003,8 +6003,8 @@ class MissionMapReadinessDefinitionValidFieldDeclContractTests(unittest.TestCase
         )
         wrap_split = (
             "public:\n"
-			"\tESkyguardMission05ProtectedTarget\n"
-            "\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
+			"\tbool\n"
+            "\tbDefinitionValid = false;\n"
             "};\n"
         )
         wrap_uproperty = (
@@ -6275,14 +6275,14 @@ class MissionMapReadinessDefinitionValidFieldDeclContractTests(unittest.TestCase
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission05_protected_target_runtime"
-            "_target_field_decl_contract.py"
+            "Scripts/tests/test_mission_map_readiness_definition"
+            "_valid_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission05_protected_target_runtime"
-                "_target_field_decl_contract.py"
+                "test_mission_map_readiness_definition"
+                "_valid_field_decl_contract.py"
             )
         )
         self.assertIn(
