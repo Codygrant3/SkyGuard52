@@ -1551,15 +1551,13 @@ def has_declaration(region: str, declaration: str) -> bool:
         compact,
     ):
         return False
-    if re.search(
-        r"FLinearColor\s+BuildingTint\s*=\s*FLinearColor::White\s*;",
+    assigned = re.findall(
+        r"FLinearColor\s+BuildingTint\s*=\s*(\S[^;]*);",
         compact,
-    ) is None:
+    )
+    if not assigned:
         return False
-    if re.search(
-        r"FLinearColor\s+BuildingTint\s*=\s*(?!FLinearColor::White\b)",
-        compact,
-    ):
+    if any(value.strip() != "FLinearColor::White" for value in assigned):
         return False
     return True
 
