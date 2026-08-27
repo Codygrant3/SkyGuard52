@@ -6156,7 +6156,7 @@ class Mission09MissionDefinitionFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission08_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission08IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
@@ -6346,20 +6346,22 @@ class Mission09MissionDefinitionFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission09_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission09IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission09|Integration")\n'
             "\tconst FSkyguardMission09IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("MissionDefinition", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission09_get_readiness"
             "_decl_contract.py",
