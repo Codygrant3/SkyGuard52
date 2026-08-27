@@ -55,11 +55,13 @@ from pathlib import Path
 # split-line UPROPERTY wraps; origin/main has NO Category).
 # Fail closed if the type or decl is missing, renamed, or
 # Category= is added. Parse STRUCT public section only
-# (after struct FSkyguardLandscapeFootprintSampleResult, before
-# class USkyguardMission01LandscapeGroundingLibrary).
+# (after struct FSkyguardLandscapeVisibleAudit, before
+# struct FSkyguardLandscapeCaptureConfigurationResult).
+# Do NOT parse USkyguardMission01EnvironmentAuthoringLibrary.
 # Do NOT parse USkyguardMission01LandscapeGroundingLibrary.
-# Do NOT parse FSkyguardLandscapeHeightSample (that struct
-# has a different public section).
+# Do NOT parse FSkyguardLandscapeHeightSample (wrong header).
+# Do NOT parse FSkyguardLandscapeFootprintSampleResult
+# (leftover #1189).
 # THIS IS NOT leftover SampleLandscapeHeight #626.
 # THIS IS NOT leftover SampleLandscapeFootprint #627.
 # THIS IS NOT leftover landscape-height-sample-defaults
