@@ -5462,27 +5462,27 @@ class HowToFlyRowStepIdFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
 			"\tFName\n"
-            "\tLineId;\n"
+            "\tStepId;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
 			"\tFName   "
-            "LineId;\n"
+            "StepId;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
 			"\tFName\t"
-            "LineId;\n"
+            "StepId;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
 			"\tFName\n"
-            "\t\tLineId;\n"
+            "\t\tStepId;\n"
             "};\n"
         )
         wrap_name = (
@@ -7188,7 +7188,7 @@ class HowToFlyRowStepIdFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
 			"\tFName\n"
-            "\tLineId;\n"
+            "\tStepId;\n"
             "};\n"
         )
         wrap_uproperty = (
