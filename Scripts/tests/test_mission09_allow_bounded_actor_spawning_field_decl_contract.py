@@ -4259,7 +4259,7 @@ class Mission09AllowBoundedActorSpawningFieldDeclContractTests(unittest.TestCase
         self.assertNotIn("MissionDefinition", locked_only)
         self.assertNotIn("Readiness;", locked_only)
         self.assertNotIn("bAutoInitialize", locked_only)
-        self.assertNotIn("bAllowBoundedActorSpawning", locked_only)
+        self.assertNotIn("CampaignDefinition", locked_only)
         self.assertNotIn("bAutoLaunchAfterBriefing", locked_only)
         self.assertNotIn("PathfinderSpawnLocation", locked_only)
         self.assertNotIn("GetAircraft", locked_only)
