@@ -5961,12 +5961,10 @@ class Mission09RootFieldDeclContractTests(unittest.TestCase):
             "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
-        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            require_declaration(section, LOCKED_DECL)
-        self.assertIn("Root", str(raised.exception))
+            public_section(leftover)
+        self.assertIn(CLASS_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
-        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
