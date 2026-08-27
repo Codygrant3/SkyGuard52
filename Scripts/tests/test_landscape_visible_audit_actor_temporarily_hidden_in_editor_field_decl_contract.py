@@ -41,7 +41,7 @@ from pathlib import Path
 # Do not reopen leftover #536-#673, leftover Mission10
 # Integrity #826 / bDestroyed #827, leftover Mission05
 # #665 #666 #668-#673, or open drafts #674-#1206.
-# Harbor 40.f / 80.f fail-closed in this Mission01-related
+# Harbor 40/80 fail-closed in this Mission01-related
 # test file. Ban retired live-copy tokens via split tokens
 # (b + Ya + kRuntimeReady). Stay Apache CPG 30 mm / Hydra /
 # Hellfire.
