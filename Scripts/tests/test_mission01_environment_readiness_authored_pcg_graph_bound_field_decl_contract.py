@@ -4321,6 +4321,12 @@ class Mission01EnvironmentReadinessAuthoredPcgGraphBoundFieldDeclContractTests(u
         self.assertNotIn("EditAnywhere", UPROPERTY_MISSION10)
         self.assertNotIn("BlueprintReadWrite", UPROPERTY_MISSION10)
         self.assertNotIn("Category", UPROPERTY_MISSION10)
+        field_at = section.index("bAuthoredPCGGraphBound")
+        field_prop = section[section.rfind("UPROPERTY(", 0, field_at):field_at]
+        self.assertIn("VisibleAnywhere", field_prop)
+        self.assertIn("BlueprintReadOnly", field_prop)
+        self.assertNotIn("Category", field_prop)
+        self.assertNotIn("Category=", field_prop)
         self.assertNotIn(UPROPERTY_MISSION10_CLAMP, UPROPERTY_MISSION10)
         self.assertNotIn('ClampMin="1.0"', UPROPERTY_MISSION10)
         self.assertTrue(
