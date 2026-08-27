@@ -1449,7 +1449,9 @@ class MissionDebriefNarrativeFieldDeclContractTests(
         self.assertNotIn("Category", specifiers)
         self.assertNotIn("Category=", specifiers)
         self.assertIn("MultiLine", specifiers)
-        self.assertIn('meta = (MultiLine = "true")', specifiers)
+        self.assertIn("meta =", specifiers)
+        self.assertIn('MultiLine = "true"', specifiers)
+        self.assertIn('meta = (MultiLine = "true")', section)
         self.assertIn("MultiLine", section)
         self.assertTrue(has_declaration(section, LOCKED_DECL), section)
         self.assertNotIn("UFUNCTION", LOCKED_DECL)
@@ -1551,7 +1553,12 @@ class MissionDebriefNarrativeFieldDeclContractTests(
         self.assertNotIn("Category", origin)
         self.assertNotIn("Category=", origin)
         self.assertIn("MultiLine", origin)
-        self.assertIn('meta = (MultiLine = "true")', origin)
+        self.assertIn("meta =", origin)
+        self.assertIn('MultiLine = "true"', origin)
+        self.assertIn(
+            'meta = (MultiLine = "true")',
+            public_section(origin_main_header()),
+        )
 
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wraps = (
@@ -1701,7 +1708,12 @@ class MissionDebriefNarrativeFieldDeclContractTests(
             public_section(origin_main_header())
         )
         self.assertIn("MultiLine", origin)
-        self.assertIn('meta = (MultiLine = "true")', origin)
+        self.assertIn("meta =", origin)
+        self.assertIn('MultiLine = "true"', origin)
+        self.assertIn(
+            'meta = (MultiLine = "true")',
+            public_section(origin_main_header()),
+        )
         self.assertNotEqual(specifiers, origin)
 
     def test_harbor_40_80_tokens_fail_closed_if_present(self) -> None:
