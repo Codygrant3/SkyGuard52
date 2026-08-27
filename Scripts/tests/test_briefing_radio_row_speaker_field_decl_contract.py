@@ -9119,7 +9119,7 @@ class BriefingRadioRowSpeakerFieldDeclContractTests(unittest.TestCase):
         self.assertEqual(STRUCT_NAME, CLASS_NAME)
         self.assertEqual(
             CLASS_NAME,
-            "FSkyguardBriefingCard",
+            "FSkyguardBriefingRadioRow",
         )
         section = public_section(header)
         self.assertNotIn(
@@ -9617,7 +9617,7 @@ class BriefingRadioRowSpeakerFieldDeclContractTests(unittest.TestCase):
         self.assertEqual(STRUCT_NAME, CLASS_NAME)
         self.assertEqual(
             CLASS_NAME,
-            "FSkyguardBriefingCard",
+            "FSkyguardBriefingRadioRow",
         )
 
 
