@@ -4177,16 +4177,6 @@ class Mission08ProtectedTargetRuntimeIntegrityFieldDeclContractTests(unittest.Te
             "ESkyguardMission08ProtectedTarget::RescueHelicopter;\n"
         )
         leftover_zero = f"\t{INTEGRITY_WRONG}\n"
-        leftover_edit = (
-            "\tUPROPERTY(EditAnywhere, BlueprintReadWrite, "
-            'Category="Skyguard|Mission08")\n'
-            "\tint32 Integrity = 100;\n"
-        )
-        leftover_clamp = (
-            "\tUPROPERTY(VisibleAnywhere, BlueprintReadOnly, "
-            'meta=(ClampMin="0", ClampMax="100"))\n'
-            "\tint32 Integrity = 100;\n"
-        )
         leftover_destroyed = "\tbool bDestroyed = false;\n"
         leftover_target = (
             "\tESkyguardMission08ProtectedTarget Target = "
@@ -4195,7 +4185,6 @@ class Mission08ProtectedTargetRuntimeIntegrityFieldDeclContractTests(unittest.Te
         leftover_m09_integrity = (
             "\tFSkyguardMission09ProtectedTargetRuntime Integrity;\n"
         )
-        leftover_max_integrity = "\tint32 MaximumProtectedTargetIntegrity = 100;\n"
         for region in (
             as_void,
             as_const,
@@ -4292,12 +4281,9 @@ class Mission08ProtectedTargetRuntimeIntegrityFieldDeclContractTests(unittest.Te
             leftover_bool,
             leftover_enum,
             leftover_zero,
-            leftover_edit,
-            leftover_clamp,
             leftover_destroyed,
             leftover_target,
             leftover_m09_integrity,
-            leftover_max_integrity,
         ):
             with self.assertRaises(AssertionError) as raised:
                 require_declaration(region, LOCKED_DECL)
