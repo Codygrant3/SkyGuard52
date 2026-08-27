@@ -5301,13 +5301,13 @@ class Mission09CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission08_campaign_save_slot_name_field"
+            "Scripts/tests/test_mission09_campaign_save_slot_name_field"
             "_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission08_campaign_save_slot_name_field"
+                "test_mission09_campaign_save_slot_name_field"
                 "_decl_contract.py"
             )
         )
@@ -6731,8 +6731,13 @@ class Mission09CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission08_campaign_save_slot_name_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertNotIn(
+            "Scripts/tests/test_mission09_campaign_save_slot_name_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -6842,8 +6847,13 @@ class Mission09CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission08_campaign_save_slot_name_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertNotIn(
+            "Scripts/tests/test_mission09_campaign_save_slot_name_field"
             "_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -6956,8 +6966,13 @@ class Mission09CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission08_campaign_save_slot_name"
+            "_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertNotIn(
+            "Scripts/tests/test_mission09_campaign_save_slot_name"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
@@ -6987,8 +7002,13 @@ class Mission09CampaignSaveSlotNameFieldDeclContractTests(unittest.TestCase):
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn(
+        self.assertIn(
             "Scripts/tests/test_mission08_campaign_save_slot_name"
+            "_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertNotIn(
+            "Scripts/tests/test_mission09_campaign_save_slot_name"
             "_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
