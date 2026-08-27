@@ -1301,6 +1301,10 @@ LOCKED_SCRIPTS = (
     "Scripts/tests/test_mission02_campaign_definition_field_decl_contract.py",
     "Scripts/tests/test_mission03_campaign_definition_field_decl_contract.py",
     "Scripts/tests/test_mission04_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission06_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission07_mission_definition_field_decl_contract.py",
+) + leftover_live_copy_boss_scripts()
+SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Root;",
     "SkylineAnchor",
     "PowerStationAnchor",
@@ -1311,9 +1315,9 @@ LOCKED_SCRIPTS = (
     "RadioChatter",
     "SortiePresentation",
     "AudioDirector",
+    "CampaignDefinition",
     "MissionDefinition",
     "Readiness;",
-    "bAutoInitialize",
     "bAllowBoundedActorSpawning",
     "bAutoLaunchAfterBriefing",
     "ConvoyRuntimeAnchor",
@@ -1324,6 +1328,28 @@ LOCKED_SCRIPTS = (
     "AmbulanceBAnchor",
     "FerryTerminalAnchor",
     "EvacuationShipAnchor",
+    BRIEFING_FIELD,
+    ROOT_FIELD,
+    SEARCHLIGHT_PORT_FIELD,
+    SEARCHLIGHT_STARBOARD_FIELD,
+    RADIO_CHATTER_FIELD,
+    SORTIE_PRESENTATION_FIELD,
+    AUDIO_DIRECTOR_FIELD,
+    CAMPAIGN_DEFINITION_FIELD,
+    MISSION_DEFINITION_FIELD,
+    READINESS_FIELD,
+    ALLOW_BOUNDED_SPAWNING_FIELD,
+    AUTO_LAUNCH_AFTER_BRIEFING_FIELD,
+    CONVOY_RUNTIME_ANCHOR,
+    HIGHWAY_CONVOY_ANCHOR,
+    BUS_A_ANCHOR,
+    BUS_B_ANCHOR,
+    AMBULANCE_A_ANCHOR,
+    AMBULANCE_B_ANCHOR,
+    FERRY_TERMINAL_ANCHOR,
+    EVACUATION_SHIP_ANCHOR,
+    LAST_FLIGHT_SPAWN_LOCATION,
+    LAST_FLIGHT_SPAWN_ROTATION,
 )
 SIBLING_INTEGRATION_METHODS_NOT_LOCKED = (
     CONFIGURE_MISSION_DEFINITION,
@@ -5130,10 +5156,15 @@ class Mission09AutoInitializeFieldDeclContractTests(unittest.TestCase):
 
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
-            "Scripts/tests/test_mission08_auto_initialize_field"
+            "Scripts/tests/test_mission09_auto_initialize_field"
             "_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
+        self.assertIn(
+            "Scripts/tests/test_mission08_auto_initialize_field"
+            "_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
         self.assertIn(
             "Scripts/tests/test_mission07_auto_initialize_field"
             "_decl_contract.py",
@@ -5151,7 +5182,7 @@ class Mission09AutoInitializeFieldDeclContractTests(unittest.TestCase):
         )
         self.assertTrue(
             Path(__file__).name.endswith(
-                "test_mission08_auto_initialize_field"
+                "test_mission09_auto_initialize_field"
                 "_decl_contract.py"
             )
         )
@@ -6110,13 +6141,10 @@ class Mission09AutoInitializeFieldDeclContractTests(unittest.TestCase):
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
-        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            require_declaration(section, LOCKED_DECL)
-        self.assertIn("bAutoInitialize", str(raised.exception))
-        self.assertIn("missing", str(raised.exception).lower())
+            public_section(leftover)
         self.assertIn(CLASS_NAME, str(raised.exception))
-        self.assertFalse(has_declaration(section, LOCKED_DECL))
+        self.assertIn("missing", str(raised.exception).lower())
         self.assertIn(
             "Scripts/tests/test_mission08_get_readiness"
             "_decl_contract.py",
@@ -6301,10 +6329,13 @@ class Mission09AutoInitializeFieldDeclContractTests(unittest.TestCase):
             "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("bAutoInitialize", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertIn(CLASS_NAME, str(raised.exception))
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission09_get_readiness"
             "_decl_contract.py",
