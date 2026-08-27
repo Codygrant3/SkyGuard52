@@ -2715,7 +2715,6 @@ LEFTOVER_ENVIRONMENT_READINESS_NOT_LOCKED = (
     "test_mission01_environment_readiness_production_landscape_bound_field_decl_contract.py",
     "test_mission01_environment_readiness_authored_pcg_graph_bound_field_decl_contract.py",
     "test_mission01_environment_readiness_pcg_bounds_tagged_field_decl_contract.py",
-    "LandscapeComponentCount",
     "bProductionLandscapeBound",
     "bAuthoredPCGGraphBound",
     "bPCGBoundsTagged",
@@ -5902,7 +5901,7 @@ class Mission01EnvironmentAuthoringResultLandscapeComponentCountFieldDeclContrac
             "_pcg_bounds_tagged_field_decl_contract.py",
             LOCKED_SCRIPTS,
         )
-        self.assertNotIn("LandscapeComponentCount", LOCKED_DECL)
+        self.assertIn("LandscapeComponentCount", LOCKED_DECL)
         self.assertNotIn("bProductionLandscapeBound", LOCKED_DECL)
         self.assertNotIn("bAuthoredPCGGraphBound", LOCKED_DECL)
         self.assertNotIn("bPCGBoundsTagged", LOCKED_DECL)
@@ -5954,7 +5953,7 @@ class Mission01EnvironmentAuthoringResultLandscapeComponentCountFieldDeclContrac
         self.assertNotIn("HiddenInGameComponentCount", LOCKED_DECL)
         self.assertNotIn("GovernedMaterialParentMatchComponentCount", LOCKED_DECL)
         self.assertNotIn("GeneratedMaterialInstanceReadyComponentCount", LOCKED_DECL)
-        self.assertNotIn("LandscapeComponentCount", LOCKED_DECL)
+        self.assertIn("LandscapeComponentCount", LOCKED_DECL)
         self.assertIn(
             "Scripts/tests/test_landscape_visible_audit"
             "_contract_camera_frustum_intersection_count"
