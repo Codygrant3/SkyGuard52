@@ -1553,7 +1553,7 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "Root",
     "Briefing;",
     "AudioDirector",
-    "SortiePresentation",
+    "SortiePresentation;",
     "RadioChatter",
     "Readiness;",
     "bAutoInitialize",
@@ -4138,7 +4138,7 @@ class Mission08SortiePresentationReadyFieldDeclContractTests(unittest.TestCase):
             self.assertIn("bSortiePresentationReady", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
 
-    def test_audio_ready_declaration_matches_origin_main(self) -> None:
+    def test_sortie_presentation_ready_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
@@ -5252,7 +5252,7 @@ class Mission08SortiePresentationReadyFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn(dirty, section)
         self.assertNotIn(dirty_fwd, LOCKED_DECL)
 
-    def test_contract_is_audio_ready_field_declaration_only(
+    def test_contract_is_sortie_presentation_ready_field_declaration_only(
         self,
     ) -> None:
         header = origin_main_header()
@@ -5458,7 +5458,7 @@ class Mission08SortiePresentationReadyFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("FSkyguardMission10ProtectedRuntime", LOCKED_DECL)
         self.assertIn(UPROPERTY_MISSION10, section)
 
-    def test_sibling_director_fields_do_not_satisfy_audio_ready(
+    def test_sibling_director_fields_do_not_satisfy_sortie_presentation_ready(
         self,
     ) -> None:
         for leftover in (
