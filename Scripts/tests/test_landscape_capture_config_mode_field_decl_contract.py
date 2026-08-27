@@ -31,7 +31,7 @@ from pathlib import Path
 # PRs including leftover landscape-capture-config-defaults
 # #d6fd, leftover landscape-capture-diagnostic-enum #ce50,
 # leftover landscape-visible-audit-defaults #0bce. Harbor
-# 40.f / 80.f fail-closed in this Mission01-related test
+# 40/80 fail-closed in this Mission01-related test
 # file. Ban retired live-copy tokens via split tokens
 # (b + Ya + kRuntimeReady). Stay Apache CPG 30 mm / Hydra /
 # Hellfire.
