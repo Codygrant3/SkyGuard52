@@ -5761,7 +5761,7 @@ class LandscapeHeightSampleHeightCentimetersFieldDeclContractTests(unittest.Test
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("QueryLocation", locked_only)
+        self.assertIn("HeightCentimeters", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
