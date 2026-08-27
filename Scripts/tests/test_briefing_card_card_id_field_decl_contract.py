@@ -25,7 +25,7 @@
 # Do NOT parse USkyguardSortiePresentationComponent methods.
 # Do NOT parse FSkyguardBriefingRadioRow / FSkyguardHowToFlyRow.
 # Do NOT parse ESkyguardBriefingPictogram enum body.
-# Harbor 40.f / 80.f fail-closed.
+# Harbor 40/80 fail-closed.
 # Ban retired live-copy tokens via split tokens
 # (b + Ya + kRuntimeReady). Stay Apache CPG 30 mm / Hydra /
 # Hellfire.
@@ -5379,28 +5379,28 @@ class BriefingCardCardIdFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-			"\tFString\n"
-            "\tError;\n"
+			"\tFName\n"
+            "\tCardId;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-			"\tFString   "
-            "Error;\n"
+			"\tFName   "
+            "CardId;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-			"\tFString\t"
-            "Error;\n"
+			"\tFName\t"
+            "CardId;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-			"\tFString\n"
-            "\t\tError;\n"
+			"\tFName\n"
+            "\t\tCardId;\n"
             "};\n"
         )
         wrap_name = (
@@ -7105,8 +7105,8 @@ class BriefingCardCardIdFieldDeclContractTests(unittest.TestCase):
         )
         wrap_split = (
             "public:\n"
-			"\tFString\n"
-            "\tError;\n"
+			"\tFName\n"
+            "\tCardId;\n"
             "};\n"
         )
         wrap_uproperty = (
