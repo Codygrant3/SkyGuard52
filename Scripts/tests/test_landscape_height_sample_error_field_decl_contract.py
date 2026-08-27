@@ -4893,27 +4893,27 @@ class LandscapeHeightSampleErrorFieldDeclContractTests(unittest.TestCase):
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-			"\tFVector\n"
+			"\tFString\n"
             "\tError;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-			"\tFVector   "
+			"\tFString   "
             "Error;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-			"\tFVector\t"
+			"\tFString\t"
             "Error;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-			"\tFVector\n"
+			"\tFString\n"
             "\t\tError;\n"
             "};\n"
         )
@@ -5765,7 +5765,7 @@ class LandscapeHeightSampleErrorFieldDeclContractTests(unittest.TestCase):
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("QueryLocation", locked_only)
+        self.assertIn("Error", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
@@ -6436,7 +6436,7 @@ class LandscapeHeightSampleErrorFieldDeclContractTests(unittest.TestCase):
         )
         wrap_split = (
             "public:\n"
-			"\tFVector\n"
+			"\tFString\n"
             "\tError;\n"
             "};\n"
         )
