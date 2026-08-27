@@ -5226,7 +5226,7 @@ class Mission07SearchTrackRuntimeTrackIdFieldDeclContractTests(unittest.TestCase
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("bActive", locked_only)
+        self.assertIn("TrackId", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
@@ -5896,8 +5896,8 @@ class Mission07SearchTrackRuntimeTrackIdFieldDeclContractTests(unittest.TestCase
         )
         wrap_split = (
             "public:\n"
-            "\tbool\n"
-            "\tbActive = false;\n"
+            "\tFName\n"
+            "\tTrackId = NAME_None;\n"
             "};\n"
         )
         wrap_uproperty = (
