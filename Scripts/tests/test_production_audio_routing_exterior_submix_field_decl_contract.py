@@ -2470,7 +2470,7 @@ class ProductionAudioRoutingExteriorSubmixFieldDeclContractTests(
         self.assertIn(FIELD_NAME, str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
 
-    def test_missing_master_submix_declaration_fails_closed(self) -> None:
+    def test_missing_exterior_submix_declaration_fails_closed(self) -> None:
         empty = (
             f"struct {STRUCT_NAME}\n"
             "{\n"
@@ -2559,7 +2559,7 @@ class ProductionAudioRoutingExteriorSubmixFieldDeclContractTests(
         self.assertNotIn("ExteriorSubmix = 0.f", compact_origin)
         self.assertNotIn("ExteriorSubmix = 160.f", compact_origin)
 
-    def test_master_submix_declaration_matches_origin_main(self) -> None:
+    def test_exterior_submix_declaration_matches_origin_main(self) -> None:
         section = spec_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
