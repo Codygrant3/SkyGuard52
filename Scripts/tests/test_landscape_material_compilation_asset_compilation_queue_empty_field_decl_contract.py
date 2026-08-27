@@ -4314,7 +4314,7 @@ def has_one_declaration(region: str, declaration: str) -> bool:
 def has_declaration(region: str, declaration: str) -> bool:
     # Fail-closed on the authored default. Do not accept the opposite
     # bool literal for FSkyguardLandscapeMaterialCompilationResult::
-    # GeneratedMaterialInstanceCount (must be = false, not = true).
+    # bAssetCompilationQueueEmpty (must be = false, not = true).
     # THIS IS NOT leftover VisibleAudit bSuccess #1199.
     # THIS IS NOT leftover FootprintSampleResult bSuccess #1189.
     return has_one_declaration(region, declaration)
@@ -5181,28 +5181,28 @@ class LandscapeMaterialCompilationAssetCompilationQueueEmptyFieldDeclContractTes
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-			"\tint32\n"
-            "\tGeneratedMaterialInstanceCount = 0;\n"
+			"\tbool\n"
+            "\tbAssetCompilationQueueEmpty = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-			"\tint32   "
-            "GeneratedMaterialInstanceCount = 0;\n"
+			"\tbool   "
+            "bAssetCompilationQueueEmpty = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-			"\tint32\t"
-            "GeneratedMaterialInstanceCount = 0;\n"
+			"\tbool\t"
+            "bAssetCompilationQueueEmpty = false;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-			"\tint32\n"
-            "\t\tGeneratedMaterialInstanceCount = 0;\n"
+			"\tbool\n"
+            "\t\tbAssetCompilationQueueEmpty = false;\n"
             "};\n"
         )
         wrap_name = (
@@ -6171,7 +6171,7 @@ class LandscapeMaterialCompilationAssetCompilationQueueEmptyFieldDeclContractTes
         for neighbor in unlocked_neighbors():
             self.assertNotIn(neighbor, locked_only)
             self.assertNotIn(neighbor, LOCKED_DECL)
-        self.assertIn("GeneratedMaterialInstanceCount", locked_only)
+        self.assertIn("bAssetCompilationQueueEmpty", locked_only)
         self.assertNotIn("Briefing;", locked_only)
         self.assertNotIn("AudioDirector", locked_only)
         self.assertNotIn("Root", locked_only)
@@ -6842,8 +6842,8 @@ class LandscapeMaterialCompilationAssetCompilationQueueEmptyFieldDeclContractTes
         )
         wrap_split = (
             "public:\n"
-			"\tint32\n"
-            "\tGeneratedMaterialInstanceCount = 0;\n"
+			"\tbool\n"
+            "\tbAssetCompilationQueueEmpty = false;\n"
             "};\n"
         )
         wrap_uproperty = (
