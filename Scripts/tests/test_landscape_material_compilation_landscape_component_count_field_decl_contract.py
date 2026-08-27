@@ -7085,14 +7085,39 @@ class LandscapeMaterialCompilationLandscapeComponentCountFieldDeclContractTests(
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         this_script = (
             "Scripts/tests/test_landscape_material_compilation"
-            "_success_field_decl_contract.py"
+            "_landscape_component_count_field_decl_contract.py"
         )
         self.assertNotIn(this_script, LOCKED_SCRIPTS)
         self.assertTrue(
             Path(__file__).name.endswith(
                 "test_landscape_material_compilation"
-                "_success_field_decl_contract.py"
+                "_landscape_component_count_field_decl_contract.py"
             )
+        )
+        self.assertIn(
+            "Scripts/tests/test_landscape_material_compilation"
+            "_success_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_landscape_visible_audit"
+            "_landscape_component_count_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_mission01_environment_readiness"
+            "_landscape_component_count_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_landscape_capture_config"
+            "_show_only_landscape_component_count_field_decl_contract.py",
+            LOCKED_SCRIPTS,
+        )
+        self.assertIn(
+            "Scripts/tests/test_landscape_capture_config"
+            "_error_field_decl_contract.py",
+            LOCKED_SCRIPTS,
         )
         self.assertIn(
             "Scripts/tests/test_landscape_capture_config"
