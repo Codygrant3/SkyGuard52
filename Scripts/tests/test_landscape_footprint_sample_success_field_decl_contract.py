@@ -4216,7 +4216,7 @@ def public_section(header: str) -> str:
 def attached_uproperty_specifiers(section: str) -> str:
     compact = collapsed(section)
     match = re.search(
-        r"UPROPERTY\(([^)]*)\)\s*bool\s+bValid\b",
+        r"UPROPERTY\(([^)]*)\)\s*bool\s+bSuccess\b",
         compact,
     )
     if match is None:
@@ -4930,27 +4930,27 @@ class LandscapeFootprintSampleSuccessFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
 			"\tbool\n"
-            "\tbValid = false;\n"
+            "\tbSuccess = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
 			"\tbool   "
-            "bValid = false;\n"
+            "bSuccess = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
 			"\tbool\t"
-            "bValid = false;\n"
+            "bSuccess = false;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
 			"\tbool\n"
-            "\t\tbValid = false;\n"
+            "\t\tbSuccess = false;\n"
             "};\n"
         )
         wrap_name = (
@@ -6508,7 +6508,7 @@ class LandscapeFootprintSampleSuccessFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
 			"\tbool\n"
-            "\tbValid = false;\n"
+            "\tbSuccess = false;\n"
             "};\n"
         )
         wrap_uproperty = (
