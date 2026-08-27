@@ -4134,7 +4134,10 @@ class Mission01EnvironmentReadinessAuthoredLandscapeSurfaceExposedFieldDeclContr
         self.assertNotIn("SampleLandscapeHeight", section)
         self.assertNotIn("SampleLandscapeFootprint", section)
         self.assertNotIn("IsAuthoredLandscapeSurfaceExposed", section)
-        self.assertNotIn("ProductionLandscape", section)
+        self.assertNotIn(
+            "TObjectPtr<ALandscapeProxy> ProductionLandscape",
+            section,
+        )
         self.assertNotIn("FSkyguardLandscapeHeightSample", section)
         self.assertNotIn("FSkyguardLandscapeFootprintSampleResult", section)
         self.assertNotIn("FSkyguardLandscapeVisibleAudit", section)
@@ -8315,7 +8318,10 @@ class Mission01EnvironmentReadinessAuthoredLandscapeSurfaceExposedFieldDeclContr
         self.assertNotIn("SampleLandscapeHeight", section)
         self.assertNotIn("SampleLandscapeFootprint", section)
         self.assertNotIn("IsAuthoredLandscapeSurfaceExposed", section)
-        self.assertNotIn("ProductionLandscape", section)
+        self.assertNotIn(
+            "TObjectPtr<ALandscapeProxy> ProductionLandscape",
+            section,
+        )
         self.assertNotIn("FSkyguardLandscapeHeightSample", section)
         self.assertNotIn("FSkyguardLandscapeFootprintSampleResult", section)
         self.assertNotIn("FSkyguardLandscapeVisibleAudit", section)
@@ -9037,7 +9043,10 @@ class Mission01EnvironmentReadinessAuthoredLandscapeSurfaceExposedFieldDeclContr
         self.assertNotIn("SampleLandscapeHeight", section)
         self.assertNotIn("SampleLandscapeFootprint", section)
         self.assertNotIn("IsAuthoredLandscapeSurfaceExposed", section)
-        self.assertNotIn("ProductionLandscape", section)
+        self.assertNotIn(
+            "TObjectPtr<ALandscapeProxy> ProductionLandscape",
+            section,
+        )
         self.assertNotIn("FSkyguardLandscapeHeightSample", section)
         self.assertNotIn("FSkyguardLandscapeFootprintSampleResult", section)
         self.assertNotIn("FSkyguardLandscapeVisibleAudit", section)
