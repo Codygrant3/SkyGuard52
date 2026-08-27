@@ -2180,7 +2180,7 @@ class TheaterKitGetBuildingTintDeclContractTests(unittest.TestCase):
             LOCKED_DECL,
         )
         compact_origin = collapsed(origin)
-        self.assertIn("FLinearColor GetBuildingTint() const", compact_origin)
+        self.assertIsNotNone(GET_BUILDING_TINT_RE.search(compact_origin))
         self.assertIsNotNone(GET_BUILDING_TINT_BODY_RE.search(compact_origin))
         self.assertNotIn("FName GetBuildingTint", compact_origin)
         self.assertNotIn("float GetBuildingTint", compact_origin)
