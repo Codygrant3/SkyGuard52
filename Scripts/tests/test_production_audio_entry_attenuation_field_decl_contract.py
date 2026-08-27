@@ -2259,7 +2259,10 @@ class ProductionAudioEntryAttenuationFieldDeclContractTests(
         self.assertNotIn(STOP_BEFORE_APPLY, section)
         self.assertNotIn(STOP_BEFORE_APPLY, body)
         for sibling in sibling_uncontracted_decls():
-            self.assertNotIn(sibling, LOCKED_DECL)
+            self.assertFalse(
+                has_identifier(LOCKED_DECL, sibling),
+                sibling,
+            )
         self.assertNotIn(GET_OBJECTIVE_RUNTIME, section)
         self.assertNotIn(ADD_OBJECTIVE_PROGRESS, section)
         self.assertNotIn(BIND_RUNTIME_ACTORS, section)
@@ -2476,7 +2479,10 @@ class ProductionAudioEntryAttenuationFieldDeclContractTests(
         self.assertNotIn("FSkyguardMissionResult", LOCKED_DECL)
         self.assertNotIn("Category", LOCKED_DECL)
         for sibling in sibling_uncontracted_decls():
-            self.assertNotIn(sibling, LOCKED_DECL)
+            self.assertFalse(
+                has_identifier(LOCKED_DECL, sibling),
+                sibling,
+            )
         for field in leftover_neighbor_hit_fields():
             self.assertNotIn(field, LOCKED_DECL)
         self.assertFalse(
@@ -2630,7 +2636,10 @@ class ProductionAudioEntryAttenuationFieldDeclContractTests(
 
     def test_does_not_contract_sibling_entry_fields(self) -> None:
         for sibling in sibling_uncontracted_decls():
-            self.assertNotIn(sibling, LOCKED_DECL)
+            self.assertFalse(
+                has_identifier(LOCKED_DECL, sibling),
+                sibling,
+            )
         for field in leftover_neighbor_hit_fields():
             self.assertNotIn(field, LOCKED_DECL)
         self.assertNotIn(GET_OBJECTIVE_RUNTIME, LOCKED_DECL)
@@ -3119,7 +3128,10 @@ class ProductionAudioEntryAttenuationFieldDeclContractTests(
         )
         locked_only = f"{LOCKED_DECL}\n"
         for sibling in sibling_uncontracted_decls():
-            self.assertNotIn(sibling, locked_only)
+            self.assertFalse(
+                has_identifier(locked_only, sibling),
+                sibling,
+            )
         for field in leftover_neighbor_hit_fields():
             self.assertNotIn(field, locked_only)
         self.assertNotIn(GET_OBJECTIVE_RUNTIME, locked_only)
