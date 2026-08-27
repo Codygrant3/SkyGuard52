@@ -3577,7 +3577,7 @@ def require_declaration(region: str, declaration: str) -> str:
     return declaration
 
 
-class Mission08RescueAnimationReadyFieldDeclContractTests(unittest.TestCase):
+class Mission08ProtectedTargetsReadyFieldDeclContractTests(unittest.TestCase):
     def test_mission08_struct_exists(self) -> None:
         header = origin_main_header()
         self.assertIn(CLASS_NAME, header)
@@ -3647,7 +3647,7 @@ class Mission08RescueAnimationReadyFieldDeclContractTests(unittest.TestCase):
             has_declaration(section, LOCKED_DECL)
         )
 
-    def test_missing_rescue_animation_ready_declaration_fails_closed(self) -> None:
+    def test_missing_protected_targets_ready_declaration_fails_closed(self) -> None:
         neighbors_only = (
             "\tASkyguardMission09IntegrationDirector();\n"
             f"\t{GET_PROTECTED_GROUP}\n"
@@ -4033,7 +4033,7 @@ class Mission08RescueAnimationReadyFieldDeclContractTests(unittest.TestCase):
             self.assertIn("bProtectedTargetsReady", str(raised.exception))
             self.assertIn("missing", str(raised.exception).lower())
 
-    def test_rescue_animation_ready_declaration_matches_origin_main(self) -> None:
+    def test_protected_targets_ready_declaration_matches_origin_main(self) -> None:
         section = public_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
@@ -5335,7 +5335,7 @@ class Mission08RescueAnimationReadyFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("FSkyguardMission10ProtectedRuntime", LOCKED_DECL)
         self.assertIn(UPROPERTY_MISSION10, section)
 
-    def test_sibling_director_fields_do_not_satisfy_rescue_animation_ready(
+    def test_sibling_director_fields_do_not_satisfy_protected_targets_ready(
         self,
     ) -> None:
         for leftover in (
