@@ -2419,7 +2419,7 @@ LEFTOVER_ENVIRONMENT_READINESS_NOT_LOCKED = (
     "LandTileCount",
     "bAuthoredLandscapeSurfaceExposed",
     "LandscapeComponentCount",
-    "ProductionLandscape",
+    "TObjectPtr<ALandscapeProxy> ProductionLandscape",
     "IsAuthoredLandscapeSurfaceExposed",
     "FSkyguardLandscapeHeightSample",
     "FSkyguardLandscapeFootprintSampleResult",
@@ -4836,27 +4836,27 @@ class Mission01EnvironmentReadinessProductionLandscapeBoundFieldDeclContractTest
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-			"\tint32\n"
+			"\tbool\n"
             "\tbProductionLandscapeBound = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-			"\tint32   "
+			"\tbool   "
             "bProductionLandscapeBound = false;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-			"\tint32\t"
+			"\tbool\t"
             "bProductionLandscapeBound = false;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-			"\tint32\n"
+			"\tbool\n"
             "\t\tbProductionLandscapeBound = false;\n"
             "};\n"
         )
@@ -6366,7 +6366,7 @@ class Mission01EnvironmentReadinessProductionLandscapeBoundFieldDeclContractTest
         )
         wrap_split = (
             "public:\n"
-			"\tint32\n"
+			"\tbool\n"
             "\tbProductionLandscapeBound = false;\n"
             "};\n"
         )
