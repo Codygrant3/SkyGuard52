@@ -368,7 +368,7 @@ CLASS_NAME = STRUCT_NAME
 # bSortiePresentationReady. Skip leftover b + Ya + k
 # RuntimeReady forever (it sits after bMapAssemblyReady
 # and before bGunnerReady). Skip leftover director
-# Readiness #1066. Skip leftover Yak spawn forever.
+# Readiness #1066. Skip leftover retired-mount spawn forever.
 # Skip leftover
 # BindRuntimeActors / HandleDroneCityImpact / retired
 # live-mount spawn. Do not lock leftover director
@@ -1582,7 +1582,7 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "bBriefingReady",
     "bAudioReady",
     "bSortiePresentationReady",
-    "bCampaignRuntimeStarted",
+    "bGunnerReady",
     "ObjectiveCount",
     "WaveCount",
     "ProtectedGroupCount",
@@ -4234,7 +4234,7 @@ class Mission08CampaignRuntimeStartedFieldDeclContractTests(unittest.TestCase):
         wrap_type = (
             "public:\n"
             "\tbool\n"
-            "\tbGunnerReady = false;\n"
+            "\tbCampaignRuntimeStarted = false;\n"
             "private:\n"
             "};\n"
         )
@@ -4254,7 +4254,7 @@ class Mission08CampaignRuntimeStartedFieldDeclContractTests(unittest.TestCase):
         wrap_indent = (
             "public:\n"
             "\tbool\n"
-            "\t\tbGunnerReady = false;\n"
+            "\t\tbCampaignRuntimeStarted = false;\n"
             "};\n"
         )
         wrap_name = (
@@ -5177,7 +5177,7 @@ class Mission08CampaignRuntimeStartedFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn(dirty, section)
         self.assertNotIn(dirty_fwd, LOCKED_DECL)
 
-    def test_contract_is_gunner_ready_field_declaration_only(
+    def test_contract_is_campaign_runtime_started_field_declaration_only(
         self,
     ) -> None:
         header = origin_main_header()
@@ -5655,7 +5655,7 @@ class Mission08CampaignRuntimeStartedFieldDeclContractTests(unittest.TestCase):
         wrap_split = (
             "public:\n"
             "\tbool\n"
-            "\tbGunnerReady = false;\n"
+            "\tbCampaignRuntimeStarted = false;\n"
             "};\n"
         )
         wrap_uproperty = (
