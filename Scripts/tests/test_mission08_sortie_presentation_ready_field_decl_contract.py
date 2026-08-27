@@ -1617,7 +1617,7 @@ SIBLING_DIRECTOR_FIELDS_NOT_LOCKED = (
     "bRescueAnimationReady",
     "bProtectedTargetsReady",
     "bBriefingReady",
-    "bSortiePresentationReady",
+    "bAudioReady",
     "bCampaignRuntimeStarted",
     "ObjectiveCount",
     "WaveCount",
