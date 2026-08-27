@@ -667,7 +667,6 @@ GET_PROTECTED_GROUP = (
     "FSkyguardMission10ProtectedRuntime GetProtectedGroup("
     "ESkyguardMission10ProtectedGroup Group) const"
 )
-LOCKED_DECL = IRON_RAIN_SPAWN_LOCATION
 BIND_CAMPAIGN_RUNTIME = (
     "bool BindCampaignRuntime("
     "USkyguardCampaignSubsystem* InCampaignRuntime);"
@@ -691,6 +690,7 @@ IRON_RAIN_SPAWN_LOCATION = (
     "FVector IronRainSpawnLocation = "
     "FVector(72000.f, 8000.f, 7600.f);"
 )
+LOCKED_DECL = IRON_RAIN_SPAWN_LOCATION
 GET_OBJECTIVE_RUNTIME = (
     "USkyguardObjectiveRuntime* GetObjectiveRuntime() const;"
 )
@@ -3133,7 +3133,7 @@ class Mission09IronRainSpawnLocationFieldDeclContractTests(unittest.TestCase):
         self.assertIn(UPROPERTY_MISSION09, section)
         self.assertIn("EditAnywhere", section)
         self.assertIn("BlueprintReadWrite", section)
-        self.assertIn('Category="Skyguard|Mission08"', section)
+        self.assertIn('Category="Skyguard|Mission09"', section)
         self.assertTrue(
             has_declaration(section, LOCKED_DECL),
             section,
@@ -3675,7 +3675,7 @@ class Mission09IronRainSpawnLocationFieldDeclContractTests(unittest.TestCase):
         wrap_ufunction_category = (
             "public:\n"
             "\tUPROPERTY(EditAnywhere, BlueprintReadWrite,\n"
-            '\t\tCategory="Skyguard|Mission08")\n'
+            '\t\tCategory="Skyguard|Mission09")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -3684,7 +3684,7 @@ class Mission09IronRainSpawnLocationFieldDeclContractTests(unittest.TestCase):
             "\tUPROPERTY(\n"
             "\t\tEditAnywhere,\n"
             "\t\tBlueprintReadWrite,\n"
-            '\t\tCategory="Skyguard|Mission08")\n'
+            '\t\tCategory="Skyguard|Mission09")\n'
             f"\t{LOCKED_DECL}\n"
             "};\n"
         )
@@ -6497,20 +6497,22 @@ class Mission09IronRainSpawnLocationFieldDeclContractTests(unittest.TestCase):
 
     def test_leftover_mission09_get_readiness_does_not_satisfy(self) -> None:
         leftover = (
-            "class SKYGUARD52_API ASkyguardMission09IntegrationDirector "
+            f"class SKYGUARD52_API {CLASS_NAME} "
             ": public AActor\n"
             "{\n"
             "public:\n"
             "\tUFUNCTION(BlueprintPure, "
             'Category="Skyguard|Mission09|Integration")\n'
             "\tconst FSkyguardMission09IntegrationReadiness& "
-            "GetRemainingThreatsInWave() const { return RemainingThreatsInWave; }\n"
+            "GetReadiness() const { return Readiness; }\n"
             "};\n"
         )
+        section = public_section(leftover)
         with self.assertRaises(AssertionError) as raised:
-            public_section(leftover)
-        self.assertIn(CLASS_NAME, str(raised.exception))
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("IronRainSpawnLocation", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
+        self.assertFalse(has_declaration(section, LOCKED_DECL))
         self.assertIn(
             "Scripts/tests/test_mission09_get_readiness"
             "_decl_contract.py",
