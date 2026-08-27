@@ -41,7 +41,7 @@ from __future__ import annotations
 # #1176 / leftover bProductionLandscapeBound sibling #1179 /
 # leftover bAuthoredPCGGraphBound sibling #1178 / leftover
 # bPCGBoundsTagged sibling #1177. LOCK leftover #56-#64 plus
-# leftover enum/defaults PRs. Harbor 40.f/80.f fail-closed in
+# leftover enum/defaults PRs. Harbor 40/80 fail-closed in
 # this Mission01 test file (Mission08/09-only).
 
 
