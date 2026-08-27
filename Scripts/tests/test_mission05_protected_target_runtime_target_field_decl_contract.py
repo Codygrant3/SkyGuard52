@@ -4512,27 +4512,27 @@ class Mission05ProtectedTargetRuntimeTargetFieldDeclContractTests(unittest.TestC
     def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
         wrap_type = (
             "public:\n"
-            "\tESkyguardMission07ProtectedTarget\n"
+			"\tESkyguardMission05ProtectedTarget\n"
             "\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
             "private:\n"
             "};\n"
         )
         wrap_spaces = (
             "public:\n"
-            "\tESkyguardMission07ProtectedTarget   "
+			"\tESkyguardMission05ProtectedTarget   "
             "Target = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
             "private:\n"
             "};\n"
         )
         wrap_tab = (
             "public:\n"
-            "\tESkyguardMission07ProtectedTarget\t"
+			"\tESkyguardMission05ProtectedTarget\t"
             "Target = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
             "};\n"
         )
         wrap_indent = (
             "public:\n"
-            "\tESkyguardMission07ProtectedTarget\n"
+			"\tESkyguardMission05ProtectedTarget\n"
             "\t\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
             "};\n"
         )
@@ -5946,7 +5946,7 @@ class Mission05ProtectedTargetRuntimeTargetFieldDeclContractTests(unittest.TestC
         )
         wrap_split = (
             "public:\n"
-            "\tESkyguardMission07ProtectedTarget\n"
+			"\tESkyguardMission05ProtectedTarget\n"
             "\tTarget = ESkyguardMission05ProtectedTarget::OffshorePlatform;\n"
             "};\n"
         )
