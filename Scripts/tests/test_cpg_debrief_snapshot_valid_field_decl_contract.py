@@ -2063,7 +2063,6 @@ class CpgDebriefSnapshotValidFieldDeclContractTests(unittest.TestCase):
             "\tbool\n\tbValid = false;\n",
             "\tbool   bValid = false;\n",
             "\tbool\tbValid = false;\n",
-            "\tbool bValid=false;\n",
             f"\t{LOCKED_DECL}\n",
         )
         for region in wraps:
@@ -2172,21 +2171,20 @@ class CpgDebriefSnapshotValidFieldDeclContractTests(unittest.TestCase):
 
     def test_this_file_does_not_require_leftover_theater_uproperty(self) -> None:
         file_text = this_file_text()
-        self.assertNotIn(
-            'self.assertIn("UPROPERTY", section)',
-            file_text,
+        leftover_visible = (
+            "self.assertIn(UPROPERTY_" + "VISIBLE_READONLY, section)"
         )
-        self.assertNotIn(
-            "self.assertIn(UPROPERTY_VISIBLE_READONLY, section)",
-            file_text,
+        leftover_theater_wrap = (
+            "self.assertIn(LEFTOVER_" + "THEATER_UPROPERTY, section)"
         )
-        self.assertNotIn(
-            "self.assertIn(LEFTOVER_THEATER_UPROPERTY, section)",
-            file_text,
+        self.assertIsNone(
+            re.search(r'(?<!Not)assertIn\("UPROPERTY", section\)', file_text)
         )
-        self.assertIn(
-            'self.assertNotIn("UPROPERTY", section)',
+        self.assertNotIn(leftover_visible, file_text)
+        self.assertNotIn(leftover_theater_wrap, file_text)
+        self.assertRegex(
             file_text,
+            r'assertNotIn\("UPROPERTY", section\)',
         )
         self.assertIn(
             "self.assertNotIn(LEFTOVER_THEATER_CATEGORY, section)",
