@@ -3439,7 +3439,7 @@ class PathfinderEncounterMaxHeightFromOriginFieldDeclContractTests(unittest.Test
         self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_LATERAL)
         self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_MIN_HEIGHT)
         self.assertNotIn("MinHeightFromOriginCm", LOCKED_DECL)
-        self.assertNotIn("MaxHeightFromOriginCm", LOCKED_DECL)
+        self.assertNotIn("MaxLateralOffsetCm", LOCKED_DECL)
         self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_WIND)
         self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_APPROACH)
         self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ROUTE_LEN)
