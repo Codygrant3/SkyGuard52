@@ -1350,10 +1350,8 @@ class StormRainBeatKitKindsFieldDeclContractTests(unittest.TestCase):
             LOCKED_DECL,
         )
         compact_origin = collapsed(origin)
-        self.assertIn(
-            "ESkyguardStormRainBeatKind Kinds[BeatCount] = {};",
-            compact_origin,
-        )
+        self.assertIsNotNone(KINDS_DECL_RE.search(compact_origin), compact_origin)
+        self.assertIn("Kinds[BeatCount]={}", compact_origin)
         self.assertNotIn("Kinds[7]", compact_origin)
         self.assertNotIn("Kinds = false", compact_origin)
         self.assertNotIn("Kinds = true", compact_origin)
