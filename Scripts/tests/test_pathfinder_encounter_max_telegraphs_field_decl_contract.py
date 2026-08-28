@@ -4264,7 +4264,7 @@ class PathfinderEncounterMaxTelegraphsPerEncounterFieldDeclContractTests(unittes
     def test_locked_scripts_do_not_include_this_file(self) -> None:
         self.assertNotIn(THIS_SCRIPT, LOCKED_SCRIPTS)
         self.assertTrue(Path(__file__).name.endswith(
-            "pathfinder_encounter_max_simulation_substeps_field_decl_contract.py"
+            "pathfinder_encounter_max_telegraphs_field_decl_contract.py"
         ))
         self.assertNotIn("SkyguardGunner.cpp", THIS_SCRIPT)
         self.assertIn(LEFTOVER_ASSEMBLY_REVISION, LOCKED_SCRIPTS)
