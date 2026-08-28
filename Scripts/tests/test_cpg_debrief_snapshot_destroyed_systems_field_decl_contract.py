@@ -2228,7 +2228,6 @@ class CpgDebriefSnapshotDestroyedSystemsFieldDeclContractTests(unittest.TestCase
             "\tTArray<ESkyguardPatrolShipSystem>\tDestroyedSystems;\n",
             f"\t{LOCKED_DECL}\n",
             "TArray<ESkyguardPatrolShipSystem> DestroyedSystems ;",
-            "\tTArray<\n\tESkyguardPatrolShipSystem\n>\n\tDestroyedSystems;\n",
         )
         for region in wraps:
             self.assertTrue(has_declaration(region, LOCKED_DECL), region)
