@@ -1876,9 +1876,9 @@ def has_declaration(region: str, declaration: str) -> bool:
     if not has_one_declaration(region, declaration):
         return False
     compact = collapsed(region)
-    if CPG_RETICLE_H_DECL_RE.search(compact) is None:
+    if CPG_GRIP_RIGHT_DECL_RE.search(compact) is None:
         return False
-    if CPG_RETICLE_H_INIT_RE.search(compact):
+    if CPG_GRIP_RIGHT_INIT_RE.search(compact):
         return False
     if WEATHER_IDENTITY_DECL_RE.search(compact):
         return False
