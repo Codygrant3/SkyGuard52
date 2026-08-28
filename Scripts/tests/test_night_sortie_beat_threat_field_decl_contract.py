@@ -563,6 +563,7 @@ def collapsed(text: str) -> str:
     compact = re.sub(r"\s*,\s*", ",", compact)
     compact = re.sub(r"\s*\*\s*", "* ", compact)
     compact = re.sub(r"\s*::\s*", "::", compact)
+    compact = re.sub(r"\s*=\s*", " = ", compact)
     return compact
 
 
