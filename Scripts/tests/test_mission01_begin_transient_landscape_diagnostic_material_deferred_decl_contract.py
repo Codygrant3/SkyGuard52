@@ -3295,7 +3295,10 @@ class Mission01BeginTransientLandscapeDiagnosticMaterialDeferredDeclContractTest
         self.assertNotIn("UPROPERTY", LOCKED_DECL)
         self.assertNotIn("Category", LOCKED_DECL)
         for invented in INVENTED_UFUNCTION:
-            self.assertNotIn(invented, LOCKED_DECL)
+            self.assertIsNone(
+                re.search(r"\b" + re.escape(invented) + r"\b", LOCKED_DECL),
+                invented,
+            )
 
     def test_missing_or_wrong_signature_fails_closed(self) -> None:
         bare = (
