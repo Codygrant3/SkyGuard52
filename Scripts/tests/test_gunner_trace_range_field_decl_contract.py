@@ -1899,7 +1899,7 @@ CLASS_RE = re.compile(
 )
 ACCESS_RE = re.compile(r"(?:^|\n)\s*(public|private|protected)\s*:")
 TRACE_RANGE_DECL_RE = re.compile(
-    r"float\s+TraceRange\s*=\s*42\.f\s*;"
+    r"float\s+TraceRange\s*=\s*32000\.f\s*;"
 )
 TRACE_RANGE_BARE_RE = re.compile(
     r"float\s+TraceRange\s*;"
