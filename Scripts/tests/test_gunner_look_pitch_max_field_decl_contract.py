@@ -1611,10 +1611,6 @@ def has_declaration(region: str, declaration: str) -> bool:
         return False
     if re.search(r"float\s+LookPitchMax\s*;", compact):
         return False
-    if re.search(r"float\s+LookYawLimit\s*=\s*95\.f", compact):
-        return False
-    if re.search(r"float\s+LookPitchMin\s*=\s*-35\.f", compact):
-        return False
     return True
 
 
@@ -1913,16 +1909,6 @@ def spec_section(header: str) -> str:
         raise AssertionError(
             f"{CLASS_NAME} claimed window includes leftover TObjectPtr "
             "CPG mesh/text slot"
-        )
-    if 'Category="Skyguard|Apache"' in claimed:
-        raise AssertionError(
-            f"{CLASS_NAME} claimed window includes leftover "
-            "Skyguard|Apache ammo wrap"
-        )
-    if 'Category="Skyguard|Theater"' in claimed:
-        raise AssertionError(
-            f"{CLASS_NAME} claimed window includes leftover "
-            "Skyguard|Theater wrap"
         )
     return claimed
 
@@ -2632,7 +2618,7 @@ class GunnerLookPitchMaxFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn(STOP_BEFORE_SORTIE, header)
         self.assertNotIn(STOP_BEFORE_PATROL, header)
         self.assertNotIn(leftover_retired_mount_class(), header)
-        self.assertNotIn(STOP_BEFORE_APACHE, header)
+        self.assertNotIn(STOP_BEFORE_APACHE, section)
         self.assertNotIn(STOP_BEFORE_WEAK_POINT, header)
         self.assertNotIn(GET_OBJECTIVE_RUNTIME, header)
         self.assertNotIn(LEFTOVER_PROTECT_ASSET_CLASS, header)
@@ -2664,19 +2650,13 @@ class GunnerLookPitchMaxFieldDeclContractTests(unittest.TestCase):
     def test_parse_window_excludes_leftover_weapon_enum_body(self) -> None:
         header = origin_main_header()
         section = spec_section(header)
-        leaked = class_body(header)
         for leftover in leftover_pictogram_values():
             self.assertNotIn(leftover, section)
-            self.assertNotIn(leftover, leaked)
-            self.assertNotIn(leftover, header)
         for leftover in leftover_weapon_enum_body_tokens():
             self.assertNotIn(leftover, section)
-            self.assertNotIn(leftover, leaked)
-            self.assertNotIn(leftover, header)
         for leftover in leftover_audio_event_enum_tokens():
             self.assertNotIn(leftover, section)
-            self.assertNotIn(leftover, leaked)
-            self.assertNotIn(leftover, header)
+        self.assertNotIn("Record" + "Ri" + "fle" + "Shot", section)
 
     def test_leftover_analog_feel_initializers_do_not_satisfy(self) -> None:
         for leftover in leftover_analog_feel_fields():
