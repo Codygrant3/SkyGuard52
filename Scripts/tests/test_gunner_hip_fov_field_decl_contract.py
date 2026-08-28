@@ -2525,7 +2525,7 @@ class GunnerHipFovFieldDeclContractTests(unittest.TestCase):
         self.assertIn("HipFov", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
 
-    def test_missing_ads_fov_declaration_fails_closed(self) -> None:
+    def test_missing_hip_fov_declaration_fails_closed(self) -> None:
         empty = (
             f"class SKYGUARD52_API {CLASS_NAME}\n"
             "{\n"
