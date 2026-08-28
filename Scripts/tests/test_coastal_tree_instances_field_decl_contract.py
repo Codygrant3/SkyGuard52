@@ -1,0 +1,2952 @@
+# THIS IS leftover-safe ASkyguardCoastalEnvironmentDirector TreeInstances.
+# origin/main form: one-line VisibleAnywhere BlueprintReadOnly wrap
+# UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Skyguard|Environment|Vegetation")
+# then BARE `TObjectPtr<UHierarchicalInstancedStaticMeshComponent> TreeInstances;`
+# (no initializer).
+# THIS IS leftover-safe isolated UPROPERTY with Category.
+# Category IS `Skyguard|Environment|Vegetation`. VisibleAnywhere IS present.
+# BlueprintReadOnly IS present. There is NO default.
+# Fail-closed if the UPROPERTY or decl is missing
+# or renamed, if Category is missing, or if specifiers
+# drop to BlueprintReadWrite / EditAnywhere-only.
+# Accept one-line and split-line UPROPERTY wraps.
+# Parse CLASS `ASkyguardCoastalEnvironmentDirector` public UPROPERTY
+# fields ONLY after `class ASkyguardCoastalEnvironmentDirector`.
+# Start at `public:` after GENERATED_BODY. Stop BEFORE `private:`.
+# Stop BEFORE sibling ShrubInstances as a claimed slot.
+# THIS IS leftover-safe because it is the coastal director ACTOR
+# TObjectPtr vegetation component, not leftover
+# FSkyguardEnvironmentReadiness TreeInstanceCount (int32 count),
+# not leftover Mission01 OceanTiles / BeachTiles / LandTiles
+# (different class ASkyguardMission01EnvironmentDirector),
+# not leftover analog coastal-env-director-empty-fail-closed bulk.
+# Do NOT claim leftover Root / ShrubInstances / WindSource /
+# VFXPool / Quality / PlacementSeed / EpicTreeBudget /
+# EpicShrubBudget / RouteLengthCm / RouteCorridorHalfWidthCm /
+# ShorelineLandOffsetCm / InlandExtentCm / Readiness /
+# AppliedWeather as this slot.
+# Do NOT claim leftover Mission01 unique actor bools /
+# leftover MissionMap / leftover Gunner Boom through CpgStation.
+# Clone wrap IS VisibleAnywhere BlueprintReadOnly — keep
+# those specifiers — but RETARGET hard: Category is
+# Skyguard|Environment|Vegetation NOT Skyguard and NOT
+# Skyguard|Theater and NOT Skyguard|Combat and NOT
+# Skyguard|MissionMap.
+# LOCKED_DECL is `TObjectPtr<UHierarchicalInstancedStaticMeshComponent> TreeInstances;`
+# NOT `TObjectPtr<USpringArmComponent> Boom;` and NOT
+# `FName WeatherIdentity;` and NOT
+# `TObjectPtr<UHierarchicalInstancedStaticMeshComponent> ShrubInstances;`
+# and NOT `TObjectPtr<UWindDirectionalSourceComponent> WindSource;`
+# and NOT leftover analog Root and NOT leftover Mission01 OceanTiles.
+# Fail-closed if this test still asserts FName
+# WeatherIdentity / Category="Skyguard|Theater" / 160.f
+# / FName AssemblyRevision / LookYawLimit = 95.f
+# / TObjectPtr<USpringArmComponent> Boom
+# / bool bLicensedVegetationLibraryApproved = false;
+# AS THE LOCKED DECL.
+# Fail-closed if locked wrap Category is Skyguard|Combat
+# or Skyguard|Theater or Skyguard|MissionMap or
+# Category="Skyguard" without |Environment|Vegetation.
+# Fail-closed if wrap is EditAnywhere or BlueprintReadWrite
+# (must be VisibleAnywhere + BlueprintReadOnly).
+# Harbor leftover is only the split 40 / 80 float tokens.
+# Ban retired live-copy tokens via split tokens
+# (b + Ya + kRuntimeReady). Stay Apache CPG 30 mm / Hydra /
+# Hellfire. Fail-closed on live Ig+la / Ri+fle / Ya+k
+# appearing as contiguous tokens in THIS test file.
+
+from __future__ import annotations
+
+import re
+import subprocess
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+SOURCE = ROOT / "Source" / "Skyguard52"
+HEADER_PATH = "Source/Skyguard52/SkyguardCoastalEnvironmentDirector.h"
+CLASS_NAME = "ASkyguardCoastalEnvironmentDirector"
+TARGET = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "TreeInstances;"
+)
+TARGET_WRONG_INIT = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "TreeInstances = nullptr;"
+)
+TARGET_WRONG_FALSE = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "TreeInstances = false;"
+)
+TARGET_WRONG_TRUE = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "TreeInstances = true;"
+)
+TARGET_WRONG_SHRUB = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "ShrubInstances;"
+)
+TARGET_WRONG_OCEAN = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "OceanTiles;"
+)
+TARGET_WRONG_BEACH = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "BeachTiles;"
+)
+TARGET_WRONG_LAND = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "LandTiles;"
+)
+TARGET_WRONG_BUILDING = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "BuildingInstances;"
+)
+TARGET_WRONG_ROAD = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "RoadInstances;"
+)
+TARGET_WRONG_LAMP = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "LampInstances;"
+)
+TARGET_WRONG_SILHOUETTE = (
+    "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+    "SilhouetteInstances;"
+)
+TARGET_WRONG_WIND = (
+    "TObjectPtr<UWindDirectionalSourceComponent> WindSource;"
+)
+TARGET_WRONG_VFX = (
+    "TObjectPtr<USkyguardEnvironmentVFXPoolComponent> VFXPool;"
+)
+TARGET_WRONG_ROOT = "TObjectPtr<USceneComponent> Root;"
+TARGET_WRONG_FNAME = "FName WeatherIdentity;"
+TARGET_WRONG_HEALTH = "float Health = 160.f;"
+TARGET_WRONG_ASSEMBLY = "FName AssemblyRevision;"
+TARGET_WRONG_YAW = "float LookYawLimit = 95.f;"
+TARGET_WRONG_BOOM = "TObjectPtr<USpringArmComponent> Boom;"
+TARGET_WRONG_LICENSED = (
+    "bool bLicensedVegetationLibraryApproved = false;"
+)
+TARGET_WRONG_COUNT = "int32 TreeInstanceCount = 0;"
+TARGET_WRONG_THEATER = (
+    'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+    'Category="Skyguard|Theater")'
+)
+TARGET_WRONG_COMBAT = (
+    'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+    'Category="Skyguard|Combat")'
+)
+TARGET_WRONG_MISSION_MAP = (
+    'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+    'Category="Skyguard|MissionMap")'
+)
+TARGET_WRONG_BARE_SKYGUARD = (
+    'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+    'Category="Skyguard")'
+)
+TARGET_WRONG_EDIT = (
+    'UPROPERTY(EditAnywhere, BlueprintReadWrite, '
+    'Category="Skyguard|Environment|Vegetation")'
+)
+LOCKED_DECL = TARGET
+UPROPERTY_VISIBLE_READONLY = (
+    'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+    'Category="Skyguard|Environment|Vegetation")'
+)
+STOP_BEFORE_PRIVATE = "private:"
+STOP_BEFORE_PUBLIC = "public:"
+STOP_BEFORE_PROTECTED = "protected:"
+STOP_BEFORE_AUDIO_EVENT = "enum class ESkyguardAudioEvent"
+STOP_BEFORE_PICTOGRAM = "enum class ESkyguardBriefingPictogram"
+STOP_BEFORE_EVENT_DEF = "struct FSkyguardAudioEventDefinition"
+STOP_BEFORE_BOSS_WEAPON = "enum class ESkyguardBossWeapon"
+STOP_BEFORE_PROP_SPINNER = "ASkyguardPropSpinner"
+STOP_BEFORE_SORTIE = "ASkyguardGunshipSortieDirector"
+STOP_BEFORE_PATROL = "ASkyguardPatrolShipBoss"
+STOP_BEFORE_GUNNER = "ASkyguardGunner"
+STOP_BEFORE_WEAK_POINT = "USkyguardBossWeakPointComponent"
+STOP_BEFORE_THEATER_SPEC = "FSkyguardTheaterKitSpec"
+STOP_BEFORE_THEATER_ACTOR = "ASkyguardCampaignTheaterKit"
+STOP_BEFORE_ARCADE_LOOK = "USkyguardArcadeLookComponent"
+STOP_BEFORE_GUIDED_LOCK = "FSkyguardGuidedLockRules"
+STOP_BEFORE_MISSION_SPEC = "FSkyguardCampaignMissionSpec"
+STOP_BEFORE_LOADOUT_SPEC = "FSkyguardLoadoutSpec"
+STOP_BEFORE_ROSTER = "SkyguardCampaignRoster"
+STOP_BEFORE_MISSION01 = "ASkyguardMission01EnvironmentDirector"
+GET_OBJECTIVE_RUNTIME = "GetObjectiveRuntime"
+ADD_OBJECTIVE_PROGRESS = "AddObjectiveProgress"
+BIND_RUNTIME_ACTORS = "BindRuntimeActors"
+HANDLE_DRONE_CITY_IMPACT = "HandleDroneCityImpact"
+GET_STORM_RAIN_BEAT_KIT = "GetStormRainBeatKit"
+SIBLING_ROOT = "Root"
+SIBLING_SHRUB = "ShrubInstances"
+SIBLING_WIND = "WindSource"
+SIBLING_VFX = "VFXPool"
+SIBLING_QUALITY = "Quality"
+SIBLING_SEED = "PlacementSeed"
+SIBLING_EPIC_TREE = "EpicTreeBudget"
+SIBLING_EPIC_SHRUB = "EpicShrubBudget"
+SIBLING_ROUTE_LENGTH = "RouteLengthCm"
+SIBLING_ROUTE_HALF = "RouteCorridorHalfWidthCm"
+SIBLING_SHORE = "ShorelineLandOffsetCm"
+SIBLING_INLAND = "InlandExtentCm"
+SIBLING_READINESS = "Readiness"
+SIBLING_WEATHER = "AppliedWeather"
+SIBLING_TREE_COUNT = "TreeInstanceCount"
+SIBLING_OCEAN = "OceanTiles"
+SIBLING_BEACH = "BeachTiles"
+SIBLING_LAND = "LandTiles"
+LEFTOVER_PROTECT_ASSET_CLASS = "ASkyguardProtectAsset"
+LEFTOVER_RADAR_NODE_CLASS = "ASkyguardRadarNode"
+LEFTOVER_THEATER_KIT_ACTOR = "ASkyguardCampaignTheaterKit"
+LEFTOVER_MISSION01_CLASS = "ASkyguardMission01EnvironmentDirector"
+LEFTOVER_GUNNER_CLASS = "ASkyguardGunner"
+LEFTOVER_READINESS_STRUCT = "FSkyguardEnvironmentReadiness"
+THIS_SCRIPT = (
+    "Scripts/tests/test_coastal_tree_instances"
+    "_field_decl_contract.py"
+)
+
+LEFTOVER_GUNNER_BOOM = (
+    "Scripts/tests/test_gunner_boom"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_WEATHER_IDENTITY = (
+    "Scripts/tests/test_theater_kit_spec_weather_identity"
+    "_field_decl_contract.py"
+)
+LEFTOVER_ENV_TREE_INSTANCE_COUNT = (
+    "Scripts/tests/test_environment_readiness_tree_instance_count"
+    "_field_decl_contract.py"
+)
+LEFTOVER_ENV_SHRUB_INSTANCE_COUNT = (
+    "Scripts/tests/test_environment_readiness_shrub_instance_count"
+    "_field_decl_contract.py"
+)
+LEFTOVER_COASTAL_EMPTY = (
+    "Scripts/tests/test_coastal_env_director_empty_fail_closed.py"
+)
+LEFTOVER_COASTAL_EMPTY_ALT = (
+    "Scripts/tests/test_coastal_environment_director_empty_fail_closed.py"
+)
+LEFTOVER_MISSION01_OCEAN_TILES = (
+    "Scripts/tests/test_mission01_ocean_tiles"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION01_BEACH_TILES = (
+    "Scripts/tests/test_mission01_beach_tiles"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION01_LAND_TILES = (
+    "Scripts/tests/test_mission01_land_tiles"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION01_LICENSED_VEG = (
+    "Scripts/tests/test_mission01_licensed_vegetation_library_approved"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION01_USE_AUTHORED = (
+    "Scripts/tests/test_mission01_use_authored_landscape_surface"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION01_ALLOW_PCG = (
+    "Scripts/tests/test_mission01_allow_authored_pcg_generation"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_ROUTE_POINTS = (
+    "Scripts/tests/test_mission_map_route_points"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_LANDMARKS = (
+    "Scripts/tests/test_mission_map_landmark_anchors"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_OBJECTIVES = (
+    "Scripts/tests/test_mission_map_objective_anchors"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_CLEARANCE_V = (
+    "Scripts/tests/test_mission_map_flight_clearance_vertical_centimeters"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_CLEARANCE_R = (
+    "Scripts/tests/test_mission_map_flight_clearance_radius_centimeters"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_SPLINE = (
+    "Scripts/tests/test_mission_map_flight_route_spline"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_MAP_REVISION = (
+    "Scripts/tests/test_mission_map_assembly_revision"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_BUILDING_INSTANCES = (
+    "Scripts/tests/test_theater_kit_building_instances"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_ROAD_INSTANCES = (
+    "Scripts/tests/test_theater_kit_road_instances"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_LAMP_INSTANCES = (
+    "Scripts/tests/test_theater_kit_lamp_instances"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_SILHOUETTE_INSTANCES = (
+    "Scripts/tests/test_theater_kit_silhouette_instances"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_ROOT = (
+    "Scripts/tests/test_theater_kit_root"
+    "_field_decl_contract.py"
+)
+CLONE_HEALTH = (
+    "Scripts/tests/test_radar_node_health"
+    "_field_decl_contract.py"
+)
+LEFTOVER_THEATER_KIT_BULK = (
+    "Scripts/tests/test_campaign_theater_kit_contract.py"
+)
+LEFTOVER_MESH_BIND_SLOT = (
+    "Scripts/tests/test_mesh_bind_slot_fields_contract.py"
+)
+
+CLONE_CURRENT_INTEGRITY = (
+    "Scripts/tests/test_protect_asset_current_integrity"
+    "_field_decl_contract.py"
+)
+CLONE_MAX_HEALTH = (
+    "Scripts/tests/test_radar_node_max_health"
+    "_field_decl_contract.py"
+)
+CLONE_RADAR_IS_DESTROYED = (
+    "Scripts/tests/test_radar_node_is_destroyed"
+    "_decl_contract.py"
+)
+CLONE_RADAR_APPLY_DAMAGE = (
+    "Scripts/tests/test_radar_node_apply_damage"
+    "_decl_contract.py"
+)
+CLONE_RADAR_RESET_NODE = (
+    "Scripts/tests/test_radar_node_reset_node"
+    "_decl_contract.py"
+)
+CLONE_RESET_INTEGRITY = (
+    "Scripts/tests/test_protect_asset_reset_integrity"
+    "_decl_contract.py"
+)
+CLONE_PEAK_ACTIVE_VOICES = (
+    "Scripts/tests/test_audio_telemetry_peak_active_voices"
+    "_field_decl_contract.py"
+)
+
+LEFTOVER_PROTECT_ASSET_CARGO_PROXY = (
+    "Scripts/tests/test_protect_asset_cargo_proxy.py"
+)
+LEFTOVER_PROTECT_ASSET_CARGO_PROXY_CONTRACT = (
+    "Scripts/tests/test_protect_asset_cargo_proxy_contract.py"
+)
+LEFTOVER_PROTECT_ASSET_CARGO_PROXY_TESTS = (
+    "Scripts/tests/test_protect_asset_cargo_proxy_tests.py"
+)
+LEFTOVER_RADAR_NODE_PRESENTATION = (
+    "Scripts/tests/test_radar_node_presentation.py"
+)
+LEFTOVER_RADAR_NODE_PRESENTATION_TESTS = (
+    "Scripts/tests/test_radar_node_presentation_tests.py"
+)
+LEFTOVER_RADAR_NODE_PRESENTATION_CONTRACT = (
+    "Scripts/tests/test_radar_node_presentation_contract.py"
+)
+LEFTOVER_RADAR_NODE_RESET_GAMEPLAY = (
+    "Scripts/tests/test_radar_node_reset_gameplay.py"
+)
+LEFTOVER_RADAR_NODE_RESET_GAMEPLAY_TESTS = (
+    "Scripts/tests/test_radar_node_reset_gameplay_tests.py"
+)
+LEFTOVER_RADAR_NODE_RESET_GAMEPLAY_CONTRACT = (
+    "Scripts/tests/test_radar_node_reset_gameplay_contract.py"
+)
+
+CLONE_APPLY_DAMAGE = (
+    "Scripts/tests/test_protect_asset_apply_damage"
+    "_decl_contract.py"
+)
+CLONE_IS_DESTROYED = (
+    "Scripts/tests/test_protect_asset_is_destroyed"
+    "_decl_contract.py"
+)
+CLONE_GET_INTEGRITY_FRACTION = (
+    "Scripts/tests/test_protect_asset_get_integrity_fraction"
+    "_decl_contract.py"
+)
+CLONE_MAX_INTEGRITY = (
+    "Scripts/tests/test_protect_asset_max_integrity"
+    "_field_decl_contract.py"
+)
+CLONE_PLAYED_EVENTS = (
+    "Scripts/tests/test_audio_telemetry_played_events"
+    "_field_decl_contract.py"
+)
+CLONE_REQUESTED_EVENTS = (
+    "Scripts/tests/test_audio_telemetry_requested_events"
+    "_field_decl_contract.py"
+)
+CLONE_REJECTED_BY_COOLDOWN = (
+    "Scripts/tests/test_audio_telemetry_rejected_by_cooldown"
+    "_field_decl_contract.py"
+)
+CLONE_REJECTED_BY_CONCURRENCY = (
+    "Scripts/tests/test_audio_telemetry_rejected_by_concurrency"
+    "_field_decl_contract.py"
+)
+CLONE_REJECTED_MISSING_ASSET = (
+    "Scripts/tests/test_audio_telemetry_rejected_missing_asset"
+    "_field_decl_contract.py"
+)
+CLONE_PRIORITY_EVICTIONS = (
+    "Scripts/tests/test_audio_telemetry_priority_evictions"
+    "_field_decl_contract.py"
+)
+CLONE_WEAK_POINTS_DESTROYED = (
+    "Scripts/tests/test_boss_telemetry_weak_points_destroyed"
+    "_field_decl_contract.py"
+)
+CLONE_PILOT_COMMANDS_ISSUED = (
+    "Scripts/tests/test_boss_telemetry_pilot_commands_issued"
+    "_field_decl_contract.py"
+)
+CLONE_CAMPAIGN_COMPLETE = (
+    "Scripts/tests/test_mission_debrief_campaign_complete"
+    "_field_decl_contract.py"
+)
+CLONE_NEW_BEST_SCORE = (
+    "Scripts/tests/test_mission_debrief_new_best_score"
+    "_field_decl_contract.py"
+)
+CLONE_NEW_BEST_MEDAL = (
+    "Scripts/tests/test_mission_debrief_new_best_medal"
+    "_field_decl_contract.py"
+)
+CLONE_PROGRESS_SAVED = (
+    "Scripts/tests/test_mission_debrief_progress_saved"
+    "_field_decl_contract.py"
+)
+CLONE_SAVE_SLOT_NAME = (
+    "Scripts/tests/test_mission_debrief_save_slot_name"
+    "_field_decl_contract.py"
+)
+CLONE_NEXT_MISSION_ID = (
+    "Scripts/tests/test_mission_debrief_next_mission_id"
+    "_field_decl_contract.py"
+)
+CLONE_NEXT_MISSION_DISPLAY_NAME = (
+    "Scripts/tests/test_mission_debrief_next_mission_display_name"
+    "_field_decl_contract.py"
+)
+CLONE_NEXT_MISSION_MAP = (
+    "Scripts/tests/test_mission_debrief_next_mission_map"
+    "_field_decl_contract.py"
+)
+CLONE_NEXT_MISSION_UNLOCKED = (
+    "Scripts/tests/test_mission_debrief_next_mission_unlocked"
+    "_field_decl_contract.py"
+)
+CLONE_DEBRIEF_RESULT = (
+    "Scripts/tests/test_mission_debrief_result"
+    "_field_decl_contract.py"
+)
+CLONE_MISSION_DISPLAY_NAME = (
+    "Scripts/tests/test_mission_debrief_mission_display_name"
+    "_field_decl_contract.py"
+)
+CLONE_NARRATIVE = (
+    "Scripts/tests/test_mission_debrief_narrative"
+    "_field_decl_contract.py"
+)
+CLONE_OBJECTIVE_ID = (
+    "Scripts/tests/test_objective_progress_objective_id"
+    "_field_decl_contract.py"
+)
+CLONE_CURRENT_PROGRESS = (
+    "Scripts/tests/test_objective_progress_current_progress"
+    "_field_decl_contract.py"
+)
+CLONE_STATE = (
+    "Scripts/tests/test_objective_progress_state"
+    "_field_decl_contract.py"
+)
+CLONE_FINAL_SCORE = (
+    "Scripts/tests/test_mission_result_final_score"
+    "_field_decl_contract.py"
+)
+CLONE_MEDAL_TIER = (
+    "Scripts/tests/test_mission_result_medal_tier"
+    "_field_decl_contract.py"
+)
+CLONE_DEBRIEF_STATE = (
+    "Scripts/tests/test_mission_debrief_state"
+    "_field_decl_contract.py"
+)
+LEFTOVER_MISSION_RESULT_DEFAULTS = (
+    "Scripts/tests/test_mission_result_defaults_contract.py"
+)
+LEFTOVER_MISSION_DEBRIEF_DEFAULTS = (
+    "Scripts/tests/test_mission_debrief_defaults_contract.py"
+)
+LEFTOVER_OBJECTIVE_PROGRESS_DEFAULTS = (
+    "Scripts/tests/test_objective_progress_defaults_contract.py"
+)
+LEFTOVER_ADD_OBJECTIVE_PROGRESS = (
+    "Scripts/tests/test_add_objective_progress_decl_contract.py"
+)
+LEFTOVER_AUDIO_TELEMETRY_DEFAULTS = (
+    "Scripts/tests/test_audio_telemetry_defaults_contract.py"
+)
+LEFTOVER_AUDIO_TELEMETRY_DEFAULTS_PY = (
+    "Scripts/tests/test_audio_telemetry_defaults.py"
+)
+LEFTOVER_AUDIO_TELEMETRY_DEFAULTS_TESTS = (
+    "Scripts/tests/test_audio_telemetry_defaults_tests.py"
+)
+LEFTOVER_AUDIO_DIRECTOR_TELEMETRY = (
+    "Scripts/tests/test_audio_director_telemetry_fail_closed.py"
+)
+LEFTOVER_AUDIO_DIRECTOR_TELEMETRY_TESTS = (
+    "Scripts/tests/test_audio_director_telemetry_fail_closed_tests.py"
+)
+LEFTOVER_AUDIO_DIRECTOR_TELEMETRY_CONTRACT = (
+    "Scripts/tests/test_audio_director_telemetry_fail_closed_contract.py"
+)
+CLONE_HOW_TO_FLY_STEP_ID = (
+    "Scripts/tests/test_how_to_fly_row_step_id_field_decl_contract.py"
+)
+CLONE_HOW_TO_FLY_INPUT_HINT = (
+    "Scripts/tests/test_how_to_fly_row_input_hint_field_decl_contract.py"
+)
+CLONE_HOW_TO_FLY_INSTRUCTION = (
+    "Scripts/tests/test_how_to_fly_row_instruction"
+    "_field_decl_contract.py"
+)
+CLONE_CARD_ID = (
+    "Scripts/tests/test_briefing_card_card_id_field_decl_contract.py"
+)
+CLONE_TITLE = (
+    "Scripts/tests/test_briefing_card_title_field_decl_contract.py"
+)
+CLONE_BODY = (
+    "Scripts/tests/test_briefing_card_body_field_decl_contract.py"
+)
+CLONE_PRIORITY = (
+    "Scripts/tests/test_briefing_card_priority_field_decl_contract.py"
+)
+OTHER_TELEMETRY_FIELDS = (
+    "RequestedEvents",
+    "PlayedEvents",
+    "RejectedByCooldown",
+    "RejectedByConcurrency",
+    "RejectedMissingAsset",
+    "PriorityEvictions",
+)
+
+RESULT_NESTED_MEMBERS = (
+    "FinalScore",
+    "MedalTier",
+    "MissionId",
+    "bMissionSucceeded",
+    "ShotsFired",
+    "Hits",
+    "AircraftDamageFraction",
+    "CompletionTimeSeconds",
+    "CompletedObjectiveIds",
+)
+
+
+
+LOCKED = {
+    "SkyguardMission10IntegrationDirector.h",
+    "SkyguardMission10IntegrationDirector.cpp",
+    "SkyguardMission09IntegrationDirector.h",
+    "SkyguardMission09IntegrationDirector.cpp",
+    "SkyguardMission08IntegrationDirector.h",
+    "SkyguardMission08IntegrationDirector.cpp",
+    "SkyguardMission07IntegrationDirector.h",
+    "SkyguardMission07IntegrationDirector.cpp",
+    "SkyguardMission06IntegrationDirector.h",
+    "SkyguardMission06IntegrationDirector.cpp",
+    "SkyguardRadarNode.cpp",
+    "SkyguardRadarNode.h",
+    "SkyguardRadarNodeGameplayTests.cpp",
+    "SkyguardGuidedLockRules.cpp",
+    "SkyguardGuidedLockRules.h",
+    "SkyguardCpgHud.cpp",
+    "SkyguardCpgHud.h",
+    "SkyguardCpgHudTests.cpp",
+    "SkyguardCpgSightHud.cpp",
+    "SkyguardCpgSightHud.h",
+    "SkyguardGunner.cpp",
+    "SkyguardGunner.h",
+    "SkyguardGunnerCampaign.cpp",
+    "SkyguardProtectAsset.cpp",
+    "SkyguardProtectAsset.h",
+    "SkyguardProtectAssetTests.cpp",
+    "SkyguardHarborProofTests.cpp",
+    "SkyguardCampaignTheaterKitTests.cpp",
+    "SkyguardMission01EnvironmentAuthoringLibrary.h",
+    "SkyguardMissionBriefingComponent.h",
+    "SkyguardSortiePresentationWidgets.h",
+    "SkyguardCampaignSubsystem.h",
+    "SkyguardCampaignSubsystem.cpp",
+    "SkyguardMission01IntegrationDirector.h",
+    "SkyguardMission01IntegrationDirector.cpp",
+    "SkyguardMission02IntegrationDirector.h",
+    "SkyguardMission02IntegrationDirector.cpp",
+    "SkyguardMission03IntegrationDirector.h",
+    "SkyguardMission03IntegrationDirector.cpp",
+    "SkyguardMission04IntegrationDirector.h",
+    "SkyguardMission04IntegrationDirector.cpp",
+    "SkyguardMission05IntegrationDirector.h",
+    "SkyguardMission05IntegrationDirector.cpp",
+    "SkyguardMissionDirectorCampaignHelpers.h",
+    "SkyguardMissionDirectorPresentationHelpers.h",
+}
+
+def leftover_live_copy_boss_scripts() -> tuple[str, ...]:
+    banned = "ri" + "fle"
+    missile = "ig" + "la"
+    prefix = "Scripts/tests/"
+    return (
+        f"{prefix}test_boss_drone_apply_{missile}"
+        "_strike_decl_contract.py",
+        f"{prefix}test_boss_drone_is_{missile}"
+        "_lock_eligible_decl_contract.py",
+        f"{prefix}test_last_flight_open_first_{missile}"
+        "_window_decl_contract.py",
+        f"{prefix}test_last_flight_open_final_{missile}"
+        "_window_decl_contract.py",
+        f"{prefix}test_last_flight_arm_command_core_{banned}"
+        "_path_decl_contract.py",
+        f"{prefix}test_iron_rain_apply_second_{missile}"
+        "_finish_decl_contract.py",
+        f"{prefix}test_iron_rain_arm_fuel_control_{banned}"
+        "_finish_decl_contract.py",
+        f"{prefix}test_{missile}_boss_decl_contract.py",
+        f"{prefix}test_{missile}_missile_decl_contract.py",
+    )
+
+
+
+LOCKED_SCRIPTS = (
+    "Scripts/tests/test_mission08_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission02_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission03_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission04_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission05_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission06_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission07_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission10_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission09_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission09_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission09_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_iron_rain_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_escalating_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_protected_targets_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_budget_safe_field_decl_contract.py",
+    "Scripts/tests/test_mission08_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission09_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission09_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission09_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission09_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission09_root_field_decl_contract.py",
+    "Scripts/tests/test_mission09_skyline_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission09_major_bridge_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission09_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission09_power_station_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission09_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission09_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission09_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission09_readiness_field_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_configure_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_get_presentation_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_get_mission_title_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_get_briefing_text_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_acknowledge_briefing_decl_contract.py",
+    "Scripts/tests/test_briefing_widget_launch_sortie_decl_contract.py",
+    "Scripts/tests/test_briefing_configure_from_mission_decl_contract.py",
+    "Scripts/tests/test_briefing_advance_briefing_decl_contract.py",
+    "Scripts/tests/test_briefing_set_assets_ready_decl_contract.py",
+    "Scripts/tests/test_briefing_acknowledge_and_launch_decl_contract.py",
+    "Scripts/tests/test_briefing_can_launch_decl_contract.py",
+    "Scripts/tests/test_briefing_get_elapsed_seconds_decl_contract.py",
+    "Scripts/tests/test_briefing_get_briefing_state_decl_contract.py",
+    "Scripts/tests/test_briefing_get_minimum_warmup_seconds_decl_contract.py",
+    "Scripts/tests/test_briefing_get_briefing_text_decl_contract.py",
+    "Scripts/tests/test_briefing_get_radio_chatter_decl_contract.py",
+    "Scripts/tests/test_briefing_card_defaults_contract.py",
+    "Scripts/tests/test_briefing_radio_row_defaults_contract.py",
+    "Scripts/tests/test_briefing_fail_closed.py",
+    "Scripts/tests/test_briefing_fail_closed_tests.py",
+    "Scripts/tests/test_briefing_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_listener_perspective_fail_closed.py",
+    "Scripts/tests/test_audio_director_listener_perspective_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_listener_perspective_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_telemetry_fail_closed.py",
+    "Scripts/tests/test_audio_director_telemetry_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_telemetry_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_suppression_fail_closed.py",
+    "Scripts/tests/test_audio_director_suppression_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_suppression_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_engine_state_fail_closed.py",
+    "Scripts/tests/test_audio_director_engine_state_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_engine_state_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_bank_null_fail_closed.py",
+    "Scripts/tests/test_audio_director_bank_null_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_bank_null_fail_closed_contract.py",
+    "Scripts/tests/test_audio_director_world_event_fail_closed.py",
+    "Scripts/tests/test_audio_director_world_event_fail_closed_tests.py",
+    "Scripts/tests/test_audio_director_world_event_fail_closed_contract.py",
+    "Scripts/tests/test_radio_chatter_empty_fail_closed.py",
+    "Scripts/tests/test_radio_chatter_empty_fail_closed_tests.py",
+    "Scripts/tests/test_radio_chatter_empty_fail_closed_contract.py",
+    "Scripts/tests/test_radio_chatter_empty_queue_fail_closed.py",
+    "Scripts/tests/test_radio_chatter_empty_queue_fail_closed_tests.py",
+    "Scripts/tests/test_radio_chatter_empty_queue_fail_closed_contract.py",
+    "Scripts/tests/test_radio_chatter_empty_line_tests.py",
+    "Scripts/tests/test_radio_chatter_empty_line_fail_closed.py",
+    "Scripts/tests/test_radio_chatter_empty_line_fail_closed_tests.py",
+    "Scripts/tests/test_radio_chatter_empty_line_fail_closed_contract.py",
+    "Scripts/tests/test_campaign_definition_campaign_id_decl_contract.py",
+    "Scripts/tests/test_campaign_definition_display_name_decl_contract.py",
+    "Scripts/tests/test_campaign_definition_missions_decl_contract.py",
+    "Scripts/tests/test_validate_definition_decl_contract.py",
+    "Scripts/tests/test_find_mission_decl_contract.py",
+    "Scripts/tests/test_get_primary_asset_id_decl_contract.py",
+    "Scripts/tests/test_readable_escalation.py",
+    "Scripts/tests/test_sortie_debrief_loadouts.py",
+    "Scripts/tests/test_harbor_proof_play.py",
+    "Scripts/tests/test_harbor_proof_source_tests.py",
+    "Scripts/tests/test_campaign_theater_kit_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_defaults_contract.py",
+    "Scripts/tests/test_environment_readiness_defaults_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_ocean_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_beach_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_land_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_authored_landscape_surface_exposed_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_continuous_coastline_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_route_exclusion_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_landscape_component_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_production_landscape_bound_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_authored_pcg_graph_bound_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_pcg_bounds_tagged_field_decl_contract.py",
+    "Scripts/tests/test_mission01_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission01_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission01_root_field_decl_contract.py",
+    "Scripts/tests/test_mission01_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission01_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission01_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission01_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission01_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission01_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission01_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission01_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission01_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission01_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_root_field_decl_contract.py",
+    "Scripts/tests/test_mission01_production_landscape_field_decl_contract.py",
+    "Scripts/tests/test_mission01_inland_vegetation_pcg_field_decl_contract.py",
+    "Scripts/tests/test_mission01_land_scatter_bounds_field_decl_contract.py",
+    "Scripts/tests/test_mission01_route_exclusion_field_decl_contract.py",
+    "Scripts/tests/test_mission01_land_tiles_field_decl_contract.py",
+    "Scripts/tests/test_mission01_beach_tiles_field_decl_contract.py",
+    "Scripts/tests/test_mission01_ocean_tiles_field_decl_contract.py",
+    "Scripts/tests/test_mission01_authored_pcg_graph_field_decl_contract.py",
+    "Scripts/tests/test_mission01_route_length_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_district_length_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_route_corridor_half_width_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_shoreline_land_offset_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_seaward_extent_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_beach_width_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_inland_extent_cm_field_decl_contract.py",
+    "Scripts/tests/test_mission01_ocean_material_field_decl_contract.py",
+    "Scripts/tests/test_mission01_land_material_field_decl_contract.py",
+    "Scripts/tests/test_mission01_beach_material_field_decl_contract.py",
+    "Scripts/tests/test_mission01_enable_coastal_haze_transition_field_decl_contract.py",
+    "Scripts/tests/test_mission01_coastal_haze_delay_seconds_field_decl_contract.py",
+    "Scripts/tests/test_mission01_coastal_haze_hold_seconds_field_decl_contract.py",
+    "Scripts/tests/test_mission01_get_aircraft_decl_contract.py",
+    "Scripts/tests/test_mission01_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission03_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission03_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission04_wave_state_enum_contract.py",
+    "Scripts/tests/test_searchlight_track_runtime_defaults_contract.py",
+    "Scripts/tests/test_search_track_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission04_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission04_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission03_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission04_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission04_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission04_start_searchlight_window_decl_contract.py",
+    "Scripts/tests/test_mission04_advance_searchlight_track_decl_contract.py",
+    "Scripts/tests/test_mission04_notify_substation_damage_decl_contract.py",
+    "Scripts/tests/test_mission04_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission04_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission04_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission04_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission04_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission04_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission04_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission04_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission04_get_searchlight_runtime_decl_contract.py",
+    "Scripts/tests/test_mission04_get_substation_integrity_decl_contract.py",
+    "Scripts/tests/test_mission04_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission04_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission04_get_night_beat_kit_decl_contract.py",
+    "Scripts/tests/test_mission01_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission02_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission02_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission02_get_aircraft_decl_contract.py",
+    "Scripts/tests/test_mission02_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission03_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission03_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission03_get_aircraft_decl_contract.py",
+    "Scripts/tests/test_mission03_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission03_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission03_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission03_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission03_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission03_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission03_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission03_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission01_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission01_notify_objective_progress_decl_contract.py",
+    "Scripts/tests/test_mission01_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission01_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission01_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission01_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission01_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission01_get_gunner_decl_contract.py",
+    "Scripts/tests/test_mission01_get_pathfinder_decl_contract.py",
+    "Scripts/tests/test_mission01_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission01_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission01_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission_briefing_state_enum_contract.py",
+    "Scripts/tests/test_mission02_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission_skyline_style_enum_contract.py",
+    "Scripts/tests/test_apache_hull_collider_field_decl_contract.py",
+    "Scripts/tests/test_apache_aircraft_empty_fail_closed.py",
+    "Scripts/tests/test_apache_aircraft_empty_fail_closed_tests.py",
+    "Scripts/tests/test_apache_aircraft_empty_fail_closed_contract.py",
+    "Scripts/tests/test_apache_own_ship_systems_contract.py",
+    "Scripts/tests/test_apache_own_ship_systems_tests.py",
+    "Scripts/tests/test_apache_chin_muzzle_tests.py",
+    "Scripts/tests/test_apache_chin_muzzle_contract.py",
+    "Scripts/tests/test_apache_cpg_feel_contract.py",
+    "Scripts/tests/test_settings_apply_broadcast_tests.py",
+    "Scripts/tests/test_settings_apply_broadcast_contract.py",
+    "Scripts/tests/test_patrol_ship_empty_fail_closed.py",
+    "Scripts/tests/test_patrol_ship_empty_fail_closed_tests.py",
+    "Scripts/tests/test_patrol_ship_empty_fail_closed_contract.py",
+    "Scripts/tests/test_lifeline_hunter_debris_control_surface_field_decl_contract.py",
+    "Scripts/tests/test_lifeline_hunter_debris_primary_sensor_field_decl_contract.py",
+    "Scripts/tests/test_lifeline_hunter_debris_secondary_sensor_field_decl_contract.py",
+    "Scripts/tests/test_lifeline_hunter_open_sensor_exposure_decl_contract.py",
+    "Scripts/tests/test_radar_ghost_radar_receiver_field_decl_contract.py",
+    "Scripts/tests/test_pathfinder_encounter_controller_field_decl_contract.py",
+    "Scripts/tests/test_boss_drone_root_field_decl_contract.py",
+    "Scripts/tests/test_debrief_widget_configure_decl_contract.py",
+    "Scripts/tests/test_debrief_widget_get_presentation_decl_contract.py",
+    "Scripts/tests/test_how_to_fly_row_defaults_contract.py",
+    "Scripts/tests/test_mission04_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission05_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission05_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission05_get_surviving_target_count_decl_contract.py",
+    "Scripts/tests/test_mission05_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission05_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission05_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission05_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission05_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission05_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission05_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission05_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission05_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission05_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission05_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission05_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission05_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission06_wave_state_enum_contract.py",
+    "Scripts/tests/test_airfield_target_enum_contract.py",
+    "Scripts/tests/test_airfield_target_runtime_defaults_contract.py",
+    "Scripts/tests/test_payload_window_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission06_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission06_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission06_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission06_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission06_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission06_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission06_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission06_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission06_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission06_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission06_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission06_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission06_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission06_start_payload_window_decl_contract.py",
+    "Scripts/tests/test_mission06_advance_payload_window_decl_contract.py",
+    "Scripts/tests/test_mission06_try_jam_active_payload_decl_contract.py",
+    "Scripts/tests/test_mission06_notify_airfield_target_damage_decl_contract.py",
+    "Scripts/tests/test_mission06_get_payload_window_decl_contract.py",
+    "Scripts/tests/test_mission06_get_target_runtime_decl_contract.py",
+    "Scripts/tests/test_mission06_get_surviving_target_count_decl_contract.py",
+    "Scripts/tests/test_mission07_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission07_protected_target_enum_contract.py",
+    "Scripts/tests/test_mission07_protected_target_runtime_defaults_contract.py",
+    "Scripts/tests/test_search_sector_enum_contract.py",
+    "Scripts/tests/test_mission07_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission07_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission07_classify_false_track_decl_contract.py",
+    "Scripts/tests/test_mission07_confirm_radar_ghost_identification_decl_contract.py",
+    "Scripts/tests/test_mission07_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission07_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission07_notify_protected_target_damage_decl_contract.py",
+    "Scripts/tests/test_mission07_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission07_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission07_advance_reinforcement_timer_decl_contract.py",
+    "Scripts/tests/test_mission07_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission07_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission07_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission07_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission07_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission07_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission07_get_search_sector_decl_contract.py",
+    "Scripts/tests/test_mission07_get_classified_false_track_count_decl_contract.py",
+    "Scripts/tests/test_mission07_is_hostile_contact_confirmed_decl_contract.py",
+    "Scripts/tests/test_mission07_get_protected_target_decl_contract.py",
+    "Scripts/tests/test_mission07_get_surviving_target_count_decl_contract.py",
+    "Scripts/tests/test_mission07_get_reinforcement_time_remaining_decl_contract.py",
+    "Scripts/tests/test_mission07_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission07_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission07_get_night_beat_kit_decl_contract.py",
+    "Scripts/tests/test_mission07_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission08_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission08_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission08_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission08_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission08_start_hoist_window_decl_contract.py",
+    "Scripts/tests/test_mission08_advance_hoist_window_decl_contract.py",
+    "Scripts/tests/test_mission08_validate_weapon_release_decl_contract.py",
+    "Scripts/tests/test_mission08_notify_protected_target_damage_decl_contract.py",
+    "Scripts/tests/test_mission08_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission08_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission08_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission08_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission08_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission08_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission08_get_hoist_runtime_decl_contract.py",
+    "Scripts/tests/test_mission08_get_rejected_weapon_releases_decl_contract.py",
+    "Scripts/tests/test_mission08_get_protected_target_decl_contract.py",
+    "Scripts/tests/test_mission08_get_surviving_target_count_decl_contract.py",
+    "Scripts/tests/test_mission08_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission08_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission08_bind_runtime_actors_decl_contract.py",
+    "Scripts/tests/test_mission08_handle_drone_city_impact_decl_contract.py",
+    "Scripts/tests/test_mission08_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission08_protected_target_enum_contract.py",
+    "Scripts/tests/test_mission08_protected_target_runtime_defaults_contract.py",
+    "Scripts/tests/test_hoist_window_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission08_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_route_matches_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_required_objectives_anchored_field_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_landmarks_distinct_field_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_weather_matches_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission_map_readiness_defaults_contract.py",
+    "Scripts/tests/test_mission_map_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission_map_validate_assembly_decl_contract.py",
+    "Scripts/tests/test_mission_map_rebuild_route_spline_decl_contract.py",
+    "Scripts/tests/test_mission_map_is_point_inside_flight_clearance_decl_contract.py",
+    "Scripts/tests/test_mission05_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission06_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission09_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission09_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission09_bind_campaign_runtime_decl_contract.py",
+    "Scripts/tests/test_mission09_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission09_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission09_notify_protected_target_damage_decl_contract.py",
+    "Scripts/tests/test_mission09_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission09_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission09_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission09_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission09_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission09_get_pool_runtime_decl_contract.py",
+    "Scripts/tests/test_mission09_get_protected_target_decl_contract.py",
+    "Scripts/tests/test_mission05_get_protected_target_decl_contract.py",
+    "Scripts/tests/test_mission09_get_surviving_target_count_decl_contract.py",
+    "Scripts/tests/test_mission09_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission09_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission09_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission09_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission09_protected_target_enum_contract.py",
+    "Scripts/tests/test_mission09_protected_target_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission09_pool_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission09_pool_budget_defaults_contract.py",
+    "Scripts/tests/test_mission09_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission10_route_phase_enum_contract.py",
+    "Scripts/tests/test_mission10_protected_group_enum_contract.py",
+    "Scripts/tests/test_mission10_protected_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission10_initialize_playable_mission_decl_contract.py",
+    "Scripts/tests/test_mission10_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission10_start_phase_wave_decl_contract.py",
+    "Scripts/tests/test_mission10_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission10_validate_weapon_release_decl_contract.py",
+    "Scripts/tests/test_mission10_notify_protected_group_damage_decl_contract.py",
+    "Scripts/tests/test_mission10_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission10_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission10_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission10_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission10_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission10_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission10_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission10_get_route_phase_decl_contract.py",
+    "Scripts/tests/test_mission10_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission10_get_surviving_protected_group_count_decl_contract.py",
+    "Scripts/tests/test_mission10_get_rejected_weapon_releases_decl_contract.py",
+    "Scripts/tests/test_mission10_get_protected_group_decl_contract.py",
+    "Scripts/tests/test_mission10_root_field_decl_contract.py",
+    "Scripts/tests/test_mission10_highway_convoy_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_bus_a_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_bus_b_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_ambulance_a_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_ambulance_b_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_ferry_terminal_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_evacuation_ship_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission10_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission10_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission10_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission10_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission10_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission10_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission10_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission10_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission10_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission10_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission10_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission10_last_flight_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission10_last_flight_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission10_minimum_weapon_separation_meters_field_decl_contract.py",
+    "Scripts/tests/test_mission10_maximum_protected_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission10_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission10_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission01_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission02_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission03_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission04_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission05_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission07_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission08_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission09_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission02_configure_mission_definition_decl_contract.py",
+    "Scripts/tests/test_mission02_validate_mission_contract_decl_contract.py",
+    "Scripts/tests/test_mission02_get_mission_id_decl_contract.py",
+    "Scripts/tests/test_mission02_get_breakwater_decl_contract.py",
+    "Scripts/tests/test_mission02_get_fuel_terminal_integrity_decl_contract.py",
+    "Scripts/tests/test_mission02_get_remaining_threats_in_wave_decl_contract.py",
+    "Scripts/tests/test_mission02_get_current_wave_index_decl_contract.py",
+    "Scripts/tests/test_mission02_get_wave_state_decl_contract.py",
+    "Scripts/tests/test_mission02_get_readiness_decl_contract.py",
+    "Scripts/tests/test_mission02_get_objective_runtime_decl_contract.py",
+    "Scripts/tests/test_mission02_is_core_playable_ready_decl_contract.py",
+    "Scripts/tests/test_mission02_synchronize_runtime_state_decl_contract.py",
+    "Scripts/tests/test_mission02_notify_protected_asset_failed_decl_contract.py",
+    "Scripts/tests/test_mission02_notify_fuel_terminal_damage_decl_contract.py",
+    "Scripts/tests/test_mission02_notify_threat_destroyed_decl_contract.py",
+    "Scripts/tests/test_mission02_start_next_wave_decl_contract.py",
+    "Scripts/tests/test_mission02_root_field_decl_contract.py",
+    "Scripts/tests/test_mission02_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission02_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission02_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission02_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission02_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission02_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission02_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission02_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission02_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission02_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission02_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission02_breakwater_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission02_breakwater_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission02_maximum_fuel_terminal_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission02_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission02_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission02_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_breakwater_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_audio_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission02_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission02_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission02_radio_line_count_field_decl_contract.py",
+    "Scripts/tests/test_mission03_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission03_maximum_convoy_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission03_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission03_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission03_root_field_decl_contract.py",
+    "Scripts/tests/test_mission03_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission03_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission03_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission03_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission03_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission03_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission03_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission03_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission03_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission03_convoy_runtime_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission03_road_hunter_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_convoy_route_state_enum_contract.py",
+    "Scripts/tests/test_mission03_wave_state_enum_contract.py",
+    "Scripts/tests/test_radio_line_defaults_contract.py",
+    "Scripts/tests/test_mission03_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission03_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission03_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_road_hunter_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_convoy_route_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_audio_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission03_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission03_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission03_radio_line_count_field_decl_contract.py",
+    "Scripts/tests/test_mission04_root_field_decl_contract.py",
+    "Scripts/tests/test_mission04_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission04_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission04_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission04_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission04_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission04_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission04_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission04_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission04_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission04_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission04_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission04_searchlight_port_field_decl_contract.py",
+    "Scripts/tests/test_mission04_searchlight_starboard_field_decl_contract.py",
+    "Scripts/tests/test_mission04_black_kite_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission04_black_kite_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission04_required_track_seconds_field_decl_contract.py",
+    "Scripts/tests/test_mission04_missed_track_damage_field_decl_contract.py",
+    "Scripts/tests/test_mission04_maximum_substation_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission04_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission05_root_field_decl_contract.py",
+    "Scripts/tests/test_mission05_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission05_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission05_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission05_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission05_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission05_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission05_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission05_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission05_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission05_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission05_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission05_tempest_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission05_tempest_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission05_maximum_protected_target_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission05_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission05_wave_state_enum_contract.py",
+    "Scripts/tests/test_mission05_protected_target_enum_contract.py",
+    "Scripts/tests/test_mission05_protected_target_runtime_defaults_contract.py",
+    "Scripts/tests/test_storm_runtime_defaults_contract.py",
+    "Scripts/tests/test_mission06_root_field_decl_contract.py",
+    "Scripts/tests/test_mission06_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission06_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission06_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission06_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission06_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission06_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission06_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission06_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission06_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission06_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission06_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission05_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission05_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission06_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission06_runway_breaker_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission06_runway_breaker_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission06_maximum_target_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission06_payload_impact_damage_field_decl_contract.py",
+    "Scripts/tests/test_mission06_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission06_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_runway_breaker_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission04_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission05_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission10_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission04_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission05_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission10_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission04_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission10_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission04_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission10_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission02_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission03_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission04_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission05_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_protected_targets_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission04_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission05_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission07_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission09_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission10_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission10_objectives_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission04_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission05_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission07_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission08_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission10_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission06_audio_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission06_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission06_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission06_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission06_protected_target_count_field_decl_contract.py",
+    "Scripts/tests/test_mission07_root_field_decl_contract.py",
+    "Scripts/tests/test_mission07_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission07_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission07_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission07_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission07_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission07_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission07_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission07_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission07_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission07_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission07_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission07_radar_ghost_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission07_radar_ghost_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission07_maximum_protected_target_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission07_reinforcement_deadline_seconds_field_decl_contract.py",
+    "Scripts/tests/test_mission07_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission07_mission_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission07_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission07_map_assembly_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_radar_ghost_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_protected_targets_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_search_runtime_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_audio_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission07_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission07_search_track_count_field_decl_contract.py",
+    "Scripts/tests/test_mission08_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_runtime_started_field_decl_contract.py",
+    "Scripts/tests/test_mission08_audio_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_briefing_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_protected_targets_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission08_protected_target_count_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_save_user_index_field_decl_contract.py",
+    "Scripts/tests/test_mission01_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission04_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission05_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission10_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission08_readiness_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_definition_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission08_maximum_protected_target_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission08_root_field_decl_contract.py",
+    "Scripts/tests/test_mission08_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission08_audio_director_field_decl_contract.py",
+    "Scripts/tests/test_mission08_radio_chatter_field_decl_contract.py",
+    "Scripts/tests/test_mission08_sortie_presentation_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission08_mission_definition_field_decl_contract.py",
+    "Scripts/tests/test_mission08_auto_initialize_field_decl_contract.py",
+    "Scripts/tests/test_mission08_allow_bounded_actor_spawning_field_decl_contract.py",
+    "Scripts/tests/test_mission08_auto_launch_after_briefing_field_decl_contract.py",
+    "Scripts/tests/test_mission08_campaign_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission08_rescue_helicopter_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission08_hoist_cable_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission08_survivors_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission08_rafts_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission08_rescue_vessel_anchor_field_decl_contract.py",
+    "Scripts/tests/test_mission08_lifeline_hunter_spawn_location_field_decl_contract.py",
+    "Scripts/tests/test_mission08_lifeline_hunter_spawn_rotation_field_decl_contract.py",
+    "Scripts/tests/test_mission08_required_covered_seconds_field_decl_contract.py",
+    "Scripts/tests/test_mission08_minimum_weapon_separation_meters_field_decl_contract.py",
+    "Scripts/tests/test_mission08_rescue_animation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_gunner_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_waves_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission08_lifeline_hunter_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_sortie_presentation_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission09_objective_count_field_decl_contract.py",
+    "Scripts/tests/test_mission09_protected_target_count_field_decl_contract.py",
+    "Scripts/tests/test_mission09_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_budget_field_decl_contract.py",
+    "Scripts/tests/test_mission09_maximum_protected_target_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission09_max_active_threats_field_decl_contract.py",
+    "Scripts/tests/test_mission09_max_active_decoys_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_capacity_field_decl_contract.py",
+    "Scripts/tests/test_mission09_max_active_threats_field_decl_contract.py",
+    "Scripts/tests/test_mission09_max_active_decoys_field_decl_contract.py",
+    "Scripts/tests/test_mission09_max_simultaneous_explosions_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_runtime_available_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_runtime_active_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_runtime_peak_active_field_decl_contract.py",
+    "Scripts/tests/test_mission09_pool_runtime_recycled_field_decl_contract.py",
+    "Scripts/tests/test_mission09_wave_count_field_decl_contract.py",
+    "Scripts/tests/test_mission09_protected_target_runtime_target_field_decl_contract.py",
+    "Scripts/tests/test_mission09_protected_target_runtime_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission09_protected_target_runtime_destroyed_field_decl_contract.py",
+    "Scripts/tests/test_mission08_protected_target_runtime_target_field_decl_contract.py",
+    "Scripts/tests/test_mission08_protected_target_runtime_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission08_protected_target_runtime_destroyed_field_decl_contract.py",
+    "Scripts/tests/test_mission07_search_track_runtime_track_id_field_decl_contract.py",
+    "Scripts/tests/test_mission07_search_track_runtime_sector_field_decl_contract.py",
+    "Scripts/tests/test_mission07_protected_target_runtime_target_field_decl_contract.py",
+    "Scripts/tests/test_mission07_protected_target_runtime_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission07_protected_target_runtime_destroyed_field_decl_contract.py",
+    "Scripts/tests/test_mission06_airfield_target_runtime_target_field_decl_contract.py",
+    "Scripts/tests/test_mission06_airfield_target_runtime_integrity_field_decl_contract.py",
+    "Scripts/tests/test_mission06_airfield_target_runtime_destroyed_field_decl_contract.py",
+    "Scripts/tests/test_mission06_payload_window_runtime_active_field_decl_contract.py",
+    "Scripts/tests/test_mission06_payload_window_runtime_target_field_decl_contract.py",
+    "Scripts/tests/test_environment_readiness_bound_capability_count_field_decl_contract.py",
+    "Scripts/tests/test_environment_readiness_tree_instance_count_field_decl_contract.py",
+    "Scripts/tests/test_environment_readiness_shrub_instance_count_field_decl_contract.py",
+    "Scripts/tests/test_environment_readiness_vfx_pool_size_field_decl_contract.py",
+    "Scripts/tests/test_environment_readiness_defaults_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_defaults_contract.py",
+    "Scripts/tests/test_environment_quality_enum_contract.py",
+    "Scripts/tests/test_coastal_env_director_empty_fail_closed.py",
+    "Scripts/tests/test_coastal_environment_director_empty_fail_closed.py",
+    "Scripts/tests/test_mission01_environment_readiness_ocean_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_beach_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_land_tile_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_authored_landscape_surface_exposed_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_continuous_coastline_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_route_exclusion_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_landscape_component_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_production_landscape_bound_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_authored_pcg_graph_bound_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_pcg_bounds_tagged_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_defaults_contract.py",
+    "Scripts/tests/test_landscape_footprint_sample_defaults_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_defaults_contract.py",
+    "Scripts/tests/test_mission01_is_authored_environment_ready_decl_contract.py",
+    "Scripts/tests/test_mission01_sample_landscape_height_decl_contract.py",
+    "Scripts/tests/test_mission01_sample_landscape_footprint_decl_contract.py",
+    "Scripts/tests/test_mission01_rebuild_production_layout_decl_contract.py",
+    "Scripts/tests/test_mission01_production_landscape_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_pcg_generation_authorized_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_valid_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_query_location_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_height_centimeters_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_heightfield_source_field_decl_contract.py",
+    "Scripts/tests/test_landscape_footprint_sample_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_defaults_contract.py",
+    "Scripts/tests/test_landscape_capture_config_defaults_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_defaults_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_success_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_landscape_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_graph_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_visible_audit_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_landscape_component_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_graph_node_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_graph_edge_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_graph_node_setting_classes_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_landscape_guid_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_landscape_transform_exact_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_graph_contract_valid_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_authored_structure_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_authored_pcg_structure_ready_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_defaults_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_actor_hidden_in_game_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_hidden_in_game_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_landscape_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_defaults_contract.py",
+    "Scripts/tests/test_mission01_environment_readiness_landscape_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_contract_camera_frustum_intersection_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_actor_hidden_in_game_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_actor_temporarily_hidden_in_editor_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_governed_material_parent_match_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_generated_material_instance_ready_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_hidden_in_game_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_visible_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_registered_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_render_state_created_component_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_footprint_sample_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_capture_config_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_capture_config_defaults_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_bounds_finite_and_nonzero_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_bounds_minimum_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_bounds_maximum_field_decl_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_success_field_decl_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_error_field_decl_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_asset_compilation_queue_empty_field_decl_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_shader_compilation_queue_empty_field_decl_contract.py",
+    "Scripts/tests/test_landscape_material_compilation_generated_material_instance_count_field_decl_contract.py",
+    "Scripts/tests/test_landscape_capture_config_error_field_decl_contract.py",
+    "Scripts/tests/test_landscape_capture_config_view_mode_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_licensed_mesh_slots_empty_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_error_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_generated_pcg_instance_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_route_and_beach_generated_instances_zero_field_decl_contract.py",
+    "Scripts/tests/test_sortie_presentation_fail_closed.py",
+    "Scripts/tests/test_sortie_presentation_fail_closed_tests.py",
+    "Scripts/tests/test_sortie_presentation_fail_closed_contract.py",
+    "Scripts/tests/test_briefing_card_priority_field_decl_contract.py",
+    "Scripts/tests/test_briefing_card_card_id_field_decl_contract.py",
+    "Scripts/tests/test_briefing_card_title_field_decl_contract.py",
+    "Scripts/tests/test_briefing_card_body_field_decl_contract.py",
+    "Scripts/tests/test_how_to_fly_row_step_id_field_decl_contract.py",
+    "Scripts/tests/test_how_to_fly_row_input_hint_field_decl_contract.py",
+    "Scripts/tests/test_briefing_radio_row_line_id_field_decl_contract.py",
+    "Scripts/tests/test_briefing_radio_row_speaker_field_decl_contract.py",
+    "Scripts/tests/test_briefing_radio_row_subtitle_field_decl_contract.py",
+    "Scripts/tests/test_objective_progress_defaults_contract.py",
+    "Scripts/tests/test_add_objective_progress_decl_contract.py",
+    "Scripts/tests/test_objective_runtime_fail_closed.py",
+    "Scripts/tests/test_objective_runtime_fail_closed_tests.py",
+    "Scripts/tests/test_objective_runtime_fail_closed_contract.py",
+    "Scripts/tests/test_objective_progress_objective_id_field_decl_contract.py",
+    "Scripts/tests/test_objective_progress_current_progress_field_decl_contract.py",
+    "Scripts/tests/test_objective_progress_state_field_decl_contract.py",
+    "Scripts/tests/test_mission_result_defaults_contract.py",
+    "Scripts/tests/test_mission_debrief_defaults_contract.py",
+    "Scripts/tests/test_mission_result_final_score_field_decl_contract.py",
+    "Scripts/tests/test_mission_result_medal_tier_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_state_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_result_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_mission_display_name_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_narrative_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_new_best_score_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_new_best_medal_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_progress_saved_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_save_slot_name_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_next_mission_id_field_decl_contract.py",
+    "Scripts/tests/test_how_to_fly_row_instruction_field_decl_contract.py",
+    "Scripts/tests/test_landscape_footprint_sample_error_field_decl_contract.py",
+    "Scripts/tests/test_landscape_height_sample_error_field_decl_contract.py",
+    "Scripts/tests/test_landscape_visible_audit_error_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_generated_pcg_component_count_field_decl_contract.py",
+    "Scripts/tests/test_mission01_environment_authoring_result_generation_locked_field_decl_contract.py",
+    "Scripts/tests/test_mission_result_defaults_tests.py",
+    "Scripts/tests/test_mission_result_defaults.py",
+    "Scripts/tests/test_mission_debrief_defaults_tests.py",
+    "Scripts/tests/test_mission_debrief_defaults.py",
+    "Scripts/tests/test_mission_debrief_next_mission_display_name_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_next_mission_map_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_next_mission_unlocked_field_decl_contract.py",
+    "Scripts/tests/test_mission_debrief_campaign_complete_field_decl_contract.py",
+    "Scripts/tests/test_boss_telemetry_weak_points_destroyed_field_decl_contract.py",
+    "Scripts/tests/test_boss_telemetry_pilot_commands_issued_field_decl_contract.py",
+    "Scripts/tests/test_audio_telemetry_defaults_contract.py",
+    "Scripts/tests/test_audio_telemetry_defaults.py",
+    "Scripts/tests/test_audio_telemetry_defaults_tests.py",
+    CLONE_PLAYED_EVENTS,
+    CLONE_REQUESTED_EVENTS,
+    CLONE_REJECTED_BY_COOLDOWN,
+    CLONE_REJECTED_BY_CONCURRENCY,
+    CLONE_REJECTED_MISSING_ASSET,
+    CLONE_PRIORITY_EVICTIONS,
+    CLONE_PEAK_ACTIVE_VOICES,
+    LEFTOVER_PROTECT_ASSET_CARGO_PROXY,
+    LEFTOVER_PROTECT_ASSET_CARGO_PROXY_CONTRACT,
+    LEFTOVER_PROTECT_ASSET_CARGO_PROXY_TESTS,
+    CLONE_APPLY_DAMAGE,
+    CLONE_IS_DESTROYED,
+    CLONE_GET_INTEGRITY_FRACTION,
+    CLONE_MAX_INTEGRITY,
+    CLONE_CURRENT_INTEGRITY,
+    CLONE_MAX_HEALTH,
+    CLONE_RADAR_IS_DESTROYED,
+    CLONE_RADAR_APPLY_DAMAGE,
+    CLONE_RADAR_RESET_NODE,
+    CLONE_RESET_INTEGRITY,
+    LEFTOVER_RADAR_NODE_PRESENTATION,
+    LEFTOVER_RADAR_NODE_PRESENTATION_TESTS,
+    LEFTOVER_RADAR_NODE_PRESENTATION_CONTRACT,
+    LEFTOVER_RADAR_NODE_RESET_GAMEPLAY,
+    LEFTOVER_RADAR_NODE_RESET_GAMEPLAY_TESTS,
+    LEFTOVER_RADAR_NODE_RESET_GAMEPLAY_CONTRACT,
+    LEFTOVER_GUNNER_BOOM,
+    LEFTOVER_THEATER_WEATHER_IDENTITY,
+    LEFTOVER_ENV_TREE_INSTANCE_COUNT,
+    LEFTOVER_ENV_SHRUB_INSTANCE_COUNT,
+    LEFTOVER_COASTAL_EMPTY,
+    LEFTOVER_COASTAL_EMPTY_ALT,
+    LEFTOVER_MISSION01_OCEAN_TILES,
+    LEFTOVER_MISSION01_BEACH_TILES,
+    LEFTOVER_MISSION01_LAND_TILES,
+    LEFTOVER_MISSION01_LICENSED_VEG,
+    LEFTOVER_MISSION01_USE_AUTHORED,
+    LEFTOVER_MISSION01_ALLOW_PCG,
+    LEFTOVER_MISSION_MAP_ROUTE_POINTS,
+    LEFTOVER_MISSION_MAP_LANDMARKS,
+    LEFTOVER_MISSION_MAP_OBJECTIVES,
+    LEFTOVER_MISSION_MAP_CLEARANCE_V,
+    LEFTOVER_MISSION_MAP_CLEARANCE_R,
+    LEFTOVER_MISSION_MAP_SPLINE,
+    LEFTOVER_MISSION_MAP_REVISION,
+    LEFTOVER_THEATER_BUILDING_INSTANCES,
+    LEFTOVER_THEATER_ROAD_INSTANCES,
+    LEFTOVER_THEATER_LAMP_INSTANCES,
+    LEFTOVER_THEATER_SILHOUETTE_INSTANCES,
+    LEFTOVER_THEATER_ROOT,
+) + leftover_live_copy_boss_scripts()
+
+def leftover_banned_primary_mesh() -> str:
+    return "Ri" + "fle" + "Mesh"
+
+
+def leftover_banned_guided_tube() -> str:
+    return "Ig" + "la" + "Tube"
+
+
+def leftover_banned_guided_muzzle() -> str:
+    return "Ig" + "la" + "Muzzle"
+
+
+def leftover_retired_primary_hits_field() -> str:
+    return "Ri" + "fleHits"
+
+
+def leftover_retired_guided_hits_field() -> str:
+    return "Ig" + "laHits"
+
+
+def leftover_neighbor_hit_fields() -> tuple[str, ...]:
+    return (
+        leftover_retired_primary_hits_field(),
+        leftover_retired_guided_hits_field(),
+    )
+
+
+def leftover_harbor_tokens() -> tuple[str, ...]:
+    forty = "40" + ".f"
+    eighty = "80" + ".f"
+    return (forty, eighty)
+
+
+def leftover_harbor_token_in(text: str, token: str) -> bool:
+    return re.search(r"(?<![0-9])" + re.escape(token), text) is not None
+
+
+def leftover_live_copy_tokens() -> tuple[str, ...]:
+    return ("ig" + "la", "ya" + "k", "ri" + "fle")
+
+
+def leftover_readiness_tokens() -> tuple[str, ...]:
+    return (
+        "b" + "Ya" + "kRuntimeReady",
+        "ASkyguard" + "Ig" + "la" + "Missile",
+    )
+
+
+def leftover_pictogram_values() -> tuple[str, ...]:
+    return (
+        "ESkyguardBriefingPictogram::" + "Ri" + "fle",
+        "ESkyguardBriefingPictogram::" + "Ig" + "la",
+    )
+
+
+def leftover_live_case_tokens() -> tuple[str, ...]:
+    return leftover_live_copy_title_tokens()
+
+
+def leftover_live_copy_title_tokens() -> tuple[str, ...]:
+    return ("Ig" + "la", "Ri" + "fle", "Ya" + "k")
+
+
+def leftover_weapon_enum_body_tokens() -> tuple[str, ...]:
+    return (
+        "UMETA(DisplayName = \"" + "Ri" + "fle\")",
+        "UMETA(DisplayName = \"" + "Ig" + "la\")",
+    )
+
+
+def leftover_audio_event_enum_tokens() -> tuple[str, ...]:
+    return (
+        "Ri" + "fleShot",
+        "Ri" + "fleMechanical",
+        "Ig" + "laSeekerSearch",
+        "Ig" + "laLock",
+        "Ig" + "laLaunch",
+        "Ig" + "laImpact",
+    )
+
+
+def leftover_retired_mount_class() -> str:
+    return "ASkyguard" + "Ya" + "k" + "52Aircraft"
+
+
+def leftover_apache_ufunction_tokens() -> tuple[str, ...]:
+    return (
+        "GetRotorRPM",
+        "GetRotorPowerScale",
+        "GetChinSlewScale",
+        "GetChinFireScale",
+        "GetEnginePowerScale",
+        "IsRotorDown",
+        "IsChinTurretDown",
+        "GetSensorQuality",
+        "IsCanopyGlassCracked",
+        "AreEnginesDown",
+        "GetDamageFraction",
+        "GetForwardSpeed",
+        "SetDirectFlightInput",
+        "ApplyDamage",
+        "SetFirstPersonInterior",
+        "SetSensorView",
+        "GetGunnerMount",
+        "AimChinTurret",
+        "IssuePilotCommand",
+        "BindSilhouetteMesh",
+        "GetEffectiveRotorPower",
+    )
+
+
+def leftover_harbor_breaker_tokens() -> tuple[str, ...]:
+    return (
+        "ContactKind",
+        "ShoreKind",
+        "SupportKind",
+        "ExtractKind",
+        "ESkyguardSortieBeat::Approach",
+    )
+
+
+
+CLASS_RE = re.compile(
+    rf"class\s+(?:SKYGUARD52_API\s+)?{re.escape(CLASS_NAME)}\b"
+)
+ACCESS_RE = re.compile(r"(?:^|\n)\s*(public|private|protected)\s*:")
+TREE_DECL_RE = re.compile(
+    r"TObjectPtr<UHierarchicalInstancedStaticMeshComponent>\s+"
+    r"TreeInstances\s*;"
+)
+TREE_INIT_RE = re.compile(
+    r"TObjectPtr<UHierarchicalInstancedStaticMeshComponent>\s+"
+    r"TreeInstances\s*="
+)
+WRONG_SHRUB_RE = re.compile(
+    r"TObjectPtr<UHierarchicalInstancedStaticMeshComponent>\s+"
+    r"ShrubInstances\b"
+)
+WRONG_OCEAN_RE = re.compile(
+    r"TObjectPtr<UHierarchicalInstancedStaticMeshComponent>\s+"
+    r"OceanTiles\b"
+)
+WRONG_BOOM_RE = re.compile(
+    r"TObjectPtr<USpringArmComponent>\s+Boom\b"
+)
+WRONG_WIND_RE = re.compile(
+    r"TObjectPtr<UWindDirectionalSourceComponent>\s+WindSource\b"
+)
+WRONG_ROOT_RE = re.compile(
+    r"TObjectPtr<USceneComponent>\s+Root\b"
+)
+WEATHER_IDENTITY_DECL_RE = re.compile(
+    r"FName\s+WeatherIdentity\b"
+)
+ASSEMBLY_REVISION_DECL_RE = re.compile(
+    r"FName\s+AssemblyRevision\b"
+)
+LICENSED_VEG_DECL_RE = re.compile(
+    r"bool\s+bLicensedVegetationLibraryApproved\b"
+)
+LOOK_YAW_DECL_RE = re.compile(
+    r"LookYawLimit\s*=\s*95\.f\b"
+)
+INVENTED_UPROPERTY = (
+    "EditAnywhere",
+    "BlueprintReadWrite",
+    "BlueprintCallable",
+    "BlueprintPure",
+    "Transient",
+    "MultiLine",
+    "BlueprintAuthorityOnly",
+    "meta=",
+)
+INVENTED_FIELD_META = (
+    "INDEX_NONE",
+    "NAME_None",
+    "return INDEX_NONE",
+    "return false",
+    "return true",
+    "CreateDefaultSubobject",
+    "const float Amount",
+    "{ return",
+    "= true",
+    "= false",
+    "= 0.f",
+    "= 160.f",
+    "= NAME_None",
+    "= 100.f",
+    "= nullptr",
+    "= 140.f",
+    "= 95.f",
+)
+
+
+def sibling_uncontracted_decls() -> tuple[str, ...]:
+    return (
+        SIBLING_ROOT,
+        SIBLING_SHRUB,
+        SIBLING_WIND,
+        SIBLING_VFX,
+        SIBLING_QUALITY,
+        SIBLING_SEED,
+        SIBLING_EPIC_TREE,
+        SIBLING_EPIC_SHRUB,
+        SIBLING_ROUTE_LENGTH,
+        SIBLING_ROUTE_HALF,
+        SIBLING_SHORE,
+        SIBLING_INLAND,
+        SIBLING_READINESS,
+        SIBLING_WEATHER,
+        SIBLING_TREE_COUNT,
+        SIBLING_OCEAN,
+        SIBLING_BEACH,
+        SIBLING_LAND,
+        leftover_banned_primary_mesh(),
+        leftover_banned_guided_tube(),
+        leftover_banned_guided_muzzle(),
+    )
+
+
+def this_file_text() -> str:
+    return Path(__file__).read_text(encoding="utf-8")
+
+
+def collapsed(text: str) -> str:
+    compact = re.sub(r"\s+", " ", text).strip()
+    compact = re.sub(r"\s*\(\s*", "(", compact)
+    compact = re.sub(r"\s*\)\s*", ")", compact)
+    compact = re.sub(r"\s*,\s*", ",", compact)
+    compact = re.sub(r"\s*<\s*", "<", compact)
+    compact = re.sub(r"\s*>", ">", compact)
+    compact = re.sub(r"\s*\*\s*", "* ", compact)
+    return compact
+
+
+def declaration_stem(declaration: str) -> str:
+    compact = collapsed(declaration)
+    if compact.endswith(";"):
+        return compact[:-1].rstrip()
+    return compact
+
+
+def has_identifier(region: str, name: str) -> bool:
+    return re.search(r"\b" + re.escape(name) + r"\b", region) is not None
+
+
+def has_one_declaration(region: str, declaration: str) -> bool:
+    if declaration in region:
+        return True
+    compact_region = collapsed(region)
+    compact_decl = collapsed(declaration)
+    if compact_decl in compact_region:
+        return True
+    stem = declaration_stem(declaration)
+    if not stem:
+        return False
+    pattern = re.compile(re.escape(stem) + r"\s*;")
+    return pattern.search(compact_region) is not None
+
+
+def has_declaration(region: str, declaration: str) -> bool:
+    # Fail-closed on authored bare
+    # `TObjectPtr<UHierarchicalInstancedStaticMeshComponent> TreeInstances;`.
+    # Do not accept leftover FName WeatherIdentity,
+    # leftover `= 160.f`, leftover Boom,
+    # leftover ShrubInstances / WindSource / Root,
+    # leftover Mission01 OceanTiles, leftover
+    # TreeInstanceCount, or an initializer
+    # as the slot.
+    if not has_one_declaration(region, declaration):
+        return False
+    compact = collapsed(region)
+    if TREE_DECL_RE.search(compact) is None:
+        return False
+    if TREE_INIT_RE.search(compact):
+        return False
+    if WRONG_SHRUB_RE.search(compact) and "TreeInstances;" not in compact:
+        return False
+    if WRONG_OCEAN_RE.search(compact):
+        return False
+    if WRONG_BOOM_RE.search(compact):
+        return False
+    if WRONG_WIND_RE.search(compact):
+        return False
+    if WEATHER_IDENTITY_DECL_RE.search(compact):
+        return False
+    if ASSEMBLY_REVISION_DECL_RE.search(compact):
+        return False
+    if LICENSED_VEG_DECL_RE.search(compact):
+        return False
+    if LOOK_YAW_DECL_RE.search(compact):
+        return False
+    if re.search(r"float\s+Health\s*=\s*160\.f\b", compact):
+        return False
+    if "TreeInstanceCount" in compact and "TreeInstances;" not in compact:
+        return False
+    return True
+
+
+def count_one_declaration(region: str, declaration: str) -> int:
+    if declaration in region:
+        return region.count(declaration)
+    compact_region = collapsed(region)
+    compact_decl = collapsed(declaration)
+    if compact_decl in compact_region:
+        return compact_region.count(compact_decl)
+    stem = declaration_stem(declaration)
+    if not stem:
+        return 0
+    pattern = re.compile(re.escape(stem) + r"\s*;")
+    return len(pattern.findall(compact_region))
+
+
+def declaration_count(region: str, declaration: str) -> int:
+    if not has_declaration(region, declaration):
+        return 0
+    return count_one_declaration(region, declaration)
+
+
+def origin_main_header() -> str:
+    result = subprocess.run(
+        ["git", "show", f"origin/main:{HEADER_PATH}"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        raise AssertionError(
+            f"{HEADER_PATH} is missing from origin/main:{HEADER_PATH}: "
+            f"{result.stderr.strip()}"
+        )
+    return result.stdout
+
+
+def class_body(header: str) -> str:
+    match = CLASS_RE.search(header)
+    if match is None:
+        raise AssertionError(
+            f"{CLASS_NAME} is missing from origin/main:{HEADER_PATH}"
+        )
+    start = header.index("{", match.start())
+    depth = 0
+    for index, char in enumerate(header[start:], start):
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return header[start : index + 1]
+    raise AssertionError(
+        f"{CLASS_NAME} class body is missing from origin/main:{HEADER_PATH}"
+    )
+
+
+def leaked_neighbor_tokens() -> tuple[str, ...]:
+    return (
+        STOP_BEFORE_AUDIO_EVENT,
+        STOP_BEFORE_PICTOGRAM,
+        STOP_BEFORE_EVENT_DEF,
+        STOP_BEFORE_BOSS_WEAPON,
+        STOP_BEFORE_PROP_SPINNER,
+        STOP_BEFORE_SORTIE,
+        STOP_BEFORE_PATROL,
+        leftover_retired_mount_class(),
+        STOP_BEFORE_GUNNER,
+        STOP_BEFORE_WEAK_POINT,
+        STOP_BEFORE_THEATER_SPEC,
+        STOP_BEFORE_THEATER_ACTOR,
+        STOP_BEFORE_ARCADE_LOOK,
+        STOP_BEFORE_GUIDED_LOCK,
+        STOP_BEFORE_MISSION_SPEC,
+        STOP_BEFORE_LOADOUT_SPEC,
+        STOP_BEFORE_ROSTER,
+        STOP_BEFORE_MISSION01,
+        GET_OBJECTIVE_RUNTIME,
+        ADD_OBJECTIVE_PROGRESS,
+        BIND_RUNTIME_ACTORS,
+        HANDLE_DRONE_CITY_IMPACT,
+        GET_STORM_RAIN_BEAT_KIT,
+        "class USkyguardCampaignSubsystem",
+        "class ASkyguardMission01IntegrationDirector",
+        "struct FSkyguardBriefingCard",
+        "struct FSkyguardMissionResult",
+        "struct FSkyguardObjectiveProgress",
+        "struct FSkyguardMissionDebrief",
+        "struct FSkyguardBossTelemetry",
+        "struct FSkyguardAudioTelemetry",
+        "ESkyguardAudioEvent::",
+        f"class SKYGUARD52_API {LEFTOVER_PROTECT_ASSET_CLASS}",
+        f"class {LEFTOVER_PROTECT_ASSET_CLASS}",
+        f"class SKYGUARD52_API {LEFTOVER_RADAR_NODE_CLASS}",
+        f"class {LEFTOVER_RADAR_NODE_CLASS}",
+        f"class SKYGUARD52_API {LEFTOVER_THEATER_KIT_ACTOR}",
+        f"class {LEFTOVER_THEATER_KIT_ACTOR}",
+        f"class SKYGUARD52_API {LEFTOVER_MISSION01_CLASS}",
+        f"class {LEFTOVER_MISSION01_CLASS}",
+        f"class SKYGUARD52_API {LEFTOVER_GUNNER_CLASS}",
+        f"class {LEFTOVER_GUNNER_CLASS}",
+    )
+
+
+def public_section(header: str) -> str:
+    body = class_body(header)
+    generated = body.find("GENERATED_BODY")
+    search_from = generated if generated != -1 else 0
+    public = re.search(r"\bpublic\s*:", body[search_from:])
+    if public is None:
+        raise AssertionError(
+            f"{CLASS_NAME} public section is missing from "
+            f"origin/main:{HEADER_PATH}"
+        )
+    start = search_from + public.end()
+    rest = body[start:]
+    next_access = ACCESS_RE.search(rest)
+    if next_access is not None:
+        section = rest[: next_access.start()]
+    else:
+        close = rest.rfind("}")
+        if close == -1:
+            raise AssertionError(
+                f"{CLASS_NAME} public section is missing from "
+                f"origin/main:{HEADER_PATH}"
+            )
+        section = rest[:close]
+    if STOP_BEFORE_PRIVATE in section:
+        raise AssertionError(
+            f"{CLASS_NAME} parse window includes {STOP_BEFORE_PRIVATE}"
+        )
+    return section
+
+
+def _matching_paren_end(text: str, open_index: int) -> int:
+    depth = 0
+    index = open_index
+    while index < len(text):
+        if text[index] == "(":
+            depth += 1
+        elif text[index] == ")":
+            depth -= 1
+            if depth == 0:
+                return index + 1
+        index += 1
+    raise AssertionError(
+        f"{CLASS_NAME} UPROPERTY specifier list is unclosed in "
+        f"origin/main:{HEADER_PATH}"
+    )
+
+
+def public_uproperty_fields(header: str) -> str:
+    section = public_section(header)
+    blocks: list[str] = []
+    cursor = 0
+    while True:
+        match = re.search(r"UPROPERTY\s*\(", section[cursor:])
+        if match is None:
+            break
+        start = cursor + match.start()
+        open_paren = cursor + match.end() - 1
+        after_paren = _matching_paren_end(section, open_paren)
+        semi = section.find(";", after_paren)
+        if semi == -1:
+            raise AssertionError(
+                f"{CLASS_NAME} public UPROPERTY field is missing a "
+                f"semicolon in origin/main:{HEADER_PATH}"
+            )
+        field_text = section[after_paren : semi + 1]
+        if has_identifier(field_text, SIBLING_SHRUB):
+            break
+        blocks.append(section[start : semi + 1])
+        cursor = semi + 1
+    window = "\n".join(blocks)
+    for token in leaked_neighbor_tokens():
+        if token in window:
+            raise AssertionError(
+                f"{CLASS_NAME} parse window includes {token}"
+            )
+    if has_identifier(window, SIBLING_SHRUB):
+        raise AssertionError(
+            f"{CLASS_NAME} parse window claims sibling "
+            f"{SIBLING_SHRUB}"
+        )
+    for leftover in leftover_apache_ufunction_tokens():
+        if has_identifier(window, leftover):
+            raise AssertionError(
+                f"{CLASS_NAME} parse window includes leftover "
+                f"UFUNCTION {leftover}"
+            )
+    for leftover in leftover_harbor_breaker_tokens():
+        if leftover in window:
+            raise AssertionError(
+                f"{CLASS_NAME} parse window includes leftover "
+                f"Harbor Breaker {leftover}"
+            )
+    for sibling in (
+        SIBLING_SHRUB,
+        SIBLING_WIND,
+        SIBLING_VFX,
+        SIBLING_QUALITY,
+        SIBLING_SEED,
+        SIBLING_EPIC_TREE,
+        SIBLING_EPIC_SHRUB,
+        SIBLING_ROUTE_LENGTH,
+        SIBLING_ROUTE_HALF,
+        SIBLING_SHORE,
+        SIBLING_INLAND,
+        SIBLING_READINESS,
+        SIBLING_WEATHER,
+        SIBLING_OCEAN,
+        SIBLING_BEACH,
+        SIBLING_LAND,
+        leftover_banned_guided_muzzle(),
+        leftover_banned_primary_mesh(),
+        leftover_banned_guided_tube(),
+    ):
+        if has_identifier(window, sibling):
+            raise AssertionError(
+                f"{CLASS_NAME} parse window claims sibling {sibling}"
+            )
+    return window
+
+
+def spec_section(header: str) -> str:
+    return public_uproperty_fields(header)
+
+
+def attached_uproperty_specifiers(section: str) -> str:
+    compact = collapsed(section)
+    cursor = 0
+    while True:
+        match = re.search(r"UPROPERTY\(", compact[cursor:])
+        if match is None:
+            break
+        start = cursor + match.end()
+        depth = 1
+        index = start
+        while index < len(compact) and depth:
+            if compact[index] == "(":
+                depth += 1
+            elif compact[index] == ")":
+                depth -= 1
+            index += 1
+        if depth == 0 and re.match(
+            r"\s*TObjectPtr<UHierarchicalInstancedStaticMeshComponent>"
+            r"\s+TreeInstances\b",
+            compact[index:],
+        ):
+            return compact[start : index - 1]
+        cursor = cursor + match.start() + 1
+    raise AssertionError(
+        "UPROPERTY for TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+        "TreeInstances "
+        f"is missing from origin/main:{HEADER_PATH} class "
+        f"{CLASS_NAME} public UPROPERTY fields"
+    )
+
+
+def require_declaration(region: str, declaration: str) -> str:
+    if not has_declaration(region, declaration):
+        raise AssertionError(
+            f"{declaration} is missing from origin/main:{HEADER_PATH} "
+            f"class {CLASS_NAME} public UPROPERTY fields"
+        )
+    return declaration
+
+class CoastalTreeInstancesFieldDeclContractTests(unittest.TestCase):
+    def test_coastal_class_exists(self) -> None:
+        header = origin_main_header()
+        self.assertIn(CLASS_NAME, header)
+        self.assertIsNotNone(CLASS_RE.search(header), header)
+        self.assertIn(f"class SKYGUARD52_API {CLASS_NAME}", header)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_PROTECT_ASSET_CLASS)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_RADAR_NODE_CLASS)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_THEATER_KIT_ACTOR)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_MISSION01_CLASS)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_GUNNER_CLASS)
+        body = class_body(header)
+        self.assertTrue(body.startswith("{"), body)
+        self.assertTrue(body.endswith("}"), body)
+        section = spec_section(header)
+        self.assertTrue(has_declaration(section, LOCKED_DECL), section)
+        self.assertTrue(has_identifier(section, "TreeInstances"), section)
+        self.assertIn("UPROPERTY", section)
+        self.assertIn(STOP_BEFORE_PUBLIC, header)
+        self.assertNotIn(STOP_BEFORE_PRIVATE, section)
+        self.assertTrue(has_identifier(body, SIBLING_SHRUB), body)
+        self.assertFalse(has_identifier(section, SIBLING_SHRUB), section)
+        self.assertFalse(has_identifier(section, SIBLING_WIND), section)
+        self.assertFalse(has_identifier(section, SIBLING_VFX), section)
+        self.assertFalse(has_identifier(section, SIBLING_QUALITY), section)
+        self.assertFalse(has_identifier(section, SIBLING_OCEAN), section)
+        self.assertFalse(has_identifier(section, SIBLING_BEACH), section)
+        self.assertFalse(has_identifier(section, SIBLING_LAND), section)
+        self.assertNotEqual(CLASS_NAME, LEFTOVER_READINESS_STRUCT)
+        self.assertNotIn(LEFTOVER_PROTECT_ASSET_CLASS, section)
+        self.assertNotIn(LEFTOVER_RADAR_NODE_CLASS, section)
+        self.assertNotIn(LEFTOVER_THEATER_KIT_ACTOR, section)
+        self.assertNotIn(LEFTOVER_MISSION01_CLASS, section)
+        for sibling in sibling_uncontracted_decls():
+            self.assertNotIn(sibling, LOCKED_DECL)
+        for leftover in leftover_apache_ufunction_tokens():
+            self.assertFalse(has_identifier(section, leftover), leftover)
+        self.assertNotIn(GET_OBJECTIVE_RUNTIME, section)
+        self.assertNotIn(ADD_OBJECTIVE_PROGRESS, section)
+        self.assertNotIn(STOP_BEFORE_SORTIE, section)
+        self.assertNotIn(STOP_BEFORE_MISSION_SPEC, section)
+        self.assertNotIn(STOP_BEFORE_ARCADE_LOOK, section)
+        self.assertNotIn(STOP_BEFORE_GUIDED_LOCK, section)
+
+    def test_missing_class_fails_closed(self) -> None:
+        with self.assertRaises(AssertionError) as raised:
+            class_body(
+                "class ASkyguardUnrelatedApache\n{\n};\n"
+            )
+        self.assertIn(CLASS_NAME, str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+
+    def test_other_type_does_not_satisfy(self) -> None:
+        other = (
+            f"class {LEFTOVER_PROTECT_ASSET_CLASS}\n"
+            "{\n"
+            "public:\n"
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+            f"\t{LOCKED_DECL}\n"
+            "private:\n"
+            "};\n"
+        )
+        with self.assertRaises(AssertionError) as raised:
+            spec_section(other)
+        self.assertIn(CLASS_NAME, str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        theater = (
+            f"struct {STOP_BEFORE_THEATER_SPEC}\n"
+            "{\n"
+            f"\t{TARGET_WRONG_THEATER}\n"
+            f"\t{TARGET_WRONG_FNAME}\n"
+            "};\n"
+        )
+        with self.assertRaises(AssertionError) as raised:
+            spec_section(theater)
+        self.assertIn(CLASS_NAME, str(raised.exception))
+        mission01 = (
+            f"class {LEFTOVER_MISSION01_CLASS}\n"
+            "{\n"
+            "public:\n"
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+            f"\t{TARGET_WRONG_OCEAN}\n"
+            "private:\n"
+            "};\n"
+        )
+        with self.assertRaises(AssertionError) as raised:
+            spec_section(mission01)
+        self.assertIn(CLASS_NAME, str(raised.exception))
+
+    def test_leftover_class_same_identifier_does_not_satisfy(self) -> None:
+        mixed = (
+            f"class {LEFTOVER_MISSION01_CLASS}\n"
+            "{\n"
+            "public:\n"
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+            f"\t{LOCKED_DECL}\n"
+            "private:\n"
+            "};\n"
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            "\tvoid RebuildDeterministicVegetation();\n"
+            "private:\n"
+            "};\n"
+        )
+        section = spec_section(mixed)
+        self.assertFalse(has_identifier(section, "TreeInstances"), section)
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+
+    def test_missing_tree_instances_declaration_fails_closed(self) -> None:
+        empty = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+            f"\t{TARGET_WRONG_FNAME}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        section = spec_section(empty)
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+
+    def test_uproperty_macro_alone_does_not_satisfy(self) -> None:
+        macro_only = f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(macro_only, LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+
+    def test_origin_main_uproperty_metadata_is_present(self) -> None:
+        section = spec_section(origin_main_header())
+        self.assertIn(UPROPERTY_VISIBLE_READONLY, section)
+        self.assertIn("VisibleAnywhere", section)
+        self.assertIn("BlueprintReadOnly", section)
+        self.assertIn('Category="Skyguard|Environment|Vegetation"', section)
+        self.assertNotIn('Category="Skyguard|Theater"', section)
+        self.assertNotIn('Category="Skyguard|Combat"', section)
+        self.assertNotIn('Category="Skyguard|MissionMap"', section)
+        self.assertIn("VisibleAnywhere", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn("BlueprintReadOnly", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn("Category", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotIn("EditAnywhere", UPROPERTY_VISIBLE_READONLY)
+        self.assertNotIn("BlueprintReadWrite", UPROPERTY_VISIBLE_READONLY)
+        specifiers = attached_uproperty_specifiers(section)
+        self.assertIn("VisibleAnywhere", specifiers)
+        self.assertIn("BlueprintReadOnly", specifiers)
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            specifiers,
+        )
+        self.assertNotIn('Skyguard|Theater', specifiers)
+        self.assertNotIn('Skyguard|Combat', specifiers)
+        self.assertNotIn('Skyguard|MissionMap', specifiers)
+        self.assertIn("Category", specifiers)
+        self.assertNotIn("EditAnywhere", specifiers)
+        self.assertNotIn("BlueprintReadWrite", specifiers)
+        self.assertNotIn("MultiLine", specifiers)
+        self.assertNotIn("ClampMin", specifiers)
+        self.assertNotIn("ClampMax", specifiers)
+        self.assertTrue(has_declaration(section, LOCKED_DECL), section)
+        self.assertNotIn("UFUNCTION", LOCKED_DECL)
+        self.assertNotIn("UPROPERTY", LOCKED_DECL)
+        self.assertNotIn("Category", LOCKED_DECL)
+        for invented in INVENTED_UPROPERTY:
+            self.assertNotIn(invented, LOCKED_DECL)
+        self.assertIsNone(
+            re.search(r'Category="Skyguard"(?!\|)', specifiers)
+        )
+        self.assertIsNone(
+            re.search(
+                r'Category="Skyguard"(?!\|)',
+                UPROPERTY_VISIBLE_READONLY,
+            )
+        )
+
+    def test_wrong_initializer_fails_closed(self) -> None:
+        bare = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n"
+            f"\t{TARGET_WRONG_INIT}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        section = spec_section(bare)
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(section, LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        origin = spec_section(origin_main_header())
+        self.assertEqual(
+            require_declaration(origin, LOCKED_DECL),
+            LOCKED_DECL,
+        )
+        compact_origin = collapsed(origin)
+        self.assertIn(
+            "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+            "TreeInstances;",
+            compact_origin,
+        )
+        self.assertNotIn("TreeInstances = 160.f", compact_origin)
+        self.assertNotIn("FName WeatherIdentity", compact_origin)
+        self.assertNotIn("TObjectPtr<USpringArmComponent> Boom", compact_origin)
+
+    def test_tree_instances_declaration_matches_origin_main(self) -> None:
+        section = spec_section(origin_main_header())
+        self.assertEqual(
+            require_declaration(section, LOCKED_DECL),
+            LOCKED_DECL,
+        )
+        self.assertTrue(has_declaration(section, LOCKED_DECL))
+        self.assertEqual(declaration_count(section, LOCKED_DECL), 1)
+        self.assertTrue(
+            LOCKED_DECL.startswith(
+                "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+                "TreeInstances"
+            ),
+            LOCKED_DECL,
+        )
+        self.assertTrue(LOCKED_DECL.endswith(";"), LOCKED_DECL)
+        self.assertNotIn("=", LOCKED_DECL)
+        self.assertNotIn("140.f", LOCKED_DECL)
+        self.assertNotIn("160.f", LOCKED_DECL)
+        self.assertNotIn("100.f", LOCKED_DECL)
+        self.assertNotIn("95.f", LOCKED_DECL)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_FNAME)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_INIT)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_BOOM)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_SHRUB)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_WIND)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ROOT)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_OCEAN)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_COUNT)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ASSEMBLY)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_YAW)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_LICENSED)
+        self.assertNotIn("WeatherIdentity", LOCKED_DECL)
+        self.assertNotIn("AssemblyRevision", LOCKED_DECL)
+        self.assertNotIn("LookYawLimit", LOCKED_DECL)
+        self.assertNotIn("FName ", LOCKED_DECL)
+        self.assertIn("TObjectPtr", LOCKED_DECL)
+        self.assertIn(
+            "UHierarchicalInstancedStaticMeshComponent",
+            LOCKED_DECL,
+        )
+        self.assertNotIn("USpringArmComponent", LOCKED_DECL)
+        self.assertNotIn("USceneComponent", LOCKED_DECL)
+        self.assertNotIn("UWindDirectionalSourceComponent", LOCKED_DECL)
+        self.assertNotIn("ShrubInstances", LOCKED_DECL)
+        self.assertNotIn("WindSource", LOCKED_DECL)
+        self.assertNotIn("OceanTiles", LOCKED_DECL)
+        self.assertNotIn("BeachTiles", LOCKED_DECL)
+        self.assertNotIn("LandTiles", LOCKED_DECL)
+        self.assertNotIn("TreeInstanceCount", LOCKED_DECL)
+        self.assertNotIn("Boom", LOCKED_DECL)
+        self.assertNotIn("bool ", LOCKED_DECL)
+        self.assertNotIn("int32 ", LOCKED_DECL)
+        self.assertNotIn("Category", LOCKED_DECL)
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_INIT}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_FNAME}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_HEALTH}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_BOOM}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_SHRUB}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_OCEAN}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_COUNT}\n", LOCKED_DECL)
+        )
+        self.assertFalse(
+            has_declaration(f"\t{TARGET_WRONG_LICENSED}\n", LOCKED_DECL)
+        )
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(f"\t{TARGET_WRONG_INIT}\n", LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+        self.assertIn("missing", str(raised.exception).lower())
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(f"\t{TARGET_WRONG_FNAME}\n", LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+
+    def test_locked_decl_is_not_leftover_clone_weather_identity(self) -> None:
+        self.assertEqual(
+            LOCKED_DECL,
+            "TObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+            "TreeInstances;",
+        )
+        self.assertNotEqual(LOCKED_DECL, "FName WeatherIdentity;")
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_BOOM)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_SHRUB)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_WIND)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ROOT)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_OCEAN)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_BEACH)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_LAND)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_COUNT)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ASSEMBLY)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_YAW)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_LICENSED)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_BUILDING)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_ROAD)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_LAMP)
+        self.assertNotEqual(LOCKED_DECL, TARGET_WRONG_SILHOUETTE)
+        self.assertNotIn("WeatherIdentity", LOCKED_DECL)
+        self.assertNotIn("FName ", LOCKED_DECL)
+        self.assertNotIn("=", LOCKED_DECL)
+        self.assertNotIn("140.f", LOCKED_DECL)
+        self.assertNotIn("160.f", LOCKED_DECL)
+        self.assertNotIn("95.f", LOCKED_DECL)
+        self.assertNotIn(
+            'Category="Skyguard|Theater"',
+            LOCKED_DECL,
+        )
+        self.assertNotIn(
+            'Category="Skyguard|Theater"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_THEATER,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_BARE_SKYGUARD,
+        )
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+
+    def test_wrong_default_and_renames_do_not_satisfy(self) -> None:
+        leftover_primary = (
+            "\tfloat " + leftover_retired_primary_hits_field() + " = 160.f;\n"
+        )
+        leftover_guided = (
+            "\tfloat " + leftover_retired_guided_hits_field() + " = 160.f;\n"
+        )
+        forty = "40" + ".f"
+        eighty = "80" + ".f"
+        wrongs = (
+            f"\t{TARGET_WRONG_INIT}\n",
+            f"\t{TARGET_WRONG_FALSE}\n",
+            f"\t{TARGET_WRONG_TRUE}\n",
+            f"\t{TARGET_WRONG_FNAME}\n",
+            f"\t{TARGET_WRONG_HEALTH}\n",
+            f"\t{TARGET_WRONG_BOOM}\n",
+            f"\t{TARGET_WRONG_SHRUB}\n",
+            f"\t{TARGET_WRONG_WIND}\n",
+            f"\t{TARGET_WRONG_ROOT}\n",
+            f"\t{TARGET_WRONG_OCEAN}\n",
+            f"\t{TARGET_WRONG_BEACH}\n",
+            f"\t{TARGET_WRONG_LAND}\n",
+            f"\t{TARGET_WRONG_COUNT}\n",
+            f"\t{TARGET_WRONG_ASSEMBLY}\n",
+            f"\t{TARGET_WRONG_YAW}\n",
+            f"\t{TARGET_WRONG_LICENSED}\n",
+            leftover_primary,
+            leftover_guided,
+            "\tTObjectPtr<UHierarchicalInstancedStaticMeshComponent> "
+            "TreeInstance;\n",
+            "\tint32 TreeInstances = 140;\n",
+            "\tbool TreeInstances = true;\n",
+            "\tfloat TreeInstances = " + forty + ";\n",
+            "\tfloat TreeInstances = " + eighty + ";\n",
+        )
+        for region in wrongs:
+            with self.assertRaises(AssertionError) as raised:
+                require_declaration(region, LOCKED_DECL)
+            self.assertIn("TreeInstances", str(raised.exception))
+            self.assertIn("missing", str(raised.exception).lower())
+
+    def test_missing_category_or_visible_anywhere_fails_closed(self) -> None:
+        no_category = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            "\tUPROPERTY(VisibleAnywhere, BlueprintReadOnly)\n"
+            f"\t{LOCKED_DECL}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        section = spec_section(no_category)
+        specifiers = attached_uproperty_specifiers(section)
+        self.assertNotIn("Category", specifiers)
+        origin = attached_uproperty_specifiers(
+            spec_section(origin_main_header())
+        )
+        self.assertIn("Category", origin)
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            origin,
+        )
+        self.assertNotIn('Skyguard|Theater', origin)
+        self.assertIn("VisibleAnywhere", origin)
+        self.assertIn("BlueprintReadOnly", origin)
+        no_visible = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            "\tUPROPERTY(BlueprintReadOnly, "
+            'Category="Skyguard|Environment|Vegetation")\n'
+            f"\t{LOCKED_DECL}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        dropped = attached_uproperty_specifiers(
+            spec_section(no_visible)
+        )
+        self.assertNotIn("VisibleAnywhere", dropped)
+        self.assertIn("VisibleAnywhere", origin)
+        write_only = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            f"\t{TARGET_WRONG_EDIT}\n"
+            f"\t{LOCKED_DECL}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        write_specs = attached_uproperty_specifiers(
+            spec_section(write_only)
+        )
+        self.assertIn("EditAnywhere", write_specs)
+        self.assertIn("BlueprintReadWrite", write_specs)
+        self.assertNotIn("VisibleAnywhere", write_specs)
+        self.assertNotIn("BlueprintReadOnly", write_specs)
+        theater = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            f"\t{TARGET_WRONG_THEATER}\n"
+            f"\t{LOCKED_DECL}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        theater_specs = attached_uproperty_specifiers(
+            spec_section(theater)
+        )
+        self.assertIn('Category="Skyguard|Theater"', theater_specs)
+        self.assertNotIn('Skyguard|Environment|Vegetation', theater_specs)
+        bare = (
+            f"class SKYGUARD52_API {CLASS_NAME}\n"
+            "{\n"
+            "public:\n"
+            f"\t{TARGET_WRONG_BARE_SKYGUARD}\n"
+            f"\t{LOCKED_DECL}\n"
+            f"{STOP_BEFORE_PRIVATE}\n"
+            "};\n"
+        )
+        bare_specs = attached_uproperty_specifiers(spec_section(bare))
+        self.assertIn('Category="Skyguard"', bare_specs)
+        self.assertNotIn("Environment|Vegetation", bare_specs)
+        self.assertIsNotNone(
+            re.search(r'Category="Skyguard"(?!\|)', bare_specs)
+        )
+        self.assertIsNone(
+            re.search(r'Category="Skyguard"(?!\|)', origin)
+        )
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            origin,
+        )
+        self.assertNotIn('Skyguard|Theater', origin)
+        self.assertNotIn('Skyguard|Combat', origin)
+        self.assertNotIn('Skyguard|MissionMap', origin)
+
+    def test_declaration_accepts_origin_main_split_line_forms(self) -> None:
+        wraps = (
+            "\tTObjectPtr<UHierarchicalInstancedStaticMeshComponent>\n"
+            "\tTreeInstances;\n",
+            "\tTObjectPtr<UHierarchicalInstancedStaticMeshComponent>   "
+            "TreeInstances;\n",
+            "\tTObjectPtr<UHierarchicalInstancedStaticMeshComponent>\t"
+            "TreeInstances;\n",
+            f"\t{LOCKED_DECL}\n",
+            f"\t{UPROPERTY_VISIBLE_READONLY}\n\t{LOCKED_DECL}\n",
+            f"\t{UPROPERTY_VISIBLE_READONLY} {LOCKED_DECL}\n",
+            "\tUPROPERTY(VisibleAnywhere, BlueprintReadOnly, "
+            'Category="Skyguard|Environment|Vegetation")\n'
+            f"\t{LOCKED_DECL}\n",
+            "\tUPROPERTY(\n\t\tVisibleAnywhere, BlueprintReadOnly, "
+            'Category="Skyguard|Environment|Vegetation")\n'
+            f"\t{LOCKED_DECL}\n",
+            "\tUPROPERTY(VisibleAnywhere, BlueprintReadOnly,\n"
+            '\t\tCategory="Skyguard|Environment|Vegetation")\n'
+            f"\t{LOCKED_DECL}\n",
+        )
+        for region in wraps:
+            self.assertTrue(has_declaration(region, LOCKED_DECL), region)
+
+    def test_does_not_claim_sibling_shrub_or_neighbors(self) -> None:
+        for sibling in sibling_uncontracted_decls():
+            self.assertNotIn(sibling, LOCKED_DECL)
+        for field in leftover_neighbor_hit_fields():
+            self.assertNotIn(field, LOCKED_DECL)
+        section = spec_section(origin_main_header())
+        self.assertTrue(has_identifier(section, "TreeInstances"))
+        self.assertFalse(has_identifier(section, SIBLING_SHRUB))
+        self.assertFalse(has_identifier(section, SIBLING_WIND))
+        self.assertFalse(has_identifier(section, SIBLING_VFX))
+        self.assertFalse(has_identifier(section, SIBLING_QUALITY))
+        self.assertFalse(has_identifier(section, SIBLING_SEED))
+        self.assertFalse(has_identifier(section, SIBLING_EPIC_TREE))
+        self.assertFalse(has_identifier(section, SIBLING_EPIC_SHRUB))
+        self.assertFalse(has_identifier(section, SIBLING_ROUTE_LENGTH))
+        self.assertFalse(has_identifier(section, SIBLING_ROUTE_HALF))
+        self.assertFalse(has_identifier(section, SIBLING_SHORE))
+        self.assertFalse(has_identifier(section, SIBLING_INLAND))
+        self.assertFalse(has_identifier(section, SIBLING_READINESS))
+        self.assertFalse(has_identifier(section, SIBLING_WEATHER))
+        self.assertFalse(has_identifier(section, SIBLING_OCEAN))
+        self.assertFalse(has_identifier(section, SIBLING_BEACH))
+        self.assertFalse(has_identifier(section, SIBLING_LAND))
+        self.assertFalse(has_identifier(section, leftover_banned_guided_muzzle()))
+        for leftover in leftover_pictogram_values():
+            self.assertNotIn(leftover, section)
+            self.assertNotIn(leftover, LOCKED_DECL)
+
+    def test_does_not_parse_private_or_neighbors(self) -> None:
+        header = origin_main_header()
+        section = spec_section(header)
+        leaked = class_body(header)
+        self.assertNotIn(STOP_BEFORE_PRIVATE, section)
+        self.assertTrue(has_identifier(leaked, SIBLING_SHRUB))
+        self.assertTrue(has_identifier(section, "TreeInstances"))
+        self.assertFalse(has_identifier(section, SIBLING_SHRUB))
+        self.assertTrue(has_identifier(leaked, SIBLING_WIND))
+        self.assertFalse(has_identifier(section, SIBLING_WIND))
+        self.assertTrue(has_identifier(leaked, SIBLING_VFX))
+        self.assertFalse(has_identifier(section, SIBLING_VFX))
+        self.assertNotIn(STOP_BEFORE_AUDIO_EVENT, header)
+        self.assertNotIn(STOP_BEFORE_PICTOGRAM, header)
+        self.assertNotIn(STOP_BEFORE_EVENT_DEF, header)
+        self.assertNotIn(STOP_BEFORE_BOSS_WEAPON, header)
+        self.assertNotIn(STOP_BEFORE_SORTIE, header)
+        self.assertNotIn(leftover_retired_mount_class(), header)
+        self.assertNotIn(LEFTOVER_PROTECT_ASSET_CLASS, header)
+        self.assertNotIn(STOP_BEFORE_MISSION_SPEC, header)
+        self.assertNotIn(STOP_BEFORE_ARCADE_LOOK, header)
+        self.assertNotIn(STOP_BEFORE_GUIDED_LOCK, header)
+        self.assertNotIn(STOP_BEFORE_LOADOUT_SPEC, header)
+        self.assertNotIn(STOP_BEFORE_ROSTER, header)
+        for leftover in leftover_harbor_breaker_tokens():
+            self.assertNotIn(leftover, section)
+            self.assertNotIn(leftover, header)
+
+    def test_parse_window_excludes_leftover_weapon_enum_body(self) -> None:
+        header = origin_main_header()
+        section = spec_section(header)
+        for leftover in leftover_pictogram_values():
+            self.assertNotIn(leftover, section)
+        for leftover in leftover_weapon_enum_body_tokens():
+            self.assertNotIn(leftover, section)
+        for leftover in leftover_audio_event_enum_tokens():
+            self.assertNotIn(leftover, section)
+        for leftover in leftover_apache_ufunction_tokens():
+            self.assertFalse(has_identifier(section, leftover), leftover)
+
+    def test_neighbor_helpers_do_not_satisfy(self) -> None:
+        other = (
+            f"\t{TARGET_WRONG_FNAME}\n"
+            f"\t{TARGET_WRONG_BOOM}\n"
+            f"\t{TARGET_WRONG_SHRUB}\n"
+            f"\t{TARGET_WRONG_OCEAN}\n"
+            f"\t{TARGET_WRONG_COUNT}\n"
+            f"\t{TARGET_WRONG_HEALTH}\n"
+            "\tUSkyguardObjectiveRuntime* GetObjectiveRuntime() const;\n"
+            "\tbool AddObjectiveProgress(\n"
+            "\t\tFName ObjectiveId,\n"
+            "\t\tint32 MedalTier);\n"
+            "\tvoid BindRuntimeActors();\n"
+            "\tvoid HandleDroneCityImpact();\n"
+            "\tvoid ApplyDamage(float Amount);\n"
+        )
+        with self.assertRaises(AssertionError) as raised:
+            require_declaration(other, LOCKED_DECL)
+        self.assertIn("TreeInstances", str(raised.exception))
+
+    def test_declaration_does_not_invent_uproperty_metadata(self) -> None:
+        self.assertEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            'UPROPERTY(VisibleAnywhere, BlueprintReadOnly, '
+            'Category="Skyguard|Environment|Vegetation")',
+        )
+        self.assertIn("VisibleAnywhere", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn("BlueprintReadOnly", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn("Category", UPROPERTY_VISIBLE_READONLY)
+        self.assertIn(
+            'Category="Skyguard|Environment|Vegetation"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotIn(
+            'Category="Skyguard|Theater"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotIn(
+            'Category="Skyguard|Combat"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotIn(
+            'Category="Skyguard|MissionMap"',
+            UPROPERTY_VISIBLE_READONLY,
+        )
+        self.assertNotIn(
+            'Category="Skyguard"',
+            UPROPERTY_VISIBLE_READONLY.replace(
+                'Category="Skyguard|Environment|Vegetation"',
+                "",
+            ),
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_THEATER,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_COMBAT,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_MISSION_MAP,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_BARE_SKYGUARD,
+        )
+        self.assertNotEqual(
+            UPROPERTY_VISIBLE_READONLY,
+            TARGET_WRONG_EDIT,
+        )
+        self.assertNotIn("EditAnywhere", UPROPERTY_VISIBLE_READONLY)
+        self.assertNotIn("BlueprintReadWrite", UPROPERTY_VISIBLE_READONLY)
+        self.assertNotIn("MultiLine", UPROPERTY_VISIBLE_READONLY)
+        self.assertNotIn("ClampMin", UPROPERTY_VISIBLE_READONLY)
+        self.assertNotIn("ClampMax", UPROPERTY_VISIBLE_READONLY)
+        for invented in INVENTED_FIELD_META:
+            self.assertNotIn(invented, LOCKED_DECL)
+            self.assertNotIn(invented, UPROPERTY_VISIBLE_READONLY)
+
+    def test_contract_does_not_read_cpp_or_invented_bodies(self) -> None:
+        self.assertNotIn(".cpp", HEADER_PATH)
+        self.assertTrue(HEADER_PATH.endswith(".h"))
+        self.assertNotIn("{", LOCKED_DECL)
+        self.assertNotIn("return ", LOCKED_DECL)
+        self.assertNotIn("SkyguardCoastalEnvironmentDirector.cpp", THIS_SCRIPT)
+        self.assertIn("SkyguardCoastalEnvironmentDirector.h", HEADER_PATH)
+        self.assertNotIn("SkyguardGunner.h", HEADER_PATH)
+        self.assertNotIn("SkyguardApacheAircraft.h", HEADER_PATH)
+        self.assertNotIn("SkyguardProtectAsset.h", HEADER_PATH)
+        self.assertNotIn("SkyguardCampaignTheaterKit.h", HEADER_PATH)
+        self.assertNotIn("SkyguardMission01EnvironmentDirector.h", HEADER_PATH)
+        self.assertNotIn("SkyguardGunshipTypes.h", HEADER_PATH)
+        self.assertNotIn("SkyguardCampaignRoster.h", HEADER_PATH)
+        self.assertNotIn("SkyguardArcadeLookComponent.h", HEADER_PATH)
+        self.assertNotIn("SkyguardGuidedLockRules.h", HEADER_PATH)
+
+    def test_contract_does_not_read_dirty_workspace_header(self) -> None:
+        header = origin_main_header()
+        dirty = "D:" + "\\Skyguard52"
+        dirty_fwd = "D:" + "/Skyguard52"
+        self.assertNotIn(dirty, header)
+        self.assertNotIn(dirty_fwd, header)
+        section = spec_section(header)
+        self.assertNotIn(dirty, section)
+        self.assertNotIn(dirty_fwd, LOCKED_DECL)
+
+    def test_harbor_40_80_tokens_fail_closed_if_present(self) -> None:
+        locked_only = f"{LOCKED_DECL}\n"
+        file_text = this_file_text()
+        for token in leftover_harbor_tokens():
+            self.assertFalse(leftover_harbor_token_in(locked_only, token))
+            self.assertFalse(leftover_harbor_token_in(LOCKED_DECL, token))
+            self.assertFalse(leftover_harbor_token_in(file_text, token))
+        header = origin_main_header()
+        section = spec_section(header)
+        for token in leftover_harbor_tokens():
+            self.assertFalse(leftover_harbor_token_in(section, token))
+
+    def test_this_file_bans_retired_live_copy(self) -> None:
+        file_text = this_file_text().lower()
+        for banned in leftover_live_copy_tokens():
+            self.assertNotIn(
+                banned,
+                file_text,
+                "coastal TreeInstances field decl contract "
+                f"contains {banned}; declaration is Apache CPG 30 mm / "
+                "Hydra / Hellfire, not leftover live cop" + "y",
+            )
+
+    def test_this_file_bans_live_retired_tokens_case_sensitive(self) -> None:
+        file_text = this_file_text()
+        for banned in leftover_live_case_tokens():
+            self.assertNotIn(banned, file_text)
+
+    def test_contract_does_not_require_retired_live_mount(self) -> None:
+        locked_only = f"{LOCKED_DECL}\n"
+        for banned in leftover_live_copy_tokens():
+            self.assertNotIn(banned, LOCKED_DECL.lower())
+            self.assertNotIn(banned, locked_only.lower())
+        for token in leftover_readiness_tokens():
+            self.assertNotIn(token, LOCKED_DECL)
+            self.assertNotIn(token, locked_only)
+        self.assertNotIn(leftover_retired_mount_class(), LOCKED_DECL)
+
+    def test_declaration_bans_retired_live_copy(self) -> None:
+        locked_only = f"{LOCKED_DECL}\n"
+        for banned in leftover_live_copy_tokens():
+            self.assertNotIn(banned, LOCKED_DECL.lower())
+            self.assertNotIn(banned, locked_only.lower())
+
+    def test_locked_scripts_do_not_include_this_file(self) -> None:
+        self.assertNotIn(THIS_SCRIPT, LOCKED_SCRIPTS)
+        self.assertTrue(Path(__file__).name.endswith(
+            "coastal_tree_instances_field_decl_contract.py"
+        ))
+        self.assertNotIn("SkyguardCoastalEnvironmentDirector.cpp", THIS_SCRIPT)
+        self.assertIn(LEFTOVER_ENV_TREE_INSTANCE_COUNT, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_ENV_SHRUB_INSTANCE_COUNT, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_COASTAL_EMPTY, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_COASTAL_EMPTY_ALT, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_MISSION01_OCEAN_TILES, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_MISSION01_BEACH_TILES, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_MISSION01_LAND_TILES, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_GUNNER_BOOM, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_THEATER_WEATHER_IDENTITY, LOCKED_SCRIPTS)
+        self.assertIn(LEFTOVER_THEATER_KIT_BULK, LOCKED_SCRIPTS)
+        self.assertIn(
+            "Scripts/tests/test_campaign_theater_kit_contract.py",
+            LOCKED_SCRIPTS,
+        )
+
+    def test_leftover_mission_result_defaults_stay_locked(self) -> None:
+        leftovers = (
+            LEFTOVER_ENV_TREE_INSTANCE_COUNT,
+            LEFTOVER_ENV_SHRUB_INSTANCE_COUNT,
+            LEFTOVER_COASTAL_EMPTY,
+            LEFTOVER_COASTAL_EMPTY_ALT,
+            LEFTOVER_MISSION01_OCEAN_TILES,
+            LEFTOVER_MISSION01_BEACH_TILES,
+            LEFTOVER_MISSION01_LAND_TILES,
+            LEFTOVER_GUNNER_BOOM,
+            LEFTOVER_THEATER_WEATHER_IDENTITY,
+            LEFTOVER_MISSION_MAP_ROUTE_POINTS,
+            LEFTOVER_MISSION_MAP_LANDMARKS,
+            LEFTOVER_MISSION_MAP_OBJECTIVES,
+            LEFTOVER_MISSION_MAP_CLEARANCE_V,
+            LEFTOVER_MISSION_MAP_CLEARANCE_R,
+            LEFTOVER_MISSION_MAP_SPLINE,
+            LEFTOVER_MISSION_MAP_REVISION,
+            LEFTOVER_THEATER_BUILDING_INSTANCES,
+            LEFTOVER_THEATER_ROAD_INSTANCES,
+            LEFTOVER_THEATER_LAMP_INSTANCES,
+            LEFTOVER_THEATER_SILHOUETTE_INSTANCES,
+            LEFTOVER_THEATER_ROOT,
+            LEFTOVER_THEATER_KIT_BULK,
+        )
+        for script in leftovers:
+            self.assertIn(script, LOCKED_SCRIPTS)
+            self.assertNotEqual(script, THIS_SCRIPT)
+
+    def test_locked_files_were_not_the_edit_surface(self) -> None:
+        existing = [
+            f"Source/Skyguard52/{name}"
+            for name in LOCKED
+            if (SOURCE / name).exists()
+        ]
+        for sibling in LOCKED_SCRIPTS:
+            if (ROOT / sibling).exists():
+                existing.append(sibling)
+        result = subprocess.run(
+            ["git", "diff", "--name-only", "HEAD", "--", *existing],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.stdout.strip(), "")
+
+    def test_contract_is_target_field_declaration_only(self) -> None:
+        header = origin_main_header()
+        section = spec_section(header)
+        self.assertEqual(
+            require_declaration(section, LOCKED_DECL),
+            LOCKED_DECL,
+        )
+        locked_only = f"{LOCKED_DECL}\n"
+        for sibling in sibling_uncontracted_decls():
+            self.assertNotIn(sibling, locked_only)
+        for field in leftover_neighbor_hit_fields():
+            self.assertNotIn(field, locked_only)
+        self.assertNotIn(GET_OBJECTIVE_RUNTIME, locked_only)
+        self.assertNotIn(ADD_OBJECTIVE_PROGRESS, locked_only)
+        self.assertNotIn("FSkyguardObjectiveProgress", locked_only)
+        self.assertNotIn("ESkyguardAudioEvent", locked_only)
+        self.assertNotIn("ESkyguardBriefingPictogram", locked_only)
+        self.assertNotIn("FSkyguardAudioEventDefinition", locked_only)
+        self.assertNotIn("FSkyguardAudioTelemetry", locked_only)
+        self.assertNotIn("ESkyguardBossWeapon", locked_only)
+        self.assertNotIn("ESkyguardPilotCommand", locked_only)
+        self.assertNotIn("PeakActiveVoices", locked_only)
+        self.assertNotIn(LEFTOVER_PROTECT_ASSET_CLASS, locked_only)
+        self.assertNotIn(LEFTOVER_RADAR_NODE_CLASS, locked_only)
+        self.assertNotIn(LEFTOVER_THEATER_KIT_ACTOR, locked_only)
+        self.assertNotIn(LEFTOVER_MISSION01_CLASS, locked_only)
+        self.assertNotIn(STOP_BEFORE_SORTIE, locked_only)
+        self.assertNotIn(STOP_BEFORE_MISSION_SPEC, locked_only)
+        self.assertNotIn(STOP_BEFORE_ARCADE_LOOK, locked_only)
+        self.assertNotIn(STOP_BEFORE_GUIDED_LOCK, locked_only)
+        self.assertNotIn("WeatherIdentity", locked_only)
+        self.assertNotIn("AssemblyRevision", locked_only)
+        self.assertNotIn("LookYawLimit", locked_only)
+        self.assertNotIn("ShrubInstances", locked_only)
+        self.assertNotIn("WindSource", locked_only)
+        self.assertNotIn("OceanTiles", locked_only)
+        self.assertNotIn("BeachTiles", locked_only)
+        self.assertNotIn("LandTiles", locked_only)
+        self.assertNotIn("TreeInstanceCount", locked_only)
+        self.assertNotIn("USpringArmComponent", locked_only)
+        self.assertNotIn("Boom;", locked_only)
+        self.assertNotIn("FireRate", locked_only)
+        self.assertNotIn("RecoilPitch", locked_only)
+        self.assertNotIn("bLicensedVegetationLibraryApproved", locked_only)
+        self.assertNotIn(leftover_banned_primary_mesh(), locked_only)
+        self.assertNotIn(leftover_banned_guided_tube(), locked_only)
+        for leftover in leftover_apache_ufunction_tokens():
+            self.assertNotIn(leftover, locked_only)
+
+
+if __name__ == "__main__":
+    unittest.main()
