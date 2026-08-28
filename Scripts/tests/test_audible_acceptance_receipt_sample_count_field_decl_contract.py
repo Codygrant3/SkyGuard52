@@ -2246,9 +2246,6 @@ def leaked_neighbor_tokens() -> tuple[str, ...]:
         STOP_BEFORE_BANK_NAIVE,
         STOP_BEFORE_HARNESS,
         STOP_BEFORE_HARNESS_NAIVE,
-        LEFTOVER_HARNESS_CATEGORY,
-        LEFTOVER_HARNESS_MIN_SAMPLES,
-        LEFTOVER_HARNESS_MAX_VOICES,
         STOP_BEFORE_PROCEDURAL,
         STOP_BEFORE_UCLASS,
         STOP_BEFORE_SAVE_GAME_API,
@@ -2358,9 +2355,6 @@ def spec_section(header: str) -> str:
         STOP_BEFORE_BANK_NAIVE,
         STOP_BEFORE_HARNESS,
         STOP_BEFORE_HARNESS_NAIVE,
-        LEFTOVER_HARNESS_CATEGORY,
-        LEFTOVER_HARNESS_MIN_SAMPLES,
-        LEFTOVER_HARNESS_MAX_VOICES,
         STOP_BEFORE_PROCEDURAL,
         STOP_BEFORE_UCLASS,
         STOP_BEFORE_SAVE_GAME_API,
@@ -2418,7 +2412,7 @@ def require_declaration(region: str, declaration: str) -> str:
 
 
 
-class ProductionAudioAuditSampleCountFieldDeclContractTests(
+class AudibleAcceptanceReceiptSampleCountFieldDeclContractTests(
     unittest.TestCase
 ):
     def test_audible_acceptance_receipt_struct_exists(self) -> None:
