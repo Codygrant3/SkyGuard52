@@ -2331,7 +2331,7 @@ class GunnerCpgMpdRightTextFieldDeclContractTests(unittest.TestCase):
         self.assertIn("CpgMpdRightText", str(raised.exception))
         self.assertIn("missing", str(raised.exception).lower())
 
-    def test_missing_cpg_mpd_left_text_declaration_fails_closed(self) -> None:
+    def test_missing_cpg_mpd_right_text_declaration_fails_closed(self) -> None:
         empty = (
             f"class SKYGUARD52_API {CLASS_NAME}\n"
             "{\n"
@@ -2414,7 +2414,7 @@ class GunnerCpgMpdRightTextFieldDeclContractTests(unittest.TestCase):
         self.assertNotIn("FName WeatherIdentity", compact_origin)
         self.assertNotIn("FName WeatherIdentity", compact_origin)
 
-    def test_cpg_mpd_left_text_declaration_matches_origin_main(self) -> None:
+    def test_cpg_mpd_right_text_declaration_matches_origin_main(self) -> None:
         section = spec_section(origin_main_header())
         self.assertEqual(
             require_declaration(section, LOCKED_DECL),
