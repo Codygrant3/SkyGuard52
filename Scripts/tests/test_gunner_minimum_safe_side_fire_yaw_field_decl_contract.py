@@ -1919,7 +1919,7 @@ CLASS_RE = re.compile(
 )
 ACCESS_RE = re.compile(r"(?:^|\n)\s*(public|private|protected)\s*:")
 MINIMUM_SAFE_SIDE_FIRE_YAW_DECL_RE = re.compile(
-    r"float\s+MinimumSafeSideFireYaw\s*=\s*95\.f\s*;"
+    r"float\s+MinimumSafeSideFireYaw\s*=\s*28\.f\s*;"
 )
 MINIMUM_SAFE_SIDE_FIRE_YAW_BARE_RE = re.compile(
     r"float\s+MinimumSafeSideFireYaw\s*;"
