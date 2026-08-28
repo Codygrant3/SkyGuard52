@@ -2406,7 +2406,8 @@ class ApacheMainRotorCrossFieldDeclContractTests(unittest.TestCase):
         self.assertFalse(has_identifier(section, SIBLING_MAX_INTEGRITY))
         self.assertFalse(has_identifier(section, SIBLING_CURRENT_INTEGRITY))
         self.assertFalse(has_identifier(section, SIBLING_HULL_COLLIDER))
-        self.assertNotIn(TARGET_WRONG_FUSELAGE, section)
+        self.assertNotIn(TARGET_WRONG_HORIZONTAL_TAIL, section)
+        self.assertNotIn(TARGET_WRONG_GEAR_NOSE, section)
         for leftover in leftover_pictogram_values():
             self.assertNotIn(leftover, section)
             self.assertNotIn(leftover, LOCKED_DECL)
