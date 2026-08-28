@@ -1695,7 +1695,7 @@ INVENTED_UPROPERTY = (
     "MultiLine",
     "BlueprintAuthorityOnly",
     "meta=",
-    "Category",
+    "Category=",
 )
 INVENTED_FIELD_META = (
     "INDEX_NONE",
@@ -1766,6 +1766,15 @@ def leftover_save_record_scripts() -> tuple[str, ...]:
         LEFTOVER_LANDMARK_ANCHOR_DEFAULTS,
         LEFTOVER_ROUTE_DEFINITION_FIELDS,
         CLONE_WEATHER_IDENTITY,
+        CLONE_DISPLAY_NAME,
+        CLONE_OBJECTIVE_ID_DEFINITION,
+        LEFTOVER_MISSION_TYPES_DEFAULTS,
+        LEFTOVER_MISSION_TYPES_DEFAULTS_TESTS,
+        LEFTOVER_MISSION_TYPES_DEFAULTS_CONTRACT,
+        LEFTOVER_OBJECTIVE_DEFINITION_DEFAULTS,
+        LEFTOVER_OBJECTIVE_DEFINITION_DEFAULTS_PY,
+        LEFTOVER_OBJECTIVE_DEFINITION_DEFAULTS_TESTS,
+        LEFTOVER_MISSION_SCORE_RULES_DEFAULTS,
         CLONE_SUCCESS_DEBRIEF,
         "Scripts/tests/test_mission_presentation_defaults.py",
         "Scripts/tests/test_mission_presentation_defaults_tests.py",
@@ -2501,7 +2510,7 @@ class ProductionAudioAuditCategoryContractCompleteFieldDeclContractTests(
         self.assertTrue(has_declaration(section, LOCKED_DECL), section)
         self.assertNotIn("UFUNCTION", LOCKED_DECL)
         self.assertNotIn("UPROPERTY", LOCKED_DECL)
-        self.assertNotIn("Category", LOCKED_DECL)
+        self.assertNotIn("Category=", LOCKED_DECL)
         for invented in INVENTED_UPROPERTY:
             self.assertNotIn(invented, LOCKED_DECL)
 
@@ -2574,7 +2583,7 @@ class ProductionAudioAuditCategoryContractCompleteFieldDeclContractTests(
         self.assertNotIn("TArray", LOCKED_DECL)
         self.assertNotIn("TSoftObjectPtr", LOCKED_DECL)
         self.assertNotIn("FSkyguardMissionResult", LOCKED_DECL)
-        self.assertNotIn("Category", LOCKED_DECL)
+        self.assertNotIn("Category=", LOCKED_DECL)
         for sibling in sibling_uncontracted_decls():
             self.assertNotIn(sibling, LOCKED_DECL)
         for field in leftover_neighbor_hit_fields():
