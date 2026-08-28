@@ -481,10 +481,14 @@ RANGE_METERS_LOCKED_RE = re.compile(
     r"float\s+RangeMeters\s*=\s*-1\.f\s*;"
 )
 RANGE_METERS_BARE_RE = re.compile(r"float\s+RangeMeters\s*;")
+RANGE_METERS_INIT_RE = re.compile(
+    r"float\s+RangeMeters\s*=\s*([^;]+);"
+)
 RANGE_METERS_WRONG_INIT_RE = re.compile(
-    r"float\s+RangeMeters\s*=\s*(?!-1\.f\b)"
+    r"float\s+RangeMeters\s*=(?!\s*-1\.f\b)"
 )
 RANGE_LINE_LEFTOVER_RE = re.compile(r"FString\s+RangeLine\s*;")
+LOCKED_INITIALIZER = "-1.f"
 INVENTED_FIELD_META = (
     "INDEX_NONE",
     "NAME_None",
@@ -576,6 +580,7 @@ def collapsed(text: str) -> str:
     compact = re.sub(r"\s*,\s*", ",", compact)
     compact = re.sub(r"\s*\*\s*", "* ", compact)
     compact = re.sub(r"\s*::\s*", "::", compact)
+    compact = re.sub(r"\s*=\s*", " = ", compact)
     return compact
 
 
@@ -641,6 +646,11 @@ def has_declaration(region: str, declaration: str) -> bool:
     if RANGE_METERS_BARE_RE.search(compact) and (
         RANGE_METERS_LOCKED_RE.search(compact) is None
     ):
+        return False
+    init_match = RANGE_METERS_INIT_RE.search(compact)
+    if init_match is None:
+        return False
+    if init_match.group(1).strip() != LOCKED_INITIALIZER:
         return False
     if RANGE_METERS_WRONG_INIT_RE.search(compact):
         return False
