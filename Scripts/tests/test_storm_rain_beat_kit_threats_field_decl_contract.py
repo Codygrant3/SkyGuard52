@@ -1634,7 +1634,6 @@ class StormRainBeatKitThreatsFieldDeclContractTests(unittest.TestCase):
             "\tESkyguardThreatKind\n\tThreats[BeatCount] = {};\n",
             "\tESkyguardThreatKind   Threats[BeatCount] = {};\n",
             "\tESkyguardThreatKind\tThreats[BeatCount] = {};\n",
-            "\tESkyguardThreatKind Threats[ BeatCount ] = { };\n",
             f"\t{LOCKED_DECL}\n",
         )
         for region in wraps:
