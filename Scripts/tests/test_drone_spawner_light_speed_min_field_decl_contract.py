@@ -14,7 +14,7 @@
 # `LightSpeedMax` (1750.f), NOT leftover analog
 # `HeavyCruiseSpeed` (1150.f), NOT leftover analog
 # `SpawnInterval = 1.85f`, NOT leftover analog Harbor
-# 40.f/80.f, NOT leftover analog `HeavyLaneModulo`
+# 40 / 80 float tokens, NOT leftover analog `HeavyLaneModulo`
 # (in-flight).
 # LOCKED_DECL is NOT leftover `int32 MaxActiveDrones = 12` /
 # `int32 PoolCapacity = 12`. LOCKED_DECL is NOT leftover
