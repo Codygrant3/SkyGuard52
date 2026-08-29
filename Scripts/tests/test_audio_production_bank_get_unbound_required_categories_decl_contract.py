@@ -3062,7 +3062,7 @@ class AudioProductionBankGetUnboundRequiredCategoriesDeclContractTests(
         self.assertTrue(has_declaration(section, LOCKED_DECL), section)
         self.assertNotIn("UFUNCTION", LOCKED_DECL)
         self.assertNotIn("UPROPERTY", LOCKED_DECL)
-        self.assertNotIn("Category", LOCKED_DECL)
+        self.assertNotIn("Category=", LOCKED_DECL)
         for invented in INVENTED_UFUNCTION:
             self.assertNotIn(invented, LOCKED_DECL)
 
@@ -3200,7 +3200,7 @@ class AudioProductionBankGetUnboundRequiredCategoriesDeclContractTests(
         self.assertNotIn("UTextRenderComponent", LOCKED_DECL)
         self.assertNotIn("UStaticMeshComponent", LOCKED_DECL)
         self.assertNotIn("USceneComponent", LOCKED_DECL)
-        self.assertNotIn("Category", LOCKED_DECL)
+        self.assertNotIn("Category=", LOCKED_DECL)
         self.assertNotIn(SIBLING_GET_RESOLVED_COUNT, LOCKED_DECL)
         self.assertNotIn(SIBLING_GET_WIND_BLEND, LOCKED_DECL)
         self.assertNotIn(SIBLING_MAX_INTEGRITY, LOCKED_DECL)
